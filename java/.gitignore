@@ -1,0 +1,7 @@
+.idea/
+*.iml
+target/
+release.properties
+pom.xml.releaseBackup
+.deps
+.tested
