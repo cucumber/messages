@@ -1,0 +1,15 @@
+dist/
+.idea/
+.nyc_output/
+coverage/
+node_modules/
+yarn.lock
+npm-debug.log
+.deps
+.tested*
+.linted
+.built
+.compared
+.codegen
+acceptance/
+*-go

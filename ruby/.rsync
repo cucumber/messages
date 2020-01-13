@@ -1,0 +1,4 @@
+../../LICENSE LICENSE
+../../.templates/github/ .github/
+../../.templates/ruby/ .
+../messages.proto messages.proto
