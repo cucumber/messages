@@ -10,7 +10,7 @@ on:
   workflow_call:
 
 jobs:
-  test:
+  test-go:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
