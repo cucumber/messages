@@ -26,3 +26,10 @@ jobs:
         uses: php-actions/composer@v6
         with:
           working_dir: php
+
+      - name: Run tests
+        run: |
+          vendor/bin/php-cs-fixer --dry-run --diff fix
+          vendor/bin/psalm --no-cache
+          vendor/bin/phpunit
+        working-directory: php
