@@ -21,9 +21,7 @@ jobs:
           elixir-version: '1.9.4'
 
       - run: mix deps.get
-        with:
-          working-directory: elixir
+        working-directory: elixir
 
       - run: mix test
-        with:
-          working-directory: elixir
+        working-directory: elixir
