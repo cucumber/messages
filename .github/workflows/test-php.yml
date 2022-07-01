@@ -10,7 +10,7 @@ on:
   workflow_call:
 
 jobs:
-  test-ruby:
+  test-php:
     runs-on: ubuntu-latest
 
     steps:
