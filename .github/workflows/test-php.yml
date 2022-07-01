@@ -24,4 +24,5 @@ jobs:
 
       - name: Set up PHP
         uses: php-actions/composer@v6
-        working-directory: php
+          with:
+            working-directory: php
