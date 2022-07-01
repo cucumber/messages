@@ -1,0 +1,37 @@
+name: test-go
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        go: ['1.13.x', '1.17.x']
+        include:
+          - os: windows-latest
+            go: '1.17.x'
+          - os: macos-latest
+            go: '1.17.x'
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: ${{ matrix.go }}
+
+    - name: lint
+      working-directory: go
+      run: gofmt -w .
+
+    - name: test
+      working-directory: go
+      run: go test ./...
