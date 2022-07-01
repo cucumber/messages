@@ -1,0 +1,29 @@
+name: test-elixir
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_call:
+
+jobs:
+  test-elixir:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-elixir@v1
+        with:
+          otp-version: '22.2'
+          elixir-version: '1.9.4'
+
+      - run: mix deps.get
+        with:
+          working-directory: elixir
+
+      - run: mix test
+        with:
+          working-directory: elixir
