@@ -21,6 +21,10 @@ jobs:
         with:
           cpanfile: "perl/cpanfile"
 
+      - name: install the CCK
+        run: npm ci
+        working-directory: perl/t/compatibility-kit
+
       - name: run tests
         run: |
           prove -l
