@@ -20,3 +20,9 @@ jobs:
         uses: perl-actions/install-with-cpanm@v1
         with:
           cpanfile: "perl/cpanfile"
+
+      - name: run tests
+        run: |
+          prove -l
+          AUTHOR_TESTS=1 prove -l
+        working-directory: perl
