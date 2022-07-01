@@ -1,0 +1,27 @@
+name: test-php
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_call:
+
+jobs:
+  test-ruby:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ubuntu-latest-${{ hashFiles('php/composer.lock') }}
+
+      - name: Set up PHP
+        uses: php-actions/composer@v6
+        working-directory: php
