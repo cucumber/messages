@@ -1,20 +1,24 @@
-include default.mk
+schemas = $(shell find ../jsonschema -name "*.json")
 
-JSONSCHEMAS = $(shell find ../jsonschema -name "*.json")
+.DEFAULT_GOAL = help
 
-clean: clean-build
+help: ## Show this help
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nWhere <target> is one of:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
-.codegen: $(JSONSCHEMAS) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/php.php.erb build/messages.php
+generate: require build/messages.php ## Generate php code based on the schemas found in ../jsonschema and using the scripts in ../jsonschema/scripts for the generation
 
-post-release: update-gherkin-dependency
+require: ## Check requirements for the code generation (ruby, php, csplit, tail and php-cs-fixer are required)
+	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
+	@php --version >/dev/null 2>&1 || (echo "ERROR: php is required."; exit 1)
+	@csplit --version >/dev/null 2>&1 || (echo "ERROR: csplit is required."; exit 1)
+	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
+	@vendor/bin/php-cs-fixer --version >/dev/null 2>&1 || (echo "ERROR: vendor/bin/php-cs-fixer is required ('composer install' should install it)."; exit 1)
 
-update-gherkin-dependency:
-	php scripts/update-gherkin-dependency.php ../../gherkin/php/composer.json > gherkin-composer.json
-	jq --indent 4 < gherkin-composer.json > ../../gherkin/php/composer.json
-	rm gherkin-composer.json
-.PHONY: update-gherkin-dependency
+clean: ## Remove automatically generated files and related artifacts
+	rm -rf build/messages.php
+	rm -rf src-generated/*
 
-build/messages.php:
+build/messages.php: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/php.php.erb ../jsonschema/scripts/templates/php.enum.php.erb
 	ruby ../jsonschema/scripts/codegen.rb Php ../jsonschema php.php.erb > build/messages.php
 	ruby ../jsonschema/scripts/codegen.rb Php ../jsonschema php.enum.php.erb >> build/messages.php
 	csplit --quiet --prefix=build/Generated --suffix-format=%02d.php.tmp --elide-empty-files build/messages.php /^.*[.]php$$/ {*}
@@ -22,7 +26,3 @@ build/messages.php:
 	for file in build/Generated**; do mkdir -p src-generated/$$(head -n 1 $$file | sed 's/[^/]*.php$$//'); done
 	for file in build/Generated**; do tail -n +2 $$file > src-generated/$$(head -n 1 $$file); rm $$file; done
 	vendor/bin/php-cs-fixer --diff fix src-generated
-
-clean-build:
-	rm -rf build/messages.php
-	rm -rf src-generated/*
