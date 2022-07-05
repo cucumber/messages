@@ -1,21 +1,17 @@
-include default.mk
+schemas = $(shell find ../jsonschema -name "*.json")
 
-PERL5LIB  = $$PWD/perl5/lib/perl5
-PERL5PATH = $$PWD/perl5/bin
+.DEFAULT_GOAL = help
 
+help: ## Show this help
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nWhere <target> is one of:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
+generate: require lib/Cucumber/Messages.pm ## Generate perl code based on the schemas found in ../jsonschema and using the scripts in ../jsonschema/scripts for the generation
 
-JSONSCHEMAS = $(shell find ../jsonschema -name "*.json")
+require: ## Check requirements for the code generation (ruby is required)
+	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
 
-test: lib/Cucumber/Messages.pm .cpanfile_dependencies
-	PERL5LIB=${PERL5LIB} AUTHOR_TESTS=1 prove -l
-.PHONY: test clean clobber
-
-lib/Cucumber/Messages.pm: $(JSONSCHEMAS) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/perl.pm.erb
-	ruby ../jsonschema/scripts/codegen.rb Perl ../jsonschema perl.pm.erb > $@
-
-clean:
-	rm -rf .built CHANGELOG.md
-
-clobber: clean
+clean: ## Remove automatically generated files and related artifacts
 	rm -f lib/Cucumber/Messages.pm
+
+lib/Cucumber/Messages.pm: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/perl.pm.erb
+	ruby ../jsonschema/scripts/codegen.rb Perl ../jsonschema perl.pm.erb > $@
