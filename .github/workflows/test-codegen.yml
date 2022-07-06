@@ -1,0 +1,41 @@
+name: test-codegen
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_call:
+
+jobs:
+  test-codegen:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: with Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: "npm"
+          cache-dependency-path: ./package-lock.json
+
+      - name: validate the json schemas
+        run: make validate
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+
+      - name: generate code for all languages
+        run: make generate-all
+
+      - name: check the repo is still clean after generation
+        run: [ -z "$(git status --porcelain)" ]
