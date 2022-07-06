@@ -14,12 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: with Node.js 18.x
+      - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: 18
           cache: "npm"
-          cache-dependency-path: ./package-lock.json
 
       - name: validate the json schemas
         run: make validate
