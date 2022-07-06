@@ -38,4 +38,5 @@ jobs:
         run: make generate-all
 
       - name: check the repo is still clean after generation
-        run: [ -z "$(git status --porcelain)" ]
+        run: |
+          [ -z "$(git status --porcelain)" ]
