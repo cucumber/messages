@@ -39,7 +39,9 @@ jobs:
         working-directory: php
 
       - name: generate code for all languages
-        run: make generate-all
+        run: |
+          make clean-all
+          make generate-all
 
       - name: check the repo is still clean after generation
         run: |
