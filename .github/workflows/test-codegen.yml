@@ -35,6 +35,9 @@ jobs:
         with:
           php-version: "8.1"
 
+      - run: composer install
+        working-directory: php
+
       - name: generate code for all languages
         run: make generate-all
 
