@@ -30,13 +30,18 @@ languages = go java javascript perl php ruby
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nWhere <target> is one of:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
-generate-all: generate-code generate-doc ## Generate documentation and code for all supported languages
+generate-all: validate generate-code generate-doc ## Generate documentation and code for all supported languages
 .PHONY: generate-all
 
 generate-code: $(patsubst %,generate-%,$(languages)) ## Generate code for all supported languages
 .PHONY: generate-languages
 
 generate-doc: require-doc messages.md ## Generate markdown documentation using the scripts in ./jsonschema/scripts for the generation
+
+validate: $(schemas) ## Validate the json schemas are valid
+	npm install
+	npx ajv compile --data --spec=draft2020 --strict=true $(patsubst %,-s %,$(schemas))
+.PHONY: validate-schemas
 
 require-doc: ## Check requirements for the generation of the documentation (ruby is required)
 	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
