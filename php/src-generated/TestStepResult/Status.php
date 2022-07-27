@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Cucumber\Messages\TestStepResult;
 
-enum Status : string
+enum Status: string
 {
     case UNKNOWN = 'UNKNOWN';
     case PASSED = 'PASSED';
