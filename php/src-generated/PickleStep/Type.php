@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Cucumber\Messages\PickleStep;
 
-enum Type : string
+enum Type: string
 {
     case UNKNOWN = 'Unknown';
     case CONTEXT = 'Context';

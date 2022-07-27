@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Cucumber\Messages\Attachment;
 
-enum ContentEncoding : string
+enum ContentEncoding: string
 {
     case IDENTITY = 'IDENTITY';
     case BASE64 = 'BASE64';
