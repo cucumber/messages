@@ -1,0 +1,14 @@
+{
+  "name": "cucumber-compatibility-kit-for-perl-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/compatibility-kit": "^11.0.0"
+  }
+}

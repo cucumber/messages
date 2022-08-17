@@ -19,7 +19,7 @@ my $json = JSON::MaybeXS->new(
 
 my @files =
     File::Find::Rule->file()->name( '*.ndjson' )
-    ->in( '../../compatibility-kit/javascript/features/' );
+    ->in( './t/compatibility-kit/node_modules/@cucumber/compatibility-kit/features/' );
 
 
 

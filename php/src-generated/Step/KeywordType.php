@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Cucumber\Messages\Step;
 
-enum KeywordType : string
+enum KeywordType: string
 {
     case UNKNOWN = 'Unknown';
     case CONTEXT = 'Context';

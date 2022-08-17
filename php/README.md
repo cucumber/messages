@@ -1,6 +1,6 @@
 # Cucumber Messages
 
-This is a PHP implementation of the [Cucumber Messages protocol](https://github.com/cucumber/common/blob/main/messages/README.md)
+This is a PHP implementation of the [Cucumber Messages protocol](https://github.com/cucumber/messages)
 
 ## Requirements
 

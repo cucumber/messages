@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Cucumber\Messages\StepDefinitionPattern;
 
-enum Type : string
+enum Type: string
 {
     case CUCUMBER_EXPRESSION = 'CUCUMBER_EXPRESSION';
     case REGULAR_EXPRESSION = 'REGULAR_EXPRESSION';

@@ -17,6 +17,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [19.1.2] - 2022-06-22
+
+### Fixed
+
+* [Javascript] Schema was still missing in 19.1.1 due to how npm manages the files attribute in package.json
+  ([PR#2020](https://github.com/cucumber/common/pull/2020))
+
+## [19.1.1] - 2022-06-22
+
+### Fixed
+
+* [Javascript] Schema are actually missing from 19.1.0
+  ([PR#2016](https://github.com/cucumber/common/pull/2016))
+
+## [19.1.0] - 2022-06-20
+
+### Added
+
+* [Javascript] Adding the json schemas of the messages to the NPM package
+  ([PR#2010](https://github.com/cucumber/common/pull/2010))
+
 ## [19.0.0] - 2022-05-31
 
 ### Added
@@ -104,7 +125,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* [Go, Java, JavaScript, Ruby] The library no longer depends on protocol buffers. The message classes are generated from [JSON Schemas](https://github.com/cucumber/common/tree/messages/v16.0.0/messages).
+* [Go, Java, JavaScript, Ruby] The library no longer depends on protocol buffers. The message classes are generated from [JSON Schemas](https://github.com/cucumber/common/tree/v16.0.0/messages).
   ([#1414](https://github.com/cucumber/cucumber/pull/1414)
    [aslakhellesoy])
    * Empty `string` properties are set to `""` rather than being omitted.
@@ -166,7 +187,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 * [JavaScript] The stream classes have to be imported separately:
-  `import { MessageToBinaryStream, MessageToNdjsonStream, BinaryToMessageStream, NdjsonToMessageStream} from '@cucumber/messages/dist/src/stream'`
+  `import { MessageToBinaryStream, MessageToNdjsonStream, BinaryToMessageStream, NdjsonToMessageStream} from '@cucumber/dist/src/stream'`
   ([#1331](https://github.com/cucumber/cucumber/issues/1331))
 * In JavaScript, Int64 fields are now typed as `number`, rather than `number|Long`
 
@@ -502,19 +523,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-* [Go] Tag the cucumber/messages-go subrepo (again)
+* [Go] Tag the cucumber/go subrepo (again)
 
 ## [3.0.4] - 2019-08-14
 
 ### Fixed
 
-* [Go] Tag the cucumber/messages-go subrepo (again)
+* [Go] Tag the cucumber/go subrepo (again)
 
 ## [3.0.3] - 2019-08-14
 
 ### Fixed
 
-* [Go] Tag the cucumber/messages-go subrepo
+* [Go] Tag the cucumber/go subrepo
 
 ## [3.0.2] - 2019-08-01
 
@@ -600,66 +621,69 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
 <!-- Releases -->
-[Unreleased]: https://github.com/cucumber/cucumber/compare/messages/v19.0.0...main
-[19.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v18.0.0...messages/v19.0.0
-[18.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v17.1.1...messages/v18.0.0
-[17.1.1]:      https://github.com/cucumber/cucumber/compare/messages/v17.1.0...messages/v17.1.1
-[17.1.0]:      https://github.com/cucumber/cucumber/compare/messages/v17.0.1...messages/v17.1.0
-[17.0.1]:      https://github.com/cucumber/cucumber/compare/messages/v17.0.0...messages/v17.0.1
-[17.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v16.0.1...messages/v17.0.0
-[16.0.1]:      https://github.com/cucumber/cucumber/compare/messages/v16.0.0...messages/v16.0.1
-[16.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v15.0.0...messages/v16.0.0
-[15.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v14.1.2...messages/v15.0.0
-[14.1.2]:      https://github.com/cucumber/cucumber/compare/messages/v14.0.1...messages/v14.1.2
-[14.1.1]:      https://github.com/cucumber/cucumber/compare/messages/v14.1.0...messages/v14.1.1
-[14.1.0]:      https://github.com/cucumber/cucumber/compare/messages/v14.0.1...messages/v14.1.0
-[14.0.1]:      https://github.com/cucumber/cucumber/compare/messages/v14.0.0...messages/v14.0.1
-[14.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v13.2.1...messages/v14.0.0
-[13.2.1]:      https://github.com/cucumber/cucumber/compare/messages/v13.2.0...messages/v13.2.1
-[13.2.0]:      https://github.com/cucumber/cucumber/compare/messages/v13.1.0...messages/v13.2.0
-[13.1.0]:      https://github.com/cucumber/cucumber/compare/messages/v13.0.1...messages/v13.1.0
-[13.0.1]:      https://github.com/cucumber/cucumber/compare/messages/v13.0.0...messages/v13.0.1
-[13.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v12.4.0...messages/v13.0.0
-[12.4.0]:      https://github.com/cucumber/cucumber/compare/messages/v12.3.2...messages/v12.4.0
-[12.3.2]:      https://github.com/cucumber/cucumber/compare/messages/v12.3.1...messages/v12.3.2
-[12.3.1]:      https://github.com/cucumber/cucumber/compare/messages/v12.3.0...messages/v12.3.1
-[12.3.0]:      https://github.com/cucumber/cucumber/compare/messages/v12.2.0...messages/v12.3.0
-[12.2.0]:      https://github.com/cucumber/cucumber/compare/messages/v12.1.1...messages/v12.2.0
-[12.1.1]:      https://github.com/cucumber/cucumber/compare/messages/v12.1.0...messages/v12.1.1
-[12.1.0]:      https://github.com/cucumber/cucumber/compare/messages/v12.0.0...messages/v12.1.0
-[12.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v11.1.1...messages/v12.0.0
-[11.1.1]:      https://github.com/cucumber/cucumber/compare/messages/v11.1.0...messages/v11.1.1
-[11.1.0]:      https://github.com/cucumber/cucumber/compare/messages/v11.0.1...messages/v11.1.0
-[11.0.1]:      https://github.com/cucumber/cucumber/compare/messages/v11.0.0...messages/v11.0.1
-[11.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v10.0.3...messages/v11.0.0
-[10.0.3]:      https://github.com/cucumber/cucumber/compare/messages/v10.0.2...messages/v10.0.3
-[10.0.2]:      https://github.com/cucumber/cucumber/compare/messages/v10.0.1...messages/v10.0.2
-[10.0.1]:      https://github.com/cucumber/cucumber/compare/messages/v10.0.0...messages/v10.0.1
-[10.0.0]:      https://github.com/cucumber/cucumber/compare/messages/v9.0.3...messages/v10.0.0
-[9.0.3]:      https://github.com/cucumber/cucumber/compare/messages/v9.0.2...messages/v9.0.3
-[9.0.2]:      https://github.com/cucumber/cucumber/compare/messages/v9.0.1...messages/v9.0.2
-[9.0.1]:      https://github.com/cucumber/cucumber/compare/messages/v9.0.0...messages/v9.0.1
-[9.0.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v8.0.0...messages/v9.0.0
-[8.0.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v7.0.0...cucumber-messages/v8.0.0
-[7.0.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v6.0.2...cucumber-messages/v7.0.0
-[6.0.2]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v6.0.1...cucumber-messages/v6.0.2
-[6.0.1]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v6.0.0...cucumber-messages/v6.0.1
-[6.0.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v5.0.1...cucumber-messages/v6.0.0
-[5.0.1]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v5.0.0...cucumber-messages/v5.0.1
-[5.0.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v4.0.0...cucumber-messages/v5.0.0
-[4.0.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v3.0.5...cucumber-messages/v4.0.0
-[3.0.5]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v3.0.4...cucumber-messages/v3.0.5
-[3.0.4]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v3.0.3...cucumber-messages/v3.0.4
-[3.0.3]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v3.0.2...cucumber-messages/v3.0.3
-[3.0.2]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v3.0.1...cucumber-messages/v3.0.2
-[3.0.1]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v3.0.0...cucumber-messages/v3.0.1
-[3.0.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v2.1.2...cucumber-messages/v3.0.0
-[2.1.2]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v2.1.1...cucumber-messages/v2.1.2
-[2.1.1]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v2.1.0...cucumber-messages/v2.1.1
-[2.1.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v2.0.0...cucumber-messages/v2.1.0
-[2.0.0]:      https://github.com/cucumber/cucumber/compare/cucumber-messages/v1.1.2...cucumber-messages/v2.0.0
-[1.1.2]:      https://github.com/cucumber/cucumber/compare/cucumber-messages-v1.0.0...cucumber-messages/v1.1.2
-[1.0.0]:      https://github.com/cucumber/cucumber/releases/tag/cucumber-messages-v1.0.0
+[Unreleased]: https://github.com/cucumber/messages/compare/v19.1.2...main
+[19.1.2]:      https://github.com/cucumber/messages/compare/v19.1.1...v19.1.2
+[19.1.1]:      https://github.com/cucumber/messages/compare/v19.1.0...v19.1.1
+[19.1.0]:      https://github.com/cucumber/messages/compare/v19.0.0...v19.1.0
+[19.0.0]:      https://github.com/cucumber/messages/compare/v18.0.0...v19.0.0
+[18.0.0]:      https://github.com/cucumber/messages/compare/v17.1.1...v18.0.0
+[17.1.1]:      https://github.com/cucumber/messages/compare/v17.1.0...v17.1.1
+[17.1.0]:      https://github.com/cucumber/messages/compare/v17.0.1...v17.1.0
+[17.0.1]:      https://github.com/cucumber/messages/compare/v17.0.0...v17.0.1
+[17.0.0]:      https://github.com/cucumber/messages/compare/v16.0.1...v17.0.0
+[16.0.1]:      https://github.com/cucumber/messages/compare/v16.0.0...v16.0.1
+[16.0.0]:      https://github.com/cucumber/messages/compare/v15.0.0...v16.0.0
+[15.0.0]:      https://github.com/cucumber/messages/compare/v14.1.2...v15.0.0
+[14.1.2]:      https://github.com/cucumber/messages/compare/v14.0.1...v14.1.2
+[14.1.1]:      https://github.com/cucumber/messages/compare/v14.1.0...v14.1.1
+[14.1.0]:      https://github.com/cucumber/messages/compare/v14.0.1...v14.1.0
+[14.0.1]:      https://github.com/cucumber/messages/compare/v14.0.0...v14.0.1
+[14.0.0]:      https://github.com/cucumber/messages/compare/v13.2.1...v14.0.0
+[13.2.1]:      https://github.com/cucumber/messages/compare/v13.2.0...v13.2.1
+[13.2.0]:      https://github.com/cucumber/messages/compare/v13.1.0...v13.2.0
+[13.1.0]:      https://github.com/cucumber/messages/compare/v13.0.1...v13.1.0
+[13.0.1]:      https://github.com/cucumber/messages/compare/v13.0.0...v13.0.1
+[13.0.0]:      https://github.com/cucumber/messages/compare/v12.4.0...v13.0.0
+[12.4.0]:      https://github.com/cucumber/messages/compare/v12.3.2...v12.4.0
+[12.3.2]:      https://github.com/cucumber/messages/compare/v12.3.1...v12.3.2
+[12.3.1]:      https://github.com/cucumber/messages/compare/v12.3.0...v12.3.1
+[12.3.0]:      https://github.com/cucumber/messages/compare/v12.2.0...v12.3.0
+[12.2.0]:      https://github.com/cucumber/messages/compare/v12.1.1...v12.2.0
+[12.1.1]:      https://github.com/cucumber/messages/compare/v12.1.0...v12.1.1
+[12.1.0]:      https://github.com/cucumber/messages/compare/v12.0.0...v12.1.0
+[12.0.0]:      https://github.com/cucumber/messages/compare/v11.1.1...v12.0.0
+[11.1.1]:      https://github.com/cucumber/messages/compare/v11.1.0...v11.1.1
+[11.1.0]:      https://github.com/cucumber/messages/compare/v11.0.1...v11.1.0
+[11.0.1]:      https://github.com/cucumber/messages/compare/v11.0.0...v11.0.1
+[11.0.0]:      https://github.com/cucumber/messages/compare/v10.0.3...v11.0.0
+[10.0.3]:      https://github.com/cucumber/messages/compare/v10.0.2...v10.0.3
+[10.0.2]:      https://github.com/cucumber/messages/compare/v10.0.1...v10.0.2
+[10.0.1]:      https://github.com/cucumber/messages/compare/v10.0.0...v10.0.1
+[10.0.0]:      https://github.com/cucumber/messages/compare/v9.0.3...v10.0.0
+[9.0.3]:      https://github.com/cucumber/messages/compare/v9.0.2...v9.0.3
+[9.0.2]:      https://github.com/cucumber/messages/compare/v9.0.1...v9.0.2
+[9.0.1]:      https://github.com/cucumber/messages/compare/v9.0.0...v9.0.1
+[9.0.0]:      https://github.com/cucumber/messages/compare/cucumber-v8.0.0...v9.0.0
+[8.0.0]:      https://github.com/cucumber/messages/compare/cucumber-v7.0.0...cucumber-v8.0.0
+[7.0.0]:      https://github.com/cucumber/messages/compare/cucumber-v6.0.2...cucumber-v7.0.0
+[6.0.2]:      https://github.com/cucumber/messages/compare/cucumber-v6.0.1...cucumber-v6.0.2
+[6.0.1]:      https://github.com/cucumber/messages/compare/cucumber-v6.0.0...cucumber-v6.0.1
+[6.0.0]:      https://github.com/cucumber/messages/compare/cucumber-v5.0.1...cucumber-v6.0.0
+[5.0.1]:      https://github.com/cucumber/messages/compare/cucumber-v5.0.0...cucumber-v5.0.1
+[5.0.0]:      https://github.com/cucumber/messages/compare/cucumber-v4.0.0...cucumber-v5.0.0
+[4.0.0]:      https://github.com/cucumber/messages/compare/cucumber-v3.0.5...cucumber-v4.0.0
+[3.0.5]:      https://github.com/cucumber/messages/compare/cucumber-v3.0.4...cucumber-v3.0.5
+[3.0.4]:      https://github.com/cucumber/messages/compare/cucumber-v3.0.3...cucumber-v3.0.4
+[3.0.3]:      https://github.com/cucumber/messages/compare/cucumber-v3.0.2...cucumber-v3.0.3
+[3.0.2]:      https://github.com/cucumber/messages/compare/cucumber-v3.0.1...cucumber-v3.0.2
+[3.0.1]:      https://github.com/cucumber/messages/compare/cucumber-v3.0.0...cucumber-v3.0.1
+[3.0.0]:      https://github.com/cucumber/messages/compare/cucumber-v2.1.2...cucumber-v3.0.0
+[2.1.2]:      https://github.com/cucumber/messages/compare/cucumber-v2.1.1...cucumber-v2.1.2
+[2.1.1]:      https://github.com/cucumber/messages/compare/cucumber-v2.1.0...cucumber-v2.1.1
+[2.1.0]:      https://github.com/cucumber/messages/compare/cucumber-v2.0.0...cucumber-v2.1.0
+[2.0.0]:      https://github.com/cucumber/messages/compare/cucumber-v1.1.2...cucumber-v2.0.0
+[1.1.2]:      https://github.com/cucumber/messages/compare/cucumber-v1.0.0...cucumber-v1.1.2
+[1.0.0]:      https://github.com/cucumber/cucumber/releases/tag/cucumber-v1.0.0
 
 <!-- Contributors in alphabetical order -->
 [aslakhellesoy]:    https://github.com/aslakhellesoy
