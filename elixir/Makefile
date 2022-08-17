@@ -1,30 +1,19 @@
-include default.mk
+schemas = $(shell find ../jsonschema -name "*.json")
 
-clean:
-	rm -rf _build deps .deps .tested priv/json_schemas/.copy_schema priv/json_schemas/*.json
+.DEFAULT_GOAL = help
+
+help: ## Show this help
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nWhere <target> is one of:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+generate: require .generate-messages ## Generate elixir code based on the schemas found in ../jsonschema and using `mix generate_json_structs` for the generation
+
+require: ## Check requirements for the code generation (elixir/mix is required)
+	@mix --version >/dev/null 2>&1 || (echo "ERROR: elixir/mix is required."; exit 1)
+
+clean: ## Remove automatically generated files and related artifacts
 	rm -rf lib/cucumber_messages/generated/*
 
-# .deps: setup_mix_and_get_dependencies update_proto_file compile_messages revert_proto_file
-.deps: priv/json_schemas/.copy_schema setup_mix_and_get_dependencies compile_messages
-	touch .deps
-
-priv/json_schemas/.copy_schema: 
-	cp ../jsonschema/*.json priv/json_schemas/
-	touch priv/json_schemas/.copy_schema
-
-setup_mix_and_get_dependencies:
+.generate-messages: $(schemas) lib/cucumber_messages/mix/tasks/generate_json_structs.ex
 	mix local.hex --force
 	mix deps.get
-.PHONY: setup_mix_and_get_dependencies
-
-# update_proto_file: messages.proto
-# 	mv $< $<.bak
-# 	cat $<.bak | sed "s/package io.cucumber.messages/package cucumber_messages/" > $<
-
-compile_messages:
 	mix generate_json_structs
-.PHONY: compile_messages
-
-# revert_proto_file: messages.proto.bak
-# 	mv messages.proto.bak messages.proto
-# .PHONY: revert_proto_file

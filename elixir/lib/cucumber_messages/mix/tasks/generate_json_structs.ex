@@ -4,7 +4,6 @@ defmodule Mix.Tasks.GenerateJsonStructs do
   require Logger
 
   @application_name :cucumber_messages
-  @priv_dir :code.priv_dir(@application_name)
   @app_dir File.cwd!()
   @lib_dir Path.join([@app_dir, "lib", Atom.to_string(@application_name)])
 
@@ -14,7 +13,7 @@ defmodule Mix.Tasks.GenerateJsonStructs do
 
   def run([]) do
     clean_generated_folder()
-    json_files = [@priv_dir, "json_schemas", "*.json"] |> Path.join() |> Path.wildcard()
+    json_files = ["..", "jsonschema", "*.json"] |> Path.join() |> Path.wildcard()
 
     json_files
     |> Enum.map(fn filename ->
@@ -32,13 +31,6 @@ defmodule Mix.Tasks.GenerateJsonStructs do
       write_files(textual_modules)
       Logger.debug("File \"#{filename}\" finished! ✔")
     end)
-
-    # path_json = [@priv_dir, "json_schemas", "Pickle.json"] |> Path.join()
-    # decoded = path_json |> File.read!() |> Jason.decode!()
-    # metadata = %{definitions: nil, full_decoded: decoded, modules: [], parent: nil}
-    # list_of_modules = create_moduledata_structs(metadata, decoded)
-    # textual_modules = output_module(list_of_modules, [])
-    # write_files(textual_modules)
   end
 
   # Clean generated folder
