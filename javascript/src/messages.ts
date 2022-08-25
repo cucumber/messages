@@ -583,6 +583,8 @@ export class TestCaseStarted {
 
   testCaseId: string = ''
 
+  workerId?: string
+
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
 }

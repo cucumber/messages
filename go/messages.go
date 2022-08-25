@@ -321,6 +321,7 @@ type TestCaseStarted struct {
 	Attempt    int64      `json:"attempt"`
 	Id         string     `json:"id"`
 	TestCaseId string     `json:"testCaseId"`
+	WorkerId   string     `json:"workerId,omitempty"`
 	Timestamp  *Timestamp `json:"timestamp"`
 }
 

@@ -1031,6 +1031,7 @@ module Cucumber
           attempt: hash[:attempt],
           id: hash[:id],
           test_case_id: hash[:testCaseId],
+          worker_id: hash[:workerId],
           timestamp: Timestamp.from_h(hash[:timestamp]),
         )
       end

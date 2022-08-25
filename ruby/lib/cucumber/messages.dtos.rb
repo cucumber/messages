@@ -1694,17 +1694,24 @@ module Cucumber
 
       attr_reader :test_case_id
 
+      ##
+      # An identifier for the worker process running this test case, if test cases are being run in parallel. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+
+      attr_reader :worker_id
+
       attr_reader :timestamp
 
       def initialize(
         attempt: 0,
         id: '',
         test_case_id: '',
+        worker_id: nil,
         timestamp: Timestamp.new
       )
         @attempt = attempt
         @id = id
         @test_case_id = test_case_id
+        @worker_id = worker_id
         @timestamp = timestamp
       end
     end
