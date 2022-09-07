@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Add `name` field to `package.cjs.json` ([#36](https://github.com/cucumber/messages/pull/36))
+
 ## [19.1.2] - 2022-06-22
 
 ### Fixed
