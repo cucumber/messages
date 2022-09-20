@@ -13,7 +13,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
-      - uses: ./test-elixir.yml
+      - uses: ./.github/workflows/test-elixir.yml
       - uses: cucumber/action-publish-hex@v1.0.0
         with:
           hex-api-key: ${{ secrets.HEX_API_KEY }}
