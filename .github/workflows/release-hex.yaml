@@ -13,10 +13,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
-      - uses: erlef/setup-beam@v1
-        with:
-          otp-version: 25.0.3
-          elixir-version: 1.13.4
+      - uses: ./test-elixir.yml
       - uses: cucumber/action-publish-hex@v1.0.0
         with:
           hex-api-key: ${{ secrets.HEX_API_KEY }}
