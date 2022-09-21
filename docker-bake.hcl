@@ -6,6 +6,7 @@ group "default" {
 
 group "codegen" {
   targets = [
+    "java-codegen",
     "javascript-codegen",
     "php-codegen",
     "ruby-codegen",
@@ -14,10 +15,27 @@ group "codegen" {
 
 group "test" {
   targets = [
+    "java-test",
     "javascript-test",
     "php-test",
     "ruby-test",
   ]
+}
+
+target "java-codegen" {
+  context = "jsonschema"
+  target = "output"
+  args = {
+    LANGUAGE = "java",
+  }
+  output = ["java/src/generated/java/io/cucumber/messages/types"]
+}
+
+target "java-test" {
+  context = "java"
+  contexts = {
+    schema-codegen = "target:java-codegen",
+  }
 }
 
 target "javascript-codegen" {
