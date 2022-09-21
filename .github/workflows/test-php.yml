@@ -1,4 +1,4 @@
-name: test-php
+name: PHP Tests
 
 on:
   push:
@@ -11,13 +11,14 @@ on:
 
 jobs:
   test-php:
+    name: ${{ matrix.php }} ${{ matrix.composer-extra-flags }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
-          - php: 8.1
+          - php: '8.1'
             composer-extra-flags: '--prefer-lowest'
-          - php: 8.1
+          - php: '8.1'
             composer-extra-flags: ''
 
     steps:

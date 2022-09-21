@@ -1,4 +1,4 @@
-name: test-ruby
+name: Ruby Tests
 
 on:
   push:
@@ -10,17 +10,27 @@ on:
   workflow_call:
 
 jobs:
-  test-ruby:
-    runs-on: ${{ matrix.os }}
+  test-alpine:
+    name: ${{ matrix.ruby }} Alpine
+    runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-        ruby: ["2.6", "2.7", "3.0", "3.1"]
-        include:
-          - os: macos-latest
-            ruby: "3.1"
+        ruby: ['2.6', '2.7', '3.0', '3.1']
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/setup-buildx-action@v2
+
+      - name: Test
+        uses: docker/bake-action@v2
+        with:
+          targets: ruby-test
+          set: |
+            ruby-test.args.RUBY_VERSION=${{ matrix.ruby }}
+
+  test-mac:
+    name: 3.1 MacOS
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -28,7 +38,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: 3.1
           bundler-cache: true
           working-directory: ruby
 

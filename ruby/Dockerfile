@@ -1,6 +1,8 @@
 #syntax=docker/dockerfile:1.4
 
-FROM ruby:3.1.2-alpine
+ARG RUBY_VERSION=3.1
+
+FROM ruby:${RUBY_VERSION}-alpine
 
 COPY --link *.gemspec Gemfile VERSION .
 RUN bundle install
