@@ -2,6 +2,10 @@
 
 ARG JAVASCRIPT_VERSION=18
 
+# Dummy stage for generated code, overriden in main build
+FROM scratch AS schema-codegen
+
+
 FROM node:${JAVASCRIPT_VERSION}-alpine
 
 RUN apk add jq

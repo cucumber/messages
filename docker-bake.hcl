@@ -36,7 +36,6 @@ target "javascript-test" {
   }
 }
 
-
 target "php-codegen" {
   context = "jsonschema"
   target = "output"

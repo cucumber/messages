@@ -46,6 +46,7 @@ jobs:
         with:
           targets: javascript-test
           set: |
+            *.contexts.schema-codegen=
             javascript-test.args.NODE_VERSION=${{ matrix.node }}
 
   test-javascript-mac-windows:
@@ -97,6 +98,7 @@ jobs:
         with:
           targets: php-test
           set: |
+            *.contexts.schema-codegen=
             php-test.args.PHP_VERSION=${{ matrix.php }}
             php-test.args.COMPOSER_EXTRA_FLAGS=${{ matrix.composer-extra-flags }}
 
@@ -117,6 +119,7 @@ jobs:
         with:
           targets: ruby-test
           set: |
+            *.contexts.schema-codegen=
             ruby-test.args.RUBY_VERSION=${{ matrix.ruby }}
 
   test-ruby-mac:

@@ -2,6 +2,10 @@
 
 ARG PHP_VERSION=8.1
 
+# Dummy stage for generated code, overriden in main build
+FROM scratch AS schema-codegen
+
+
 FROM php:${PHP_VERSION}-alpine
 
 COPY --link composer.json .

@@ -2,6 +2,10 @@
 
 ARG RUBY_VERSION=3.1
 
+# Dummy stage for generated code, overriden in main build
+FROM scratch AS schema-codegen
+
+
 FROM ruby:${RUBY_VERSION}-alpine
 
 COPY --link *.gemspec Gemfile VERSION .
