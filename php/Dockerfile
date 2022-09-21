@@ -7,7 +7,8 @@ FROM php:${PHP_VERSION}-alpine
 COPY --link composer.json .
 COPY --link --from=composer:2 /usr/bin/composer /usr/bin/composer
 ARG COMPOSER_EXTRA_FLAGS=
-RUN composer update --dev ${COMPOSER_EXTRA_FLAGS}
+RUN --mount=type=cache,target=/root/.composer \
+    composer update --dev ${COMPOSER_EXTRA_FLAGS}
 
 COPY --link . .
 COPY --from=schema-codegen /*.php src-generated

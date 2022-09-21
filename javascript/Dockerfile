@@ -9,7 +9,8 @@ RUN apk add jq
 COPY --link package.json package-lock.json .
 # stop the 'prepare' script from trying to trigger code generation
 RUN jq 'del(.scripts.prepare)' < package.json > package.json.new && mv package.json.new package.json
-RUN npm ci
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci
 
 COPY . .
 RUN npm test

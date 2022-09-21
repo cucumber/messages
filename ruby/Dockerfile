@@ -5,7 +5,8 @@ ARG RUBY_VERSION=3.1
 FROM ruby:${RUBY_VERSION}-alpine
 
 COPY --link *.gemspec Gemfile VERSION .
-RUN bundle install
+RUN --mount=type=cache,target=/root/.bundle \
+    bundle install
 
 COPY --link . .
 COPY --from=schema-codegen /*.rb lib/cucumber
