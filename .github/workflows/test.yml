@@ -22,6 +22,13 @@ jobs:
         uses: docker/bake-action@v2
         with:
           targets: codegen
+          set: |
+            javascript-codegen.cache-to=type=gha,scope=javascript-codegen,mode=max
+            javascript-codegen.cache-from=type=gha,scope=javascript-codegen
+            php-codegen.cache-to=type=gha,scope=php-codegen,mode=max
+            php-codegen.cache-from=type=gha,scope=php-codegen
+            ruby-codegen.cache-to=type=gha,scope=ruby-codegen,mode=max
+            ruby-codegen.cache-from=type=gha,scope=ruby-codegen
 
       - name: Check the repo is still clean after generation
         run: |
@@ -48,6 +55,8 @@ jobs:
           set: |
             *.contexts.schema-codegen=
             javascript-test.args.NODE_VERSION=${{ matrix.node }}
+            javascript-test.cache-to=type=gha,scope=javascript-test-${{ matrix.node }},mode=max
+            javascript-test.cache-from=type=gha,scope=javascript-test-${{ matrix.node }}
 
   test-javascript-mac-windows:
     name: Javascript 18 ${{ matrix.os }}
@@ -101,6 +110,8 @@ jobs:
             *.contexts.schema-codegen=
             php-test.args.PHP_VERSION=${{ matrix.php }}
             php-test.args.COMPOSER_EXTRA_FLAGS=${{ matrix.composer-extra-flags }}
+            php-test.cache-to=type=gha,scope=php-test-${{ matrix.php }}${{ matrix.composer-extra-flags }},mode=max
+            php-test.cache-from=type=gha,scope=php-test-${{ matrix.php }}${{ matrix.composer-extra-flags }}
 
   test-ruby:
     needs: codegen
@@ -121,6 +132,8 @@ jobs:
           set: |
             *.contexts.schema-codegen=
             ruby-test.args.RUBY_VERSION=${{ matrix.ruby }}
+            ruby-test.cache-to=type=gha,scope=ruby-test-${{ matrix.ruby }},mode=max
+            ruby-test.cache-from=type=gha,scope=ruby-test-${{ matrix.ruby }}
 
   test-ruby-mac:
     needs: test-ruby
