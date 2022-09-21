@@ -11,7 +11,7 @@ RUN --mount=type=cache,target=/root/.composer \
     composer update --dev ${COMPOSER_EXTRA_FLAGS}
 
 COPY --link . .
-COPY --from=schema-codegen /*.php src-generated
+COPY --from=schema-codegen / src-generated
 RUN vendor/bin/php-cs-fixer --dry-run --diff fix
 RUN vendor/bin/psalm --no-cache
 RUN vendor/bin/phpunit

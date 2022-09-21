@@ -12,5 +12,6 @@ RUN jq 'del(.scripts.prepare)' < package.json > package.json.new && mv package.j
 RUN --mount=type=cache,target=/root/.npm \
     npm ci
 
-COPY . .
+COPY --link . .
+COPY --link --from=schema-codegen / src
 RUN npm test

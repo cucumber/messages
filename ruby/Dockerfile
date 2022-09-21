@@ -9,5 +9,5 @@ RUN --mount=type=cache,target=/root/.bundle \
     bundle install
 
 COPY --link . .
-COPY --from=schema-codegen /*.rb lib/cucumber
+COPY --from=schema-codegen / lib/cucumber
 RUN bundle exec rake
