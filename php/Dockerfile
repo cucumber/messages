@@ -1,10 +1,13 @@
 #syntax=docker/dockerfile:1.4
 
-FROM php:8.1-alpine AS php
+ARG PHP_VERSION=8.1
+
+FROM php:${PHP_VERSION}-alpine AS php
 
 COPY --link composer.json .
 COPY --link --from=composer:2 /usr/bin/composer /usr/bin/composer
-RUN composer install --dev
+ARG COMPOSER_EXTRA_FLAGS=
+RUN composer update --dev ${COMPOSER_EXTRA_FLAGS}
 
 COPY --link . .
 COPY --from=schema-codegen /*.php src-generated
