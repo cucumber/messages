@@ -1,4 +1,5 @@
 #syntax=docker/dockerfile:1.4
+ARG LANGUAGE=ruby
 
 FROM ruby:3.1.2-alpine AS ruby
 
@@ -8,33 +9,32 @@ WORKDIR /cucumber
 FROM ruby AS ruby-codegen
 
 COPY --link . .
-# TODO: factor this stuff out into a bash script we can delegate to
-RUN mkdir -p /build \
-  && ruby scripts/codegen.rb Ruby . ruby.rb.erb > /build/messages.dtos.rb \
-  && ruby scripts/codegen.rb Ruby . ruby.enum.rb.erb >> /build/messages.dtos.rb
-
-
-FROM scratch AS ruby-codegen-output
-
-COPY --from=ruby-codegen /build/*.rb /
+# TODO: factor this stuff out into a bash script we can delegate to?
+RUN <<-EOF
+      mkdir -p /build
+      ruby scripts/codegen.rb Ruby . ruby.rb.erb > /build/messages.dtos.rb
+      ruby scripts/codegen.rb Ruby . ruby.enum.rb.erb >> /build/messages.dtos.rb
+      ruby scripts/codegen.rb Ruby . ruby_deserializers.rb.erb > /build/messages.deserializers.rb
+EOF
 
 
 FROM ruby AS php-codegen
 
-RUN apk add coreutils
+RUN apk add bash coreutils
 
 COPY --link . .
-# TODO: factor this stuff out into a bash script we can delegate to
-RUN mkdir -p /build \
-  && ruby scripts/codegen.rb Php . php.php.erb > /build/messages.php \
-  && ruby scripts/codegen.rb Php . php.enum.php.erb >> /build/messages.php \
-  && csplit --quiet --prefix=/build/Generated --suffix-format=%02d.php.tmp --elide-empty-files /build/messages.php /^.*[.]php$$/ {*}
-#     	rm -rf src-generated/*
-#     	for file in build/Generated**; do mkdir -p src-generated/$$(head -n 1 $$file | sed 's/[^/]*.php$$//'); done
-#     	for file in build/Generated**; do tail -n +2 $$file > src-generated/$$(head -n 1 $$file); rm $$file; done
-#     	vendor/bin/php-cs-fixer --diff fix src-generated
+RUN <<-EOF
+      mkdir -p /tmp/build
+      ruby scripts/codegen.rb Php . php.php.erb > /tmp/build/messages.php
+      ruby scripts/codegen.rb Php . php.enum.php.erb >> /tmp/build/messages.php
+      csplit --prefix=/tmp/build/Generated --suffix-format=%02d.tmp.php --elide-empty-files /tmp/build/messages.php "/^.*[.]php\$/" {*}
+      for file in /tmp/build/Generated**; do mkdir -p /build/$(head -n 1 $file | sed 's/[^/]*.php$//'); done
+      for file in /tmp/build/Generated**; do tail -n +2 $file > /build/$(head -n 1 $file); rm $file; done
+EOF
 
 
-FROM scratch AS php-codegen-output
+# Stages used to output build folder(s) to disk
+FROM ${LANGUAGE}-codegen AS codegen
 
-COPY --from=php-codegen /build/*.php /
+FROM scratch AS output
+COPY --from=codegen /build /

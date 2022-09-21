@@ -1,38 +1,51 @@
 group "default" {
   targets = [
-    "php",
-    "ruby",
+    "test",
   ]
 }
 
-group "php" {
+group "codegen" {
   targets = [
-    "php-codegen-output",
+    "php-codegen",
+    "ruby-codegen",
   ]
 }
 
-target "php-codegen-output" {
-  context = "jsonschema"
-  target = "php-codegen-output"
-  output = ["php-temp-build"]
-}
-
-group "ruby" {
+group "test" {
   targets = [
-    "ruby-codegen-output",
+    "php-test",
     "ruby-test",
   ]
 }
 
-target "ruby-codegen-output" {
+target "php-codegen" {
   context = "jsonschema"
-  target = "ruby-codegen-output"
+  target = "output"
+  args = {
+    LANGUAGE = "php",
+  }
+  output = ["php/src-generated"]
+}
+
+target "php-test" {
+  context = "php"
+  contexts = {
+    schema-codegen = "target:php-codegen",
+  }
+}
+
+target "ruby-codegen" {
+  context = "jsonschema"
+  target = "output"
+  args = {
+    LANGUAGE = "ruby",
+  }
   output = ["ruby/lib/cucumber"]
 }
 
 target "ruby-test" {
   context = "ruby"
   contexts = {
-     schema-codegen = "target:ruby-codegen-output",
+     schema-codegen = "target:ruby-codegen",
   }
 }
