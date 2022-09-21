@@ -326,7 +326,7 @@ class Php < Codegen
       .split("\n")
       .map { |line| line.strip() }
       .filter { |line| line != '*' }
-      .map { |line| " * #{line}" }
+      .map { |line| " * #{line}".rstrip() }
       .join("\n#{indent_string}")
   end
 
