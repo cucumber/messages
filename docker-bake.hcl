@@ -6,6 +6,7 @@ group "default" {
 
 group "codegen" {
   targets = [
+    "javascript-codegen",
     "php-codegen",
     "ruby-codegen",
   ]
@@ -13,10 +14,28 @@ group "codegen" {
 
 group "test" {
   targets = [
+    "javascript-test",
     "php-test",
     "ruby-test",
   ]
 }
+
+target "javascript-codegen" {
+  context = "jsonschema"
+  target = "output"
+  args = {
+    LANGUAGE = "javascript",
+  }
+  output = ["javascript/src"]
+}
+
+target "javascript-test" {
+  context = "javascript"
+  contexts = {
+    schema-codegen = "target:javascript-codegen",
+  }
+}
+
 
 target "php-codegen" {
   context = "jsonschema"
