@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
@@ -10,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Version">
-    <VersionNumber>16.0.1</VersionNumber>
+    <VersionNumber>19.1.3</VersionNumber>
     <Version Condition="'$(SnapshotSuffix)' != ''">$(VersionNumber)-$(SnapshotSuffix)</Version>
     <Version Condition="'$(SnapshotSuffix)' == ''">$(VersionNumber)</Version>
   </PropertyGroup>
