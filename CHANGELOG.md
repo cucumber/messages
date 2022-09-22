@@ -6,20 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-
-## [19.1.3] - 2022-09-20
-### Added
-
 ### Changed
-
 - BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
 
-### Deprecated
-
+## [19.1.3] - 2022-09-20
 ### Fixed
 - Add `name` field to `package.cjs.json` ([#36](https://github.com/cucumber/messages/pull/36))
-
-### Removed
 
 ## [19.1.2] - 2022-06-22
 ### Fixed
