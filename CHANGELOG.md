@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
-
 ### Changed
+
+- BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
 
 ### Deprecated
 
