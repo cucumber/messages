@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Update dependencies
 
 ## [19.1.3] - 2022-09-20
 ### Added
@@ -315,7 +317,7 @@ a C compiler toolchain. The `json` gem is part of the Ruby stdlib.
 ### Fixed
 - Fixed release scripts for Go and JavaScript
 
-## [9.0.0] - 2020-01-09
+## 9.0.0 - 2020-01-09
 ### Added
 - Added `ParameterType` as an envelope message
 
@@ -337,7 +339,7 @@ in the case of ambiguous matches.
 ### Removed
 - Removed `TestCase#test_result`. Aggregate results will be computed by `cucumber-query` instead
 
-## [8.0.0] - 2019-12-10
+## 8.0.0 - 2019-12-10
 ### Added
 - Added `testStepId` and `testCaseStartedId` to `Attachment`
 ([#814](https://github.com/cucumber/cucumber/pull/814)
@@ -349,7 +351,7 @@ platform's representation of timestamps (clock time) and duration (monotonic tim
 ### Changed
 - Renamed some of the classes for dealing with streams
 
-## [7.0.0] - 2019-11-14
+## 7.0.0 - 2019-11-14
 ### Added
 - Support retry
 ([#722](https://github.com/cucumber/cucumber/pull/722)
@@ -361,13 +363,13 @@ platform's representation of timestamps (clock time) and duration (monotonic tim
 [#794](https://github.com/cucumber/cucumber/pull/794)
 [vincent-psarga](https://github.com/aslakhellesoy))
 
-## [6.0.2] - 2019-10-16
+## 6.0.2 - 2019-10-16
 
-## [6.0.1] - 2019-10-03
+## 6.0.1 - 2019-10-03
 ### Fixed
 - [Go] Release 6.0.0 is unusable.
 
-## [6.0.0] - 2019-10-02
+## 6.0.0 - 2019-10-02
 ### Added
 - New `TestStepMatched` message
 - `Duration` message to express duration in a seconds + nano format
@@ -381,11 +383,11 @@ platform's representation of timestamps (clock time) and duration (monotonic tim
 ### Removed
 - `durationNanoSeconds` field in `TestResult` message
 
-## [5.0.1] - 2019-08-23
+## 5.0.1 - 2019-08-23
 ### Fixed
 - [Go] Fix module version (5.0.0 left it at v4)
 
-## [5.0.0] - 2019-08-23
+## 5.0.0 - 2019-08-23
 ### Changed
 - The ordinal numbers of the `Status` enum have changed, to easier compute an
 aggregated status.
@@ -393,34 +395,34 @@ aggregated status.
 ### Fixed
 - [JavaScript] Don't swallow exceptions happening in `ProtobufMessageStream`
 
-## [4.0.0] - 2019-08-14
+## 4.0.0 - 2019-08-14
 
-## [3.0.5] - 2019-08-14
+## 3.0.5 - 2019-08-14
 ### Fixed
 - [Go] Tag the cucumber/go subrepo (again)
 
-## [3.0.4] - 2019-08-14
+## 3.0.4 - 2019-08-14
 ### Fixed
 - [Go] Tag the cucumber/go subrepo (again)
 
-## [3.0.3] - 2019-08-14
+## 3.0.3 - 2019-08-14
 ### Fixed
 - [Go] Tag the cucumber/go subrepo
 
-## [3.0.2] - 2019-08-01
+## 3.0.2 - 2019-08-01
 ### Added
 - Add Timestamp property and comments to TestRunFinished message
 ([#665](https://github.com/cucumber/cucumber/pull/665)
 [SabotageAndi](https://github.com/SabotageAndi)
 
-## [3.0.1] - 2019-07-15
+## 3.0.1 - 2019-07-15
 ### Added
 - [.NET] Publish NuGet package
 ([#635](https://github.com/cucumber/cucumber/pull/635)
 [SabotageAndi](https://github.com/aslakhellesoy)
 [vincent-psarga](https://github.com/vincent-psarga))
 
-## [3.0.0] - 2019-06-05
+## 3.0.0 - 2019-06-05
 ### Added
 - Added `TestRunStarted#timestamp` field
 ([#615](https://github.com/cucumber/cucumber/pull/615)
@@ -441,34 +443,34 @@ aggregated status.
 
 ### Removed
 
-## [2.1.2] - 2019-03-29
+## 2.1.2 - 2019-03-29
 ### Fixed
 - Fix Project struggling to build across JRuby and Ruby 2.6
 ([#578](https://github.com/cucumber/cucumber/pull/578)
 [luke-hill](https://github.com/luke-hill))
 
-## [2.1.1] - 2018-11-02
+## 2.1.1 - 2018-11-02
 ### Fixed
 - Release process improvements
 
-## [2.1.0] - 2018-11-01
+## 2.1.0 - 2018-11-01
 ### Added
 - Add testResult to the TestCaseFinished message
 ([#488](https://github.com/cucumber/cucumber/pull/488)
 [brasmusson](https://github.com/brasmusson))
 
-## [2.0.0] - 2018-10-14
+## 2.0.0 - 2018-10-14
 ### Added
 - Several messages to support [cucumber-engine]()
 ([#502](https://github.com/cucumber/cucumber/pull/502)
 [charlierudolph](https://github.com/charlierudolph))
 
-## [1.1.2] - 2018-10-01
+## 1.1.2 - 2018-10-01
 ### Added
 - Added `TestHookStarted` and `TestHookFinished` to distinguish between messages about Gherkin steps and hooks
 ([aslakhellesoy](https://github.com/aslakhellesoy))
 
-## [1.0.0] - 2018-09-15
+## 1.0.0 - 2018-09-15
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
@@ -515,3 +517,4 @@ aggregated status.
 [9.0.3]: https://github.com/cucumber/messages/compare/v9.0.2...v9.0.3
 [9.0.2]: https://github.com/cucumber/messages/compare/v9.0.1...v9.0.2
 [9.0.1]: https://github.com/cucumber/messages/compare/v9.0.0...v9.0.1
+.v9.0.1
