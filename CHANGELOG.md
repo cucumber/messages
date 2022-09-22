@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [19.1.4] - 2022-09-22
 ### Changed
 - Update dependencies
 
@@ -474,7 +476,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v19.1.3...main
+[Unreleased]: https://github.com/cucumber/messages/compare/v19.1.4...main
+[19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...main
 [19.1.3]: https://github.com/cucumber/messages/compare/v19.1.2...main
 [19.1.2]: https://github.com/cucumber/messages/compare/v19.1.1...v19.1.2
 [19.1.1]: https://github.com/cucumber/messages/compare/v19.1.0...v19.1.1
@@ -517,4 +520,3 @@ aggregated status.
 [9.0.3]: https://github.com/cucumber/messages/compare/v9.0.2...v9.0.3
 [9.0.2]: https://github.com/cucumber/messages/compare/v9.0.1...v9.0.2
 [9.0.1]: https://github.com/cucumber/messages/compare/v9.0.0...v9.0.1
-.v9.0.1
