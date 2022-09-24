@@ -39,5 +39,9 @@ jobs:
       - run: mvn test
         working-directory: java
 
-      - run: ./scripts/check-jar.sh
+      - name: Check JAR
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y xmlstarlet
+          ./scripts/check-jar.sh
         working-directory: java
