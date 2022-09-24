@@ -38,6 +38,3 @@ jobs:
 
       - run: mvn test
         working-directory: java
-
-      - run: ./scripts/check-jar.sh
-        working-directory: java
