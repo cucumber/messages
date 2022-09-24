@@ -1,0 +1,258 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_call:
+
+jobs:
+  test-codegen:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+
+      - name: validate the json schemas
+        run: make validate
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+
+      - run: composer install
+        working-directory: php
+
+      - name: generate code for all languages
+        run: |
+          make clean-all
+          make generate-all
+
+      - name: check the repo is still clean after generation
+        run: |
+          git status --porcelain
+          git diff HEAD
+          [ -z "$(git status --porcelain)" ]
+
+  test-elixir:
+    needs: test-codegen
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: '22.2'
+          elixir-version: '1.10.x'
+
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+
+      - run: |
+          mix local.hex --force
+          mix deps.get
+        working-directory: elixir
+
+      - name: compile messages
+        run: MIX_ENV=prod mix protox.generate --multiple-files --output-path=lib/cucumber_messages/generated messages.proto
+        working-directory: elixir
+
+      - run: mix test
+        working-directory: elixir
+
+  test-go:
+    needs: test-codegen
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        go: ['1.13.x', '1.18.x']
+        include:
+          - os: windows-latest
+            go: '1.18.x'
+          - os: macos-latest
+            go: '1.18.x'
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: lint
+        working-directory: go
+        run: gofmt -w .
+
+      - name: test
+        working-directory: go
+        run: go test --v ./...
+
+  test-java:
+    needs: test-codegen
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        java: ["11", "16"]
+        include:
+          - os: windows-latest
+            java: "16"
+          - os: macos-latest
+            java: "16"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: ${{ matrix.java }}
+          cache: "maven"
+
+      - run: mvn install
+        working-directory: java
+
+      - run: mvn test
+        working-directory: java
+
+  test-javascript:
+    needs: test-codegen
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        node-version: ["12.x", "14.x", "16.x", "17.x", "18.x"]
+        include:
+          - os: windows-latest
+            node-version: "18.x"
+          - os: macos-latest
+            node-version: "18.x"
+
+    steps:
+      - name: set git core.autocrlf to 'input'
+        run: git config --global core.autocrlf input
+
+      - uses: actions/checkout@v3
+
+      - name: with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: javascript/package-lock.json
+
+      - run: npm install-ci-test
+        working-directory: javascript
+
+  test-perl:
+    needs: test-codegen
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: install cpanm and multiple modules
+        uses: perl-actions/install-with-cpanm@v1
+        with:
+          cpanfile: "perl/cpanfile"
+
+      - name: install the CCK
+        run: npm ci
+        working-directory: perl/t/compatibility-kit
+
+      - name: run tests
+        run: |
+          prove -l
+          AUTHOR_TESTS=1 prove -l
+        working-directory: perl
+
+  test-php:
+    needs: test-codegen
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.1']
+        composer-mode: ['low-deps', 'high-deps']
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "${{ matrix.php }}"
+
+      - name: Discover composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-dir)"
+        working-directory: php
+
+      - name: Cache composer
+        uses: actions/cache@v3
+        with:
+          path: "${{ steps.composer-cache.outputs.dir }}"
+          key: composer
+
+      - name: Install dependencies
+        working-directory: php
+        run: |
+          if [[ "${{ matrix.composer-mode }}" = "low-deps" ]]; then
+            composer update --prefer-lowest
+          else
+            composer update
+          fi
+
+      - name: Run tests
+        working-directory: php
+        run: |
+          vendor/bin/php-cs-fixer --dry-run --diff fix
+          vendor/bin/psalm --no-cache
+          vendor/bin/phpunit
+
+  test-ruby:
+    needs: test-codegen
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        ruby: ["2.6", "2.7", "3.0", "3.1"]
+        include:
+          - os: macos-latest
+            ruby: "3.1"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+          working-directory: ruby
+
+      - run: bundle exec rake
+        working-directory: ruby
