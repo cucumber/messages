@@ -1,4 +1,4 @@
-name: test-java
+name: Test Java
 
 on:
   push:
@@ -10,14 +10,33 @@ on:
   workflow_call:
 
 jobs:
+
   test-java:
+    name: Java ${{ matrix.java }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: ['11', '16']
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/setup-buildx-action@v2
+
+      - name: Test
+        uses: docker/bake-action@v2
+        with:
+          targets: java-test
+          set: |
+            *.contexts.schema-codegen=
+            java-test.args.JAVA_VERSION=${{ matrix.java }}
+            java-test.cache-to=type=gha,scope=java-test-${{ matrix.java }},mode=max
+            java-test.cache-from=type=gha,scope=java-test-${{ matrix.java }}
+
+  test-java-mac-windows:
+    name: Java ${{ matrix.java }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-        java: ["11", "16"]
         include:
           - os: windows-latest
             java: "16"
