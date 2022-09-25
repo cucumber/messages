@@ -1,0 +1,6 @@
+.gitignore
+Dockerfile
+LICENSE
+Makefile
+README.md
+VERSION
