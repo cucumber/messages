@@ -7,7 +7,7 @@ defmodule CucumberMessages.MixProject do
   def project do
     [
       app: :cucumber_messages,
-      version: "19.1.3",
+      version: "19.1.4",
       name: "CucumberMessages",
       description: description(),
       package: package(),
@@ -25,7 +25,7 @@ defmodule CucumberMessages.MixProject do
 
   defp deps do
     [
-      {:protox, "~> 1.6.0"},
+      {:protox, "~> 1.7.0"},
       {:jason, "~> 1.2"},
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]

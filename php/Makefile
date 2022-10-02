@@ -9,10 +9,8 @@ generate: require build/messages.php ## Generate php code based on the schemas f
 
 require: ## Check requirements for the code generation (ruby, php, csplit, tail and php-cs-fixer are required)
 	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
-	@php --version >/dev/null 2>&1 || (echo "ERROR: php is required."; exit 1)
 	@csplit --version >/dev/null 2>&1 || (echo "ERROR: csplit is required."; exit 1)
 	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
-	@vendor/bin/php-cs-fixer --version >/dev/null 2>&1 || (echo "ERROR: vendor/bin/php-cs-fixer is required ('composer install' should install it)."; exit 1)
 
 clean: ## Remove automatically generated files and related artifacts
 	rm -rf build/messages.php
@@ -25,4 +23,3 @@ build/messages.php: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/sc
 	rm -rf src-generated/*
 	for file in build/Generated**; do mkdir -p src-generated/$$(head -n 1 $$file | sed 's/[^/]*.php$$//'); done
 	for file in build/Generated**; do tail -n +2 $$file > src-generated/$$(head -n 1 $$file); rm $$file; done
-	vendor/bin/php-cs-fixer --diff fix src-generated
