@@ -3,7 +3,7 @@
     "config:base",
     ":preserveSemverRanges",
     ":rebaseStalePrs",
-    ":disableDependencyDashboard"
+    ":disableDependencyDashboard"    
   ],
   "labels": [":robot: dependencies"],
   "prHourlyLimit": 0,
