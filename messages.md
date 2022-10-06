@@ -419,6 +419,7 @@ will only have one of its fields set, which indicates the payload of the message
 | `attempt` | integer | yes | |
 | `id` | string | yes | |
 | `testCaseId` | string | yes | |
+| `workerId` | string | no | |
 | `timestamp` | [Timestamp](#timestamp) | yes | |
 
 ## TestRunFinished
