@@ -16,10 +16,10 @@ Gem::Specification.new do |s|
 
   s.metadata    = {
                     'bug_tracker_uri'   => 'https://github.com/cucumber/cucumber/issues',
-                    'changelog_uri'     => 'https://github.com/cucumber/common/blob/main/messages/CHANGELOG.md',
-                    'documentation_uri' => 'https://www.rubydoc.info/github/cucumber/messages-ruby',
+                    'changelog_uri'     => 'https://github.com/cucumber/messages/blob/main/CHANGELOG.md',
+                    'documentation_uri' => 'https://www.rubydoc.info/github/cucumber/messages',
                     'mailing_list_uri'  => 'https://groups.google.com/forum/#!forum/cukes',
-                    'source_code_uri'   => 'https://github.com/cucumber/common/blob/main/messages/ruby',
+                    'source_code_uri'   => 'https://github.com/cucumber/messages',
                   }
 
   s.add_development_dependency 'cucumber-compatibility-kit', '~> 11.0', '>= 11.0.0'

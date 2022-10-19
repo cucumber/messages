@@ -2,7 +2,7 @@ defmodule CucumberMessages.MixProject do
   @moduledoc false
   use Mix.Project
 
-  @github "https://github.com/cucumber/common/tree/main/messages/elixir"
+  @github "https://github.com/cucumber/messages/tree/main/elixir"
 
   def project do
     [
