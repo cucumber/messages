@@ -1,0 +1,39 @@
+<%- @schemas.each do |key, schema| -%>
+defmodule CucumberMessages.<%= class_name(key) %> do
+  defstruct [<%- schema['properties'].each do |property_name, property| -%> <%= underscore(property_name) %>: nil <%= property_name == schema['properties'].keys.last ? '' : ',' %> <%- end -%>]
+
+  defimpl Jason.Encoder, for: __MODULE__ do
+    def encode(value, opts) do
+      value
+      |> Map.filter(fn {k, v} -> v != nil && k != :__struct__ end)
+      |> Enum.map(fn {k, v} -> {CucumberMessages.Helper.lower_camelize(k), v} end)
+      |> Enum.into(%{})
+      |> Jason.Encode.map(opts)
+    end
+  end
+
+  def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
+
+  def decode(normal_map) when is_map(normal_map) do
+    %__MODULE__{
+  <%- schema['properties'].each do |property_name, property|
+      ref = property['$ref']
+      items_ref = property.dig('items', '$ref') -%>
+      <%= "#{underscore(property_name)}: " -%>
+    <%- if items_ref -%>
+    <%- if schema['required'].include? property_name -%>
+    Enum.map(normal_map["<%= property_name -%>"] || [], fn item -> CucumberMessages.<%= class_name(items_ref) %>.decode(item) end),
+    <%- else -%>
+    case normal_map["<%= property_name -%>"] do
+        nil -> nil
+        data -> Enum.map(data, fn item -> CucumberMessages.<%= class_name(items_ref) %>.decode(item) end)
+    end
+    <%- end -%>
+    <%- else -%>normal_map["<%= property_name %>"],
+    <%- end -%>
+  <%- end -%>
+    }
+  end
+end
+
+<%- end -%>
