@@ -2,7 +2,7 @@
 defmodule CucumberMessages.<%= class_name(key) %> do
   defstruct [<%- schema['properties'].each do |property_name, property| -%> <%= underscore(property_name) %>: nil <%= property_name == schema['properties'].keys.last ? '' : ',' %> <%- end -%>]
 
-  defimpl Jason.Encoder, for: __MODULE__ do
+  defimpl Jason.Encoder, for: CucumberMessages.<%= class_name(key) %> do
     def encode(value, opts) do
       value
       |> Map.filter(fn {k, v} -> v != nil && k != :__struct__ end)
