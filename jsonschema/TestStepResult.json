@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "TestStepResult.json",
+  "additionalProperties": false,
+  "required": [
+    "duration",
+    "status"
+  ],
+  "properties": {
+    "duration": {
+      "$ref": "./Duration.json"
+    },
+    "message": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "UNKNOWN",
+        "PASSED",
+        "SKIPPED",
+        "PENDING",
+        "UNDEFINED",
+        "AMBIGUOUS",
+        "FAILED"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
