@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "GlobalHookStarted.json",
+  "additionalProperties": false,
+  "required": [
+    "testRunStartedId",
+    "hookId",
+    "timestamp"
+  ],
+  "properties": {
+    "testRunStartedId": {
+      "type": "string"
+    },
+    "hookId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "$ref": "./Timestamp.json"
+    }
+  },
+  "type": "object"
+}

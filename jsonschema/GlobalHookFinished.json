@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "GlobalHookFinished.json",
+  "additionalProperties": false,
+  "required": [
+    "testRunStartedId",
+    "hookId",
+    "result",
+    "timestamp"
+  ],
+  "properties": {
+    "testRunStartedId": {
+      "type": "string"
+    },
+    "hookId": {
+      "type": "string"
+    },
+    "result": {
+      "$ref": "./TestStepResult.json"
+    },
+    "timestamp": {
+      "$ref": "./Timestamp.json"
+    }
+  },
+  "type": "object"
+}

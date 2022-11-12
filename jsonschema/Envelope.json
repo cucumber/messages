@@ -54,6 +54,12 @@
     },
     "undefinedParameterType": {
       "$ref": "./UndefinedParameterType.json"
+    },
+    "globalHookStarted": {
+      "$ref": "./GlobalHookStarted.json"
+    },
+    "globalHookFinished": {
+      "$ref": "./GlobalHookFinished.json"
     }
   },
   "type": "object"
