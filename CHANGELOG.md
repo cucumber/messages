@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
+- [Java] Enabled reproducible builds 
 
 ### Fixed
 -  Change Go module name to match repo  ([#101](https://github.com/cucumber/messages/pull/101))
