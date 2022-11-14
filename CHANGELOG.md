@@ -6,12 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [20.0.0] - 2022-11-14
 ### Changed
 - BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
-- [Java] Enabled reproducible builds 
+- [Java] Enabled reproducible builds
 
 ### Fixed
--  Change Go module name to match repo  ([#101](https://github.com/cucumber/messages/pull/101))
+- Change Go module name to match repo  ([#101](https://github.com/cucumber/messages/pull/101))
 
 ## [19.1.4] - 2022-09-22
 ### Changed
@@ -52,11 +54,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - JSON Schema: some `array` fields now have `"minItems": 1`.
-- Java: Make this library more null safe.
-  - Generate Java code that uses `Optional` in getters.
-  - Setters are removed.
-  - Classes without required fields have public empty constructors, and static `of` methods for each field.
+- Generate Java code that uses `Optional` in getters.
+- Setters are removed.
+- Classes without required fields have public empty constructors, and static `of` methods for each field.
 ([#1858](https://github.com/cucumber/common/pull/1858) [aslakhellesoy](https://github.com/aslakhellesoy))
+- Java: Make this library more null safe.
 
 ## [17.1.1] - 2021-09-17
 ### Fixed
@@ -103,15 +105,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [JavaScript] Added `getWorstTestStepResult` function (moved from `@cucumber/query`)
 
 ### Changed
+- Empty `string` properties are set to `""` rather than being omitted.
+- Empty `Array` properties are set to `[]` rather than being omitted.
+- The `seconds` property on `Timestamp` and `Diration` is now a `number` rather than a `string`.
 - [Go, Java, JavaScript, Ruby] The library no longer depends on protocol buffers. The message classes are generated from [JSON Schemas](https://github.com/cucumber/common/tree/v16.0.0/messages).
 ([#1414](https://github.com/cucumber/cucumber/pull/1414)
 [aslakhellesoy](https://github.com/aslakhellesoy))
-  - Empty `string` properties are set to `""` rather than being omitted.
-  - Empty `Array` properties are set to `[]` rather than being omitted.
-  - The `seconds` property on `Timestamp` and `Diration` is now a `number` rather than a `string`.
+- [JavaScript]: Import with `import * as messages from '@cucumber/messages'`
+- [Ruby] Messages are now plain ruby hashes with camelCase symbol keys instead of objects with snake_case properties.
 - [Go, Java, JavaScript, Ruby] Packages and structs have changed:
-  - [JavaScript]: Import with `import * as messages from '@cucumber/messages'`
-  - [Ruby] Messages are now plain ruby hashes with camelCase symbol keys instead of objects with snake_case properties.
 
 ## [15.0.0] - 2021-03-23
 ### Added
@@ -218,10 +220,10 @@ gets smaller and the attachments can be processed/downloaded separately with mor
 
 ## [12.1.0] - 2020-04-21
 ### Added
+- Java: `io.cucumber.messages.Messages.Envelope.class.getPackage().getImplementationVersion()`
+- Ruby: `Messages::Envelope::VERSION`
+- JavaScript: `import { version } from '@cucumber/messages'`
 - Expose the library version through the API
-  - Java: `io.cucumber.messages.Messages.Envelope.class.getPackage().getImplementationVersion()`
-  - Ruby: `Messages::Envelope::VERSION`
-  - JavaScript: `import { version } from '@cucumber/messages'`
 - Add `Meta` message
 ([#976](https://github.com/cucumber/cucumber/pull/976)
 [aslakhellesoy](https://github.com/aslakhellesoy))
@@ -474,7 +476,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v19.1.4...main
+[Unreleased]: https://github.com/cucumber/messages/compare/v20.0.0...main
+[20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...main
 [19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...main
 [19.1.3]: https://github.com/cucumber/messages/compare/v19.1.2...main
 [19.1.2]: https://github.com/cucumber/messages/compare/v19.1.1...v19.1.2

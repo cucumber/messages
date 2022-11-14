@@ -1,6 +1,6 @@
 {
   "name": "@cucumber/messages",
-  "version": "19.1.4",
+  "version": "20.0.0",
   "description": "JSON schema-based messages for Cucumber's inter-process communication",
   "type": "module",
   "main": "dist/cjs/src/index.js",
