@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
+- [Java] Enabled reproducible builds 
 
 ## [19.1.4] - 2022-09-22
 ### Changed
