@@ -152,7 +152,7 @@ class NdjsonSerializationTest {
     @Test
     void handles_single_argument_constructors() {
         InputStream input = new ByteArrayInputStream(
-                "{\"testRunStarted\": {\"id\": \"id\",timestamp\":{\"nanos\":0,\"seconds\":0}}}\n".getBytes(UTF_8));
+                "{\"testRunStarted\": {\"id\":\"id\",\"timestamp\":{\"nanos\":0,\"seconds\":0}}}\n".getBytes(UTF_8));
         Iterable<Envelope> incomingMessages = createMessageIterable(input);
         Iterator<Envelope> iterator = incomingMessages.iterator();
         assertTrue(iterator.hasNext());
