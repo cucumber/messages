@@ -64,6 +64,8 @@ class NdjsonSerializationTest {
                 null,
                 null,
                 null,
+                null,
+                null,
                 null
         ));
         writer.flush();
