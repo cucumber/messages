@@ -11,21 +11,28 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings("unused")
 public final class TestCase {
     private final String id;
+    private final String testRunStartedId;
     private final String pickleId;
     private final java.util.List<TestStep> testSteps;
 
     public TestCase(
         String id,
+        String testRunStartedId,
         String pickleId,
         java.util.List<TestStep> testSteps
     ) {
         this.id = requireNonNull(id, "TestCase.id cannot be null");
+        this.testRunStartedId = requireNonNull(testRunStartedId, "TestCase.testRunStartedId cannot be null");
         this.pickleId = requireNonNull(pickleId, "TestCase.pickleId cannot be null");
         this.testSteps = unmodifiableList(new ArrayList<>(requireNonNull(testSteps, "TestCase.testSteps cannot be null")));
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getTestRunStartedId() {
+        return testRunStartedId;
     }
 
     public String getPickleId() {
@@ -43,6 +50,7 @@ public final class TestCase {
         TestCase that = (TestCase) o;
         return 
             id.equals(that.id) &&         
+            testRunStartedId.equals(that.testRunStartedId) &&         
             pickleId.equals(that.pickleId) &&         
             testSteps.equals(that.testSteps);        
     }
@@ -51,6 +59,7 @@ public final class TestCase {
     public int hashCode() {
         return Objects.hash(
             id,
+            testRunStartedId,
             pickleId,
             testSteps
         );
@@ -60,6 +69,7 @@ public final class TestCase {
     public String toString() {
         return "TestCase{" +
             "id=" + id +
+            ", testRunStartedId=" + testRunStartedId +
             ", pickleId=" + pickleId +
             ", testSteps=" + testSteps +
             '}';

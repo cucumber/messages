@@ -80,6 +80,12 @@ export class Envelope {
 
   @Type(() => UndefinedParameterType)
   undefinedParameterType?: UndefinedParameterType
+
+  @Type(() => GlobalHookStarted)
+  globalHookStarted?: GlobalHookStarted
+
+  @Type(() => GlobalHookFinished)
+  globalHookFinished?: GlobalHookFinished
 }
 
 export class GherkinDocument {
@@ -293,6 +299,29 @@ export class Tag {
   name: string = ''
 
   id: string = ''
+}
+
+export class GlobalHookFinished {
+
+  testRunStartedId: string = ''
+
+  hookId: string = ''
+
+  @Type(() => TestStepResult)
+  result: TestStepResult = new TestStepResult()
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
+}
+
+export class GlobalHookStarted {
+
+  testRunStartedId: string = ''
+
+  hookId: string = ''
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
 }
 
 export class Hook {
@@ -521,6 +550,8 @@ export class TestCase {
 
   id: string = ''
 
+  testRunStartedId: string = ''
+
   pickleId: string = ''
 
   @Type(() => TestStep)
@@ -591,6 +622,8 @@ export class TestCaseStarted {
 
 export class TestRunFinished {
 
+  testRunStartedId: string = ''
+
   message?: string
 
   success: boolean = false
@@ -600,6 +633,8 @@ export class TestRunFinished {
 }
 
 export class TestRunStarted {
+
+  id: string = ''
 
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()

@@ -12,38 +12,22 @@ use JsonSerializable;
 use Cucumber\Messages\DecodingException\SchemaViolationException;
 
 /**
- * Represents the TestRunFinished message in Cucumber's message protocol
+ * Represents the GlobalHookFinished message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
  */
-final class TestRunFinished implements JsonSerializable
+final class GlobalHookFinished implements JsonSerializable
 {
     use JsonEncodingTrait;
 
     /**
-     * Construct the TestRunFinished with all properties
+     * Construct the GlobalHookFinished with all properties
      *
      */
     public function __construct(
         public readonly string $testRunStartedId = '',
-
-        /**
-         * Error message. Can be a stack trace from a failed `BeforeAll` or `AfterAll`.
-         * If there are undefined parameter types, the message is simply
-         * "The following parameter type(s() are not defined: xxx, yyy".
-         * The independent `UndefinedParameterType` messages can be used to generate
-         * snippets for those parameter types.
-         */
-        public readonly ?string $message = null,
-
-        /**
-         * success = StrictModeEnabled ? (failed_count == 0 && ambiguous_count == 0 && undefined_count == 0 && pending_count == 0) : (failed_count == 0 && ambiguous_count == 0)
-         */
-        public readonly bool $success = false,
-
-        /**
-         * Timestamp when the TestRun is finished
-         */
+        public readonly string $hookId = '',
+        public readonly TestStepResult $result = new TestStepResult(),
         public readonly Timestamp $timestamp = new Timestamp(),
     ) {
     }
@@ -56,14 +40,14 @@ final class TestRunFinished implements JsonSerializable
     public static function fromArray(array $arr): self
     {
         self::ensureTestRunStartedId($arr);
-        self::ensureMessage($arr);
-        self::ensureSuccess($arr);
+        self::ensureHookId($arr);
+        self::ensureResult($arr);
         self::ensureTimestamp($arr);
 
         return new self(
             (string) $arr['testRunStartedId'],
-            isset($arr['message']) ? (string) $arr['message'] : null,
-            (bool) $arr['success'],
+            (string) $arr['hookId'],
+            TestStepResult::fromArray($arr['result']),
             Timestamp::fromArray($arr['timestamp']),
         );
     }
@@ -82,25 +66,28 @@ final class TestRunFinished implements JsonSerializable
     }
 
     /**
-     * @psalm-assert array{message?: string|int|bool} $arr
+     * @psalm-assert array{hookId: string|int|bool} $arr
      */
-    private static function ensureMessage(array $arr): void
+    private static function ensureHookId(array $arr): void
     {
-        if (array_key_exists('message', $arr) && is_array($arr['message'])) {
-            throw new SchemaViolationException('Property \'message\' was array');
+        if (!array_key_exists('hookId', $arr)) {
+            throw new SchemaViolationException('Property \'hookId\' is required but was not found');
+        }
+        if (array_key_exists('hookId', $arr) && is_array($arr['hookId'])) {
+            throw new SchemaViolationException('Property \'hookId\' was array');
         }
     }
 
     /**
-     * @psalm-assert array{success: string|int|bool} $arr
+     * @psalm-assert array{result: array} $arr
      */
-    private static function ensureSuccess(array $arr): void
+    private static function ensureResult(array $arr): void
     {
-        if (!array_key_exists('success', $arr)) {
-            throw new SchemaViolationException('Property \'success\' is required but was not found');
+        if (!array_key_exists('result', $arr)) {
+            throw new SchemaViolationException('Property \'result\' is required but was not found');
         }
-        if (array_key_exists('success', $arr) && is_array($arr['success'])) {
-            throw new SchemaViolationException('Property \'success\' was array');
+        if (array_key_exists('result', $arr) && !is_array($arr['result'])) {
+            throw new SchemaViolationException('Property \'result\' was not array');
         }
     }
 

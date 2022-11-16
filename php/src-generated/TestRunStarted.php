@@ -25,6 +25,7 @@ final class TestRunStarted implements JsonSerializable
      *
      */
     public function __construct(
+        public readonly string $id = '',
         public readonly Timestamp $timestamp = new Timestamp(),
     ) {
     }
@@ -36,11 +37,26 @@ final class TestRunStarted implements JsonSerializable
      */
     public static function fromArray(array $arr): self
     {
+        self::ensureId($arr);
         self::ensureTimestamp($arr);
 
         return new self(
+            (string) $arr['id'],
             Timestamp::fromArray($arr['timestamp']),
         );
+    }
+
+    /**
+     * @psalm-assert array{id: string|int|bool} $arr
+     */
+    private static function ensureId(array $arr): void
+    {
+        if (!array_key_exists('id', $arr)) {
+            throw new SchemaViolationException('Property \'id\' is required but was not found');
+        }
+        if (array_key_exists('id', $arr) && is_array($arr['id'])) {
+            throw new SchemaViolationException('Property \'id\' was array');
+        }
     }
 
     /**

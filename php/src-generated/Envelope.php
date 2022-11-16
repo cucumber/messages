@@ -47,6 +47,8 @@ final class Envelope implements JsonSerializable
         public readonly ?TestStepFinished $testStepFinished = null,
         public readonly ?TestStepStarted $testStepStarted = null,
         public readonly ?UndefinedParameterType $undefinedParameterType = null,
+        public readonly ?GlobalHookStarted $globalHookStarted = null,
+        public readonly ?GlobalHookFinished $globalHookFinished = null,
     ) {
     }
 
@@ -74,6 +76,8 @@ final class Envelope implements JsonSerializable
         self::ensureTestStepFinished($arr);
         self::ensureTestStepStarted($arr);
         self::ensureUndefinedParameterType($arr);
+        self::ensureGlobalHookStarted($arr);
+        self::ensureGlobalHookFinished($arr);
 
         return new self(
             isset($arr['attachment']) ? Attachment::fromArray($arr['attachment']) : null,
@@ -93,6 +97,8 @@ final class Envelope implements JsonSerializable
             isset($arr['testStepFinished']) ? TestStepFinished::fromArray($arr['testStepFinished']) : null,
             isset($arr['testStepStarted']) ? TestStepStarted::fromArray($arr['testStepStarted']) : null,
             isset($arr['undefinedParameterType']) ? UndefinedParameterType::fromArray($arr['undefinedParameterType']) : null,
+            isset($arr['globalHookStarted']) ? GlobalHookStarted::fromArray($arr['globalHookStarted']) : null,
+            isset($arr['globalHookFinished']) ? GlobalHookFinished::fromArray($arr['globalHookFinished']) : null,
         );
     }
 
@@ -263,6 +269,26 @@ final class Envelope implements JsonSerializable
     {
         if (array_key_exists('undefinedParameterType', $arr) && !is_array($arr['undefinedParameterType'])) {
             throw new SchemaViolationException('Property \'undefinedParameterType\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{globalHookStarted?: array} $arr
+     */
+    private static function ensureGlobalHookStarted(array $arr): void
+    {
+        if (array_key_exists('globalHookStarted', $arr) && !is_array($arr['globalHookStarted'])) {
+            throw new SchemaViolationException('Property \'globalHookStarted\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{globalHookFinished?: array} $arr
+     */
+    private static function ensureGlobalHookFinished(array $arr): void
+    {
+        if (array_key_exists('globalHookFinished', $arr) && !is_array($arr['globalHookFinished'])) {
+            throw new SchemaViolationException('Property \'globalHookFinished\' was not array');
         }
     }
 }

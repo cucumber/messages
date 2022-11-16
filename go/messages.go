@@ -34,6 +34,8 @@ type Envelope struct {
 	TestStepFinished       *TestStepFinished       `json:"testStepFinished,omitempty"`
 	TestStepStarted        *TestStepStarted        `json:"testStepStarted,omitempty"`
 	UndefinedParameterType *UndefinedParameterType `json:"undefinedParameterType,omitempty"`
+	GlobalHookStarted      *GlobalHookStarted      `json:"globalHookStarted,omitempty"`
+	GlobalHookFinished     *GlobalHookFinished     `json:"globalHookFinished,omitempty"`
 }
 
 type GherkinDocument struct {
@@ -146,6 +148,19 @@ type Tag struct {
 	Location *Location `json:"location"`
 	Name     string    `json:"name"`
 	Id       string    `json:"id"`
+}
+
+type GlobalHookFinished struct {
+	TestRunStartedId string          `json:"testRunStartedId"`
+	HookId           string          `json:"hookId"`
+	Result           *TestStepResult `json:"result"`
+	Timestamp        *Timestamp      `json:"timestamp"`
+}
+
+type GlobalHookStarted struct {
+	TestRunStartedId string     `json:"testRunStartedId"`
+	HookId           string     `json:"hookId"`
+	Timestamp        *Timestamp `json:"timestamp"`
 }
 
 type Hook struct {
@@ -283,9 +298,10 @@ type StepDefinitionPattern struct {
 }
 
 type TestCase struct {
-	Id        string      `json:"id"`
-	PickleId  string      `json:"pickleId"`
-	TestSteps []*TestStep `json:"testSteps"`
+	Id               string      `json:"id"`
+	TestRunStartedId string      `json:"testRunStartedId"`
+	PickleId         string      `json:"pickleId"`
+	TestSteps        []*TestStep `json:"testSteps"`
 }
 
 type Group struct {
@@ -326,12 +342,14 @@ type TestCaseStarted struct {
 }
 
 type TestRunFinished struct {
-	Message   string     `json:"message,omitempty"`
-	Success   bool       `json:"success"`
-	Timestamp *Timestamp `json:"timestamp"`
+	TestRunStartedId string     `json:"testRunStartedId"`
+	Message          string     `json:"message,omitempty"`
+	Success          bool       `json:"success"`
+	Timestamp        *Timestamp `json:"timestamp"`
 }
 
 type TestRunStarted struct {
+	Id        string     `json:"id"`
 	Timestamp *Timestamp `json:"timestamp"`
 }
 

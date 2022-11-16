@@ -183,6 +183,10 @@ module Cucumber
 
       attr_reader :undefined_parameter_type
 
+      attr_reader :global_hook_started
+
+      attr_reader :global_hook_finished
+
       def initialize(
         attachment: nil,
         gherkin_document: nil,
@@ -200,7 +204,9 @@ module Cucumber
         test_run_started: nil,
         test_step_finished: nil,
         test_step_started: nil,
-        undefined_parameter_type: nil
+        undefined_parameter_type: nil,
+        global_hook_started: nil,
+        global_hook_finished: nil
       )
         @attachment = attachment
         @gherkin_document = gherkin_document
@@ -219,6 +225,8 @@ module Cucumber
         @test_step_finished = test_step_finished
         @test_step_started = test_step_started
         @undefined_parameter_type = undefined_parameter_type
+        @global_hook_started = global_hook_started
+        @global_hook_finished = global_hook_finished
       end
     end
 
@@ -790,6 +798,62 @@ module Cucumber
         @location = location
         @name = name
         @id = id
+      end
+    end
+
+
+    ##
+    # Represents the GlobalHookFinished message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
+    #
+    
+    #
+
+    class GlobalHookFinished < ::Cucumber::Messages::Message
+
+      attr_reader :test_run_started_id
+
+      attr_reader :hook_id
+
+      attr_reader :result
+
+      attr_reader :timestamp
+
+      def initialize(
+        test_run_started_id: '',
+        hook_id: '',
+        result: TestStepResult.new,
+        timestamp: Timestamp.new
+      )
+        @test_run_started_id = test_run_started_id
+        @hook_id = hook_id
+        @result = result
+        @timestamp = timestamp
+      end
+    end
+
+
+    ##
+    # Represents the GlobalHookStarted message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
+    #
+    
+    #
+
+    class GlobalHookStarted < ::Cucumber::Messages::Message
+
+      attr_reader :test_run_started_id
+
+      attr_reader :hook_id
+
+      attr_reader :timestamp
+
+      def initialize(
+        test_run_started_id: '',
+        hook_id: '',
+        timestamp: Timestamp.new
+      )
+        @test_run_started_id = test_run_started_id
+        @hook_id = hook_id
+        @timestamp = timestamp
       end
     end
 
@@ -1498,6 +1562,8 @@ module Cucumber
 
       attr_reader :id
 
+      attr_reader :test_run_started_id
+
       ##
       # The ID of the `Pickle` this `TestCase` is derived from.
 
@@ -1507,10 +1573,12 @@ module Cucumber
 
       def initialize(
         id: '',
+        test_run_started_id: '',
         pickle_id: '',
         test_steps: []
       )
         @id = id
+        @test_run_started_id = test_run_started_id
         @pickle_id = pickle_id
         @test_steps = test_steps
       end
@@ -1725,6 +1793,8 @@ module Cucumber
 
     class TestRunFinished < ::Cucumber::Messages::Message
 
+      attr_reader :test_run_started_id
+
       ##
       # Error message. Can be a stack trace from a failed `BeforeAll` or `AfterAll`.
       #  If there are undefined parameter types, the message is simply
@@ -1745,10 +1815,12 @@ module Cucumber
       attr_reader :timestamp
 
       def initialize(
+        test_run_started_id: '',
         message: nil,
         success: false,
         timestamp: Timestamp.new
       )
+        @test_run_started_id = test_run_started_id
         @message = message
         @success = success
         @timestamp = timestamp
@@ -1764,11 +1836,15 @@ module Cucumber
 
     class TestRunStarted < ::Cucumber::Messages::Message
 
+      attr_reader :id
+
       attr_reader :timestamp
 
       def initialize(
+        id: '',
         timestamp: Timestamp.new
       )
+        @id = id
         @timestamp = timestamp
       end
     end
