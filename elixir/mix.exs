@@ -11,7 +11,7 @@ defmodule CucumberMessages.MixProject do
       name: "CucumberMessages",
       description: description(),
       package: package(),
-      elixir: "~> 1.10",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -25,14 +25,13 @@ defmodule CucumberMessages.MixProject do
 
   defp deps do
     [
-      {:protox, "~> 1.7.0"},
       {:jason, "~> 1.2"},
       {:ex_doc, "~> 0.29", only: :dev, runtime: false}
     ]
   end
 
   defp description() do
-    "Elixir implementation of the cucumber messages protobuf schema"
+    "Elixir implementation of the cucumber messages json schemas"
   end
 
   defp package() do

@@ -23,7 +23,7 @@ schemas = \
 	./jsonschema/UndefinedParameterType.json \
 	./jsonschema/Envelope.json
 
-languages = go java javascript perl php ruby
+languages = go java javascript perl php ruby elixir
 
 .DEFAULT_GOAL = help
 
