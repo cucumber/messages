@@ -7,17 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [19.1.3] - 2022-09-20
-### Added
-
+## [20.0.0] - 2022-11-14
 ### Changed
-
-### Deprecated
+- BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
+- [Java] Enabled reproducible builds
 
 ### Fixed
-- Add `name` field to `package.cjs.json` ([#36](https://github.com/cucumber/messages/pull/36))
+- Change Go module name to match repo  ([#101](https://github.com/cucumber/messages/pull/101))
 
-### Removed
+## [19.1.4] - 2022-09-22
+### Changed
+- Update dependencies
+
+## [19.1.3] - 2022-09-20
+### Fixed
+- Add `name` field to `package.cjs.json` ([#36](https://github.com/cucumber/messages/pull/36))
 
 ## [19.1.2] - 2022-06-22
 ### Fixed
@@ -50,11 +54,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - JSON Schema: some `array` fields now have `"minItems": 1`.
-- Java: Make this library more null safe.
-  - Generate Java code that uses `Optional` in getters.
-  - Setters are removed.
-  - Classes without required fields have public empty constructors, and static `of` methods for each field.
+- Generate Java code that uses `Optional` in getters.
+- Setters are removed.
+- Classes without required fields have public empty constructors, and static `of` methods for each field.
 ([#1858](https://github.com/cucumber/common/pull/1858) [aslakhellesoy](https://github.com/aslakhellesoy))
+- Java: Make this library more null safe.
 
 ## [17.1.1] - 2021-09-17
 ### Fixed
@@ -101,15 +105,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [JavaScript] Added `getWorstTestStepResult` function (moved from `@cucumber/query`)
 
 ### Changed
+- Empty `string` properties are set to `""` rather than being omitted.
+- Empty `Array` properties are set to `[]` rather than being omitted.
+- The `seconds` property on `Timestamp` and `Diration` is now a `number` rather than a `string`.
 - [Go, Java, JavaScript, Ruby] The library no longer depends on protocol buffers. The message classes are generated from [JSON Schemas](https://github.com/cucumber/common/tree/v16.0.0/messages).
 ([#1414](https://github.com/cucumber/cucumber/pull/1414)
 [aslakhellesoy](https://github.com/aslakhellesoy))
-  - Empty `string` properties are set to `""` rather than being omitted.
-  - Empty `Array` properties are set to `[]` rather than being omitted.
-  - The `seconds` property on `Timestamp` and `Diration` is now a `number` rather than a `string`.
+- [JavaScript]: Import with `import * as messages from '@cucumber/messages'`
+- [Ruby] Messages are now plain ruby hashes with camelCase symbol keys instead of objects with snake_case properties.
 - [Go, Java, JavaScript, Ruby] Packages and structs have changed:
-  - [JavaScript]: Import with `import * as messages from '@cucumber/messages'`
-  - [Ruby] Messages are now plain ruby hashes with camelCase symbol keys instead of objects with snake_case properties.
 
 ## [15.0.0] - 2021-03-23
 ### Added
@@ -216,10 +220,10 @@ gets smaller and the attachments can be processed/downloaded separately with mor
 
 ## [12.1.0] - 2020-04-21
 ### Added
+- Java: `io.cucumber.messages.Messages.Envelope.class.getPackage().getImplementationVersion()`
+- Ruby: `Messages::Envelope::VERSION`
+- JavaScript: `import { version } from '@cucumber/messages'`
 - Expose the library version through the API
-  - Java: `io.cucumber.messages.Messages.Envelope.class.getPackage().getImplementationVersion()`
-  - Ruby: `Messages::Envelope::VERSION`
-  - JavaScript: `import { version } from '@cucumber/messages'`
 - Add `Meta` message
 ([#976](https://github.com/cucumber/cucumber/pull/976)
 [aslakhellesoy](https://github.com/aslakhellesoy))
@@ -315,7 +319,7 @@ a C compiler toolchain. The `json` gem is part of the Ruby stdlib.
 ### Fixed
 - Fixed release scripts for Go and JavaScript
 
-## [9.0.0] - 2020-01-09
+## 9.0.0 - 2020-01-09
 ### Added
 - Added `ParameterType` as an envelope message
 
@@ -337,7 +341,7 @@ in the case of ambiguous matches.
 ### Removed
 - Removed `TestCase#test_result`. Aggregate results will be computed by `cucumber-query` instead
 
-## [8.0.0] - 2019-12-10
+## 8.0.0 - 2019-12-10
 ### Added
 - Added `testStepId` and `testCaseStartedId` to `Attachment`
 ([#814](https://github.com/cucumber/cucumber/pull/814)
@@ -349,7 +353,7 @@ platform's representation of timestamps (clock time) and duration (monotonic tim
 ### Changed
 - Renamed some of the classes for dealing with streams
 
-## [7.0.0] - 2019-11-14
+## 7.0.0 - 2019-11-14
 ### Added
 - Support retry
 ([#722](https://github.com/cucumber/cucumber/pull/722)
@@ -361,13 +365,13 @@ platform's representation of timestamps (clock time) and duration (monotonic tim
 [#794](https://github.com/cucumber/cucumber/pull/794)
 [vincent-psarga](https://github.com/aslakhellesoy))
 
-## [6.0.2] - 2019-10-16
+## 6.0.2 - 2019-10-16
 
-## [6.0.1] - 2019-10-03
+## 6.0.1 - 2019-10-03
 ### Fixed
 - [Go] Release 6.0.0 is unusable.
 
-## [6.0.0] - 2019-10-02
+## 6.0.0 - 2019-10-02
 ### Added
 - New `TestStepMatched` message
 - `Duration` message to express duration in a seconds + nano format
@@ -381,11 +385,11 @@ platform's representation of timestamps (clock time) and duration (monotonic tim
 ### Removed
 - `durationNanoSeconds` field in `TestResult` message
 
-## [5.0.1] - 2019-08-23
+## 5.0.1 - 2019-08-23
 ### Fixed
 - [Go] Fix module version (5.0.0 left it at v4)
 
-## [5.0.0] - 2019-08-23
+## 5.0.0 - 2019-08-23
 ### Changed
 - The ordinal numbers of the `Status` enum have changed, to easier compute an
 aggregated status.
@@ -393,34 +397,34 @@ aggregated status.
 ### Fixed
 - [JavaScript] Don't swallow exceptions happening in `ProtobufMessageStream`
 
-## [4.0.0] - 2019-08-14
+## 4.0.0 - 2019-08-14
 
-## [3.0.5] - 2019-08-14
+## 3.0.5 - 2019-08-14
 ### Fixed
 - [Go] Tag the cucumber/go subrepo (again)
 
-## [3.0.4] - 2019-08-14
+## 3.0.4 - 2019-08-14
 ### Fixed
 - [Go] Tag the cucumber/go subrepo (again)
 
-## [3.0.3] - 2019-08-14
+## 3.0.3 - 2019-08-14
 ### Fixed
 - [Go] Tag the cucumber/go subrepo
 
-## [3.0.2] - 2019-08-01
+## 3.0.2 - 2019-08-01
 ### Added
 - Add Timestamp property and comments to TestRunFinished message
 ([#665](https://github.com/cucumber/cucumber/pull/665)
 [SabotageAndi](https://github.com/SabotageAndi)
 
-## [3.0.1] - 2019-07-15
+## 3.0.1 - 2019-07-15
 ### Added
 - [.NET] Publish NuGet package
 ([#635](https://github.com/cucumber/cucumber/pull/635)
 [SabotageAndi](https://github.com/aslakhellesoy)
 [vincent-psarga](https://github.com/vincent-psarga))
 
-## [3.0.0] - 2019-06-05
+## 3.0.0 - 2019-06-05
 ### Added
 - Added `TestRunStarted#timestamp` field
 ([#615](https://github.com/cucumber/cucumber/pull/615)
@@ -441,38 +445,40 @@ aggregated status.
 
 ### Removed
 
-## [2.1.2] - 2019-03-29
+## 2.1.2 - 2019-03-29
 ### Fixed
 - Fix Project struggling to build across JRuby and Ruby 2.6
 ([#578](https://github.com/cucumber/cucumber/pull/578)
 [luke-hill](https://github.com/luke-hill))
 
-## [2.1.1] - 2018-11-02
+## 2.1.1 - 2018-11-02
 ### Fixed
 - Release process improvements
 
-## [2.1.0] - 2018-11-01
+## 2.1.0 - 2018-11-01
 ### Added
 - Add testResult to the TestCaseFinished message
 ([#488](https://github.com/cucumber/cucumber/pull/488)
 [brasmusson](https://github.com/brasmusson))
 
-## [2.0.0] - 2018-10-14
+## 2.0.0 - 2018-10-14
 ### Added
 - Several messages to support [cucumber-engine]()
 ([#502](https://github.com/cucumber/cucumber/pull/502)
 [charlierudolph](https://github.com/charlierudolph))
 
-## [1.1.2] - 2018-10-01
+## 1.1.2 - 2018-10-01
 ### Added
 - Added `TestHookStarted` and `TestHookFinished` to distinguish between messages about Gherkin steps and hooks
 ([aslakhellesoy](https://github.com/aslakhellesoy))
 
-## [1.0.0] - 2018-09-15
+## 1.0.0 - 2018-09-15
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v19.1.3...main
+[Unreleased]: https://github.com/cucumber/messages/compare/v20.0.0...main
+[20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...main
+[19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...main
 [19.1.3]: https://github.com/cucumber/messages/compare/v19.1.2...main
 [19.1.2]: https://github.com/cucumber/messages/compare/v19.1.1...v19.1.2
 [19.1.1]: https://github.com/cucumber/messages/compare/v19.1.0...v19.1.1

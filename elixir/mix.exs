@@ -2,15 +2,13 @@ defmodule CucumberMessages.MixProject do
   @moduledoc false
   use Mix.Project
 
-  @vsn "15.0.0"
-  @github "https://github.com/cucumber/common/tree/main/messages/elixir"
-  @name "CucumberMessages"
+  @github "https://github.com/cucumber/messages"
 
   def project do
     [
       app: :cucumber_messages,
-      version: @vsn,
-      name: @name,
+      version: "20.0.0",
+      name: "CucumberMessages",
       description: description(),
       package: package(),
       elixir: "~> 1.10",
@@ -28,7 +26,7 @@ defmodule CucumberMessages.MixProject do
   defp deps do
     [
       {:jason, "~> 1.2"},
-      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.29", only: :dev, runtime: false}
     ]
   end
 

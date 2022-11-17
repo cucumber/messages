@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish-go-subrepo:
-    name: Publish to cucumber/messgaes-go subrepo
+    name: Publish to cucumber/messages-go subrepo
     runs-on: ubuntu-latest
     environment: Release
     permissions:

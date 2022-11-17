@@ -3,7 +3,7 @@
     "config:base",
     ":preserveSemverRanges",
     ":rebaseStalePrs",
-    ":disableDependencyDashboard"
+    ":disableDependencyDashboard"    
   ],
   "labels": [":robot: dependencies"],
   "prHourlyLimit": 0,
@@ -14,6 +14,5 @@
       "automerge": true,
       "automergeType": "branch"
     }
-  ],
-  "ignorePaths": ["dotnet/**"]
+  ]
 }

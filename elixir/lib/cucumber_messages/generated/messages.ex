@@ -1250,7 +1250,7 @@ defmodule CucumberMessages.TestCaseFinished do
 end
 
 defmodule CucumberMessages.TestCaseStarted do
-  defstruct attempt: nil, id: nil, test_case_id: nil, timestamp: nil
+  defstruct attempt: nil, id: nil, test_case_id: nil, worker_id: nil, timestamp: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.TestCaseStarted do
     def encode(value, opts) do
@@ -1269,6 +1269,7 @@ defmodule CucumberMessages.TestCaseStarted do
       attempt: normal_map["attempt"],
       id: normal_map["id"],
       test_case_id: normal_map["testCaseId"],
+      worker_id: normal_map["workerId"],
       timestamp: normal_map["timestamp"]
     }
   end
