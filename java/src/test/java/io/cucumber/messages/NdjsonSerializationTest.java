@@ -157,7 +157,7 @@ class NdjsonSerializationTest {
         Iterator<Envelope> iterator = incomingMessages.iterator();
         assertTrue(iterator.hasNext());
         Envelope testRunStarted = iterator.next();
-        Envelope expected = Envelope.of(new TestRunStarted("id", new Timestamp(0L, 0L)));
+        Envelope expected = Envelope.of(new TestRunStarted(new Timestamp(0L, 0L), "id"));
         assertEquals(expected, testRunStarted);
         assertFalse(iterator.hasNext());
     }
