@@ -1562,8 +1562,6 @@ module Cucumber
 
       attr_reader :id
 
-      attr_reader :test_run_started_id
-
       ##
       # The ID of the `Pickle` this `TestCase` is derived from.
 
@@ -1571,16 +1569,18 @@ module Cucumber
 
       attr_reader :test_steps
 
+      attr_reader :test_run_started_id
+
       def initialize(
         id: '',
-        test_run_started_id: '',
         pickle_id: '',
-        test_steps: []
+        test_steps: [],
+        test_run_started_id: nil
       )
         @id = id
-        @test_run_started_id = test_run_started_id
         @pickle_id = pickle_id
         @test_steps = test_steps
+        @test_run_started_id = test_run_started_id
       end
     end
 
@@ -1793,8 +1793,6 @@ module Cucumber
 
     class TestRunFinished < ::Cucumber::Messages::Message
 
-      attr_reader :test_run_started_id
-
       ##
       # Error message. Can be a stack trace from a failed `BeforeAll` or `AfterAll`.
       #  If there are undefined parameter types, the message is simply
@@ -1814,16 +1812,18 @@ module Cucumber
 
       attr_reader :timestamp
 
+      attr_reader :test_run_started_id
+
       def initialize(
-        test_run_started_id: '',
         message: nil,
         success: false,
-        timestamp: Timestamp.new
+        timestamp: Timestamp.new,
+        test_run_started_id: nil
       )
-        @test_run_started_id = test_run_started_id
         @message = message
         @success = success
         @timestamp = timestamp
+        @test_run_started_id = test_run_started_id
       end
     end
 
@@ -1836,16 +1836,16 @@ module Cucumber
 
     class TestRunStarted < ::Cucumber::Messages::Message
 
-      attr_reader :id
-
       attr_reader :timestamp
 
+      attr_reader :id
+
       def initialize(
-        id: '',
-        timestamp: Timestamp.new
+        timestamp: Timestamp.new,
+        id: nil
       )
-        @id = id
         @timestamp = timestamp
+        @id = id
       end
     end
 

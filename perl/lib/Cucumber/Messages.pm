@@ -3824,9 +3824,9 @@ use Scalar::Util qw( blessed );
 
 my %types = (
    id => 'string',
-   test_run_started_id => 'string',
    pickle_id => 'string',
    test_steps => '[]Cucumber::Messages::TestStep',
+   test_run_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -3843,18 +3843,6 @@ sub _types {
 =cut
 
 has id =>
-    (is => 'ro',
-     required => 1,
-     default => sub { '' },
-    );
-
-
-=head4 test_run_started_id
-
-
-=cut
-
-has test_run_started_id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
@@ -3883,6 +3871,16 @@ has test_steps =>
     (is => 'ro',
      required => 1,
      default => sub { [] },
+    );
+
+
+=head4 test_run_started_id
+
+
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
     );
 
 
@@ -4362,10 +4360,10 @@ extends 'Cucumber::Messages::Message';
 use Scalar::Util qw( blessed );
 
 my %types = (
-   test_run_started_id => 'string',
    message => 'string',
    success => 'boolean',
    timestamp => 'Cucumber::Messages::Timestamp',
+   test_run_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4374,18 +4372,6 @@ sub _types {
     return \%types;
 }
 
-
-
-=head4 test_run_started_id
-
-
-=cut
-
-has test_run_started_id =>
-    (is => 'ro',
-     required => 1,
-     default => sub { '' },
-    );
 
 
 =head4 message
@@ -4429,6 +4415,16 @@ has timestamp =>
     );
 
 
+=head4 test_run_started_id
+
+
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
+    );
+
+
 }
 
 package Cucumber::Messages::TestRunStarted {
@@ -4452,8 +4448,8 @@ extends 'Cucumber::Messages::Message';
 use Scalar::Util qw( blessed );
 
 my %types = (
-   id => 'string',
    timestamp => 'Cucumber::Messages::Timestamp',
+   id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4462,18 +4458,6 @@ sub _types {
     return \%types;
 }
 
-
-
-=head4 id
-
-
-=cut
-
-has id =>
-    (is => 'ro',
-     required => 1,
-     default => sub { '' },
-    );
 
 
 =head4 timestamp
@@ -4485,6 +4469,16 @@ has timestamp =>
     (is => 'ro',
      required => 1,
      default => sub { Cucumber::Messages::Timestamp->new() },
+    );
+
+
+=head4 id
+
+
+=cut
+
+has id =>
+    (is => 'ro',
     );
 
 

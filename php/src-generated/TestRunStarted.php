@@ -25,8 +25,8 @@ final class TestRunStarted implements JsonSerializable
      *
      */
     public function __construct(
-        public readonly string $id = '',
         public readonly Timestamp $timestamp = new Timestamp(),
+        public readonly ?string $id = null,
     ) {
     }
 
@@ -37,26 +37,13 @@ final class TestRunStarted implements JsonSerializable
      */
     public static function fromArray(array $arr): self
     {
-        self::ensureId($arr);
         self::ensureTimestamp($arr);
+        self::ensureId($arr);
 
         return new self(
-            (string) $arr['id'],
             Timestamp::fromArray($arr['timestamp']),
+            isset($arr['id']) ? (string) $arr['id'] : null,
         );
-    }
-
-    /**
-     * @psalm-assert array{id: string|int|bool} $arr
-     */
-    private static function ensureId(array $arr): void
-    {
-        if (!array_key_exists('id', $arr)) {
-            throw new SchemaViolationException('Property \'id\' is required but was not found');
-        }
-        if (array_key_exists('id', $arr) && is_array($arr['id'])) {
-            throw new SchemaViolationException('Property \'id\' was array');
-        }
     }
 
     /**
@@ -69,6 +56,16 @@ final class TestRunStarted implements JsonSerializable
         }
         if (array_key_exists('timestamp', $arr) && !is_array($arr['timestamp'])) {
             throw new SchemaViolationException('Property \'timestamp\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{id?: string|int|bool} $arr
+     */
+    private static function ensureId(array $arr): void
+    {
+        if (array_key_exists('id', $arr) && is_array($arr['id'])) {
+            throw new SchemaViolationException('Property \'id\' was array');
         }
     }
 }

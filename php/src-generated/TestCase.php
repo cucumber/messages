@@ -29,13 +29,13 @@ final class TestCase implements JsonSerializable
      */
     public function __construct(
         public readonly string $id = '',
-        public readonly string $testRunStartedId = '',
 
         /**
          * The ID of the `Pickle` this `TestCase` is derived from.
          */
         public readonly string $pickleId = '',
         public readonly array $testSteps = [],
+        public readonly ?string $testRunStartedId = null,
     ) {
     }
 
@@ -47,15 +47,15 @@ final class TestCase implements JsonSerializable
     public static function fromArray(array $arr): self
     {
         self::ensureId($arr);
-        self::ensureTestRunStartedId($arr);
         self::ensurePickleId($arr);
         self::ensureTestSteps($arr);
+        self::ensureTestRunStartedId($arr);
 
         return new self(
             (string) $arr['id'],
-            (string) $arr['testRunStartedId'],
             (string) $arr['pickleId'],
             array_values(array_map(fn (array $member) => TestStep::fromArray($member), $arr['testSteps'])),
+            isset($arr['testRunStartedId']) ? (string) $arr['testRunStartedId'] : null,
         );
     }
 
@@ -69,19 +69,6 @@ final class TestCase implements JsonSerializable
         }
         if (array_key_exists('id', $arr) && is_array($arr['id'])) {
             throw new SchemaViolationException('Property \'id\' was array');
-        }
-    }
-
-    /**
-     * @psalm-assert array{testRunStartedId: string|int|bool} $arr
-     */
-    private static function ensureTestRunStartedId(array $arr): void
-    {
-        if (!array_key_exists('testRunStartedId', $arr)) {
-            throw new SchemaViolationException('Property \'testRunStartedId\' is required but was not found');
-        }
-        if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
-            throw new SchemaViolationException('Property \'testRunStartedId\' was array');
         }
     }
 
@@ -108,6 +95,16 @@ final class TestCase implements JsonSerializable
         }
         if (array_key_exists('testSteps', $arr) && !is_array($arr['testSteps'])) {
             throw new SchemaViolationException('Property \'testSteps\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{testRunStartedId?: string|int|bool} $arr
+     */
+    private static function ensureTestRunStartedId(array $arr): void
+    {
+        if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
+            throw new SchemaViolationException('Property \'testRunStartedId\' was array');
         }
     }
 }

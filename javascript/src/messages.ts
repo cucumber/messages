@@ -550,12 +550,12 @@ export class TestCase {
 
   id: string = ''
 
-  testRunStartedId: string = ''
-
   pickleId: string = ''
 
   @Type(() => TestStep)
   testSteps: readonly TestStep[] = []
+
+  testRunStartedId?: string
 }
 
 export class Group {
@@ -622,22 +622,22 @@ export class TestCaseStarted {
 
 export class TestRunFinished {
 
-  testRunStartedId: string = ''
-
   message?: string
 
   success: boolean = false
 
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
+
+  testRunStartedId?: string
 }
 
 export class TestRunStarted {
 
-  id: string = ''
-
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
+
+  id?: string
 }
 
 export class TestStepFinished {

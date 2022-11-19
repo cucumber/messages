@@ -25,7 +25,6 @@ final class TestRunFinished implements JsonSerializable
      *
      */
     public function __construct(
-        public readonly string $testRunStartedId = '',
 
         /**
          * Error message. Can be a stack trace from a failed `BeforeAll` or `AfterAll`.
@@ -45,6 +44,7 @@ final class TestRunFinished implements JsonSerializable
          * Timestamp when the TestRun is finished
          */
         public readonly Timestamp $timestamp = new Timestamp(),
+        public readonly ?string $testRunStartedId = null,
     ) {
     }
 
@@ -55,30 +55,17 @@ final class TestRunFinished implements JsonSerializable
      */
     public static function fromArray(array $arr): self
     {
-        self::ensureTestRunStartedId($arr);
         self::ensureMessage($arr);
         self::ensureSuccess($arr);
         self::ensureTimestamp($arr);
+        self::ensureTestRunStartedId($arr);
 
         return new self(
-            (string) $arr['testRunStartedId'],
             isset($arr['message']) ? (string) $arr['message'] : null,
             (bool) $arr['success'],
             Timestamp::fromArray($arr['timestamp']),
+            isset($arr['testRunStartedId']) ? (string) $arr['testRunStartedId'] : null,
         );
-    }
-
-    /**
-     * @psalm-assert array{testRunStartedId: string|int|bool} $arr
-     */
-    private static function ensureTestRunStartedId(array $arr): void
-    {
-        if (!array_key_exists('testRunStartedId', $arr)) {
-            throw new SchemaViolationException('Property \'testRunStartedId\' is required but was not found');
-        }
-        if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
-            throw new SchemaViolationException('Property \'testRunStartedId\' was array');
-        }
     }
 
     /**
@@ -114,6 +101,16 @@ final class TestRunFinished implements JsonSerializable
         }
         if (array_key_exists('timestamp', $arr) && !is_array($arr['timestamp'])) {
             throw new SchemaViolationException('Property \'timestamp\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{testRunStartedId?: string|int|bool} $arr
+     */
+    private static function ensureTestRunStartedId(array $arr): void
+    {
+        if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
+            throw new SchemaViolationException('Property \'testRunStartedId\' was array');
         }
     }
 }

@@ -3,15 +3,14 @@
   "$id": "TestRunStarted.json",
   "additionalProperties": false,
   "required": [
-    "id",
     "timestamp"
   ],
   "properties": {
-    "id": {
-      "type": "string"
-    },
     "timestamp": {
       "$ref": "./Timestamp.json"
+    },
+    "id": {
+      "type": "string"
     }
   },
   "type": "object"

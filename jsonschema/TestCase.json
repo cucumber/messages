@@ -100,15 +100,11 @@
   "description": "//// TestCases\n\n*\n A `TestCase` contains a sequence of `TestStep`s.",
   "required": [
     "id",
-    "testRunStartedId",
     "pickleId",
     "testSteps"
   ],
   "properties": {
     "id": {
-      "type": "string"
-    },
-    "testRunStartedId": {
       "type": "string"
     },
     "pickleId": {
@@ -120,6 +116,9 @@
         "$ref": "#/definitions/TestStep"
       },
       "type": "array"
+    },
+    "testRunStartedId": {
+      "type": "string"
     }
   },
   "type": "object"

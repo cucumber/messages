@@ -299,9 +299,9 @@ type StepDefinitionPattern struct {
 
 type TestCase struct {
 	Id               string      `json:"id"`
-	TestRunStartedId string      `json:"testRunStartedId"`
 	PickleId         string      `json:"pickleId"`
 	TestSteps        []*TestStep `json:"testSteps"`
+	TestRunStartedId string      `json:"testRunStartedId,omitempty"`
 }
 
 type Group struct {
@@ -342,15 +342,15 @@ type TestCaseStarted struct {
 }
 
 type TestRunFinished struct {
-	TestRunStartedId string     `json:"testRunStartedId"`
 	Message          string     `json:"message,omitempty"`
 	Success          bool       `json:"success"`
 	Timestamp        *Timestamp `json:"timestamp"`
+	TestRunStartedId string     `json:"testRunStartedId,omitempty"`
 }
 
 type TestRunStarted struct {
-	Id        string     `json:"id"`
 	Timestamp *Timestamp `json:"timestamp"`
+	Id        string     `json:"id,omitempty"`
 }
 
 type TestStepFinished struct {

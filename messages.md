@@ -389,9 +389,9 @@ will only have one of its fields set, which indicates the payload of the message
 | Field | Type | Required    | Description |
 | ----- | ---- | ----------- | ----------- |
 | `id` | string | yes | |
-| `testRunStartedId` | string | yes | |
 | `pickleId` | string | yes | |
 | `testSteps` | [TestStep](#teststep)[] | yes | |
+| `testRunStartedId` | string | no | |
 
 ## Group
 
@@ -446,17 +446,17 @@ will only have one of its fields set, which indicates the payload of the message
 
 | Field | Type | Required    | Description |
 | ----- | ---- | ----------- | ----------- |
-| `testRunStartedId` | string | yes | |
 | `message` | string | no | |
 | `success` | boolean | yes | |
 | `timestamp` | [Timestamp](#timestamp) | yes | |
+| `testRunStartedId` | string | no | |
 
 ## TestRunStarted
 
 | Field | Type | Required    | Description |
 | ----- | ---- | ----------- | ----------- |
-| `id` | string | yes | |
 | `timestamp` | [Timestamp](#timestamp) | yes | |
+| `id` | string | no | |
 
 ## TestStepFinished
 

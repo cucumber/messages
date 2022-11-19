@@ -11,28 +11,24 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings("unused")
 public final class TestCase {
     private final String id;
-    private final String testRunStartedId;
     private final String pickleId;
     private final java.util.List<TestStep> testSteps;
+    private final String testRunStartedId;
 
     public TestCase(
         String id,
-        String testRunStartedId,
         String pickleId,
-        java.util.List<TestStep> testSteps
+        java.util.List<TestStep> testSteps,
+        String testRunStartedId
     ) {
         this.id = requireNonNull(id, "TestCase.id cannot be null");
-        this.testRunStartedId = requireNonNull(testRunStartedId, "TestCase.testRunStartedId cannot be null");
         this.pickleId = requireNonNull(pickleId, "TestCase.pickleId cannot be null");
         this.testSteps = unmodifiableList(new ArrayList<>(requireNonNull(testSteps, "TestCase.testSteps cannot be null")));
+        this.testRunStartedId = testRunStartedId;
     }
 
     public String getId() {
         return id;
-    }
-
-    public String getTestRunStartedId() {
-        return testRunStartedId;
     }
 
     public String getPickleId() {
@@ -43,6 +39,10 @@ public final class TestCase {
         return testSteps;
     }
 
+    public Optional<String> getTestRunStartedId() {
+        return Optional.ofNullable(testRunStartedId);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,18 +50,18 @@ public final class TestCase {
         TestCase that = (TestCase) o;
         return 
             id.equals(that.id) &&         
-            testRunStartedId.equals(that.testRunStartedId) &&         
             pickleId.equals(that.pickleId) &&         
-            testSteps.equals(that.testSteps);        
+            testSteps.equals(that.testSteps) &&         
+            Objects.equals(testRunStartedId, that.testRunStartedId);        
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
             id,
-            testRunStartedId,
             pickleId,
-            testSteps
+            testSteps,
+            testRunStartedId
         );
     }
 
@@ -69,9 +69,9 @@ public final class TestCase {
     public String toString() {
         return "TestCase{" +
             "id=" + id +
-            ", testRunStartedId=" + testRunStartedId +
             ", pickleId=" + pickleId +
             ", testSteps=" + testSteps +
+            ", testRunStartedId=" + testRunStartedId +
             '}';
     }
 }

@@ -949,9 +949,9 @@ module Cucumber
 
         self.new(
           id: hash[:id],
-          test_run_started_id: hash[:testRunStartedId],
           pickle_id: hash[:pickleId],
           test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) },
+          test_run_started_id: hash[:testRunStartedId],
         )
       end
     end
@@ -1097,10 +1097,10 @@ module Cucumber
         return nil if hash.nil?
 
         self.new(
-          test_run_started_id: hash[:testRunStartedId],
           message: hash[:message],
           success: hash[:success],
           timestamp: Timestamp.from_h(hash[:timestamp]),
+          test_run_started_id: hash[:testRunStartedId],
         )
       end
     end
@@ -1119,8 +1119,8 @@ module Cucumber
         return nil if hash.nil?
 
         self.new(
-          id: hash[:id],
           timestamp: Timestamp.from_h(hash[:timestamp]),
+          id: hash[:id],
         )
       end
     end

@@ -10,25 +10,21 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings("unused")
 public final class TestRunFinished {
-    private final String testRunStartedId;
     private final String message;
     private final Boolean success;
     private final Timestamp timestamp;
+    private final String testRunStartedId;
 
     public TestRunFinished(
-        String testRunStartedId,
         String message,
         Boolean success,
-        Timestamp timestamp
+        Timestamp timestamp,
+        String testRunStartedId
     ) {
-        this.testRunStartedId = requireNonNull(testRunStartedId, "TestRunFinished.testRunStartedId cannot be null");
         this.message = message;
         this.success = requireNonNull(success, "TestRunFinished.success cannot be null");
         this.timestamp = requireNonNull(timestamp, "TestRunFinished.timestamp cannot be null");
-    }
-
-    public String getTestRunStartedId() {
-        return testRunStartedId;
+        this.testRunStartedId = testRunStartedId;
     }
 
     public Optional<String> getMessage() {
@@ -43,35 +39,39 @@ public final class TestRunFinished {
         return timestamp;
     }
 
+    public Optional<String> getTestRunStartedId() {
+        return Optional.ofNullable(testRunStartedId);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TestRunFinished that = (TestRunFinished) o;
         return 
-            testRunStartedId.equals(that.testRunStartedId) &&         
             Objects.equals(message, that.message) &&         
             success.equals(that.success) &&         
-            timestamp.equals(that.timestamp);        
+            timestamp.equals(that.timestamp) &&         
+            Objects.equals(testRunStartedId, that.testRunStartedId);        
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-            testRunStartedId,
             message,
             success,
-            timestamp
+            timestamp,
+            testRunStartedId
         );
     }
 
     @Override
     public String toString() {
         return "TestRunFinished{" +
-            "testRunStartedId=" + testRunStartedId +
-            ", message=" + message +
+            "message=" + message +
             ", success=" + success +
             ", timestamp=" + timestamp +
+            ", testRunStartedId=" + testRunStartedId +
             '}';
     }
 }
