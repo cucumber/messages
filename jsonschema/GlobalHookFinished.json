@@ -10,9 +10,11 @@
   ],
   "properties": {
     "testRunStartedId": {
+      "description": "Identifier for the test run that this hook execution belongs to",
       "type": "string"
     },
     "hookId": {
+      "description": "Identifier for the hook that was executed",
       "type": "string"
     },
     "result": {

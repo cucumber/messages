@@ -35,6 +35,10 @@ final class TestCase implements JsonSerializable
          */
         public readonly string $pickleId = '',
         public readonly array $testSteps = [],
+
+        /**
+         * Identifier for the test run that this case belongs to
+         */
         public readonly ?string $testRunStartedId = null,
     ) {
     }

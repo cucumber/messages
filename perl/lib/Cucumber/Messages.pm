@@ -1989,6 +1989,7 @@ sub _types {
 
 =head4 test_run_started_id
 
+Identifier for the test run that this hook execution belongs to
 
 =cut
 
@@ -2001,6 +2002,7 @@ has test_run_started_id =>
 
 =head4 hook_id
 
+Identifier for the hook that was executed
 
 =cut
 
@@ -2073,6 +2075,7 @@ sub _types {
 
 =head4 test_run_started_id
 
+Identifier for the test run that this hook execution belongs to
 
 =cut
 
@@ -2085,6 +2088,7 @@ has test_run_started_id =>
 
 =head4 hook_id
 
+Identifier for the hook that will be executed
 
 =cut
 
@@ -3876,6 +3880,7 @@ has test_steps =>
 
 =head4 test_run_started_id
 
+Identifier for the test run that this case belongs to
 
 =cut
 

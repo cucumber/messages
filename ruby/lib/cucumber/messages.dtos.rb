@@ -810,7 +810,13 @@ module Cucumber
 
     class GlobalHookFinished < ::Cucumber::Messages::Message
 
+      ##
+      # Identifier for the test run that this hook execution belongs to
+
       attr_reader :test_run_started_id
+
+      ##
+      # Identifier for the hook that was executed
 
       attr_reader :hook_id
 
@@ -840,7 +846,13 @@ module Cucumber
 
     class GlobalHookStarted < ::Cucumber::Messages::Message
 
+      ##
+      # Identifier for the test run that this hook execution belongs to
+
       attr_reader :test_run_started_id
+
+      ##
+      # Identifier for the hook that will be executed
 
       attr_reader :hook_id
 
@@ -1568,6 +1580,9 @@ module Cucumber
       attr_reader :pickle_id
 
       attr_reader :test_steps
+
+      ##
+      # Identifier for the test run that this case belongs to
 
       attr_reader :test_run_started_id
 

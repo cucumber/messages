@@ -25,7 +25,15 @@ final class GlobalHookStarted implements JsonSerializable
      *
      */
     public function __construct(
+
+        /**
+         * Identifier for the test run that this hook execution belongs to
+         */
         public readonly string $testRunStartedId = '',
+
+        /**
+         * Identifier for the hook that will be executed
+         */
         public readonly string $hookId = '',
         public readonly Timestamp $timestamp = new Timestamp(),
     ) {
