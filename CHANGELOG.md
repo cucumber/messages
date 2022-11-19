@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- `id` property on `TestRunStarted`, new `GlobalHookStarted` and `GlobalHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
+- BREAKING CHANGE: Add `id` property to `TestRunStarted`, reference in `TestCase` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
+- Add new `GlobalHookStarted` and `GlobalHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
 
 ## [20.0.0] - 2022-11-14
 ### Changed
