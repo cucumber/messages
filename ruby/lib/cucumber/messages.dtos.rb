@@ -183,6 +183,10 @@ module Cucumber
 
       attr_reader :undefined_parameter_type
 
+      attr_reader :global_hook_started
+
+      attr_reader :global_hook_finished
+
       def initialize(
         attachment: nil,
         gherkin_document: nil,
@@ -200,7 +204,9 @@ module Cucumber
         test_run_started: nil,
         test_step_finished: nil,
         test_step_started: nil,
-        undefined_parameter_type: nil
+        undefined_parameter_type: nil,
+        global_hook_started: nil,
+        global_hook_finished: nil
       )
         @attachment = attachment
         @gherkin_document = gherkin_document
@@ -219,6 +225,8 @@ module Cucumber
         @test_step_finished = test_step_finished
         @test_step_started = test_step_started
         @undefined_parameter_type = undefined_parameter_type
+        @global_hook_started = global_hook_started
+        @global_hook_finished = global_hook_finished
       end
     end
 
@@ -790,6 +798,74 @@ module Cucumber
         @location = location
         @name = name
         @id = id
+      end
+    end
+
+
+    ##
+    # Represents the GlobalHookFinished message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
+    #
+    
+    #
+
+    class GlobalHookFinished < ::Cucumber::Messages::Message
+
+      ##
+      # Identifier for the test run that this hook execution belongs to
+
+      attr_reader :test_run_started_id
+
+      ##
+      # Identifier for the hook that was executed
+
+      attr_reader :hook_id
+
+      attr_reader :result
+
+      attr_reader :timestamp
+
+      def initialize(
+        test_run_started_id: '',
+        hook_id: '',
+        result: TestStepResult.new,
+        timestamp: Timestamp.new
+      )
+        @test_run_started_id = test_run_started_id
+        @hook_id = hook_id
+        @result = result
+        @timestamp = timestamp
+      end
+    end
+
+
+    ##
+    # Represents the GlobalHookStarted message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
+    #
+    
+    #
+
+    class GlobalHookStarted < ::Cucumber::Messages::Message
+
+      ##
+      # Identifier for the test run that this hook execution belongs to
+
+      attr_reader :test_run_started_id
+
+      ##
+      # Identifier for the hook that will be executed
+
+      attr_reader :hook_id
+
+      attr_reader :timestamp
+
+      def initialize(
+        test_run_started_id: '',
+        hook_id: '',
+        timestamp: Timestamp.new
+      )
+        @test_run_started_id = test_run_started_id
+        @hook_id = hook_id
+        @timestamp = timestamp
       end
     end
 
@@ -1505,14 +1581,21 @@ module Cucumber
 
       attr_reader :test_steps
 
+      ##
+      # Identifier for the test run that this case belongs to
+
+      attr_reader :test_run_started_id
+
       def initialize(
         id: '',
         pickle_id: '',
-        test_steps: []
+        test_steps: [],
+        test_run_started_id: nil
       )
         @id = id
         @pickle_id = pickle_id
         @test_steps = test_steps
+        @test_run_started_id = test_run_started_id
       end
     end
 
@@ -1744,14 +1827,18 @@ module Cucumber
 
       attr_reader :timestamp
 
+      attr_reader :test_run_started_id
+
       def initialize(
         message: nil,
         success: false,
-        timestamp: Timestamp.new
+        timestamp: Timestamp.new,
+        test_run_started_id: nil
       )
         @message = message
         @success = success
         @timestamp = timestamp
+        @test_run_started_id = test_run_started_id
       end
     end
 
@@ -1766,10 +1853,14 @@ module Cucumber
 
       attr_reader :timestamp
 
+      attr_reader :id
+
       def initialize(
-        timestamp: Timestamp.new
+        timestamp: Timestamp.new,
+        id: nil
       )
         @timestamp = timestamp
+        @id = id
       end
     end
 

@@ -341,6 +341,8 @@ my %types = (
    test_step_finished => 'Cucumber::Messages::TestStepFinished',
    test_step_started => 'Cucumber::Messages::TestStepStarted',
    undefined_parameter_type => 'Cucumber::Messages::UndefinedParameterType',
+   global_hook_started => 'Cucumber::Messages::GlobalHookStarted',
+   global_hook_finished => 'Cucumber::Messages::GlobalHookFinished',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -517,6 +519,26 @@ has test_step_started =>
 =cut
 
 has undefined_parameter_type =>
+    (is => 'ro',
+    );
+
+
+=head4 global_hook_started
+
+
+=cut
+
+has global_hook_started =>
+    (is => 'ro',
+    );
+
+
+=head4 global_hook_finished
+
+
+=cut
+
+has global_hook_finished =>
     (is => 'ro',
     );
 
@@ -1925,6 +1947,167 @@ has id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
+    );
+
+
+}
+
+package Cucumber::Messages::GlobalHookFinished {
+
+=head2 Cucumber::Messages::GlobalHookFinished
+
+=head3 DESCRIPTION
+
+Represents the GlobalHookFinished message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   test_run_started_id => 'string',
+   hook_id => 'string',
+   result => 'Cucumber::Messages::TestStepResult',
+   timestamp => 'Cucumber::Messages::Timestamp',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 test_run_started_id
+
+Identifier for the test run that this hook execution belongs to
+
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 hook_id
+
+Identifier for the hook that was executed
+
+=cut
+
+has hook_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 result
+
+
+=cut
+
+has result =>
+    (is => 'ro',
+     required => 1,
+     default => sub { Cucumber::Messages::TestStepResult->new() },
+    );
+
+
+=head4 timestamp
+
+
+=cut
+
+has timestamp =>
+    (is => 'ro',
+     required => 1,
+     default => sub { Cucumber::Messages::Timestamp->new() },
+    );
+
+
+}
+
+package Cucumber::Messages::GlobalHookStarted {
+
+=head2 Cucumber::Messages::GlobalHookStarted
+
+=head3 DESCRIPTION
+
+Represents the GlobalHookStarted message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   test_run_started_id => 'string',
+   hook_id => 'string',
+   timestamp => 'Cucumber::Messages::Timestamp',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 test_run_started_id
+
+Identifier for the test run that this hook execution belongs to
+
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 hook_id
+
+Identifier for the hook that will be executed
+
+=cut
+
+has hook_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 timestamp
+
+
+=cut
+
+has timestamp =>
+    (is => 'ro',
+     required => 1,
+     default => sub { Cucumber::Messages::Timestamp->new() },
     );
 
 
@@ -3647,6 +3830,7 @@ my %types = (
    id => 'string',
    pickle_id => 'string',
    test_steps => '[]Cucumber::Messages::TestStep',
+   test_run_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -3691,6 +3875,17 @@ has test_steps =>
     (is => 'ro',
      required => 1,
      default => sub { [] },
+    );
+
+
+=head4 test_run_started_id
+
+Identifier for the test run that this case belongs to
+
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
     );
 
 
@@ -4173,6 +4368,7 @@ my %types = (
    message => 'string',
    success => 'boolean',
    timestamp => 'Cucumber::Messages::Timestamp',
+   test_run_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4224,6 +4420,16 @@ has timestamp =>
     );
 
 
+=head4 test_run_started_id
+
+
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
+    );
+
+
 }
 
 package Cucumber::Messages::TestRunStarted {
@@ -4248,6 +4454,7 @@ use Scalar::Util qw( blessed );
 
 my %types = (
    timestamp => 'Cucumber::Messages::Timestamp',
+   id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4267,6 +4474,16 @@ has timestamp =>
     (is => 'ro',
      required => 1,
      default => sub { Cucumber::Messages::Timestamp->new() },
+    );
+
+
+=head4 id
+
+
+=cut
+
+has id =>
+    (is => 'ro',
     );
 
 

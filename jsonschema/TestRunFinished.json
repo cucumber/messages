@@ -18,6 +18,9 @@
     "timestamp": {
       "$ref": "./Timestamp.json",
       "description": "Timestamp when the TestRun is finished"
+    },
+    "testRunStartedId": {
+      "type": "string"
     }
   },
   "type": "object"

@@ -27,10 +27,14 @@ public final class Envelope {
     private final TestStepFinished testStepFinished;
     private final TestStepStarted testStepStarted;
     private final UndefinedParameterType undefinedParameterType;
+    private final GlobalHookStarted globalHookStarted;
+    private final GlobalHookFinished globalHookFinished;
 
     public static Envelope of(Attachment attachment) {
         return new Envelope(
             requireNonNull(attachment, "Envelope.attachment cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -68,6 +72,8 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -77,6 +83,8 @@ public final class Envelope {
             null,
             null,
             requireNonNull(hook, "Envelope.hook cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -112,6 +120,8 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -123,6 +133,8 @@ public final class Envelope {
             null,
             null,
             requireNonNull(parameterType, "Envelope.parameterType cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -156,6 +168,8 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -169,6 +183,8 @@ public final class Envelope {
             null,
             null,
             requireNonNull(pickle, "Envelope.pickle cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -200,6 +216,8 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -215,6 +233,8 @@ public final class Envelope {
             null,
             null,
             requireNonNull(stepDefinition, "Envelope.stepDefinition cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -244,6 +264,8 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -261,6 +283,8 @@ public final class Envelope {
             null,
             null,
             requireNonNull(testCaseFinished, "Envelope.testCaseFinished cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -288,6 +312,8 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -307,6 +333,8 @@ public final class Envelope {
             null,
             null,
             requireNonNull(testRunFinished, "Envelope.testRunFinished cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -332,6 +360,8 @@ public final class Envelope {
             requireNonNull(testRunStarted, "Envelope.testRunStarted cannot be null"),
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -353,6 +383,8 @@ public final class Envelope {
             null,
             null,
             requireNonNull(testStepFinished, "Envelope.testStepFinished cannot be null"),
+            null,
+            null,
             null,
             null
         );
@@ -376,6 +408,8 @@ public final class Envelope {
             null,
             null,
             requireNonNull(testStepStarted, "Envelope.testStepStarted cannot be null"),
+            null,
+            null,
             null
         );
     }
@@ -398,7 +432,57 @@ public final class Envelope {
             null,
             null,
             null,
-            requireNonNull(undefinedParameterType, "Envelope.undefinedParameterType cannot be null")
+            requireNonNull(undefinedParameterType, "Envelope.undefinedParameterType cannot be null"),
+            null,
+            null
+        );
+    }
+
+    public static Envelope of(GlobalHookStarted globalHookStarted) {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            requireNonNull(globalHookStarted, "Envelope.globalHookStarted cannot be null"),
+            null
+        );
+    }
+
+    public static Envelope of(GlobalHookFinished globalHookFinished) {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            requireNonNull(globalHookFinished, "Envelope.globalHookFinished cannot be null")
         );
     }
 
@@ -419,7 +503,9 @@ public final class Envelope {
         TestRunStarted testRunStarted,
         TestStepFinished testStepFinished,
         TestStepStarted testStepStarted,
-        UndefinedParameterType undefinedParameterType
+        UndefinedParameterType undefinedParameterType,
+        GlobalHookStarted globalHookStarted,
+        GlobalHookFinished globalHookFinished
     ) {
         this.attachment = attachment;
         this.gherkinDocument = gherkinDocument;
@@ -438,6 +524,8 @@ public final class Envelope {
         this.testStepFinished = testStepFinished;
         this.testStepStarted = testStepStarted;
         this.undefinedParameterType = undefinedParameterType;
+        this.globalHookStarted = globalHookStarted;
+        this.globalHookFinished = globalHookFinished;
     }
 
     public Optional<Attachment> getAttachment() {
@@ -508,6 +596,14 @@ public final class Envelope {
         return Optional.ofNullable(undefinedParameterType);
     }
 
+    public Optional<GlobalHookStarted> getGlobalHookStarted() {
+        return Optional.ofNullable(globalHookStarted);
+    }
+
+    public Optional<GlobalHookFinished> getGlobalHookFinished() {
+        return Optional.ofNullable(globalHookFinished);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -530,7 +626,9 @@ public final class Envelope {
             Objects.equals(testRunStarted, that.testRunStarted) &&         
             Objects.equals(testStepFinished, that.testStepFinished) &&         
             Objects.equals(testStepStarted, that.testStepStarted) &&         
-            Objects.equals(undefinedParameterType, that.undefinedParameterType);        
+            Objects.equals(undefinedParameterType, that.undefinedParameterType) &&         
+            Objects.equals(globalHookStarted, that.globalHookStarted) &&         
+            Objects.equals(globalHookFinished, that.globalHookFinished);        
     }
 
     @Override
@@ -552,7 +650,9 @@ public final class Envelope {
             testRunStarted,
             testStepFinished,
             testStepStarted,
-            undefinedParameterType
+            undefinedParameterType,
+            globalHookStarted,
+            globalHookFinished
         );
     }
 
@@ -576,6 +676,8 @@ public final class Envelope {
             ", testStepFinished=" + testStepFinished +
             ", testStepStarted=" + testStepStarted +
             ", undefinedParameterType=" + undefinedParameterType +
+            ", globalHookStarted=" + globalHookStarted +
+            ", globalHookFinished=" + globalHookFinished +
             '}';
     }
 }

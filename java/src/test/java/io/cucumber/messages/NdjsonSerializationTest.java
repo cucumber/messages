@@ -64,6 +64,8 @@ class NdjsonSerializationTest {
                 null,
                 null,
                 null,
+                null,
+                null,
                 null
         ));
         writer.flush();
@@ -78,6 +80,8 @@ class NdjsonSerializationTest {
         assertTrue(iterator.hasNext());
         Envelope envelope = iterator.next();
         assertEquals(new Envelope(
+                null,
+                null,
                 null,
                 null,
                 null,
@@ -124,6 +128,8 @@ class NdjsonSerializationTest {
                     null,
                     null,
                     null,
+                    null,
+                    null,
                     null
             ), envelope);
         }
@@ -146,12 +152,12 @@ class NdjsonSerializationTest {
     @Test
     void handles_single_argument_constructors() {
         InputStream input = new ByteArrayInputStream(
-                "{\"testRunStarted\": {\"timestamp\":{\"nanos\":0,\"seconds\":0}}}\n".getBytes(UTF_8));
+                "{\"testRunStarted\": {\"id\":\"id\",\"timestamp\":{\"nanos\":0,\"seconds\":0}}}\n".getBytes(UTF_8));
         Iterable<Envelope> incomingMessages = createMessageIterable(input);
         Iterator<Envelope> iterator = incomingMessages.iterator();
         assertTrue(iterator.hasNext());
         Envelope testRunStarted = iterator.next();
-        Envelope expected = Envelope.of(new TestRunStarted(new Timestamp(0L, 0L)));
+        Envelope expected = Envelope.of(new TestRunStarted(new Timestamp(0L, 0L), "id"));
         assertEquals(expected, testRunStarted);
         assertFalse(iterator.hasNext());
     }

@@ -84,6 +84,8 @@ module Cucumber
           test_step_finished: TestStepFinished.from_h(hash[:testStepFinished]),
           test_step_started: TestStepStarted.from_h(hash[:testStepStarted]),
           undefined_parameter_type: UndefinedParameterType.from_h(hash[:undefinedParameterType]),
+          global_hook_started: GlobalHookStarted.from_h(hash[:globalHookStarted]),
+          global_hook_finished: GlobalHookFinished.from_h(hash[:globalHookFinished]),
         )
       end
     end
@@ -421,6 +423,49 @@ module Cucumber
           location: Location.from_h(hash[:location]),
           name: hash[:name],
           id: hash[:id],
+        )
+      end
+    end
+
+    class GlobalHookFinished
+
+      ##
+      # Returns a new GlobalHookFinished from the given hash.
+      # If the hash keys are camelCased, they are properly assigned to the
+      # corresponding snake_cased attributes.
+      #
+      #   Cucumber::Messages::GlobalHookFinished.from_h(some_hash) # => #<Cucumber::Messages::GlobalHookFinished:0x... ...>
+      #
+
+      def self.from_h(hash)
+        return nil if hash.nil?
+
+        self.new(
+          test_run_started_id: hash[:testRunStartedId],
+          hook_id: hash[:hookId],
+          result: TestStepResult.from_h(hash[:result]),
+          timestamp: Timestamp.from_h(hash[:timestamp]),
+        )
+      end
+    end
+
+    class GlobalHookStarted
+
+      ##
+      # Returns a new GlobalHookStarted from the given hash.
+      # If the hash keys are camelCased, they are properly assigned to the
+      # corresponding snake_cased attributes.
+      #
+      #   Cucumber::Messages::GlobalHookStarted.from_h(some_hash) # => #<Cucumber::Messages::GlobalHookStarted:0x... ...>
+      #
+
+      def self.from_h(hash)
+        return nil if hash.nil?
+
+        self.new(
+          test_run_started_id: hash[:testRunStartedId],
+          hook_id: hash[:hookId],
+          timestamp: Timestamp.from_h(hash[:timestamp]),
         )
       end
     end
@@ -906,6 +951,7 @@ module Cucumber
           id: hash[:id],
           pickle_id: hash[:pickleId],
           test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) },
+          test_run_started_id: hash[:testRunStartedId],
         )
       end
     end
@@ -1054,6 +1100,7 @@ module Cucumber
           message: hash[:message],
           success: hash[:success],
           timestamp: Timestamp.from_h(hash[:timestamp]),
+          test_run_started_id: hash[:testRunStartedId],
         )
       end
     end
@@ -1073,6 +1120,7 @@ module Cucumber
 
         self.new(
           timestamp: Timestamp.from_h(hash[:timestamp]),
+          id: hash[:id],
         )
       end
     end
