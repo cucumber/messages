@@ -4462,7 +4462,7 @@ has status =>
 
 =head4 exception_type
 
-The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
+The type of the exception that caused this result. E.g. Error or org.opentest4j.AssertionFailedError
 
 =cut
 
@@ -4473,7 +4473,7 @@ has exception_type =>
 
 =head4 exception_message
 
-The message of exception that caused this result. E.g. `expected: <"a"> but was: <"b">
+The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
 
 =cut
 

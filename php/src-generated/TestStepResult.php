@@ -34,12 +34,12 @@ final class TestStepResult implements JsonSerializable
         public readonly TestStepResult\Status $status = TestStepResult\Status::UNKNOWN,
 
         /**
-         * The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
+         * The type of the exception that caused this result. E.g. Error or org.opentest4j.AssertionFailedError
          */
         public readonly ?string $exceptionType = null,
 
         /**
-         * The message of exception that caused this result. E.g. `expected: <"a"> but was: <"b">
+         * The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
          */
         public readonly ?string $exceptionMessage = null,
     ) {

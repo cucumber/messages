@@ -1822,12 +1822,12 @@ module Cucumber
       attr_reader :status
 
       ##
-      # The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
+      # The type of the exception that caused this result. E.g. Error or org.opentest4j.AssertionFailedError
 
       attr_reader :exception_type
 
       ##
-      # The message of exception that caused this result. E.g. `expected: <"a"> but was: <"b">
+      # The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
 
       attr_reader :exception_message
 
