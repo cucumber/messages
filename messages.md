@@ -451,9 +451,9 @@ will only have one of its fields set, which indicates the payload of the message
 | ----- | ---- | ----------- | ----------- |
 | `duration` | [Duration](#duration) | yes | |
 | `message` | string | no | |
+| `status` | [TestStepResultStatus](#teststepresultstatus) | yes | |
 | `exceptionType` | string | no | |
 | `exceptionMessage` | string | no | |
-| `status` | [TestStepResultStatus](#teststepresultstatus) | yes | |
 
 ## TestStepStarted
 

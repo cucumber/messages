@@ -1115,9 +1115,9 @@ module Cucumber
         self.new(
           duration: Duration.from_h(hash[:duration]),
           message: hash[:message],
+          status: hash[:status],
           exception_type: hash[:exceptionType],
           exception_message: hash[:exceptionMessage],
-          status: hash[:status],
         )
       end
     end

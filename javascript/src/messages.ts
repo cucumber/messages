@@ -625,11 +625,11 @@ export class TestStepResult {
 
   message?: string
 
+  status: TestStepResultStatus = TestStepResultStatus.UNKNOWN
+
   exceptionType?: string
 
   exceptionMessage?: string
-
-  status: TestStepResultStatus = TestStepResultStatus.UNKNOWN
 }
 
 export class TestStepStarted {

@@ -4380,9 +4380,9 @@ use Scalar::Util qw( blessed );
 my %types = (
    duration => 'Cucumber::Messages::Duration',
    message => 'string',
+   status => '',
    exception_type => 'string',
    exception_message => 'string',
-   status => '',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4412,28 +4412,6 @@ An arbitrary bit of information that explains this result. This can be a stack t
 =cut
 
 has message =>
-    (is => 'ro',
-    );
-
-
-=head4 exception_type
-
-The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
-
-=cut
-
-has exception_type =>
-    (is => 'ro',
-    );
-
-
-=head4 exception_message
-
-The message of exception that caused this result. E.g. `expected: <"a"> but was: <"b">
-
-=cut
-
-has exception_message =>
     (is => 'ro',
     );
 
@@ -4479,6 +4457,28 @@ has status =>
     (is => 'ro',
      required => 1,
      default => sub { STATUS_UNKNOWN },
+    );
+
+
+=head4 exception_type
+
+The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
+
+=cut
+
+has exception_type =>
+    (is => 'ro',
+    );
+
+
+=head4 exception_message
+
+The message of exception that caused this result. E.g. `expected: <"a"> but was: <"b">
+
+=cut
+
+has exception_message =>
+    (is => 'ro',
     );
 
 

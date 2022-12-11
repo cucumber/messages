@@ -1819,6 +1819,8 @@ module Cucumber
 
       attr_reader :message
 
+      attr_reader :status
+
       ##
       # The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
 
@@ -1829,20 +1831,18 @@ module Cucumber
 
       attr_reader :exception_message
 
-      attr_reader :status
-
       def initialize(
         duration: Duration.new,
         message: nil,
+        status: TestStepResultStatus::UNKNOWN,
         exception_type: nil,
-        exception_message: nil,
-        status: TestStepResultStatus::UNKNOWN
+        exception_message: nil
       )
         @duration = duration
         @message = message
+        @status = status
         @exception_type = exception_type
         @exception_message = exception_message
-        @status = status
       end
     end
 

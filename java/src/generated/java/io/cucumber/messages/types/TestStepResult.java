@@ -12,22 +12,22 @@ import static java.util.Objects.requireNonNull;
 public final class TestStepResult {
     private final Duration duration;
     private final String message;
+    private final TestStepResultStatus status;
     private final String exceptionType;
     private final String exceptionMessage;
-    private final TestStepResultStatus status;
 
     public TestStepResult(
         Duration duration,
         String message,
+        TestStepResultStatus status,
         String exceptionType,
-        String exceptionMessage,
-        TestStepResultStatus status
+        String exceptionMessage
     ) {
         this.duration = requireNonNull(duration, "TestStepResult.duration cannot be null");
         this.message = message;
+        this.status = requireNonNull(status, "TestStepResult.status cannot be null");
         this.exceptionType = exceptionType;
         this.exceptionMessage = exceptionMessage;
-        this.status = requireNonNull(status, "TestStepResult.status cannot be null");
     }
 
     public Duration getDuration() {
@@ -38,16 +38,16 @@ public final class TestStepResult {
         return Optional.ofNullable(message);
     }
 
+    public TestStepResultStatus getStatus() {
+        return status;
+    }
+
     public Optional<String> getExceptionType() {
         return Optional.ofNullable(exceptionType);
     }
 
     public Optional<String> getExceptionMessage() {
         return Optional.ofNullable(exceptionMessage);
-    }
-
-    public TestStepResultStatus getStatus() {
-        return status;
     }
 
     @Override
@@ -58,9 +58,9 @@ public final class TestStepResult {
         return 
             duration.equals(that.duration) &&         
             Objects.equals(message, that.message) &&         
+            status.equals(that.status) &&         
             Objects.equals(exceptionType, that.exceptionType) &&         
-            Objects.equals(exceptionMessage, that.exceptionMessage) &&         
-            status.equals(that.status);        
+            Objects.equals(exceptionMessage, that.exceptionMessage);        
     }
 
     @Override
@@ -68,9 +68,9 @@ public final class TestStepResult {
         return Objects.hash(
             duration,
             message,
+            status,
             exceptionType,
-            exceptionMessage,
-            status
+            exceptionMessage
         );
     }
 
@@ -79,9 +79,9 @@ public final class TestStepResult {
         return "TestStepResult{" +
             "duration=" + duration +
             ", message=" + message +
+            ", status=" + status +
             ", exceptionType=" + exceptionType +
             ", exceptionMessage=" + exceptionMessage +
-            ", status=" + status +
             '}';
     }
 }

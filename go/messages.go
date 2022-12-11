@@ -345,9 +345,9 @@ type TestStepFinished struct {
 type TestStepResult struct {
 	Duration         *Duration            `json:"duration"`
 	Message          string               `json:"message,omitempty"`
+	Status           TestStepResultStatus `json:"status"`
 	ExceptionType    string               `json:"exceptionType,omitempty"`
 	ExceptionMessage string               `json:"exceptionMessage,omitempty"`
-	Status           TestStepResultStatus `json:"status"`
 }
 
 type TestStepStarted struct {

@@ -31,6 +31,7 @@ final class TestStepResult implements JsonSerializable
          * An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
          */
         public readonly ?string $message = null,
+        public readonly TestStepResult\Status $status = TestStepResult\Status::UNKNOWN,
 
         /**
          * The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
@@ -41,7 +42,6 @@ final class TestStepResult implements JsonSerializable
          * The message of exception that caused this result. E.g. `expected: <"a"> but was: <"b">
          */
         public readonly ?string $exceptionMessage = null,
-        public readonly TestStepResult\Status $status = TestStepResult\Status::UNKNOWN,
     ) {
     }
 
@@ -54,16 +54,16 @@ final class TestStepResult implements JsonSerializable
     {
         self::ensureDuration($arr);
         self::ensureMessage($arr);
+        self::ensureStatus($arr);
         self::ensureExceptionType($arr);
         self::ensureExceptionMessage($arr);
-        self::ensureStatus($arr);
 
         return new self(
             Duration::fromArray($arr['duration']),
             isset($arr['message']) ? (string) $arr['message'] : null,
+            TestStepResult\Status::from((string) $arr['status']),
             isset($arr['exceptionType']) ? (string) $arr['exceptionType'] : null,
             isset($arr['exceptionMessage']) ? (string) $arr['exceptionMessage'] : null,
-            TestStepResult\Status::from((string) $arr['status']),
         );
     }
 
@@ -91,6 +91,19 @@ final class TestStepResult implements JsonSerializable
     }
 
     /**
+     * @psalm-assert array{status: string|int|bool} $arr
+     */
+    private static function ensureStatus(array $arr): void
+    {
+        if (!array_key_exists('status', $arr)) {
+            throw new SchemaViolationException('Property \'status\' is required but was not found');
+        }
+        if (array_key_exists('status', $arr) && is_array($arr['status'])) {
+            throw new SchemaViolationException('Property \'status\' was array');
+        }
+    }
+
+    /**
      * @psalm-assert array{exceptionType?: string|int|bool} $arr
      */
     private static function ensureExceptionType(array $arr): void
@@ -107,19 +120,6 @@ final class TestStepResult implements JsonSerializable
     {
         if (array_key_exists('exceptionMessage', $arr) && is_array($arr['exceptionMessage'])) {
             throw new SchemaViolationException('Property \'exceptionMessage\' was array');
-        }
-    }
-
-    /**
-     * @psalm-assert array{status: string|int|bool} $arr
-     */
-    private static function ensureStatus(array $arr): void
-    {
-        if (!array_key_exists('status', $arr)) {
-            throw new SchemaViolationException('Property \'status\' is required but was not found');
-        }
-        if (array_key_exists('status', $arr) && is_array($arr['status'])) {
-            throw new SchemaViolationException('Property \'status\' was array');
         }
     }
 }
