@@ -14,7 +14,16 @@
           "$ref": "./Duration.json"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "description": "An arbitrary bit of information that explains this result. This can be a stack trace of anything else."
+        },
+        "exceptionType": {
+          "type": "string",
+          "description": "The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`"
+        },
+        "exceptionMessage": {
+          "type": "string",
+          "description": "The message of exception that caused this result. E.g. `expected: <\"a\"> but was: <\"b\">"
         },
         "status": {
           "enum": [
