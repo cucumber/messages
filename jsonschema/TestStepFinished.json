@@ -31,11 +31,11 @@
         },
         "exceptionType": {
           "type": "string",
-          "description": "The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`"
+          "description": "The type of the exception that caused this result. E.g. Error or org.opentest4j.AssertionFailedError"
         },
         "exceptionMessage": {
           "type": "string",
-          "description": "The message of exception that caused this result. E.g. `expected: <\"a\"> but was: <\"b\">"
+          "description": "The message of exception that caused this result. E.g. expected: <\"a\"> but was: <\"b\">"
         }
       },
       "type": "object"
