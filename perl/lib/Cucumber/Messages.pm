@@ -4380,6 +4380,8 @@ use Scalar::Util qw( blessed );
 my %types = (
    duration => 'Cucumber::Messages::Duration',
    message => 'string',
+   exception_type => 'string',
+   exception_message => 'string',
    status => '',
 );
 
@@ -4405,10 +4407,33 @@ has duration =>
 
 =head4 message
 
+An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
 
 =cut
 
 has message =>
+    (is => 'ro',
+    );
+
+
+=head4 exception_type
+
+The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
+
+=cut
+
+has exception_type =>
+    (is => 'ro',
+    );
+
+
+=head4 exception_message
+
+The message of exception that caused this result. E.g. `expected: <"a"> but was: <"b">
+
+=cut
+
+has exception_message =>
     (is => 'ro',
     );
 

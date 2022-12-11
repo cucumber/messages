@@ -625,6 +625,10 @@ export class TestStepResult {
 
   message?: string
 
+  exceptionType?: string
+
+  exceptionMessage?: string
+
   status: TestStepResultStatus = TestStepResultStatus.UNKNOWN
 }
 

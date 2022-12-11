@@ -1814,17 +1814,34 @@ module Cucumber
 
       attr_reader :duration
 
+      ##
+      # An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
+
       attr_reader :message
+
+      ##
+      # The type of the exception that caused this result. E.g. `Error` or `org.opentest4j.AssertionFailedError`
+
+      attr_reader :exception_type
+
+      ##
+      # The message of exception that caused this result. E.g. `expected: <"a"> but was: <"b">
+
+      attr_reader :exception_message
 
       attr_reader :status
 
       def initialize(
         duration: Duration.new,
         message: nil,
+        exception_type: nil,
+        exception_message: nil,
         status: TestStepResultStatus::UNKNOWN
       )
         @duration = duration
         @message = message
+        @exception_type = exception_type
+        @exception_message = exception_message
         @status = status
       end
     end

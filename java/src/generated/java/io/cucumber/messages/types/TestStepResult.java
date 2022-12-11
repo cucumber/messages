@@ -12,15 +12,21 @@ import static java.util.Objects.requireNonNull;
 public final class TestStepResult {
     private final Duration duration;
     private final String message;
+    private final String exceptionType;
+    private final String exceptionMessage;
     private final TestStepResultStatus status;
 
     public TestStepResult(
         Duration duration,
         String message,
+        String exceptionType,
+        String exceptionMessage,
         TestStepResultStatus status
     ) {
         this.duration = requireNonNull(duration, "TestStepResult.duration cannot be null");
         this.message = message;
+        this.exceptionType = exceptionType;
+        this.exceptionMessage = exceptionMessage;
         this.status = requireNonNull(status, "TestStepResult.status cannot be null");
     }
 
@@ -30,6 +36,14 @@ public final class TestStepResult {
 
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
+    }
+
+    public Optional<String> getExceptionType() {
+        return Optional.ofNullable(exceptionType);
+    }
+
+    public Optional<String> getExceptionMessage() {
+        return Optional.ofNullable(exceptionMessage);
     }
 
     public TestStepResultStatus getStatus() {
@@ -44,6 +58,8 @@ public final class TestStepResult {
         return 
             duration.equals(that.duration) &&         
             Objects.equals(message, that.message) &&         
+            Objects.equals(exceptionType, that.exceptionType) &&         
+            Objects.equals(exceptionMessage, that.exceptionMessage) &&         
             status.equals(that.status);        
     }
 
@@ -52,6 +68,8 @@ public final class TestStepResult {
         return Objects.hash(
             duration,
             message,
+            exceptionType,
+            exceptionMessage,
             status
         );
     }
@@ -61,6 +79,8 @@ public final class TestStepResult {
         return "TestStepResult{" +
             "duration=" + duration +
             ", message=" + message +
+            ", exceptionType=" + exceptionType +
+            ", exceptionMessage=" + exceptionMessage +
             ", status=" + status +
             '}';
     }
