@@ -18,6 +18,7 @@ defmodule CucumberMessages.Attachment do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -26,7 +27,7 @@ defmodule CucumberMessages.Attachment do
       content_encoding: normal_map["contentEncoding"],
       file_name: normal_map["fileName"],
       media_type: normal_map["mediaType"],
-      source: normal_map["source"],
+      source: CucumberMessages.Source.decode(normal_map["source"]),
       test_case_started_id: normal_map["testCaseStartedId"],
       test_step_id: normal_map["testStepId"],
       url: normal_map["url"]
@@ -47,6 +48,7 @@ defmodule CucumberMessages.Duration do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -86,27 +88,31 @@ defmodule CucumberMessages.Envelope do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      attachment: normal_map["attachment"],
-      gherkin_document: normal_map["gherkinDocument"],
-      hook: normal_map["hook"],
-      meta: normal_map["meta"],
-      parameter_type: normal_map["parameterType"],
-      parse_error: normal_map["parseError"],
-      pickle: normal_map["pickle"],
-      source: normal_map["source"],
-      step_definition: normal_map["stepDefinition"],
-      test_case: normal_map["testCase"],
-      test_case_finished: normal_map["testCaseFinished"],
-      test_case_started: normal_map["testCaseStarted"],
-      test_run_finished: normal_map["testRunFinished"],
-      test_run_started: normal_map["testRunStarted"],
-      test_step_finished: normal_map["testStepFinished"],
-      test_step_started: normal_map["testStepStarted"],
-      undefined_parameter_type: normal_map["undefinedParameterType"]
+      attachment: CucumberMessages.Attachment.decode(normal_map["attachment"]),
+      gherkin_document: CucumberMessages.GherkinDocument.decode(normal_map["gherkinDocument"]),
+      hook: CucumberMessages.Hook.decode(normal_map["hook"]),
+      meta: CucumberMessages.Meta.decode(normal_map["meta"]),
+      parameter_type: CucumberMessages.ParameterType.decode(normal_map["parameterType"]),
+      parse_error: CucumberMessages.ParseError.decode(normal_map["parseError"]),
+      pickle: CucumberMessages.Pickle.decode(normal_map["pickle"]),
+      source: CucumberMessages.Source.decode(normal_map["source"]),
+      step_definition: CucumberMessages.StepDefinition.decode(normal_map["stepDefinition"]),
+      test_case: CucumberMessages.TestCase.decode(normal_map["testCase"]),
+      test_case_finished:
+        CucumberMessages.TestCaseFinished.decode(normal_map["testCaseFinished"]),
+      test_case_started: CucumberMessages.TestCaseStarted.decode(normal_map["testCaseStarted"]),
+      test_run_finished: CucumberMessages.TestRunFinished.decode(normal_map["testRunFinished"]),
+      test_run_started: CucumberMessages.TestRunStarted.decode(normal_map["testRunStarted"]),
+      test_step_finished:
+        CucumberMessages.TestStepFinished.decode(normal_map["testStepFinished"]),
+      test_step_started: CucumberMessages.TestStepStarted.decode(normal_map["testStepStarted"]),
+      undefined_parameter_type:
+        CucumberMessages.UndefinedParameterType.decode(normal_map["undefinedParameterType"])
     }
   end
 end
@@ -124,12 +130,13 @@ defmodule CucumberMessages.GherkinDocument do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       uri: normal_map["uri"],
-      feature: normal_map["feature"],
+      feature: CucumberMessages.Feature.decode(normal_map["feature"]),
       comments:
         Enum.map(normal_map["comments"] || [], fn item ->
           CucumberMessages.Comment.decode(item)
@@ -151,11 +158,12 @@ defmodule CucumberMessages.Background do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       keyword: normal_map["keyword"],
       name: normal_map["name"],
       description: normal_map["description"],
@@ -179,11 +187,12 @@ defmodule CucumberMessages.Comment do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       text: normal_map["text"]
     }
   end
@@ -202,11 +211,12 @@ defmodule CucumberMessages.DataTable do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       rows:
         Enum.map(normal_map["rows"] || [], fn item -> CucumberMessages.TableRow.decode(item) end)
     }
@@ -226,11 +236,12 @@ defmodule CucumberMessages.DocString do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       media_type: normal_map["mediaType"],
       content: normal_map["content"],
       delimiter: normal_map["delimiter"]
@@ -258,16 +269,17 @@ defmodule CucumberMessages.Examples do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       tags: Enum.map(normal_map["tags"] || [], fn item -> CucumberMessages.Tag.decode(item) end),
       keyword: normal_map["keyword"],
       name: normal_map["name"],
       description: normal_map["description"],
-      table_header: normal_map["tableHeader"],
+      table_header: CucumberMessages.TableRow.decode(normal_map["tableHeader"]),
       table_body:
         Enum.map(normal_map["tableBody"] || [], fn item ->
           CucumberMessages.TableRow.decode(item)
@@ -296,11 +308,12 @@ defmodule CucumberMessages.Feature do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       tags: Enum.map(normal_map["tags"] || [], fn item -> CucumberMessages.Tag.decode(item) end),
       language: normal_map["language"],
       keyword: normal_map["keyword"],
@@ -327,13 +340,14 @@ defmodule CucumberMessages.FeatureChild do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      rule: normal_map["rule"],
-      background: normal_map["background"],
-      scenario: normal_map["scenario"]
+      rule: CucumberMessages.Rule.decode(normal_map["rule"]),
+      background: CucumberMessages.Background.decode(normal_map["background"]),
+      scenario: CucumberMessages.Scenario.decode(normal_map["scenario"])
     }
   end
 end
@@ -357,11 +371,12 @@ defmodule CucumberMessages.Rule do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       tags: Enum.map(normal_map["tags"] || [], fn item -> CucumberMessages.Tag.decode(item) end),
       keyword: normal_map["keyword"],
       name: normal_map["name"],
@@ -388,12 +403,13 @@ defmodule CucumberMessages.RuleChild do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      background: normal_map["background"],
-      scenario: normal_map["scenario"]
+      background: CucumberMessages.Background.decode(normal_map["background"]),
+      scenario: CucumberMessages.Scenario.decode(normal_map["scenario"])
     }
   end
 end
@@ -418,11 +434,12 @@ defmodule CucumberMessages.Scenario do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       tags: Enum.map(normal_map["tags"] || [], fn item -> CucumberMessages.Tag.decode(item) end),
       keyword: normal_map["keyword"],
       name: normal_map["name"],
@@ -457,16 +474,17 @@ defmodule CucumberMessages.Step do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       keyword: normal_map["keyword"],
       keyword_type: normal_map["keywordType"],
       text: normal_map["text"],
-      doc_string: normal_map["docString"],
-      data_table: normal_map["dataTable"],
+      doc_string: CucumberMessages.DocString.decode(normal_map["docString"]),
+      data_table: CucumberMessages.DataTable.decode(normal_map["dataTable"]),
       id: normal_map["id"]
     }
   end
@@ -485,11 +503,12 @@ defmodule CucumberMessages.TableCell do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       value: normal_map["value"]
     }
   end
@@ -508,11 +527,12 @@ defmodule CucumberMessages.TableRow do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       cells:
         Enum.map(normal_map["cells"] || [], fn item -> CucumberMessages.TableCell.decode(item) end),
       id: normal_map["id"]
@@ -533,11 +553,12 @@ defmodule CucumberMessages.Tag do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      location: normal_map["location"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       name: normal_map["name"],
       id: normal_map["id"]
     }
@@ -557,13 +578,14 @@ defmodule CucumberMessages.Hook do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       id: normal_map["id"],
       name: normal_map["name"],
-      source_reference: normal_map["sourceReference"],
+      source_reference: CucumberMessages.SourceReference.decode(normal_map["sourceReference"]),
       tag_expression: normal_map["tagExpression"]
     }
   end
@@ -582,6 +604,7 @@ defmodule CucumberMessages.Location do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -605,16 +628,17 @@ defmodule CucumberMessages.Meta do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       protocol_version: normal_map["protocolVersion"],
-      implementation: normal_map["implementation"],
-      runtime: normal_map["runtime"],
-      os: normal_map["os"],
-      cpu: normal_map["cpu"],
-      ci: normal_map["ci"]
+      implementation: CucumberMessages.Product.decode(normal_map["implementation"]),
+      runtime: CucumberMessages.Product.decode(normal_map["runtime"]),
+      os: CucumberMessages.Product.decode(normal_map["os"]),
+      cpu: CucumberMessages.Product.decode(normal_map["cpu"]),
+      ci: CucumberMessages.Ci.decode(normal_map["ci"])
     }
   end
 end
@@ -632,6 +656,7 @@ defmodule CucumberMessages.Ci do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -639,7 +664,7 @@ defmodule CucumberMessages.Ci do
       name: normal_map["name"],
       url: normal_map["url"],
       build_number: normal_map["buildNumber"],
-      git: normal_map["git"]
+      git: CucumberMessages.Git.decode(normal_map["git"])
     }
   end
 end
@@ -657,6 +682,7 @@ defmodule CucumberMessages.Git do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -682,6 +708,7 @@ defmodule CucumberMessages.Product do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -709,6 +736,7 @@ defmodule CucumberMessages.ParameterType do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -735,11 +763,12 @@ defmodule CucumberMessages.ParseError do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      source: normal_map["source"],
+      source: CucumberMessages.SourceReference.decode(normal_map["source"]),
       message: normal_map["message"]
     }
   end
@@ -758,6 +787,7 @@ defmodule CucumberMessages.Pickle do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -790,6 +820,7 @@ defmodule CucumberMessages.PickleDocString do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -813,11 +844,12 @@ defmodule CucumberMessages.PickleStep do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      argument: normal_map["argument"],
+      argument: CucumberMessages.PickleStepArgument.decode(normal_map["argument"]),
       ast_node_ids: normal_map["astNodeIds"],
       id: normal_map["id"],
       type: normal_map["type"],
@@ -839,12 +871,13 @@ defmodule CucumberMessages.PickleStepArgument do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      doc_string: normal_map["docString"],
-      data_table: normal_map["dataTable"]
+      doc_string: CucumberMessages.PickleDocString.decode(normal_map["docString"]),
+      data_table: CucumberMessages.PickleTable.decode(normal_map["dataTable"])
     }
   end
 end
@@ -862,6 +895,7 @@ defmodule CucumberMessages.PickleTable do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -887,6 +921,7 @@ defmodule CucumberMessages.PickleTableCell do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -909,6 +944,7 @@ defmodule CucumberMessages.PickleTableRow do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -934,6 +970,7 @@ defmodule CucumberMessages.PickleTag do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -957,6 +994,7 @@ defmodule CucumberMessages.Source do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -981,14 +1019,16 @@ defmodule CucumberMessages.SourceReference do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       uri: normal_map["uri"],
-      java_method: normal_map["javaMethod"],
-      java_stack_trace_element: normal_map["javaStackTraceElement"],
-      location: normal_map["location"]
+      java_method: CucumberMessages.JavaMethod.decode(normal_map["javaMethod"]),
+      java_stack_trace_element:
+        CucumberMessages.JavaStackTraceElement.decode(normal_map["javaStackTraceElement"]),
+      location: CucumberMessages.Location.decode(normal_map["location"])
     }
   end
 end
@@ -1006,6 +1046,7 @@ defmodule CucumberMessages.JavaMethod do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1030,6 +1071,7 @@ defmodule CucumberMessages.JavaStackTraceElement do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1054,13 +1096,14 @@ defmodule CucumberMessages.StepDefinition do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       id: normal_map["id"],
-      pattern: normal_map["pattern"],
-      source_reference: normal_map["sourceReference"]
+      pattern: CucumberMessages.StepDefinitionPattern.decode(normal_map["pattern"]),
+      source_reference: CucumberMessages.SourceReference.decode(normal_map["sourceReference"])
     }
   end
 end
@@ -1078,6 +1121,7 @@ defmodule CucumberMessages.StepDefinitionPattern do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1101,6 +1145,7 @@ defmodule CucumberMessages.TestCase do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1128,6 +1173,7 @@ defmodule CucumberMessages.Group do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1153,11 +1199,12 @@ defmodule CucumberMessages.StepMatchArgument do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      group: normal_map["group"],
+      group: CucumberMessages.Group.decode(normal_map["group"]),
       parameter_type_name: normal_map["parameterTypeName"]
     }
   end
@@ -1176,6 +1223,7 @@ defmodule CucumberMessages.StepMatchArgumentsList do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1205,6 +1253,7 @@ defmodule CucumberMessages.TestStep do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1238,12 +1287,13 @@ defmodule CucumberMessages.TestCaseFinished do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       test_case_started_id: normal_map["testCaseStartedId"],
-      timestamp: normal_map["timestamp"],
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"]),
       will_be_retried: normal_map["willBeRetried"]
     }
   end
@@ -1262,6 +1312,7 @@ defmodule CucumberMessages.TestCaseStarted do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1270,7 +1321,7 @@ defmodule CucumberMessages.TestCaseStarted do
       id: normal_map["id"],
       test_case_id: normal_map["testCaseId"],
       worker_id: normal_map["workerId"],
-      timestamp: normal_map["timestamp"]
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
     }
   end
 end
@@ -1288,13 +1339,14 @@ defmodule CucumberMessages.TestRunFinished do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       message: normal_map["message"],
       success: normal_map["success"],
-      timestamp: normal_map["timestamp"]
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
     }
   end
 end
@@ -1312,11 +1364,12 @@ defmodule CucumberMessages.TestRunStarted do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      timestamp: normal_map["timestamp"]
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
     }
   end
 end
@@ -1334,14 +1387,15 @@ defmodule CucumberMessages.TestStepFinished do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       test_case_started_id: normal_map["testCaseStartedId"],
       test_step_id: normal_map["testStepId"],
-      test_step_result: normal_map["testStepResult"],
-      timestamp: normal_map["timestamp"]
+      test_step_result: CucumberMessages.TestStepResult.decode(normal_map["testStepResult"]),
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
     }
   end
 end
@@ -1359,11 +1413,12 @@ defmodule CucumberMessages.TestStepResult do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      duration: normal_map["duration"],
+      duration: CucumberMessages.Duration.decode(normal_map["duration"]),
       message: normal_map["message"],
       status: normal_map["status"]
     }
@@ -1383,13 +1438,14 @@ defmodule CucumberMessages.TestStepStarted do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       test_case_started_id: normal_map["testCaseStartedId"],
       test_step_id: normal_map["testStepId"],
-      timestamp: normal_map["timestamp"]
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
     }
   end
 end
@@ -1407,6 +1463,7 @@ defmodule CucumberMessages.Timestamp do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -1430,6 +1487,7 @@ defmodule CucumberMessages.UndefinedParameterType do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do

@@ -12,6 +12,7 @@ defmodule CucumberMessages.<%= class_name(key) %> do
     end
   end
 
+  def decode(nil), do: nil
   def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
 
   def decode(normal_map) when is_map(normal_map) do
@@ -29,7 +30,9 @@ defmodule CucumberMessages.<%= class_name(key) %> do
         data -> Enum.map(data, fn item -> CucumberMessages.<%= class_name(items_ref) %>.decode(item) end)
     end
     <%- end -%>
-    <%- else -%>normal_map["<%= property_name %>"],
+    <%- elsif ref -%>CucumberMessages.<%= class_name(ref) %>.decode(normal_map["<%= property_name -%>"]),
+    <%- else -%>
+      normal_map["<%= property_name %>"],
     <%- end -%>
   <%- end -%>
     }
