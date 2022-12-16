@@ -8,16 +8,20 @@
   ],
   "properties": {
     "message": {
-      "description": "Error message. Can be a stack trace from a failed `BeforeAll` or `AfterAll`.\n If there are undefined parameter types, the message is simply\n \"The following parameter type(s() are not defined: xxx, yyy\".\n The independent `UndefinedParameterType` messages can be used to generate\n snippets for those parameter types.",
+      "description": "An informative message about the test run. Typically additional information about failure, but not necessarily.",
       "type": "string"
     },
     "success": {
-      "description": "success = StrictModeEnabled ? (failed_count == 0 && ambiguous_count == 0 && undefined_count == 0 && pending_count == 0) : (failed_count == 0 && ambiguous_count == 0)",
+      "description": "A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.",
       "type": "boolean"
     },
     "timestamp": {
       "$ref": "./Timestamp.json",
       "description": "Timestamp when the TestRun is finished"
+    },
+    "exception": {
+      "$ref": "./Exception.json",
+      "description": "Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps."
     }
   },
   "type": "object"

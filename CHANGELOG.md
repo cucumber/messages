@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Add exception to TestStepFinished TestRunFinished ([#122](https://github.com/cucumber/messages/pull/122))
+
 ## [20.0.0] - 2022-11-14
 ### Changed
-- BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
+- Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
 - [Java] Enabled reproducible builds
 
 ### Fixed

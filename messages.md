@@ -45,6 +45,13 @@ will only have one of its fields set, which indicates the payload of the message
 | `testStepStarted` | [TestStepStarted](#teststepstarted) | no | |
 | `undefinedParameterType` | [UndefinedParameterType](#undefinedparametertype) | no | |
 
+## Exception
+
+| Field | Type | Required    | Description |
+| ----- | ---- | ----------- | ----------- |
+| `message` | string | no | |
+| `type` | string | no | |
+
 ## GherkinDocument
 
 | Field | Type | Required    | Description |
@@ -429,6 +436,7 @@ will only have one of its fields set, which indicates the payload of the message
 | `message` | string | no | |
 | `success` | boolean | yes | |
 | `timestamp` | [Timestamp](#timestamp) | yes | |
+| `exception` | [Exception](#exception) | no | |
 
 ## TestRunStarted
 
@@ -452,6 +460,7 @@ will only have one of its fields set, which indicates the payload of the message
 | `duration` | [Duration](#duration) | yes | |
 | `message` | string | no | |
 | `status` | [TestStepResultStatus](#teststepresultstatus) | yes | |
+| `exception` | [Exception](#exception) | no | |
 
 ## TestStepStarted
 

@@ -5,3 +5,5 @@ composer.lock
 .codegen
 .deps
 .tested
+
+build

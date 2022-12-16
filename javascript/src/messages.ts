@@ -82,6 +82,13 @@ export class Envelope {
   undefinedParameterType?: UndefinedParameterType
 }
 
+export class Exception {
+
+  type: string = ''
+
+  message?: string
+}
+
 export class GherkinDocument {
 
   uri?: string
@@ -597,6 +604,9 @@ export class TestRunFinished {
 
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
+
+  @Type(() => Exception)
+  exception?: Exception
 }
 
 export class TestRunStarted {
@@ -626,6 +636,9 @@ export class TestStepResult {
   message?: string
 
   status: TestStepResultStatus = TestStepResultStatus.UNKNOWN
+
+  @Type(() => Exception)
+  exception?: Exception
 }
 
 export class TestStepStarted {

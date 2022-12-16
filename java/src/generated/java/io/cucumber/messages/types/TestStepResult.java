@@ -13,15 +13,18 @@ public final class TestStepResult {
     private final Duration duration;
     private final String message;
     private final TestStepResultStatus status;
+    private final Exception exception;
 
     public TestStepResult(
         Duration duration,
         String message,
-        TestStepResultStatus status
+        TestStepResultStatus status,
+        Exception exception
     ) {
         this.duration = requireNonNull(duration, "TestStepResult.duration cannot be null");
         this.message = message;
         this.status = requireNonNull(status, "TestStepResult.status cannot be null");
+        this.exception = exception;
     }
 
     public Duration getDuration() {
@@ -36,6 +39,10 @@ public final class TestStepResult {
         return status;
     }
 
+    public Optional<Exception> getException() {
+        return Optional.ofNullable(exception);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,7 +51,8 @@ public final class TestStepResult {
         return 
             duration.equals(that.duration) &&         
             Objects.equals(message, that.message) &&         
-            status.equals(that.status);        
+            status.equals(that.status) &&         
+            Objects.equals(exception, that.exception);        
     }
 
     @Override
@@ -52,7 +60,8 @@ public final class TestStepResult {
         return Objects.hash(
             duration,
             message,
-            status
+            status,
+            exception
         );
     }
 
@@ -62,6 +71,7 @@ public final class TestStepResult {
             "duration=" + duration +
             ", message=" + message +
             ", status=" + status +
+            ", exception=" + exception +
             '}';
     }
 }

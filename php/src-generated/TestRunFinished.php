@@ -27,16 +27,12 @@ final class TestRunFinished implements JsonSerializable
     public function __construct(
 
         /**
-         * Error message. Can be a stack trace from a failed `BeforeAll` or `AfterAll`.
-         * If there are undefined parameter types, the message is simply
-         * "The following parameter type(s() are not defined: xxx, yyy".
-         * The independent `UndefinedParameterType` messages can be used to generate
-         * snippets for those parameter types.
+         * An informative message about the test run. Typically additional information about failure, but not necessarily.
          */
         public readonly ?string $message = null,
 
         /**
-         * success = StrictModeEnabled ? (failed_count == 0 && ambiguous_count == 0 && undefined_count == 0 && pending_count == 0) : (failed_count == 0 && ambiguous_count == 0)
+         * A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
          */
         public readonly bool $success = false,
 
@@ -44,6 +40,11 @@ final class TestRunFinished implements JsonSerializable
          * Timestamp when the TestRun is finished
          */
         public readonly Timestamp $timestamp = new Timestamp(),
+
+        /**
+         * Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
+         */
+        public readonly ?Exception $exception = null,
     ) {
     }
 
@@ -57,11 +58,13 @@ final class TestRunFinished implements JsonSerializable
         self::ensureMessage($arr);
         self::ensureSuccess($arr);
         self::ensureTimestamp($arr);
+        self::ensureException($arr);
 
         return new self(
             isset($arr['message']) ? (string) $arr['message'] : null,
             (bool) $arr['success'],
             Timestamp::fromArray($arr['timestamp']),
+            isset($arr['exception']) ? Exception::fromArray($arr['exception']) : null,
         );
     }
 
@@ -98,6 +101,16 @@ final class TestRunFinished implements JsonSerializable
         }
         if (array_key_exists('timestamp', $arr) && !is_array($arr['timestamp'])) {
             throw new SchemaViolationException('Property \'timestamp\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{exception?: array} $arr
+     */
+    private static function ensureException(array $arr): void
+    {
+        if (array_key_exists('exception', $arr) && !is_array($arr['exception'])) {
+            throw new SchemaViolationException('Property \'exception\' was not array');
         }
     }
 }

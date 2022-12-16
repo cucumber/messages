@@ -3,6 +3,8 @@ package io.cucumber.messages;
 import io.cucumber.messages.types.Duration;
 import io.cucumber.messages.types.Timestamp;
 
+@Deprecated
+@SuppressWarnings("unused")
 public final class TimeConversion {
 
     private TimeConversion(){
@@ -10,18 +12,18 @@ public final class TimeConversion {
     }
 
     public static Timestamp javaInstantToTimestamp(java.time.Instant instant) {
-        return new Timestamp(instant.getEpochSecond(), (long) instant.getNano());
+        return Convertor.toMessage(instant);
     }
 
     public static Duration javaDurationToDuration(java.time.Duration duration) {
-        return new Duration(duration.getSeconds(), (long) duration.getNano());
+        return Convertor.toMessage(duration);
     }
 
     public static java.time.Instant timestampToJavaInstant(Timestamp timestamp) {
-        return java.time.Instant.ofEpochSecond(timestamp.getSeconds(), timestamp.getNanos());
+        return Convertor.toInstant(timestamp);
     }
 
     public static java.time.Duration durationToJavaDuration(Duration duration) {
-        return java.time.Duration.ofSeconds(duration.getSeconds(), duration.getNanos());
+        return Convertor.toDuration(duration);
     }
 }

@@ -14,7 +14,8 @@
           "$ref": "./Duration.json"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "description": "An arbitrary bit of information that explains this result. This can be a stack trace of anything else."
         },
         "status": {
           "enum": [
@@ -27,6 +28,10 @@
             "FAILED"
           ],
           "type": "string"
+        },
+        "exception": {
+          "$ref": "./Exception.json",
+          "description": "Exception thrown while executing this step, if any."
         }
       },
       "type": "object"

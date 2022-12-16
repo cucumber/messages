@@ -224,6 +224,34 @@ module Cucumber
 
 
     ##
+    # Represents the Exception message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
+    #
+    # A simplified representation of an exception
+    #
+
+    class Exception < ::Cucumber::Messages::Message
+
+      ##
+      # The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
+
+      attr_reader :type
+
+      ##
+      # The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
+
+      attr_reader :message
+
+      def initialize(
+        type: '',
+        message: nil
+      )
+        @type = type
+        @message = message
+      end
+    end
+
+
+    ##
     # Represents the GherkinDocument message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
@@ -1726,16 +1754,12 @@ module Cucumber
     class TestRunFinished < ::Cucumber::Messages::Message
 
       ##
-      # Error message. Can be a stack trace from a failed `BeforeAll` or `AfterAll`.
-      #  If there are undefined parameter types, the message is simply
-      #  "The following parameter type(s() are not defined: xxx, yyy".
-      #  The independent `UndefinedParameterType` messages can be used to generate
-      #  snippets for those parameter types.
+      # An informative message about the test run. Typically additional information about failure, but not necessarily.
 
       attr_reader :message
 
       ##
-      # success = StrictModeEnabled ? (failed_count == 0 && ambiguous_count == 0 && undefined_count == 0 && pending_count == 0) : (failed_count == 0 && ambiguous_count == 0)
+      # A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
 
       attr_reader :success
 
@@ -1744,14 +1768,21 @@ module Cucumber
 
       attr_reader :timestamp
 
+      ##
+      # Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
+
+      attr_reader :exception
+
       def initialize(
         message: nil,
         success: false,
-        timestamp: Timestamp.new
+        timestamp: Timestamp.new,
+        exception: nil
       )
         @message = message
         @success = success
         @timestamp = timestamp
+        @exception = exception
       end
     end
 
@@ -1814,18 +1845,28 @@ module Cucumber
 
       attr_reader :duration
 
+      ##
+      # An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
+
       attr_reader :message
 
       attr_reader :status
 
+      ##
+      # Exception thrown while executing this step, if any.
+
+      attr_reader :exception
+
       def initialize(
         duration: Duration.new,
         message: nil,
-        status: TestStepResultStatus::UNKNOWN
+        status: TestStepResultStatus::UNKNOWN,
+        exception: nil
       )
         @duration = duration
         @message = message
         @status = status
+        @exception = exception
       end
     end
 

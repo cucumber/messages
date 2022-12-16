@@ -88,6 +88,26 @@ module Cucumber
       end
     end
 
+    class Exception
+
+      ##
+      # Returns a new Exception from the given hash.
+      # If the hash keys are camelCased, they are properly assigned to the
+      # corresponding snake_cased attributes.
+      #
+      #   Cucumber::Messages::Exception.from_h(some_hash) # => #<Cucumber::Messages::Exception:0x... ...>
+      #
+
+      def self.from_h(hash)
+        return nil if hash.nil?
+
+        self.new(
+          type: hash[:type],
+          message: hash[:message],
+        )
+      end
+    end
+
     class GherkinDocument
 
       ##
@@ -1054,6 +1074,7 @@ module Cucumber
           message: hash[:message],
           success: hash[:success],
           timestamp: Timestamp.from_h(hash[:timestamp]),
+          exception: Exception.from_h(hash[:exception]),
         )
       end
     end
@@ -1116,6 +1137,7 @@ module Cucumber
           duration: Duration.from_h(hash[:duration]),
           message: hash[:message],
           status: hash[:status],
+          exception: Exception.from_h(hash[:exception]),
         )
       end
     end
