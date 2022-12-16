@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Product message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * Used to describe various properties of Meta
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Product {
@@ -21,10 +27,16 @@ public final class Product {
         this.version = version;
     }
 
+    /**
+     * The product name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+      * The product version
+     */
     public Optional<String> getVersion() {
         return Optional.ofNullable(version);
     }

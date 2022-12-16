@@ -7,6 +7,13 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Git message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * Information about Git, provided by the Build/CI server as environment
+ * variables.
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Git {

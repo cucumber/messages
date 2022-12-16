@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the PickleStep message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * An executable step
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class PickleStep {
@@ -34,14 +40,26 @@ public final class PickleStep {
         return Optional.ofNullable(argument);
     }
 
+    /**
+     * References the IDs of the source of the step. For Gherkin, this can be
+     * the ID of a Step, and possibly also the ID of a TableRow
+     */
     public java.util.List<String> getAstNodeIds() {
         return astNodeIds;
     }
 
+    /**
+     * A unique ID for the PickleStep
+     */
     public String getId() {
         return id;
     }
 
+    /**
+      * The context in which the step was specified: context (Given), action (When) or outcome (Then).
+     *
+     * Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
+     */
     public Optional<PickleStepType> getType() {
         return Optional.ofNullable(type);
     }

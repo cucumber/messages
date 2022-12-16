@@ -7,6 +7,10 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Scenario message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Scenario {
@@ -39,6 +43,9 @@ public final class Scenario {
         this.id = requireNonNull(id, "Scenario.id cannot be null");
     }
 
+    /**
+     * The location of the `Scenario` keyword
+     */
     public Location getLocation() {
         return location;
     }

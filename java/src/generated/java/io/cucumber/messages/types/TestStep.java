@@ -7,6 +7,13 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the TestStep message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * A `TestStep` is derived from either a `PickleStep`
+ * combined with a `StepDefinition`, or from a `Hook`.
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class TestStep {
@@ -30,6 +37,9 @@ public final class TestStep {
         this.stepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : unmodifiableList(new ArrayList<>(stepMatchArgumentsLists));
     }
 
+    /**
+      * Pointer to the `Hook` (if derived from a Hook)
+     */
     public Optional<String> getHookId() {
         return Optional.ofNullable(hookId);
     }
@@ -38,14 +48,25 @@ public final class TestStep {
         return id;
     }
 
+    /**
+      * Pointer to the `PickleStep` (if derived from a `PickleStep`)
+     */
     public Optional<String> getPickleStepId() {
         return Optional.ofNullable(pickleStepId);
     }
 
+    /**
+      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
+     */
     public Optional<java.util.List<String>> getStepDefinitionIds() {
         return Optional.ofNullable(stepDefinitionIds);
     }
 
+    /**
+      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
+     * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
+     * and a size of 2+ means `AMBIGUOUS`
+     */
     public Optional<java.util.List<StepMatchArgumentsList>> getStepMatchArgumentsLists() {
         return Optional.ofNullable(stepMatchArgumentsLists);
     }

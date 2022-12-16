@@ -7,6 +7,13 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the SourceReference message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
+ * [Location](#io.cucumber.messages.Location) within that file.
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class SourceReference {

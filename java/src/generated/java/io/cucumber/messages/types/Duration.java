@@ -7,6 +7,13 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Duration message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * The structure is pretty close of the Timestamp one. For clarity, a second type
+ * of message is used.
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Duration {
@@ -25,6 +32,12 @@ public final class Duration {
         return seconds;
     }
 
+    /**
+     * Non-negative fractions of a second at nanosecond resolution. Negative
+     * second values with fractions must still have non-negative nanos values
+     * that count forward in time. Must be from 0 to 999,999,999
+     * inclusive.
+     */
     public Long getNanos() {
         return nanos;
     }

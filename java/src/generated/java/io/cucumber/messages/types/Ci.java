@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Ci message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * CI environment
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Ci {
@@ -27,14 +33,23 @@ public final class Ci {
         this.git = git;
     }
 
+    /**
+     * Name of the CI product, e.g. "Jenkins", "CircleCI" etc.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+      * Link to the build
+     */
     public Optional<String> getUrl() {
         return Optional.ofNullable(url);
     }
 
+    /**
+      * The build number. Some CI servers use non-numeric build numbers, which is why this is a string
+     */
     public Optional<String> getBuildNumber() {
         return Optional.ofNullable(buildNumber);
     }

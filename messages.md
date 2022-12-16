@@ -49,8 +49,8 @@ will only have one of its fields set, which indicates the payload of the message
 
 | Field | Type | Required    | Description |
 | ----- | ---- | ----------- | ----------- |
+| `type` | string | yes | |
 | `message` | string | no | |
-| `type` | string | no | |
 
 ## GherkinDocument
 

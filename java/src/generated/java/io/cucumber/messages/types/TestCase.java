@@ -7,6 +7,14 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the TestCase message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * //// TestCases
+ *
+ * A `TestCase` contains a sequence of `TestStep`s.
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class TestCase {
@@ -28,6 +36,9 @@ public final class TestCase {
         return id;
     }
 
+    /**
+     * The ID of the `Pickle` this `TestCase` is derived from.
+     */
     public String getPickleId() {
         return pickleId;
     }

@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Exception message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * A simplified representation of an exception
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Exception {
@@ -21,10 +27,16 @@ public final class Exception {
         this.message = message;
     }
 
+    /**
+     * The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
+     */
     public String getType() {
         return type;
     }
 
+    /**
+      * The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
+     */
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
     }

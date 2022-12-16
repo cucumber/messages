@@ -7,6 +7,23 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Pickle message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * //// Pickles
+ *
+ * A `Pickle` represents a template for a `TestCase`. It is typically derived
+ * from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
+ * In the future a `Pickle` may be derived from other formats such as Markdown or
+ * Excel files.
+ *
+ * By making `Pickle` the main data structure Cucumber uses for execution, the
+ * implementation of Cucumber itself becomes simpler, as it doesn't have to deal
+ * with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
+ *
+ * Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Pickle {
@@ -36,30 +53,54 @@ public final class Pickle {
         this.astNodeIds = unmodifiableList(new ArrayList<>(requireNonNull(astNodeIds, "Pickle.astNodeIds cannot be null")));
     }
 
+    /**
+     * A unique id for the pickle
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * The uri of the source file
+     */
     public String getUri() {
         return uri;
     }
 
+    /**
+     * The name of the pickle
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * The language of the pickle
+     */
     public String getLanguage() {
         return language;
     }
 
+    /**
+     * One or more steps
+     */
     public java.util.List<PickleStep> getSteps() {
         return steps;
     }
 
+    /**
+     * One or more tags. If this pickle is constructed from a Gherkin document,
+     * It includes inherited tags from the `Feature` as well.
+     */
     public java.util.List<PickleTag> getTags() {
         return tags;
     }
 
+    /**
+     * Points to the AST node locations of the pickle. The last one represents the unique
+     * id of the pickle. A pickle constructed from `Examples` will have the first
+     * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
+     */
     public java.util.List<String> getAstNodeIds() {
         return astNodeIds;
     }

@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Add exception to TestStepFinished TestRunFinished ([#122](https://github.com/cucumber/messages/pull/122))
 
+### Added
+- [Java] Add javadoc to messages ([#124](https://github.com/cucumber/messages/pull/124))
+
 ## [20.0.0] - 2022-11-14
 ### Changed
 - Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))

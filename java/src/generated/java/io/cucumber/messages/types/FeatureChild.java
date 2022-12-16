@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the FeatureChild message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * A child node of a `Feature` node
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class FeatureChild {

@@ -9,6 +9,14 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the <%= class_name(key) %> message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ <%- if not (schema['description'] || []).empty? -%>
+ *
+<%= format_description(schema['description'], indent_string: '') %>
+<%- end -%>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class <%= class_name(key) %> {
@@ -62,11 +70,21 @@ public final class <%= class_name(key) %> {
   <%- schema['properties'].each do |property_name, property| -%>
     <%- if (schema['required'] || []).index(property_name) -%>
 
+    <%- if not (property['description'] || []).empty? -%>
+    /**
+    <%= format_description(property['description'], indent_string: '    ') %>
+     */
+    <%- end -%>
     public <%= type_for(class_name(key), property_name, property) -%> get<%= capitalize(property_name) %>() {
         return <%= property_name %>;
     }
     <%- else -%>
 
+    <%- if not (property['description'] || []).empty? -%>
+    /**
+     <%= format_description(property['description'], indent_string: '    ') %>
+     */
+    <%- end -%>
     public Optional<<%= type_for(class_name(key), property_name, property) -%>> get<%= capitalize(property_name) %>() {
         return Optional.ofNullable(<%= property_name %>);
     }
