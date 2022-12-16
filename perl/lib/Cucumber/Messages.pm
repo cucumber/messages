@@ -523,6 +523,65 @@ has undefined_parameter_type =>
 
 }
 
+package Cucumber::Messages::Exception {
+
+=head2 Cucumber::Messages::Exception
+
+=head3 DESCRIPTION
+
+Represents the Exception message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+A simplified representation of an exception
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   type => 'string',
+   message => 'string',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 type
+
+The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
+
+=cut
+
+has type =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 message
+
+The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
+
+=cut
+
+has message =>
+    (is => 'ro',
+    );
+
+
+}
+
 package Cucumber::Messages::GherkinDocument {
 
 =head2 Cucumber::Messages::GherkinDocument
@@ -4173,6 +4232,7 @@ my %types = (
    message => 'string',
    success => 'boolean',
    timestamp => 'Cucumber::Messages::Timestamp',
+   exception => 'Cucumber::Messages::Exception',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4185,11 +4245,7 @@ sub _types {
 
 =head4 message
 
-Error message. Can be a stack trace from a failed `BeforeAll` or `AfterAll`.
- If there are undefined parameter types, the message is simply
- "The following parameter type(s() are not defined: xxx, yyy".
- The independent `UndefinedParameterType` messages can be used to generate
- snippets for those parameter types.
+An informative message about the test run. Typically additional information about failure, but not necessarily.
 
 =cut
 
@@ -4200,7 +4256,7 @@ has message =>
 
 =head4 success
 
-success = StrictModeEnabled ? (failed_count == 0 && ambiguous_count == 0 && undefined_count == 0 && pending_count == 0) : (failed_count == 0 && ambiguous_count == 0)
+A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
 
 =cut
 
@@ -4221,6 +4277,17 @@ has timestamp =>
     (is => 'ro',
      required => 1,
      default => sub { Cucumber::Messages::Timestamp->new() },
+    );
+
+
+=head4 exception
+
+Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
+
+=cut
+
+has exception =>
+    (is => 'ro',
     );
 
 
@@ -4381,8 +4448,7 @@ my %types = (
    duration => 'Cucumber::Messages::Duration',
    message => 'string',
    status => '',
-   exception_type => 'string',
-   exception_message => 'string',
+   exception => 'Cucumber::Messages::Exception',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4460,24 +4526,13 @@ has status =>
     );
 
 
-=head4 exception_type
+=head4 exception
 
-The type of the exception that caused this result. E.g. Error or org.opentest4j.AssertionFailedError
-
-=cut
-
-has exception_type =>
-    (is => 'ro',
-    );
-
-
-=head4 exception_message
-
-The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
+Exception thrown while executing this step, if any.
 
 =cut
 
-has exception_message =>
+has exception =>
     (is => 'ro',
     );
 

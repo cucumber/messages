@@ -34,14 +34,9 @@ final class TestStepResult implements JsonSerializable
         public readonly TestStepResult\Status $status = TestStepResult\Status::UNKNOWN,
 
         /**
-         * The type of the exception that caused this result. E.g. Error or org.opentest4j.AssertionFailedError
+         * Exception thrown while executing this step, if any.
          */
-        public readonly ?string $exceptionType = null,
-
-        /**
-         * The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
-         */
-        public readonly ?string $exceptionMessage = null,
+        public readonly ?Exception $exception = null,
     ) {
     }
 
@@ -55,15 +50,13 @@ final class TestStepResult implements JsonSerializable
         self::ensureDuration($arr);
         self::ensureMessage($arr);
         self::ensureStatus($arr);
-        self::ensureExceptionType($arr);
-        self::ensureExceptionMessage($arr);
+        self::ensureException($arr);
 
         return new self(
             Duration::fromArray($arr['duration']),
             isset($arr['message']) ? (string) $arr['message'] : null,
             TestStepResult\Status::from((string) $arr['status']),
-            isset($arr['exceptionType']) ? (string) $arr['exceptionType'] : null,
-            isset($arr['exceptionMessage']) ? (string) $arr['exceptionMessage'] : null,
+            isset($arr['exception']) ? Exception::fromArray($arr['exception']) : null,
         );
     }
 
@@ -104,22 +97,12 @@ final class TestStepResult implements JsonSerializable
     }
 
     /**
-     * @psalm-assert array{exceptionType?: string|int|bool} $arr
+     * @psalm-assert array{exception?: array} $arr
      */
-    private static function ensureExceptionType(array $arr): void
+    private static function ensureException(array $arr): void
     {
-        if (array_key_exists('exceptionType', $arr) && is_array($arr['exceptionType'])) {
-            throw new SchemaViolationException('Property \'exceptionType\' was array');
-        }
-    }
-
-    /**
-     * @psalm-assert array{exceptionMessage?: string|int|bool} $arr
-     */
-    private static function ensureExceptionMessage(array $arr): void
-    {
-        if (array_key_exists('exceptionMessage', $arr) && is_array($arr['exceptionMessage'])) {
-            throw new SchemaViolationException('Property \'exceptionMessage\' was array');
+        if (array_key_exists('exception', $arr) && !is_array($arr['exception'])) {
+            throw new SchemaViolationException('Property \'exception\' was not array');
         }
     }
 }

@@ -13,21 +13,18 @@ public final class TestStepResult {
     private final Duration duration;
     private final String message;
     private final TestStepResultStatus status;
-    private final String exceptionType;
-    private final String exceptionMessage;
+    private final Exception exception;
 
     public TestStepResult(
         Duration duration,
         String message,
         TestStepResultStatus status,
-        String exceptionType,
-        String exceptionMessage
+        Exception exception
     ) {
         this.duration = requireNonNull(duration, "TestStepResult.duration cannot be null");
         this.message = message;
         this.status = requireNonNull(status, "TestStepResult.status cannot be null");
-        this.exceptionType = exceptionType;
-        this.exceptionMessage = exceptionMessage;
+        this.exception = exception;
     }
 
     public Duration getDuration() {
@@ -42,12 +39,8 @@ public final class TestStepResult {
         return status;
     }
 
-    public Optional<String> getExceptionType() {
-        return Optional.ofNullable(exceptionType);
-    }
-
-    public Optional<String> getExceptionMessage() {
-        return Optional.ofNullable(exceptionMessage);
+    public Optional<Exception> getException() {
+        return Optional.ofNullable(exception);
     }
 
     @Override
@@ -59,8 +52,7 @@ public final class TestStepResult {
             duration.equals(that.duration) &&         
             Objects.equals(message, that.message) &&         
             status.equals(that.status) &&         
-            Objects.equals(exceptionType, that.exceptionType) &&         
-            Objects.equals(exceptionMessage, that.exceptionMessage);        
+            Objects.equals(exception, that.exception);        
     }
 
     @Override
@@ -69,8 +61,7 @@ public final class TestStepResult {
             duration,
             message,
             status,
-            exceptionType,
-            exceptionMessage
+            exception
         );
     }
 
@@ -80,8 +71,7 @@ public final class TestStepResult {
             "duration=" + duration +
             ", message=" + message +
             ", status=" + status +
-            ", exceptionType=" + exceptionType +
-            ", exceptionMessage=" + exceptionMessage +
+            ", exception=" + exception +
             '}';
     }
 }

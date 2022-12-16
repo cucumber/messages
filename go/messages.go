@@ -36,6 +36,11 @@ type Envelope struct {
 	UndefinedParameterType *UndefinedParameterType `json:"undefinedParameterType,omitempty"`
 }
 
+type Exception struct {
+	Type    string `json:"type"`
+	Message string `json:"message,omitempty"`
+}
+
 type GherkinDocument struct {
 	Uri      string     `json:"uri,omitempty"`
 	Feature  *Feature   `json:"feature,omitempty"`
@@ -329,6 +334,7 @@ type TestRunFinished struct {
 	Message   string     `json:"message,omitempty"`
 	Success   bool       `json:"success"`
 	Timestamp *Timestamp `json:"timestamp"`
+	Exception *Exception `json:"exception,omitempty"`
 }
 
 type TestRunStarted struct {
@@ -343,11 +349,10 @@ type TestStepFinished struct {
 }
 
 type TestStepResult struct {
-	Duration         *Duration            `json:"duration"`
-	Message          string               `json:"message,omitempty"`
-	Status           TestStepResultStatus `json:"status"`
-	ExceptionType    string               `json:"exceptionType,omitempty"`
-	ExceptionMessage string               `json:"exceptionMessage,omitempty"`
+	Duration  *Duration            `json:"duration"`
+	Message   string               `json:"message,omitempty"`
+	Status    TestStepResultStatus `json:"status"`
+	Exception *Exception           `json:"exception,omitempty"`
 }
 
 type TestStepStarted struct {
