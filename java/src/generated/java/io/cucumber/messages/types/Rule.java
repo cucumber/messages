@@ -7,6 +7,10 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Rule message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Rule {
@@ -36,10 +40,16 @@ public final class Rule {
         this.id = requireNonNull(id, "Rule.id cannot be null");
     }
 
+    /**
+     * The location of the `Rule` keyword
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * All the tags placed above the `Rule` keyword
+     */
     public java.util.List<Tag> getTags() {
         return tags;
     }

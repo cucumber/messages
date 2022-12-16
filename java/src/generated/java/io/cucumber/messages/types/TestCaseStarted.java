@@ -7,6 +7,10 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the TestCaseStarted message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class TestCaseStarted {
@@ -30,10 +34,18 @@ public final class TestCaseStarted {
         this.timestamp = requireNonNull(timestamp, "TestCaseStarted.timestamp cannot be null");
     }
 
+    /**
+     * The first attempt should have value 0, and for each retry the value
+     * should increase by 1.
+     */
     public Long getAttempt() {
         return attempt;
     }
 
+    /**
+     * Because a `TestCase` can be run multiple times (in case of a retry),
+     * we use this field to group messages relating to the same attempt.
+     */
     public String getId() {
         return id;
     }
@@ -42,6 +54,9 @@ public final class TestCaseStarted {
         return testCaseId;
     }
 
+    /**
+      * An identifier for the worker process running this test case, if test cases are being run in parallel. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+     */
     public Optional<String> getWorkerId() {
         return Optional.ofNullable(workerId);
     }

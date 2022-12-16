@@ -7,6 +7,10 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the TestStepResult message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class TestStepResult {
@@ -31,6 +35,9 @@ public final class TestStepResult {
         return duration;
     }
 
+    /**
+      * An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
+     */
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
     }
@@ -39,6 +46,9 @@ public final class TestStepResult {
         return status;
     }
 
+    /**
+      * Exception thrown while executing this step, if any.
+     */
     public Optional<Exception> getException() {
         return Optional.ofNullable(exception);
     }

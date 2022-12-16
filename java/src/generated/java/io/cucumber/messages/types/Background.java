@@ -7,6 +7,10 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Background message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Background {
@@ -33,6 +37,9 @@ public final class Background {
         this.id = requireNonNull(id, "Background.id cannot be null");
     }
 
+    /**
+     * The location of the `Background` keyword
+     */
     public Location getLocation() {
         return location;
     }

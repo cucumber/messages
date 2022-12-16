@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Comment message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * A comment in a Gherkin document
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Comment {
@@ -21,10 +27,16 @@ public final class Comment {
         this.text = requireNonNull(text, "Comment.text cannot be null");
     }
 
+    /**
+     * The location of the comment
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * The text of the comment
+     */
     public String getText() {
         return text;
     }

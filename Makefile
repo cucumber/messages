@@ -3,6 +3,7 @@ schemas = \
 	./jsonschema/Source.json \
 	./jsonschema/Attachment.json \
 	./jsonschema/Location.json \
+	./jsonschema/Exception.json \
 	./jsonschema/SourceReference.json \
 	./jsonschema/Hook.json \
 	./jsonschema/GherkinDocument.json \

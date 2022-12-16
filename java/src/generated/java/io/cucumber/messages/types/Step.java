@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Step message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * A step
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Step {
@@ -36,14 +42,23 @@ public final class Step {
         this.id = requireNonNull(id, "Step.id cannot be null");
     }
 
+    /**
+     * The location of the steps' `keyword`
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * The actual keyword as it appeared in the source.
+     */
     public String getKeyword() {
         return keyword;
     }
 
+    /**
+      * The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
+     */
     public Optional<StepKeywordType> getKeywordType() {
         return Optional.ofNullable(keywordType);
     }
@@ -60,6 +75,9 @@ public final class Step {
         return Optional.ofNullable(dataTable);
     }
 
+    /**
+     * Unique ID to be able to reference the Step from PickleStep
+     */
     public String getId() {
         return id;
     }

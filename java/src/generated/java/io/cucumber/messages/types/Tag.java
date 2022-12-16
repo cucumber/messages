@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Tag message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * A tag
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Tag {
@@ -24,14 +30,23 @@ public final class Tag {
         this.id = requireNonNull(id, "Tag.id cannot be null");
     }
 
+    /**
+     * Location of the tag
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * The name of the tag (including the leading `@`)
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Unique ID to be able to reference the Tag from PickleTag
+     */
     public String getId() {
         return id;
     }

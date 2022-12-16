@@ -6,9 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-
 ### Changed
 - Add exception to TestStepFinished TestRunFinished ([#122](https://github.com/cucumber/messages/pull/122))
+
+### Added
+- [Java] Add javadoc to messages ([#124](https://github.com/cucumber/messages/pull/124))
 
 ## [20.0.0] - 2022-11-14
 ### Changed

@@ -7,6 +7,10 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Examples message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Examples {
@@ -39,6 +43,9 @@ public final class Examples {
         this.id = requireNonNull(id, "Examples.id cannot be null");
     }
 
+    /**
+     * The location of the `Examples` keyword
+     */
     public Location getLocation() {
         return location;
     }

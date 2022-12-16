@@ -7,6 +7,10 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the ParameterType message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class ParameterType {
@@ -30,6 +34,9 @@ public final class ParameterType {
         this.id = requireNonNull(id, "ParameterType.id cannot be null");
     }
 
+    /**
+     * The name is unique, so we don't need an id.
+     */
     public String getName() {
         return name;
     }

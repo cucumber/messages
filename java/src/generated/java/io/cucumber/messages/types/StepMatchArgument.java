@@ -7,6 +7,17 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the StepMatchArgument message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * Represents a single argument extracted from a step match and passed to a step definition.
+ * This is used for the following purposes:
+ * - Construct an argument to pass to a step definition (possibly through a parameter type transform)
+ * - Highlight the matched parameter in rich formatters such as the HTML formatter
+ *
+ * This message closely matches the `Argument` class in the `cucumber-expressions` library.
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class StepMatchArgument {
@@ -21,6 +32,10 @@ public final class StepMatchArgument {
         this.parameterTypeName = parameterTypeName;
     }
 
+    /**
+     * Represents the outermost capture group of an argument. This message closely matches the
+     * `Group` class in the `cucumber-expressions` library.
+     */
     public Group getGroup() {
         return group;
     }

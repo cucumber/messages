@@ -7,6 +7,10 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Feature message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Feature {
@@ -36,30 +40,51 @@ public final class Feature {
         this.children = unmodifiableList(new ArrayList<>(requireNonNull(children, "Feature.children cannot be null")));
     }
 
+    /**
+     * The location of the `Feature` keyword
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * All the tags placed above the `Feature` keyword
+     */
     public java.util.List<Tag> getTags() {
         return tags;
     }
 
+    /**
+     * The [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code of the Gherkin document
+     */
     public String getLanguage() {
         return language;
     }
 
+    /**
+     * The text of the `Feature` keyword (in the language specified by `language`)
+     */
     public String getKeyword() {
         return keyword;
     }
 
+    /**
+     * The name of the feature (the text following the `keyword`)
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * The line(s) underneath the line with the `keyword` that are used as description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Zero or more children
+     */
     public java.util.List<FeatureChild> getChildren() {
         return children;
     }

@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the TableCell message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * A cell in a `TableRow`
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class TableCell {
@@ -21,10 +27,16 @@ public final class TableCell {
         this.value = requireNonNull(value, "TableCell.value cannot be null");
     }
 
+    /**
+     * The location of the cell
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * The value of the cell
+     */
     public String getValue() {
         return value;
     }

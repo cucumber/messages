@@ -7,6 +7,12 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the TableRow message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * A row in a table
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class TableRow {
@@ -24,10 +30,16 @@ public final class TableRow {
         this.id = requireNonNull(id, "TableRow.id cannot be null");
     }
 
+    /**
+     * The location of the first cell in the row
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * Cells in the row
+     */
     public java.util.List<TableCell> getCells() {
         return cells;
     }

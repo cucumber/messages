@@ -7,6 +7,13 @@ import java.util.Optional;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Meta message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ *
+ * This message contains meta information about the environment. Consumers can use
+ * this for various purposes.
+ */
 // Generated code
 @SuppressWarnings("unused")
 public final class Meta {
@@ -33,22 +40,37 @@ public final class Meta {
         this.ci = ci;
     }
 
+    /**
+     * The [SEMVER](https://semver.org/) version number of the protocol
+     */
     public String getProtocolVersion() {
         return protocolVersion;
     }
 
+    /**
+     * SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
+     */
     public Product getImplementation() {
         return implementation;
     }
 
+    /**
+     * Java, Ruby, Node.js etc
+     */
     public Product getRuntime() {
         return runtime;
     }
 
+    /**
+     * Windows, Linux, MacOS etc
+     */
     public Product getOs() {
         return os;
     }
 
+    /**
+     * 386, arm, amd64 etc
+     */
     public Product getCpu() {
         return cpu;
     }
