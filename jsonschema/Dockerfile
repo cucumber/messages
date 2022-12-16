@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1.4
 ARG LANGUAGE=ruby
 
-FROM ruby:3.1.2-alpine AS ruby
+FROM ruby:3.1.3-alpine AS ruby
 
 RUN apk add coreutils
 
@@ -20,7 +20,7 @@ EOF
 
 
 # Todo: can we eliminate this stage with smarter ERB templates?
-FROM golang:1.19.1-alpine AS go-codegen
+FROM golang:1.19.4-alpine AS go-codegen
 
 WORKDIR /build
 COPY --link --from=go-unformatted /build/ .
