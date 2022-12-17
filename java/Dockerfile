@@ -1,9 +1,8 @@
 #syntax=docker/dockerfile:1.4
 
 # Base image
-ARG MAVEN_VERSION=3.8
-ARG JAVA_VERSION=16
-FROM maven:${MAVEN_VERSION}-eclipse-temurin-${JAVA_VERSION} AS java
+ARG JAVA_VERSION=17
+FROM maven:3.8.6-eclipse-temurin-${JAVA_VERSION} AS java
 WORKDIR /cucumber
 
 # Dummy stage for generated code, overriden in main build
@@ -23,4 +22,4 @@ COPY --link . .
 COPY --link --from=with-dependencies /root/.m2 /root/.m2
 COPY --link --from=schema-codegen / src/generated/java/io/cucumber/messages/types
 
-RUN mvn verify
+RUN mvn verify javadoc:jar
