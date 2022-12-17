@@ -70,9 +70,9 @@ public final class Attachment {
      * Content encoding is *not* determined by the media type, but rather by the type
      * of the object being attached:
      *
-     * - string => IDENTITY
-     * - byte array => BASE64
-     * - stream => BASE64
+     * - string: IDENTITY
+     * - byte array: BASE64
+     * - stream: BASE64
      */
     public AttachmentContentEncoding getContentEncoding() {
         return contentEncoding;

@@ -35,7 +35,7 @@ public final class Exception {
     }
 
     /**
-      * The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
+      * The message of exception that caused this result. E.g. expected: "a" but was: "b"
      */
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);

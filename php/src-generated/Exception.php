@@ -32,7 +32,7 @@ final class Exception implements JsonSerializable
         public readonly string $type = '',
 
         /**
-         * The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
+         * The message of exception that caused this result. E.g. expected: "a" but was: "b"
          */
         public readonly ?string $message = null,
     ) {
