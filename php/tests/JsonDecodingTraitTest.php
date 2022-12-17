@@ -10,9 +10,7 @@ class JsonDecodingTraitTest extends TestCase
 {
     public function testItCanDecodeSomeJsonToAnObject(): void
     {
-        $obj = JsonDecodingTraitTestImpl::fromJson('[]');
-
-        self::assertInstanceOf(JsonDecodingTraitTestImpl::class, $obj);
+        JsonDecodingTraitTestImpl::fromJson('[]');
     }
 
     public function testItThrowsIfGivenInvalidJson(): void
