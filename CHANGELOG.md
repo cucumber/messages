@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- [Java] Suppress warnings for missing javadoc ([#128](https://github.com/cucumber/messages/pull/128))
 
 ## [21.0.0] - 2022-12-17
 ### Added

@@ -41,9 +41,9 @@ module Cucumber
       #  Content encoding is *not* determined by the media type, but rather by the type
       #  of the object being attached:
       # 
-      #  - string => IDENTITY
-      #  - byte array => BASE64
-      #  - stream => BASE64
+      #  - string: IDENTITY
+      #  - byte array: BASE64
+      #  - stream: BASE64
 
       attr_reader :content_encoding
 
@@ -237,7 +237,7 @@ module Cucumber
       attr_reader :type
 
       ##
-      # The message of exception that caused this result. E.g. expected: <"a"> but was: <"b">
+      # The message of exception that caused this result. E.g. expected: "a" but was: "b"
 
       attr_reader :message
 

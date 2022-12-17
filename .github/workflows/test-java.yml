@@ -61,3 +61,7 @@ jobs:
 
       - run: mvn test
         working-directory: java
+        
+      - run: mvn clean package javadoc:jar -DskipTests=true
+        working-directory: java
+        

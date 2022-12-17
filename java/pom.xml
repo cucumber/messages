@@ -112,6 +112,13 @@
                     <parameters>true</parameters>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <additionalJOption>-Xdoclint:all,-missing</additionalJOption>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

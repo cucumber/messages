@@ -13,7 +13,7 @@
     },
     "message": {
       "type": "string",
-      "description": "The message of exception that caused this result. E.g. expected: <\"a\"> but was: <\"b\">"
+      "description": "The message of exception that caused this result. E.g. expected: \"a\" but was: \"b\""
     }
   },
   "type": "object"
