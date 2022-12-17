@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [21.0.1] - 2022-12-17
 ### Fixed
 - [Java] Suppress warnings for missing javadoc ([#128](https://github.com/cucumber/messages/pull/128))
 
@@ -485,7 +487,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v21.0.0...main
+[Unreleased]: https://github.com/cucumber/messages/compare/v21.0.1...main
+[21.0.1]: https://github.com/cucumber/messages/compare/v21.0.0...main
 [21.0.0]: https://github.com/cucumber/messages/compare/v20.0.0...main
 [20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...main
 [19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...main
