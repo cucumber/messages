@@ -11,6 +11,8 @@ class JsonDecodingTraitTest extends TestCase
     public function testItCanDecodeSomeJsonToAnObject(): void
     {
         JsonDecodingTraitTestImpl::fromJson('[]');
+
+        self::expectNotToPerformAssertions();
     }
 
     public function testItThrowsIfGivenInvalidJson(): void
