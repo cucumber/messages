@@ -6,11 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Changed
-- Add exception to TestStepFinished TestRunFinished ([#122](https://github.com/cucumber/messages/pull/122))
 
+## [21.0.0] - 2022-12-17
 ### Added
 - [Java] Add javadoc to messages ([#124](https://github.com/cucumber/messages/pull/124))
+
+### Changed
+- Add exception to TestStepFinished TestRunFinished ([#122](https://github.com/cucumber/messages/pull/122))
 
 ## [20.0.0] - 2022-11-14
 ### Changed
@@ -481,7 +483,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v20.0.0...main
+[Unreleased]: https://github.com/cucumber/messages/compare/v21.0.0...main
+[21.0.0]: https://github.com/cucumber/messages/compare/v20.0.0...main
 [20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...main
 [19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...main
 [19.1.3]: https://github.com/cucumber/messages/compare/v19.1.2...main
