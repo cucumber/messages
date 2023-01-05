@@ -1,5 +1,7 @@
 <?php
 
+namespace Cucumber\Messages\unit;
+
 use Cucumber\Messages\Envelope;
 use Cucumber\Messages\Feature;
 use Cucumber\Messages\GherkinDocument;

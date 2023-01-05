@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cucumber\Messages\Id;
+namespace Cucumber\Messages\unit\Id;
 
+use Cucumber\Messages\Id\UuidIdGenerator;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Rfc4122\FieldsInterface;
 use Ramsey\Uuid\Uuid;

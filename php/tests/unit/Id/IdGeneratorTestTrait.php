@@ -1,6 +1,8 @@
 <?php
 
-namespace Cucumber\Messages\Id;
+namespace Cucumber\Messages\unit\Id;
+
+use Cucumber\Messages\Id\IdGenerator;
 
 trait IdGeneratorTestTrait
 {

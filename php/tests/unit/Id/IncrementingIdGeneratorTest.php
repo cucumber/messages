@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cucumber\Messages\Id;
+namespace Cucumber\Messages\unit\Id;
 
+use Cucumber\Messages\Id\IncrementingIdGenerator;
 use PHPUnit\Framework\TestCase;
 
 final class IncrementingIdGeneratorTest extends TestCase
