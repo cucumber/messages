@@ -112,6 +112,8 @@ target "php-test" {
   context = "php"
   target = "tested"
   contexts = {
+    # replaces the stage that does `git clone` and ensures we get a fresh version
+    cck = "https://github.com/cucumber/compatibility-kit.git#main:devkit",
     schema-codegen = "target:php-codegen",
   }
 }
