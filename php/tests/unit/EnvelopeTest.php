@@ -1,11 +1,7 @@
 <?php
 
-namespace Cucumber\Messages\unit;
+namespace Cucumber\Messages;
 
-use Cucumber\Messages\Envelope;
-use Cucumber\Messages\Feature;
-use Cucumber\Messages\GherkinDocument;
-use Cucumber\Messages\Location;
 use PHPUnit\Framework\TestCase;
 
 class EnvelopeTest extends TestCase

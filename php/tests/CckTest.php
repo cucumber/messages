@@ -1,8 +1,11 @@
 <?php
 
-use Cucumber\Messages\Envelope;
+namespace Cucumber\Messages;
+
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamReader;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamWriter;
+use Exception;
+use Generator;
 use PHPUnit\Framework\TestCase;
 
 class CckTest extends TestCase
