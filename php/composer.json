@@ -28,7 +28,8 @@
             "Cucumber\\Messages\\": [
                 "src",
                 "src-generated",
-                "tests"
+                "tests",
+                "tests/unit"
             ]
         }
     }

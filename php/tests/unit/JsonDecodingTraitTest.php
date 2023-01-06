@@ -1,10 +1,13 @@
 <?php
 
+namespace Cucumber\Messages;
+
 use Cucumber\Messages\DecodingException\MalformedJsonException;
-use Cucumber\Messages\JsonEncodingTrait;
 use Cucumber\Messages\DecodingException\SchemaViolationException;
 use Cucumber\Messages\DecodingException\UnexpectedDecodingException;
+use JsonSerializable;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class JsonDecodingTraitTest extends TestCase
 {

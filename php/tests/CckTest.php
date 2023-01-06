@@ -1,11 +1,14 @@
 <?php
 
-use Cucumber\Messages\Envelope;
+namespace Cucumber\Messages;
+
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamReader;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamWriter;
+use Exception;
+use Generator;
 use PHPUnit\Framework\TestCase;
 
-class AcceptanceTest extends TestCase
+class CckTest extends TestCase
 {
     /** @dataProvider provideJsonLines */
     public function testAllNdJsonSurvivesDecodingThenEncoding(string $json): void
@@ -74,6 +77,13 @@ class AcceptanceTest extends TestCase
      */
     private function getSampleFiles(): array
     {
-        return glob(__DIR__ . '/../../../node_modules/@cucumber/compatibility-kit/features/**/*.ndjson') ?: [];
+        $files = glob(pattern:__DIR__ . '/cck-samples/**/*.ndjson');
+
+        // glob doesn't error if dir is empty
+        if ($files === []) {
+            throw new Exception('CCK sample files not found. Perhaps you want to run the "unit" testsuite?');
+        }
+
+        return $files;
     }
 }
