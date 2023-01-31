@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1.4
 
 # Base image
-ARG PERL_VERSION=5.36
+ARG PERL_VERSION=5.37
 FROM perl:${PERL_VERSION} AS perl
 WORKDIR /cucumber
 
