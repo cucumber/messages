@@ -252,9 +252,9 @@ type PickleTag struct {
 }
 
 type Source struct {
-	Uri       string          `json:"uri"`
-	Data      string          `json:"data"`
-	MediaType SourceMediaType `json:"mediaType"`
+	Uri       string `json:"uri"`
+	Data      string `json:"data"`
+	MediaType string `json:"mediaType"`
 }
 
 type SourceReference struct {
@@ -410,24 +410,6 @@ func (e PickleStepType) String() string {
 		return "Outcome"
 	default:
 		panic("Bad enum value for PickleStepType")
-	}
-}
-
-type SourceMediaType string
-
-const (
-	SourceMediaType_TEXT_X_CUCUMBER_GHERKIN_PLAIN    SourceMediaType = "text/x.cucumber.gherkin+plain"
-	SourceMediaType_TEXT_X_CUCUMBER_GHERKIN_MARKDOWN SourceMediaType = "text/x.cucumber.gherkin+markdown"
-)
-
-func (e SourceMediaType) String() string {
-	switch e {
-	case SourceMediaType_TEXT_X_CUCUMBER_GHERKIN_PLAIN:
-		return "text/x.cucumber.gherkin+plain"
-	case SourceMediaType_TEXT_X_CUCUMBER_GHERKIN_MARKDOWN:
-		return "text/x.cucumber.gherkin+markdown"
-	default:
-		panic("Bad enum value for SourceMediaType")
 	}
 }
 

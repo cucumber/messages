@@ -3236,7 +3236,7 @@ use Scalar::Util qw( blessed );
 my %types = (
    uri => 'string',
    data => 'string',
-   media_type => '',
+   media_type => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -3280,29 +3280,12 @@ has data =>
 The media type of the file. Can be used to specify custom types, such as
  text/x.cucumber.gherkin+plain
 
-
-Available constants for valid values of this field:
-
-=over
-
-=item * MEDIATYPE_TEXT_X_CUCUMBER_GHERKIN_PLAIN
-
-=item * MEDIATYPE_TEXT_X_CUCUMBER_GHERKIN_MARKDOWN
-
-=back
-
 =cut
-
-
-use constant {
-   MEDIATYPE_TEXT_X_CUCUMBER_GHERKIN_PLAIN => 'text/x.cucumber.gherkin+plain',
-   MEDIATYPE_TEXT_X_CUCUMBER_GHERKIN_MARKDOWN => 'text/x.cucumber.gherkin+markdown',
-   };
 
 has media_type =>
     (is => 'ro',
      required => 1,
-     default => sub { MEDIATYPE_TEXT_X_CUCUMBER_GHERKIN_PLAIN },
+     default => sub { '' },
     );
 
 

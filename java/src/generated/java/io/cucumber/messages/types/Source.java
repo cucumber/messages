@@ -20,12 +20,12 @@ import static java.util.Objects.requireNonNull;
 public final class Source {
     private final String uri;
     private final String data;
-    private final SourceMediaType mediaType;
+    private final String mediaType;
 
     public Source(
         String uri,
         String data,
-        SourceMediaType mediaType
+        String mediaType
     ) {
         this.uri = requireNonNull(uri, "Source.uri cannot be null");
         this.data = requireNonNull(data, "Source.data cannot be null");
@@ -51,7 +51,7 @@ public final class Source {
      * The media type of the file. Can be used to specify custom types, such as
      * text/x.cucumber.gherkin+plain
      */
-    public SourceMediaType getMediaType() {
+    public String getMediaType() {
         return mediaType;
     }
 

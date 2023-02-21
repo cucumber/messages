@@ -330,7 +330,7 @@ will only have one of its fields set, which indicates the payload of the message
 | ----- | ---- | ----------- | ----------- |
 | `uri` | string | yes | |
 | `data` | string | yes | |
-| `mediaType` | [SourceMediaType](#sourcemediatype) | yes | |
+| `mediaType` | string | yes | |
 
 ## SourceReference
 
@@ -500,14 +500,6 @@ One of the following:
 * `"Context"`
 * `"Action"`
 * `"Outcome"`
-
-
-## SourceMediaType
-
-One of the following:
-
-* `"text/x.cucumber.gherkin+plain"`
-* `"text/x.cucumber.gherkin+markdown"`
 
 
 ## StepDefinitionPatternType

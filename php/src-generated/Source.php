@@ -43,7 +43,7 @@ final class Source implements JsonSerializable
          * The media type of the file. Can be used to specify custom types, such as
          * text/x.cucumber.gherkin+plain
          */
-        public readonly Source\MediaType $mediaType = Source\MediaType::TEXT_X_CUCUMBER_GHERKIN_PLAIN,
+        public readonly string $mediaType = '',
     ) {
     }
 
@@ -61,7 +61,7 @@ final class Source implements JsonSerializable
         return new self(
             (string) $arr['uri'],
             (string) $arr['data'],
-            Source\MediaType::from((string) $arr['mediaType']),
+            (string) $arr['mediaType'],
         );
     }
 

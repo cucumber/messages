@@ -471,7 +471,7 @@ export class Source {
 
   data: string = ''
 
-  mediaType: SourceMediaType = SourceMediaType.TEXT_X_CUCUMBER_GHERKIN_PLAIN
+  mediaType: string = ''
 }
 
 export class SourceReference {
@@ -675,11 +675,6 @@ export enum PickleStepType {
   CONTEXT = 'Context',
   ACTION = 'Action',
   OUTCOME = 'Outcome',
-}
-
-export enum SourceMediaType {
-  TEXT_X_CUCUMBER_GHERKIN_PLAIN = 'text/x.cucumber.gherkin+plain',
-  TEXT_X_CUCUMBER_GHERKIN_MARKDOWN = 'text/x.cucumber.gherkin+markdown',
 }
 
 export enum StepDefinitionPatternType {
