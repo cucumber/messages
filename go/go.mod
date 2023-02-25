@@ -2,7 +2,7 @@ module github.com/cucumber/messages/go/v21
 
 require (
 	github.com/gofrs/uuid v4.3.1+incompatible
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 )
 
 require (
