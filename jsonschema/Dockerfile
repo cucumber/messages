@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1.4
 ARG LANGUAGE=ruby
 
-FROM ruby:3.2.1-alpine AS ruby
+FROM ruby:3.2.2-alpine AS ruby
 
 RUN apk add coreutils
 
