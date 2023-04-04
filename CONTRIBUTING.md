@@ -26,6 +26,12 @@ This requires various tooling to be installed on your computer, including Ruby a
 docker run --volume $PWD:/app --user 1000 -it cucumber/cucumber-build:latest bash
 ```
 
+For Windows (Powershell):
+
+```shell
+docker run --volume  ${PWD}:/app --user 1000 -it cucumber/cucumber-build:latest bash
+```
+
 You can then run the same command as noted previously.
 
 ### New files
@@ -34,4 +40,4 @@ If you're adding a new file to the `jsonschema` directory, you'll need to add a 
 
 ## Tests
 
-Some of the language-specific diretories contain some smoke tests to ensure (de)serialization, validation etc are working right. If you happen to change one of the messages that's constructed by these tests, you may need to update them. If you're not sure, raise a draft PR and see what happens in CI.
+Some of the language-specific directories contain some smoke tests to ensure (de)serialization, validation etc are working right. If you happen to change one of the messages that's constructed by these tests, you may need to update them. If you're not sure, raise a draft PR and see what happens in CI.
