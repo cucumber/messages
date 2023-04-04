@@ -14,13 +14,14 @@ require: ## Check requirements for the code generation (ruby, php, csplit, tail 
 
 clean: ## Remove automatically generated files and related artifacts
 	rm -rf build/messages.php
+	rm -rf build/Generated*.php.tmp
 	rm -rf src-generated/*
 
 build/messages.php: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/php.php.erb ../jsonschema/scripts/templates/php.enum.php.erb
 	mkdir -p build
 	ruby ../jsonschema/scripts/codegen.rb Php ../jsonschema php.php.erb > build/messages.php
 	ruby ../jsonschema/scripts/codegen.rb Php ../jsonschema php.enum.php.erb >> build/messages.php
-	csplit --quiet --prefix=build/Generated --suffix-format=%02d.php.tmp --elide-empty-files build/messages.php /^.*[.]php$$/ {*}
+	csplit --quiet --prefix=build/Generated --suffix-format=%02d.php.tmp --elide-empty-files build/messages.php /^[A-Za-z/.]*[.]php/ {*}
 	rm -rf src-generated/*
-	for file in build/Generated**; do mkdir -p src-generated/$$(head -n 1 $$file | sed 's/[^/]*.php$$//'); done
-	for file in build/Generated**; do tail -n +2 $$file > src-generated/$$(head -n 1 $$file); rm $$file; done
+	for file in build/Generated**; do mkdir -p src-generated/$$(head -n 1 $$file | sed 's/[^/]*.php[\r]*$$//'); done
+	for file in build/Generated**; do tail -n +2 $$file > src-generated/$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done

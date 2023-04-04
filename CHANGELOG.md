@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- Corrected Java and PHP generators to allow running using Docker on Windows ([#146](https://github.com/cucumber/messages/issues/146))
+
 ## [21.0.1] - 2022-12-17
 ### Fixed
 - [Java] Suppress warnings for missing javadoc ([#128](https://github.com/cucumber/messages/pull/128))
