@@ -194,11 +194,12 @@ type Product struct {
 }
 
 type ParameterType struct {
-	Name                            string   `json:"name"`
-	RegularExpressions              []string `json:"regularExpressions"`
-	PreferForRegularExpressionMatch bool     `json:"preferForRegularExpressionMatch"`
-	UseForSnippets                  bool     `json:"useForSnippets"`
-	Id                              string   `json:"id"`
+	Name                            string           `json:"name"`
+	RegularExpressions              []string         `json:"regularExpressions"`
+	PreferForRegularExpressionMatch bool             `json:"preferForRegularExpressionMatch"`
+	UseForSnippets                  bool             `json:"useForSnippets"`
+	Id                              string           `json:"id"`
+	SourceReference                 *SourceReference `json:"sourceReference,omitempty"`
 }
 
 type ParseError struct {

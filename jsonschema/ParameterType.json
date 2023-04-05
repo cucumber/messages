@@ -29,6 +29,9 @@
     },
     "id": {
       "type": "string"
+    },
+    "sourceReference": {
+      "$ref": "./SourceReference.json"
     }
   },
   "type": "object"

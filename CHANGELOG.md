@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added source reference to parameter type ([#45](https://github.com/cucumber/messages/pull/145))
+
 ### Fixed
 - Corrected Java and PHP generators to allow running using Docker on Windows ([#146](https://github.com/cucumber/messages/issues/146))
 

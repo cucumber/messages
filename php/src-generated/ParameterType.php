@@ -35,6 +35,7 @@ final class ParameterType implements JsonSerializable
         public readonly bool $preferForRegularExpressionMatch = false,
         public readonly bool $useForSnippets = false,
         public readonly string $id = '',
+        public readonly ?SourceReference $sourceReference = null,
     ) {
     }
 
@@ -50,6 +51,7 @@ final class ParameterType implements JsonSerializable
         self::ensurePreferForRegularExpressionMatch($arr);
         self::ensureUseForSnippets($arr);
         self::ensureId($arr);
+        self::ensureSourceReference($arr);
 
         return new self(
             (string) $arr['name'],
@@ -57,6 +59,7 @@ final class ParameterType implements JsonSerializable
             (bool) $arr['preferForRegularExpressionMatch'],
             (bool) $arr['useForSnippets'],
             (string) $arr['id'],
+            isset($arr['sourceReference']) ? SourceReference::fromArray($arr['sourceReference']) : null,
         );
     }
 
@@ -122,6 +125,16 @@ final class ParameterType implements JsonSerializable
         }
         if (array_key_exists('id', $arr) && is_array($arr['id'])) {
             throw new SchemaViolationException('Property \'id\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{sourceReference?: array} $arr
+     */
+    private static function ensureSourceReference(array $arr): void
+    {
+        if (array_key_exists('sourceReference', $arr) && !is_array($arr['sourceReference'])) {
+            throw new SchemaViolationException('Property \'sourceReference\' was not array');
         }
     }
 }

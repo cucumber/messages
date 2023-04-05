@@ -2494,6 +2494,7 @@ my %types = (
    prefer_for_regular_expression_match => 'boolean',
    use_for_snippets => 'boolean',
    id => 'string',
+   source_reference => 'Cucumber::Messages::SourceReference',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -2562,6 +2563,16 @@ has id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
+    );
+
+
+=head4 source_reference
+
+
+=cut
+
+has source_reference =>
+    (is => 'ro',
     );
 
 

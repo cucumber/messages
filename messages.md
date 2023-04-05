@@ -255,6 +255,7 @@ will only have one of its fields set, which indicates the payload of the message
 | `preferForRegularExpressionMatch` | boolean | yes | |
 | `useForSnippets` | boolean | yes | |
 | `id` | string | yes | |
+| `sourceReference` | [SourceReference](#sourcereference) | no | |
 
 ## ParseError
 
