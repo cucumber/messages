@@ -1,0 +1,65 @@
+<%- @schemas.each do |key, schema| -%>
+<% myclass = underscore(class_name(key)) %>
+<%= myclass %>.hpp
+#pragma once
+
+#include <cucumber/message.hpp>
+<%-
+    incs = []
+    schema['properties'].each do |property_name, property|
+        type = underscore(type_for(class_name(key), property_name, property))
+        incs.append(type) if !type.start_with?("std::")
+    end
+
+    if incs.length > 0
+-%>
+
+    <%- incs.each do |type| -%>
+#include <cucumber/messages/<%= type %>.hpp>
+    <%- end -%>
+<%- end -%>
+
+namespace cucumber::messages {
+
+//
+// Represents the <%= class_name(key) %> message in Cucumber's message protocol
+// @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+<%- if not (schema['description'] || []).empty? -%>
+//
+<%= format_description(schema['description'], indent_string: '') %>
+<%- end -%>
+//
+// Generated code
+
+struct <%= myclass %> : cucumber::message
+{
+  <%- schema['properties'].each do |property_name, property| -%>
+    <%= underscore(type_for(class_name(key), property_name, property)) -%> <%= underscore(property_name) %>;
+  <%- end -%>
+
+    std::string to_string() const override;
+};
+
+}
+<%= myclass %>.cpp
+#include <sstream>
+
+#include <cucumber/messages/<%= myclass %>.hpp>
+
+namespace cucumber::messages {
+
+std::string
+<%= myclass %>::to_string() const
+{
+    std::ostringstream oss;
+
+    oss
+    <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+        << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << <%= underscore(property_name) %>
+    <%- end -%>
+        ;
+
+    return oss.str();
+}
+
+}<%- end -%>

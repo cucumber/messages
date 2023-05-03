@@ -1,0 +1,21 @@
+<% @enums.each do |enum| -%>
+<% ename = underscore(enum[:name]) %>
+<%= ename %>.hpp
+#pragma once
+
+#include <unordered_map>
+#include <string_view>
+
+namespace cucumber::messages {
+
+enum class <%= ename %>
+<%- enum[:values].each_with_index do |value, index| -%>
+  <%= enum_constant(value) %> = '<%= value %>'
+<%- end -%>
+end
+
+using <%= ename %>_map = std::unordered_map<ename, std::string_view>;
+
+}
+
+<%- end -%>
