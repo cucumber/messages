@@ -3,12 +3,19 @@
 <%= myclass %>.hpp
 #pragma once
 
+#include <vector>
+
 #include <cucumber/message.hpp>
 <%-
     incs = []
     schema['properties'].each do |property_name, property|
         type = underscore(type_for(class_name(key), property_name, property))
-        incs.append(type) if !type.start_with?("std::")
+        if m = /std::vector<(?<vtype>.+)>/.match(type)
+            type = m['vtype']
+        end
+        next if type.start_with?("std::")
+        next if type == "bool"
+        incs.append(type)
     end
 
     if incs.length > 0
@@ -34,7 +41,18 @@ namespace cucumber::messages {
 struct <%= myclass %> : cucumber::message
 {
   <%- schema['properties'].each do |property_name, property| -%>
-    <%= underscore(type_for(class_name(key), property_name, property)) -%> <%= underscore(property_name) %>;
+    <%- type = underscore(type_for(class_name(key), property_name, property)) -%>
+    <%- if m = /std::vector<(?<vtype>.+)>/.match(type) -%>
+        <%- if !m['vtype'].start_with?("std::") -%>
+    std::vector<cucumber::messages::<%= m['vtype'] -%>> <%= underscore(property_name) %>;
+        <%- else -%>
+    <%= type -%> <%= underscore(property_name) %>;
+        <%- end -%>
+    <%- elsif !type.start_with?("std::") && type != "bool" -%>
+    cucumber::messages::<%= type -%> <%= underscore(property_name) %>;
+    <%- else -%>
+    <%= type -%> <%= underscore(property_name) %>;
+    <%- end -%>
   <%- end -%>
 
     std::string to_string() const override;
@@ -44,6 +62,7 @@ struct <%= myclass %> : cucumber::message
 <%= myclass %>.cpp
 #include <sstream>
 
+#include <cucumber/utils.hpp>
 #include <cucumber/messages/<%= myclass %>.hpp>
 
 namespace cucumber::messages {
@@ -55,7 +74,13 @@ std::string
 
     oss
     <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+    <%- type = underscore(type_for(class_name(key), property_name, property)) -%>
+    <%- std_vec = /std::vector<std::.+>/.match(type) -%>
+    <%- if std_vec -%>
+        << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << cucumber::to_string(<%= underscore(property_name) %>)
+    <%- else -%>
         << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << <%= underscore(property_name) %>
+    <%- end -%>
     <%- end -%>
         ;
 

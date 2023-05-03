@@ -1,0 +1,142 @@
+add_library(cucumber-messages_library)
+add_library(cucumber::messages ALIAS cucumber-messages_library)
+
+set(INC_DIR "${CMAKE_SOURCE_DIR}/include")
+
+target_sources(
+    cucumber-messages_library
+    PRIVATE
+        ${INC_DIR}/cucumber/messages/attachment_content_encoding.hpp
+        ${INC_DIR}/cucumber/messages/attachment.hpp
+        ${INC_DIR}/cucumber/messages/background.hpp
+        ${INC_DIR}/cucumber/messages/ci.hpp
+        ${INC_DIR}/cucumber/messages/comment.hpp
+        ${INC_DIR}/cucumber/messages/data_table.hpp
+        ${INC_DIR}/cucumber/messages/doc_string.hpp
+        ${INC_DIR}/cucumber/messages/duration.hpp
+        ${INC_DIR}/cucumber/messages/envelope.hpp
+        ${INC_DIR}/cucumber/messages/examples.hpp
+        ${INC_DIR}/cucumber/messages/exception.hpp
+        ${INC_DIR}/cucumber/messages/feature_child.hpp
+        ${INC_DIR}/cucumber/messages/feature.hpp
+        ${INC_DIR}/cucumber/messages/gherkin_document.hpp
+        ${INC_DIR}/cucumber/messages/git.hpp
+        ${INC_DIR}/cucumber/messages/group.hpp
+        ${INC_DIR}/cucumber/messages/hook.hpp
+        ${INC_DIR}/cucumber/messages/java_method.hpp
+        ${INC_DIR}/cucumber/messages/java_stack_trace_element.hpp
+        ${INC_DIR}/cucumber/messages/location.hpp
+        ${INC_DIR}/cucumber/messages/meta.hpp
+        ${INC_DIR}/cucumber/messages/parameter_type.hpp
+        ${INC_DIR}/cucumber/messages/parse_error.hpp
+        ${INC_DIR}/cucumber/messages/pickle_doc_string.hpp
+        ${INC_DIR}/cucumber/messages/pickle.hpp
+        ${INC_DIR}/cucumber/messages/pickle_step_argument.hpp
+        ${INC_DIR}/cucumber/messages/pickle_step.hpp
+        ${INC_DIR}/cucumber/messages/pickle_step_type.hpp
+        ${INC_DIR}/cucumber/messages/pickle_table_cell.hpp
+        ${INC_DIR}/cucumber/messages/pickle_table.hpp
+        ${INC_DIR}/cucumber/messages/pickle_table_row.hpp
+        ${INC_DIR}/cucumber/messages/pickle_tag.hpp
+        ${INC_DIR}/cucumber/messages/product.hpp
+        ${INC_DIR}/cucumber/messages/rule_child.hpp
+        ${INC_DIR}/cucumber/messages/rule.hpp
+        ${INC_DIR}/cucumber/messages/scenario.hpp
+        ${INC_DIR}/cucumber/messages/source.hpp
+        ${INC_DIR}/cucumber/messages/source_media_type.hpp
+        ${INC_DIR}/cucumber/messages/source_reference.hpp
+        ${INC_DIR}/cucumber/messages/step_definition.hpp
+        ${INC_DIR}/cucumber/messages/step_definition_pattern.hpp
+        ${INC_DIR}/cucumber/messages/step_definition_pattern_type.hpp
+        ${INC_DIR}/cucumber/messages/step.hpp
+        ${INC_DIR}/cucumber/messages/step_keyword_type.hpp
+        ${INC_DIR}/cucumber/messages/step_match_argument.hpp
+        ${INC_DIR}/cucumber/messages/step_match_arguments_list.hpp
+        ${INC_DIR}/cucumber/messages/table_cell.hpp
+        ${INC_DIR}/cucumber/messages/table_row.hpp
+        ${INC_DIR}/cucumber/messages/tag.hpp
+        ${INC_DIR}/cucumber/messages/test_case_finished.hpp
+        ${INC_DIR}/cucumber/messages/test_case.hpp
+        ${INC_DIR}/cucumber/messages/test_case_started.hpp
+        ${INC_DIR}/cucumber/messages/test_run_finished.hpp
+        ${INC_DIR}/cucumber/messages/test_run_started.hpp
+        ${INC_DIR}/cucumber/messages/test_step_finished.hpp
+        ${INC_DIR}/cucumber/messages/test_step.hpp
+        ${INC_DIR}/cucumber/messages/test_step_result.hpp
+        ${INC_DIR}/cucumber/messages/test_step_result_status.hpp
+        ${INC_DIR}/cucumber/messages/test_step_started.hpp
+        ${INC_DIR}/cucumber/messages/timestamp.hpp
+        ${INC_DIR}/cucumber/messages/undefined_parameter_type.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/utils.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/attachment.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/background.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/ci.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/comment.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/data_table.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/doc_string.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/duration.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/envelope.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/examples.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/exception.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/feature_child.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/feature.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/gherkin_document.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/git.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/group.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/hook.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/java_method.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/java_stack_trace_element.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/location.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/meta.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/parameter_type.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/parse_error.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/pickle.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/pickle_doc_string.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/pickle_step_argument.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/pickle_step.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/pickle_table_cell.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/pickle_table.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/pickle_table_row.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/pickle_tag.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/product.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/rule_child.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/rule.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/scenario.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/source.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/source_reference.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/step.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/step_definition.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/step_definition_pattern.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/step_match_argument.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/step_match_arguments_list.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/table_cell.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/table_row.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/tag.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_case.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_case_finished.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_case_started.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_run_finished.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_run_started.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_step.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_step_finished.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_step_result.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/test_step_started.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/timestamp.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/undefined_parameter_type.cpp
+)
+
+target_include_directories(
+    cucumber-messages_library
+    PUBLIC
+        $<BUILD_INTERFACE:${INC_DIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
+    PRIVATE
+        ${INC_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+set_target_properties(
+    cucumber-messages_library
+    PROPERTIES
+    OUTPUT_NAME cucumber_messages
+)
