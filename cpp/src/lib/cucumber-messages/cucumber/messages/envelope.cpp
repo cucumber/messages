@@ -1,0 +1,36 @@
+#include <sstream>
+
+#include <cucumber/utils.hpp>
+#include <cucumber/messages/envelope.hpp>
+
+namespace cucumber::messages {
+
+std::string
+envelope::to_string() const
+{
+    std::ostringstream oss;
+
+    oss
+        << "attachment=" << attachment
+        << ", gherkin_document=" << gherkin_document
+        << ", hook=" << hook
+        << ", meta=" << meta
+        << ", parameter_type=" << parameter_type
+        << ", parse_error=" << parse_error
+        << ", pickle=" << pickle
+        << ", source=" << source
+        << ", step_definition=" << step_definition
+        << ", test_case=" << test_case
+        << ", test_case_finished=" << test_case_finished
+        << ", test_case_started=" << test_case_started
+        << ", test_run_finished=" << test_run_finished
+        << ", test_run_started=" << test_run_started
+        << ", test_step_finished=" << test_step_finished
+        << ", test_step_started=" << test_step_started
+        << ", undefined_parameter_type=" << undefined_parameter_type
+        ;
+
+    return oss.str();
+}
+
+}
