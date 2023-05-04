@@ -13,8 +13,9 @@ add_subdirectory(src)
 
 install(
     TARGETS
-        cucumber-messages_library
+        cucumber-messages
     EXPORT cucumber-messages-config
+    FILE_SET cucumber_messages_headers
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}

@@ -1,3 +1,5 @@
-build/
 include/cucumber/messages/
 src/lib/cucumber-messages/cucumber/messages/
+.configured
+.built
+build/

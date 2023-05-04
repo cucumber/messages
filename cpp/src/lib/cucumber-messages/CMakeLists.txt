@@ -1,11 +1,17 @@
-add_library(cucumber-messages_library)
-add_library(cucumber::messages ALIAS cucumber-messages_library)
+add_library(cucumber-messages)
+add_library(cucumber::messages ALIAS cucumber-messages)
 
 set(INC_DIR "${CMAKE_SOURCE_DIR}/include")
 
 target_sources(
-    cucumber-messages_library
-    PRIVATE
+    cucumber-messages
+    PUBLIC
+    FILE_SET
+        "cucumber_messages_headers"
+        TYPE HEADERS
+        BASE_DIRS ${INC_DIR}
+        FILES
+        ${INC_DIR}/cucumber/message.hpp
         ${INC_DIR}/cucumber/messages/attachment_content_encoding.hpp
         ${INC_DIR}/cucumber/messages/attachment.hpp
         ${INC_DIR}/cucumber/messages/background.hpp
@@ -67,6 +73,7 @@ target_sources(
         ${INC_DIR}/cucumber/messages/test_step_started.hpp
         ${INC_DIR}/cucumber/messages/timestamp.hpp
         ${INC_DIR}/cucumber/messages/undefined_parameter_type.hpp
+    PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/utils.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/attachment.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/cucumber/messages/background.cpp
@@ -126,17 +133,16 @@ target_sources(
 )
 
 target_include_directories(
-    cucumber-messages_library
-    PUBLIC
+    cucumber-messages
+    INTERFACE
         $<BUILD_INTERFACE:${INC_DIR}>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
     PRIVATE
-        ${INC_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 set_target_properties(
-    cucumber-messages_library
+    cucumber-messages
     PROPERTIES
     OUTPUT_NAME cucumber_messages
 )

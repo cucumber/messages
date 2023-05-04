@@ -17,7 +17,7 @@ require: ## Check requirements for the code generation (ruby, csplit and tail ar
 	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
 
 clean: ## Remove automatically generated files and related artifacts
-	rm -rf $(GEN_DIRS)
+	rm -rf $(GEN_DIRS) build .configured
 
 .generate-messages: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/cpp.hpp.erb ../jsonschema/scripts/templates/cpp.enum.hpp.erb
 	ruby ../jsonschema/scripts/codegen.rb Cpp ../jsonschema cpp.hpp.erb > Generated.hpp.tmp
@@ -36,3 +36,13 @@ clean: ## Remove automatically generated files and related artifacts
 	done
 
 	mv $(INC_DIR)/*.cpp $(LIB_DIR)/ || true
+
+clean-build:
+	rm -rf build .configured .built
+
+.configured:
+	mkdir -p build
+	cmake -S . -B build && touch $@
+
+.built: .configured
+	cmake --build build --parallel && touch $@
