@@ -36,7 +36,7 @@ to_string(<%= ename %> v)
 
     static const map_type m = {
 <%- enum[:values].each_with_index do |value, index| -%>
-        { <%= enum_constant(value) %>, "<%= value %>" }<%= index < enum[:values].length-1 ? ',' : '' %>
+        { <%= ename %>::<%= enum_constant(value) %>, "<%= value %>" }<%= index < enum[:values].length-1 ? ',' : '' %>
 <% end -%>
     };
 

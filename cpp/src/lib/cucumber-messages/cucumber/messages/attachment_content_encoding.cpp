@@ -10,8 +10,8 @@ to_string(attachment_content_encoding v)
     using map_type = std::unordered_map<attachment_content_encoding, std::string_view>;
 
     static const map_type m = {
-        { IDENTITY, "IDENTITY" },
-        { BASE64, "BASE64" }
+        { attachment_content_encoding::IDENTITY, "IDENTITY" },
+        { attachment_content_encoding::BASE64, "BASE64" }
     };
 
     return m.at(v);

@@ -10,10 +10,10 @@ to_string(pickle_step_type v)
     using map_type = std::unordered_map<pickle_step_type, std::string_view>;
 
     static const map_type m = {
-        { UNKNOWN, "Unknown" },
-        { CONTEXT, "Context" },
-        { ACTION, "Action" },
-        { OUTCOME, "Outcome" }
+        { pickle_step_type::UNKNOWN, "Unknown" },
+        { pickle_step_type::CONTEXT, "Context" },
+        { pickle_step_type::ACTION, "Action" },
+        { pickle_step_type::OUTCOME, "Outcome" }
     };
 
     return m.at(v);

@@ -10,8 +10,8 @@ to_string(step_definition_pattern_type v)
     using map_type = std::unordered_map<step_definition_pattern_type, std::string_view>;
 
     static const map_type m = {
-        { CUCUMBER_EXPRESSION, "CUCUMBER_EXPRESSION" },
-        { REGULAR_EXPRESSION, "REGULAR_EXPRESSION" }
+        { step_definition_pattern_type::CUCUMBER_EXPRESSION, "CUCUMBER_EXPRESSION" },
+        { step_definition_pattern_type::REGULAR_EXPRESSION, "REGULAR_EXPRESSION" }
     };
 
     return m.at(v);

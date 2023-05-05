@@ -10,8 +10,8 @@ to_string(source_media_type v)
     using map_type = std::unordered_map<source_media_type, std::string_view>;
 
     static const map_type m = {
-        { TEXT_X_CUCUMBER_GHERKIN_PLAIN, "text/x.cucumber.gherkin+plain" },
-        { TEXT_X_CUCUMBER_GHERKIN_MARKDOWN, "text/x.cucumber.gherkin+markdown" }
+        { source_media_type::TEXT_X_CUCUMBER_GHERKIN_PLAIN, "text/x.cucumber.gherkin+plain" },
+        { source_media_type::TEXT_X_CUCUMBER_GHERKIN_MARKDOWN, "text/x.cucumber.gherkin+markdown" }
     };
 
     return m.at(v);

@@ -10,13 +10,13 @@ to_string(test_step_result_status v)
     using map_type = std::unordered_map<test_step_result_status, std::string_view>;
 
     static const map_type m = {
-        { UNKNOWN, "UNKNOWN" },
-        { PASSED, "PASSED" },
-        { SKIPPED, "SKIPPED" },
-        { PENDING, "PENDING" },
-        { UNDEFINED, "UNDEFINED" },
-        { AMBIGUOUS, "AMBIGUOUS" },
-        { FAILED, "FAILED" }
+        { test_step_result_status::UNKNOWN, "UNKNOWN" },
+        { test_step_result_status::PASSED, "PASSED" },
+        { test_step_result_status::SKIPPED, "SKIPPED" },
+        { test_step_result_status::PENDING, "PENDING" },
+        { test_step_result_status::UNDEFINED, "UNDEFINED" },
+        { test_step_result_status::AMBIGUOUS, "AMBIGUOUS" },
+        { test_step_result_status::FAILED, "FAILED" }
     };
 
     return m.at(v);
