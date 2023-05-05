@@ -29,7 +29,7 @@ struct step : cucumber::message
     cucumber::messages::data_table data_table;
     std::string id;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

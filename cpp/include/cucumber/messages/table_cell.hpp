@@ -21,7 +21,7 @@ struct table_cell : cucumber::message
     cucumber::messages::location location;
     std::string value;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

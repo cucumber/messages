@@ -24,7 +24,7 @@ struct test_case : cucumber::message
     std::string pickle_id;
     std::vector<cucumber::messages::test_step> test_steps;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

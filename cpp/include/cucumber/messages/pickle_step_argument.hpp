@@ -22,7 +22,7 @@ struct pickle_step_argument : cucumber::message
     cucumber::messages::pickle_doc_string doc_string;
     cucumber::messages::pickle_table data_table;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

@@ -18,7 +18,7 @@ struct pickle_table_row : cucumber::message
 {
     std::vector<cucumber::messages::pickle_table_cell> cells;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

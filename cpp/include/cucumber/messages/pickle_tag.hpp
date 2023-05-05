@@ -19,7 +19,7 @@ struct pickle_tag : cucumber::message
     std::string name;
     std::string ast_node_id;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

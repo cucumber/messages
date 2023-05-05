@@ -22,7 +22,7 @@ struct tag : cucumber::message
     std::string name;
     std::string id;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

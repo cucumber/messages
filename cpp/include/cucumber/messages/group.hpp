@@ -20,7 +20,7 @@ struct group : cucumber::message
     std::size_t start;
     std::string value;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

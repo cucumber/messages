@@ -19,7 +19,7 @@ struct product : cucumber::message
     std::string name;
     std::string version;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

@@ -22,7 +22,7 @@ struct test_case_started : cucumber::message
     std::string worker_id;
     cucumber::messages::timestamp timestamp;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

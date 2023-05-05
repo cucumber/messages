@@ -19,7 +19,7 @@ struct exception : cucumber::message
     std::string type;
     std::string message;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

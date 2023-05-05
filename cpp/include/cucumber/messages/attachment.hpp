@@ -38,7 +38,7 @@ struct attachment : cucumber::message
     std::string test_step_id;
     std::string url;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

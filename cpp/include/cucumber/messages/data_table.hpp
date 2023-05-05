@@ -20,7 +20,7 @@ struct data_table : cucumber::message
     cucumber::messages::location location;
     std::vector<cucumber::messages::table_row> rows;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

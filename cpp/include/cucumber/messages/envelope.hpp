@@ -57,7 +57,7 @@ struct envelope : cucumber::message
     cucumber::messages::test_step_started test_step_started;
     cucumber::messages::undefined_parameter_type undefined_parameter_type;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

@@ -26,7 +26,7 @@ struct step_match_argument : cucumber::message
     cucumber::messages::group group;
     std::string parameter_type_name;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

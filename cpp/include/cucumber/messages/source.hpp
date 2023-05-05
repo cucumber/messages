@@ -24,7 +24,7 @@ struct source : cucumber::message
     std::string data;
     cucumber::messages::source_media_type media_type;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

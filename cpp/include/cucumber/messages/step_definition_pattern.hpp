@@ -19,7 +19,7 @@ struct step_definition_pattern : cucumber::message
     std::string source;
     cucumber::messages::step_definition_pattern_type type;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

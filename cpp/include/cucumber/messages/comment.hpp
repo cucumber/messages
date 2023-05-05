@@ -21,7 +21,7 @@ struct comment : cucumber::message
     cucumber::messages::location location;
     std::string text;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

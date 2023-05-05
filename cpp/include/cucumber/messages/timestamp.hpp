@@ -17,7 +17,7 @@ struct timestamp : cucumber::message
     std::size_t seconds;
     std::size_t nanos;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

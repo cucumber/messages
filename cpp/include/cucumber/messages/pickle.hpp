@@ -38,7 +38,7 @@ struct pickle : cucumber::message
     std::vector<cucumber::messages::pickle_tag> tags;
     std::vector<std::string> ast_node_ids;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

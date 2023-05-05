@@ -22,7 +22,7 @@ struct test_run_finished : cucumber::message
     cucumber::messages::timestamp timestamp;
     cucumber::messages::exception exception;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

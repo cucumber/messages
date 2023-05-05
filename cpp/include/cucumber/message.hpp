@@ -9,7 +9,7 @@ namespace cucumber {
 
 struct message
 {
-    virtual std::string to_string() const = 0;
+    std::string to_string() const;
 };
 
 template <

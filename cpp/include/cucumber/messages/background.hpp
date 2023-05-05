@@ -24,7 +24,7 @@ struct background : cucumber::message
     std::vector<cucumber::messages::step> steps;
     std::string id;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

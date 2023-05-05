@@ -26,7 +26,7 @@ struct feature : cucumber::message
     std::string description;
     std::vector<cucumber::messages::feature_child> children;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

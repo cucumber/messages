@@ -23,7 +23,7 @@ struct ci : cucumber::message
     std::string build_number;
     cucumber::messages::git git;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

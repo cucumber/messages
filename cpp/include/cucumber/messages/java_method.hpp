@@ -18,7 +18,7 @@ struct java_method : cucumber::message
     std::string method_name;
     std::vector<std::string> method_parameter_types;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

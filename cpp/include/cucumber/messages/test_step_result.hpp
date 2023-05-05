@@ -23,7 +23,7 @@ struct test_step_result : cucumber::message
     cucumber::messages::test_step_result_status status;
     cucumber::messages::exception exception;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

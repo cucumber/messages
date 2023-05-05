@@ -21,7 +21,7 @@ struct doc_string : cucumber::message
     std::string content;
     std::string delimiter;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

@@ -26,7 +26,7 @@ struct rule : cucumber::message
     std::vector<cucumber::messages::rule_child> children;
     std::string id;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

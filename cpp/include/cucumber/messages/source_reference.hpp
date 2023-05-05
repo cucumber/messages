@@ -26,7 +26,7 @@ struct source_reference : cucumber::message
     cucumber::messages::java_stack_trace_element java_stack_trace_element;
     cucumber::messages::location location;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

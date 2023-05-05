@@ -17,7 +17,7 @@ struct pickle_doc_string : cucumber::message
     std::string media_type;
     std::string content;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

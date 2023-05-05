@@ -28,7 +28,7 @@ struct scenario : cucumber::message
     std::vector<cucumber::messages::examples> examples;
     std::string id;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

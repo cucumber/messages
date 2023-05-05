@@ -25,7 +25,7 @@ struct pickle_step : cucumber::message
     cucumber::messages::pickle_step_type type;
     std::string text;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

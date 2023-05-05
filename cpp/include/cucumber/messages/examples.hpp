@@ -28,7 +28,7 @@ struct examples : cucumber::message
     std::vector<cucumber::messages::table_row> table_body;
     std::string id;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

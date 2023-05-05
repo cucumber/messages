@@ -18,7 +18,7 @@ struct test_run_started : cucumber::message
 {
     cucumber::messages::timestamp timestamp;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

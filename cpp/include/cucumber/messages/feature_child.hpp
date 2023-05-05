@@ -24,7 +24,7 @@ struct feature_child : cucumber::message
     cucumber::messages::background background;
     cucumber::messages::scenario scenario;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

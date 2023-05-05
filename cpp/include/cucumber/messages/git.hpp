@@ -22,7 +22,7 @@ struct git : cucumber::message
     std::string branch;
     std::string tag;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

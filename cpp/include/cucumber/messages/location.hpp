@@ -19,7 +19,7 @@ struct location : cucumber::message
     std::size_t line;
     std::size_t column;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

@@ -25,7 +25,7 @@ struct test_step : cucumber::message
     std::vector<std::string> step_definition_ids;
     std::vector<cucumber::messages::step_match_arguments_list> step_match_arguments_lists;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

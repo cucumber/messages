@@ -30,7 +30,7 @@ struct meta : cucumber::message
     cucumber::messages::product cpu;
     cucumber::messages::ci ci;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

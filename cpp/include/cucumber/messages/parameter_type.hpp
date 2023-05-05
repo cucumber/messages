@@ -23,7 +23,7 @@ struct parameter_type : cucumber::message
     std::string id;
     cucumber::messages::source_reference source_reference;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

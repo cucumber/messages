@@ -17,7 +17,7 @@ struct undefined_parameter_type : cucumber::message
     std::string expression;
     std::string name;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

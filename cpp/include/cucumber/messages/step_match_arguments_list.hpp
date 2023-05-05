@@ -18,7 +18,7 @@ struct step_match_arguments_list : cucumber::message
 {
     std::vector<cucumber::messages::step_match_argument> step_match_arguments;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

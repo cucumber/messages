@@ -19,7 +19,7 @@ struct parse_error : cucumber::message
     cucumber::messages::source_reference source;
     std::string message;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

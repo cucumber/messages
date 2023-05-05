@@ -18,7 +18,7 @@ struct java_stack_trace_element : cucumber::message
     std::string file_name;
     std::string method_name;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

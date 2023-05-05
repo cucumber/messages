@@ -21,7 +21,7 @@ struct step_definition : cucumber::message
     cucumber::messages::step_definition_pattern pattern;
     cucumber::messages::source_reference source_reference;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

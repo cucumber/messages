@@ -20,7 +20,7 @@ struct test_step_started : cucumber::message
     std::string test_step_id;
     cucumber::messages::timestamp timestamp;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

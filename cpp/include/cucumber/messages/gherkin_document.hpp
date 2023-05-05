@@ -28,7 +28,7 @@ struct gherkin_document : cucumber::message
     cucumber::messages::feature feature;
     std::vector<cucumber::messages::comment> comments;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }

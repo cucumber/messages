@@ -20,7 +20,7 @@ struct test_case_finished : cucumber::message
     cucumber::messages::timestamp timestamp;
     bool will_be_retried;
 
-    std::string to_string() const override;
+    std::string to_string() const;
 };
 
 }
