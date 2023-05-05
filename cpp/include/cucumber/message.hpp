@@ -3,6 +3,7 @@
 #include <type_traits>
 #include <vector>
 #include <string>
+#include <ostream>
 
 namespace cucumber {
 
