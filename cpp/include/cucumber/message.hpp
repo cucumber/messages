@@ -2,6 +2,7 @@
 
 #include <type_traits>
 #include <vector>
+#include <string>
 
 namespace cucumber {
 
