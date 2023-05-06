@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/step_definition_pattern_type.hpp>
 
@@ -14,12 +13,15 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct step_definition_pattern : cucumber::message
+struct step_definition_pattern
 {
     std::string source;
     cucumber::messages::step_definition_pattern_type type;
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const step_definition_pattern& msg);
 
 }

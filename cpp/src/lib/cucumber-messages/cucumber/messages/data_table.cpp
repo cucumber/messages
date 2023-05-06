@@ -1,6 +1,6 @@
 #include <sstream>
 
-#include <cucumber/utils.hpp>
+#include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/data_table.hpp>
 
 namespace cucumber::messages {
@@ -11,11 +11,19 @@ data_table::to_string() const
     std::ostringstream oss;
 
     oss
-        << "location=" << location
-        << ", rows=" << rows
+    << "location=" << location
+    << ", rows=" << rows
         ;
 
     return oss.str();
+}
+
+std::ostream&
+operator<<(std::ostream& os, const data_table& msg)
+{
+    os << msg.to_string();
+
+    return os;
 }
 
 }

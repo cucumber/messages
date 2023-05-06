@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/product.hpp>
 #include <cucumber/messages/product.hpp>
@@ -21,7 +20,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct meta : cucumber::message
+struct meta
 {
     std::string protocol_version;
     cucumber::messages::product implementation;
@@ -32,5 +31,8 @@ struct meta : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const meta& msg);
 
 }

@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 namespace cucumber::messages {
 
@@ -12,11 +11,14 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct pickle_table_cell : cucumber::message
+struct pickle_table_cell
 {
     std::string value;
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const pickle_table_cell& msg);
 
 }

@@ -1,6 +1,6 @@
 #include <sstream>
 
-#include <cucumber/utils.hpp>
+#include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/test_step_result.hpp>
 
 namespace cucumber::messages {
@@ -11,13 +11,21 @@ test_step_result::to_string() const
     std::ostringstream oss;
 
     oss
-        << "duration=" << duration
-        << ", message=" << message
-        << ", status=" << status
-        << ", exception=" << exception
+    << "duration=" << duration
+    << ", message=" << message
+    << ", status=" << status
+    << ", exception=" << exception
         ;
 
     return oss.str();
+}
+
+std::ostream&
+operator<<(std::ostream& os, const test_step_result& msg)
+{
+    os << msg.to_string();
+
+    return os;
 }
 
 }

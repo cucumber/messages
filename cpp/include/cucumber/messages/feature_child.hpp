@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/rule.hpp>
 #include <cucumber/messages/background.hpp>
@@ -18,7 +17,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct feature_child : cucumber::message
+struct feature_child
 {
     cucumber::messages::rule rule;
     cucumber::messages::background background;
@@ -26,5 +25,8 @@ struct feature_child : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const feature_child& msg);
 
 }

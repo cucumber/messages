@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/source_media_type.hpp>
 
@@ -18,7 +17,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct source : cucumber::message
+struct source
 {
     std::string uri;
     std::string data;
@@ -26,5 +25,8 @@ struct source : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const source& msg);
 
 }

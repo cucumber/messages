@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/location.hpp>
 
@@ -16,12 +15,15 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct table_cell : cucumber::message
+struct table_cell
 {
     cucumber::messages::location location;
     std::string value;
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const table_cell& msg);
 
 }

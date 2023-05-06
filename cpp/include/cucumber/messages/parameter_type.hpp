@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/source_reference.hpp>
 
@@ -14,7 +13,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct parameter_type : cucumber::message
+struct parameter_type
 {
     std::string name;
     std::vector<std::string> regular_expressions;
@@ -25,5 +24,8 @@ struct parameter_type : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const parameter_type& msg);
 
 }

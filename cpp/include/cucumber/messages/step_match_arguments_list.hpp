@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/step_match_argument.hpp>
 
@@ -14,11 +13,14 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct step_match_arguments_list : cucumber::message
+struct step_match_arguments_list
 {
     std::vector<cucumber::messages::step_match_argument> step_match_arguments;
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const step_match_arguments_list& msg);
 
 }

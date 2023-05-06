@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/location.hpp>
 #include <cucumber/messages/step_keyword_type.hpp>
@@ -19,7 +18,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct step : cucumber::message
+struct step
 {
     cucumber::messages::location location;
     std::string keyword;
@@ -31,5 +30,8 @@ struct step : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const step& msg);
 
 }

@@ -1,6 +1,6 @@
 #include <sstream>
 
-#include <cucumber/utils.hpp>
+#include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/pickle_step_argument.hpp>
 
 namespace cucumber::messages {
@@ -11,11 +11,19 @@ pickle_step_argument::to_string() const
     std::ostringstream oss;
 
     oss
-        << "doc_string=" << doc_string
-        << ", data_table=" << data_table
+    << "doc_string=" << doc_string
+    << ", data_table=" << data_table
         ;
 
     return oss.str();
+}
+
+std::ostream&
+operator<<(std::ostream& os, const pickle_step_argument& msg)
+{
+    os << msg.to_string();
+
+    return os;
 }
 
 }

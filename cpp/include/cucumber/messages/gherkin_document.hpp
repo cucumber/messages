@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/feature.hpp>
 #include <cucumber/messages/comment.hpp>
@@ -22,7 +21,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct gherkin_document : cucumber::message
+struct gherkin_document
 {
     std::string uri;
     cucumber::messages::feature feature;
@@ -30,5 +29,8 @@ struct gherkin_document : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const gherkin_document& msg);
 
 }

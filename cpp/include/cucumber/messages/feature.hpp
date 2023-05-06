@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/location.hpp>
 #include <cucumber/messages/tag.hpp>
@@ -16,7 +15,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct feature : cucumber::message
+struct feature
 {
     cucumber::messages::location location;
     std::vector<cucumber::messages::tag> tags;
@@ -28,5 +27,8 @@ struct feature : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const feature& msg);
 
 }

@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/group.hpp>
 
@@ -14,7 +13,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct group : cucumber::message
+struct group
 {
     std::vector<cucumber::messages::group> children;
     std::size_t start;
@@ -22,5 +21,8 @@ struct group : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const group& msg);
 
 }

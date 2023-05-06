@@ -4,8 +4,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 <%-
     incs = []
     schema['properties'].each do |property_name, property|
@@ -38,7 +37,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct <%= myclass %> : cucumber::message
+struct <%= myclass %>
 {
   <%- schema['properties'].each do |property_name, property| -%>
     <%- type = underscore(type_for(class_name(key), property_name, property)) -%>
@@ -58,11 +57,14 @@ struct <%= myclass %> : cucumber::message
     std::string to_string() const;
 };
 
+std::ostream&
+operator<<(std::ostream& os, const <%= myclass %>& msg);
+
 }
 <%= myclass %>.cpp
 #include <sstream>
 
-#include <cucumber/utils.hpp>
+#include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/<%= myclass %>.hpp>
 
 namespace cucumber::messages {
@@ -75,16 +77,19 @@ std::string
     oss
     <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
     <%- type = underscore(type_for(class_name(key), property_name, property)) -%>
-    <%- std_vec = /std::vector<std::.+>/.match(type) -%>
-    <%- if std_vec -%>
-        << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << cucumber::to_string(<%= underscore(property_name) %>)
-    <%- else -%>
-        << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << <%= underscore(property_name) %>
-    <%- end -%>
+    << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << <%= underscore(property_name) %>
     <%- end -%>
         ;
 
     return oss.str();
+}
+
+std::ostream&
+operator<<(std::ostream& os, const <%= myclass %>& msg)
+{
+    os << msg.to_string();
+
+    return os;
 }
 
 }<%- end -%>

@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/pickle_doc_string.hpp>
 #include <cucumber/messages/pickle_table.hpp>
@@ -17,12 +16,15 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct pickle_step_argument : cucumber::message
+struct pickle_step_argument
 {
     cucumber::messages::pickle_doc_string doc_string;
     cucumber::messages::pickle_table data_table;
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const pickle_step_argument& msg);
 
 }

@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/test_step_result.hpp>
 #include <cucumber/messages/timestamp.hpp>
@@ -15,7 +14,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct test_step_finished : cucumber::message
+struct test_step_finished
 {
     std::string test_case_started_id;
     std::string test_step_id;
@@ -24,5 +23,8 @@ struct test_step_finished : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const test_step_finished& msg);
 
 }

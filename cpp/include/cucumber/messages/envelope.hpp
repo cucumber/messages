@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/attachment.hpp>
 #include <cucumber/messages/gherkin_document.hpp>
@@ -37,7 +36,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct envelope : cucumber::message
+struct envelope
 {
     cucumber::messages::attachment attachment;
     cucumber::messages::gherkin_document gherkin_document;
@@ -59,5 +58,8 @@ struct envelope : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const envelope& msg);
 
 }

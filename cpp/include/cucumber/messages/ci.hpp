@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/git.hpp>
 
@@ -16,7 +15,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct ci : cucumber::message
+struct ci
 {
     std::string name;
     std::string url;
@@ -25,5 +24,8 @@ struct ci : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const ci& msg);
 
 }

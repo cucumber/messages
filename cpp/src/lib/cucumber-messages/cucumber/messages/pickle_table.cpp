@@ -1,6 +1,6 @@
 #include <sstream>
 
-#include <cucumber/utils.hpp>
+#include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/pickle_table.hpp>
 
 namespace cucumber::messages {
@@ -11,10 +11,18 @@ pickle_table::to_string() const
     std::ostringstream oss;
 
     oss
-        << "rows=" << rows
+    << "rows=" << rows
         ;
 
     return oss.str();
+}
+
+std::ostream&
+operator<<(std::ostream& os, const pickle_table& msg)
+{
+    os << msg.to_string();
+
+    return os;
 }
 
 }

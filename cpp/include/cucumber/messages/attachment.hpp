@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/attachment_content_encoding.hpp>
 #include <cucumber/messages/source.hpp>
@@ -27,7 +26,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct attachment : cucumber::message
+struct attachment
 {
     std::string body;
     cucumber::messages::attachment_content_encoding content_encoding;
@@ -40,5 +39,8 @@ struct attachment : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const attachment& msg);
 
 }

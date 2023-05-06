@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 namespace cucumber::messages {
 
@@ -12,7 +11,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct java_method : cucumber::message
+struct java_method
 {
     std::string class_name;
     std::string method_name;
@@ -20,5 +19,8 @@ struct java_method : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const java_method& msg);
 
 }

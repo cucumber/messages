@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/location.hpp>
 #include <cucumber/messages/table_cell.hpp>
@@ -17,7 +16,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct table_row : cucumber::message
+struct table_row
 {
     cucumber::messages::location location;
     std::vector<cucumber::messages::table_cell> cells;
@@ -25,5 +24,8 @@ struct table_row : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const table_row& msg);
 
 }

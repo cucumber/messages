@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 namespace cucumber::messages {
 
@@ -12,12 +11,15 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct undefined_parameter_type : cucumber::message
+struct undefined_parameter_type
 {
     std::string expression;
     std::string name;
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const undefined_parameter_type& msg);
 
 }

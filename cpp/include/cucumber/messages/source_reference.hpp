@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-#include <cucumber/message.hpp>
+#include <string>
 
 #include <cucumber/messages/java_method.hpp>
 #include <cucumber/messages/java_stack_trace_element.hpp>
@@ -19,7 +18,7 @@ namespace cucumber::messages {
 //
 // Generated code
 
-struct source_reference : cucumber::message
+struct source_reference
 {
     std::string uri;
     cucumber::messages::java_method java_method;
@@ -28,5 +27,8 @@ struct source_reference : cucumber::message
 
     std::string to_string() const;
 };
+
+std::ostream&
+operator<<(std::ostream& os, const source_reference& msg);
 
 }
