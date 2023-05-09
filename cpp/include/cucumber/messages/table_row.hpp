@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/location.hpp>
 #include <cucumber/messages/table_cell.hpp>
 
@@ -27,5 +29,9 @@ struct table_row
 
 std::ostream&
 operator<<(std::ostream& os, const table_row& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const table_row& m);
 
 }

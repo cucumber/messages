@@ -28,4 +28,14 @@ operator<<(std::ostream& os, const test_run_finished& msg)
     return os;
 }
 
+void to_json(json& j, const test_run_finished& m)
+{
+    j = json{
+        { "message", m.message },
+        { "success", m.success },
+        { "timestamp", m.timestamp },
+        { "exception", m.exception }
+    };
+}
+
 }

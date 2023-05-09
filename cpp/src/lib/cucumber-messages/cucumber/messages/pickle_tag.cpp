@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const pickle_tag& msg)
     return os;
 }
 
+void to_json(json& j, const pickle_tag& m)
+{
+    j = json{
+        { "name", m.name },
+        { "ast_node_id", m.ast_node_id }
+    };
+}
+
 }

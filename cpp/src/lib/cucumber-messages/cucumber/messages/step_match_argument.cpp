@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const step_match_argument& msg)
     return os;
 }
 
+void to_json(json& j, const step_match_argument& m)
+{
+    j = json{
+        { "group", m.group },
+        { "parameter_type_name", m.parameter_type_name }
+    };
+}
+
 }

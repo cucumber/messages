@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/feature.hpp>
 #include <cucumber/messages/comment.hpp>
 
@@ -32,5 +34,9 @@ struct gherkin_document
 
 std::ostream&
 operator<<(std::ostream& os, const gherkin_document& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const gherkin_document& m);
 
 }

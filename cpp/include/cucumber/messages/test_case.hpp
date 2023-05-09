@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/test_step.hpp>
 
 namespace cucumber::messages {
@@ -28,5 +30,9 @@ struct test_case
 
 std::ostream&
 operator<<(std::ostream& os, const test_case& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const test_case& m);
 
 }

@@ -32,4 +32,18 @@ operator<<(std::ostream& os, const scenario& msg)
     return os;
 }
 
+void to_json(json& j, const scenario& m)
+{
+    j = json{
+        { "location", m.location },
+        { "tags", m.tags },
+        { "keyword", m.keyword },
+        { "name", m.name },
+        { "description", m.description },
+        { "steps", m.steps },
+        { "examples", m.examples },
+        { "id", m.id }
+    };
+}
+
 }

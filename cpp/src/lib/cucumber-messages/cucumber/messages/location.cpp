@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const location& msg)
     return os;
 }
 
+void to_json(json& j, const location& m)
+{
+    j = json{
+        { "line", m.line },
+        { "column", m.column }
+    };
+}
+
 }

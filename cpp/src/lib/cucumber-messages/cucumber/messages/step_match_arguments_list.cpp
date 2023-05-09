@@ -25,4 +25,11 @@ operator<<(std::ostream& os, const step_match_arguments_list& msg)
     return os;
 }
 
+void to_json(json& j, const step_match_arguments_list& m)
+{
+    j = json{
+        { "step_match_arguments", m.step_match_arguments }
+    };
+}
+
 }

@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const pickle_step_argument& msg)
     return os;
 }
 
+void to_json(json& j, const pickle_step_argument& m)
+{
+    j = json{
+        { "doc_string", m.doc_string },
+        { "data_table", m.data_table }
+    };
+}
+
 }

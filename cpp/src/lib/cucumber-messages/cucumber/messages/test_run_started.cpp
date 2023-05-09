@@ -25,4 +25,11 @@ operator<<(std::ostream& os, const test_run_started& msg)
     return os;
 }
 
+void to_json(json& j, const test_run_started& m)
+{
+    j = json{
+        { "timestamp", m.timestamp }
+    };
+}
+
 }

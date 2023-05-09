@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/location.hpp>
 
 namespace cucumber::messages {
@@ -25,5 +27,9 @@ struct comment
 
 std::ostream&
 operator<<(std::ostream& os, const comment& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const comment& m);
 
 }

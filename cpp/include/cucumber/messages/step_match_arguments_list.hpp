@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/step_match_argument.hpp>
 
 namespace cucumber::messages {
@@ -22,5 +24,9 @@ struct step_match_arguments_list
 
 std::ostream&
 operator<<(std::ostream& os, const step_match_arguments_list& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const step_match_arguments_list& m);
 
 }

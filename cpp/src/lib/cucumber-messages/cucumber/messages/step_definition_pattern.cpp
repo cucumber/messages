@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const step_definition_pattern& msg)
     return os;
 }
 
+void to_json(json& j, const step_definition_pattern& m)
+{
+    j = json{
+        { "source", m.source },
+        { "type", m.type }
+    };
+}
+
 }

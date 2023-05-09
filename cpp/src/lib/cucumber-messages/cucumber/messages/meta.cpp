@@ -30,4 +30,16 @@ operator<<(std::ostream& os, const meta& msg)
     return os;
 }
 
+void to_json(json& j, const meta& m)
+{
+    j = json{
+        { "protocol_version", m.protocol_version },
+        { "implementation", m.implementation },
+        { "runtime", m.runtime },
+        { "os", m.os },
+        { "cpu", m.cpu },
+        { "ci", m.ci }
+    };
+}
+
 }

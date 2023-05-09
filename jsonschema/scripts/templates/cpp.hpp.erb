@@ -5,6 +5,8 @@
 
 #include <vector>
 #include <string>
+
+#include <nlohmann/json.hpp>
 <%-
     incs = []
     schema['properties'].each do |property_name, property|
@@ -60,6 +62,10 @@ struct <%= myclass %>
 std::ostream&
 operator<<(std::ostream& os, const <%= myclass %>& msg);
 
+using json = nlohmann::json;
+
+void to_json(json& j, const <%= myclass %>& m);
+
 }
 <%= myclass %>.cpp
 #include <sstream>
@@ -90,6 +96,24 @@ operator<<(std::ostream& os, const <%= myclass %>& msg)
     os << msg.to_string();
 
     return os;
+}
+
+void to_json(json& j, const <%= myclass %>& m)
+{
+    <%-
+    exprs = []
+    schema['properties'].each_with_index do |(property_name, property), index|
+        type = underscore(type_for(class_name(key), property_name, property))
+        toto = "{ "
+        toto += '"' + underscore(property_name) + '"'
+        toto += ", m." + underscore(property_name)
+        toto += " }"
+        exprs.append(toto)
+    end
+    -%>
+    j = json{
+        <%= exprs.join(",\n        ") %>
+    };
 }
 
 }<%- end -%>

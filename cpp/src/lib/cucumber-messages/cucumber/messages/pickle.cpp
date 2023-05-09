@@ -31,4 +31,17 @@ operator<<(std::ostream& os, const pickle& msg)
     return os;
 }
 
+void to_json(json& j, const pickle& m)
+{
+    j = json{
+        { "id", m.id },
+        { "uri", m.uri },
+        { "name", m.name },
+        { "language", m.language },
+        { "steps", m.steps },
+        { "tags", m.tags },
+        { "ast_node_ids", m.ast_node_ids }
+    };
+}
+
 }

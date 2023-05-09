@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const timestamp& msg)
     return os;
 }
 
+void to_json(json& j, const timestamp& m)
+{
+    j = json{
+        { "seconds", m.seconds },
+        { "nanos", m.nanos }
+    };
+}
+
 }

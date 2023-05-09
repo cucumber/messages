@@ -27,4 +27,13 @@ operator<<(std::ostream& os, const feature_child& msg)
     return os;
 }
 
+void to_json(json& j, const feature_child& m)
+{
+    j = json{
+        { "rule", m.rule },
+        { "background", m.background },
+        { "scenario", m.scenario }
+    };
+}
+
 }

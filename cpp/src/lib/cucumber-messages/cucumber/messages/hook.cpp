@@ -28,4 +28,14 @@ operator<<(std::ostream& os, const hook& msg)
     return os;
 }
 
+void to_json(json& j, const hook& m)
+{
+    j = json{
+        { "id", m.id },
+        { "name", m.name },
+        { "source_reference", m.source_reference },
+        { "tag_expression", m.tag_expression }
+    };
+}
+
 }

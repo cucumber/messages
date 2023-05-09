@@ -27,4 +27,13 @@ operator<<(std::ostream& os, const test_step_started& msg)
     return os;
 }
 
+void to_json(json& j, const test_step_started& m)
+{
+    j = json{
+        { "test_case_started_id", m.test_case_started_id },
+        { "test_step_id", m.test_step_id },
+        { "timestamp", m.timestamp }
+    };
+}
+
 }

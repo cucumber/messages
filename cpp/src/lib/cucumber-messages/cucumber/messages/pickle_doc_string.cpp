@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const pickle_doc_string& msg)
     return os;
 }
 
+void to_json(json& j, const pickle_doc_string& m)
+{
+    j = json{
+        { "media_type", m.media_type },
+        { "content", m.content }
+    };
+}
+
 }

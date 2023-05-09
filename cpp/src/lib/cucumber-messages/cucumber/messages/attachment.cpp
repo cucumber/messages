@@ -32,4 +32,18 @@ operator<<(std::ostream& os, const attachment& msg)
     return os;
 }
 
+void to_json(json& j, const attachment& m)
+{
+    j = json{
+        { "body", m.body },
+        { "content_encoding", m.content_encoding },
+        { "file_name", m.file_name },
+        { "media_type", m.media_type },
+        { "source", m.source },
+        { "test_case_started_id", m.test_case_started_id },
+        { "test_step_id", m.test_step_id },
+        { "url", m.url }
+    };
+}
+
 }

@@ -28,4 +28,14 @@ operator<<(std::ostream& os, const source_reference& msg)
     return os;
 }
 
+void to_json(json& j, const source_reference& m)
+{
+    j = json{
+        { "uri", m.uri },
+        { "java_method", m.java_method },
+        { "java_stack_trace_element", m.java_stack_trace_element },
+        { "location", m.location }
+    };
+}
+
 }

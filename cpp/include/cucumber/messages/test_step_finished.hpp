@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/test_step_result.hpp>
 #include <cucumber/messages/timestamp.hpp>
 
@@ -26,5 +28,9 @@ struct test_step_finished
 
 std::ostream&
 operator<<(std::ostream& os, const test_step_finished& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const test_step_finished& m);
 
 }

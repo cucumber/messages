@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const rule_child& msg)
     return os;
 }
 
+void to_json(json& j, const rule_child& m)
+{
+    j = json{
+        { "background", m.background },
+        { "scenario", m.scenario }
+    };
+}
+
 }

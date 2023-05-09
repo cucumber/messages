@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/location.hpp>
 #include <cucumber/messages/step_keyword_type.hpp>
 #include <cucumber/messages/doc_string.hpp>
@@ -33,5 +35,9 @@ struct step
 
 std::ostream&
 operator<<(std::ostream& os, const step& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const step& m);
 
 }

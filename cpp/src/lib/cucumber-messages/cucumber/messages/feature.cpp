@@ -31,4 +31,17 @@ operator<<(std::ostream& os, const feature& msg)
     return os;
 }
 
+void to_json(json& j, const feature& m)
+{
+    j = json{
+        { "location", m.location },
+        { "tags", m.tags },
+        { "language", m.language },
+        { "keyword", m.keyword },
+        { "name", m.name },
+        { "description", m.description },
+        { "children", m.children }
+    };
+}
+
 }

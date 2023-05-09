@@ -32,4 +32,18 @@ operator<<(std::ostream& os, const examples& msg)
     return os;
 }
 
+void to_json(json& j, const examples& m)
+{
+    j = json{
+        { "location", m.location },
+        { "tags", m.tags },
+        { "keyword", m.keyword },
+        { "name", m.name },
+        { "description", m.description },
+        { "table_header", m.table_header },
+        { "table_body", m.table_body },
+        { "id", m.id }
+    };
+}
+
 }

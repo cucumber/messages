@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/attachment_content_encoding.hpp>
 #include <cucumber/messages/source.hpp>
 
@@ -42,5 +44,9 @@ struct attachment
 
 std::ostream&
 operator<<(std::ostream& os, const attachment& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const attachment& m);
 
 }

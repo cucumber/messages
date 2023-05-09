@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const undefined_parameter_type& msg)
     return os;
 }
 
+void to_json(json& j, const undefined_parameter_type& m)
+{
+    j = json{
+        { "expression", m.expression },
+        { "name", m.name }
+    };
+}
+
 }

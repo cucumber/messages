@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 namespace cucumber::messages {
 
 //
@@ -22,5 +24,9 @@ struct java_stack_trace_element
 
 std::ostream&
 operator<<(std::ostream& os, const java_stack_trace_element& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const java_stack_trace_element& m);
 
 }

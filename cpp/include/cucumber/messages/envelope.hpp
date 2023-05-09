@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/attachment.hpp>
 #include <cucumber/messages/gherkin_document.hpp>
 #include <cucumber/messages/hook.hpp>
@@ -61,5 +63,9 @@ struct envelope
 
 std::ostream&
 operator<<(std::ostream& os, const envelope& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const envelope& m);
 
 }

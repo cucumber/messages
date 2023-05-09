@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const table_cell& msg)
     return os;
 }
 
+void to_json(json& j, const table_cell& m)
+{
+    j = json{
+        { "location", m.location },
+        { "value", m.value }
+    };
+}
+
 }

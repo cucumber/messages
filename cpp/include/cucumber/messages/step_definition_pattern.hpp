@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/step_definition_pattern_type.hpp>
 
 namespace cucumber::messages {
@@ -23,5 +25,9 @@ struct step_definition_pattern
 
 std::ostream&
 operator<<(std::ostream& os, const step_definition_pattern& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const step_definition_pattern& m);
 
 }

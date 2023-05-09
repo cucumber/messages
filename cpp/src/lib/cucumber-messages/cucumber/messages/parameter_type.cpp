@@ -30,4 +30,16 @@ operator<<(std::ostream& os, const parameter_type& msg)
     return os;
 }
 
+void to_json(json& j, const parameter_type& m)
+{
+    j = json{
+        { "name", m.name },
+        { "regular_expressions", m.regular_expressions },
+        { "prefer_for_regular_expression_match", m.prefer_for_regular_expression_match },
+        { "use_for_snippets", m.use_for_snippets },
+        { "id", m.id },
+        { "source_reference", m.source_reference }
+    };
+}
+
 }

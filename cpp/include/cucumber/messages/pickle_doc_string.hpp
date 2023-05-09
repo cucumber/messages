@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 namespace cucumber::messages {
 
 //
@@ -21,5 +23,9 @@ struct pickle_doc_string
 
 std::ostream&
 operator<<(std::ostream& os, const pickle_doc_string& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const pickle_doc_string& m);
 
 }

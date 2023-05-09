@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/pickle_step.hpp>
 #include <cucumber/messages/pickle_tag.hpp>
 
@@ -42,5 +44,9 @@ struct pickle
 
 std::ostream&
 operator<<(std::ostream& os, const pickle& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const pickle& m);
 
 }

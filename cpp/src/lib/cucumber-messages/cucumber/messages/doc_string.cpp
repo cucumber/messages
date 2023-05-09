@@ -28,4 +28,14 @@ operator<<(std::ostream& os, const doc_string& msg)
     return os;
 }
 
+void to_json(json& j, const doc_string& m)
+{
+    j = json{
+        { "location", m.location },
+        { "media_type", m.media_type },
+        { "content", m.content },
+        { "delimiter", m.delimiter }
+    };
+}
+
 }

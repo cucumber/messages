@@ -28,4 +28,14 @@ operator<<(std::ostream& os, const git& msg)
     return os;
 }
 
+void to_json(json& j, const git& m)
+{
+    j = json{
+        { "remote", m.remote },
+        { "revision", m.revision },
+        { "branch", m.branch },
+        { "tag", m.tag }
+    };
+}
+
 }

@@ -27,4 +27,13 @@ operator<<(std::ostream& os, const java_method& msg)
     return os;
 }
 
+void to_json(json& j, const java_method& m)
+{
+    j = json{
+        { "class_name", m.class_name },
+        { "method_name", m.method_name },
+        { "method_parameter_types", m.method_parameter_types }
+    };
+}
+
 }

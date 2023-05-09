@@ -27,4 +27,13 @@ operator<<(std::ostream& os, const group& msg)
     return os;
 }
 
+void to_json(json& j, const group& m)
+{
+    j = json{
+        { "children", m.children },
+        { "start", m.start },
+        { "value", m.value }
+    };
+}
+
 }

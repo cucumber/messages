@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const parse_error& msg)
     return os;
 }
 
+void to_json(json& j, const parse_error& m)
+{
+    j = json{
+        { "source", m.source },
+        { "message", m.message }
+    };
+}
+
 }

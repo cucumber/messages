@@ -27,4 +27,13 @@ operator<<(std::ostream& os, const source& msg)
     return os;
 }
 
+void to_json(json& j, const source& m)
+{
+    j = json{
+        { "uri", m.uri },
+        { "data", m.data },
+        { "media_type", m.media_type }
+    };
+}
+
 }

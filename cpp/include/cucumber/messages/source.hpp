@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/source_media_type.hpp>
 
 namespace cucumber::messages {
@@ -28,5 +30,9 @@ struct source
 
 std::ostream&
 operator<<(std::ostream& os, const source& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const source& m);
 
 }

@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const product& msg)
     return os;
 }
 
+void to_json(json& j, const product& m)
+{
+    j = json{
+        { "name", m.name },
+        { "version", m.version }
+    };
+}
+
 }

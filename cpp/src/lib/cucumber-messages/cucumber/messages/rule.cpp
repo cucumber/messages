@@ -31,4 +31,17 @@ operator<<(std::ostream& os, const rule& msg)
     return os;
 }
 
+void to_json(json& j, const rule& m)
+{
+    j = json{
+        { "location", m.location },
+        { "tags", m.tags },
+        { "keyword", m.keyword },
+        { "name", m.name },
+        { "description", m.description },
+        { "children", m.children },
+        { "id", m.id }
+    };
+}
+
 }

@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const comment& msg)
     return os;
 }
 
+void to_json(json& j, const comment& m)
+{
+    j = json{
+        { "location", m.location },
+        { "text", m.text }
+    };
+}
+
 }

@@ -28,4 +28,14 @@ operator<<(std::ostream& os, const ci& msg)
     return os;
 }
 
+void to_json(json& j, const ci& m)
+{
+    j = json{
+        { "name", m.name },
+        { "url", m.url },
+        { "build_number", m.build_number },
+        { "git", m.git }
+    };
+}
+
 }

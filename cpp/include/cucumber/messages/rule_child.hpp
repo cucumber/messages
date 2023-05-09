@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/background.hpp>
 #include <cucumber/messages/scenario.hpp>
 
@@ -26,5 +28,9 @@ struct rule_child
 
 std::ostream&
 operator<<(std::ostream& os, const rule_child& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const rule_child& m);
 
 }

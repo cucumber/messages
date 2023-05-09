@@ -31,4 +31,17 @@ operator<<(std::ostream& os, const step& msg)
     return os;
 }
 
+void to_json(json& j, const step& m)
+{
+    j = json{
+        { "location", m.location },
+        { "keyword", m.keyword },
+        { "keyword_type", m.keyword_type },
+        { "text", m.text },
+        { "doc_string", m.doc_string },
+        { "data_table", m.data_table },
+        { "id", m.id }
+    };
+}
+
 }

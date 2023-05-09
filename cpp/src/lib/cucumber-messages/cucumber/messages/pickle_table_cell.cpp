@@ -25,4 +25,11 @@ operator<<(std::ostream& os, const pickle_table_cell& msg)
     return os;
 }
 
+void to_json(json& j, const pickle_table_cell& m)
+{
+    j = json{
+        { "value", m.value }
+    };
+}
+
 }

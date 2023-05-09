@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/source_reference.hpp>
 
 namespace cucumber::messages {
@@ -23,5 +25,9 @@ struct parse_error
 
 std::ostream&
 operator<<(std::ostream& os, const parse_error& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const parse_error& m);
 
 }

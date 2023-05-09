@@ -26,4 +26,12 @@ operator<<(std::ostream& os, const exception& msg)
     return os;
 }
 
+void to_json(json& j, const exception& m)
+{
+    j = json{
+        { "type", m.type },
+        { "message", m.message }
+    };
+}
+
 }

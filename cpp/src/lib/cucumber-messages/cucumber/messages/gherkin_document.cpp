@@ -27,4 +27,13 @@ operator<<(std::ostream& os, const gherkin_document& msg)
     return os;
 }
 
+void to_json(json& j, const gherkin_document& m)
+{
+    j = json{
+        { "uri", m.uri },
+        { "feature", m.feature },
+        { "comments", m.comments }
+    };
+}
+
 }

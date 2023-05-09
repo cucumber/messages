@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include <cucumber/messages/pickle_step_argument.hpp>
 #include <cucumber/messages/pickle_step_type.hpp>
 
@@ -29,5 +31,9 @@ struct pickle_step
 
 std::ostream&
 operator<<(std::ostream& os, const pickle_step& msg);
+
+using json = nlohmann::json;
+
+void to_json(json& j, const pickle_step& m);
 
 }
