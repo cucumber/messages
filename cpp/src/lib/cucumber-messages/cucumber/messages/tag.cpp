@@ -19,6 +19,29 @@ tag::to_string() const
     return oss.str();
 }
 
+void
+tag::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "name", name },
+        { "id", id }
+    };
+}
+
+std::string
+tag::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const tag& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const tag& msg)
 }
 
 void to_json(json& j, const tag& m)
-{
-    j = json{
-        { "location", m.location },
-        { "name", m.name },
-        { "id", m.id }
-    };
-}
+{ m.to_json(j); }
 
 }

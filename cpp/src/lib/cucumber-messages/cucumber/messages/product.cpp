@@ -18,6 +18,28 @@ product::to_string() const
     return oss.str();
 }
 
+void
+product::to_json(json& j) const
+{
+    j = json{
+        { "name", name },
+        { "version", version }
+    };
+}
+
+std::string
+product::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const product& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const product& msg)
 }
 
 void to_json(json& j, const product& m)
-{
-    j = json{
-        { "name", m.name },
-        { "version", m.version }
-    };
-}
+{ m.to_json(j); }
 
 }

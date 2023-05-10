@@ -18,6 +18,28 @@ comment::to_string() const
     return oss.str();
 }
 
+void
+comment::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "text", text }
+    };
+}
+
+std::string
+comment::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const comment& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const comment& msg)
 }
 
 void to_json(json& j, const comment& m)
-{
-    j = json{
-        { "location", m.location },
-        { "text", m.text }
-    };
-}
+{ m.to_json(j); }
 
 }

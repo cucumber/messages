@@ -18,6 +18,28 @@ table_cell::to_string() const
     return oss.str();
 }
 
+void
+table_cell::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "value", value }
+    };
+}
+
+std::string
+table_cell::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const table_cell& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const table_cell& msg)
 }
 
 void to_json(json& j, const table_cell& m)
-{
-    j = json{
-        { "location", m.location },
-        { "value", m.value }
-    };
-}
+{ m.to_json(j); }
 
 }

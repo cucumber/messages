@@ -20,6 +20,30 @@ source_reference::to_string() const
     return oss.str();
 }
 
+void
+source_reference::to_json(json& j) const
+{
+    j = json{
+        { "uri", uri },
+        { "java_method", java_method },
+        { "java_stack_trace_element", java_stack_trace_element },
+        { "location", location }
+    };
+}
+
+std::string
+source_reference::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const source_reference& msg)
 {
@@ -29,13 +53,6 @@ operator<<(std::ostream& os, const source_reference& msg)
 }
 
 void to_json(json& j, const source_reference& m)
-{
-    j = json{
-        { "uri", m.uri },
-        { "java_method", m.java_method },
-        { "java_stack_trace_element", m.java_stack_trace_element },
-        { "location", m.location }
-    };
-}
+{ m.to_json(j); }
 
 }

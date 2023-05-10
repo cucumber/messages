@@ -22,6 +22,32 @@ parameter_type::to_string() const
     return oss.str();
 }
 
+void
+parameter_type::to_json(json& j) const
+{
+    j = json{
+        { "name", name },
+        { "regular_expressions", regular_expressions },
+        { "prefer_for_regular_expression_match", prefer_for_regular_expression_match },
+        { "use_for_snippets", use_for_snippets },
+        { "id", id },
+        { "source_reference", source_reference }
+    };
+}
+
+std::string
+parameter_type::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const parameter_type& msg)
 {
@@ -31,15 +57,6 @@ operator<<(std::ostream& os, const parameter_type& msg)
 }
 
 void to_json(json& j, const parameter_type& m)
-{
-    j = json{
-        { "name", m.name },
-        { "regular_expressions", m.regular_expressions },
-        { "prefer_for_regular_expression_match", m.prefer_for_regular_expression_match },
-        { "use_for_snippets", m.use_for_snippets },
-        { "id", m.id },
-        { "source_reference", m.source_reference }
-    };
-}
+{ m.to_json(j); }
 
 }

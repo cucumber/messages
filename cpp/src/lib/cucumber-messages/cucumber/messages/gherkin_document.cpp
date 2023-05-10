@@ -19,6 +19,29 @@ gherkin_document::to_string() const
     return oss.str();
 }
 
+void
+gherkin_document::to_json(json& j) const
+{
+    j = json{
+        { "uri", uri },
+        { "feature", feature },
+        { "comments", comments }
+    };
+}
+
+std::string
+gherkin_document::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const gherkin_document& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const gherkin_document& msg)
 }
 
 void to_json(json& j, const gherkin_document& m)
-{
-    j = json{
-        { "uri", m.uri },
-        { "feature", m.feature },
-        { "comments", m.comments }
-    };
-}
+{ m.to_json(j); }
 
 }

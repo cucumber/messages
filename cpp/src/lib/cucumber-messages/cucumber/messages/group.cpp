@@ -19,6 +19,29 @@ group::to_string() const
     return oss.str();
 }
 
+void
+group::to_json(json& j) const
+{
+    j = json{
+        { "children", children },
+        { "start", start },
+        { "value", value }
+    };
+}
+
+std::string
+group::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const group& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const group& msg)
 }
 
 void to_json(json& j, const group& m)
-{
-    j = json{
-        { "children", m.children },
-        { "start", m.start },
-        { "value", m.value }
-    };
-}
+{ m.to_json(j); }
 
 }

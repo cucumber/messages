@@ -9,6 +9,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the StepMatchArgument message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -28,12 +30,13 @@ struct step_match_argument
     std::string parameter_type_name;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const step_match_argument& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const step_match_argument& m);
 

@@ -11,6 +11,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the SourceReference message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -28,12 +30,13 @@ struct source_reference
     cucumber::messages::location location;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const source_reference& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const source_reference& m);
 

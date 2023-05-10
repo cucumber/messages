@@ -9,6 +9,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the PickleTableRow message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -20,12 +22,13 @@ struct pickle_table_row
     std::vector<cucumber::messages::pickle_table_cell> cells;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const pickle_table_row& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const pickle_table_row& m);
 

@@ -9,6 +9,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the ParameterType message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -25,12 +27,13 @@ struct parameter_type
     cucumber::messages::source_reference source_reference;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const parameter_type& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const parameter_type& m);
 

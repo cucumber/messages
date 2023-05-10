@@ -18,6 +18,28 @@ parse_error::to_string() const
     return oss.str();
 }
 
+void
+parse_error::to_json(json& j) const
+{
+    j = json{
+        { "source", source },
+        { "message", message }
+    };
+}
+
+std::string
+parse_error::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const parse_error& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const parse_error& msg)
 }
 
 void to_json(json& j, const parse_error& m)
-{
-    j = json{
-        { "source", m.source },
-        { "message", m.message }
-    };
-}
+{ m.to_json(j); }
 
 }

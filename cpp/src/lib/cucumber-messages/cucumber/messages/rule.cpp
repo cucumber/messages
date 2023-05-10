@@ -23,6 +23,33 @@ rule::to_string() const
     return oss.str();
 }
 
+void
+rule::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "tags", tags },
+        { "keyword", keyword },
+        { "name", name },
+        { "description", description },
+        { "children", children },
+        { "id", id }
+    };
+}
+
+std::string
+rule::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const rule& msg)
 {
@@ -32,16 +59,6 @@ operator<<(std::ostream& os, const rule& msg)
 }
 
 void to_json(json& j, const rule& m)
-{
-    j = json{
-        { "location", m.location },
-        { "tags", m.tags },
-        { "keyword", m.keyword },
-        { "name", m.name },
-        { "description", m.description },
-        { "children", m.children },
-        { "id", m.id }
-    };
-}
+{ m.to_json(j); }
 
 }

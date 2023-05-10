@@ -19,6 +19,29 @@ source::to_string() const
     return oss.str();
 }
 
+void
+source::to_json(json& j) const
+{
+    j = json{
+        { "uri", uri },
+        { "data", data },
+        { "media_type", media_type }
+    };
+}
+
+std::string
+source::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const source& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const source& msg)
 }
 
 void to_json(json& j, const source& m)
-{
-    j = json{
-        { "uri", m.uri },
-        { "data", m.data },
-        { "media_type", m.media_type }
-    };
-}
+{ m.to_json(j); }
 
 }

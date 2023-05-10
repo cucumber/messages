@@ -18,6 +18,28 @@ pickle_step_argument::to_string() const
     return oss.str();
 }
 
+void
+pickle_step_argument::to_json(json& j) const
+{
+    j = json{
+        { "doc_string", doc_string },
+        { "data_table", data_table }
+    };
+}
+
+std::string
+pickle_step_argument::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const pickle_step_argument& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const pickle_step_argument& msg)
 }
 
 void to_json(json& j, const pickle_step_argument& m)
-{
-    j = json{
-        { "doc_string", m.doc_string },
-        { "data_table", m.data_table }
-    };
-}
+{ m.to_json(j); }
 
 }

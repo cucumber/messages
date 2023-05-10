@@ -20,6 +20,30 @@ doc_string::to_string() const
     return oss.str();
 }
 
+void
+doc_string::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "media_type", media_type },
+        { "content", content },
+        { "delimiter", delimiter }
+    };
+}
+
+std::string
+doc_string::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const doc_string& msg)
 {
@@ -29,13 +53,6 @@ operator<<(std::ostream& os, const doc_string& msg)
 }
 
 void to_json(json& j, const doc_string& m)
-{
-    j = json{
-        { "location", m.location },
-        { "media_type", m.media_type },
-        { "content", m.content },
-        { "delimiter", m.delimiter }
-    };
-}
+{ m.to_json(j); }
 
 }

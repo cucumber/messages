@@ -22,6 +22,32 @@ background::to_string() const
     return oss.str();
 }
 
+void
+background::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "keyword", keyword },
+        { "name", name },
+        { "description", description },
+        { "steps", steps },
+        { "id", id }
+    };
+}
+
+std::string
+background::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const background& msg)
 {
@@ -31,15 +57,6 @@ operator<<(std::ostream& os, const background& msg)
 }
 
 void to_json(json& j, const background& m)
-{
-    j = json{
-        { "location", m.location },
-        { "keyword", m.keyword },
-        { "name", m.name },
-        { "description", m.description },
-        { "steps", m.steps },
-        { "id", m.id }
-    };
-}
+{ m.to_json(j); }
 
 }

@@ -24,6 +24,34 @@ scenario::to_string() const
     return oss.str();
 }
 
+void
+scenario::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "tags", tags },
+        { "keyword", keyword },
+        { "name", name },
+        { "description", description },
+        { "steps", steps },
+        { "examples", examples },
+        { "id", id }
+    };
+}
+
+std::string
+scenario::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const scenario& msg)
 {
@@ -33,17 +61,6 @@ operator<<(std::ostream& os, const scenario& msg)
 }
 
 void to_json(json& j, const scenario& m)
-{
-    j = json{
-        { "location", m.location },
-        { "tags", m.tags },
-        { "keyword", m.keyword },
-        { "name", m.name },
-        { "description", m.description },
-        { "steps", m.steps },
-        { "examples", m.examples },
-        { "id", m.id }
-    };
-}
+{ m.to_json(j); }
 
 }

@@ -18,6 +18,28 @@ duration::to_string() const
     return oss.str();
 }
 
+void
+duration::to_json(json& j) const
+{
+    j = json{
+        { "seconds", seconds },
+        { "nanos", nanos }
+    };
+}
+
+std::string
+duration::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const duration& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const duration& msg)
 }
 
 void to_json(json& j, const duration& m)
-{
-    j = json{
-        { "seconds", m.seconds },
-        { "nanos", m.nanos }
-    };
-}
+{ m.to_json(j); }
 
 }

@@ -29,6 +29,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the <%= class_name(key) %> message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -57,12 +59,13 @@ struct <%= myclass %>
   <%- end -%>
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const <%= myclass %>& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const <%= myclass %>& m);
 
@@ -90,6 +93,38 @@ std::string
     return oss.str();
 }
 
+void
+<%= myclass %>::to_json(json& j) const
+{
+    <%-
+    exprs = []
+    schema['properties'].each_with_index do |(property_name, property), index|
+        type = underscore(type_for(class_name(key), property_name, property))
+        expr = "{ "
+        expr += '"' + underscore(property_name) + '"'
+        expr += ", " + underscore(property_name)
+        expr += " }"
+        exprs.append(expr)
+    end
+    -%>
+    j = json{
+        <%= exprs.join(",\n        ") %>
+    };
+}
+
+std::string
+<%= myclass %>::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const <%= myclass %>& msg)
 {
@@ -99,21 +134,6 @@ operator<<(std::ostream& os, const <%= myclass %>& msg)
 }
 
 void to_json(json& j, const <%= myclass %>& m)
-{
-    <%-
-    exprs = []
-    schema['properties'].each_with_index do |(property_name, property), index|
-        type = underscore(type_for(class_name(key), property_name, property))
-        toto = "{ "
-        toto += '"' + underscore(property_name) + '"'
-        toto += ", m." + underscore(property_name)
-        toto += " }"
-        exprs.append(toto)
-    end
-    -%>
-    j = json{
-        <%= exprs.join(",\n        ") %>
-    };
-}
+{ m.to_json(j); }
 
 }<%- end -%>

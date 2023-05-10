@@ -19,6 +19,29 @@ step_definition::to_string() const
     return oss.str();
 }
 
+void
+step_definition::to_json(json& j) const
+{
+    j = json{
+        { "id", id },
+        { "pattern", pattern },
+        { "source_reference", source_reference }
+    };
+}
+
+std::string
+step_definition::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const step_definition& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const step_definition& msg)
 }
 
 void to_json(json& j, const step_definition& m)
-{
-    j = json{
-        { "id", m.id },
-        { "pattern", m.pattern },
-        { "source_reference", m.source_reference }
-    };
-}
+{ m.to_json(j); }
 
 }

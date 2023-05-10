@@ -19,6 +19,29 @@ test_case::to_string() const
     return oss.str();
 }
 
+void
+test_case::to_json(json& j) const
+{
+    j = json{
+        { "id", id },
+        { "pickle_id", pickle_id },
+        { "test_steps", test_steps }
+    };
+}
+
+std::string
+test_case::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const test_case& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const test_case& msg)
 }
 
 void to_json(json& j, const test_case& m)
-{
-    j = json{
-        { "id", m.id },
-        { "pickle_id", m.pickle_id },
-        { "test_steps", m.test_steps }
-    };
-}
+{ m.to_json(j); }
 
 }

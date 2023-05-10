@@ -9,6 +9,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the TestCase message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -26,12 +28,13 @@ struct test_case
     std::vector<cucumber::messages::test_step> test_steps;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const test_case& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const test_case& m);
 

@@ -24,6 +24,34 @@ examples::to_string() const
     return oss.str();
 }
 
+void
+examples::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "tags", tags },
+        { "keyword", keyword },
+        { "name", name },
+        { "description", description },
+        { "table_header", table_header },
+        { "table_body", table_body },
+        { "id", id }
+    };
+}
+
+std::string
+examples::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const examples& msg)
 {
@@ -33,17 +61,6 @@ operator<<(std::ostream& os, const examples& msg)
 }
 
 void to_json(json& j, const examples& m)
-{
-    j = json{
-        { "location", m.location },
-        { "tags", m.tags },
-        { "keyword", m.keyword },
-        { "name", m.name },
-        { "description", m.description },
-        { "table_header", m.table_header },
-        { "table_body", m.table_body },
-        { "id", m.id }
-    };
-}
+{ m.to_json(j); }
 
 }

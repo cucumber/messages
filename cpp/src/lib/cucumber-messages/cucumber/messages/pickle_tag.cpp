@@ -18,6 +18,28 @@ pickle_tag::to_string() const
     return oss.str();
 }
 
+void
+pickle_tag::to_json(json& j) const
+{
+    j = json{
+        { "name", name },
+        { "ast_node_id", ast_node_id }
+    };
+}
+
+std::string
+pickle_tag::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const pickle_tag& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const pickle_tag& msg)
 }
 
 void to_json(json& j, const pickle_tag& m)
-{
-    j = json{
-        { "name", m.name },
-        { "ast_node_id", m.ast_node_id }
-    };
-}
+{ m.to_json(j); }
 
 }

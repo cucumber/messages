@@ -10,6 +10,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the PickleStepArgument message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -24,12 +26,13 @@ struct pickle_step_argument
     cucumber::messages::pickle_table data_table;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const pickle_step_argument& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const pickle_step_argument& m);
 

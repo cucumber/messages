@@ -21,6 +21,31 @@ test_step::to_string() const
     return oss.str();
 }
 
+void
+test_step::to_json(json& j) const
+{
+    j = json{
+        { "hook_id", hook_id },
+        { "id", id },
+        { "pickle_step_id", pickle_step_id },
+        { "step_definition_ids", step_definition_ids },
+        { "step_match_arguments_lists", step_match_arguments_lists }
+    };
+}
+
+std::string
+test_step::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const test_step& msg)
 {
@@ -30,14 +55,6 @@ operator<<(std::ostream& os, const test_step& msg)
 }
 
 void to_json(json& j, const test_step& m)
-{
-    j = json{
-        { "hook_id", m.hook_id },
-        { "id", m.id },
-        { "pickle_step_id", m.pickle_step_id },
-        { "step_definition_ids", m.step_definition_ids },
-        { "step_match_arguments_lists", m.step_match_arguments_lists }
-    };
-}
+{ m.to_json(j); }
 
 }

@@ -10,6 +10,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the TestRunFinished message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -24,12 +26,13 @@ struct test_run_finished
     cucumber::messages::exception exception;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const test_run_finished& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const test_run_finished& m);
 

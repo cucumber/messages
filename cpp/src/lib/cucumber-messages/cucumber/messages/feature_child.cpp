@@ -19,6 +19,29 @@ feature_child::to_string() const
     return oss.str();
 }
 
+void
+feature_child::to_json(json& j) const
+{
+    j = json{
+        { "rule", rule },
+        { "background", background },
+        { "scenario", scenario }
+    };
+}
+
+std::string
+feature_child::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const feature_child& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const feature_child& msg)
 }
 
 void to_json(json& j, const feature_child& m)
-{
-    j = json{
-        { "rule", m.rule },
-        { "background", m.background },
-        { "scenario", m.scenario }
-    };
-}
+{ m.to_json(j); }
 
 }

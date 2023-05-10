@@ -18,6 +18,28 @@ timestamp::to_string() const
     return oss.str();
 }
 
+void
+timestamp::to_json(json& j) const
+{
+    j = json{
+        { "seconds", seconds },
+        { "nanos", nanos }
+    };
+}
+
+std::string
+timestamp::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const timestamp& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const timestamp& msg)
 }
 
 void to_json(json& j, const timestamp& m)
-{
-    j = json{
-        { "seconds", m.seconds },
-        { "nanos", m.nanos }
-    };
-}
+{ m.to_json(j); }
 
 }

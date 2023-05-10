@@ -18,6 +18,28 @@ undefined_parameter_type::to_string() const
     return oss.str();
 }
 
+void
+undefined_parameter_type::to_json(json& j) const
+{
+    j = json{
+        { "expression", expression },
+        { "name", name }
+    };
+}
+
+std::string
+undefined_parameter_type::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const undefined_parameter_type& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const undefined_parameter_type& msg)
 }
 
 void to_json(json& j, const undefined_parameter_type& m)
-{
-    j = json{
-        { "expression", m.expression },
-        { "name", m.name }
-    };
-}
+{ m.to_json(j); }
 
 }

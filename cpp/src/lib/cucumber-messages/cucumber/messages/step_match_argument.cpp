@@ -18,6 +18,28 @@ step_match_argument::to_string() const
     return oss.str();
 }
 
+void
+step_match_argument::to_json(json& j) const
+{
+    j = json{
+        { "group", group },
+        { "parameter_type_name", parameter_type_name }
+    };
+}
+
+std::string
+step_match_argument::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const step_match_argument& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const step_match_argument& msg)
 }
 
 void to_json(json& j, const step_match_argument& m)
-{
-    j = json{
-        { "group", m.group },
-        { "parameter_type_name", m.parameter_type_name }
-    };
-}
+{ m.to_json(j); }
 
 }

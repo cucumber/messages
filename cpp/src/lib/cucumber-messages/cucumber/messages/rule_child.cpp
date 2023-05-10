@@ -18,6 +18,28 @@ rule_child::to_string() const
     return oss.str();
 }
 
+void
+rule_child::to_json(json& j) const
+{
+    j = json{
+        { "background", background },
+        { "scenario", scenario }
+    };
+}
+
+std::string
+rule_child::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const rule_child& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const rule_child& msg)
 }
 
 void to_json(json& j, const rule_child& m)
-{
-    j = json{
-        { "background", m.background },
-        { "scenario", m.scenario }
-    };
-}
+{ m.to_json(j); }
 
 }

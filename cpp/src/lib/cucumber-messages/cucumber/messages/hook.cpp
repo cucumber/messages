@@ -20,6 +20,30 @@ hook::to_string() const
     return oss.str();
 }
 
+void
+hook::to_json(json& j) const
+{
+    j = json{
+        { "id", id },
+        { "name", name },
+        { "source_reference", source_reference },
+        { "tag_expression", tag_expression }
+    };
+}
+
+std::string
+hook::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const hook& msg)
 {
@@ -29,13 +53,6 @@ operator<<(std::ostream& os, const hook& msg)
 }
 
 void to_json(json& j, const hook& m)
-{
-    j = json{
-        { "id", m.id },
-        { "name", m.name },
-        { "source_reference", m.source_reference },
-        { "tag_expression", m.tag_expression }
-    };
-}
+{ m.to_json(j); }
 
 }

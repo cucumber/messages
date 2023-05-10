@@ -25,6 +25,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the Envelope message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -59,12 +61,13 @@ struct envelope
     cucumber::messages::undefined_parameter_type undefined_parameter_type;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const envelope& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const envelope& m);
 

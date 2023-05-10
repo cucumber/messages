@@ -9,6 +9,8 @@
 
 namespace cucumber::messages {
 
+using json = nlohmann::json;
+
 //
 // Represents the Hook message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -23,12 +25,13 @@ struct hook
     std::string tag_expression;
 
     std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
 };
 
 std::ostream&
 operator<<(std::ostream& os, const hook& msg);
-
-using json = nlohmann::json;
 
 void to_json(json& j, const hook& m);
 

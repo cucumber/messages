@@ -19,6 +19,29 @@ java_stack_trace_element::to_string() const
     return oss.str();
 }
 
+void
+java_stack_trace_element::to_json(json& j) const
+{
+    j = json{
+        { "class_name", class_name },
+        { "file_name", file_name },
+        { "method_name", method_name }
+    };
+}
+
+std::string
+java_stack_trace_element::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const java_stack_trace_element& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const java_stack_trace_element& msg)
 }
 
 void to_json(json& j, const java_stack_trace_element& m)
-{
-    j = json{
-        { "class_name", m.class_name },
-        { "file_name", m.file_name },
-        { "method_name", m.method_name }
-    };
-}
+{ m.to_json(j); }
 
 }

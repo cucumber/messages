@@ -17,6 +17,27 @@ pickle_table::to_string() const
     return oss.str();
 }
 
+void
+pickle_table::to_json(json& j) const
+{
+    j = json{
+        { "rows", rows }
+    };
+}
+
+std::string
+pickle_table::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const pickle_table& msg)
 {
@@ -26,10 +47,6 @@ operator<<(std::ostream& os, const pickle_table& msg)
 }
 
 void to_json(json& j, const pickle_table& m)
-{
-    j = json{
-        { "rows", m.rows }
-    };
-}
+{ m.to_json(j); }
 
 }

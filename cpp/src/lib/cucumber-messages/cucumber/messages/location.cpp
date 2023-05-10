@@ -18,6 +18,28 @@ location::to_string() const
     return oss.str();
 }
 
+void
+location::to_json(json& j) const
+{
+    j = json{
+        { "line", line },
+        { "column", column }
+    };
+}
+
+std::string
+location::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const location& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const location& msg)
 }
 
 void to_json(json& j, const location& m)
-{
-    j = json{
-        { "line", m.line },
-        { "column", m.column }
-    };
-}
+{ m.to_json(j); }
 
 }

@@ -23,6 +23,33 @@ feature::to_string() const
     return oss.str();
 }
 
+void
+feature::to_json(json& j) const
+{
+    j = json{
+        { "location", location },
+        { "tags", tags },
+        { "language", language },
+        { "keyword", keyword },
+        { "name", name },
+        { "description", description },
+        { "children", children }
+    };
+}
+
+std::string
+feature::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const feature& msg)
 {
@@ -32,16 +59,6 @@ operator<<(std::ostream& os, const feature& msg)
 }
 
 void to_json(json& j, const feature& m)
-{
-    j = json{
-        { "location", m.location },
-        { "tags", m.tags },
-        { "language", m.language },
-        { "keyword", m.keyword },
-        { "name", m.name },
-        { "description", m.description },
-        { "children", m.children }
-    };
-}
+{ m.to_json(j); }
 
 }

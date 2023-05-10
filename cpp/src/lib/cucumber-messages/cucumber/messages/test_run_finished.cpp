@@ -20,6 +20,30 @@ test_run_finished::to_string() const
     return oss.str();
 }
 
+void
+test_run_finished::to_json(json& j) const
+{
+    j = json{
+        { "message", message },
+        { "success", success },
+        { "timestamp", timestamp },
+        { "exception", exception }
+    };
+}
+
+std::string
+test_run_finished::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const test_run_finished& msg)
 {
@@ -29,13 +53,6 @@ operator<<(std::ostream& os, const test_run_finished& msg)
 }
 
 void to_json(json& j, const test_run_finished& m)
-{
-    j = json{
-        { "message", m.message },
-        { "success", m.success },
-        { "timestamp", m.timestamp },
-        { "exception", m.exception }
-    };
-}
+{ m.to_json(j); }
 
 }

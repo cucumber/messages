@@ -19,6 +19,29 @@ test_step_started::to_string() const
     return oss.str();
 }
 
+void
+test_step_started::to_json(json& j) const
+{
+    j = json{
+        { "test_case_started_id", test_case_started_id },
+        { "test_step_id", test_step_id },
+        { "timestamp", timestamp }
+    };
+}
+
+std::string
+test_step_started::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const test_step_started& msg)
 {
@@ -28,12 +51,6 @@ operator<<(std::ostream& os, const test_step_started& msg)
 }
 
 void to_json(json& j, const test_step_started& m)
-{
-    j = json{
-        { "test_case_started_id", m.test_case_started_id },
-        { "test_step_id", m.test_step_id },
-        { "timestamp", m.timestamp }
-    };
-}
+{ m.to_json(j); }
 
 }

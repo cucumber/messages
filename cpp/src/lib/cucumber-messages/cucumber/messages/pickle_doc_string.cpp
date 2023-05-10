@@ -18,6 +18,28 @@ pickle_doc_string::to_string() const
     return oss.str();
 }
 
+void
+pickle_doc_string::to_json(json& j) const
+{
+    j = json{
+        { "media_type", media_type },
+        { "content", content }
+    };
+}
+
+std::string
+pickle_doc_string::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const pickle_doc_string& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const pickle_doc_string& msg)
 }
 
 void to_json(json& j, const pickle_doc_string& m)
-{
-    j = json{
-        { "media_type", m.media_type },
-        { "content", m.content }
-    };
-}
+{ m.to_json(j); }
 
 }

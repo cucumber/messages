@@ -24,6 +24,34 @@ attachment::to_string() const
     return oss.str();
 }
 
+void
+attachment::to_json(json& j) const
+{
+    j = json{
+        { "body", body },
+        { "content_encoding", content_encoding },
+        { "file_name", file_name },
+        { "media_type", media_type },
+        { "source", source },
+        { "test_case_started_id", test_case_started_id },
+        { "test_step_id", test_step_id },
+        { "url", url }
+    };
+}
+
+std::string
+attachment::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const attachment& msg)
 {
@@ -33,17 +61,6 @@ operator<<(std::ostream& os, const attachment& msg)
 }
 
 void to_json(json& j, const attachment& m)
-{
-    j = json{
-        { "body", m.body },
-        { "content_encoding", m.content_encoding },
-        { "file_name", m.file_name },
-        { "media_type", m.media_type },
-        { "source", m.source },
-        { "test_case_started_id", m.test_case_started_id },
-        { "test_step_id", m.test_step_id },
-        { "url", m.url }
-    };
-}
+{ m.to_json(j); }
 
 }

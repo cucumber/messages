@@ -20,6 +20,30 @@ ci::to_string() const
     return oss.str();
 }
 
+void
+ci::to_json(json& j) const
+{
+    j = json{
+        { "name", name },
+        { "url", url },
+        { "build_number", build_number },
+        { "git", git }
+    };
+}
+
+std::string
+ci::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const ci& msg)
 {
@@ -29,13 +53,6 @@ operator<<(std::ostream& os, const ci& msg)
 }
 
 void to_json(json& j, const ci& m)
-{
-    j = json{
-        { "name", m.name },
-        { "url", m.url },
-        { "build_number", m.build_number },
-        { "git", m.git }
-    };
-}
+{ m.to_json(j); }
 
 }

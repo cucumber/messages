@@ -33,6 +33,43 @@ envelope::to_string() const
     return oss.str();
 }
 
+void
+envelope::to_json(json& j) const
+{
+    j = json{
+        { "attachment", attachment },
+        { "gherkin_document", gherkin_document },
+        { "hook", hook },
+        { "meta", meta },
+        { "parameter_type", parameter_type },
+        { "parse_error", parse_error },
+        { "pickle", pickle },
+        { "source", source },
+        { "step_definition", step_definition },
+        { "test_case", test_case },
+        { "test_case_finished", test_case_finished },
+        { "test_case_started", test_case_started },
+        { "test_run_finished", test_run_finished },
+        { "test_run_started", test_run_started },
+        { "test_step_finished", test_step_finished },
+        { "test_step_started", test_step_started },
+        { "undefined_parameter_type", undefined_parameter_type }
+    };
+}
+
+std::string
+envelope::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const envelope& msg)
 {
@@ -42,26 +79,6 @@ operator<<(std::ostream& os, const envelope& msg)
 }
 
 void to_json(json& j, const envelope& m)
-{
-    j = json{
-        { "attachment", m.attachment },
-        { "gherkin_document", m.gherkin_document },
-        { "hook", m.hook },
-        { "meta", m.meta },
-        { "parameter_type", m.parameter_type },
-        { "parse_error", m.parse_error },
-        { "pickle", m.pickle },
-        { "source", m.source },
-        { "step_definition", m.step_definition },
-        { "test_case", m.test_case },
-        { "test_case_finished", m.test_case_finished },
-        { "test_case_started", m.test_case_started },
-        { "test_run_finished", m.test_run_finished },
-        { "test_run_started", m.test_run_started },
-        { "test_step_finished", m.test_step_finished },
-        { "test_step_started", m.test_step_started },
-        { "undefined_parameter_type", m.undefined_parameter_type }
-    };
-}
+{ m.to_json(j); }
 
 }

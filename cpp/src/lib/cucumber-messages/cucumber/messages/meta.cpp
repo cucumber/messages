@@ -22,6 +22,32 @@ meta::to_string() const
     return oss.str();
 }
 
+void
+meta::to_json(json& j) const
+{
+    j = json{
+        { "protocol_version", protocol_version },
+        { "implementation", implementation },
+        { "runtime", runtime },
+        { "os", os },
+        { "cpu", cpu },
+        { "ci", ci }
+    };
+}
+
+std::string
+meta::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const meta& msg)
 {
@@ -31,15 +57,6 @@ operator<<(std::ostream& os, const meta& msg)
 }
 
 void to_json(json& j, const meta& m)
-{
-    j = json{
-        { "protocol_version", m.protocol_version },
-        { "implementation", m.implementation },
-        { "runtime", m.runtime },
-        { "os", m.os },
-        { "cpu", m.cpu },
-        { "ci", m.ci }
-    };
-}
+{ m.to_json(j); }
 
 }

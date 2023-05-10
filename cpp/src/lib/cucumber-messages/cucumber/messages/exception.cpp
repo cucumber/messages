@@ -18,6 +18,28 @@ exception::to_string() const
     return oss.str();
 }
 
+void
+exception::to_json(json& j) const
+{
+    j = json{
+        { "type", type },
+        { "message", message }
+    };
+}
+
+std::string
+exception::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
 std::ostream&
 operator<<(std::ostream& os, const exception& msg)
 {
@@ -27,11 +49,6 @@ operator<<(std::ostream& os, const exception& msg)
 }
 
 void to_json(json& j, const exception& m)
-{
-    j = json{
-        { "type", m.type },
-        { "message", m.message }
-    };
-}
+{ m.to_json(j); }
 
 }
