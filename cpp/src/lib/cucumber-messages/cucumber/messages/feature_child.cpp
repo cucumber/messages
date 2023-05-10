@@ -22,10 +22,10 @@ feature_child::to_string() const
 void
 feature_child::to_json(json& j) const
 {
-    j = json{
-        { "rule", rule },
-        { "background", background },
-        { "scenario", scenario }
+    j[camelize("feature_child")] = json{
+        { camelize("rule"), rule },
+        { camelize("background"), background },
+        { camelize("scenario"), scenario }
     };
 }
 

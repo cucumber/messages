@@ -23,11 +23,11 @@ test_run_finished::to_string() const
 void
 test_run_finished::to_json(json& j) const
 {
-    j = json{
-        { "message", message },
-        { "success", success },
-        { "timestamp", timestamp },
-        { "exception", exception }
+    j[camelize("test_run_finished")] = json{
+        { camelize("message"), message },
+        { camelize("success"), success },
+        { camelize("timestamp"), timestamp },
+        { camelize("exception"), exception }
     };
 }
 

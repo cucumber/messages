@@ -23,11 +23,11 @@ ci::to_string() const
 void
 ci::to_json(json& j) const
 {
-    j = json{
-        { "name", name },
-        { "url", url },
-        { "build_number", build_number },
-        { "git", git }
+    j[camelize("ci")] = json{
+        { camelize("name"), name },
+        { camelize("url"), url },
+        { camelize("build_number"), build_number },
+        { camelize("git"), git }
     };
 }
 

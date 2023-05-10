@@ -21,9 +21,9 @@ undefined_parameter_type::to_string() const
 void
 undefined_parameter_type::to_json(json& j) const
 {
-    j = json{
-        { "expression", expression },
-        { "name", name }
+    j[camelize("undefined_parameter_type")] = json{
+        { camelize("expression"), expression },
+        { camelize("name"), name }
     };
 }
 

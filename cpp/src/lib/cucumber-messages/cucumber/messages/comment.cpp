@@ -21,9 +21,9 @@ comment::to_string() const
 void
 comment::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "text", text }
+    j[camelize("comment")] = json{
+        { camelize("location"), location },
+        { camelize("text"), text }
     };
 }
 

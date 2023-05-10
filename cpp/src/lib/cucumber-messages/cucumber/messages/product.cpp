@@ -21,9 +21,9 @@ product::to_string() const
 void
 product::to_json(json& j) const
 {
-    j = json{
-        { "name", name },
-        { "version", version }
+    j[camelize("product")] = json{
+        { camelize("name"), name },
+        { camelize("version"), version }
     };
 }
 

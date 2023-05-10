@@ -21,9 +21,9 @@ step_definition_pattern::to_string() const
 void
 step_definition_pattern::to_json(json& j) const
 {
-    j = json{
-        { "source", source },
-        { "type", type }
+    j[camelize("step_definition_pattern")] = json{
+        { camelize("source"), source },
+        { camelize("type"), type }
     };
 }
 

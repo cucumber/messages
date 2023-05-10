@@ -25,13 +25,13 @@ meta::to_string() const
 void
 meta::to_json(json& j) const
 {
-    j = json{
-        { "protocol_version", protocol_version },
-        { "implementation", implementation },
-        { "runtime", runtime },
-        { "os", os },
-        { "cpu", cpu },
-        { "ci", ci }
+    j[camelize("meta")] = json{
+        { camelize("protocol_version"), protocol_version },
+        { camelize("implementation"), implementation },
+        { camelize("runtime"), runtime },
+        { camelize("os"), os },
+        { camelize("cpu"), cpu },
+        { camelize("ci"), ci }
     };
 }
 

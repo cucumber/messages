@@ -23,11 +23,11 @@ test_step_result::to_string() const
 void
 test_step_result::to_json(json& j) const
 {
-    j = json{
-        { "duration", duration },
-        { "message", message },
-        { "status", status },
-        { "exception", exception }
+    j[camelize("test_step_result")] = json{
+        { camelize("duration"), duration },
+        { camelize("message"), message },
+        { camelize("status"), status },
+        { camelize("exception"), exception }
     };
 }
 

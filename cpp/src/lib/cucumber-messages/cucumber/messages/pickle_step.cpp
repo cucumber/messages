@@ -24,12 +24,12 @@ pickle_step::to_string() const
 void
 pickle_step::to_json(json& j) const
 {
-    j = json{
-        { "argument", argument },
-        { "ast_node_ids", ast_node_ids },
-        { "id", id },
-        { "type", type },
-        { "text", text }
+    j[camelize("pickle_step")] = json{
+        { camelize("argument"), argument },
+        { camelize("ast_node_ids"), ast_node_ids },
+        { camelize("id"), id },
+        { camelize("type"), type },
+        { camelize("text"), text }
     };
 }
 

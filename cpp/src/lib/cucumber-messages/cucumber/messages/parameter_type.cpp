@@ -25,13 +25,13 @@ parameter_type::to_string() const
 void
 parameter_type::to_json(json& j) const
 {
-    j = json{
-        { "name", name },
-        { "regular_expressions", regular_expressions },
-        { "prefer_for_regular_expression_match", prefer_for_regular_expression_match },
-        { "use_for_snippets", use_for_snippets },
-        { "id", id },
-        { "source_reference", source_reference }
+    j[camelize("parameter_type")] = json{
+        { camelize("name"), name },
+        { camelize("regular_expressions"), regular_expressions },
+        { camelize("prefer_for_regular_expression_match"), prefer_for_regular_expression_match },
+        { camelize("use_for_snippets"), use_for_snippets },
+        { camelize("id"), id },
+        { camelize("source_reference"), source_reference }
     };
 }
 

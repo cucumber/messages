@@ -22,10 +22,10 @@ step_definition::to_string() const
 void
 step_definition::to_json(json& j) const
 {
-    j = json{
-        { "id", id },
-        { "pattern", pattern },
-        { "source_reference", source_reference }
+    j[camelize("step_definition")] = json{
+        { camelize("id"), id },
+        { camelize("pattern"), pattern },
+        { camelize("source_reference"), source_reference }
     };
 }
 

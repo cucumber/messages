@@ -26,14 +26,14 @@ pickle::to_string() const
 void
 pickle::to_json(json& j) const
 {
-    j = json{
-        { "id", id },
-        { "uri", uri },
-        { "name", name },
-        { "language", language },
-        { "steps", steps },
-        { "tags", tags },
-        { "ast_node_ids", ast_node_ids }
+    j[camelize("pickle")] = json{
+        { camelize("id"), id },
+        { camelize("uri"), uri },
+        { camelize("name"), name },
+        { camelize("language"), language },
+        { camelize("steps"), steps },
+        { camelize("tags"), tags },
+        { camelize("ast_node_ids"), ast_node_ids }
     };
 }
 

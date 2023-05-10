@@ -23,11 +23,11 @@ hook::to_string() const
 void
 hook::to_json(json& j) const
 {
-    j = json{
-        { "id", id },
-        { "name", name },
-        { "source_reference", source_reference },
-        { "tag_expression", tag_expression }
+    j[camelize("hook")] = json{
+        { camelize("id"), id },
+        { camelize("name"), name },
+        { camelize("source_reference"), source_reference },
+        { camelize("tag_expression"), tag_expression }
     };
 }
 

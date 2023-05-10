@@ -23,11 +23,11 @@ doc_string::to_string() const
 void
 doc_string::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "media_type", media_type },
-        { "content", content },
-        { "delimiter", delimiter }
+    j[camelize("doc_string")] = json{
+        { camelize("location"), location },
+        { camelize("media_type"), media_type },
+        { camelize("content"), content },
+        { camelize("delimiter"), delimiter }
     };
 }
 

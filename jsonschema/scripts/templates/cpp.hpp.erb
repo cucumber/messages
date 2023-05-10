@@ -101,13 +101,13 @@ void
     schema['properties'].each_with_index do |(property_name, property), index|
         type = underscore(type_for(class_name(key), property_name, property))
         expr = "{ "
-        expr += '"' + underscore(property_name) + '"'
+        expr += 'camelize("' + underscore(property_name) + '")'
         expr += ", " + underscore(property_name)
         expr += " }"
         exprs.append(expr)
     end
     -%>
-    j = json{
+    j[camelize("<%= myclass %>")] = json{
         <%= exprs.join(",\n        ") %>
     };
 }

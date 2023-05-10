@@ -27,15 +27,15 @@ scenario::to_string() const
 void
 scenario::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "tags", tags },
-        { "keyword", keyword },
-        { "name", name },
-        { "description", description },
-        { "steps", steps },
-        { "examples", examples },
-        { "id", id }
+    j[camelize("scenario")] = json{
+        { camelize("location"), location },
+        { camelize("tags"), tags },
+        { camelize("keyword"), keyword },
+        { camelize("name"), name },
+        { camelize("description"), description },
+        { camelize("steps"), steps },
+        { camelize("examples"), examples },
+        { camelize("id"), id }
     };
 }
 

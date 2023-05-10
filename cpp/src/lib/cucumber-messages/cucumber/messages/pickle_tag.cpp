@@ -21,9 +21,9 @@ pickle_tag::to_string() const
 void
 pickle_tag::to_json(json& j) const
 {
-    j = json{
-        { "name", name },
-        { "ast_node_id", ast_node_id }
+    j[camelize("pickle_tag")] = json{
+        { camelize("name"), name },
+        { camelize("ast_node_id"), ast_node_id }
     };
 }
 

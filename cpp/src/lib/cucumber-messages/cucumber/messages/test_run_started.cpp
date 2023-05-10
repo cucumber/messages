@@ -20,8 +20,8 @@ test_run_started::to_string() const
 void
 test_run_started::to_json(json& j) const
 {
-    j = json{
-        { "timestamp", timestamp }
+    j[camelize("test_run_started")] = json{
+        { camelize("timestamp"), timestamp }
     };
 }
 

@@ -22,10 +22,10 @@ java_stack_trace_element::to_string() const
 void
 java_stack_trace_element::to_json(json& j) const
 {
-    j = json{
-        { "class_name", class_name },
-        { "file_name", file_name },
-        { "method_name", method_name }
+    j[camelize("java_stack_trace_element")] = json{
+        { camelize("class_name"), class_name },
+        { camelize("file_name"), file_name },
+        { camelize("method_name"), method_name }
     };
 }
 

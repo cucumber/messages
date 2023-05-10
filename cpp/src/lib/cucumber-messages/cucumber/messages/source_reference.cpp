@@ -23,11 +23,11 @@ source_reference::to_string() const
 void
 source_reference::to_json(json& j) const
 {
-    j = json{
-        { "uri", uri },
-        { "java_method", java_method },
-        { "java_stack_trace_element", java_stack_trace_element },
-        { "location", location }
+    j[camelize("source_reference")] = json{
+        { camelize("uri"), uri },
+        { camelize("java_method"), java_method },
+        { camelize("java_stack_trace_element"), java_stack_trace_element },
+        { camelize("location"), location }
     };
 }
 

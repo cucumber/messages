@@ -22,10 +22,10 @@ group::to_string() const
 void
 group::to_json(json& j) const
 {
-    j = json{
-        { "children", children },
-        { "start", start },
-        { "value", value }
+    j[camelize("group")] = json{
+        { camelize("children"), children },
+        { camelize("start"), start },
+        { camelize("value"), value }
     };
 }
 

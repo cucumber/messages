@@ -20,8 +20,8 @@ step_match_arguments_list::to_string() const
 void
 step_match_arguments_list::to_json(json& j) const
 {
-    j = json{
-        { "step_match_arguments", step_match_arguments }
+    j[camelize("step_match_arguments_list")] = json{
+        { camelize("step_match_arguments"), step_match_arguments }
     };
 }
 

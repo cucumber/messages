@@ -22,10 +22,10 @@ test_case::to_string() const
 void
 test_case::to_json(json& j) const
 {
-    j = json{
-        { "id", id },
-        { "pickle_id", pickle_id },
-        { "test_steps", test_steps }
+    j[camelize("test_case")] = json{
+        { camelize("id"), id },
+        { camelize("pickle_id"), pickle_id },
+        { camelize("test_steps"), test_steps }
     };
 }
 

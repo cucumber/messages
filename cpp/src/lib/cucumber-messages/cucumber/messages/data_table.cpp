@@ -21,9 +21,9 @@ data_table::to_string() const
 void
 data_table::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "rows", rows }
+    j[camelize("data_table")] = json{
+        { camelize("location"), location },
+        { camelize("rows"), rows }
     };
 }
 

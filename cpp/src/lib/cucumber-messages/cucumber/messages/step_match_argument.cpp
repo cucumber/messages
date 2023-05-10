@@ -21,9 +21,9 @@ step_match_argument::to_string() const
 void
 step_match_argument::to_json(json& j) const
 {
-    j = json{
-        { "group", group },
-        { "parameter_type_name", parameter_type_name }
+    j[camelize("step_match_argument")] = json{
+        { camelize("group"), group },
+        { camelize("parameter_type_name"), parameter_type_name }
     };
 }
 

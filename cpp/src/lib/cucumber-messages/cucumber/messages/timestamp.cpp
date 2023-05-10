@@ -21,9 +21,9 @@ timestamp::to_string() const
 void
 timestamp::to_json(json& j) const
 {
-    j = json{
-        { "seconds", seconds },
-        { "nanos", nanos }
+    j[camelize("timestamp")] = json{
+        { camelize("seconds"), seconds },
+        { camelize("nanos"), nanos }
     };
 }
 

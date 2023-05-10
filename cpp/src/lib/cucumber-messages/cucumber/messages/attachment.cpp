@@ -27,15 +27,15 @@ attachment::to_string() const
 void
 attachment::to_json(json& j) const
 {
-    j = json{
-        { "body", body },
-        { "content_encoding", content_encoding },
-        { "file_name", file_name },
-        { "media_type", media_type },
-        { "source", source },
-        { "test_case_started_id", test_case_started_id },
-        { "test_step_id", test_step_id },
-        { "url", url }
+    j[camelize("attachment")] = json{
+        { camelize("body"), body },
+        { camelize("content_encoding"), content_encoding },
+        { camelize("file_name"), file_name },
+        { camelize("media_type"), media_type },
+        { camelize("source"), source },
+        { camelize("test_case_started_id"), test_case_started_id },
+        { camelize("test_step_id"), test_step_id },
+        { camelize("url"), url }
     };
 }
 

@@ -21,9 +21,9 @@ pickle_step_argument::to_string() const
 void
 pickle_step_argument::to_json(json& j) const
 {
-    j = json{
-        { "doc_string", doc_string },
-        { "data_table", data_table }
+    j[camelize("pickle_step_argument")] = json{
+        { camelize("doc_string"), doc_string },
+        { camelize("data_table"), data_table }
     };
 }
 

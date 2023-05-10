@@ -26,14 +26,14 @@ feature::to_string() const
 void
 feature::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "tags", tags },
-        { "language", language },
-        { "keyword", keyword },
-        { "name", name },
-        { "description", description },
-        { "children", children }
+    j[camelize("feature")] = json{
+        { camelize("location"), location },
+        { camelize("tags"), tags },
+        { camelize("language"), language },
+        { camelize("keyword"), keyword },
+        { camelize("name"), name },
+        { camelize("description"), description },
+        { camelize("children"), children }
     };
 }
 

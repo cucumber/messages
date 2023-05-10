@@ -25,13 +25,13 @@ background::to_string() const
 void
 background::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "keyword", keyword },
-        { "name", name },
-        { "description", description },
-        { "steps", steps },
-        { "id", id }
+    j[camelize("background")] = json{
+        { camelize("location"), location },
+        { camelize("keyword"), keyword },
+        { camelize("name"), name },
+        { camelize("description"), description },
+        { camelize("steps"), steps },
+        { camelize("id"), id }
     };
 }
 

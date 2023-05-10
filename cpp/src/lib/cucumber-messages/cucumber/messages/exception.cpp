@@ -21,9 +21,9 @@ exception::to_string() const
 void
 exception::to_json(json& j) const
 {
-    j = json{
-        { "type", type },
-        { "message", message }
+    j[camelize("exception")] = json{
+        { camelize("type"), type },
+        { camelize("message"), message }
     };
 }
 

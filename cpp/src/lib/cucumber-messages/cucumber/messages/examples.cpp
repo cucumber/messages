@@ -27,15 +27,15 @@ examples::to_string() const
 void
 examples::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "tags", tags },
-        { "keyword", keyword },
-        { "name", name },
-        { "description", description },
-        { "table_header", table_header },
-        { "table_body", table_body },
-        { "id", id }
+    j[camelize("examples")] = json{
+        { camelize("location"), location },
+        { camelize("tags"), tags },
+        { camelize("keyword"), keyword },
+        { camelize("name"), name },
+        { camelize("description"), description },
+        { camelize("table_header"), table_header },
+        { camelize("table_body"), table_body },
+        { camelize("id"), id }
     };
 }
 

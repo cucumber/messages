@@ -21,9 +21,9 @@ duration::to_string() const
 void
 duration::to_json(json& j) const
 {
-    j = json{
-        { "seconds", seconds },
-        { "nanos", nanos }
+    j[camelize("duration")] = json{
+        { camelize("seconds"), seconds },
+        { camelize("nanos"), nanos }
     };
 }
 

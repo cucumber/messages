@@ -22,10 +22,10 @@ source::to_string() const
 void
 source::to_json(json& j) const
 {
-    j = json{
-        { "uri", uri },
-        { "data", data },
-        { "media_type", media_type }
+    j[camelize("source")] = json{
+        { camelize("uri"), uri },
+        { camelize("data"), data },
+        { camelize("media_type"), media_type }
     };
 }
 

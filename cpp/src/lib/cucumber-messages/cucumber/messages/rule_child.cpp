@@ -21,9 +21,9 @@ rule_child::to_string() const
 void
 rule_child::to_json(json& j) const
 {
-    j = json{
-        { "background", background },
-        { "scenario", scenario }
+    j[camelize("rule_child")] = json{
+        { camelize("background"), background },
+        { camelize("scenario"), scenario }
     };
 }
 

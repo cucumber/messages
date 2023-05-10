@@ -21,9 +21,9 @@ location::to_string() const
 void
 location::to_json(json& j) const
 {
-    j = json{
-        { "line", line },
-        { "column", column }
+    j[camelize("location")] = json{
+        { camelize("line"), line },
+        { camelize("column"), column }
     };
 }
 

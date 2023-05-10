@@ -22,10 +22,10 @@ test_case_finished::to_string() const
 void
 test_case_finished::to_json(json& j) const
 {
-    j = json{
-        { "test_case_started_id", test_case_started_id },
-        { "timestamp", timestamp },
-        { "will_be_retried", will_be_retried }
+    j[camelize("test_case_finished")] = json{
+        { camelize("test_case_started_id"), test_case_started_id },
+        { camelize("timestamp"), timestamp },
+        { camelize("will_be_retried"), will_be_retried }
     };
 }
 

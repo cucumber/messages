@@ -23,11 +23,11 @@ git::to_string() const
 void
 git::to_json(json& j) const
 {
-    j = json{
-        { "remote", remote },
-        { "revision", revision },
-        { "branch", branch },
-        { "tag", tag }
+    j[camelize("git")] = json{
+        { camelize("remote"), remote },
+        { camelize("revision"), revision },
+        { camelize("branch"), branch },
+        { camelize("tag"), tag }
     };
 }
 

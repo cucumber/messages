@@ -22,10 +22,10 @@ gherkin_document::to_string() const
 void
 gherkin_document::to_json(json& j) const
 {
-    j = json{
-        { "uri", uri },
-        { "feature", feature },
-        { "comments", comments }
+    j[camelize("gherkin_document")] = json{
+        { camelize("uri"), uri },
+        { camelize("feature"), feature },
+        { camelize("comments"), comments }
     };
 }
 

@@ -21,9 +21,9 @@ table_cell::to_string() const
 void
 table_cell::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "value", value }
+    j[camelize("table_cell")] = json{
+        { camelize("location"), location },
+        { camelize("value"), value }
     };
 }
 

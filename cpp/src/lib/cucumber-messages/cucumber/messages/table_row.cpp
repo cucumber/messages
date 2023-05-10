@@ -22,10 +22,10 @@ table_row::to_string() const
 void
 table_row::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "cells", cells },
-        { "id", id }
+    j[camelize("table_row")] = json{
+        { camelize("location"), location },
+        { camelize("cells"), cells },
+        { camelize("id"), id }
     };
 }
 

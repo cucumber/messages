@@ -21,9 +21,9 @@ pickle_doc_string::to_string() const
 void
 pickle_doc_string::to_json(json& j) const
 {
-    j = json{
-        { "media_type", media_type },
-        { "content", content }
+    j[camelize("pickle_doc_string")] = json{
+        { camelize("media_type"), media_type },
+        { camelize("content"), content }
     };
 }
 

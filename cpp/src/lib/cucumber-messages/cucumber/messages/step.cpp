@@ -26,14 +26,14 @@ step::to_string() const
 void
 step::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "keyword", keyword },
-        { "keyword_type", keyword_type },
-        { "text", text },
-        { "doc_string", doc_string },
-        { "data_table", data_table },
-        { "id", id }
+    j[camelize("step")] = json{
+        { camelize("location"), location },
+        { camelize("keyword"), keyword },
+        { camelize("keyword_type"), keyword_type },
+        { camelize("text"), text },
+        { camelize("doc_string"), doc_string },
+        { camelize("data_table"), data_table },
+        { camelize("id"), id }
     };
 }
 

@@ -22,10 +22,10 @@ tag::to_string() const
 void
 tag::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "name", name },
-        { "id", id }
+    j[camelize("tag")] = json{
+        { camelize("location"), location },
+        { camelize("name"), name },
+        { camelize("id"), id }
     };
 }
 

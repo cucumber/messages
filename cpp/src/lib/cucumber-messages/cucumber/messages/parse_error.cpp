@@ -21,9 +21,9 @@ parse_error::to_string() const
 void
 parse_error::to_json(json& j) const
 {
-    j = json{
-        { "source", source },
-        { "message", message }
+    j[camelize("parse_error")] = json{
+        { camelize("source"), source },
+        { camelize("message"), message }
     };
 }
 

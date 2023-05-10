@@ -20,8 +20,8 @@ pickle_table_row::to_string() const
 void
 pickle_table_row::to_json(json& j) const
 {
-    j = json{
-        { "cells", cells }
+    j[camelize("pickle_table_row")] = json{
+        { camelize("cells"), cells }
     };
 }
 

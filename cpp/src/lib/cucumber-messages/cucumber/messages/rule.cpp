@@ -26,14 +26,14 @@ rule::to_string() const
 void
 rule::to_json(json& j) const
 {
-    j = json{
-        { "location", location },
-        { "tags", tags },
-        { "keyword", keyword },
-        { "name", name },
-        { "description", description },
-        { "children", children },
-        { "id", id }
+    j[camelize("rule")] = json{
+        { camelize("location"), location },
+        { camelize("tags"), tags },
+        { camelize("keyword"), keyword },
+        { camelize("name"), name },
+        { camelize("description"), description },
+        { camelize("children"), children },
+        { camelize("id"), id }
     };
 }
 
