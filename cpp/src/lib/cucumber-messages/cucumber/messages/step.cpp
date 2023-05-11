@@ -11,13 +11,13 @@ step::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", keyword=" << keyword
-    << ", keyword_type=" << keyword_type
-    << ", text=" << text
-    << ", doc_string=" << doc_string
-    << ", data_table=" << data_table
-    << ", id=" << id
+        << "location=" << location
+        << ", keyword=" << keyword
+        << ", keyword_type=" << keyword_type
+        << ", text=" << text
+        << ", doc_string=" << doc_string
+        << ", data_table=" << data_table
+        << ", id=" << id
         ;
 
     return oss.str();
@@ -26,7 +26,7 @@ step::to_string() const
 void
 step::to_json(json& j) const
 {
-    j[camelize("step")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("keyword"), keyword },
         { camelize("keyword_type"), keyword_type },

@@ -11,8 +11,8 @@ product::to_string() const
     std::ostringstream oss;
 
     oss
-    << "name=" << name
-    << ", version=" << version
+        << "name=" << name
+        << ", version=" << version
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ product::to_string() const
 void
 product::to_json(json& j) const
 {
-    j[camelize("product")] = json{
+    j = json{
         { camelize("name"), name },
         { camelize("version"), version }
     };

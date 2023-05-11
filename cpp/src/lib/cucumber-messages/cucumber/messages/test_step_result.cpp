@@ -11,10 +11,10 @@ test_step_result::to_string() const
     std::ostringstream oss;
 
     oss
-    << "duration=" << duration
-    << ", message=" << message
-    << ", status=" << status
-    << ", exception=" << exception
+        << "duration=" << duration
+        << ", message=" << message
+        << ", status=" << status
+        << ", exception=" << exception
         ;
 
     return oss.str();
@@ -23,7 +23,7 @@ test_step_result::to_string() const
 void
 test_step_result::to_json(json& j) const
 {
-    j[camelize("test_step_result")] = json{
+    j = json{
         { camelize("duration"), duration },
         { camelize("message"), message },
         { camelize("status"), status },

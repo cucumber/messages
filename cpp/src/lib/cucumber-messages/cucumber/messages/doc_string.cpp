@@ -11,10 +11,10 @@ doc_string::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", media_type=" << media_type
-    << ", content=" << content
-    << ", delimiter=" << delimiter
+        << "location=" << location
+        << ", media_type=" << media_type
+        << ", content=" << content
+        << ", delimiter=" << delimiter
         ;
 
     return oss.str();
@@ -23,7 +23,7 @@ doc_string::to_string() const
 void
 doc_string::to_json(json& j) const
 {
-    j[camelize("doc_string")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("media_type"), media_type },
         { camelize("content"), content },

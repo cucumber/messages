@@ -11,7 +11,7 @@ pickle_table::to_string() const
     std::ostringstream oss;
 
     oss
-    << "rows=" << rows
+        << "rows=" << rows
         ;
 
     return oss.str();
@@ -20,7 +20,7 @@ pickle_table::to_string() const
 void
 pickle_table::to_json(json& j) const
 {
-    j[camelize("pickle_table")] = json{
+    j = json{
         { camelize("rows"), rows }
     };
 }

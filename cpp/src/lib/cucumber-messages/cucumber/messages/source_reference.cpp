@@ -11,10 +11,10 @@ source_reference::to_string() const
     std::ostringstream oss;
 
     oss
-    << "uri=" << uri
-    << ", java_method=" << java_method
-    << ", java_stack_trace_element=" << java_stack_trace_element
-    << ", location=" << location
+        << "uri=" << uri
+        << ", java_method=" << java_method
+        << ", java_stack_trace_element=" << java_stack_trace_element
+        << ", location=" << location
         ;
 
     return oss.str();
@@ -23,7 +23,7 @@ source_reference::to_string() const
 void
 source_reference::to_json(json& j) const
 {
-    j[camelize("source_reference")] = json{
+    j = json{
         { camelize("uri"), uri },
         { camelize("java_method"), java_method },
         { camelize("java_stack_trace_element"), java_stack_trace_element },

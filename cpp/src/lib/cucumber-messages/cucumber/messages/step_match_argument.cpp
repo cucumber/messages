@@ -11,8 +11,8 @@ step_match_argument::to_string() const
     std::ostringstream oss;
 
     oss
-    << "group=" << group
-    << ", parameter_type_name=" << parameter_type_name
+        << "group=" << group
+        << ", parameter_type_name=" << parameter_type_name
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ step_match_argument::to_string() const
 void
 step_match_argument::to_json(json& j) const
 {
-    j[camelize("step_match_argument")] = json{
+    j = json{
         { camelize("group"), group },
         { camelize("parameter_type_name"), parameter_type_name }
     };

@@ -11,12 +11,12 @@ meta::to_string() const
     std::ostringstream oss;
 
     oss
-    << "protocol_version=" << protocol_version
-    << ", implementation=" << implementation
-    << ", runtime=" << runtime
-    << ", os=" << os
-    << ", cpu=" << cpu
-    << ", ci=" << ci
+        << "protocol_version=" << protocol_version
+        << ", implementation=" << implementation
+        << ", runtime=" << runtime
+        << ", os=" << os
+        << ", cpu=" << cpu
+        << ", ci=" << ci
         ;
 
     return oss.str();
@@ -25,7 +25,7 @@ meta::to_string() const
 void
 meta::to_json(json& j) const
 {
-    j[camelize("meta")] = json{
+    j = json{
         { camelize("protocol_version"), protocol_version },
         { camelize("implementation"), implementation },
         { camelize("runtime"), runtime },

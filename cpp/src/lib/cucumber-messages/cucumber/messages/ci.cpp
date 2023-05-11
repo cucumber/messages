@@ -11,10 +11,10 @@ ci::to_string() const
     std::ostringstream oss;
 
     oss
-    << "name=" << name
-    << ", url=" << url
-    << ", build_number=" << build_number
-    << ", git=" << git
+        << "name=" << name
+        << ", url=" << url
+        << ", build_number=" << build_number
+        << ", git=" << git
         ;
 
     return oss.str();
@@ -23,7 +23,7 @@ ci::to_string() const
 void
 ci::to_json(json& j) const
 {
-    j[camelize("ci")] = json{
+    j = json{
         { camelize("name"), name },
         { camelize("url"), url },
         { camelize("build_number"), build_number },

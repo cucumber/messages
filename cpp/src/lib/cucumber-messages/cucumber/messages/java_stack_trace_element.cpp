@@ -11,9 +11,9 @@ java_stack_trace_element::to_string() const
     std::ostringstream oss;
 
     oss
-    << "class_name=" << class_name
-    << ", file_name=" << file_name
-    << ", method_name=" << method_name
+        << "class_name=" << class_name
+        << ", file_name=" << file_name
+        << ", method_name=" << method_name
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ java_stack_trace_element::to_string() const
 void
 java_stack_trace_element::to_json(json& j) const
 {
-    j[camelize("java_stack_trace_element")] = json{
+    j = json{
         { camelize("class_name"), class_name },
         { camelize("file_name"), file_name },
         { camelize("method_name"), method_name }

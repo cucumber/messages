@@ -11,8 +11,8 @@ rule_child::to_string() const
     std::ostringstream oss;
 
     oss
-    << "background=" << background
-    << ", scenario=" << scenario
+        << "background=" << background
+        << ", scenario=" << scenario
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ rule_child::to_string() const
 void
 rule_child::to_json(json& j) const
 {
-    j[camelize("rule_child")] = json{
+    j = json{
         { camelize("background"), background },
         { camelize("scenario"), scenario }
     };

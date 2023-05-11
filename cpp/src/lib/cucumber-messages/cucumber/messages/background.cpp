@@ -11,12 +11,12 @@ background::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", keyword=" << keyword
-    << ", name=" << name
-    << ", description=" << description
-    << ", steps=" << steps
-    << ", id=" << id
+        << "location=" << location
+        << ", keyword=" << keyword
+        << ", name=" << name
+        << ", description=" << description
+        << ", steps=" << steps
+        << ", id=" << id
         ;
 
     return oss.str();
@@ -25,7 +25,7 @@ background::to_string() const
 void
 background::to_json(json& j) const
 {
-    j[camelize("background")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("keyword"), keyword },
         { camelize("name"), name },

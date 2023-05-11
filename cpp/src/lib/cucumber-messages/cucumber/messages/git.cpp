@@ -11,10 +11,10 @@ git::to_string() const
     std::ostringstream oss;
 
     oss
-    << "remote=" << remote
-    << ", revision=" << revision
-    << ", branch=" << branch
-    << ", tag=" << tag
+        << "remote=" << remote
+        << ", revision=" << revision
+        << ", branch=" << branch
+        << ", tag=" << tag
         ;
 
     return oss.str();
@@ -23,7 +23,7 @@ git::to_string() const
 void
 git::to_json(json& j) const
 {
-    j[camelize("git")] = json{
+    j = json{
         { camelize("remote"), remote },
         { camelize("revision"), revision },
         { camelize("branch"), branch },

@@ -11,13 +11,13 @@ rule::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", tags=" << tags
-    << ", keyword=" << keyword
-    << ", name=" << name
-    << ", description=" << description
-    << ", children=" << children
-    << ", id=" << id
+        << "location=" << location
+        << ", tags=" << tags
+        << ", keyword=" << keyword
+        << ", name=" << name
+        << ", description=" << description
+        << ", children=" << children
+        << ", id=" << id
         ;
 
     return oss.str();
@@ -26,7 +26,7 @@ rule::to_string() const
 void
 rule::to_json(json& j) const
 {
-    j[camelize("rule")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("tags"), tags },
         { camelize("keyword"), keyword },

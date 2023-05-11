@@ -11,9 +11,9 @@ test_step_started::to_string() const
     std::ostringstream oss;
 
     oss
-    << "test_case_started_id=" << test_case_started_id
-    << ", test_step_id=" << test_step_id
-    << ", timestamp=" << timestamp
+        << "test_case_started_id=" << test_case_started_id
+        << ", test_step_id=" << test_step_id
+        << ", timestamp=" << timestamp
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ test_step_started::to_string() const
 void
 test_step_started::to_json(json& j) const
 {
-    j[camelize("test_step_started")] = json{
+    j = json{
         { camelize("test_case_started_id"), test_case_started_id },
         { camelize("test_step_id"), test_step_id },
         { camelize("timestamp"), timestamp }

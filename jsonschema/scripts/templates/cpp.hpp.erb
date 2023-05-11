@@ -86,7 +86,7 @@ std::string
     oss
     <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
     <%- type = underscore(type_for(class_name(key), property_name, property)) -%>
-    << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << <%= underscore(property_name) %>
+        << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << <%= underscore(property_name) %>
     <%- end -%>
         ;
 
@@ -107,7 +107,7 @@ void
         exprs.append(expr)
     end
     -%>
-    j[camelize("<%= myclass %>")] = json{
+    j = json{
         <%= exprs.join(",\n        ") %>
     };
 }

@@ -11,13 +11,13 @@ feature::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", tags=" << tags
-    << ", language=" << language
-    << ", keyword=" << keyword
-    << ", name=" << name
-    << ", description=" << description
-    << ", children=" << children
+        << "location=" << location
+        << ", tags=" << tags
+        << ", language=" << language
+        << ", keyword=" << keyword
+        << ", name=" << name
+        << ", description=" << description
+        << ", children=" << children
         ;
 
     return oss.str();
@@ -26,7 +26,7 @@ feature::to_string() const
 void
 feature::to_json(json& j) const
 {
-    j[camelize("feature")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("tags"), tags },
         { camelize("language"), language },

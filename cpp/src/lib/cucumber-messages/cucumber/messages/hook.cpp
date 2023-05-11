@@ -11,10 +11,10 @@ hook::to_string() const
     std::ostringstream oss;
 
     oss
-    << "id=" << id
-    << ", name=" << name
-    << ", source_reference=" << source_reference
-    << ", tag_expression=" << tag_expression
+        << "id=" << id
+        << ", name=" << name
+        << ", source_reference=" << source_reference
+        << ", tag_expression=" << tag_expression
         ;
 
     return oss.str();
@@ -23,7 +23,7 @@ hook::to_string() const
 void
 hook::to_json(json& j) const
 {
-    j[camelize("hook")] = json{
+    j = json{
         { camelize("id"), id },
         { camelize("name"), name },
         { camelize("source_reference"), source_reference },

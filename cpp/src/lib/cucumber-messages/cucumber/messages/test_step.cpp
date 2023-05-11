@@ -11,11 +11,11 @@ test_step::to_string() const
     std::ostringstream oss;
 
     oss
-    << "hook_id=" << hook_id
-    << ", id=" << id
-    << ", pickle_step_id=" << pickle_step_id
-    << ", step_definition_ids=" << step_definition_ids
-    << ", step_match_arguments_lists=" << step_match_arguments_lists
+        << "hook_id=" << hook_id
+        << ", id=" << id
+        << ", pickle_step_id=" << pickle_step_id
+        << ", step_definition_ids=" << step_definition_ids
+        << ", step_match_arguments_lists=" << step_match_arguments_lists
         ;
 
     return oss.str();
@@ -24,7 +24,7 @@ test_step::to_string() const
 void
 test_step::to_json(json& j) const
 {
-    j[camelize("test_step")] = json{
+    j = json{
         { camelize("hook_id"), hook_id },
         { camelize("id"), id },
         { camelize("pickle_step_id"), pickle_step_id },

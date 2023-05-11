@@ -11,14 +11,14 @@ scenario::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", tags=" << tags
-    << ", keyword=" << keyword
-    << ", name=" << name
-    << ", description=" << description
-    << ", steps=" << steps
-    << ", examples=" << examples
-    << ", id=" << id
+        << "location=" << location
+        << ", tags=" << tags
+        << ", keyword=" << keyword
+        << ", name=" << name
+        << ", description=" << description
+        << ", steps=" << steps
+        << ", examples=" << examples
+        << ", id=" << id
         ;
 
     return oss.str();
@@ -27,7 +27,7 @@ scenario::to_string() const
 void
 scenario::to_json(json& j) const
 {
-    j[camelize("scenario")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("tags"), tags },
         { camelize("keyword"), keyword },

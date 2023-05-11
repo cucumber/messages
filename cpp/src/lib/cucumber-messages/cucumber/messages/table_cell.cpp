@@ -11,8 +11,8 @@ table_cell::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", value=" << value
+        << "location=" << location
+        << ", value=" << value
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ table_cell::to_string() const
 void
 table_cell::to_json(json& j) const
 {
-    j[camelize("table_cell")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("value"), value }
     };

@@ -11,9 +11,9 @@ gherkin_document::to_string() const
     std::ostringstream oss;
 
     oss
-    << "uri=" << uri
-    << ", feature=" << feature
-    << ", comments=" << comments
+        << "uri=" << uri
+        << ", feature=" << feature
+        << ", comments=" << comments
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ gherkin_document::to_string() const
 void
 gherkin_document::to_json(json& j) const
 {
-    j[camelize("gherkin_document")] = json{
+    j = json{
         { camelize("uri"), uri },
         { camelize("feature"), feature },
         { camelize("comments"), comments }

@@ -11,8 +11,8 @@ step_definition_pattern::to_string() const
     std::ostringstream oss;
 
     oss
-    << "source=" << source
-    << ", type=" << type
+        << "source=" << source
+        << ", type=" << type
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ step_definition_pattern::to_string() const
 void
 step_definition_pattern::to_json(json& j) const
 {
-    j[camelize("step_definition_pattern")] = json{
+    j = json{
         { camelize("source"), source },
         { camelize("type"), type }
     };

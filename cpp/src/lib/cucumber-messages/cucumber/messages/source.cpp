@@ -11,9 +11,9 @@ source::to_string() const
     std::ostringstream oss;
 
     oss
-    << "uri=" << uri
-    << ", data=" << data
-    << ", media_type=" << media_type
+        << "uri=" << uri
+        << ", data=" << data
+        << ", media_type=" << media_type
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ source::to_string() const
 void
 source::to_json(json& j) const
 {
-    j[camelize("source")] = json{
+    j = json{
         { camelize("uri"), uri },
         { camelize("data"), data },
         { camelize("media_type"), media_type }

@@ -11,8 +11,8 @@ location::to_string() const
     std::ostringstream oss;
 
     oss
-    << "line=" << line
-    << ", column=" << column
+        << "line=" << line
+        << ", column=" << column
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ location::to_string() const
 void
 location::to_json(json& j) const
 {
-    j[camelize("location")] = json{
+    j = json{
         { camelize("line"), line },
         { camelize("column"), column }
     };

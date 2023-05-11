@@ -11,8 +11,8 @@ timestamp::to_string() const
     std::ostringstream oss;
 
     oss
-    << "seconds=" << seconds
-    << ", nanos=" << nanos
+        << "seconds=" << seconds
+        << ", nanos=" << nanos
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ timestamp::to_string() const
 void
 timestamp::to_json(json& j) const
 {
-    j[camelize("timestamp")] = json{
+    j = json{
         { camelize("seconds"), seconds },
         { camelize("nanos"), nanos }
     };

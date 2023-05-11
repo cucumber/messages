@@ -11,10 +11,10 @@ test_run_finished::to_string() const
     std::ostringstream oss;
 
     oss
-    << "message=" << message
-    << ", success=" << success
-    << ", timestamp=" << timestamp
-    << ", exception=" << exception
+        << "message=" << message
+        << ", success=" << success
+        << ", timestamp=" << timestamp
+        << ", exception=" << exception
         ;
 
     return oss.str();
@@ -23,7 +23,7 @@ test_run_finished::to_string() const
 void
 test_run_finished::to_json(json& j) const
 {
-    j[camelize("test_run_finished")] = json{
+    j = json{
         { camelize("message"), message },
         { camelize("success"), success },
         { camelize("timestamp"), timestamp },

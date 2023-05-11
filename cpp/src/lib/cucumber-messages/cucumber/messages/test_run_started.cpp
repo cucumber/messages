@@ -11,7 +11,7 @@ test_run_started::to_string() const
     std::ostringstream oss;
 
     oss
-    << "timestamp=" << timestamp
+        << "timestamp=" << timestamp
         ;
 
     return oss.str();
@@ -20,7 +20,7 @@ test_run_started::to_string() const
 void
 test_run_started::to_json(json& j) const
 {
-    j[camelize("test_run_started")] = json{
+    j = json{
         { camelize("timestamp"), timestamp }
     };
 }

@@ -11,9 +11,9 @@ tag::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", name=" << name
-    << ", id=" << id
+        << "location=" << location
+        << ", name=" << name
+        << ", id=" << id
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ tag::to_string() const
 void
 tag::to_json(json& j) const
 {
-    j[camelize("tag")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("name"), name },
         { camelize("id"), id }

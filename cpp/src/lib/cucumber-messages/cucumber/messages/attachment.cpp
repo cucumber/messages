@@ -11,14 +11,14 @@ attachment::to_string() const
     std::ostringstream oss;
 
     oss
-    << "body=" << body
-    << ", content_encoding=" << content_encoding
-    << ", file_name=" << file_name
-    << ", media_type=" << media_type
-    << ", source=" << source
-    << ", test_case_started_id=" << test_case_started_id
-    << ", test_step_id=" << test_step_id
-    << ", url=" << url
+        << "body=" << body
+        << ", content_encoding=" << content_encoding
+        << ", file_name=" << file_name
+        << ", media_type=" << media_type
+        << ", source=" << source
+        << ", test_case_started_id=" << test_case_started_id
+        << ", test_step_id=" << test_step_id
+        << ", url=" << url
         ;
 
     return oss.str();
@@ -27,7 +27,7 @@ attachment::to_string() const
 void
 attachment::to_json(json& j) const
 {
-    j[camelize("attachment")] = json{
+    j = json{
         { camelize("body"), body },
         { camelize("content_encoding"), content_encoding },
         { camelize("file_name"), file_name },

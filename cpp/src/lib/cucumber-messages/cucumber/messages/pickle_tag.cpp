@@ -11,8 +11,8 @@ pickle_tag::to_string() const
     std::ostringstream oss;
 
     oss
-    << "name=" << name
-    << ", ast_node_id=" << ast_node_id
+        << "name=" << name
+        << ", ast_node_id=" << ast_node_id
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ pickle_tag::to_string() const
 void
 pickle_tag::to_json(json& j) const
 {
-    j[camelize("pickle_tag")] = json{
+    j = json{
         { camelize("name"), name },
         { camelize("ast_node_id"), ast_node_id }
     };

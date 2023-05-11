@@ -11,9 +11,9 @@ group::to_string() const
     std::ostringstream oss;
 
     oss
-    << "children=" << children
-    << ", start=" << start
-    << ", value=" << value
+        << "children=" << children
+        << ", start=" << start
+        << ", value=" << value
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ group::to_string() const
 void
 group::to_json(json& j) const
 {
-    j[camelize("group")] = json{
+    j = json{
         { camelize("children"), children },
         { camelize("start"), start },
         { camelize("value"), value }

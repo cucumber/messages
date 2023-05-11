@@ -11,9 +11,9 @@ feature_child::to_string() const
     std::ostringstream oss;
 
     oss
-    << "rule=" << rule
-    << ", background=" << background
-    << ", scenario=" << scenario
+        << "rule=" << rule
+        << ", background=" << background
+        << ", scenario=" << scenario
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ feature_child::to_string() const
 void
 feature_child::to_json(json& j) const
 {
-    j[camelize("feature_child")] = json{
+    j = json{
         { camelize("rule"), rule },
         { camelize("background"), background },
         { camelize("scenario"), scenario }

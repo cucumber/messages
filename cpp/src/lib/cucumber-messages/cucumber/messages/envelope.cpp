@@ -11,23 +11,23 @@ envelope::to_string() const
     std::ostringstream oss;
 
     oss
-    << "attachment=" << attachment
-    << ", gherkin_document=" << gherkin_document
-    << ", hook=" << hook
-    << ", meta=" << meta
-    << ", parameter_type=" << parameter_type
-    << ", parse_error=" << parse_error
-    << ", pickle=" << pickle
-    << ", source=" << source
-    << ", step_definition=" << step_definition
-    << ", test_case=" << test_case
-    << ", test_case_finished=" << test_case_finished
-    << ", test_case_started=" << test_case_started
-    << ", test_run_finished=" << test_run_finished
-    << ", test_run_started=" << test_run_started
-    << ", test_step_finished=" << test_step_finished
-    << ", test_step_started=" << test_step_started
-    << ", undefined_parameter_type=" << undefined_parameter_type
+        << "attachment=" << attachment
+        << ", gherkin_document=" << gherkin_document
+        << ", hook=" << hook
+        << ", meta=" << meta
+        << ", parameter_type=" << parameter_type
+        << ", parse_error=" << parse_error
+        << ", pickle=" << pickle
+        << ", source=" << source
+        << ", step_definition=" << step_definition
+        << ", test_case=" << test_case
+        << ", test_case_finished=" << test_case_finished
+        << ", test_case_started=" << test_case_started
+        << ", test_run_finished=" << test_run_finished
+        << ", test_run_started=" << test_run_started
+        << ", test_step_finished=" << test_step_finished
+        << ", test_step_started=" << test_step_started
+        << ", undefined_parameter_type=" << undefined_parameter_type
         ;
 
     return oss.str();
@@ -36,7 +36,7 @@ envelope::to_string() const
 void
 envelope::to_json(json& j) const
 {
-    j[camelize("envelope")] = json{
+    j = json{
         { camelize("attachment"), attachment },
         { camelize("gherkin_document"), gherkin_document },
         { camelize("hook"), hook },

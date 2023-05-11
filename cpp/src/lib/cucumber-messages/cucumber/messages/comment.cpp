@@ -11,8 +11,8 @@ comment::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", text=" << text
+        << "location=" << location
+        << ", text=" << text
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ comment::to_string() const
 void
 comment::to_json(json& j) const
 {
-    j[camelize("comment")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("text"), text }
     };

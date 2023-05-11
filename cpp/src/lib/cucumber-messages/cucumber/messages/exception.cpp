@@ -11,8 +11,8 @@ exception::to_string() const
     std::ostringstream oss;
 
     oss
-    << "type=" << type
-    << ", message=" << message
+        << "type=" << type
+        << ", message=" << message
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ exception::to_string() const
 void
 exception::to_json(json& j) const
 {
-    j[camelize("exception")] = json{
+    j = json{
         { camelize("type"), type },
         { camelize("message"), message }
     };

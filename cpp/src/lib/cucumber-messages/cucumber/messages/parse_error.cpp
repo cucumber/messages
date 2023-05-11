@@ -11,8 +11,8 @@ parse_error::to_string() const
     std::ostringstream oss;
 
     oss
-    << "source=" << source
-    << ", message=" << message
+        << "source=" << source
+        << ", message=" << message
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ parse_error::to_string() const
 void
 parse_error::to_json(json& j) const
 {
-    j[camelize("parse_error")] = json{
+    j = json{
         { camelize("source"), source },
         { camelize("message"), message }
     };

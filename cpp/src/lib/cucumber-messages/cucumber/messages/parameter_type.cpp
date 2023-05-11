@@ -11,12 +11,12 @@ parameter_type::to_string() const
     std::ostringstream oss;
 
     oss
-    << "name=" << name
-    << ", regular_expressions=" << regular_expressions
-    << ", prefer_for_regular_expression_match=" << prefer_for_regular_expression_match
-    << ", use_for_snippets=" << use_for_snippets
-    << ", id=" << id
-    << ", source_reference=" << source_reference
+        << "name=" << name
+        << ", regular_expressions=" << regular_expressions
+        << ", prefer_for_regular_expression_match=" << prefer_for_regular_expression_match
+        << ", use_for_snippets=" << use_for_snippets
+        << ", id=" << id
+        << ", source_reference=" << source_reference
         ;
 
     return oss.str();
@@ -25,7 +25,7 @@ parameter_type::to_string() const
 void
 parameter_type::to_json(json& j) const
 {
-    j[camelize("parameter_type")] = json{
+    j = json{
         { camelize("name"), name },
         { camelize("regular_expressions"), regular_expressions },
         { camelize("prefer_for_regular_expression_match"), prefer_for_regular_expression_match },

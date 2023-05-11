@@ -11,8 +11,8 @@ pickle_doc_string::to_string() const
     std::ostringstream oss;
 
     oss
-    << "media_type=" << media_type
-    << ", content=" << content
+        << "media_type=" << media_type
+        << ", content=" << content
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ pickle_doc_string::to_string() const
 void
 pickle_doc_string::to_json(json& j) const
 {
-    j[camelize("pickle_doc_string")] = json{
+    j = json{
         { camelize("media_type"), media_type },
         { camelize("content"), content }
     };

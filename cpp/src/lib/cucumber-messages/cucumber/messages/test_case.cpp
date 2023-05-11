@@ -11,9 +11,9 @@ test_case::to_string() const
     std::ostringstream oss;
 
     oss
-    << "id=" << id
-    << ", pickle_id=" << pickle_id
-    << ", test_steps=" << test_steps
+        << "id=" << id
+        << ", pickle_id=" << pickle_id
+        << ", test_steps=" << test_steps
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ test_case::to_string() const
 void
 test_case::to_json(json& j) const
 {
-    j[camelize("test_case")] = json{
+    j = json{
         { camelize("id"), id },
         { camelize("pickle_id"), pickle_id },
         { camelize("test_steps"), test_steps }

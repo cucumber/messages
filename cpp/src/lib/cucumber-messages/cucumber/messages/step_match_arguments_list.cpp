@@ -11,7 +11,7 @@ step_match_arguments_list::to_string() const
     std::ostringstream oss;
 
     oss
-    << "step_match_arguments=" << step_match_arguments
+        << "step_match_arguments=" << step_match_arguments
         ;
 
     return oss.str();
@@ -20,7 +20,7 @@ step_match_arguments_list::to_string() const
 void
 step_match_arguments_list::to_json(json& j) const
 {
-    j[camelize("step_match_arguments_list")] = json{
+    j = json{
         { camelize("step_match_arguments"), step_match_arguments }
     };
 }

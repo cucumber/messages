@@ -11,8 +11,8 @@ undefined_parameter_type::to_string() const
     std::ostringstream oss;
 
     oss
-    << "expression=" << expression
-    << ", name=" << name
+        << "expression=" << expression
+        << ", name=" << name
         ;
 
     return oss.str();
@@ -21,7 +21,7 @@ undefined_parameter_type::to_string() const
 void
 undefined_parameter_type::to_json(json& j) const
 {
-    j[camelize("undefined_parameter_type")] = json{
+    j = json{
         { camelize("expression"), expression },
         { camelize("name"), name }
     };

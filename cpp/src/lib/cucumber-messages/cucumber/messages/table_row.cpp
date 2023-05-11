@@ -11,9 +11,9 @@ table_row::to_string() const
     std::ostringstream oss;
 
     oss
-    << "location=" << location
-    << ", cells=" << cells
-    << ", id=" << id
+        << "location=" << location
+        << ", cells=" << cells
+        << ", id=" << id
         ;
 
     return oss.str();
@@ -22,7 +22,7 @@ table_row::to_string() const
 void
 table_row::to_json(json& j) const
 {
-    j[camelize("table_row")] = json{
+    j = json{
         { camelize("location"), location },
         { camelize("cells"), cells },
         { camelize("id"), id }

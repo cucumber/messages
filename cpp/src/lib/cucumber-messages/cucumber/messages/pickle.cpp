@@ -11,13 +11,13 @@ pickle::to_string() const
     std::ostringstream oss;
 
     oss
-    << "id=" << id
-    << ", uri=" << uri
-    << ", name=" << name
-    << ", language=" << language
-    << ", steps=" << steps
-    << ", tags=" << tags
-    << ", ast_node_ids=" << ast_node_ids
+        << "id=" << id
+        << ", uri=" << uri
+        << ", name=" << name
+        << ", language=" << language
+        << ", steps=" << steps
+        << ", tags=" << tags
+        << ", ast_node_ids=" << ast_node_ids
         ;
 
     return oss.str();
@@ -26,7 +26,7 @@ pickle::to_string() const
 void
 pickle::to_json(json& j) const
 {
-    j[camelize("pickle")] = json{
+    j = json{
         { camelize("id"), id },
         { camelize("uri"), uri },
         { camelize("name"), name },
