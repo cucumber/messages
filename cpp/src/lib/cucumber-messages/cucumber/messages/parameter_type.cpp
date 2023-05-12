@@ -10,14 +10,12 @@ parameter_type::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "name=" << name
-        << ", regular_expressions=" << regular_expressions
-        << ", prefer_for_regular_expression_match=" << prefer_for_regular_expression_match
-        << ", use_for_snippets=" << use_for_snippets
-        << ", id=" << id
-        << ", source_reference=" << source_reference
-        ;
+    cucumber::messages::to_string(oss, "name=", name);
+    cucumber::messages::to_string(oss, ", regular_expressions=", regular_expressions);
+    cucumber::messages::to_string(oss, ", prefer_for_regular_expression_match=", prefer_for_regular_expression_match);
+    cucumber::messages::to_string(oss, ", use_for_snippets=", use_for_snippets);
+    cucumber::messages::to_string(oss, ", id=", id);
+    cucumber::messages::to_string(oss, ", source_reference=", source_reference);
 
     return oss.str();
 }
@@ -25,14 +23,12 @@ parameter_type::to_string() const
 void
 parameter_type::to_json(json& j) const
 {
-    j = json{
-        { camelize("name"), name },
-        { camelize("regular_expressions"), regular_expressions },
-        { camelize("prefer_for_regular_expression_match"), prefer_for_regular_expression_match },
-        { camelize("use_for_snippets"), use_for_snippets },
-        { camelize("id"), id },
-        { camelize("source_reference"), source_reference }
-    };
+    cucumber::messages::to_json(j, camelize("name"), name);
+    cucumber::messages::to_json(j, camelize("regular_expressions"), regular_expressions);
+    cucumber::messages::to_json(j, camelize("prefer_for_regular_expression_match"), prefer_for_regular_expression_match);
+    cucumber::messages::to_json(j, camelize("use_for_snippets"), use_for_snippets);
+    cucumber::messages::to_json(j, camelize("id"), id);
+    cucumber::messages::to_json(j, camelize("source_reference"), source_reference);
 }
 
 std::string

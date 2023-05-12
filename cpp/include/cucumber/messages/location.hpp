@@ -20,7 +20,7 @@ using json = nlohmann::json;
 struct location
 {
     std::size_t line;
-    std::size_t column;
+    std::optional<std::size_t> column;
 
     std::string to_string() const;
 

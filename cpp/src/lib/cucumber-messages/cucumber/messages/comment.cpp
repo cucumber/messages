@@ -10,10 +10,8 @@ comment::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "location=" << location
-        << ", text=" << text
-        ;
+    cucumber::messages::to_string(oss, "location=", location);
+    cucumber::messages::to_string(oss, ", text=", text);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ comment::to_string() const
 void
 comment::to_json(json& j) const
 {
-    j = json{
-        { camelize("location"), location },
-        { camelize("text"), text }
-    };
+    cucumber::messages::to_json(j, camelize("location"), location);
+    cucumber::messages::to_json(j, camelize("text"), text);
 }
 
 std::string

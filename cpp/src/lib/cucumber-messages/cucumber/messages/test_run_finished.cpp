@@ -10,12 +10,10 @@ test_run_finished::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "message=" << message
-        << ", success=" << success
-        << ", timestamp=" << timestamp
-        << ", exception=" << exception
-        ;
+    cucumber::messages::to_string(oss, "message=", message);
+    cucumber::messages::to_string(oss, ", success=", success);
+    cucumber::messages::to_string(oss, ", timestamp=", timestamp);
+    cucumber::messages::to_string(oss, ", exception=", exception);
 
     return oss.str();
 }
@@ -23,12 +21,10 @@ test_run_finished::to_string() const
 void
 test_run_finished::to_json(json& j) const
 {
-    j = json{
-        { camelize("message"), message },
-        { camelize("success"), success },
-        { camelize("timestamp"), timestamp },
-        { camelize("exception"), exception }
-    };
+    cucumber::messages::to_json(j, camelize("message"), message);
+    cucumber::messages::to_json(j, camelize("success"), success);
+    cucumber::messages::to_json(j, camelize("timestamp"), timestamp);
+    cucumber::messages::to_json(j, camelize("exception"), exception);
 }
 
 std::string

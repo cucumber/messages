@@ -10,10 +10,8 @@ duration::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "seconds=" << seconds
-        << ", nanos=" << nanos
-        ;
+    cucumber::messages::to_string(oss, "seconds=", seconds);
+    cucumber::messages::to_string(oss, ", nanos=", nanos);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ duration::to_string() const
 void
 duration::to_json(json& j) const
 {
-    j = json{
-        { camelize("seconds"), seconds },
-        { camelize("nanos"), nanos }
-    };
+    cucumber::messages::to_json(j, camelize("seconds"), seconds);
+    cucumber::messages::to_json(j, camelize("nanos"), nanos);
 }
 
 std::string

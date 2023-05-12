@@ -10,25 +10,23 @@ envelope::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "attachment=" << attachment
-        << ", gherkin_document=" << gherkin_document
-        << ", hook=" << hook
-        << ", meta=" << meta
-        << ", parameter_type=" << parameter_type
-        << ", parse_error=" << parse_error
-        << ", pickle=" << pickle
-        << ", source=" << source
-        << ", step_definition=" << step_definition
-        << ", test_case=" << test_case
-        << ", test_case_finished=" << test_case_finished
-        << ", test_case_started=" << test_case_started
-        << ", test_run_finished=" << test_run_finished
-        << ", test_run_started=" << test_run_started
-        << ", test_step_finished=" << test_step_finished
-        << ", test_step_started=" << test_step_started
-        << ", undefined_parameter_type=" << undefined_parameter_type
-        ;
+    cucumber::messages::to_string(oss, "attachment=", attachment);
+    cucumber::messages::to_string(oss, ", gherkin_document=", gherkin_document);
+    cucumber::messages::to_string(oss, ", hook=", hook);
+    cucumber::messages::to_string(oss, ", meta=", meta);
+    cucumber::messages::to_string(oss, ", parameter_type=", parameter_type);
+    cucumber::messages::to_string(oss, ", parse_error=", parse_error);
+    cucumber::messages::to_string(oss, ", pickle=", pickle);
+    cucumber::messages::to_string(oss, ", source=", source);
+    cucumber::messages::to_string(oss, ", step_definition=", step_definition);
+    cucumber::messages::to_string(oss, ", test_case=", test_case);
+    cucumber::messages::to_string(oss, ", test_case_finished=", test_case_finished);
+    cucumber::messages::to_string(oss, ", test_case_started=", test_case_started);
+    cucumber::messages::to_string(oss, ", test_run_finished=", test_run_finished);
+    cucumber::messages::to_string(oss, ", test_run_started=", test_run_started);
+    cucumber::messages::to_string(oss, ", test_step_finished=", test_step_finished);
+    cucumber::messages::to_string(oss, ", test_step_started=", test_step_started);
+    cucumber::messages::to_string(oss, ", undefined_parameter_type=", undefined_parameter_type);
 
     return oss.str();
 }
@@ -36,25 +34,23 @@ envelope::to_string() const
 void
 envelope::to_json(json& j) const
 {
-    j = json{
-        { camelize("attachment"), attachment },
-        { camelize("gherkin_document"), gherkin_document },
-        { camelize("hook"), hook },
-        { camelize("meta"), meta },
-        { camelize("parameter_type"), parameter_type },
-        { camelize("parse_error"), parse_error },
-        { camelize("pickle"), pickle },
-        { camelize("source"), source },
-        { camelize("step_definition"), step_definition },
-        { camelize("test_case"), test_case },
-        { camelize("test_case_finished"), test_case_finished },
-        { camelize("test_case_started"), test_case_started },
-        { camelize("test_run_finished"), test_run_finished },
-        { camelize("test_run_started"), test_run_started },
-        { camelize("test_step_finished"), test_step_finished },
-        { camelize("test_step_started"), test_step_started },
-        { camelize("undefined_parameter_type"), undefined_parameter_type }
-    };
+    cucumber::messages::to_json(j, camelize("attachment"), attachment);
+    cucumber::messages::to_json(j, camelize("gherkin_document"), gherkin_document);
+    cucumber::messages::to_json(j, camelize("hook"), hook);
+    cucumber::messages::to_json(j, camelize("meta"), meta);
+    cucumber::messages::to_json(j, camelize("parameter_type"), parameter_type);
+    cucumber::messages::to_json(j, camelize("parse_error"), parse_error);
+    cucumber::messages::to_json(j, camelize("pickle"), pickle);
+    cucumber::messages::to_json(j, camelize("source"), source);
+    cucumber::messages::to_json(j, camelize("step_definition"), step_definition);
+    cucumber::messages::to_json(j, camelize("test_case"), test_case);
+    cucumber::messages::to_json(j, camelize("test_case_finished"), test_case_finished);
+    cucumber::messages::to_json(j, camelize("test_case_started"), test_case_started);
+    cucumber::messages::to_json(j, camelize("test_run_finished"), test_run_finished);
+    cucumber::messages::to_json(j, camelize("test_run_started"), test_run_started);
+    cucumber::messages::to_json(j, camelize("test_step_finished"), test_step_finished);
+    cucumber::messages::to_json(j, camelize("test_step_started"), test_step_started);
+    cucumber::messages::to_json(j, camelize("undefined_parameter_type"), undefined_parameter_type);
 }
 
 std::string

@@ -24,7 +24,7 @@ struct parameter_type
     bool prefer_for_regular_expression_match;
     bool use_for_snippets;
     std::string id;
-    cucumber::messages::source_reference source_reference;
+    std::optional<cucumber::messages::source_reference> source_reference;
 
     std::string to_string() const;
 

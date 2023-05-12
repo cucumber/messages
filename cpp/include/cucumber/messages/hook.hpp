@@ -20,9 +20,9 @@ using json = nlohmann::json;
 struct hook
 {
     std::string id;
-    std::string name;
+    std::optional<std::string> name;
     cucumber::messages::source_reference source_reference;
-    std::string tag_expression;
+    std::optional<std::string> tag_expression;
 
     std::string to_string() const;
 

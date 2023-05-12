@@ -10,14 +10,12 @@ background::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "location=" << location
-        << ", keyword=" << keyword
-        << ", name=" << name
-        << ", description=" << description
-        << ", steps=" << steps
-        << ", id=" << id
-        ;
+    cucumber::messages::to_string(oss, "location=", location);
+    cucumber::messages::to_string(oss, ", keyword=", keyword);
+    cucumber::messages::to_string(oss, ", name=", name);
+    cucumber::messages::to_string(oss, ", description=", description);
+    cucumber::messages::to_string(oss, ", steps=", steps);
+    cucumber::messages::to_string(oss, ", id=", id);
 
     return oss.str();
 }
@@ -25,14 +23,12 @@ background::to_string() const
 void
 background::to_json(json& j) const
 {
-    j = json{
-        { camelize("location"), location },
-        { camelize("keyword"), keyword },
-        { camelize("name"), name },
-        { camelize("description"), description },
-        { camelize("steps"), steps },
-        { camelize("id"), id }
-    };
+    cucumber::messages::to_json(j, camelize("location"), location);
+    cucumber::messages::to_json(j, camelize("keyword"), keyword);
+    cucumber::messages::to_json(j, camelize("name"), name);
+    cucumber::messages::to_json(j, camelize("description"), description);
+    cucumber::messages::to_json(j, camelize("steps"), steps);
+    cucumber::messages::to_json(j, camelize("id"), id);
 }
 
 std::string

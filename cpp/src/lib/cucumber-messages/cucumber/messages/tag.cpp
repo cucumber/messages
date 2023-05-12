@@ -10,11 +10,9 @@ tag::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "location=" << location
-        << ", name=" << name
-        << ", id=" << id
-        ;
+    cucumber::messages::to_string(oss, "location=", location);
+    cucumber::messages::to_string(oss, ", name=", name);
+    cucumber::messages::to_string(oss, ", id=", id);
 
     return oss.str();
 }
@@ -22,11 +20,9 @@ tag::to_string() const
 void
 tag::to_json(json& j) const
 {
-    j = json{
-        { camelize("location"), location },
-        { camelize("name"), name },
-        { camelize("id"), id }
-    };
+    cucumber::messages::to_json(j, camelize("location"), location);
+    cucumber::messages::to_json(j, camelize("name"), name);
+    cucumber::messages::to_json(j, camelize("id"), id);
 }
 
 std::string

@@ -42,23 +42,23 @@ using json = nlohmann::json;
 
 struct envelope
 {
-    cucumber::messages::attachment attachment;
-    cucumber::messages::gherkin_document gherkin_document;
-    cucumber::messages::hook hook;
-    cucumber::messages::meta meta;
-    cucumber::messages::parameter_type parameter_type;
-    cucumber::messages::parse_error parse_error;
-    cucumber::messages::pickle pickle;
-    cucumber::messages::source source;
-    cucumber::messages::step_definition step_definition;
-    cucumber::messages::test_case test_case;
-    cucumber::messages::test_case_finished test_case_finished;
-    cucumber::messages::test_case_started test_case_started;
-    cucumber::messages::test_run_finished test_run_finished;
-    cucumber::messages::test_run_started test_run_started;
-    cucumber::messages::test_step_finished test_step_finished;
-    cucumber::messages::test_step_started test_step_started;
-    cucumber::messages::undefined_parameter_type undefined_parameter_type;
+    std::optional<cucumber::messages::attachment> attachment;
+    std::optional<cucumber::messages::gherkin_document> gherkin_document;
+    std::optional<cucumber::messages::hook> hook;
+    std::optional<cucumber::messages::meta> meta;
+    std::optional<cucumber::messages::parameter_type> parameter_type;
+    std::optional<cucumber::messages::parse_error> parse_error;
+    std::optional<cucumber::messages::pickle> pickle;
+    std::optional<cucumber::messages::source> source;
+    std::optional<cucumber::messages::step_definition> step_definition;
+    std::optional<cucumber::messages::test_case> test_case;
+    std::optional<cucumber::messages::test_case_finished> test_case_finished;
+    std::optional<cucumber::messages::test_case_started> test_case_started;
+    std::optional<cucumber::messages::test_run_finished> test_run_finished;
+    std::optional<cucumber::messages::test_run_started> test_run_started;
+    std::optional<cucumber::messages::test_step_finished> test_step_finished;
+    std::optional<cucumber::messages::test_step_started> test_step_started;
+    std::optional<cucumber::messages::undefined_parameter_type> undefined_parameter_type;
 
     std::string to_string() const;
 

@@ -10,10 +10,8 @@ step_definition_pattern::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "source=" << source
-        << ", type=" << type
-        ;
+    cucumber::messages::to_string(oss, "source=", source);
+    cucumber::messages::to_string(oss, ", type=", type);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ step_definition_pattern::to_string() const
 void
 step_definition_pattern::to_json(json& j) const
 {
-    j = json{
-        { camelize("source"), source },
-        { camelize("type"), type }
-    };
+    cucumber::messages::to_json(j, camelize("source"), source);
+    cucumber::messages::to_json(j, camelize("type"), type);
 }
 
 std::string

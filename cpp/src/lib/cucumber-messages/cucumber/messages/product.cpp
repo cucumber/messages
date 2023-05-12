@@ -10,10 +10,8 @@ product::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "name=" << name
-        << ", version=" << version
-        ;
+    cucumber::messages::to_string(oss, "name=", name);
+    cucumber::messages::to_string(oss, ", version=", version);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ product::to_string() const
 void
 product::to_json(json& j) const
 {
-    j = json{
-        { camelize("name"), name },
-        { camelize("version"), version }
-    };
+    cucumber::messages::to_json(j, camelize("name"), name);
+    cucumber::messages::to_json(j, camelize("version"), version);
 }
 
 std::string

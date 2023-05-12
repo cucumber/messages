@@ -10,11 +10,9 @@ java_method::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "class_name=" << class_name
-        << ", method_name=" << method_name
-        << ", method_parameter_types=" << method_parameter_types
-        ;
+    cucumber::messages::to_string(oss, "class_name=", class_name);
+    cucumber::messages::to_string(oss, ", method_name=", method_name);
+    cucumber::messages::to_string(oss, ", method_parameter_types=", method_parameter_types);
 
     return oss.str();
 }
@@ -22,11 +20,9 @@ java_method::to_string() const
 void
 java_method::to_json(json& j) const
 {
-    j = json{
-        { camelize("class_name"), class_name },
-        { camelize("method_name"), method_name },
-        { camelize("method_parameter_types"), method_parameter_types }
-    };
+    cucumber::messages::to_json(j, camelize("class_name"), class_name);
+    cucumber::messages::to_json(j, camelize("method_name"), method_name);
+    cucumber::messages::to_json(j, camelize("method_parameter_types"), method_parameter_types);
 }
 
 std::string

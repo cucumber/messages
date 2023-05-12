@@ -10,11 +10,9 @@ step_definition::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "id=" << id
-        << ", pattern=" << pattern
-        << ", source_reference=" << source_reference
-        ;
+    cucumber::messages::to_string(oss, "id=", id);
+    cucumber::messages::to_string(oss, ", pattern=", pattern);
+    cucumber::messages::to_string(oss, ", source_reference=", source_reference);
 
     return oss.str();
 }
@@ -22,11 +20,9 @@ step_definition::to_string() const
 void
 step_definition::to_json(json& j) const
 {
-    j = json{
-        { camelize("id"), id },
-        { camelize("pattern"), pattern },
-        { camelize("source_reference"), source_reference }
-    };
+    cucumber::messages::to_json(j, camelize("id"), id);
+    cucumber::messages::to_json(j, camelize("pattern"), pattern);
+    cucumber::messages::to_json(j, camelize("source_reference"), source_reference);
 }
 
 std::string

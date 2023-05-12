@@ -22,7 +22,7 @@ struct test_case_started
     std::size_t attempt;
     std::string id;
     std::string test_case_id;
-    std::string worker_id;
+    std::optional<std::string> worker_id;
     cucumber::messages::timestamp timestamp;
 
     std::string to_string() const;

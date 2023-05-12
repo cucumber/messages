@@ -26,10 +26,10 @@ struct step
 {
     cucumber::messages::location location;
     std::string keyword;
-    cucumber::messages::step_keyword_type keyword_type;
+    std::optional<cucumber::messages::step_keyword_type> keyword_type;
     std::string text;
-    cucumber::messages::doc_string doc_string;
-    cucumber::messages::data_table data_table;
+    std::optional<cucumber::messages::doc_string> doc_string;
+    std::optional<cucumber::messages::data_table> data_table;
     std::string id;
 
     std::string to_string() const;

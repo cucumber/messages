@@ -10,12 +10,10 @@ test_step_result::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "duration=" << duration
-        << ", message=" << message
-        << ", status=" << status
-        << ", exception=" << exception
-        ;
+    cucumber::messages::to_string(oss, "duration=", duration);
+    cucumber::messages::to_string(oss, ", message=", message);
+    cucumber::messages::to_string(oss, ", status=", status);
+    cucumber::messages::to_string(oss, ", exception=", exception);
 
     return oss.str();
 }
@@ -23,12 +21,10 @@ test_step_result::to_string() const
 void
 test_step_result::to_json(json& j) const
 {
-    j = json{
-        { camelize("duration"), duration },
-        { camelize("message"), message },
-        { camelize("status"), status },
-        { camelize("exception"), exception }
-    };
+    cucumber::messages::to_json(j, camelize("duration"), duration);
+    cucumber::messages::to_json(j, camelize("message"), message);
+    cucumber::messages::to_json(j, camelize("status"), status);
+    cucumber::messages::to_json(j, camelize("exception"), exception);
 }
 
 std::string

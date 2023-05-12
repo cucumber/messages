@@ -10,10 +10,8 @@ undefined_parameter_type::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "expression=" << expression
-        << ", name=" << name
-        ;
+    cucumber::messages::to_string(oss, "expression=", expression);
+    cucumber::messages::to_string(oss, ", name=", name);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ undefined_parameter_type::to_string() const
 void
 undefined_parameter_type::to_json(json& j) const
 {
-    j = json{
-        { camelize("expression"), expression },
-        { camelize("name"), name }
-    };
+    cucumber::messages::to_json(j, camelize("expression"), expression);
+    cucumber::messages::to_json(j, camelize("name"), name);
 }
 
 std::string

@@ -20,10 +20,10 @@ using json = nlohmann::json;
 
 struct test_run_finished
 {
-    std::string message;
+    std::optional<std::string> message;
     bool success;
     cucumber::messages::timestamp timestamp;
-    cucumber::messages::exception exception;
+    std::optional<cucumber::messages::exception> exception;
 
     std::string to_string() const;
 

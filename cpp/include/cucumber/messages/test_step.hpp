@@ -22,11 +22,11 @@ using json = nlohmann::json;
 
 struct test_step
 {
-    std::string hook_id;
+    std::optional<std::string> hook_id;
     std::string id;
-    std::string pickle_step_id;
-    std::vector<std::string> step_definition_ids;
-    std::vector<cucumber::messages::step_match_arguments_list> step_match_arguments_lists;
+    std::optional<std::string> pickle_step_id;
+    std::optional<std::vector<std::string>> step_definition_ids;
+    std::optional<std::vector<cucumber::messages::step_match_arguments_list>> step_match_arguments_lists;
 
     std::string to_string() const;
 

@@ -27,7 +27,7 @@ struct examples
     std::string keyword;
     std::string name;
     std::string description;
-    cucumber::messages::table_row table_header;
+    std::optional<cucumber::messages::table_row> table_header;
     std::vector<cucumber::messages::table_row> table_body;
     std::string id;
 

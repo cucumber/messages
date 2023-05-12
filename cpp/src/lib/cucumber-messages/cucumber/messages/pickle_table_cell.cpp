@@ -10,9 +10,7 @@ pickle_table_cell::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "value=" << value
-        ;
+    cucumber::messages::to_string(oss, "value=", value);
 
     return oss.str();
 }
@@ -20,9 +18,7 @@ pickle_table_cell::to_string() const
 void
 pickle_table_cell::to_json(json& j) const
 {
-    j = json{
-        { camelize("value"), value }
-    };
+    cucumber::messages::to_json(j, camelize("value"), value);
 }
 
 std::string

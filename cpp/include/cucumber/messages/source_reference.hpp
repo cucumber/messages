@@ -24,10 +24,10 @@ using json = nlohmann::json;
 
 struct source_reference
 {
-    std::string uri;
-    cucumber::messages::java_method java_method;
-    cucumber::messages::java_stack_trace_element java_stack_trace_element;
-    cucumber::messages::location location;
+    std::optional<std::string> uri;
+    std::optional<cucumber::messages::java_method> java_method;
+    std::optional<cucumber::messages::java_stack_trace_element> java_stack_trace_element;
+    std::optional<cucumber::messages::location> location;
 
     std::string to_string() const;
 

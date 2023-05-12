@@ -10,10 +10,8 @@ pickle_tag::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "name=" << name
-        << ", ast_node_id=" << ast_node_id
-        ;
+    cucumber::messages::to_string(oss, "name=", name);
+    cucumber::messages::to_string(oss, ", ast_node_id=", ast_node_id);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ pickle_tag::to_string() const
 void
 pickle_tag::to_json(json& j) const
 {
-    j = json{
-        { camelize("name"), name },
-        { camelize("ast_node_id"), ast_node_id }
-    };
+    cucumber::messages::to_json(j, camelize("name"), name);
+    cucumber::messages::to_json(j, camelize("ast_node_id"), ast_node_id);
 }
 
 std::string

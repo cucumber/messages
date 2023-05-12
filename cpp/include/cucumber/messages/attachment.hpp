@@ -34,12 +34,12 @@ struct attachment
 {
     std::string body;
     cucumber::messages::attachment_content_encoding content_encoding;
-    std::string file_name;
+    std::optional<std::string> file_name;
     std::string media_type;
-    cucumber::messages::source source;
-    std::string test_case_started_id;
-    std::string test_step_id;
-    std::string url;
+    std::optional<cucumber::messages::source> source;
+    std::optional<std::string> test_case_started_id;
+    std::optional<std::string> test_step_id;
+    std::optional<std::string> url;
 
     std::string to_string() const;
 

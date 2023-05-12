@@ -10,12 +10,10 @@ doc_string::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "location=" << location
-        << ", media_type=" << media_type
-        << ", content=" << content
-        << ", delimiter=" << delimiter
-        ;
+    cucumber::messages::to_string(oss, "location=", location);
+    cucumber::messages::to_string(oss, ", media_type=", media_type);
+    cucumber::messages::to_string(oss, ", content=", content);
+    cucumber::messages::to_string(oss, ", delimiter=", delimiter);
 
     return oss.str();
 }
@@ -23,12 +21,10 @@ doc_string::to_string() const
 void
 doc_string::to_json(json& j) const
 {
-    j = json{
-        { camelize("location"), location },
-        { camelize("media_type"), media_type },
-        { camelize("content"), content },
-        { camelize("delimiter"), delimiter }
-    };
+    cucumber::messages::to_json(j, camelize("location"), location);
+    cucumber::messages::to_json(j, camelize("media_type"), media_type);
+    cucumber::messages::to_json(j, camelize("content"), content);
+    cucumber::messages::to_json(j, camelize("delimiter"), delimiter);
 }
 
 std::string

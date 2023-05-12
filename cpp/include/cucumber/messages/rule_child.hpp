@@ -22,8 +22,8 @@ using json = nlohmann::json;
 
 struct rule_child
 {
-    cucumber::messages::background background;
-    cucumber::messages::scenario scenario;
+    std::optional<cucumber::messages::background> background;
+    std::optional<cucumber::messages::scenario> scenario;
 
     std::string to_string() const;
 

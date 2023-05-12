@@ -10,11 +10,9 @@ gherkin_document::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "uri=" << uri
-        << ", feature=" << feature
-        << ", comments=" << comments
-        ;
+    cucumber::messages::to_string(oss, "uri=", uri);
+    cucumber::messages::to_string(oss, ", feature=", feature);
+    cucumber::messages::to_string(oss, ", comments=", comments);
 
     return oss.str();
 }
@@ -22,11 +20,9 @@ gherkin_document::to_string() const
 void
 gherkin_document::to_json(json& j) const
 {
-    j = json{
-        { camelize("uri"), uri },
-        { camelize("feature"), feature },
-        { camelize("comments"), comments }
-    };
+    cucumber::messages::to_json(j, camelize("uri"), uri);
+    cucumber::messages::to_json(j, camelize("feature"), feature);
+    cucumber::messages::to_json(j, camelize("comments"), comments);
 }
 
 std::string

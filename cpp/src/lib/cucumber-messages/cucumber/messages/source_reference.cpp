@@ -10,12 +10,10 @@ source_reference::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "uri=" << uri
-        << ", java_method=" << java_method
-        << ", java_stack_trace_element=" << java_stack_trace_element
-        << ", location=" << location
-        ;
+    cucumber::messages::to_string(oss, "uri=", uri);
+    cucumber::messages::to_string(oss, ", java_method=", java_method);
+    cucumber::messages::to_string(oss, ", java_stack_trace_element=", java_stack_trace_element);
+    cucumber::messages::to_string(oss, ", location=", location);
 
     return oss.str();
 }
@@ -23,12 +21,10 @@ source_reference::to_string() const
 void
 source_reference::to_json(json& j) const
 {
-    j = json{
-        { camelize("uri"), uri },
-        { camelize("java_method"), java_method },
-        { camelize("java_stack_trace_element"), java_stack_trace_element },
-        { camelize("location"), location }
-    };
+    cucumber::messages::to_json(j, camelize("uri"), uri);
+    cucumber::messages::to_json(j, camelize("java_method"), java_method);
+    cucumber::messages::to_json(j, camelize("java_stack_trace_element"), java_stack_trace_element);
+    cucumber::messages::to_json(j, camelize("location"), location);
 }
 
 std::string

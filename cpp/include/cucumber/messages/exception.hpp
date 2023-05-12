@@ -20,7 +20,7 @@ using json = nlohmann::json;
 struct exception
 {
     std::string type;
-    std::string message;
+    std::optional<std::string> message;
 
     std::string to_string() const;
 

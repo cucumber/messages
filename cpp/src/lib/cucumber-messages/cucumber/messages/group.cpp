@@ -10,11 +10,9 @@ group::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "children=" << children
-        << ", start=" << start
-        << ", value=" << value
-        ;
+    cucumber::messages::to_string(oss, "children=", children);
+    cucumber::messages::to_string(oss, ", start=", start);
+    cucumber::messages::to_string(oss, ", value=", value);
 
     return oss.str();
 }
@@ -22,11 +20,9 @@ group::to_string() const
 void
 group::to_json(json& j) const
 {
-    j = json{
-        { camelize("children"), children },
-        { camelize("start"), start },
-        { camelize("value"), value }
-    };
+    cucumber::messages::to_json(j, camelize("children"), children);
+    cucumber::messages::to_json(j, camelize("start"), start);
+    cucumber::messages::to_json(j, camelize("value"), value);
 }
 
 std::string

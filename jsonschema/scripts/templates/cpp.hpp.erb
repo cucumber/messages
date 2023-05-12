@@ -1,5 +1,7 @@
 <%- @schemas.each do |key, schema| -%>
-<% myclass = underscore(class_name(key)) %>
+<%
+    myclass = underscore(class_name(key))
+%>
 <%= myclass %>.hpp
 #pragma once
 
@@ -43,20 +45,25 @@ using json = nlohmann::json;
 
 struct <%= myclass %>
 {
-  <%- schema['properties'].each do |property_name, property| -%>
-    <%- type = underscore(type_for(class_name(key), property_name, property)) -%>
-    <%- if m = /std::vector<(?<vtype>.+)>/.match(type) -%>
-        <%- if !m['vtype'].start_with?("std::") -%>
-    std::vector<cucumber::messages::<%= m['vtype'] -%>> <%= underscore(property_name) %>;
-        <%- else -%>
-    <%= type -%> <%= underscore(property_name) %>;
-        <%- end -%>
-    <%- elsif !type.start_with?("std::") && type != "bool" -%>
-    cucumber::messages::<%= type -%> <%= underscore(property_name) %>;
-    <%- else -%>
-    <%= type -%> <%= underscore(property_name) %>;
+    <%-
+    schema['properties'].each do |property_name, property|
+        type = underscore(type_for(class_name(key), property_name, property))
+        ptype = type
+        pname = underscore(property_name)
+        prequired = (schema['required'] || []).index(property_name)
+        if m = /std::vector<(?<vtype>.+)>/.match(type)
+            if !m['vtype'].start_with?("std::")
+                ptype = "std::vector<cucumber::messages::" + m['vtype'] + ">"
+            end
+        elsif !type.start_with?("std::") && type != "bool"
+            ptype = "cucumber::messages::" + type
+        end
+        if !prequired
+            ptype = "std::optional<" + ptype + ">"
+        end
+    -%>
+    <%= ptype %> <%= pname %>;
     <%- end -%>
-  <%- end -%>
 
     std::string to_string() const;
 
@@ -83,12 +90,13 @@ std::string
 {
     std::ostringstream oss;
 
-    oss
-    <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
-    <%- type = underscore(type_for(class_name(key), property_name, property)) -%>
-        << "<%= index == 0 ? '' : ', '%><%= underscore(property_name) %>=" << <%= underscore(property_name) %>
+    <%-
+    schema['properties'].each_with_index do |(property_name, property), index|
+        pname = underscore(property_name)
+        prefix = '"' + (index == 0 ? '' : ', ') + pname + '="'
+    -%>
+    cucumber::messages::to_string(oss, <%= prefix %>, <%= pname %>);
     <%- end -%>
-        ;
 
     return oss.str();
 }
@@ -99,17 +107,10 @@ void
     <%-
     exprs = []
     schema['properties'].each_with_index do |(property_name, property), index|
-        type = underscore(type_for(class_name(key), property_name, property))
-        expr = "{ "
-        expr += 'camelize("' + underscore(property_name) + '")'
-        expr += ", " + underscore(property_name)
-        expr += " }"
-        exprs.append(expr)
-    end
+        pname = underscore(property_name)
     -%>
-    j = json{
-        <%= exprs.join(",\n        ") %>
-    };
+    cucumber::messages::to_json(j, camelize("<%= pname %>"), <%= pname %>);
+    <%- end -%>
 }
 
 std::string

@@ -10,10 +10,8 @@ data_table::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "location=" << location
-        << ", rows=" << rows
-        ;
+    cucumber::messages::to_string(oss, "location=", location);
+    cucumber::messages::to_string(oss, ", rows=", rows);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ data_table::to_string() const
 void
 data_table::to_json(json& j) const
 {
-    j = json{
-        { camelize("location"), location },
-        { camelize("rows"), rows }
-    };
+    cucumber::messages::to_json(j, camelize("location"), location);
+    cucumber::messages::to_json(j, camelize("rows"), rows);
 }
 
 std::string

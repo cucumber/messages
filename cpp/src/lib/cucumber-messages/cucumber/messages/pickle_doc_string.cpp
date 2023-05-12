@@ -10,10 +10,8 @@ pickle_doc_string::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "media_type=" << media_type
-        << ", content=" << content
-        ;
+    cucumber::messages::to_string(oss, "media_type=", media_type);
+    cucumber::messages::to_string(oss, ", content=", content);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ pickle_doc_string::to_string() const
 void
 pickle_doc_string::to_json(json& j) const
 {
-    j = json{
-        { camelize("media_type"), media_type },
-        { camelize("content"), content }
-    };
+    cucumber::messages::to_json(j, camelize("media_type"), media_type);
+    cucumber::messages::to_json(j, camelize("content"), content);
 }
 
 std::string

@@ -10,14 +10,12 @@ meta::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "protocol_version=" << protocol_version
-        << ", implementation=" << implementation
-        << ", runtime=" << runtime
-        << ", os=" << os
-        << ", cpu=" << cpu
-        << ", ci=" << ci
-        ;
+    cucumber::messages::to_string(oss, "protocol_version=", protocol_version);
+    cucumber::messages::to_string(oss, ", implementation=", implementation);
+    cucumber::messages::to_string(oss, ", runtime=", runtime);
+    cucumber::messages::to_string(oss, ", os=", os);
+    cucumber::messages::to_string(oss, ", cpu=", cpu);
+    cucumber::messages::to_string(oss, ", ci=", ci);
 
     return oss.str();
 }
@@ -25,14 +23,12 @@ meta::to_string() const
 void
 meta::to_json(json& j) const
 {
-    j = json{
-        { camelize("protocol_version"), protocol_version },
-        { camelize("implementation"), implementation },
-        { camelize("runtime"), runtime },
-        { camelize("os"), os },
-        { camelize("cpu"), cpu },
-        { camelize("ci"), ci }
-    };
+    cucumber::messages::to_json(j, camelize("protocol_version"), protocol_version);
+    cucumber::messages::to_json(j, camelize("implementation"), implementation);
+    cucumber::messages::to_json(j, camelize("runtime"), runtime);
+    cucumber::messages::to_json(j, camelize("os"), os);
+    cucumber::messages::to_json(j, camelize("cpu"), cpu);
+    cucumber::messages::to_json(j, camelize("ci"), ci);
 }
 
 std::string

@@ -22,10 +22,10 @@ using json = nlohmann::json;
 
 struct pickle_step
 {
-    cucumber::messages::pickle_step_argument argument;
+    std::optional<cucumber::messages::pickle_step_argument> argument;
     std::vector<std::string> ast_node_ids;
     std::string id;
-    cucumber::messages::pickle_step_type type;
+    std::optional<cucumber::messages::pickle_step_type> type;
     std::string text;
 
     std::string to_string() const;

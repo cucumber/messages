@@ -10,10 +10,8 @@ parse_error::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "source=" << source
-        << ", message=" << message
-        ;
+    cucumber::messages::to_string(oss, "source=", source);
+    cucumber::messages::to_string(oss, ", message=", message);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ parse_error::to_string() const
 void
 parse_error::to_json(json& j) const
 {
-    j = json{
-        { camelize("source"), source },
-        { camelize("message"), message }
-    };
+    cucumber::messages::to_json(j, camelize("source"), source);
+    cucumber::messages::to_json(j, camelize("message"), message);
 }
 
 std::string

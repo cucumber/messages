@@ -10,12 +10,10 @@ ci::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "name=" << name
-        << ", url=" << url
-        << ", build_number=" << build_number
-        << ", git=" << git
-        ;
+    cucumber::messages::to_string(oss, "name=", name);
+    cucumber::messages::to_string(oss, ", url=", url);
+    cucumber::messages::to_string(oss, ", build_number=", build_number);
+    cucumber::messages::to_string(oss, ", git=", git);
 
     return oss.str();
 }
@@ -23,12 +21,10 @@ ci::to_string() const
 void
 ci::to_json(json& j) const
 {
-    j = json{
-        { camelize("name"), name },
-        { camelize("url"), url },
-        { camelize("build_number"), build_number },
-        { camelize("git"), git }
-    };
+    cucumber::messages::to_json(j, camelize("name"), name);
+    cucumber::messages::to_json(j, camelize("url"), url);
+    cucumber::messages::to_json(j, camelize("build_number"), build_number);
+    cucumber::messages::to_json(j, camelize("git"), git);
 }
 
 std::string

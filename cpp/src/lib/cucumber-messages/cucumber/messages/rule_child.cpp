@@ -10,10 +10,8 @@ rule_child::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "background=" << background
-        << ", scenario=" << scenario
-        ;
+    cucumber::messages::to_string(oss, "background=", background);
+    cucumber::messages::to_string(oss, ", scenario=", scenario);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ rule_child::to_string() const
 void
 rule_child::to_json(json& j) const
 {
-    j = json{
-        { camelize("background"), background },
-        { camelize("scenario"), scenario }
-    };
+    cucumber::messages::to_json(j, camelize("background"), background);
+    cucumber::messages::to_json(j, camelize("scenario"), scenario);
 }
 
 std::string

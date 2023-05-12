@@ -20,7 +20,7 @@ using json = nlohmann::json;
 struct doc_string
 {
     cucumber::messages::location location;
-    std::string media_type;
+    std::optional<std::string> media_type;
     std::string content;
     std::string delimiter;
 

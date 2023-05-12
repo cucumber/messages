@@ -10,11 +10,9 @@ feature_child::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "rule=" << rule
-        << ", background=" << background
-        << ", scenario=" << scenario
-        ;
+    cucumber::messages::to_string(oss, "rule=", rule);
+    cucumber::messages::to_string(oss, ", background=", background);
+    cucumber::messages::to_string(oss, ", scenario=", scenario);
 
     return oss.str();
 }
@@ -22,11 +20,9 @@ feature_child::to_string() const
 void
 feature_child::to_json(json& j) const
 {
-    j = json{
-        { camelize("rule"), rule },
-        { camelize("background"), background },
-        { camelize("scenario"), scenario }
-    };
+    cucumber::messages::to_json(j, camelize("rule"), rule);
+    cucumber::messages::to_json(j, camelize("background"), background);
+    cucumber::messages::to_json(j, camelize("scenario"), scenario);
 }
 
 std::string

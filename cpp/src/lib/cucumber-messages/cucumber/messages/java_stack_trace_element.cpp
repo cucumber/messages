@@ -10,11 +10,9 @@ java_stack_trace_element::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "class_name=" << class_name
-        << ", file_name=" << file_name
-        << ", method_name=" << method_name
-        ;
+    cucumber::messages::to_string(oss, "class_name=", class_name);
+    cucumber::messages::to_string(oss, ", file_name=", file_name);
+    cucumber::messages::to_string(oss, ", method_name=", method_name);
 
     return oss.str();
 }
@@ -22,11 +20,9 @@ java_stack_trace_element::to_string() const
 void
 java_stack_trace_element::to_json(json& j) const
 {
-    j = json{
-        { camelize("class_name"), class_name },
-        { camelize("file_name"), file_name },
-        { camelize("method_name"), method_name }
-    };
+    cucumber::messages::to_json(j, camelize("class_name"), class_name);
+    cucumber::messages::to_json(j, camelize("file_name"), file_name);
+    cucumber::messages::to_json(j, camelize("method_name"), method_name);
 }
 
 std::string

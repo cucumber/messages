@@ -10,16 +10,14 @@ attachment::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "body=" << body
-        << ", content_encoding=" << content_encoding
-        << ", file_name=" << file_name
-        << ", media_type=" << media_type
-        << ", source=" << source
-        << ", test_case_started_id=" << test_case_started_id
-        << ", test_step_id=" << test_step_id
-        << ", url=" << url
-        ;
+    cucumber::messages::to_string(oss, "body=", body);
+    cucumber::messages::to_string(oss, ", content_encoding=", content_encoding);
+    cucumber::messages::to_string(oss, ", file_name=", file_name);
+    cucumber::messages::to_string(oss, ", media_type=", media_type);
+    cucumber::messages::to_string(oss, ", source=", source);
+    cucumber::messages::to_string(oss, ", test_case_started_id=", test_case_started_id);
+    cucumber::messages::to_string(oss, ", test_step_id=", test_step_id);
+    cucumber::messages::to_string(oss, ", url=", url);
 
     return oss.str();
 }
@@ -27,16 +25,14 @@ attachment::to_string() const
 void
 attachment::to_json(json& j) const
 {
-    j = json{
-        { camelize("body"), body },
-        { camelize("content_encoding"), content_encoding },
-        { camelize("file_name"), file_name },
-        { camelize("media_type"), media_type },
-        { camelize("source"), source },
-        { camelize("test_case_started_id"), test_case_started_id },
-        { camelize("test_step_id"), test_step_id },
-        { camelize("url"), url }
-    };
+    cucumber::messages::to_json(j, camelize("body"), body);
+    cucumber::messages::to_json(j, camelize("content_encoding"), content_encoding);
+    cucumber::messages::to_json(j, camelize("file_name"), file_name);
+    cucumber::messages::to_json(j, camelize("media_type"), media_type);
+    cucumber::messages::to_json(j, camelize("source"), source);
+    cucumber::messages::to_json(j, camelize("test_case_started_id"), test_case_started_id);
+    cucumber::messages::to_json(j, camelize("test_step_id"), test_step_id);
+    cucumber::messages::to_json(j, camelize("url"), url);
 }
 
 std::string

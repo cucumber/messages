@@ -22,8 +22,8 @@ struct git
 {
     std::string remote;
     std::string revision;
-    std::string branch;
-    std::string tag;
+    std::optional<std::string> branch;
+    std::optional<std::string> tag;
 
     std::string to_string() const;
 

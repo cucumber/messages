@@ -22,9 +22,9 @@ using json = nlohmann::json;
 struct test_step_result
 {
     cucumber::messages::duration duration;
-    std::string message;
+    std::optional<std::string> message;
     cucumber::messages::test_step_result_status status;
-    cucumber::messages::exception exception;
+    std::optional<cucumber::messages::exception> exception;
 
     std::string to_string() const;
 

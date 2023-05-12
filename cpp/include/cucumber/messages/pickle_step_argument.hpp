@@ -22,8 +22,8 @@ using json = nlohmann::json;
 
 struct pickle_step_argument
 {
-    cucumber::messages::pickle_doc_string doc_string;
-    cucumber::messages::pickle_table data_table;
+    std::optional<cucumber::messages::pickle_doc_string> doc_string;
+    std::optional<cucumber::messages::pickle_table> data_table;
 
     std::string to_string() const;
 

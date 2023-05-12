@@ -10,16 +10,14 @@ scenario::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "location=" << location
-        << ", tags=" << tags
-        << ", keyword=" << keyword
-        << ", name=" << name
-        << ", description=" << description
-        << ", steps=" << steps
-        << ", examples=" << examples
-        << ", id=" << id
-        ;
+    cucumber::messages::to_string(oss, "location=", location);
+    cucumber::messages::to_string(oss, ", tags=", tags);
+    cucumber::messages::to_string(oss, ", keyword=", keyword);
+    cucumber::messages::to_string(oss, ", name=", name);
+    cucumber::messages::to_string(oss, ", description=", description);
+    cucumber::messages::to_string(oss, ", steps=", steps);
+    cucumber::messages::to_string(oss, ", examples=", examples);
+    cucumber::messages::to_string(oss, ", id=", id);
 
     return oss.str();
 }
@@ -27,16 +25,14 @@ scenario::to_string() const
 void
 scenario::to_json(json& j) const
 {
-    j = json{
-        { camelize("location"), location },
-        { camelize("tags"), tags },
-        { camelize("keyword"), keyword },
-        { camelize("name"), name },
-        { camelize("description"), description },
-        { camelize("steps"), steps },
-        { camelize("examples"), examples },
-        { camelize("id"), id }
-    };
+    cucumber::messages::to_json(j, camelize("location"), location);
+    cucumber::messages::to_json(j, camelize("tags"), tags);
+    cucumber::messages::to_json(j, camelize("keyword"), keyword);
+    cucumber::messages::to_json(j, camelize("name"), name);
+    cucumber::messages::to_json(j, camelize("description"), description);
+    cucumber::messages::to_json(j, camelize("steps"), steps);
+    cucumber::messages::to_json(j, camelize("examples"), examples);
+    cucumber::messages::to_json(j, camelize("id"), id);
 }
 
 std::string

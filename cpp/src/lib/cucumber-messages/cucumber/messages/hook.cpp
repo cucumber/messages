@@ -10,12 +10,10 @@ hook::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "id=" << id
-        << ", name=" << name
-        << ", source_reference=" << source_reference
-        << ", tag_expression=" << tag_expression
-        ;
+    cucumber::messages::to_string(oss, "id=", id);
+    cucumber::messages::to_string(oss, ", name=", name);
+    cucumber::messages::to_string(oss, ", source_reference=", source_reference);
+    cucumber::messages::to_string(oss, ", tag_expression=", tag_expression);
 
     return oss.str();
 }
@@ -23,12 +21,10 @@ hook::to_string() const
 void
 hook::to_json(json& j) const
 {
-    j = json{
-        { camelize("id"), id },
-        { camelize("name"), name },
-        { camelize("source_reference"), source_reference },
-        { camelize("tag_expression"), tag_expression }
-    };
+    cucumber::messages::to_json(j, camelize("id"), id);
+    cucumber::messages::to_json(j, camelize("name"), name);
+    cucumber::messages::to_json(j, camelize("source_reference"), source_reference);
+    cucumber::messages::to_json(j, camelize("tag_expression"), tag_expression);
 }
 
 std::string

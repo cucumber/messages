@@ -27,8 +27,8 @@ using json = nlohmann::json;
 
 struct gherkin_document
 {
-    std::string uri;
-    cucumber::messages::feature feature;
+    std::optional<std::string> uri;
+    std::optional<cucumber::messages::feature> feature;
     std::vector<cucumber::messages::comment> comments;
 
     std::string to_string() const;

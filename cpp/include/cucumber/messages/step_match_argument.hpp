@@ -27,7 +27,7 @@ using json = nlohmann::json;
 struct step_match_argument
 {
     cucumber::messages::group group;
-    std::string parameter_type_name;
+    std::optional<std::string> parameter_type_name;
 
     std::string to_string() const;
 

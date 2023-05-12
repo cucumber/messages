@@ -17,7 +17,7 @@ using json = nlohmann::json;
 
 struct pickle_doc_string
 {
-    std::string media_type;
+    std::optional<std::string> media_type;
     std::string content;
 
     std::string to_string() const;

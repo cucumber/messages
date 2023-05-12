@@ -22,9 +22,9 @@ using json = nlohmann::json;
 struct ci
 {
     std::string name;
-    std::string url;
-    std::string build_number;
-    cucumber::messages::git git;
+    std::optional<std::string> url;
+    std::optional<std::string> build_number;
+    std::optional<cucumber::messages::git> git;
 
     std::string to_string() const;
 

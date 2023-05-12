@@ -10,12 +10,10 @@ git::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "remote=" << remote
-        << ", revision=" << revision
-        << ", branch=" << branch
-        << ", tag=" << tag
-        ;
+    cucumber::messages::to_string(oss, "remote=", remote);
+    cucumber::messages::to_string(oss, ", revision=", revision);
+    cucumber::messages::to_string(oss, ", branch=", branch);
+    cucumber::messages::to_string(oss, ", tag=", tag);
 
     return oss.str();
 }
@@ -23,12 +21,10 @@ git::to_string() const
 void
 git::to_json(json& j) const
 {
-    j = json{
-        { camelize("remote"), remote },
-        { camelize("revision"), revision },
-        { camelize("branch"), branch },
-        { camelize("tag"), tag }
-    };
+    cucumber::messages::to_json(j, camelize("remote"), remote);
+    cucumber::messages::to_json(j, camelize("revision"), revision);
+    cucumber::messages::to_json(j, camelize("branch"), branch);
+    cucumber::messages::to_json(j, camelize("tag"), tag);
 }
 
 std::string

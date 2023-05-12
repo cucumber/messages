@@ -20,7 +20,7 @@ using json = nlohmann::json;
 struct product
 {
     std::string name;
-    std::string version;
+    std::optional<std::string> version;
 
     std::string to_string() const;
 

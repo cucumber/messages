@@ -10,10 +10,8 @@ step_match_argument::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "group=" << group
-        << ", parameter_type_name=" << parameter_type_name
-        ;
+    cucumber::messages::to_string(oss, "group=", group);
+    cucumber::messages::to_string(oss, ", parameter_type_name=", parameter_type_name);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ step_match_argument::to_string() const
 void
 step_match_argument::to_json(json& j) const
 {
-    j = json{
-        { camelize("group"), group },
-        { camelize("parameter_type_name"), parameter_type_name }
-    };
+    cucumber::messages::to_json(j, camelize("group"), group);
+    cucumber::messages::to_json(j, camelize("parameter_type_name"), parameter_type_name);
 }
 
 std::string

@@ -31,7 +31,7 @@ struct meta
     cucumber::messages::product runtime;
     cucumber::messages::product os;
     cucumber::messages::product cpu;
-    cucumber::messages::ci ci;
+    std::optional<cucumber::messages::ci> ci;
 
     std::string to_string() const;
 

@@ -10,10 +10,8 @@ exception::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "type=" << type
-        << ", message=" << message
-        ;
+    cucumber::messages::to_string(oss, "type=", type);
+    cucumber::messages::to_string(oss, ", message=", message);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ exception::to_string() const
 void
 exception::to_json(json& j) const
 {
-    j = json{
-        { camelize("type"), type },
-        { camelize("message"), message }
-    };
+    cucumber::messages::to_json(j, camelize("type"), type);
+    cucumber::messages::to_json(j, camelize("message"), message);
 }
 
 std::string

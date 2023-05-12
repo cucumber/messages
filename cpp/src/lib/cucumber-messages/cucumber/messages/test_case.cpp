@@ -10,11 +10,9 @@ test_case::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "id=" << id
-        << ", pickle_id=" << pickle_id
-        << ", test_steps=" << test_steps
-        ;
+    cucumber::messages::to_string(oss, "id=", id);
+    cucumber::messages::to_string(oss, ", pickle_id=", pickle_id);
+    cucumber::messages::to_string(oss, ", test_steps=", test_steps);
 
     return oss.str();
 }
@@ -22,11 +20,9 @@ test_case::to_string() const
 void
 test_case::to_json(json& j) const
 {
-    j = json{
-        { camelize("id"), id },
-        { camelize("pickle_id"), pickle_id },
-        { camelize("test_steps"), test_steps }
-    };
+    cucumber::messages::to_json(j, camelize("id"), id);
+    cucumber::messages::to_json(j, camelize("pickle_id"), pickle_id);
+    cucumber::messages::to_json(j, camelize("test_steps"), test_steps);
 }
 
 std::string

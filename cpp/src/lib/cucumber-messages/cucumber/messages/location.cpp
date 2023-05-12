@@ -10,10 +10,8 @@ location::to_string() const
 {
     std::ostringstream oss;
 
-    oss
-        << "line=" << line
-        << ", column=" << column
-        ;
+    cucumber::messages::to_string(oss, "line=", line);
+    cucumber::messages::to_string(oss, ", column=", column);
 
     return oss.str();
 }
@@ -21,10 +19,8 @@ location::to_string() const
 void
 location::to_json(json& j) const
 {
-    j = json{
-        { camelize("line"), line },
-        { camelize("column"), column }
-    };
+    cucumber::messages::to_json(j, camelize("line"), line);
+    cucumber::messages::to_json(j, camelize("column"), column);
 }
 
 std::string
