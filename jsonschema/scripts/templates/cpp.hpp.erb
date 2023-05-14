@@ -1,8 +1,15 @@
+all.hpp
 <%- @schemas.each do |key, schema| -%>
-<%
+<%-
+    myclass = underscore(class_name(key))
+-%>
+#include <cucumber/messages/<%= myclass %>.hpp>
+<%- end -%>
+<%- @schemas.each do |key, schema| -%>
+<%-
     myclass = underscore(class_name(key))
 %>
-<%= myclass %>.hpp
+<%= myclass -%>.hpp
 #pragma once
 
 #include <vector>
