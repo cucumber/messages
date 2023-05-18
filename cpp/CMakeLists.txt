@@ -15,10 +15,14 @@ install(
     TARGETS
         cucumber-messages
     EXPORT cucumber-messages-config
-    FILE_SET cucumber_messages_headers
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(
+    DIRECTORY "${CMAKE_SOURCE_DIR}/include/cucumber"
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
 )
 
 install(

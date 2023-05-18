@@ -9,20 +9,14 @@ file(GLOB_RECURSE CUCUMBER_MESSAGES_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.[ch]pp
 
 target_sources(
     cucumber-messages
-    PUBLIC
-    FILE_SET
-        "cucumber_messages_headers"
-        TYPE HEADERS
-        BASE_DIRS ${INC_DIR}
-        FILES
-        ${CUCUMBER_MESSAGES_HEADERS}
     PRIVATE
+        ${CUCUMBER_MESSAGES_HEADERS}
         ${CUCUMBER_MESSAGES_SOURCES}
 )
 
 target_include_directories(
     cucumber-messages
-    INTERFACE
+    PUBLIC
         $<BUILD_INTERFACE:${INC_DIR}>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
     PRIVATE
