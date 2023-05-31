@@ -23,6 +23,12 @@ target_include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+target_link_libraries(
+    cucumber-messages
+    PUBLIC
+        nlohmann_json::nlohmann_json
+)
+
 set_target_properties(
     cucumber-messages
     PROPERTIES

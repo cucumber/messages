@@ -8,6 +8,9 @@ LIB_DIR = src/lib/cucumber-messages/cucumber/messages
 SOURCES = \
 	$(shell find $(INC_DIR) -name "*.[ch]pp") \
 	$(shell find $(LIB_DIR) -name "*.[ch]pp")
+
+HERE = $(shell pwd)
+CMAKE_BUILDROOT = $(HERE)/build/root
 CMAKELISTS = $(shell find . -name CMakeLists.txt)
 
 help: ## Show this help
@@ -42,9 +45,29 @@ clean: ## Remove automatically generated files and related artifacts
 clean-build:
 	rm -rf build .configured .built
 
+clean-deps:
+	rm -rf ext build/src build/root
+
+install-deps:
+	./scripts/build-externals deps.txt
+
 .configured: $(CMAKELISTS)
 	mkdir -p build
-	cmake -S . -B build && touch $@
+	cmake \
+	    -DCMAKE_PREFIX_PATH=$(CMAKE_BUILDROOT) \
+	    -DCMAKE_INSTALL_PREFIX=$(HERE)/stage \
+	    -S . \
+	    -B build \
+	    --toolchain cmake/toolchains/ext.cmake \
+	    && touch $@
+
+clean-configure:
+	rm -f .configured
+
+reconfigure: clean-configure .configured
+
+rebuild: reconfigure .built
 
 .built: .configured $(SOURCES)
 	cmake --build build --parallel && touch $@
+	cmake --install build

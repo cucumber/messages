@@ -1,3 +1,5 @@
 .configured
 .built
 build/
+ext/
+stage/

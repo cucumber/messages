@@ -71,7 +71,7 @@ to_string(std::ostream& os, P&& prefix, T&& opt)
     apply_if(
         opt,
         [&](const auto& v) {
-            using vtype = std::remove_cvref_t<decltype(v)>;
+            using vtype = std::decay_t<decltype(v)>;
 
             if constexpr (is_container_v<std::vector, vtype>) {
                 os << prefix << '[';
@@ -95,7 +95,7 @@ to_json(json& j, K&& key, T&& opt)
     apply_if(
         opt,
         [&](const auto& v) {
-            using vtype = std::remove_cvref_t<decltype(v)>;
+            using vtype = std::decay_t<decltype(v)>;
 
             if constexpr (std::is_enum_v<vtype>) {
                 j[key] = to_string(v);
