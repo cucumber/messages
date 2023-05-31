@@ -31,6 +31,23 @@ target "elixir-test" {
   target = "tested"
 }
 
+target "cpp-codegen" {
+  context = "jsonschema"
+  target = "output"
+  args = {
+    LANGUAGE = "cpp",
+  }
+  output = ["cpp/"]
+}
+
+target "cpp-test" {
+  context = "cpp"
+  target = "tested"
+  contexts = {
+    schema-codegen = "target:cpp-codegen",
+  }
+}
+
 target "go-codegen" {
   context = "jsonschema"
   target = "output"
