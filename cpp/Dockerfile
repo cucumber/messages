@@ -9,6 +9,7 @@ apt-get update
 apt-get install -y \
     bash \
     curl \
+    unzip \
     build-essential \
     cmake
 rm -rf /var/lib/apt/lists/*
@@ -22,7 +23,10 @@ FROM scratch AS schema-codegen
 
 FROM cpp AS with-dependencies
 
-COPY --link cmake scripts deps.txt Makefile .
+COPY --link cmake cmake
+COPY --link scripts scripts
+COPY --link Makefile deps.txt .
+
 # verify loads additional dependencies without running the tests (they aren't copied in yet)
 RUN make install-deps
 
