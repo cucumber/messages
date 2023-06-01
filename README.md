@@ -32,6 +32,7 @@ Each message in a message stream is of type [Envelope](messages.md#envelope).
 Each subdirectory defines language-specific implementations of these messages,
 generated from the JSON schemas. The current implementation are:
 - .Net
+- C++
 - Elixir
 - Go
 - Java

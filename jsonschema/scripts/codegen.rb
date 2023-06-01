@@ -160,6 +160,33 @@ class TypeScript < Codegen
   end
 end
 
+class Cpp < Codegen
+  def initialize(paths)
+    language_type_by_schema_type = {
+      'integer' => 'std::size_t',
+      'string' => 'std::string',
+      'boolean' => 'bool',
+    }
+
+    super(paths, language_type_by_schema_type)
+  end
+
+  def array_type_for(type_name)
+    "std::vector<#{type_name}>"
+  end
+
+  def format_description(raw_description, indent_string: "")
+    return '' if raw_description.nil?
+
+    raw_description
+      .split("\n")
+      .map { |line| line.strip() }
+      .filter { |line| line != '*' }
+      .map { |line| "// #{line}".rstrip() }
+      .join("\n#{indent_string}")
+  end
+end
+
 class Java < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
