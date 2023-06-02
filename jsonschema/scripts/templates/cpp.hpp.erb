@@ -14,6 +14,17 @@ all.hpp
 
 #include <vector>
 #include <string>
+<%-
+    optionals = 0
+    schema['properties'].each do |property_name, property|
+        prequired = (schema['required'] || []).index(property_name)
+        optionals += prequired ? 0 : 1
+    end
+
+    if optionals
+-%>
+#include <optional>
+<%- end -%>
 
 #include <nlohmann/json.hpp>
 <%-
