@@ -1,4 +1,4 @@
-name: Test PHP
+name: test-php
 
 on:
   push:
@@ -11,29 +11,44 @@ on:
   workflow_call:
 
 jobs:
-
   test-php:
-    name: PHP ${{ matrix.php }} ${{ matrix.composer-extra-flags }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - php: '8.1'
-            composer-extra-flags: '--prefer-lowest'
-          - php: '8.1'
-            composer-extra-flags: ''
+        php: ['8.1']
+        composer-mode: ['low-deps', 'high-deps']
 
     steps:
       - uses: actions/checkout@v3
-      - uses: docker/setup-buildx-action@v2
 
-      - name: Test
-        uses: docker/bake-action@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
         with:
-          targets: php-test
-          set: |
-            *.contexts.schema-codegen=
-            php-test.args.PHP_VERSION=${{ matrix.php }}
-            php-test.args.COMPOSER_EXTRA_FLAGS=${{ matrix.composer-extra-flags }}
-            php-test.cache-to=type=gha,scope=php-test-${{ matrix.php }}${{ matrix.composer-extra-flags }},mode=max
-            php-test.cache-from=type=gha,scope=php-test-${{ matrix.php }}${{ matrix.composer-extra-flags }}
+          php-version: "${{ matrix.php }}"
+
+      - name: Discover composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-dir)"
+        working-directory: php
+
+      - name: Cache composer
+        uses: actions/cache@v3
+        with:
+          path: "${{ steps.composer-cache.outputs.dir }}"
+          key: composer
+
+      - name: Install dependencies
+        working-directory: php
+        run: |
+          if [[ "${{ matrix.composer-mode }}" = "low-deps" ]]; then
+            composer update --prefer-lowest
+          else
+            composer update
+          fi
+
+      - name: Run tests
+        working-directory: php
+        run: |
+          vendor/bin/php-cs-fixer --dry-run --diff fix
+          vendor/bin/psalm --no-cache
+          vendor/bin/phpunit

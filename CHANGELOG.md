@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Added C++ implementation ([#152](https://github.com/cucumber/messages/pull/152))
+
+## [22.0.0] - 2023-04-06
+### Added
+- Added source reference to parameter type ([#45](https://github.com/cucumber/messages/pull/145))
+
+### Fixed
+- Corrected Java and PHP generators to allow running using Docker on Windows ([#146](https://github.com/cucumber/messages/issues/146))
 
 ## [21.0.1] - 2022-12-17
 ### Fixed
@@ -487,7 +496,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v21.0.1...main
+[Unreleased]: https://github.com/cucumber/messages/compare/v22.0.0...main
+[22.0.0]: https://github.com/cucumber/messages/compare/v21.0.1...main
 [21.0.1]: https://github.com/cucumber/messages/compare/v21.0.0...main
 [21.0.0]: https://github.com/cucumber/messages/compare/v20.0.0...main
 [20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...main

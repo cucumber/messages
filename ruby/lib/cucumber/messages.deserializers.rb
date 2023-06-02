@@ -594,6 +594,7 @@ module Cucumber
           prefer_for_regular_expression_match: hash[:preferForRegularExpressionMatch],
           use_for_snippets: hash[:useForSnippets],
           id: hash[:id],
+          source_reference: SourceReference.from_h(hash[:sourceReference]),
         )
       end
     end

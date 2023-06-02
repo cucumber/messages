@@ -1,0 +1,158 @@
+all.hpp
+<%- @schemas.each do |key, schema| -%>
+<%-
+    myclass = underscore(class_name(key))
+-%>
+#include <cucumber/messages/<%= myclass %>.hpp>
+<%- end -%>
+<%- @schemas.each do |key, schema| -%>
+<%-
+    myclass = underscore(class_name(key))
+%>
+<%= myclass -%>.hpp
+#pragma once
+
+#include <vector>
+#include <string>
+<%-
+    optionals = 0
+    schema['properties'].each do |property_name, property|
+        prequired = (schema['required'] || []).index(property_name)
+        optionals += prequired ? 0 : 1
+    end
+
+    if optionals
+-%>
+#include <optional>
+<%- end -%>
+
+#include <nlohmann/json.hpp>
+<%-
+    incs = []
+    schema['properties'].each do |property_name, property|
+        type = underscore(type_for(class_name(key), property_name, property))
+        if m = /std::vector<(?<vtype>.+)>/.match(type)
+            type = m['vtype']
+        end
+        next if type.start_with?("std::")
+        next if type == "bool"
+        incs.append(type)
+    end
+
+    if incs.length > 0
+-%>
+
+    <%- incs.each do |type| -%>
+#include <cucumber/messages/<%= type %>.hpp>
+    <%- end -%>
+<%- end -%>
+
+namespace cucumber::messages {
+
+using json = nlohmann::json;
+
+//
+// Represents the <%= class_name(key) %> message in Cucumber's message protocol
+// @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+<%- if not (schema['description'] || []).empty? -%>
+//
+<%= format_description(schema['description'], indent_string: '') %>
+<%- end -%>
+//
+// Generated code
+
+struct <%= myclass %>
+{
+    <%-
+    schema['properties'].each do |property_name, property|
+        type = underscore(type_for(class_name(key), property_name, property))
+        ptype = type
+        pname = underscore(property_name)
+        prequired = (schema['required'] || []).index(property_name)
+        if m = /std::vector<(?<vtype>.+)>/.match(type)
+            if !m['vtype'].start_with?("std::")
+                ptype = "std::vector<cucumber::messages::" + m['vtype'] + ">"
+            end
+        elsif !type.start_with?("std::") && type != "bool"
+            ptype = "cucumber::messages::" + type
+        end
+        if !prequired
+            ptype = "std::optional<" + ptype + ">"
+        end
+    -%>
+    <%= ptype %> <%= pname %>;
+    <%- end -%>
+
+    std::string to_string() const;
+
+    void to_json(json& j) const;
+    std::string to_json() const;
+};
+
+std::ostream&
+operator<<(std::ostream& os, const <%= myclass %>& msg);
+
+void to_json(json& j, const <%= myclass %>& m);
+
+}
+<%= myclass %>.cpp
+#include <sstream>
+
+#include <cucumber/messages/utils.hpp>
+#include <cucumber/messages/<%= myclass %>.hpp>
+
+namespace cucumber::messages {
+
+std::string
+<%= myclass %>::to_string() const
+{
+    std::ostringstream oss;
+
+    <%-
+    schema['properties'].each_with_index do |(property_name, property), index|
+        pname = underscore(property_name)
+        prefix = '"' + (index == 0 ? '' : ', ') + pname + '="'
+    -%>
+    cucumber::messages::to_string(oss, <%= prefix %>, <%= pname %>);
+    <%- end -%>
+
+    return oss.str();
+}
+
+void
+<%= myclass %>::to_json(json& j) const
+{
+    <%-
+    exprs = []
+    schema['properties'].each_with_index do |(property_name, property), index|
+        pname = underscore(property_name)
+    -%>
+    cucumber::messages::to_json(j, camelize("<%= pname %>"), <%= pname %>);
+    <%- end -%>
+}
+
+std::string
+<%= myclass %>::to_json() const
+{
+    std::ostringstream oss;
+    json j;
+
+    to_json(j);
+
+    oss << j;
+
+    return oss.str();
+}
+
+std::ostream&
+operator<<(std::ostream& os, const <%= myclass %>& msg)
+{
+    os << msg.to_string();
+
+    return os;
+}
+
+void to_json(json& j, const <%= myclass %>& m)
+{ m.to_json(j); }
+
+}<%- end -%>

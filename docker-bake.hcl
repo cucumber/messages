@@ -7,6 +7,7 @@ group "default" {
 
 group "codegen" {
   targets = [
+    "cpp-codegen",
     "go-codegen",
     "java-codegen",
     "javascript-codegen",
@@ -18,6 +19,7 @@ group "codegen" {
 
 group "test" {
   targets = [
+    "cpp-test",
     "go-test",
     "java-test",
     "javascript-test",
@@ -29,6 +31,23 @@ group "test" {
 target "elixir-test" {
   context = "elixir"
   target = "tested"
+}
+
+target "cpp-codegen" {
+  context = "jsonschema"
+  target = "output"
+  args = {
+    LANGUAGE = "cpp",
+  }
+  output = ["cpp/"]
+}
+
+target "cpp-test" {
+  context = "cpp"
+  target = "tested"
+  contexts = {
+    schema-codegen = "target:cpp-codegen",
+  }
 }
 
 target "go-codegen" {

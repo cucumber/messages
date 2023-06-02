@@ -1,4 +1,4 @@
-name: Test Codegen
+name: test-codegen
 
 on:
   push:
@@ -11,33 +11,40 @@ on:
   workflow_call:
 
 jobs:
-  codegen:
-    name: Generate code
+  test-codegen:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - uses: docker/setup-buildx-action@v2
 
-      - name: Generate code from schema
-        uses: docker/bake-action@v2
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          targets: codegen
-          set: |
-            go-codegen.cache-to=type=gha,scope=go-codegen,mode=max
-            go-codegen.cache-from=type=gha,scope=go-codegen
-            java-codegen.cache-to=type=gha,scope=java-codegen,mode=max
-            java-codegen.cache-from=type=gha,scope=java-codegen
-            javascript-codegen.cache-to=type=gha,scope=javascript-codegen,mode=max
-            javascript-codegen.cache-from=type=gha,scope=javascript-codegen
-            perl-codegen.cache-to=type=gha,scope=perl-codegen,mode=max
-            perl-codegen.cache-from=type=gha,scope=perl-codegen
-            php-codegen.cache-to=type=gha,scope=php-codegen,mode=max
-            php-codegen.cache-from=type=gha,scope=php-codegen
-            ruby-codegen.cache-to=type=gha,scope=ruby-codegen,mode=max
-            ruby-codegen.cache-from=type=gha,scope=ruby-codegen
+          node-version: 18
+          cache: "npm"
 
-      - name: Check the repo is still clean after generation
+      - name: validate the json schemas
+        run: make validate
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+
+      - run: composer install
+        working-directory: php
+
+      - name: generate code for all languages
+        run: |
+          make clean-all
+          make generate-all
+
+      - name: check the repo is still clean after generation
         run: |
           git status --porcelain
           git diff HEAD

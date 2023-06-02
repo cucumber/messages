@@ -382,6 +382,9 @@ export class ParameterType {
   useForSnippets: boolean = false
 
   id: string = ''
+
+  @Type(() => SourceReference)
+  sourceReference?: SourceReference
 }
 
 export class ParseError {
