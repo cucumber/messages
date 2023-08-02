@@ -20,7 +20,7 @@ EOF
 
 
 # Todo: can we eliminate this stage with smarter ERB templates?
-FROM golang:1.20.6-alpine AS go-codegen
+FROM golang:1.20.7-alpine AS go-codegen
 
 WORKDIR /build
 COPY --link --from=go-unformatted /build/ .
