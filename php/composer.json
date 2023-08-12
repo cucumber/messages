@@ -10,7 +10,7 @@
     },
     "require-dev": {
         "vimeo/psalm": "^5.0",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^10.0",
         "psalm/plugin-phpunit": "^0.18.0",
         "friendsofphp/php-cs-fixer": "^3.5",
         "ramsey/uuid": "^4.5.0"
