@@ -42,10 +42,10 @@ class AcceptanceTest extends TestCase
             $destLine = fgets($destHandle);
 
             if (empty($sourceLine) || empty($destLine)) {
-                self::fail("Blank line in " . $filename);
+                self::assertEquals($sourceLine, $destLine);
+            } else {
+                self::assertJsonStringEqualsJsonString($sourceLine, $destLine);
             }
-
-            self::assertJsonStringEqualsJsonString($sourceLine, $destLine);
         }
 
         // we exhausted source so dest should also be at end
