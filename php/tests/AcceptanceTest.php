@@ -48,9 +48,9 @@ class AcceptanceTest extends TestCase
     /**
      * @return Generator<string, array{0: string}>
      */
-    public function provideJsonLines(): Generator
+    public static function provideJsonLines(): Generator
     {
-        foreach ($this->getSampleFiles() as $filename) {
+        foreach (AcceptanceTest::getSampleFiles() as $filename) {
             foreach (file($filename) ?: [] as $lineNumber => $line) {
                 // key is provided for better error messages
                 $key = realpath($filename) . ':' . $lineNumber;
@@ -62,17 +62,17 @@ class AcceptanceTest extends TestCase
     /**
      * @return Generator<string, array{0: string}>
      */
-    public function provideNdJsonFilenames(): Generator
+    public static function provideNdJsonFilenames(): Generator
     {
-        foreach ($this->getSampleFiles() as $filename) {
+        foreach (AcceptanceTest::getSampleFiles() as $filename) {
             yield $filename => [$filename];
         }
     }
 
     /**
-     * @return list<string>
+     * @return array<string>
      */
-    private function getSampleFiles(): array
+    private static function getSampleFiles(): array
     {
         return glob(__DIR__ . '/../../../node_modules/@cucumber/compatibility-kit/features/**/*.ndjson') ?: [];
     }
