@@ -1,5 +1,7 @@
 <?php
 
+
+use Cucumber\Messages\DecodingException;
 use Cucumber\Messages\Envelope;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamReader;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamWriter;
@@ -7,9 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 class AcceptanceTest extends TestCase
 {
-    /** @dataProvider provideJsonLines */
+    /** @dataProvider provideJsonLines
+     * @throws DecodingException
+     * @throws JsonException
+     */
     public function testAllNdJsonSurvivesDecodingThenEncoding(string $json): void
     {
+        self::assertNotEmpty($json);
+
         $envelope = Envelope::fromJson($json);
         $newJson = $envelope->asJson();
 
@@ -34,11 +41,11 @@ class AcceptanceTest extends TestCase
             $sourceLine = fgets($sourceHandle);
             $destLine = fgets($destHandle);
 
-            if (!$sourceLine && !$destLine) {
-                break;
+            if (empty($sourceLine) || empty($destLine)) {
+                self::assertEquals($sourceLine, $destLine);
+            } else {
+                self::assertJsonStringEqualsJsonString($sourceLine, $destLine);
             }
-
-            self::assertJsonStringEqualsJsonString($sourceLine, $destLine);
         }
 
         // we exhausted source so dest should also be at end
@@ -48,9 +55,9 @@ class AcceptanceTest extends TestCase
     /**
      * @return Generator<string, array{0: string}>
      */
-    public function provideJsonLines(): Generator
+    public static function provideJsonLines(): Generator
     {
-        foreach ($this->getSampleFiles() as $filename) {
+        foreach (AcceptanceTest::getSampleFiles() as $filename) {
             foreach (file($filename) ?: [] as $lineNumber => $line) {
                 // key is provided for better error messages
                 $key = realpath($filename) . ':' . $lineNumber;
@@ -62,18 +69,25 @@ class AcceptanceTest extends TestCase
     /**
      * @return Generator<string, array{0: string}>
      */
-    public function provideNdJsonFilenames(): Generator
+    public static function provideNdJsonFilenames(): Generator
     {
-        foreach ($this->getSampleFiles() as $filename) {
+        foreach (AcceptanceTest::getSampleFiles() as $filename) {
             yield $filename => [$filename];
         }
     }
 
     /**
-     * @return list<string>
+     * @return array<string>
      */
-    private function getSampleFiles(): array
+    private static function getSampleFiles(): array
     {
-        return glob(__DIR__ . '/../../../node_modules/@cucumber/compatibility-kit/features/**/*.ndjson') ?: [];
+        // Note: This test setup is not ideal. The minimal.feature.ndjson
+        // will break whenever the schema for a feature file is updated.
+        //
+        // It would be better to specifically target known problems.
+        // However there are currently no known problems (because these
+        // tests originally tested against the CCK but that caused
+        // circular dependencies).
+        return glob(__DIR__ . '/Samples/*.ndjson') ?: [];
     }
 }
