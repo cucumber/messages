@@ -1,6 +1,7 @@
 <?php
 
 
+use Cucumber\Messages\DecodingException;
 use Cucumber\Messages\Envelope;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamReader;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamWriter;
@@ -8,9 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 class AcceptanceTest extends TestCase
 {
-    /** @dataProvider provideJsonLines */
+    /** @dataProvider provideJsonLines
+     * @throws DecodingException
+     * @throws JsonException
+     */
     public function testAllNdJsonSurvivesDecodingThenEncoding(string $json): void
     {
+        self::assertNotEmpty($json);
+
         $envelope = Envelope::fromJson($json);
         $newJson = $envelope->asJson();
 
@@ -35,8 +41,8 @@ class AcceptanceTest extends TestCase
             $sourceLine = fgets($sourceHandle);
             $destLine = fgets($destHandle);
 
-            if (!$sourceLine && !$destLine) {
-                break;
+            if (empty($sourceLine) || empty($destLine)) {
+                self::fail("Blank line in " . $filename);
             }
 
             self::assertJsonStringEqualsJsonString($sourceLine, $destLine);
