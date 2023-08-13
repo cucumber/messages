@@ -1,5 +1,6 @@
 <?php
 
+
 use Cucumber\Messages\Envelope;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamReader;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamWriter;
@@ -74,6 +75,13 @@ class AcceptanceTest extends TestCase
      */
     private static function getSampleFiles(): array
     {
-        return glob(__DIR__ . '/../../../node_modules/@cucumber/compatibility-kit/features/**/*.ndjson') ?: [];
+        // Note: This test setup is not ideal. The minimal.feature.ndjson
+        // will break whenever the schema for a feature file is updated.
+        //
+        // It would be better to specifically target known problems.
+        // However there are currently no known problems (because these
+        // tests originally tested against the CCK but that caused
+        // circular dependencies).
+        return glob(__DIR__ . '/Samples/*.ndjson') ?: [];
     }
 }
