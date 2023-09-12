@@ -39,7 +39,7 @@
     "@types/uuid": "9.0.3",
     "class-transformer": "0.5.1",
     "reflect-metadata": "0.1.13",
-    "uuid": "9.0.0"
+    "uuid": "9.0.1"
   },
   "devDependencies": {
     "@types/mocha": "10.0.1",
