@@ -496,13 +496,13 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v22.0.0...main
-[22.0.0]: https://github.com/cucumber/messages/compare/v21.0.1...main
-[21.0.1]: https://github.com/cucumber/messages/compare/v21.0.0...main
-[21.0.0]: https://github.com/cucumber/messages/compare/v20.0.0...main
-[20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...main
-[19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...main
-[19.1.3]: https://github.com/cucumber/messages/compare/v19.1.2...main
+[Unreleased]: https://github.com/cucumber/messages/compare/v22.0.0...HEAD
+[22.0.0]: https://github.com/cucumber/messages/compare/v21.0.1...v22.0.0
+[21.0.1]: https://github.com/cucumber/messages/compare/v21.0.0...v21.0.1
+[21.0.0]: https://github.com/cucumber/messages/compare/v20.0.0...v21.0.0
+[20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...v20.0.0
+[19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...v19.1.4
+[19.1.3]: https://github.com/cucumber/messages/compare/v19.1.2...v19.1.3
 [19.1.2]: https://github.com/cucumber/messages/compare/v19.1.1...v19.1.2
 [19.1.1]: https://github.com/cucumber/messages/compare/v19.1.0...v19.1.1
 [19.1.0]: https://github.com/cucumber/messages/compare/v19.0.0...v19.1.0
