@@ -1,5 +1,3 @@
-# -*- encoding: utf-8 -*-
-
 version = File.read(File.expand_path("VERSION", __dir__)).strip
 
 Gem::Specification.new do |s|
@@ -12,21 +10,23 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/cucumber/messages-ruby#readme"
   s.platform    = Gem::Platform::RUBY
   s.license     = "MIT"
-  s.required_ruby_version = ">= 2.3"
+  s.required_ruby_version = ">= 2.5"
+  s.required_rubygems_version = ">= 3.0.0"
 
   s.metadata    = {
-                    'bug_tracker_uri'   => 'https://github.com/cucumber/messages/issues',
-                    'changelog_uri'     => 'https://github.com/cucumber/messages/blob/main/CHANGELOG.md',
-                    'documentation_uri' => 'https://www.rubydoc.info/github/cucumber/messages',
-                    'mailing_list_uri'  => 'https://groups.google.com/forum/#!forum/cukes',
-                    'source_code_uri'   => 'https://github.com/cucumber/messages',
-                  }
+    'bug_tracker_uri'   => 'https://github.com/cucumber/messages/issues',
+    'changelog_uri'     => 'https://github.com/cucumber/messages/blob/main/CHANGELOG.md',
+    'documentation_uri' => 'https://www.rubydoc.info/github/cucumber/messages',
+    'mailing_list_uri'  => 'https://groups.google.com/forum/#!forum/cukes',
+    'source_code_uri'   => 'https://github.com/cucumber/messages',
+  }
 
-  s.add_development_dependency 'cucumber-compatibility-kit', '~> 12.0', '>= 12.0.0'
+  s.add_development_dependency 'cucumber-compatibility-kit', '~> 12.0'
   s.add_development_dependency 'rake', '~> 13.0', '>= 13.0.6'
-  s.add_development_dependency 'rspec', '~> 3.11', '>= 3.11.0'
+  s.add_development_dependency 'rspec', '~> 3.12'
+  s.add_development_dependency 'rubocop', '~> 1.28.0'
+  s.add_development_dependency 'rubocop-rspec', '~> 2.5.0'
 
-  s.rubygems_version = ">= 1.6.1"
   s.files            = Dir[
     'README.md',
     'LICENSE',
