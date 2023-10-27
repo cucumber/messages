@@ -6,6 +6,8 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+# Initial iteration: 22 files inspected, 816 offenses detected, 678 offenses auto-correctable
+
 # Offense count: 1
 # This cop supports safe auto-correction (--auto-correct).
 # Configuration parameters: Include.
