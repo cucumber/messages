@@ -7,7 +7,6 @@ module Cucumber
         end
 
         module ClassMethods
-
           ##
           # Makes an underscored, lowercase form from the expression in the string.
           #
@@ -15,7 +14,7 @@ module Cucumber
           #
           # This is a simplified version of the Ruby on Rails implementation
           # https://github.com/rails/rails/blob/v6.1.3.2/activesupport/lib/active_support/inflector/methods.rb#L92
-
+          ##
           def underscore(term)
             return term unless /[A-Z-]/.match?(term)
 
@@ -33,7 +32,7 @@ module Cucumber
           #
           # This is a simplified version of the Ruby on Rails implementation
           # https://github.com/rails/rails/blob/v6.1.3.2/activesupport/lib/active_support/inflector/methods.rb#L69
-
+          ##
           def camelize(term)
             camelized = term.to_s
             camelized.gsub!(/(?:_|(\/))([a-z\d]*)/i) { "#{$1}#{$2.capitalize}" }

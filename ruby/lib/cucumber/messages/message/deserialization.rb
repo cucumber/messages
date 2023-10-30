@@ -12,7 +12,6 @@ module Cucumber
         end
 
         module ClassMethods
-
           ##
           # Returns a new Message - or messages into an array - deserialized from the given json document.
           # CamelCased keys are properly converted to snake_cased attributes in the process
@@ -27,8 +26,7 @@ module Cucumber
           #
           #   json_string = { uri: 'file:///...', comments: [{text: 'text comment'}, {text: 'another comment'}]}.to_json
           #   Cucumber::Messages::GherkinDocument.from_json(json_string)  # => #<Cucumber::Messages::GherkinDocument:0x00007efda11e6a90 ... @comments=[#<Cucumber::Messages::Comment:0x00007efda11e6e50 ..., #<Cucumber::Messages::Comment:0x00007efda11e6b58 ...>]>
-          #
-
+          ##
           def from_json(json_string)
             from_h(JSON.parse(json_string, { symbolize_names: true }))
           end
