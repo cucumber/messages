@@ -20,14 +20,12 @@ module Cucumber
     <%- end -%>
       def initialize(
       <%- schema['properties'].each do |property_name, property| -%>
-        <%= underscore(property_name) -%>: <%=
-          (schema['required'] || []).index(property_name) ?
-            default_value(class_name(key), property_name, property) :
-            'nil'
-          -%><%= property_name == schema['properties'].keys.last ? '' : ',' %>
+        <%- final_key = property_name == schema['properties'].keys.last -%>
+        <%- individual_value = (schema['required'] || []).index(property_name) ? default_value(class_name(key), property_name, property) : 'nil' -%>
+        <%= "#{underscore(property_name)}: #{individual_value}" -%><%= final_key ? '' : ',' %>
       <%- end -%>
       )
-      <%- schema['properties'].each do |property_name, property| -%>
+      <%- schema['properties'].each do |property_name, _property| -%>
         @<%= underscore(property_name) %> = <%= underscore(property_name) %>
       <%- end -%>
       end
