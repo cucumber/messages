@@ -301,7 +301,6 @@ class Ruby < Codegen
     raw_description
       .split("\n")
       .map { |description_line| "# #{description_line}" }
-      .unshift('#')
       .push('##')
       .join("\n#{indent_string}")
   end
