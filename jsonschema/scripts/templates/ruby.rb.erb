@@ -9,17 +9,16 @@ module Cucumber
     ##
     # Represents the <%= class_name(key) %> message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     <%= format_description(schema['description']) %>
-    ##
     class <%= class_name(key) %> < ::Cucumber::Messages::Message
     <%- schema['properties'].each do |property_name, property| -%>
       <%- if property['description'] -%>
       ##
       <%= format_description(property['description'], indent_string: '      ') %>
-
+      ##
       <%- end -%>
       attr_reader :<%= underscore(property_name) %>
-    <%- end -%>
 
+    <%- end -%>
       def initialize(
       <%- schema['properties'].each do |property_name, property| -%>
         <%= underscore(property_name) -%>: <%=

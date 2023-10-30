@@ -296,12 +296,13 @@ class Ruby < Codegen
   end
 
   def format_description(raw_description, indent_string: "    ")
-    return '#' if raw_description.nil?
+    return '##' if raw_description.nil?
 
     raw_description
       .split("\n")
       .map { |description_line| "# #{description_line}" }
       .unshift('#')
+      .push('##')
       .join("\n#{indent_string}")
   end
 end
