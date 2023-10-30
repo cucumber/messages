@@ -6,14 +6,12 @@ require 'cucumber/messages/message'
 module Cucumber
   module Messages
   <%- @schemas.each do |key, schema| %>
-
     ##
     # Represents the <%= class_name(key) %> message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     <%= format_description(schema['description']) %>
     ##
     class <%= class_name(key) %> < ::Cucumber::Messages::Message
     <%- schema['properties'].each do |property_name, property| -%>
-
       <%- if property['description'] -%>
       ##
       <%= format_description(property['description'], indent_string: '      ') %>
