@@ -296,11 +296,12 @@ class Ruby < Codegen
   end
 
   def format_description(raw_description, indent_string: "    ")
-    return '' if raw_description.nil?
+    return '##' if raw_description.nil?
 
     raw_description
       .split("\n")
       .map { |description_line| "# #{description_line}" }
+      .push('##')
       .join("\n#{indent_string}")
   end
 end
@@ -434,7 +435,6 @@ class Php < Codegen
     "#{enum_type_name}::#{enum_constant(property['enum'][0])}"
   end
 end
-
 
 clazz = Object.const_get(ARGV[0])
 path = ARGV[1]

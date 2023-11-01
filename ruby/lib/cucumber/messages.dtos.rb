@@ -6,7 +6,6 @@ require 'cucumber/messages/message'
 module Cucumber
   module Messages
 
-
     ##
     # Represents the Attachment message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
@@ -22,16 +21,14 @@ module Cucumber
     # 
     #  It is not to be used for runtime errors raised/thrown during execution. This
     #  is captured in `TestResult`.
-    #
-
+    ##
     class Attachment < ::Cucumber::Messages::Message
-
       ##
       # *
       #  The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
       #  is simply the string. If it's `BASE64`, the string should be Base64 decoded to
       #  obtain the attachment.
-
+      ##
       attr_reader :body
 
       ##
@@ -44,13 +41,13 @@ module Cucumber
       #  - string: IDENTITY
       #  - byte array: BASE64
       #  - stream: BASE64
-
+      ##
       attr_reader :content_encoding
 
       ##
       # *
       #  Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
-
+      ##
       attr_reader :file_name
 
       ##
@@ -59,7 +56,7 @@ module Cucumber
       #  [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
       #  as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
       #  and `text/x.cucumber.stacktrace+plain`
-
+      ##
       attr_reader :media_type
 
       attr_reader :source
@@ -81,7 +78,7 @@ module Cucumber
       #  This will result in a smaller message stream, which can improve performance and
       #  reduce bandwidth of message consumers. It also makes it easier to process and download attachments
       #  separately from reports.
-
+      ##
       attr_reader :url
 
       def initialize(
@@ -105,16 +102,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Duration message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # The structure is pretty close of the Timestamp one. For clarity, a second type
     #  of message is used.
-    #
-
+    ##
     class Duration < ::Cucumber::Messages::Message
-
       attr_reader :seconds
 
       ##
@@ -122,7 +116,7 @@ module Cucumber
       #  second values with fractions must still have non-negative nanos values
       #  that count forward in time. Must be from 0 to 999,999,999
       #  inclusive.
-
+      ##
       attr_reader :nanos
 
       def initialize(
@@ -134,7 +128,6 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Envelope message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
@@ -145,10 +138,8 @@ module Cucumber
     # *
     #  All the messages that are passed between different components/processes are Envelope
     #  messages.
-    #
-
+    ##
     class Envelope < ::Cucumber::Messages::Message
-
       attr_reader :attachment
 
       attr_reader :gherkin_document
@@ -222,23 +213,20 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Exception message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # A simplified representation of an exception
-    #
-
+    ##
     class Exception < ::Cucumber::Messages::Message
-
       ##
       # The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
-
+      ##
       attr_reader :type
 
       ##
       # The message of exception that caused this result. E.g. expected: "a" but was: "b"
-
+      ##
       attr_reader :message
 
       def initialize(
@@ -250,7 +238,6 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the GherkinDocument message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
@@ -261,22 +248,20 @@ module Cucumber
     # 
     #  The only consumers of `GherkinDocument` should only be formatters that produce
     #  "rich" output, resembling the original Gherkin document.
-    #
-
+    ##
     class GherkinDocument < ::Cucumber::Messages::Message
-
       ##
       # *
       #  The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
       #  of the source, typically a file path relative to the root directory
-
+      ##
       attr_reader :uri
 
       attr_reader :feature
 
       ##
       # All the comments in the Gherkin document
-
+      ##
       attr_reader :comments
 
       def initialize(
@@ -290,18 +275,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Background message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class Background < ::Cucumber::Messages::Message
-
       ##
       # The location of the `Background` keyword
-
+      ##
       attr_reader :location
 
       attr_reader :keyword
@@ -331,24 +311,21 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Comment message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  A comment in a Gherkin document
-    #
-
+    ##
     class Comment < ::Cucumber::Messages::Message
-
       ##
       # The location of the comment
-
+      ##
       attr_reader :location
 
       ##
       # The text of the comment
-
+      ##
       attr_reader :text
 
       def initialize(
@@ -360,15 +337,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the DataTable message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class DataTable < ::Cucumber::Messages::Message
-
       attr_reader :location
 
       attr_reader :rows
@@ -382,15 +354,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the DocString message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class DocString < ::Cucumber::Messages::Message
-
       attr_reader :location
 
       attr_reader :media_type
@@ -412,18 +379,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Examples message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class Examples < ::Cucumber::Messages::Message
-
       ##
       # The location of the `Examples` keyword
-
+      ##
       attr_reader :location
 
       attr_reader :tags
@@ -461,48 +423,43 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Feature message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class Feature < ::Cucumber::Messages::Message
-
       ##
       # The location of the `Feature` keyword
-
+      ##
       attr_reader :location
 
       ##
       # All the tags placed above the `Feature` keyword
-
+      ##
       attr_reader :tags
 
       ##
       # The [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code of the Gherkin document
-
+      ##
       attr_reader :language
 
       ##
       # The text of the `Feature` keyword (in the language specified by `language`)
-
+      ##
       attr_reader :keyword
 
       ##
       # The name of the feature (the text following the `keyword`)
-
+      ##
       attr_reader :name
 
       ##
       # The line(s) underneath the line with the `keyword` that are used as description
-
+      ##
       attr_reader :description
 
       ##
       # Zero or more children
-
+      ##
       attr_reader :children
 
       def initialize(
@@ -524,16 +481,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the FeatureChild message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  A child node of a `Feature` node
-    #
-
+    ##
     class FeatureChild < ::Cucumber::Messages::Message
-
       attr_reader :rule
 
       attr_reader :background
@@ -551,23 +505,18 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Rule message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class Rule < ::Cucumber::Messages::Message
-
       ##
       # The location of the `Rule` keyword
-
+      ##
       attr_reader :location
 
       ##
       # All the tags placed above the `Rule` keyword
-
+      ##
       attr_reader :tags
 
       attr_reader :keyword
@@ -599,16 +548,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the RuleChild message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  A child node of a `Rule` node
-    #
-
+    ##
     class RuleChild < ::Cucumber::Messages::Message
-
       attr_reader :background
 
       attr_reader :scenario
@@ -622,18 +568,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Scenario message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class Scenario < ::Cucumber::Messages::Message
-
       ##
       # The location of the `Scenario` keyword
-
+      ##
       attr_reader :location
 
       attr_reader :tags
@@ -671,28 +612,25 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Step message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # A step
-    #
-
+    ##
     class Step < ::Cucumber::Messages::Message
-
       ##
       # The location of the steps' `keyword`
-
+      ##
       attr_reader :location
 
       ##
       # The actual keyword as it appeared in the source.
-
+      ##
       attr_reader :keyword
 
       ##
       # The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
-
+      ##
       attr_reader :keyword_type
 
       attr_reader :text
@@ -703,7 +641,7 @@ module Cucumber
 
       ##
       # Unique ID to be able to reference the Step from PickleStep
-
+      ##
       attr_reader :id
 
       def initialize(
@@ -725,23 +663,20 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TableCell message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # A cell in a `TableRow`
-    #
-
+    ##
     class TableCell < ::Cucumber::Messages::Message
-
       ##
       # The location of the cell
-
+      ##
       attr_reader :location
 
       ##
       # The value of the cell
-
+      ##
       attr_reader :value
 
       def initialize(
@@ -753,23 +688,20 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TableRow message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # A row in a table
-    #
-
+    ##
     class TableRow < ::Cucumber::Messages::Message
-
       ##
       # The location of the first cell in the row
-
+      ##
       attr_reader :location
 
       ##
       # Cells in the row
-
+      ##
       attr_reader :cells
 
       attr_reader :id
@@ -785,29 +717,26 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Tag message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  A tag
-    #
-
+    ##
     class Tag < ::Cucumber::Messages::Message
-
       ##
       # Location of the tag
-
+      ##
       attr_reader :location
 
       ##
       # The name of the tag (including the leading `@`)
-
+      ##
       attr_reader :name
 
       ##
       # Unique ID to be able to reference the Tag from PickleTag
-
+      ##
       attr_reader :id
 
       def initialize(
@@ -821,15 +750,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Hook message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class Hook < ::Cucumber::Messages::Message
-
       attr_reader :id
 
       attr_reader :name
@@ -851,16 +775,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Location message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  Points to a line and a column in a text file
-    #
-
+    ##
     class Location < ::Cucumber::Messages::Message
-
       attr_reader :line
 
       attr_reader :column
@@ -874,41 +795,38 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Meta message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  This message contains meta information about the environment. Consumers can use
     #  this for various purposes.
-    #
-
+    ##
     class Meta < ::Cucumber::Messages::Message
-
       ##
       # *
       #  The [SEMVER](https://semver.org/) version number of the protocol
-
+      ##
       attr_reader :protocol_version
 
       ##
       # SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
-
+      ##
       attr_reader :implementation
 
       ##
       # Java, Ruby, Node.js etc
-
+      ##
       attr_reader :runtime
 
       ##
       # Windows, Linux, MacOS etc
-
+      ##
       attr_reader :os
 
       ##
       # 386, arm, amd64 etc
-
+      ##
       attr_reader :cpu
 
       attr_reader :ci
@@ -930,28 +848,25 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Ci message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # CI environment
-    #
-
+    ##
     class Ci < ::Cucumber::Messages::Message
-
       ##
       # Name of the CI product, e.g. "Jenkins", "CircleCI" etc.
-
+      ##
       attr_reader :name
 
       ##
       # Link to the build
-
+      ##
       attr_reader :url
 
       ##
       # The build number. Some CI servers use non-numeric build numbers, which is why this is a string
-
+      ##
       attr_reader :build_number
 
       attr_reader :git
@@ -969,16 +884,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Git message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # Information about Git, provided by the Build/CI server as environment
     #  variables.
-    #
-
+    ##
     class Git < ::Cucumber::Messages::Message
-
       attr_reader :remote
 
       attr_reader :revision
@@ -1000,23 +912,20 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Product message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # Used to describe various properties of Meta
-    #
-
+    ##
     class Product < ::Cucumber::Messages::Message
-
       ##
       # The product name
-
+      ##
       attr_reader :name
 
       ##
       # The product version
-
+      ##
       attr_reader :version
 
       def initialize(
@@ -1028,18 +937,13 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the ParameterType message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class ParameterType < ::Cucumber::Messages::Message
-
       ##
       # The name is unique, so we don't need an id.
-
+      ##
       attr_reader :name
 
       attr_reader :regular_expressions
@@ -1069,15 +973,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the ParseError message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class ParseError < ::Cucumber::Messages::Message
-
       attr_reader :source
 
       attr_reader :message
@@ -1090,7 +989,6 @@ module Cucumber
         @message = message
       end
     end
-
 
     ##
     # Represents the Pickle message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
@@ -1108,41 +1006,39 @@ module Cucumber
     #  with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
     # 
     #  Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
-    #
-
+    ##
     class Pickle < ::Cucumber::Messages::Message
-
       ##
       # *
       #  A unique id for the pickle
-
+      ##
       attr_reader :id
 
       ##
       # The uri of the source file
-
+      ##
       attr_reader :uri
 
       ##
       # The name of the pickle
-
+      ##
       attr_reader :name
 
       ##
       # The language of the pickle
-
+      ##
       attr_reader :language
 
       ##
       # One or more steps
-
+      ##
       attr_reader :steps
 
       ##
       # *
       #  One or more tags. If this pickle is constructed from a Gherkin document,
       #  It includes inherited tags from the `Feature` as well.
-
+      ##
       attr_reader :tags
 
       ##
@@ -1150,7 +1046,7 @@ module Cucumber
       #  Points to the AST node locations of the pickle. The last one represents the unique
       #  id of the pickle. A pickle constructed from `Examples` will have the first
       #  id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
-
+      ##
       attr_reader :ast_node_ids
 
       def initialize(
@@ -1172,15 +1068,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the PickleDocString message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class PickleDocString < ::Cucumber::Messages::Message
-
       attr_reader :media_type
 
       attr_reader :content
@@ -1194,34 +1085,31 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the PickleStep message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  An executable step
-    #
-
+    ##
     class PickleStep < ::Cucumber::Messages::Message
-
       attr_reader :argument
 
       ##
       # References the IDs of the source of the step. For Gherkin, this can be
       #  the ID of a Step, and possibly also the ID of a TableRow
-
+      ##
       attr_reader :ast_node_ids
 
       ##
       # A unique ID for the PickleStep
-
+      ##
       attr_reader :id
 
       ##
       # The context in which the step was specified: context (Given), action (When) or outcome (Then).
       # 
       # Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
-
+      ##
       attr_reader :type
 
       attr_reader :text
@@ -1241,15 +1129,12 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the PickleStepArgument message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # An optional argument
-    #
-
+    ##
     class PickleStepArgument < ::Cucumber::Messages::Message
-
       attr_reader :doc_string
 
       attr_reader :data_table
@@ -1263,15 +1148,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the PickleTable message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class PickleTable < ::Cucumber::Messages::Message
-
       attr_reader :rows
 
       def initialize(
@@ -1281,15 +1161,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the PickleTableCell message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class PickleTableCell < ::Cucumber::Messages::Message
-
       attr_reader :value
 
       def initialize(
@@ -1299,15 +1174,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the PickleTableRow message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class PickleTableRow < ::Cucumber::Messages::Message
-
       attr_reader :cells
 
       def initialize(
@@ -1317,21 +1187,18 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the PickleTag message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  A tag
-    #
-
+    ##
     class PickleTag < ::Cucumber::Messages::Message
-
       attr_reader :name
 
       ##
       # Points to the AST node this was created from
-
+      ##
       attr_reader :ast_node_id
 
       def initialize(
@@ -1343,7 +1210,6 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Source message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
@@ -1351,26 +1217,24 @@ module Cucumber
     # 
     # *
     #  A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
-    #
-
+    ##
     class Source < ::Cucumber::Messages::Message
-
       ##
       # *
       #  The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
       #  of the source, typically a file path relative to the root directory
-
+      ##
       attr_reader :uri
 
       ##
       # The contents of the file
-
+      ##
       attr_reader :data
 
       ##
       # The media type of the file. Can be used to specify custom types, such as
       #  text/x.cucumber.gherkin+plain
-
+      ##
       attr_reader :media_type
 
       def initialize(
@@ -1384,17 +1248,14 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the SourceReference message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
     #  [Location](#io.cucumber.messages.Location) within that file.
-    #
-
+    ##
     class SourceReference < ::Cucumber::Messages::Message
-
       attr_reader :uri
 
       attr_reader :java_method
@@ -1416,15 +1277,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the JavaMethod message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class JavaMethod < ::Cucumber::Messages::Message
-
       attr_reader :class_name
 
       attr_reader :method_name
@@ -1442,15 +1298,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the JavaStackTraceElement message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class JavaStackTraceElement < ::Cucumber::Messages::Message
-
       attr_reader :class_name
 
       attr_reader :file_name
@@ -1468,15 +1319,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the StepDefinition message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class StepDefinition < ::Cucumber::Messages::Message
-
       attr_reader :id
 
       attr_reader :pattern
@@ -1494,15 +1340,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the StepDefinitionPattern message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class StepDefinitionPattern < ::Cucumber::Messages::Message
-
       attr_reader :source
 
       attr_reader :type
@@ -1516,7 +1357,6 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestCase message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
@@ -1524,15 +1364,13 @@ module Cucumber
     # 
     # *
     #  A `TestCase` contains a sequence of `TestStep`s.
-    #
-
+    ##
     class TestCase < ::Cucumber::Messages::Message
-
       attr_reader :id
 
       ##
       # The ID of the `Pickle` this `TestCase` is derived from.
-
+      ##
       attr_reader :pickle_id
 
       attr_reader :test_steps
@@ -1548,15 +1386,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Group message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class Group < ::Cucumber::Messages::Message
-
       attr_reader :children
 
       attr_reader :start
@@ -1574,7 +1407,6 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the StepMatchArgument message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
@@ -1585,15 +1417,13 @@ module Cucumber
     #  - Highlight the matched parameter in rich formatters such as the HTML formatter
     # 
     #  This message closely matches the `Argument` class in the `cucumber-expressions` library.
-    #
-
+    ##
     class StepMatchArgument < ::Cucumber::Messages::Message
-
       ##
       # *
       #  Represents the outermost capture group of an argument. This message closely matches the
       #  `Group` class in the `cucumber-expressions` library.
-
+      ##
       attr_reader :group
 
       attr_reader :parameter_type_name
@@ -1607,15 +1437,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the StepMatchArgumentsList message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class StepMatchArgumentsList < ::Cucumber::Messages::Message
-
       attr_reader :step_match_arguments
 
       def initialize(
@@ -1625,39 +1450,36 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestStep message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # *
     #  A `TestStep` is derived from either a `PickleStep`
     #  combined with a `StepDefinition`, or from a `Hook`.
-    #
-
+    ##
     class TestStep < ::Cucumber::Messages::Message
-
       ##
       # Pointer to the `Hook` (if derived from a Hook)
-
+      ##
       attr_reader :hook_id
 
       attr_reader :id
 
       ##
       # Pointer to the `PickleStep` (if derived from a `PickleStep`)
-
+      ##
       attr_reader :pickle_step_id
 
       ##
       # Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-
+      ##
       attr_reader :step_definition_ids
 
       ##
       # A list of list of StepMatchArgument (if derived from a `PickleStep`).
       #  Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
       #  and a size of 2+ means `AMBIGUOUS`
-
+      ##
       attr_reader :step_match_arguments_lists
 
       def initialize(
@@ -1675,15 +1497,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestCaseFinished message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class TestCaseFinished < ::Cucumber::Messages::Message
-
       attr_reader :test_case_started_id
 
       attr_reader :timestamp
@@ -1701,34 +1518,29 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestCaseStarted message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class TestCaseStarted < ::Cucumber::Messages::Message
-
       ##
       # *
       #  The first attempt should have value 0, and for each retry the value
       #  should increase by 1.
-
+      ##
       attr_reader :attempt
 
       ##
       # *
       #  Because a `TestCase` can be run multiple times (in case of a retry),
       #  we use this field to group messages relating to the same attempt.
-
+      ##
       attr_reader :id
 
       attr_reader :test_case_id
 
       ##
       # An identifier for the worker process running this test case, if test cases are being run in parallel. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
-
+      ##
       attr_reader :worker_id
 
       attr_reader :timestamp
@@ -1748,33 +1560,28 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestRunFinished message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class TestRunFinished < ::Cucumber::Messages::Message
-
       ##
       # An informative message about the test run. Typically additional information about failure, but not necessarily.
-
+      ##
       attr_reader :message
 
       ##
       # A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
-
+      ##
       attr_reader :success
 
       ##
       # Timestamp when the TestRun is finished
-
+      ##
       attr_reader :timestamp
 
       ##
       # Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
-
+      ##
       attr_reader :exception
 
       def initialize(
@@ -1790,15 +1597,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestRunStarted message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class TestRunStarted < ::Cucumber::Messages::Message
-
       attr_reader :timestamp
 
       def initialize(
@@ -1808,15 +1610,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestStepFinished message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class TestStepFinished < ::Cucumber::Messages::Message
-
       attr_reader :test_case_started_id
 
       attr_reader :test_step_id
@@ -1838,27 +1635,22 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestStepResult message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class TestStepResult < ::Cucumber::Messages::Message
-
       attr_reader :duration
 
       ##
       # An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
-
+      ##
       attr_reader :message
 
       attr_reader :status
 
       ##
       # Exception thrown while executing this step, if any.
-
+      ##
       attr_reader :exception
 
       def initialize(
@@ -1874,15 +1666,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the TestStepStarted message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class TestStepStarted < ::Cucumber::Messages::Message
-
       attr_reader :test_case_started_id
 
       attr_reader :test_step_id
@@ -1900,20 +1687,15 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the Timestamp message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class Timestamp < ::Cucumber::Messages::Message
-
       ##
       # Represents seconds of UTC time since Unix epoch
       #  1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
       #  9999-12-31T23:59:59Z inclusive.
-
+      ##
       attr_reader :seconds
 
       ##
@@ -1921,7 +1703,7 @@ module Cucumber
       #  second values with fractions must still have non-negative nanos values
       #  that count forward in time. Must be from 0 to 999,999,999
       #  inclusive.
-
+      ##
       attr_reader :nanos
 
       def initialize(
@@ -1933,15 +1715,10 @@ module Cucumber
       end
     end
 
-
     ##
     # Represents the UndefinedParameterType message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    
-    #
-
+    ##
     class UndefinedParameterType < ::Cucumber::Messages::Message
-
       attr_reader :expression
 
       attr_reader :name
@@ -1954,7 +1731,6 @@ module Cucumber
         @name = name
       end
     end
-
   end
 end
 
@@ -1997,4 +1773,3 @@ class Cucumber::Messages::TestStepResultStatus
   AMBIGUOUS = 'AMBIGUOUS'
   FAILED = 'FAILED'
 end
-

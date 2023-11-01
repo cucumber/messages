@@ -7,7 +7,6 @@ module Cucumber
       include Cucumber::Messages::Message::Utils
 
       module Serialization
-
         ##
         # Returns a new Hash formed from the message attributes
         # If +camelize:+ keyword parameter is set to true, then keys will be camelized
@@ -21,8 +20,7 @@ module Cucumber
         #
         #   location = Cucumber::Messages::Location.new(line: 2)
         #   Cucumber::Messages::Comment.new(location: location, text: 'comment').to_h  # => { location: { line: 2, :column: nil }, text: "comment" }
-        #
-
+        ##
         def to_h(camelize: false, reject_nil_values: false)
           resulting_hash = self.instance_variables.map do |variable_name|
             h_key = variable_name[1..-1]
@@ -53,8 +51,7 @@ module Cucumber
         #
         #   location = Cucumber::Messages::Location.new(line: 2)
         #   Cucumber::Messages::Comment.new(location: location, text: 'comment').to_json     # => '{"location":{"line":2,"column":null},"text":"comment"}'
-        #
-
+        ##
         def to_json
           to_h(camelize: true, reject_nil_values: true).to_json
         end

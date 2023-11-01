@@ -6,38 +6,30 @@ require 'cucumber/messages/message'
 module Cucumber
   module Messages
   <%- @schemas.each do |key, schema| %>
-
     ##
     # Represents the <%= class_name(key) %> message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
-    #
-    <%= format_description(schema['description']) %>
-    #
-
+    <%= "#\n    " if schema['description'] %><%= format_description(schema['description']) %>
     class <%= class_name(key) %> < ::Cucumber::Messages::Message
     <%- schema['properties'].each do |property_name, property| -%>
-
       <%- if property['description'] -%>
       ##
       <%= format_description(property['description'], indent_string: '      ') %>
-
       <%- end -%>
       attr_reader :<%= underscore(property_name) %>
-    <%- end -%>
 
+    <%- end -%>
       def initialize(
       <%- schema['properties'].each do |property_name, property| -%>
-        <%= underscore(property_name) -%>: <%=
-          (schema['required'] || []).index(property_name) ?
-            default_value(class_name(key), property_name, property) :
-            'nil'
-          -%><%= property_name == schema['properties'].keys.last ? '' : ',' %>
+        <%- final_key = property_name == schema['properties'].keys.last -%>
+        <%- individual_value = (schema['required'] || []).index(property_name) ? default_value(class_name(key), property_name, property) : 'nil' -%>
+        <%= "#{underscore(property_name)}: #{individual_value}" -%><%= final_key ? '' : ',' %>
       <%- end -%>
       )
-      <%- schema['properties'].each do |property_name, property| -%>
+      <%- schema['properties'].each do |property_name, _property| -%>
         @<%= underscore(property_name) %> = <%= underscore(property_name) %>
       <%- end -%>
       end
     end
-  <%- end %>
+  <%- end -%>
   end
 end
