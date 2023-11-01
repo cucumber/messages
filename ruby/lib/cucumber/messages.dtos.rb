@@ -1739,20 +1739,24 @@ class Cucumber::Messages::AttachmentContentEncoding
   IDENTITY = 'IDENTITY'
   BASE64 = 'BASE64'
 end
+
 class Cucumber::Messages::PickleStepType
   UNKNOWN = 'Unknown'
   CONTEXT = 'Context'
   ACTION = 'Action'
   OUTCOME = 'Outcome'
 end
+
 class Cucumber::Messages::SourceMediaType
   TEXT_X_CUCUMBER_GHERKIN_PLAIN = 'text/x.cucumber.gherkin+plain'
   TEXT_X_CUCUMBER_GHERKIN_MARKDOWN = 'text/x.cucumber.gherkin+markdown'
 end
+
 class Cucumber::Messages::StepDefinitionPatternType
   CUCUMBER_EXPRESSION = 'CUCUMBER_EXPRESSION'
   REGULAR_EXPRESSION = 'REGULAR_EXPRESSION'
 end
+
 class Cucumber::Messages::StepKeywordType
   UNKNOWN = 'Unknown'
   CONTEXT = 'Context'
@@ -1760,6 +1764,7 @@ class Cucumber::Messages::StepKeywordType
   OUTCOME = 'Outcome'
   CONJUNCTION = 'Conjunction'
 end
+
 class Cucumber::Messages::TestStepResultStatus
   UNKNOWN = 'UNKNOWN'
   PASSED = 'PASSED'
