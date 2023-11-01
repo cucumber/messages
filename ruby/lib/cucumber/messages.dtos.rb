@@ -1731,7 +1731,6 @@ module Cucumber
         @name = name
       end
     end
-
   end
 end
 
