@@ -42,7 +42,7 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@types/mocha": "10.0.3",
+    "@types/mocha": "10.0.4",
     "@types/node": "18.18.8",
     "copyfiles": "2.4.1",
     "mocha": "10.2.0",
