@@ -14,6 +14,10 @@
     "message": {
       "type": "string",
       "description": "The message of exception that caused this result. E.g. expected: \"a\" but was: \"b\""
+    },
+    "stackTrace": {
+      "type": "string",
+      "description": "The stringified stack trace of the exception that caused this result"
     }
   },
   "type": "object"
