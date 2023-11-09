@@ -229,12 +229,19 @@ module Cucumber
       ##
       attr_reader :message
 
+      ##
+      # The stringified stack trace of the exception that caused this result
+      ##
+      attr_reader :stack_trace
+
       def initialize(
         type: '',
-        message: nil
+        message: nil,
+        stack_trace: nil
       )
         @type = type
         @message = message
+        @stack_trace = stack_trace
       end
     end
 

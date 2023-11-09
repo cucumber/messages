@@ -12,6 +12,7 @@ exception::to_string() const
 
     cucumber::messages::to_string(oss, "type=", type);
     cucumber::messages::to_string(oss, ", message=", message);
+    cucumber::messages::to_string(oss, ", stack_trace=", stack_trace);
 
     return oss.str();
 }
@@ -21,6 +22,7 @@ exception::to_json(json& j) const
 {
     cucumber::messages::to_json(j, camelize("type"), type);
     cucumber::messages::to_json(j, camelize("message"), message);
+    cucumber::messages::to_json(j, camelize("stack_trace"), stack_trace);
 }
 
 std::string

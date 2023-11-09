@@ -22,6 +22,7 @@ struct exception
 {
     std::string type;
     std::optional<std::string> message;
+    std::optional<std::string> stack_trace;
 
     std::string to_string() const;
 

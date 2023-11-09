@@ -87,6 +87,8 @@ export class Exception {
   type: string = ''
 
   message?: string
+
+  stackTrace?: string
 }
 
 export class GherkinDocument {

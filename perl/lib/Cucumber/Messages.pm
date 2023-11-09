@@ -546,6 +546,7 @@ use Scalar::Util qw( blessed );
 my %types = (
    type => 'string',
    message => 'string',
+   stack_trace => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -576,6 +577,17 @@ The message of exception that caused this result. E.g. expected: "a" but was: "b
 =cut
 
 has message =>
+    (is => 'ro',
+    );
+
+
+=head4 stack_trace
+
+The stringified stack trace of the exception that caused this result
+
+=cut
+
+has stack_trace =>
     (is => 'ro',
     );
 
