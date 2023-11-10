@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add `stackTrace` prop to `Exception` message ([#182](https://github.com/cucumber/messages/pull/182))
 
 ## [23.0.0] - 2023-11-01
 ### Added
