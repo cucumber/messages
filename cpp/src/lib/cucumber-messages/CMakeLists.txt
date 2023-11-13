@@ -1,7 +1,6 @@
 add_library(cucumber-messages)
 add_library(cucumber::messages ALIAS cucumber-messages)
 
-
 # We prefer it that way...
 file(GLOB_RECURSE CUCUMBER_MESSAGES_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.[ch]pp)
 
@@ -9,6 +8,13 @@ target_sources(
     cucumber-messages
     PRIVATE
         ${CUCUMBER_MESSAGES_SOURCES}
+)
+
+target_include_directories(
+    cucumber-messages
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
 )
 
 target_link_libraries(
