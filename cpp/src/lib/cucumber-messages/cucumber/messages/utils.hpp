@@ -12,38 +12,47 @@ namespace cucumber::messages {
 
 using json = nlohmann::json;
 
-namespace detail {
-
 template <
-    template <typename> class Container,
-    template <typename> class Other,
     typename T
 >
-std::is_same<Container<T>, Other<T>>
-test_is_container(Other<T>*);
+struct is_cont {
+  static const bool value = false;
+};
 
 template <
-    template <typename> class Container,
+    typename T,
+    typename Alloc
+>
+struct is_cont<std::vector<T,Alloc> > {
+  static const bool value = true;
+};
+
+
+template <
     typename T
 >
-std::false_type test_is_container(T*);
-
-} // namespace detail
+struct is_optional {
+  static const bool value = false;
+};
 
 template <
-    template <typename> class C,
     typename T
 >
-using is_container = decltype(
-    detail::test_is_container<C>(static_cast<T*>(nullptr))
-);
+struct is_optional<std::optional<T> > {
+  static const bool value = true;
+};
 
 template <
-    template <typename> class C,
     typename T
 >
 inline
-constexpr bool is_container_v = is_container<C, T>::value;
+constexpr bool is_container_v = is_cont<T>::value;
+
+template <
+    typename T
+>
+inline
+constexpr bool is_optional_v = is_optional<T>::value;
 
 template <
     typename T,
@@ -52,7 +61,7 @@ template <
 void
 apply_if(const T& v, Callable&& cb)
 {
-    if constexpr (is_container_v<std::optional, T>) {
+    if constexpr (is_optional_v<T>) {
         if (v) {
             cb(*v);
         }
@@ -73,7 +82,7 @@ to_string(std::ostream& os, P&& prefix, T&& opt)
         [&](const auto& v) {
             using vtype = std::decay_t<decltype(v)>;
 
-            if constexpr (is_container_v<std::vector, vtype>) {
+            if constexpr (is_container_v<vtype>) {
                 os << prefix << '[';
 
                 for (std::size_t i = 0; i < v.size(); ++i) {
