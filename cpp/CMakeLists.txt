@@ -11,11 +11,13 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 find_package(nlohmann_json CONFIG REQUIRED)
 
+add_subdirectory(include)
 add_subdirectory(src)
 
 install(
     TARGETS
         cucumber-messages
+        cucumber-messages-include
     EXPORT cucumber-messages-config
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
