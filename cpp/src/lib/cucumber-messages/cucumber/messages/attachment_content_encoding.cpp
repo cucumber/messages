@@ -1,3 +1,4 @@
+#include <iostream>
 #include <unordered_map>
 
 #include <cucumber/messages/attachment_content_encoding.hpp>
