@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.4
+#syntax=docker/dockerfile:1.6
 
 # Base image
 ARG PERL_VERSION=5.39

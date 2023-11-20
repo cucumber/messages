@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.4
+#syntax=docker/dockerfile:1.6
 
 ARG ELIXIR_VERSION=1.10
 
