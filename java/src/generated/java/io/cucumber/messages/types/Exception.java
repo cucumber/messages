@@ -18,13 +18,16 @@ import static java.util.Objects.requireNonNull;
 public final class Exception {
     private final String type;
     private final String message;
+    private final String stackTrace;
 
     public Exception(
         String type,
-        String message
+        String message,
+        String stackTrace
     ) {
         this.type = requireNonNull(type, "Exception.type cannot be null");
         this.message = message;
+        this.stackTrace = stackTrace;
     }
 
     /**
@@ -41,6 +44,13 @@ public final class Exception {
         return Optional.ofNullable(message);
     }
 
+    /**
+      * The stringified stack trace of the exception that caused this result
+     */
+    public Optional<String> getStackTrace() {
+        return Optional.ofNullable(stackTrace);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,14 +58,16 @@ public final class Exception {
         Exception that = (Exception) o;
         return 
             type.equals(that.type) &&         
-            Objects.equals(message, that.message);        
+            Objects.equals(message, that.message) &&         
+            Objects.equals(stackTrace, that.stackTrace);        
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
             type,
-            message
+            message,
+            stackTrace
         );
     }
 
@@ -64,6 +76,7 @@ public final class Exception {
         return "Exception{" +
             "type=" + type +
             ", message=" + message +
+            ", stackTrace=" + stackTrace +
             '}';
     }
 }

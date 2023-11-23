@@ -35,6 +35,11 @@ final class Exception implements JsonSerializable
          * The message of exception that caused this result. E.g. expected: "a" but was: "b"
          */
         public readonly ?string $message = null,
+
+        /**
+         * The stringified stack trace of the exception that caused this result
+         */
+        public readonly ?string $stackTrace = null,
     ) {
     }
 
@@ -47,10 +52,12 @@ final class Exception implements JsonSerializable
     {
         self::ensureType($arr);
         self::ensureMessage($arr);
+        self::ensureStackTrace($arr);
 
         return new self(
             (string) $arr['type'],
             isset($arr['message']) ? (string) $arr['message'] : null,
+            isset($arr['stackTrace']) ? (string) $arr['stackTrace'] : null,
         );
     }
 
@@ -74,6 +81,16 @@ final class Exception implements JsonSerializable
     {
         if (array_key_exists('message', $arr) && is_array($arr['message'])) {
             throw new SchemaViolationException('Property \'message\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{stackTrace?: string|int|bool} $arr
+     */
+    private static function ensureStackTrace(array $arr): void
+    {
+        if (array_key_exists('stackTrace', $arr) && is_array($arr['stackTrace'])) {
+            throw new SchemaViolationException('Property \'stackTrace\' was array');
         }
     }
 }

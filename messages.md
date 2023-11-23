@@ -51,6 +51,7 @@ will only have one of its fields set, which indicates the payload of the message
 | ----- | ---- | ----------- | ----------- |
 | `type` | string | yes | |
 | `message` | string | no | |
+| `stackTrace` | string | no | |
 
 ## GherkinDocument
 

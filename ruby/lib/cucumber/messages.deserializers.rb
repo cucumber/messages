@@ -104,6 +104,7 @@ module Cucumber
         self.new(
           type: hash[:type],
           message: hash[:message],
+          stack_trace: hash[:stackTrace],
         )
       end
     end

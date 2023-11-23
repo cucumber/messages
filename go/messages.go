@@ -37,8 +37,9 @@ type Envelope struct {
 }
 
 type Exception struct {
-	Type    string `json:"type"`
-	Message string `json:"message,omitempty"`
+	Type       string `json:"type"`
+	Message    string `json:"message,omitempty"`
+	StackTrace string `json:"stackTrace,omitempty"`
 }
 
 type GherkinDocument struct {

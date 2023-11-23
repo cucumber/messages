@@ -11,7 +11,7 @@ public final class Convertor {
     }
 
     public static Exception toMessage(Throwable t) {
-        return new Exception(t.getClass().getName(), t.getMessage());
+        return new Exception(t.getClass().getName(), t.getMessage(), null);
     }
 
     public static Timestamp toMessage(java.time.Instant instant) {
