@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name        = 'cucumber-messages'
   s.version     = version
   s.authors     = ["Aslak Hellesøy"]
-  s.description = "Protocol Buffer messages for Cucumber's inter-process communication"
+  s.description = "JSON schema-based messages for Cucumber's inter-process communication"
   s.summary     = "cucumber-messages-#{s.version}"
   s.email       = 'cukes@googlegroups.com'
   s.homepage    = "https://github.com/cucumber/messages-ruby#readme"
