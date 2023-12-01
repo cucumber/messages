@@ -1,3 +1,4 @@
+#include <iostream>
 #include <unordered_map>
 
 #include <cucumber/messages/source_media_type.hpp>
