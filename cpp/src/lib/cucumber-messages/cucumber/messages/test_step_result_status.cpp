@@ -1,3 +1,4 @@
+#include <iostream>
 #include <unordered_map>
 
 #include <cucumber/messages/test_step_result_status.hpp>
