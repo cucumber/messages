@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cucumber/messages-javascript.git"
+    "url": "git://github.com/cucumber/messages.git"
   },
   "author": "Cucumber Limited <cukes@googlegroups.com>",
   "license": "MIT",
@@ -51,9 +51,9 @@
     "typescript": "5.3.3"
   },
   "bugs": {
-    "url": "https://github.com/cucumber/messages-javascript/issues"
+    "url": "https://github.com/cucumber/messages/issues"
   },
-  "homepage": "https://github.com/cucumber/messages-javascript#readme",
+  "homepage": "https://github.com/cucumber/messages#readme",
   "directories": {
     "test": "test"
   },

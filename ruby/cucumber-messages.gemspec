@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = "JSON schema-based messages for Cucumber's inter-process communication"
   s.summary     = "cucumber-messages-#{s.version}"
   s.email       = 'cukes@googlegroups.com'
-  s.homepage    = "https://github.com/cucumber/messages-ruby#readme"
+  s.homepage    = "https://github.com/cucumber/messages#readme"
   s.platform    = Gem::Platform::RUBY
   s.license     = "MIT"
   s.required_ruby_version = ">= 2.5"
