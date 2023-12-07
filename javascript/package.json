@@ -38,7 +38,7 @@
   "dependencies": {
     "@types/uuid": "9.0.7",
     "class-transformer": "0.5.1",
-    "reflect-metadata": "0.1.13",
+    "reflect-metadata": "0.1.14",
     "uuid": "9.0.1"
   },
   "devDependencies": {
