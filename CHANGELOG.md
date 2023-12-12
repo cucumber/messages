@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Update repo URLs ([#190](https://github.com/cucumber/messages/pull/190))
 
 ## [24.0.0] - 2023-11-24
 ### Added

@@ -103,7 +103,7 @@ However, it does not contain the following information (but Cucumber Messages do
 * Parameter types
 
 This kind of information is required to produce rich reports and analytics, and is
-used in [@cucumber/react](https://github.com/cucumber/cucumber-react) and [Cucumber Reports](https://reports.cucumber.io/).
+used in [@cucumber/react-components](https://github.com/cucumber/react-components) and [Cucumber Reports](https://reports.cucumber.io/).
 
 ## Examples
 
