@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [24.0.1] - 2023-12-21
 ### Fixed
 - Update repo URLs ([#190](https://github.com/cucumber/messages/pull/190))
 
@@ -507,7 +509,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v24.0.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v24.0.1...HEAD
+[24.0.1]: https://github.com/cucumber/messages/compare/v24.0.0...v24.0.1
 [24.0.0]: https://github.com/cucumber/messages/compare/v23.0.0...v24.0.0
 [23.0.0]: https://github.com/cucumber/messages/compare/v22.0.0...v23.0.0
 [22.0.0]: https://github.com/cucumber/messages/compare/v21.0.1...v22.0.0
