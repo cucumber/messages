@@ -10,7 +10,7 @@ SOURCES = \
 	$(shell find $(LIB_DIR) -name "*.[ch]pp")
 
 HERE = $(shell pwd)
-CMAKE_BUILDROOT = $(HERE)/build/root
+CMAKE_BUILDROOT = $(HERE)/.cmade/env
 CMAKELISTS = $(shell find . -name CMakeLists.txt)
 
 help: ## Show this help

@@ -1,0 +1,10 @@
+{
+    "name": "cucumber_messages",
+    "version": "0.1.0",
+    "namespace": "cucumber",
+    "packages": {
+        "cmake": [
+            "nlohmann_json",
+        ]
+    }
+}
