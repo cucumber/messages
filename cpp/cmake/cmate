@@ -291,21 +291,7 @@ function(cmate_load_link_deps FILE PREFIX)
         foreach(TYPE PUBLIC PRIVATE)
             # TODO: add more checks for correct JSON structure
             string(TOLOWER ${TYPE} KEY)
-            string(JSON DEPS GET ${LIBS} ${KEY})
-            string(JSON NDEPS LENGTH ${DEPS})
-
-            if(${NDEPS} LESS 1)
-                continue()
-            else()
-                math(EXPR NDEPS "${NDEPS}-1")
-            endif()
-
-            set(LVAR "${TYPE}_DEPS")
-
-            foreach(I RANGE ${NDEPS})
-                string(JSON DEP GET ${DEPS} ${I})
-                list(APPEND ${LVAR} ${DEP})
-            endforeach()
+            cmate_json_get_array(${LIBS} ${KEY} "${TYPE}_DEPS")
         endforeach()
     endif()
 
