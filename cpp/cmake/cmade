@@ -230,7 +230,7 @@ function(cmade_build_cmake_dep)
                 -DCMAKE_PREFIX_PATH=${CMADE_ENV}
                 -DCMAKE_INSTALL_PREFIX=${CMADE_ENV}
                 -DCMAKE_BUILD_TYPE:STRING=Release
-                -G Ninja -S ${CMADE_SOURCE_DIR} -B ${CMADE_BUILD_DIR}
+                -S ${CMADE_SOURCE_DIR} -B ${CMADE_BUILD_DIR}
                 ${ARGV}
         )
         cmade_set_state("configured")

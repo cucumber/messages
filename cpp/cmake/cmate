@@ -691,7 +691,7 @@ function(cmate_configure)
 
         list(APPEND ARGS "-DCMAKE_INSTALL_PREFIX=${STAGE_DIR}")
         list(APPEND ARGS "-DCMAKE_BUILD_TYPE:STRING=Release")
-        list(APPEND ARGS "-G" "Ninja")
+        # list(APPEND ARGS "-G" "Ninja")
         list(APPEND ARGS "-S" "${CMATE_ROOT_DIR}")
         list(APPEND ARGS "-B" "${BUILD_DIR}")
 
