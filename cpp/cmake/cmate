@@ -10,6 +10,7 @@ list(
     CMATE_CMDS
     "configure"
     "build"
+    "stage"
     "clean"
 )
 list(
@@ -48,6 +49,7 @@ Commands:
   configure     Scans and configures targets
   build
   clean
+  stage
   help          Display this information
 
 See 'cmate help <command>' to read about a specific subcommand."
@@ -81,6 +83,15 @@ set(
 Usage: cmate build
 
 Build local project"
+)
+
+# Stage help
+set(
+    CMATE_STAGE_HELP
+    "
+Usage: cmate stage
+
+Stage local project"
 )
 
 # Clean help
@@ -229,7 +240,7 @@ function(cmate_json_get_array JSON KEY VAR)
 endfunction()
 
 function(cmate_load_cmake_package_deps JSON PREFIX)
-    cmate_json_get_array(${JSON} "cmake" "PKGS")
+    cmate_json_get_array("${JSON}" "cmake" "PKGS")
     set(PACKAGES "")
 
     foreach(PKG ${PKGS})
@@ -257,26 +268,27 @@ function(cmate_load_cmake_package_deps JSON PREFIX)
 endfunction()
 
 function(cmate_load_pkgconfig_package_deps JSON PREFIX)
-    cmate_json_get_array(${JSON} "pkgconfig" "PKGS")
+    cmate_json_get_array("${JSON}" "pkgconfig" "PKGS")
     set("${PREFIX}_PKGCONFIG_PACKAGES" ${PKGS} PARENT_SCOPE)
 endfunction()
 
 function(cmate_load_conf FILE)
-    if(NOT EXISTS ${FILE})
-        return()
+    set(PKGS "")
+
+    if(EXISTS ${FILE})
+        file(READ ${FILE} JSON)
+
+        string(JSON PROJECT GET ${JSON} "name")
+        cmate_setg(CMATE_PROJECT ${PROJECT})
+        string(JSON VERSION GET ${JSON} "version")
+        cmate_setg(CMATE_VERSION ${VERSION})
+        string(JSON NAMESPACE GET ${JSON} "namespace")
+        cmate_setg(CMATE_NAMESPACE ${NAMESPACE})
+
+        string(JSON PKGS GET ${JSON} "packages")
     endif()
 
-    file(READ ${FILE} JSON)
-
-    string(JSON PROJECT GET ${JSON} "name")
-    cmate_setg(CMATE_PROJECT ${PROJECT})
-    string(JSON VERSION GET ${JSON} "version")
-    cmate_setg(CMATE_VERSION ${VERSION})
-    string(JSON NAMESPACE GET ${JSON} "namespace")
-    cmate_setg(CMATE_NAMESPACE ${NAMESPACE})
-
-    string(JSON PKGS GET ${JSON} "packages")
-    cmate_setg(CMATE_PACKAGES ${PKGS})
+    cmate_setg(CMATE_PACKAGES "${PKGS}")
 endfunction()
 
 function(cmate_load_link_deps FILE PREFIX)
@@ -416,6 +428,7 @@ set_target_properties(
     PROPERTIES
         VERSION ${CMATE_VERSION}
         SOVERSION ${CMATE_VERSION_MAJOR}.${CMATE_VERSION_MINOR}
+        EXPORT_NAME ${NAME}
         OUTPUT_NAME ${CMATE_NAMESPACE}_${NAME}
 )
 "
@@ -443,7 +456,7 @@ function(cmate_configure_prog TYPE NAME TBASE SRC_BASE)
 
     set(SDIR "${CMATE_ROOT_DIR}/${SRC_BASE}/${NAME}")
     set(CM_FILE "${SDIR}/CMakeLists.txt")
-    set(DEPS_FILE "${SDIR}/link.txt")
+    set(DEPS_FILE "${SDIR}/cmate.json")
     file(GLOB_RECURSE SOURCES "${SDIR}/${CMATE_SOURCE_PAT}")
 
     string(APPEND CONTENT "add_${TYPE}(${TBASE})\n")
@@ -470,7 +483,7 @@ target_include_directories(
 "
     )
 
-    cmate_target_link_deps(${NAME} ${DEPS_FILE} DEPS)
+    cmate_target_link_deps(${TBASE} ${DEPS_FILE} DEPS)
     string(APPEND CONTENT ${DEPS})
 
     string(
@@ -502,7 +515,7 @@ endfunction()
 
 function(cmate_configure_project_packages VAR)
     # CMake style packages
-    cmate_load_cmake_package_deps(${CMATE_PACKAGES} "PRJ")
+    cmate_load_cmake_package_deps("${CMATE_PACKAGES}" "PRJ")
     set(CONTENT "")
 
     if(PRJ_CMAKE_PACKAGES)
@@ -531,7 +544,7 @@ function(cmate_configure_project_packages VAR)
     endforeach()
 
     # PkgConfig style packages
-    cmate_load_pkgconfig_package_deps(${CMATE_PACKAGES} "PRJ")
+    cmate_load_pkgconfig_package_deps("${CMATE_PACKAGES}" "PRJ")
 
     if(PRJ_PKGCONFIG_PACKAGES)
         string(APPEND CONTENT "find_package(PkgConfig REQUIRED)\n")
@@ -712,17 +725,45 @@ function(cmate_build)
     list(APPEND ARGS "--build" "${BUILD_DIR}")
     list(APPEND ARGS "--parallel")
 
-        execute_process(
-            COMMAND
-                ${CMAKE_COMMAND}
-                ${ARGS}
-            RESULTS_VARIABLE RC
-        )
+    execute_process(
+        COMMAND
+            ${CMAKE_COMMAND}
+            ${ARGS}
+        RESULTS_VARIABLE RC
+    )
 
-        if(RC)
-            list(JOIN ARGS " " RUN_CMD)
-            cmate_die("command failed: ${RUN_CMD}")
-        endif()
+    if(RC)
+        list(JOIN ARGS " " RUN_CMD)
+        cmate_die("command failed: ${RUN_CMD}")
+    endif()
+endfunction()
+
+function(cmate_stage)
+    set(BUILD_DIR "${CMATE_ROOT_DIR}/build")
+    set(ARGS "")
+
+    list(APPEND ARGS "--install" "${BUILD_DIR}")
+
+    execute_process(
+        COMMAND
+            ${CMAKE_COMMAND}
+            ${ARGS}
+        RESULTS_VARIABLE RC
+    )
+
+    if(RC)
+        list(JOIN ARGS " " RUN_CMD)
+        cmate_die("command failed: ${RUN_CMD}")
+    endif()
+endfunction()
+
+function(cmate_clean)
+    set(BUILD_DIR "${CMATE_ROOT_DIR}/build")
+    cmate_msg("cleaning: ${BUILD_DIR}")
+
+    if (IS_DIRECTORY ${BUILD_DIR})
+        file(REMOVE_RECURSE ${BUILD_DIR})
+    endif()
 endfunction()
 
 ##############################################################################
@@ -832,6 +873,10 @@ function(cmate_process_cmd)
         cmate_configure()
     elseif (CMATE_CMD STREQUAL "build")
         cmate_build()
+    elseif (CMATE_CMD STREQUAL "stage")
+        cmate_stage()
+    elseif (CMATE_CMD STREQUAL "clean")
+        cmate_clean()
     elseif (CMATE_CMD STREQUAL "help")
         cmate_show_help()
     elseif(CMATE_CMD)

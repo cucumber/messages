@@ -35,5 +35,6 @@ set_target_properties(
     PROPERTIES
         VERSION 0.1.0
         SOVERSION 0.1
+        EXPORT_NAME messages
         OUTPUT_NAME cucumber_messages
 )
