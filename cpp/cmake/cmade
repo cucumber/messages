@@ -224,12 +224,28 @@ function(cmade_build_cmake_dep)
     cmade_msg("building with: ${ARGV}")
 
     if(NOT EXISTS ${CONFIGURED})
+        set(ARGS "")
+
+        find_program(CMADE_CCACHE ccache)
+
+        if(CMATE_CCACHE)
+            list(APPEND ARGS "-DCMAKE_C_COMPILER_LAUNCHER=${CMADE_CCACHE}")
+            list(APPEND ARGS "-DCMAKE_CXX_COMPILER_LAUNCHER=${CMADE_CCACHE}")
+        endif()
+
+        find_program(CMADE_NINJA ninja)
+
+        if(CMADE_NINJA)
+            list(APPEND ARGS "-G" "Ninja")
+        endif()
+
         cmade_run_prog(
             CMD
                 ${CMAKE_COMMAND}
                 -DCMAKE_PREFIX_PATH=${CMADE_ENV}
                 -DCMAKE_INSTALL_PREFIX=${CMADE_ENV}
                 -DCMAKE_BUILD_TYPE:STRING=Release
+                ${ARGS}
                 -S ${CMADE_SOURCE_DIR} -B ${CMADE_BUILD_DIR}
                 ${ARGV}
         )

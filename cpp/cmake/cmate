@@ -719,8 +719,8 @@ function(cmate_configure)
         find_program(CMATE_CCACHE ccache)
 
         if(CMATE_CCACHE)
-            list(APPEND ARGS "-DCMAKE_C_COMPILER_LAUNCHER=${CCACHE}")
-            list(APPEND ARGS "-DCMAKE_CXX_COMPILER_LAUNCHER=${CCACHE}")
+            list(APPEND ARGS "-DCMAKE_C_COMPILER_LAUNCHER=${CMATE_CCACHE}")
+            list(APPEND ARGS "-DCMAKE_CXX_COMPILER_LAUNCHER=${CMATE_CCACHE}")
         endif()
 
         find_program(CMATE_NINJA ninja)
