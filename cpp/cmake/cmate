@@ -637,16 +637,18 @@ install(
     )
 
     if (IS_DIRECTORY "${CMATE_ROOT_DIR}/include")
-        string(
-            APPEND
-            CONTENT
-            "
+        foreach(LIB ${CMATE_LIBS})
+            string(
+                APPEND
+                CONTENT
+                "
 install(
-    DIRECTORY \"\${PROJECT_SOURCE_DIR}/include/\"
+    DIRECTORY \"\${PROJECT_SOURCE_DIR}/include/${LIB}/\"
     DESTINATION \${CMAKE_INSTALL_INCLUDEDIR}/${CMATE_NAMESPACE}
 )
 "
-        )
+            )
+        endforeach()
     endif()
 
     file(WRITE ${CM_FILE} ${CONTENT})
@@ -661,6 +663,7 @@ function(cmate_configure)
     # Find libraries (libraries have headers)
     file(GLOB LIB_INC_DIRS "${CMATE_ROOT_DIR}/include/*")
     set(TARGETS "")
+    set(LIBS "")
     set(SUBDIRS "")
 
     foreach(LIB_INC_DIR ${LIB_INC_DIRS})
@@ -668,8 +671,11 @@ function(cmate_configure)
         cmate_target_name(${NAME} "lib" "TNAME")
         cmate_configure_lib(${NAME} ${TNAME} "include" "src/lib")
         list(APPEND TARGETS ${TNAME})
+        list(APPEND LIBS ${NAME})
         list(APPEND SUBDIRS "src/lib/${NAME}")
     endforeach()
+
+    cmate_setg(CMATE_LIBS "${LIBS}")
 
     # Binaries and tests
     foreach(TYPE bin test)
