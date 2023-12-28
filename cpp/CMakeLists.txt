@@ -28,3 +28,8 @@ install(
     NAMESPACE cucumber::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages
 )
+
+install(
+    DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
+)

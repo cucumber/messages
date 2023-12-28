@@ -173,6 +173,12 @@ function(cmate_set_state STATE)
     file(TOUCH ${FILE})
 endfunction()
 
+function(cmate_clear_states)
+    if (IS_DIRECTORY ${CMATE_STATE_DIR})
+        file(REMOVE_RECURSE ${CMATE_STATE_DIR})
+    endif()
+endfunction()
+
 function(cmate_load_version)
     if(NOT "${CMATE_VERSION}" STREQUAL "")
         return()
@@ -409,7 +415,7 @@ target_include_directories(
     ${TBASE}
     PUBLIC
         $<BUILD_INTERFACE:\${${VBASE}_INC_DIR}>
-        $<INSTALL_INTERFACE:\${CMAKE_INSTALL_INCLUDEDIR}>
+        $<INSTALL_INTERFACE:\${CMAKE_INSTALL_INCLUDEDIR}/${CMATE_NAMESPACE}>
     PRIVATE
         \${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -630,6 +636,19 @@ install(
 "
     )
 
+    if (IS_DIRECTORY "${CMATE_ROOT_DIR}/include")
+        string(
+            APPEND
+            CONTENT
+            "
+install(
+    DIRECTORY \"\${PROJECT_SOURCE_DIR}/include/\"
+    DESTINATION \${CMAKE_INSTALL_INCLUDEDIR}/${CMATE_NAMESPACE}
+)
+"
+        )
+    endif()
+
     file(WRITE ${CM_FILE} ${CONTENT})
 endfunction()
 
@@ -690,7 +709,20 @@ function(cmate_configure)
 
         list(APPEND ARGS "-DCMAKE_INSTALL_PREFIX=${STAGE_DIR}")
         list(APPEND ARGS "-DCMAKE_BUILD_TYPE:STRING=Release")
-        # list(APPEND ARGS "-G" "Ninja")
+
+        find_program(CMATE_CCACHE ccache)
+
+        if(CMATE_CCACHE)
+            list(APPEND ARGS "-DCMAKE_C_COMPILER_LAUNCHER=${CCACHE}")
+            list(APPEND ARGS "-DCMAKE_CXX_COMPILER_LAUNCHER=${CCACHE}")
+        endif()
+
+        find_program(CMATE_NINJA ninja)
+
+        if(CMATE_NINJA)
+            list(APPEND ARGS "-G" "Ninja")
+        endif()
+
         list(APPEND ARGS "-S" "${CMATE_ROOT_DIR}")
         list(APPEND ARGS "-B" "${BUILD_DIR}")
 
@@ -764,6 +796,8 @@ function(cmate_clean)
     if (IS_DIRECTORY ${BUILD_DIR})
         file(REMOVE_RECURSE ${BUILD_DIR})
     endif()
+
+    cmate_clear_states()
 endfunction()
 
 ##############################################################################

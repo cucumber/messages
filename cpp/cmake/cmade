@@ -375,7 +375,7 @@ function(cmade_install)
         elseif(SPEC MATCHES "^([A-Za-z0-9_-]+)=(.+)$")
             # Variable assignment
             cmade_setg("CMADE_${CMAKE_MATCH_1}" "${CMAKE_MATCH_2}")
-        elseif(SPEC MATCHES "^(https?://[^ ]+)([ ](.+))?$")
+        elseif(SPEC MATCHES "^([a-z]+://[^ ]+)([ ](.+))?$")
             # URL
             set(URL ${CMAKE_MATCH_1})
             set(ARGS "${CMAKE_MATCH_3}")
