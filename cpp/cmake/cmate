@@ -845,8 +845,8 @@ function(cmate_configure)
 
         set(ARGS "")
 
-        if (EXISTS "${CMATE_CMADE_ENV}")
-            list(APPEND ARGS "-DCMAKE_PREFIX_PATH=${CMATE_CMADE_ENV}")
+        if (EXISTS "${CMATE_ENV_DIR}")
+            list(APPEND ARGS "-DCMAKE_PREFIX_PATH=${CMATE_ENV_DIR}")
         endif()
 
         list(APPEND ARGS "-DCMAKE_INSTALL_PREFIX=${STAGE_DIR}")
