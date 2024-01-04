@@ -26,7 +26,7 @@ jobs:
       - name: install dependencies
         working-directory: cpp
         run: |
-          cmake -P cmake/cmade update
+          cmake -P cmake/cmate update
 
       - name: configure and build
         working-directory: cpp
