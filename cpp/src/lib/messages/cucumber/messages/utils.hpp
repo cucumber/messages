@@ -5,6 +5,7 @@
 #include <string_view>
 #include <vector>
 #include <optional>
+#include <type_traits>
 
 #include <nlohmann/json.hpp>
 
@@ -12,38 +13,32 @@ namespace cucumber::messages {
 
 using json = nlohmann::json;
 
-namespace detail {
-
 template <
-    template <typename> class Container,
-    template <typename> class Other,
-    typename T
+    typename T,
+    template <typename...> typename Primary
 >
-std::is_same<Container<T>, Other<T>>
-test_is_container(Other<T>*);
+struct is_specialization_of : std::false_type {};
 
 template <
-    template <typename> class Container,
-    typename T
+    template <typename...> typename Primary,
+    typename... Args
 >
-std::false_type test_is_container(T*);
-
-} // namespace detail
+struct is_specialization_of<Primary<Args...>, Primary> : std::true_type {};
 
 template <
-    template <typename> class C,
-    typename T
+    typename T,
+    template <typename...> class Primary
 >
-using is_container = decltype(
-    detail::test_is_container<C>(static_cast<T*>(nullptr))
-);
+using
+is_specialization_of_t = is_specialization_of<T, Primary>;
 
 template <
-    template <typename> class C,
-    typename T
+    typename T,
+    template <typename...> class Primary
 >
 inline
-constexpr bool is_container_v = is_container<C, T>::value;
+constexpr bool
+is_specialization_of_v = is_specialization_of_t<T, Primary>::value;
 
 template <
     typename T,
@@ -52,7 +47,7 @@ template <
 void
 apply_if(const T& v, Callable&& cb)
 {
-    if constexpr (is_container_v<std::optional, T>) {
+    if constexpr (is_specialization_of_v<T, std::optional>) {
         if (v) {
             cb(*v);
         }
@@ -73,7 +68,7 @@ to_string(std::ostream& os, P&& prefix, T&& opt)
         [&](const auto& v) {
             using vtype = std::decay_t<decltype(v)>;
 
-            if constexpr (is_container_v<std::vector, vtype>) {
+            if constexpr (is_specialization_of_v<vtype, std::vector>) {
                 os << prefix << '[';
 
                 for (std::size_t i = 0; i < v.size(); ++i) {

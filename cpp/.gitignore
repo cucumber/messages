@@ -1,5 +1,6 @@
 .configured
 .built
-.cmade/
+.cenv/
+.cmate/
 build/
 stage/

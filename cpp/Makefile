@@ -43,31 +43,16 @@ clean: ## Remove automatically generated files and related artifacts
 	mv $(INC_DIR)/*.cpp $(LIB_DIR)/ || true
 
 clean-build:
-	rm -rf build .configured .built
+	./cmake/cmate clean
 
 clean-deps:
-	rm -rf ext build/src build/root
+	./cmake/cmade clean
 
 install-deps:
-	./scripts/build-externals deps.txt
+	./cmake/cmade update
 
-.configured: $(CMAKELISTS)
-	mkdir -p build
-	cmake \
-	    -DCMAKE_PREFIX_PATH=$(CMAKE_BUILDROOT) \
-	    -DCMAKE_INSTALL_PREFIX=$(HERE)/stage \
-	    -S . \
-	    -B build \
-	    --toolchain cmake/toolchains/ext.cmake \
-	    && touch $@
-
-clean-configure:
-	rm -f .configured
-
-reconfigure: clean-configure .configured
-
-rebuild: reconfigure .built
+.configured:
+	./cmake/cmate configure
 
 .built: .configured $(SOURCES)
-	cmake --build build --parallel && touch $@
-	cmake --install build
+	./cmake/cmate build

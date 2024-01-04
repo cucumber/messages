@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - cpp*
       - renovate/**
   pull_request:
     branches:
@@ -17,15 +18,15 @@ jobs:
         os:
           - ubuntu-20.04
           - ubuntu-22.04
-          # - windows-2019
-          # - windows-2022
+          - windows-2019
+          - windows-2022
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: install dependencies
         working-directory: cpp
         run: |
-          cmake -P cmake/cmade install
+          cmake -P cmake/cmate update
 
       - name: configure and build
         working-directory: cpp

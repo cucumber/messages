@@ -19,7 +19,7 @@ target_include_directories(
     cucumber_messages_lib
     PUBLIC
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -35,5 +35,6 @@ set_target_properties(
     PROPERTIES
         VERSION 0.1.0
         SOVERSION 0.1
+        EXPORT_NAME messages
         OUTPUT_NAME cucumber_messages
 )

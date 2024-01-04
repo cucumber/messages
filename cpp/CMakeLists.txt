@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
-project(cucumber_messages VERSION 1.0.0 LANGUAGES C CXX)
+project(cucumber_messages VERSION 0.1.0 LANGUAGES C CXX)
 
 include(GNUInstallDirs)
 
@@ -27,4 +27,9 @@ install(
     FILE cucumber_messages-config.cmake
     NAMESPACE cucumber::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages
+)
+
+install(
+    DIRECTORY "${PROJECT_SOURCE_DIR}/include/messages/"
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
 )
