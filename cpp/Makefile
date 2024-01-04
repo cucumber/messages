@@ -49,7 +49,7 @@ clean-deps:
 	./cmake/cmade clean
 
 install-deps:
-	./cmake/cmade install
+	./cmake/cmade update
 
 .configured:
 	./cmake/cmate configure
