@@ -9,6 +9,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+if(WIN32)
+  add_definitions(-DUNICODE -D_UNICODE -DSTRICT -DNOMINMAX)
+  add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS)
+endif()
+
 find_package(nlohmann_json CONFIG REQUIRED)
 
 add_subdirectory(src/lib/messages)
