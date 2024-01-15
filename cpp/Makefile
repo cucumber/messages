@@ -46,10 +46,10 @@ clean-build:
 	./cmake/cmate clean
 
 clean-deps:
-	./cmake/cmade clean
+	./cmake/cmade clean --purge
 
 install-deps:
-	./cmake/cmade update
+	./cmake/cmade install
 
 .configured:
 	./cmake/cmate configure
