@@ -1453,7 +1453,9 @@ function(cmate_set_compilers)
 
         cmate_msg("using compilers CC=${CC} CXX=${CXX}")
         cmate_setg(CMAKE_C_COMPILER "${CC}")
+        set(ENV{CC} "${CC}")
         cmate_setg(CMAKE_CXX_COMPILER "${CXX}")
+        set(ENV{CXX} "${CXX}")
     endif()
 endfunction()
 
