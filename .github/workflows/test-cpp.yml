@@ -24,9 +24,9 @@ jobs:
             cc: gcc
           - os: ubuntu-22.04
             cc: clang
-          - windows-2019
+          - os: windows-2019
             cc: cl
-          - windows-2022
+          - os: windows-2022
             cc: cl
     runs-on: ${{ matrix.config.os }}
     steps:
