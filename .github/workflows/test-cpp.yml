@@ -31,6 +31,7 @@ jobs:
     runs-on: ${{ matrix.config.os }}
     steps:
       - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
       - name: install dependencies
         working-directory: cpp
         run: |
