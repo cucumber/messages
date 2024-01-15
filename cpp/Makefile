@@ -2,8 +2,8 @@ schemas = $(shell find ../jsonschema -name "*.json")
 
 .DEFAULT_GOAL = help
 
-INC_DIR = include/cucumber/messages
-LIB_DIR = src/lib/cucumber-messages/cucumber/messages
+INC_DIR = include/messages
+LIB_DIR = src/lib/messages/cucumber/messages
 
 SOURCES = \
 	$(shell find $(INC_DIR) -name "*.[ch]pp") \
