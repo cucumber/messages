@@ -16,17 +16,13 @@ jobs:
     strategy:
       matrix:
         config:
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             cc: gcc
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             cc: clang
-          - os: ubuntu-22.04
-            cc: gcc
-          - os: ubuntu-22.04
+          - os: macos-latest
             cc: clang
-          - os: windows-2019
-            cc: cl
-          - os: windows-2022
+          - os: windows-latest
             cc: cl
     runs-on: ${{ matrix.config.os }}
     steps:
