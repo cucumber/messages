@@ -2,8 +2,8 @@ schemas = $(shell find ../jsonschema -name "*.json")
 
 .DEFAULT_GOAL = help
 
-INC_DIR = include/cucumber/messages
-LIB_DIR = src/lib/cucumber-messages/cucumber/messages
+INC_DIR = include/messages/cucumber/messages
+LIB_DIR = src/lib/messages/cucumber/messages
 
 SOURCES = \
 	$(shell find $(INC_DIR) -name "*.[ch]pp") \
@@ -46,10 +46,10 @@ clean-build:
 	./cmake/cmate clean
 
 clean-deps:
-	./cmake/cmade clean
+	./cmake/cmade clean --purge
 
 install-deps:
-	./cmake/cmade update
+	./cmake/cmade install
 
 .configured:
 	./cmake/cmate configure

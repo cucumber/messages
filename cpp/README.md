@@ -21,5 +21,5 @@ $ cmake --install build
 ```cmake
 find_package(cucumber-messages CONFIG REQUIRED)
 
-target_link_libraries(mylib PRIVATE cucumber::cucumber-messages)
+target_link_libraries(mylib PRIVATE cucumber::messages)
 ```
