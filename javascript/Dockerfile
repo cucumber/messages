@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.6
+#syntax=docker/dockerfile:1.7
 
 # Base image
 ARG JAVASCRIPT_VERSION=18

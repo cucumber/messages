@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.6
+#syntax=docker/dockerfile:1.7
 ARG LANGUAGE=ruby
 
 FROM ruby:3.3.0-alpine AS ruby
