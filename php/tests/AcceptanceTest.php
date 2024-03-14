@@ -41,7 +41,7 @@ class AcceptanceTest extends TestCase
             $sourceLine = fgets($sourceHandle);
             $destLine = fgets($destHandle);
 
-            if (empty($sourceLine) || empty($destLine)) {
+            if ($sourceLine === false || $sourceLine === "" || $destLine === false || $destLine === "") {
                 self::assertEquals($sourceLine, $destLine);
             } else {
                 self::assertJsonStringEqualsJsonString($sourceLine, $destLine);
@@ -58,7 +58,11 @@ class AcceptanceTest extends TestCase
     public static function provideJsonLines(): Generator
     {
         foreach (AcceptanceTest::getSampleFiles() as $filename) {
-            foreach (file($filename) ?: [] as $lineNumber => $line) {
+            $file = file($filename);
+            if ($file === false) {
+                continue;
+            }
+            foreach ($file as $lineNumber => $line) {
                 // key is provided for better error messages
                 $key = realpath($filename) . ':' . $lineNumber;
                 yield $key => [$line];
@@ -88,6 +92,7 @@ class AcceptanceTest extends TestCase
         // However there are currently no known problems (because these
         // tests originally tested against the CCK but that caused
         // circular dependencies).
-        return glob(__DIR__ . '/Samples/*.ndjson') ?: [];
+        $files = glob(__DIR__ . '/Samples/*.ndjson');
+        return $files === false ? [] : $files;
     }
 }
