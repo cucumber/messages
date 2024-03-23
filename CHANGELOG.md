@@ -6,8 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Added 
--  java: include stacktrace in Convertor.toMessage(Throwable) ([#213](https://github.com/cucumber/messages/pull/213))
+
+## [24.1.0] - 2024-03-23
+### Added
+- java: include stacktrace in Convertor.toMessage(Throwable) ([#213](https://github.com/cucumber/messages/pull/213))
 
 ## [24.0.1] - 2023-12-21
 ### Fixed
@@ -511,7 +513,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v24.0.1...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v24.1.0...HEAD
+[24.1.0]: https://github.com/cucumber/messages/compare/v24.0.1...v24.1.0
 [24.0.1]: https://github.com/cucumber/messages/compare/v24.0.0...v24.0.1
 [24.0.0]: https://github.com/cucumber/messages/compare/v23.0.0...v24.0.0
 [23.0.0]: https://github.com/cucumber/messages/compare/v22.0.0...v23.0.0
