@@ -9,18 +9,27 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ConvertorTest {
 
     @Test
     void convertsExceptionToMessage() {
+        Exception e = Convertor.toMessage(new RuntimeException());
+        assertAll(
+                () -> assertEquals(Optional.empty(), e.getMessage()),
+                () -> assertEquals("java.lang.RuntimeException", e.getType()),
+                () -> assertTrue(e.getStackTrace().isPresent())
+        );
+    }
+
+    @Test
+    void convertsExceptionWithMessageToMessage() {
         Exception e = Convertor.toMessage(new RuntimeException("Hello world!"));
-        Exception e2 = Convertor.toMessage(new RuntimeException());
         assertAll(
                 () -> assertEquals(Optional.of("Hello world!"), e.getMessage()),
-                () -> assertEquals(Optional.empty(), e2.getMessage()),
                 () -> assertEquals("java.lang.RuntimeException", e.getType()),
-                () -> assertEquals("java.lang.RuntimeException", e2.getType())
+                () -> assertTrue(e.getStackTrace().isPresent())
         );
     }
 

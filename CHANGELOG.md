@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added 
+-  java: include stacktrace in Convertor.toMessage(Throwable) ([#213](https://github.com/cucumber/messages/pull/213))
 
 ## [24.0.1] - 2023-12-21
 ### Fixed
