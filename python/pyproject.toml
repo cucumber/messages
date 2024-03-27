@@ -1,0 +1,72 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools", "wheel"]
+
+[project]
+authors = [
+  {name = "Cucumber Limited", email = "cukes@googlegroups.com"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: MacOS :: MacOS X",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Utilities",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11"
+]
+dependencies = [
+  "importlib_resources",
+  "pydantic>=2.0.3"
+]
+description = "Cucumber Messages is a message protocol for representing results and other information from Cucumber. "
+license = {text = "MIT"}
+maintainers = [
+  {name = "Konstantin Goloveshko", email = "kostya.goloveshko@gmail.com"}
+]
+name = "cuke-messages"
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.8"
+urls = {Repository = "https://github.com/cucumber/messages"}
+version = "0.1.0"
+
+[project.entry-points]
+
+[project.scripts]
+
+[tool.black]
+line-length = 120
+target-version = ["py38", "py39", "py310", "py311"]
+verbose = true
+
+[tool.isort]
+line_length = 120
+multi_line_output = 3
+profile = "black"
+
+[tool.mypy]
+files = "src/messages/**/*.py"
+install_types = true
+non_interactive = true
+plugins = [
+  "pydantic.mypy"
+]
+show_error_codes = true
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+]
+
+[project.optional-dependencies]
+test = [
+  "tox"
+]
