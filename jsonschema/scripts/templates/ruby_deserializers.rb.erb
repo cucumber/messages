@@ -9,7 +9,6 @@ module Cucumber
   <%- @schemas.each do |key, schema| -%>
 
     class <%= class_name(key) %>
-
       ##
       # Returns a new <%= class_name(key) %> from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the

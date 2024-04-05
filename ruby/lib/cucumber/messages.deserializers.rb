@@ -8,7 +8,6 @@ module Cucumber
   module Messages
 
     class Attachment
-
       ##
       # Returns a new Attachment from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -34,7 +33,6 @@ module Cucumber
     end
 
     class Duration
-
       ##
       # Returns a new Duration from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -54,7 +52,6 @@ module Cucumber
     end
 
     class Envelope
-
       ##
       # Returns a new Envelope from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -89,7 +86,6 @@ module Cucumber
     end
 
     class Exception
-
       ##
       # Returns a new Exception from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -110,7 +106,6 @@ module Cucumber
     end
 
     class GherkinDocument
-
       ##
       # Returns a new GherkinDocument from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -131,7 +126,6 @@ module Cucumber
     end
 
     class Background
-
       ##
       # Returns a new Background from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -155,7 +149,6 @@ module Cucumber
     end
 
     class Comment
-
       ##
       # Returns a new Comment from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -175,7 +168,6 @@ module Cucumber
     end
 
     class DataTable
-
       ##
       # Returns a new DataTable from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -195,7 +187,6 @@ module Cucumber
     end
 
     class DocString
-
       ##
       # Returns a new DocString from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -217,7 +208,6 @@ module Cucumber
     end
 
     class Examples
-
       ##
       # Returns a new Examples from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -243,7 +233,6 @@ module Cucumber
     end
 
     class Feature
-
       ##
       # Returns a new Feature from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -268,7 +257,6 @@ module Cucumber
     end
 
     class FeatureChild
-
       ##
       # Returns a new FeatureChild from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -289,7 +277,6 @@ module Cucumber
     end
 
     class Rule
-
       ##
       # Returns a new Rule from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -314,7 +301,6 @@ module Cucumber
     end
 
     class RuleChild
-
       ##
       # Returns a new RuleChild from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -334,7 +320,6 @@ module Cucumber
     end
 
     class Scenario
-
       ##
       # Returns a new Scenario from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -360,7 +345,6 @@ module Cucumber
     end
 
     class Step
-
       ##
       # Returns a new Step from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -385,7 +369,6 @@ module Cucumber
     end
 
     class TableCell
-
       ##
       # Returns a new TableCell from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -405,7 +388,6 @@ module Cucumber
     end
 
     class TableRow
-
       ##
       # Returns a new TableRow from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -426,7 +408,6 @@ module Cucumber
     end
 
     class Tag
-
       ##
       # Returns a new Tag from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -447,7 +428,6 @@ module Cucumber
     end
 
     class Hook
-
       ##
       # Returns a new Hook from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -469,7 +449,6 @@ module Cucumber
     end
 
     class Location
-
       ##
       # Returns a new Location from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -489,7 +468,6 @@ module Cucumber
     end
 
     class Meta
-
       ##
       # Returns a new Meta from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -513,7 +491,6 @@ module Cucumber
     end
 
     class Ci
-
       ##
       # Returns a new Ci from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -535,7 +512,6 @@ module Cucumber
     end
 
     class Git
-
       ##
       # Returns a new Git from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -557,7 +533,6 @@ module Cucumber
     end
 
     class Product
-
       ##
       # Returns a new Product from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -577,7 +552,6 @@ module Cucumber
     end
 
     class ParameterType
-
       ##
       # Returns a new ParameterType from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -601,7 +575,6 @@ module Cucumber
     end
 
     class ParseError
-
       ##
       # Returns a new ParseError from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -621,7 +594,6 @@ module Cucumber
     end
 
     class Pickle
-
       ##
       # Returns a new Pickle from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -646,7 +618,6 @@ module Cucumber
     end
 
     class PickleDocString
-
       ##
       # Returns a new PickleDocString from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -666,7 +637,6 @@ module Cucumber
     end
 
     class PickleStep
-
       ##
       # Returns a new PickleStep from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -689,7 +659,6 @@ module Cucumber
     end
 
     class PickleStepArgument
-
       ##
       # Returns a new PickleStepArgument from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -709,7 +678,6 @@ module Cucumber
     end
 
     class PickleTable
-
       ##
       # Returns a new PickleTable from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -728,7 +696,6 @@ module Cucumber
     end
 
     class PickleTableCell
-
       ##
       # Returns a new PickleTableCell from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -747,7 +714,6 @@ module Cucumber
     end
 
     class PickleTableRow
-
       ##
       # Returns a new PickleTableRow from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -766,7 +732,6 @@ module Cucumber
     end
 
     class PickleTag
-
       ##
       # Returns a new PickleTag from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -786,7 +751,6 @@ module Cucumber
     end
 
     class Source
-
       ##
       # Returns a new Source from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -807,7 +771,6 @@ module Cucumber
     end
 
     class SourceReference
-
       ##
       # Returns a new SourceReference from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -829,7 +792,6 @@ module Cucumber
     end
 
     class JavaMethod
-
       ##
       # Returns a new JavaMethod from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -850,7 +812,6 @@ module Cucumber
     end
 
     class JavaStackTraceElement
-
       ##
       # Returns a new JavaStackTraceElement from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -871,7 +832,6 @@ module Cucumber
     end
 
     class StepDefinition
-
       ##
       # Returns a new StepDefinition from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -892,7 +852,6 @@ module Cucumber
     end
 
     class StepDefinitionPattern
-
       ##
       # Returns a new StepDefinitionPattern from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -912,7 +871,6 @@ module Cucumber
     end
 
     class TestCase
-
       ##
       # Returns a new TestCase from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -933,7 +891,6 @@ module Cucumber
     end
 
     class Group
-
       ##
       # Returns a new Group from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -954,7 +911,6 @@ module Cucumber
     end
 
     class StepMatchArgument
-
       ##
       # Returns a new StepMatchArgument from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -974,7 +930,6 @@ module Cucumber
     end
 
     class StepMatchArgumentsList
-
       ##
       # Returns a new StepMatchArgumentsList from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -993,7 +948,6 @@ module Cucumber
     end
 
     class TestStep
-
       ##
       # Returns a new TestStep from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1016,7 +970,6 @@ module Cucumber
     end
 
     class TestCaseFinished
-
       ##
       # Returns a new TestCaseFinished from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1037,7 +990,6 @@ module Cucumber
     end
 
     class TestCaseStarted
-
       ##
       # Returns a new TestCaseStarted from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1060,7 +1012,6 @@ module Cucumber
     end
 
     class TestRunFinished
-
       ##
       # Returns a new TestRunFinished from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1082,7 +1033,6 @@ module Cucumber
     end
 
     class TestRunStarted
-
       ##
       # Returns a new TestRunStarted from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1101,7 +1051,6 @@ module Cucumber
     end
 
     class TestStepFinished
-
       ##
       # Returns a new TestStepFinished from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1123,7 +1072,6 @@ module Cucumber
     end
 
     class TestStepResult
-
       ##
       # Returns a new TestStepResult from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1145,7 +1093,6 @@ module Cucumber
     end
 
     class TestStepStarted
-
       ##
       # Returns a new TestStepStarted from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1166,7 +1113,6 @@ module Cucumber
     end
 
     class Timestamp
-
       ##
       # Returns a new Timestamp from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1186,7 +1132,6 @@ module Cucumber
     end
 
     class UndefinedParameterType
-
       ##
       # Returns a new UndefinedParameterType from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
