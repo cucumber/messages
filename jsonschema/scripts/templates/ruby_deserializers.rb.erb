@@ -21,7 +21,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
         <%-
           schema['properties'].each do |property_name, property|
             ref = property['$ref']
