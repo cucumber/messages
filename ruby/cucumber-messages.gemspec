@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.5'
   s.required_rubygems_version = '>= 3.0.0'
 
-  s.metadata    = {
+  s.metadata = {
     'bug_tracker_uri'   => 'https://github.com/cucumber/messages/issues',
     'changelog_uri'     => 'https://github.com/cucumber/messages/blob/main/CHANGELOG.md',
     'documentation_uri' => 'https://www.rubydoc.info/github/cucumber/messages',
