@@ -30,8 +30,6 @@ module Cucumber
         @is_enum = is_enum
       end
 
-      private
-
       def self.message_array_from_h(hash)
         SimpleMessage.from_h(hash)
       end
