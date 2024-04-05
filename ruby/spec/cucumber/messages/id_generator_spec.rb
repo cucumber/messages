@@ -2,7 +2,7 @@ require 'rspec'
 require 'cucumber/messages'
 
 describe Cucumber::Messages::IdGenerator::Incrementing do
-  subject { Cucumber::Messages::IdGenerator::Incrementing.new }
+  subject { described_class.new }
 
   context '#new_id' do
     it 'returns 0 the first time' do
@@ -18,7 +18,7 @@ describe Cucumber::Messages::IdGenerator::Incrementing do
 end
 
 describe Cucumber::Messages::IdGenerator::UUID do
-  subject { Cucumber::Messages::IdGenerator::UUID.new }
+  subject { described_class.new }
 
   context '#new_id' do
     it 'generates a UUID' do
