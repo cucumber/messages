@@ -32,7 +32,7 @@ module Cucumber
               reject_nil_values: reject_nil_values
             )
 
-            [ h_key.to_sym, h_value ]
+            [h_key.to_sym, h_value]
           end.to_h
 
           resulting_hash.reject! { |_, value| value.nil? } if reject_nil_values
