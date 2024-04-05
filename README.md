@@ -30,9 +30,9 @@ Each message in a message stream is of type [Envelope](messages.md#envelope).
 ## Language implementations
 
 Each subdirectory defines language-specific implementations of these messages,
-generated from the JSON schemas. The current implementation are:
-- .Net
+generated from the JSON schemas. The current implementations are:
 - C++
+- .Net
 - Elixir
 - Go
 - Java
@@ -44,9 +44,9 @@ generated from the JSON schemas. The current implementation are:
 ## Message emitters
 Cucumber Messages are currently sent by the following versions of Cucumber (using the `message` formatter):
 
-* Cucumber-JVM 6.0.0 and greater
-* Cucumber-Ruby 4.0.0 and greater
-* Cucumber.js 7.0.0 and greater
+* Cucumber-JVM `6.0.0` and later
+* Cucumber-Ruby `4.0.0` and later
+* Cucumber.js `7.0.0` and later
 
 Messages emitters for the other Cucumber languages (e.g. Perl) are not yet implemented. 
 
