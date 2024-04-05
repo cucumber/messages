@@ -22,12 +22,12 @@ module Cucumber
         #   Cucumber::Messages::Comment.new(location: location, text: 'comment').to_h  # => { location: { line: 2, :column: nil }, text: "comment" }
         ##
         def to_h(camelize: false, reject_nil_values: false)
-          resulting_hash = self.instance_variables.map do |variable_name|
+          resulting_hash = instance_variables.map do |variable_name|
             h_key = variable_name[1..-1]
             h_key = Cucumber::Messages::Message.camelize(h_key) if camelize
 
             h_value = prepare_value(
-              self.instance_variable_get(variable_name),
+              instance_variable_get(variable_name),
               camelize: camelize,
               reject_nil_values: reject_nil_values
             )
