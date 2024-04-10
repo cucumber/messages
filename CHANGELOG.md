@@ -6,10 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- [Php] Permit both PHPUnit 10 and PHPUnit 11 ([#200](https://github.com/cucumber/messages/pull/200) [ciaranmcnulty](https://github.com/ciaranmcnulty))
 
 ## [24.1.0] - 2024-03-23
 ### Added
-- java: include stacktrace in Convertor.toMessage(Throwable) ([#213](https://github.com/cucumber/messages/pull/213))
+- [Java] Include stacktrace in Convertor.toMessage(Throwable) ([#213](https://github.com/cucumber/messages/pull/213))
 
 ## [24.0.1] - 2023-12-21
 ### Fixed
@@ -24,7 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added C++ implementation ([#152](https://github.com/cucumber/messages/pull/152))
 
 ### Changed
-- [Ruby] Updated minimum Ruby version to 2.5 - ([#177](https://github.com/cucumber/messages/pull/177) [luke-hill](https://github.com/luke-hill))
+- [Ruby] Updated minimum Ruby version to 2.5 ([#177](https://github.com/cucumber/messages/pull/177) [luke-hill](https://github.com/luke-hill))
 
 ## [22.0.0] - 2023-04-06
 ### Added
