@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
     'changelog_uri'     => 'https://github.com/cucumber/messages/blob/main/CHANGELOG.md',
     'documentation_uri' => 'https://www.rubydoc.info/github/cucumber/messages',
     'mailing_list_uri'  => 'https://groups.google.com/forum/#!forum/cukes',
-    'source_code_uri'   => 'https://github.com/cucumber/messages',
+    'source_code_uri'   => 'https://github.com/cucumber/messages'
   }
 
   s.add_development_dependency 'cucumber-compatibility-kit', '~> 12.0'
