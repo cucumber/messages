@@ -5,15 +5,18 @@ require 'cucumber-compatibility-kit'
 module Cucumber
   module Messages
     describe 'messages acceptance tests' do
-      values = CCK::Examples.gherkin
-      #new_jsons = Dir[values]
-      ndjson_dirs = values.map { |example| CCK::Examples.feature_code_for(example) }
+      values = Dir["#{CCK::Examples.send(:features_folder_location)}/**/*.ndjson"]
+      other_values = CCK::Examples.gherkin
+      ndjson_dirs = other_values.flat_map { |example| Dir["#{CCK::Examples.feature_code_for(example)}/**/*.ndjson"] }
       ndjson_files = Dir["#{ndjson_dirs}/*.ndjson"]
+      # old code
+      # ndjson_files = Dir["#{Cucumber::CompatibilityKit::examples_path}/**/*.ndjson"]
 
       it 'must have ndjson_files as reference messages' do
-        p ndjson_files
+        p values
         p ndjson_dirs
-        expect(ndjson_files).not_to be_empty
+        p ndjson_files
+        expect(ndjson_dirs).not_to be_empty
       end
 
       # ndjson_files.each do |ndjson_file|
