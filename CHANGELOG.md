@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - [Php] Permit both PHPUnit 10 and PHPUnit 11 ([#200](https://github.com/cucumber/messages/pull/200) [ciaranmcnulty](https://github.com/ciaranmcnulty))
+### Fixed
+- [cpp] Don't rely on GitHub API for latest versions and implement a simple download retry loop
 
 ## [24.1.0] - 2024-03-23
 ### Added
