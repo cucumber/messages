@@ -3,7 +3,7 @@ require 'cucumber/messages'
 module Cucumber
   module Messages
     describe TimeConversion do
-      include TimeConversion
+      include described_class
 
       it 'converts to and from milliseconds since epoch' do
         time = Time.now

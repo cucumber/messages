@@ -17,7 +17,7 @@ describe Cucumber::Messages::Message::Deserialization do
 
         expect(Cucumber::Messages::Message)
           .to have_received(:from_h)
-          .with({ simpleMessage: { isString: "answer" } })
+          .with({ simpleMessage: { isString: 'answer' } })
       end
     end
 

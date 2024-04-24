@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- [Ruby] Tidied up around 80% of all of the rubocop `Layout` offenses (This included 2 minor alterations to the generator code) ([#217](https://github.com/cucumber/messages/pull/217) [luke-hill](https://github.com/luke-hill))
 - [Php] Permit both PHPUnit 10 and PHPUnit 11 ([#200](https://github.com/cucumber/messages/pull/200) [ciaranmcnulty](https://github.com/ciaranmcnulty))
 ### Fixed
 - [cpp] Don't rely on GitHub API for latest versions and implement a simple download retry loop
@@ -67,17 +68,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [19.1.2] - 2022-06-22
 ### Fixed
 - [Javascript] Schema was still missing in 19.1.1 due to how npm manages the files attribute in package.json
-([PR#2020](https://github.com/cucumber/common/pull/2020))
+([#2020](https://github.com/cucumber/common/pull/2020))
 
 ## [19.1.1] - 2022-06-22
 ### Fixed
 - [Javascript] Schema are actually missing from 19.1.0
-([PR#2016](https://github.com/cucumber/common/pull/2016))
+([#2016](https://github.com/cucumber/common/pull/2016))
 
 ## [19.1.0] - 2022-06-20
 ### Added
 - [Javascript] Adding the json schemas of the messages to the NPM package
-([PR#2010](https://github.com/cucumber/common/pull/2010))
+([#2010](https://github.com/cucumber/common/pull/2010))
 
 ## [19.0.0] - 2022-05-31
 ### Added

@@ -1,7 +1,7 @@
 module Cucumber
   module Messages
     module TimeConversion
-      NANOSECONDS_PER_SECOND = 1000000000
+      NANOSECONDS_PER_SECOND = 1_000_000_000
 
       def time_to_timestamp(time)
         {

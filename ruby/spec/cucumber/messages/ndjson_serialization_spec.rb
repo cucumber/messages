@@ -14,7 +14,7 @@ module Cucumber
         ]
       end
 
-      it "can be serialised over an ndjson stream" do
+      it 'can be serialised over an ndjson stream' do
         io = StringIO.new
         write_outgoing_messages(outgoing_messages, io)
 
@@ -24,7 +24,7 @@ module Cucumber
         expect(incoming_messages.to_a.map(&:to_h)).to(eq(outgoing_messages.map(&:to_h)))
       end
 
-      it "ignores empty lines" do
+      it 'ignores empty lines' do
         io = StringIO.new
         write_outgoing_messages(outgoing_messages, io)
         io.write("\n\n")
@@ -35,7 +35,7 @@ module Cucumber
         expect(incoming_messages.to_a.map(&:to_h)).to(eq(outgoing_messages.map(&:to_h)))
       end
 
-      it "includes offending line in error message" do
+      it 'includes offending line in error message' do
         io = StringIO.new
         io.puts('BLA BLA')
 

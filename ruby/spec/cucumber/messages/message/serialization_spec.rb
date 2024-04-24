@@ -72,15 +72,15 @@ describe Cucumber::Messages::Message::Serialization do
       subject { Cucumber::Messages::ComprehensiveMessage.new.to_json }
 
       it 'returns a JSON document with embedded messages' do
-        expect(subject).to include({ isString: '', isArray: [], isNumber: 0}.to_json)
+        expect(subject).to include({ isString: '', isArray: [], isNumber: 0 }.to_json)
         expect(subject).to include('"isEnum":"an enum"')
       end
 
       it 'returns a JSON document with messages arrays' do
         expect(subject).to include(
           [
-            { isString: '', isArray: [], isNumber: 0},
-            { isString: '', isArray: [], isNumber: 0}
+            { isString: '', isArray: [], isNumber: 0 },
+            { isString: '', isArray: [], isNumber: 0 }
           ].to_json
         )
       end
