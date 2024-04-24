@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bundler'
 Bundler::GemHelper.install_tasks
 
-$LOAD_PATH.unshift File.expand_path('lib', __dir__)
+$:.unshift File.expand_path('lib', __dir__)
 
 Dir['./rake/*.rb'].each do |f|
   require f

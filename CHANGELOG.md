@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- [Ruby] Tidied up around 80% of all of the rubocop `Layout` offenses (This included 2 minor alterations to the generator code) ([#217](https://github.com/cucumber/messages/pull/217) [luke-hill](https://github.com/luke-hill))
 
 ## [24.1.0] - 2024-03-23
 ### Added
@@ -24,7 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added C++ implementation ([#152](https://github.com/cucumber/messages/pull/152))
 
 ### Changed
-- [Ruby] Updated minimum Ruby version to 2.5 - ([#177](https://github.com/cucumber/messages/pull/177) [luke-hill](https://github.com/luke-hill))
+- [Ruby] Updated minimum Ruby version to 2.5 ([#177](https://github.com/cucumber/messages/pull/177) [luke-hill](https://github.com/luke-hill))
 
 ## [22.0.0] - 2023-04-06
 ### Added
