@@ -1,5 +1,3 @@
-require 'cucumber/messages'
-
 module Cucumber
   module Messages
     describe TimeConversion do

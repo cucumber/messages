@@ -1,6 +1,3 @@
-require 'rspec'
-require 'cucumber/messages/message/dummy_messages'
-
 describe Cucumber::Messages::Message::Serialization do
   context 'with a simple message' do
     describe '#to_h' do

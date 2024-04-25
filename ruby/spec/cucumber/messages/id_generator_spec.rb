@@ -1,5 +1,3 @@
-require 'rspec'
-require 'cucumber/messages'
 
 describe Cucumber::Messages::IdGenerator::Incrementing do
   subject { described_class.new }

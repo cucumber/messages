@@ -1,4 +1,3 @@
-require 'cucumber/messages'
 
 module Cucumber
   module Messages

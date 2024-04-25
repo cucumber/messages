@@ -1,6 +1,3 @@
-require 'rspec'
-require 'cucumber/messages/message/dummy_messages'
-
 describe Cucumber::Messages::Message::Deserialization do
   describe '#from_json' do
     subject { Cucumber::Messages::Message.from_json(json_document) }

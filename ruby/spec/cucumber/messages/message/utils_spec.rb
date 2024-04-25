@@ -1,4 +1,3 @@
-require 'rspec'
 require 'cucumber/messages/message/utils'
 
 class DummyTestClass

@@ -1,5 +1,4 @@
 require 'json'
-require 'cucumber/messages'
 require 'cucumber-compatibility-kit'
 
 module Cucumber
