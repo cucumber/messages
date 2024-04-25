@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   }
 
   s.add_development_dependency 'cucumber-compatibility-kit', '~> 15.0'
-  s.add_development_dependency 'rake', '~> 13.0', '>= 13.0.6'
-  s.add_development_dependency 'rspec', '~> 3.12'
+  s.add_development_dependency 'rake', '~> 13.1'
+  s.add_development_dependency 'rspec', '~> 3.13'
   s.add_development_dependency 'rubocop', '~> 1.28.0'
   s.add_development_dependency 'rubocop-rspec', '~> 2.5.0'
 
