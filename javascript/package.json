@@ -43,12 +43,12 @@
   },
   "devDependencies": {
     "@types/mocha": "10.0.6",
-    "@types/node": "20.11.28",
+    "@types/node": "20.12.7",
     "copyfiles": "2.4.1",
     "mocha": "10.4.0",
     "shx": "^0.3.4",
     "ts-node": "10.9.2",
-    "typescript": "5.4.3"
+    "typescript": "5.4.5"
   },
   "bugs": {
     "url": "https://github.com/cucumber/messages/issues"

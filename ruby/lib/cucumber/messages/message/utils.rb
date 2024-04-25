@@ -20,7 +20,7 @@ module Cucumber
 
             word = term.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
             word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-            word.tr!("-", "_")
+            word.tr!('-', '_')
             word.downcase!
             word
           end
@@ -35,7 +35,7 @@ module Cucumber
           ##
           def camelize(term)
             camelized = term.to_s
-            camelized.gsub!(/(?:_|(\/))([a-z\d]*)/i) { "#{$1}#{$2.capitalize}" }
+            camelized.gsub!(/(?:_|(\/))([a-z\d]*)/i) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
             camelized
           end
         end

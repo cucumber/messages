@@ -8,7 +8,6 @@ module Cucumber
   module Messages
 
     class Attachment
-
       ##
       # Returns a new Attachment from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -20,7 +19,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           body: hash[:body],
           content_encoding: hash[:contentEncoding],
           file_name: hash[:fileName],
@@ -34,7 +33,6 @@ module Cucumber
     end
 
     class Duration
-
       ##
       # Returns a new Duration from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -46,7 +44,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           seconds: hash[:seconds],
           nanos: hash[:nanos],
         )
@@ -54,7 +52,6 @@ module Cucumber
     end
 
     class Envelope
-
       ##
       # Returns a new Envelope from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -66,7 +63,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           attachment: Attachment.from_h(hash[:attachment]),
           gherkin_document: GherkinDocument.from_h(hash[:gherkinDocument]),
           hook: Hook.from_h(hash[:hook]),
@@ -89,7 +86,6 @@ module Cucumber
     end
 
     class Exception
-
       ##
       # Returns a new Exception from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -101,7 +97,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           type: hash[:type],
           message: hash[:message],
           stack_trace: hash[:stackTrace],
@@ -110,7 +106,6 @@ module Cucumber
     end
 
     class GherkinDocument
-
       ##
       # Returns a new GherkinDocument from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -122,7 +117,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           uri: hash[:uri],
           feature: Feature.from_h(hash[:feature]),
           comments: hash[:comments]&.map { |item| Comment.from_h(item) },
@@ -131,7 +126,6 @@ module Cucumber
     end
 
     class Background
-
       ##
       # Returns a new Background from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -143,7 +137,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           keyword: hash[:keyword],
           name: hash[:name],
@@ -155,7 +149,6 @@ module Cucumber
     end
 
     class Comment
-
       ##
       # Returns a new Comment from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -167,7 +160,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           text: hash[:text],
         )
@@ -175,7 +168,6 @@ module Cucumber
     end
 
     class DataTable
-
       ##
       # Returns a new DataTable from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -187,7 +179,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           rows: hash[:rows]&.map { |item| TableRow.from_h(item) },
         )
@@ -195,7 +187,6 @@ module Cucumber
     end
 
     class DocString
-
       ##
       # Returns a new DocString from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -207,7 +198,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           media_type: hash[:mediaType],
           content: hash[:content],
@@ -217,7 +208,6 @@ module Cucumber
     end
 
     class Examples
-
       ##
       # Returns a new Examples from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -229,7 +219,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           tags: hash[:tags]&.map { |item| Tag.from_h(item) },
           keyword: hash[:keyword],
@@ -243,7 +233,6 @@ module Cucumber
     end
 
     class Feature
-
       ##
       # Returns a new Feature from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -255,7 +244,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           tags: hash[:tags]&.map { |item| Tag.from_h(item) },
           language: hash[:language],
@@ -268,7 +257,6 @@ module Cucumber
     end
 
     class FeatureChild
-
       ##
       # Returns a new FeatureChild from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -280,7 +268,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           rule: Rule.from_h(hash[:rule]),
           background: Background.from_h(hash[:background]),
           scenario: Scenario.from_h(hash[:scenario]),
@@ -289,7 +277,6 @@ module Cucumber
     end
 
     class Rule
-
       ##
       # Returns a new Rule from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -301,7 +288,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           tags: hash[:tags]&.map { |item| Tag.from_h(item) },
           keyword: hash[:keyword],
@@ -314,7 +301,6 @@ module Cucumber
     end
 
     class RuleChild
-
       ##
       # Returns a new RuleChild from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -326,7 +312,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           background: Background.from_h(hash[:background]),
           scenario: Scenario.from_h(hash[:scenario]),
         )
@@ -334,7 +320,6 @@ module Cucumber
     end
 
     class Scenario
-
       ##
       # Returns a new Scenario from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -346,7 +331,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           tags: hash[:tags]&.map { |item| Tag.from_h(item) },
           keyword: hash[:keyword],
@@ -360,7 +345,6 @@ module Cucumber
     end
 
     class Step
-
       ##
       # Returns a new Step from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -372,7 +356,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           keyword: hash[:keyword],
           keyword_type: hash[:keywordType],
@@ -385,7 +369,6 @@ module Cucumber
     end
 
     class TableCell
-
       ##
       # Returns a new TableCell from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -397,7 +380,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           value: hash[:value],
         )
@@ -405,7 +388,6 @@ module Cucumber
     end
 
     class TableRow
-
       ##
       # Returns a new TableRow from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -417,7 +399,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           cells: hash[:cells]&.map { |item| TableCell.from_h(item) },
           id: hash[:id],
@@ -426,7 +408,6 @@ module Cucumber
     end
 
     class Tag
-
       ##
       # Returns a new Tag from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -438,7 +419,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           location: Location.from_h(hash[:location]),
           name: hash[:name],
           id: hash[:id],
@@ -447,7 +428,6 @@ module Cucumber
     end
 
     class Hook
-
       ##
       # Returns a new Hook from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -459,7 +439,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           id: hash[:id],
           name: hash[:name],
           source_reference: SourceReference.from_h(hash[:sourceReference]),
@@ -469,7 +449,6 @@ module Cucumber
     end
 
     class Location
-
       ##
       # Returns a new Location from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -481,7 +460,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           line: hash[:line],
           column: hash[:column],
         )
@@ -489,7 +468,6 @@ module Cucumber
     end
 
     class Meta
-
       ##
       # Returns a new Meta from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -501,7 +479,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           protocol_version: hash[:protocolVersion],
           implementation: Product.from_h(hash[:implementation]),
           runtime: Product.from_h(hash[:runtime]),
@@ -513,7 +491,6 @@ module Cucumber
     end
 
     class Ci
-
       ##
       # Returns a new Ci from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -525,7 +502,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           name: hash[:name],
           url: hash[:url],
           build_number: hash[:buildNumber],
@@ -535,7 +512,6 @@ module Cucumber
     end
 
     class Git
-
       ##
       # Returns a new Git from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -547,7 +523,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           remote: hash[:remote],
           revision: hash[:revision],
           branch: hash[:branch],
@@ -557,7 +533,6 @@ module Cucumber
     end
 
     class Product
-
       ##
       # Returns a new Product from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -569,7 +544,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           name: hash[:name],
           version: hash[:version],
         )
@@ -577,7 +552,6 @@ module Cucumber
     end
 
     class ParameterType
-
       ##
       # Returns a new ParameterType from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -589,7 +563,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           name: hash[:name],
           regular_expressions: hash[:regularExpressions],
           prefer_for_regular_expression_match: hash[:preferForRegularExpressionMatch],
@@ -601,7 +575,6 @@ module Cucumber
     end
 
     class ParseError
-
       ##
       # Returns a new ParseError from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -613,7 +586,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           source: SourceReference.from_h(hash[:source]),
           message: hash[:message],
         )
@@ -621,7 +594,6 @@ module Cucumber
     end
 
     class Pickle
-
       ##
       # Returns a new Pickle from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -633,7 +605,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           id: hash[:id],
           uri: hash[:uri],
           name: hash[:name],
@@ -646,7 +618,6 @@ module Cucumber
     end
 
     class PickleDocString
-
       ##
       # Returns a new PickleDocString from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -658,7 +629,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           media_type: hash[:mediaType],
           content: hash[:content],
         )
@@ -666,7 +637,6 @@ module Cucumber
     end
 
     class PickleStep
-
       ##
       # Returns a new PickleStep from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -678,7 +648,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           argument: PickleStepArgument.from_h(hash[:argument]),
           ast_node_ids: hash[:astNodeIds],
           id: hash[:id],
@@ -689,7 +659,6 @@ module Cucumber
     end
 
     class PickleStepArgument
-
       ##
       # Returns a new PickleStepArgument from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -701,7 +670,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           doc_string: PickleDocString.from_h(hash[:docString]),
           data_table: PickleTable.from_h(hash[:dataTable]),
         )
@@ -709,7 +678,6 @@ module Cucumber
     end
 
     class PickleTable
-
       ##
       # Returns a new PickleTable from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -721,14 +689,13 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           rows: hash[:rows]&.map { |item| PickleTableRow.from_h(item) },
         )
       end
     end
 
     class PickleTableCell
-
       ##
       # Returns a new PickleTableCell from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -740,14 +707,13 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           value: hash[:value],
         )
       end
     end
 
     class PickleTableRow
-
       ##
       # Returns a new PickleTableRow from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -759,14 +725,13 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           cells: hash[:cells]&.map { |item| PickleTableCell.from_h(item) },
         )
       end
     end
 
     class PickleTag
-
       ##
       # Returns a new PickleTag from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -778,7 +743,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           name: hash[:name],
           ast_node_id: hash[:astNodeId],
         )
@@ -786,7 +751,6 @@ module Cucumber
     end
 
     class Source
-
       ##
       # Returns a new Source from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -798,7 +762,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           uri: hash[:uri],
           data: hash[:data],
           media_type: hash[:mediaType],
@@ -807,7 +771,6 @@ module Cucumber
     end
 
     class SourceReference
-
       ##
       # Returns a new SourceReference from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -819,7 +782,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           uri: hash[:uri],
           java_method: JavaMethod.from_h(hash[:javaMethod]),
           java_stack_trace_element: JavaStackTraceElement.from_h(hash[:javaStackTraceElement]),
@@ -829,7 +792,6 @@ module Cucumber
     end
 
     class JavaMethod
-
       ##
       # Returns a new JavaMethod from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -841,7 +803,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           class_name: hash[:className],
           method_name: hash[:methodName],
           method_parameter_types: hash[:methodParameterTypes],
@@ -850,7 +812,6 @@ module Cucumber
     end
 
     class JavaStackTraceElement
-
       ##
       # Returns a new JavaStackTraceElement from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -862,7 +823,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           class_name: hash[:className],
           file_name: hash[:fileName],
           method_name: hash[:methodName],
@@ -871,7 +832,6 @@ module Cucumber
     end
 
     class StepDefinition
-
       ##
       # Returns a new StepDefinition from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -883,7 +843,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           id: hash[:id],
           pattern: StepDefinitionPattern.from_h(hash[:pattern]),
           source_reference: SourceReference.from_h(hash[:sourceReference]),
@@ -892,7 +852,6 @@ module Cucumber
     end
 
     class StepDefinitionPattern
-
       ##
       # Returns a new StepDefinitionPattern from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -904,7 +863,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           source: hash[:source],
           type: hash[:type],
         )
@@ -912,7 +871,6 @@ module Cucumber
     end
 
     class TestCase
-
       ##
       # Returns a new TestCase from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -924,7 +882,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           id: hash[:id],
           pickle_id: hash[:pickleId],
           test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) },
@@ -933,7 +891,6 @@ module Cucumber
     end
 
     class Group
-
       ##
       # Returns a new Group from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -945,7 +902,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           children: hash[:children]&.map { |item| Group.from_h(item) },
           start: hash[:start],
           value: hash[:value],
@@ -954,7 +911,6 @@ module Cucumber
     end
 
     class StepMatchArgument
-
       ##
       # Returns a new StepMatchArgument from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -966,7 +922,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           group: Group.from_h(hash[:group]),
           parameter_type_name: hash[:parameterTypeName],
         )
@@ -974,7 +930,6 @@ module Cucumber
     end
 
     class StepMatchArgumentsList
-
       ##
       # Returns a new StepMatchArgumentsList from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -986,14 +941,13 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           step_match_arguments: hash[:stepMatchArguments]&.map { |item| StepMatchArgument.from_h(item) },
         )
       end
     end
 
     class TestStep
-
       ##
       # Returns a new TestStep from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1005,7 +959,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           hook_id: hash[:hookId],
           id: hash[:id],
           pickle_step_id: hash[:pickleStepId],
@@ -1016,7 +970,6 @@ module Cucumber
     end
 
     class TestCaseFinished
-
       ##
       # Returns a new TestCaseFinished from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1028,7 +981,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           test_case_started_id: hash[:testCaseStartedId],
           timestamp: Timestamp.from_h(hash[:timestamp]),
           will_be_retried: hash[:willBeRetried],
@@ -1037,7 +990,6 @@ module Cucumber
     end
 
     class TestCaseStarted
-
       ##
       # Returns a new TestCaseStarted from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1049,7 +1001,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           attempt: hash[:attempt],
           id: hash[:id],
           test_case_id: hash[:testCaseId],
@@ -1060,7 +1012,6 @@ module Cucumber
     end
 
     class TestRunFinished
-
       ##
       # Returns a new TestRunFinished from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1072,7 +1023,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           message: hash[:message],
           success: hash[:success],
           timestamp: Timestamp.from_h(hash[:timestamp]),
@@ -1082,7 +1033,6 @@ module Cucumber
     end
 
     class TestRunStarted
-
       ##
       # Returns a new TestRunStarted from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1094,14 +1044,13 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           timestamp: Timestamp.from_h(hash[:timestamp]),
         )
       end
     end
 
     class TestStepFinished
-
       ##
       # Returns a new TestStepFinished from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1113,7 +1062,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           test_case_started_id: hash[:testCaseStartedId],
           test_step_id: hash[:testStepId],
           test_step_result: TestStepResult.from_h(hash[:testStepResult]),
@@ -1123,7 +1072,6 @@ module Cucumber
     end
 
     class TestStepResult
-
       ##
       # Returns a new TestStepResult from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1135,7 +1083,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           duration: Duration.from_h(hash[:duration]),
           message: hash[:message],
           status: hash[:status],
@@ -1145,7 +1093,6 @@ module Cucumber
     end
 
     class TestStepStarted
-
       ##
       # Returns a new TestStepStarted from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1157,7 +1104,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           test_case_started_id: hash[:testCaseStartedId],
           test_step_id: hash[:testStepId],
           timestamp: Timestamp.from_h(hash[:timestamp]),
@@ -1166,7 +1113,6 @@ module Cucumber
     end
 
     class Timestamp
-
       ##
       # Returns a new Timestamp from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1178,7 +1124,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           seconds: hash[:seconds],
           nanos: hash[:nanos],
         )
@@ -1186,7 +1132,6 @@ module Cucumber
     end
 
     class UndefinedParameterType
-
       ##
       # Returns a new UndefinedParameterType from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
@@ -1198,7 +1143,7 @@ module Cucumber
       def self.from_h(hash)
         return nil if hash.nil?
 
-        self.new(
+        new(
           expression: hash[:expression],
           name: hash[:name],
         )
