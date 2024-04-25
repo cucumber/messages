@@ -14,11 +14,11 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = '>= 3.2.3'
 
   s.metadata = {
-    'bug_tracker_uri'   => 'https://github.com/cucumber/messages/issues',
-    'changelog_uri'     => 'https://github.com/cucumber/messages/blob/main/CHANGELOG.md',
+    'bug_tracker_uri' => 'https://github.com/cucumber/messages/issues',
+    'changelog_uri' => 'https://github.com/cucumber/messages/blob/main/CHANGELOG.md',
     'documentation_uri' => 'https://www.rubydoc.info/github/cucumber/messages',
-    'mailing_list_uri'  => 'https://groups.google.com/forum/#!forum/cukes',
-    'source_code_uri'   => 'https://github.com/cucumber/messages'
+    'mailing_list_uri' => 'https://groups.google.com/forum/#!forum/cukes',
+    'source_code_uri' => 'https://github.com/cucumber/messages'
   }
 
   s.add_development_dependency 'cucumber-compatibility-kit', '~> 15.0'

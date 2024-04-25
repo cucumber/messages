@@ -7,8 +7,14 @@ AllCops:
   TargetRubyVersion: 2.7
   NewCops: enable
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Layout/LineLength:
   Max: 200
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
 
 Style/Documentation:
   Enabled: false
@@ -16,6 +22,3 @@ Style/Documentation:
 Style/RegexpLiteral:
   EnforcedStyle: slashes
   AllowInnerSlashes: true
-
-RSpec/MessageSpies:
-  EnforcedStyle: receive
