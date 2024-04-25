@@ -1,11 +1,9 @@
-require 'cucumber/messages/message/utils'
-
-class DummyTestClass
-  include Cucumber::Messages::Message::Utils
-end
-
 describe Cucumber::Messages::Message::Utils do
-  subject { DummyTestClass }
+  subject do
+    Class.new do
+      include Cucumber::Messages::Message::Utils
+    end
+  end
 
   describe '#underscore' do
     it { expect(subject.underscore('test')).to eq 'test' }
