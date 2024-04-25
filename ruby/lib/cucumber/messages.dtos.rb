@@ -1247,7 +1247,7 @@ module Cucumber
       def initialize(
         uri: '',
         data: '',
-        media_type: SourceMediaType::TEXT_X_CUCUMBER_GHERKIN_PLAIN
+        media_type: ''
       )
         @uri = uri
         @data = data
@@ -1751,11 +1751,6 @@ class Cucumber::Messages::PickleStepType
   CONTEXT = 'Context'
   ACTION = 'Action'
   OUTCOME = 'Outcome'
-end
-
-class Cucumber::Messages::SourceMediaType
-  TEXT_X_CUCUMBER_GHERKIN_PLAIN = 'text/x.cucumber.gherkin+plain'
-  TEXT_X_CUCUMBER_GHERKIN_MARKDOWN = 'text/x.cucumber.gherkin+markdown'
 end
 
 class Cucumber::Messages::StepDefinitionPatternType
