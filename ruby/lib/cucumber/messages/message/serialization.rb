@@ -25,13 +25,7 @@ module Cucumber
           resulting_hash = instance_variables.map do |variable_name|
             h_key = variable_name[1..-1]
             h_key = Cucumber::Messages::Message.camelize(h_key) if camelize
-
-            h_value = prepare_value(
-              instance_variable_get(variable_name),
-              camelize: camelize,
-              reject_nil_values: reject_nil_values
-            )
-
+            h_value = prepare_value(instance_variable_get(variable_name), camelize: camelize, reject_nil_values: reject_nil_values)
             [h_key.to_sym, h_value]
           end.to_h
 
@@ -47,7 +41,7 @@ module Cucumber
         #   Cucumber::Messages::PickleTag.new(name: 'foo', ast_node_id: 'abc-def').to_json  # => '{"name":"foo","astNodeId":"abc-def"}'
         #   Cucumber::Messages::PickleTag.new(name: 'foo', ast_node_id: nil).to_json        # => '{"name":"foo"}'
         #
-        # As #to_h, the method is recursive
+        # As with #to_h, the method is recursive
         #
         #   location = Cucumber::Messages::Location.new(line: 2)
         #   Cucumber::Messages::Comment.new(location: location, text: 'comment').to_json     # => '{"location":{"line":2,"column":null},"text":"comment"}'
@@ -60,7 +54,7 @@ module Cucumber
 
         def prepare_value(value, camelize:, reject_nil_values:)
           return value.to_h(camelize: camelize, reject_nil_values: reject_nil_values) if value.is_a?(Cucumber::Messages::Message)
-          return value.map { |v| prepare_value(v, camelize: camelize, reject_nil_values: reject_nil_values) } if value.is_a?(Array)
+          return value.map { |element| prepare_value(element, camelize: camelize, reject_nil_values: reject_nil_values) } if value.is_a?(Array)
 
           value
         end
