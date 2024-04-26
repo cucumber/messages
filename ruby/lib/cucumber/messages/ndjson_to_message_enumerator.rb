@@ -9,7 +9,7 @@ module Cucumber
             next if line.strip.empty?
             begin
               m = Envelope.from_json(line)
-            rescue => e
+            rescue StandardError
               raise "Not JSON: #{line.strip}"
             end
             yielder.yield(m)
