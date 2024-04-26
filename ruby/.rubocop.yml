@@ -12,8 +12,9 @@ AllCops:
 Gemspec/RequireMFA:
   Enabled: false
 
+# Some long comments in the JSON Schema cause this to be un-enforceable
 Layout/LineLength:
-  Max: 200
+  Max: 1000
 
 RSpec/MessageSpies:
   EnforcedStyle: receive
