@@ -10,11 +10,11 @@ describe Cucumber::Messages::Message::Deserialization do
       it 'deserialize the message using #from_h' do
         allow(Cucumber::Messages::Message).to receive(:from_h)
 
-        subject
-
         expect(Cucumber::Messages::Message)
-          .to have_received(:from_h)
+          .to receive(:from_h)
           .with({ simpleMessage: { isString: 'answer' } })
+
+        subject
       end
     end
 
