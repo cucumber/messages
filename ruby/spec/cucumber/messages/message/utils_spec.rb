@@ -1,7 +1,7 @@
 describe Cucumber::Messages::Message::Utils do
   subject(:utils) do
     Class.new do
-      include Cucumber::Messages::Message::Utils
+      extend Cucumber::Messages::Message::Utils
     end
   end
 

@@ -4,7 +4,7 @@ require 'json'
 module Cucumber
   module Messages
     class Message
-      include Cucumber::Messages::Message::Utils
+      extend Cucumber::Messages::Message::Utils
 
       module Deserialization
         ##
