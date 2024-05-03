@@ -5,17 +5,6 @@ describe Cucumber::Messages::Message::Utils do
     end
   end
 
-  describe '#underscore' do
-    it { expect(utils.underscore('test')).to eq('test') }
-    it { expect(utils.underscore('testTest')).to eq('test_test') }
-    it { expect(utils.underscore('')).to eq('') }
-    it { expect(utils.underscore('T')).to eq('t') }
-    it { expect(utils.underscore('test123test456Test')).to eq('test123test456_test') }
-    it { expect(utils.underscore('test-test')).to eq('test_test') }
-    it { expect(utils.underscore('TEST_Test')).to eq('test_test') }
-    it { expect(utils.underscore('test-Test')).to eq('test_test') }
-  end
-
   describe '#camelize' do
     it { expect(utils.camelize('test')).to eq('test') }
     it { expect(utils.camelize('test_test')).to eq('testTest') }
