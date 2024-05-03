@@ -28,8 +28,7 @@ module Cucumber
 
       def self.camelize(term)
         camelized = term.to_s
-        camelized.gsub!(/(?:_|(\/))([a-z\d]*)/i) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
-        camelized
+        camelized.gsub(/(?:_|(\/))([a-z\d]*)/i) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
       end
     end
   end
