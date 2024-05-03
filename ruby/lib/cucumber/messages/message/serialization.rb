@@ -1,11 +1,6 @@
-require 'cucumber/messages/message/utils'
-require 'json'
-
 module Cucumber
   module Messages
     class Message
-      extend Cucumber::Messages::Message::Utils
-
       module Serialization
         ##
         # Returns a new Hash formed from the message attributes

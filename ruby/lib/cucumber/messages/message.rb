@@ -25,6 +25,12 @@ module Cucumber
       def self.from_json(json_string)
         from_h(JSON.parse(json_string, { symbolize_names: true }))
       end
+
+      def self.camelize(term)
+        camelized = term.to_s
+        camelized.gsub!(/(?:_|(\/))([a-z\d]*)/i) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
+        camelized
+      end
     end
   end
 end
