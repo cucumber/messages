@@ -1,5 +1,5 @@
-describe Cucumber::Messages::Message::Deserialization do
-  describe '#from_json' do
+describe Cucumber::Messages::Message do
+  describe '.from_json' do
     subject { Cucumber::Messages::Message.from_json(json_document) }
 
     let(:json_document) { '' }
