@@ -4,10 +4,7 @@ module Cucumber
       NANOSECONDS_PER_SECOND = 1_000_000_000
 
       def time_to_timestamp(time)
-        {
-          'seconds' => time.to_i,
-          'nanos' => time.nsec
-        }
+        { 'seconds' => time.to_i, 'nanos' => time.nsec }
       end
 
       def timestamp_to_time(timestamp)
@@ -17,10 +14,7 @@ module Cucumber
       def seconds_to_duration(seconds_float)
         seconds, second_modulus = seconds_float.divmod(1)
         nanos = second_modulus * NANOSECONDS_PER_SECOND
-        {
-          'seconds' => seconds,
-          'nanos' => nanos.to_i
-        }
+        { 'seconds' => seconds, 'nanos' => nanos.to_i }
       end
 
       def duration_to_seconds(duration)
