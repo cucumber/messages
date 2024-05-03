@@ -1,11 +1,8 @@
-require 'cucumber/messages/message/utils'
 require 'json'
 
 module Cucumber
   module Messages
     class Message
-      extend Cucumber::Messages::Message::Utils
-
       module Deserialization
         ##
         # Returns a new Message - or messages into an array - deserialized from the given json document.
