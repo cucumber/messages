@@ -8,6 +8,7 @@ module Cucumber
         @is_string = is_string
         @is_array = is_array
         @is_number = is_number
+        super()
       end
     end
   end
