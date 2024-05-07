@@ -37,10 +37,12 @@ describe Cucumber::Messages::Message::Serialization do
       end
 
       it 'includes a hash representation of messages arrays' do
-        expect(message.to_h[:message_array]).to eq([
-                                                     { is_nil: nil, is_string: '', is_array: [], is_number: 0 },
-                                                     { is_nil: nil, is_string: '', is_array: [], is_number: 0 }
-                                                   ])
+        expect(message.to_h[:message_array]).to eq(
+          [
+            { is_nil: nil, is_string: '', is_array: [], is_number: 0 },
+            { is_nil: nil, is_string: '', is_array: [], is_number: 0 }
+          ]
+        )
       end
 
       context 'with camelize: true' do
