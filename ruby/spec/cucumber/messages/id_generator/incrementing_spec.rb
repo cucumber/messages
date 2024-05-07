@@ -7,9 +7,9 @@ describe Cucumber::Messages::IdGenerator::Incrementing do
     end
 
     it 'increments on every call' do
-      expect(generator.new_id).to eq('0')
-      expect(generator.new_id).to eq('1')
-      expect(generator.new_id).to eq('2')
+      rand(2..5).times do |value|
+        expect(generator.new_id).to eq(value.to_s)
+      end
     end
   end
 end
