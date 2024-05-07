@@ -1,4 +1,3 @@
-
 module Cucumber
   module Messages
     describe 'messages' do
