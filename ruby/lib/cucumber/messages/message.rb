@@ -43,7 +43,7 @@ module Cucumber
       ##
       def to_h(camelize: false, reject_nil_values: false)
         resulting_hash = instance_variables.to_h do |variable_name|
-          h_key = variable_name[1..-1]
+          h_key = variable_name[1..]
           h_key = Cucumber::Messages::Message.camelize(h_key) if camelize
           h_value = prepare_value(instance_variable_get(variable_name), camelize: camelize, reject_nil_values: reject_nil_values)
           [h_key.to_sym, h_value]
