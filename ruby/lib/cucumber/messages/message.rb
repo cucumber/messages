@@ -49,8 +49,7 @@ module Cucumber
           [h_key.to_sym, h_value]
         end
 
-        resulting_hash.reject! { |_, value| value.nil? } if reject_nil_values
-        resulting_hash
+        resulting_hash.tap { |hash| hash.compact! if reject_nil_values }
       end
 
       ##
