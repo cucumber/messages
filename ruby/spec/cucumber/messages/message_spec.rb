@@ -87,11 +87,11 @@ describe Cucumber::Messages::Message do
 
         it 'camelizes the keys of hashes for messages arrays' do
           expect(message.to_h(camelize: true)[:messageArray]).to eq(
-           [
-             { isNil: nil, isString: '', isArray: [], isNumber: 0 },
-             { isNil: nil, isString: '', isArray: [], isNumber: 0 }
-           ]
-         )
+            [
+              { isNil: nil, isString: '', isArray: [], isNumber: 0 },
+              { isNil: nil, isString: '', isArray: [], isNumber: 0 }
+            ]
+          )
         end
       end
     end
@@ -104,11 +104,11 @@ describe Cucumber::Messages::Message do
 
       it 'returns a JSON document with messages arrays' do
         expect(message.to_json).to include(
-           [
-             { isString: '', isArray: [], isNumber: 0 },
-             { isString: '', isArray: [], isNumber: 0 }
-           ].to_json
-         )
+          [
+            { isString: '', isArray: [], isNumber: 0 },
+            { isString: '', isArray: [], isNumber: 0 }
+          ].to_json
+        )
       end
     end
   end
