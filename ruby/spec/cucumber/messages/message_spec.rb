@@ -1,8 +1,6 @@
 describe Cucumber::Messages::Message do
   describe '.from_json' do
-    subject { Cucumber::Messages::Message.from_json(json_document) }
-
-    let(:json_document) { '' }
+    subject(:message) { Cucumber::Messages::Message.from_json(json_document) }
 
     context 'with a valid JSON document' do
       let(:json_document) { '{"simpleMessage":{"isString":"answer"}}' }
@@ -10,18 +8,18 @@ describe Cucumber::Messages::Message do
       it 'deserialize the message using #from_h' do
         allow(Cucumber::Messages::Message).to receive(:from_h)
 
-        expect(Cucumber::Messages::Message)
-          .to receive(:from_h)
-          .with({ simpleMessage: { isString: 'answer' } })
+        expect(Cucumber::Messages::Message).to receive(:from_h).with({ simpleMessage: { isString: 'answer' } })
 
-        subject
+        message
       end
     end
 
     context 'with an invalid JSON document' do
       let(:json_document) { '{foo: bar}' }
 
-      it { expect { subject }.to raise_error(JSON::ParserError) }
+      it 'throws an error when attempting to deserialize the message' do
+        expect { message }.to raise_error(JSON::ParserError)
+      end
     end
   end
 
