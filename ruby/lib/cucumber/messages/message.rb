@@ -66,7 +66,7 @@ module Cucumber
       #   location = Cucumber::Messages::Location.new(line: 2)
       #   Cucumber::Messages::Comment.new(location: location, text: 'comment').to_json     # => '{"location":{"line":2,"column":null},"text":"comment"}'
       ##
-      def to_json
+      def to_json(*_args)
         to_h(camelize: true, reject_nil_values: true).to_json
       end
 
