@@ -99,6 +99,7 @@ module Cucumber
         @test_case_started_id = test_case_started_id
         @test_step_id = test_step_id
         @url = url
+        super()
       end
     end
 
@@ -125,6 +126,7 @@ module Cucumber
       )
         @seconds = seconds
         @nanos = nanos
+        super()
       end
     end
 
@@ -210,6 +212,7 @@ module Cucumber
         @test_step_finished = test_step_finished
         @test_step_started = test_step_started
         @undefined_parameter_type = undefined_parameter_type
+        super()
       end
     end
 
@@ -242,6 +245,7 @@ module Cucumber
         @type = type
         @message = message
         @stack_trace = stack_trace
+        super()
       end
     end
 
@@ -279,6 +283,7 @@ module Cucumber
         @uri = uri
         @feature = feature
         @comments = comments
+        super()
       end
     end
 
@@ -315,6 +320,7 @@ module Cucumber
         @description = description
         @steps = steps
         @id = id
+        super()
       end
     end
 
@@ -341,6 +347,7 @@ module Cucumber
       )
         @location = location
         @text = text
+        super()
       end
     end
 
@@ -358,6 +365,7 @@ module Cucumber
       )
         @location = location
         @rows = rows
+        super()
       end
     end
 
@@ -383,6 +391,7 @@ module Cucumber
         @media_type = media_type
         @content = content
         @delimiter = delimiter
+        super()
       end
     end
 
@@ -427,6 +436,7 @@ module Cucumber
         @table_header = table_header
         @table_body = table_body
         @id = id
+        super()
       end
     end
 
@@ -485,6 +495,7 @@ module Cucumber
         @name = name
         @description = description
         @children = children
+        super()
       end
     end
 
@@ -509,6 +520,7 @@ module Cucumber
         @rule = rule
         @background = background
         @scenario = scenario
+        super()
       end
     end
 
@@ -552,6 +564,7 @@ module Cucumber
         @description = description
         @children = children
         @id = id
+        super()
       end
     end
 
@@ -572,6 +585,7 @@ module Cucumber
       )
         @background = background
         @scenario = scenario
+        super()
       end
     end
 
@@ -616,6 +630,7 @@ module Cucumber
         @steps = steps
         @examples = examples
         @id = id
+        super()
       end
     end
 
@@ -667,6 +682,7 @@ module Cucumber
         @doc_string = doc_string
         @data_table = data_table
         @id = id
+        super()
       end
     end
 
@@ -692,6 +708,7 @@ module Cucumber
       )
         @location = location
         @value = value
+        super()
       end
     end
 
@@ -721,6 +738,7 @@ module Cucumber
         @location = location
         @cells = cells
         @id = id
+        super()
       end
     end
 
@@ -754,6 +772,7 @@ module Cucumber
         @location = location
         @name = name
         @id = id
+        super()
       end
     end
 
@@ -779,6 +798,7 @@ module Cucumber
         @name = name
         @source_reference = source_reference
         @tag_expression = tag_expression
+        super()
       end
     end
 
@@ -799,6 +819,7 @@ module Cucumber
       )
         @line = line
         @column = column
+        super()
       end
     end
 
@@ -852,6 +873,7 @@ module Cucumber
         @os = os
         @cpu = cpu
         @ci = ci
+        super()
       end
     end
 
@@ -888,6 +910,7 @@ module Cucumber
         @url = url
         @build_number = build_number
         @git = git
+        super()
       end
     end
 
@@ -916,6 +939,7 @@ module Cucumber
         @revision = revision
         @branch = branch
         @tag = tag
+        super()
       end
     end
 
@@ -941,6 +965,7 @@ module Cucumber
       )
         @name = name
         @version = version
+        super()
       end
     end
 
@@ -977,6 +1002,7 @@ module Cucumber
         @use_for_snippets = use_for_snippets
         @id = id
         @source_reference = source_reference
+        super()
       end
     end
 
@@ -994,6 +1020,7 @@ module Cucumber
       )
         @source = source
         @message = message
+        super()
       end
     end
 
@@ -1072,6 +1099,7 @@ module Cucumber
         @steps = steps
         @tags = tags
         @ast_node_ids = ast_node_ids
+        super()
       end
     end
 
@@ -1089,6 +1117,7 @@ module Cucumber
       )
         @media_type = media_type
         @content = content
+        super()
       end
     end
 
@@ -1133,6 +1162,7 @@ module Cucumber
         @id = id
         @type = type
         @text = text
+        super()
       end
     end
 
@@ -1152,6 +1182,7 @@ module Cucumber
       )
         @doc_string = doc_string
         @data_table = data_table
+        super()
       end
     end
 
@@ -1165,6 +1196,7 @@ module Cucumber
         rows: []
       )
         @rows = rows
+        super()
       end
     end
 
@@ -1178,6 +1210,7 @@ module Cucumber
         value: ''
       )
         @value = value
+        super()
       end
     end
 
@@ -1191,6 +1224,7 @@ module Cucumber
         cells: []
       )
         @cells = cells
+        super()
       end
     end
 
@@ -1214,6 +1248,7 @@ module Cucumber
       )
         @name = name
         @ast_node_id = ast_node_id
+        super()
       end
     end
 
@@ -1252,6 +1287,7 @@ module Cucumber
         @uri = uri
         @data = data
         @media_type = media_type
+        super()
       end
     end
 
@@ -1281,6 +1317,7 @@ module Cucumber
         @java_method = java_method
         @java_stack_trace_element = java_stack_trace_element
         @location = location
+        super()
       end
     end
 
@@ -1302,6 +1339,7 @@ module Cucumber
         @class_name = class_name
         @method_name = method_name
         @method_parameter_types = method_parameter_types
+        super()
       end
     end
 
@@ -1323,6 +1361,7 @@ module Cucumber
         @class_name = class_name
         @file_name = file_name
         @method_name = method_name
+        super()
       end
     end
 
@@ -1344,6 +1383,7 @@ module Cucumber
         @id = id
         @pattern = pattern
         @source_reference = source_reference
+        super()
       end
     end
 
@@ -1361,6 +1401,7 @@ module Cucumber
       )
         @source = source
         @type = type
+        super()
       end
     end
 
@@ -1390,6 +1431,7 @@ module Cucumber
         @id = id
         @pickle_id = pickle_id
         @test_steps = test_steps
+        super()
       end
     end
 
@@ -1411,6 +1453,7 @@ module Cucumber
         @children = children
         @start = start
         @value = value
+        super()
       end
     end
 
@@ -1441,6 +1484,7 @@ module Cucumber
       )
         @group = group
         @parameter_type_name = parameter_type_name
+        super()
       end
     end
 
@@ -1454,6 +1498,7 @@ module Cucumber
         step_match_arguments: []
       )
         @step_match_arguments = step_match_arguments
+        super()
       end
     end
 
@@ -1501,6 +1546,7 @@ module Cucumber
         @pickle_step_id = pickle_step_id
         @step_definition_ids = step_definition_ids
         @step_match_arguments_lists = step_match_arguments_lists
+        super()
       end
     end
 
@@ -1522,6 +1568,7 @@ module Cucumber
         @test_case_started_id = test_case_started_id
         @timestamp = timestamp
         @will_be_retried = will_be_retried
+        super()
       end
     end
 
@@ -1564,6 +1611,7 @@ module Cucumber
         @test_case_id = test_case_id
         @worker_id = worker_id
         @timestamp = timestamp
+        super()
       end
     end
 
@@ -1601,6 +1649,7 @@ module Cucumber
         @success = success
         @timestamp = timestamp
         @exception = exception
+        super()
       end
     end
 
@@ -1614,6 +1663,7 @@ module Cucumber
         timestamp: Timestamp.new
       )
         @timestamp = timestamp
+        super()
       end
     end
 
@@ -1639,6 +1689,7 @@ module Cucumber
         @test_step_id = test_step_id
         @test_step_result = test_step_result
         @timestamp = timestamp
+        super()
       end
     end
 
@@ -1670,6 +1721,7 @@ module Cucumber
         @message = message
         @status = status
         @exception = exception
+        super()
       end
     end
 
@@ -1691,6 +1743,7 @@ module Cucumber
         @test_case_started_id = test_case_started_id
         @test_step_id = test_step_id
         @timestamp = timestamp
+        super()
       end
     end
 
@@ -1719,6 +1772,7 @@ module Cucumber
       )
         @seconds = seconds
         @nanos = nanos
+        super()
       end
     end
 
@@ -1736,6 +1790,7 @@ module Cucumber
       )
         @expression = expression
         @name = name
+        super()
       end
     end
   end

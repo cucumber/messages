@@ -28,6 +28,7 @@ module Cucumber
       <%- schema['properties'].each do |property_name, _property| -%>
         @<%= underscore(property_name) %> = <%= underscore(property_name) %>
       <%- end -%>
+        super()
       end
     end
   <%- end -%>
