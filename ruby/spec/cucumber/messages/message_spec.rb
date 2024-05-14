@@ -1,4 +1,13 @@
 describe Cucumber::Messages::Message do
+  describe '.camelize' do
+    it { expect(described_class.camelize('test')).to eq('test') }
+    it { expect(described_class.camelize('test_test')).to eq('testTest') }
+    it { expect(described_class.camelize('Test_TeSt')).to eq('TestTest') }
+    it { expect(described_class.camelize('')).to eq('') }
+    it { expect(described_class.camelize('test123test4_5_6_test')).to eq('test123test456Test') }
+    it { expect(described_class.camelize('test-test')).to eq('test-test') }
+  end
+
   describe '.from_json' do
     subject(:message) { Cucumber::Messages::Message.from_json(json_document) }
 
@@ -21,15 +30,6 @@ describe Cucumber::Messages::Message do
         expect { message }.to raise_error(JSON::ParserError)
       end
     end
-  end
-
-  describe '.camelize' do
-    it { expect(described_class.camelize('test')).to eq('test') }
-    it { expect(described_class.camelize('test_test')).to eq('testTest') }
-    it { expect(described_class.camelize('Test_TeSt')).to eq('TestTest') }
-    it { expect(described_class.camelize('')).to eq('') }
-    it { expect(described_class.camelize('test123test4_5_6_test')).to eq('test123test456Test') }
-    it { expect(described_class.camelize('test-test')).to eq('test-test') }
   end
 
   context 'with a simple message' do
