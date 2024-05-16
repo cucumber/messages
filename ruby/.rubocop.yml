@@ -1,5 +1,10 @@
 inherit_from: .rubocop_todo.yml
 
+inherit_mode:
+  merge:
+    - Exclude
+    - AllowedNames
+
 require:
   - rubocop-performance
   - rubocop-rake
@@ -15,6 +20,10 @@ Gemspec/RequireMFA:
 # Some long comments in the JSON Schema cause this to be un-enforceable
 Layout/LineLength:
   Max: 1000
+
+Naming/MethodParameterName:
+  AllowedNames:
+    - ci
 
 RSpec/MessageSpies:
   EnforcedStyle: receive
