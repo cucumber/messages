@@ -8,7 +8,7 @@ module Cucumber
       end
 
       def timestamp_to_time(timestamp)
-        Time.at(timestamp['seconds'] + timestamp['nanos'].to_f / NANOSECONDS_PER_SECOND)
+        Time.at(timestamp['seconds'] + (timestamp['nanos'].to_f / NANOSECONDS_PER_SECOND))
       end
 
       def seconds_to_duration(seconds_float)
