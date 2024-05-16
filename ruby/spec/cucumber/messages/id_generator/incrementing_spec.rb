@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Cucumber::Messages::IdGenerator::Incrementing do
   subject(:generator) { described_class.new }
 

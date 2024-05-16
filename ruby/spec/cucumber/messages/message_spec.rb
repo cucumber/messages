@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Cucumber::Messages::Message do
   describe '.camelize' do
     it { expect(described_class.camelize('test')).to eq('test') }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Cucumber::Messages::NdjsonToMessageEnumerator do
   let(:outgoing_messages) do
     [
