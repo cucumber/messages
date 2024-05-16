@@ -63,50 +63,40 @@ describe Cucumber::Messages::Message do
   context 'with a message which embeds other messages' do
     subject(:message) { Cucumber::Messages::ComprehensiveMessage.new }
 
+    let(:expected_snake_cased_hash) { { is_nil: nil, is_string: '', is_array: [], is_number: 0 } }
+    let(:expected_camel_cased_hash) { { isNil: nil, isString: '', isArray: [], isNumber: 0 } }
+
     describe '#to_h' do
       it 'includes a hash representation of embedded messages' do
-        expect(message.to_h[:simple_message]).to eq({ is_nil: nil, is_string: '', is_array: [], is_number: 0 })
+        expect(message.to_h[:simple_message]).to eq(expected_snake_cased_hash)
         expect(message.to_h[:is_enum]).to eq('an enum')
       end
 
       it 'includes a hash representation of messages arrays' do
-        expect(message.to_h[:message_array]).to eq(
-          [
-            { is_nil: nil, is_string: '', is_array: [], is_number: 0 },
-            { is_nil: nil, is_string: '', is_array: [], is_number: 0 }
-          ]
-        )
+        expect(message.to_h[:message_array]).to eq([expected_snake_cased_hash, expected_snake_cased_hash])
       end
 
       context 'with camelize: true' do
         it 'camelizes the keys of the embedded messages resulting hashes' do
-          expect(message.to_h(camelize: true)[:simpleMessage]).to eq({ isNil: nil, isString: '', isArray: [], isNumber: 0 })
+          expect(message.to_h(camelize: true)[:simpleMessage]).to eq(expected_camel_cased_hash)
         end
 
         it 'camelizes the keys of hashes for messages arrays' do
-          expect(message.to_h(camelize: true)[:messageArray]).to eq(
-            [
-              { isNil: nil, isString: '', isArray: [], isNumber: 0 },
-              { isNil: nil, isString: '', isArray: [], isNumber: 0 }
-            ]
-          )
+          expect(message.to_h(camelize: true)[:messageArray]).to eq([expected_camel_cased_hash, expected_camel_cased_hash])
         end
       end
     end
 
     describe '#to_json' do
+      let(:expected_camel_cased_hash) { { isString: '', isArray: [], isNumber: 0 } }
+
       it 'returns a JSON document with embedded messages' do
-        expect(message.to_json).to include({ isString: '', isArray: [], isNumber: 0 }.to_json)
+        expect(message.to_json).to include(expected_camel_cased_hash.to_json)
         expect(message.to_json).to include('"isEnum":"an enum"')
       end
 
       it 'returns a JSON document with messages arrays' do
-        expect(message.to_json).to include(
-          [
-            { isString: '', isArray: [], isNumber: 0 },
-            { isString: '', isArray: [], isNumber: 0 }
-          ].to_json
-        )
+        expect(message.to_json).to include([expected_camel_cased_hash, expected_camel_cased_hash].to_json)
       end
     end
   end
