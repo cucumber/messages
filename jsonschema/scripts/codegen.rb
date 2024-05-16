@@ -29,7 +29,7 @@ class Codegen
 
   def generate(template_name)
     template_source = File.read("#{TEMPLATES_DIRECTORY}/#{template_name}")
-    template = ERB.new(template_source, nil, '-')
+    template = ERB.new(template_source, trim_mode: '-')
     STDOUT.write template.result(binding)
   end
 
