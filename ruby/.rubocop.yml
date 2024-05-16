@@ -28,6 +28,11 @@ Naming/MethodParameterName:
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
+# Because of the nature of large amounts of Accessors, we disable this cop
+# This is because many of them will have custom documentation which are auto-generated from the jsonschema
+Style/AccessorGrouping:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
