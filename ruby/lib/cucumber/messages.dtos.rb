@@ -1796,42 +1796,66 @@ module Cucumber
   end
 end
 
-class Cucumber::Messages::AttachmentContentEncoding
-  IDENTITY = 'IDENTITY'
-  BASE64 = 'BASE64'
+module Cucumber
+  module Messages
+    class AttachmentContentEncoding
+      IDENTITY = 'IDENTITY'
+      BASE64 = 'BASE64'
+    end
+  end
 end
 
-class Cucumber::Messages::PickleStepType
-  UNKNOWN = 'Unknown'
-  CONTEXT = 'Context'
-  ACTION = 'Action'
-  OUTCOME = 'Outcome'
+module Cucumber
+  module Messages
+    class PickleStepType
+      UNKNOWN = 'Unknown'
+      CONTEXT = 'Context'
+      ACTION = 'Action'
+      OUTCOME = 'Outcome'
+    end
+  end
 end
 
-class Cucumber::Messages::SourceMediaType
-  TEXT_X_CUCUMBER_GHERKIN_PLAIN = 'text/x.cucumber.gherkin+plain'
-  TEXT_X_CUCUMBER_GHERKIN_MARKDOWN = 'text/x.cucumber.gherkin+markdown'
+module Cucumber
+  module Messages
+    class SourceMediaType
+      TEXT_X_CUCUMBER_GHERKIN_PLAIN = 'text/x.cucumber.gherkin+plain'
+      TEXT_X_CUCUMBER_GHERKIN_MARKDOWN = 'text/x.cucumber.gherkin+markdown'
+    end
+  end
 end
 
-class Cucumber::Messages::StepDefinitionPatternType
-  CUCUMBER_EXPRESSION = 'CUCUMBER_EXPRESSION'
-  REGULAR_EXPRESSION = 'REGULAR_EXPRESSION'
+module Cucumber
+  module Messages
+    class StepDefinitionPatternType
+      CUCUMBER_EXPRESSION = 'CUCUMBER_EXPRESSION'
+      REGULAR_EXPRESSION = 'REGULAR_EXPRESSION'
+    end
+  end
 end
 
-class Cucumber::Messages::StepKeywordType
-  UNKNOWN = 'Unknown'
-  CONTEXT = 'Context'
-  ACTION = 'Action'
-  OUTCOME = 'Outcome'
-  CONJUNCTION = 'Conjunction'
+module Cucumber
+  module Messages
+    class StepKeywordType
+      UNKNOWN = 'Unknown'
+      CONTEXT = 'Context'
+      ACTION = 'Action'
+      OUTCOME = 'Outcome'
+      CONJUNCTION = 'Conjunction'
+    end
+  end
 end
 
-class Cucumber::Messages::TestStepResultStatus
-  UNKNOWN = 'UNKNOWN'
-  PASSED = 'PASSED'
-  SKIPPED = 'SKIPPED'
-  PENDING = 'PENDING'
-  UNDEFINED = 'UNDEFINED'
-  AMBIGUOUS = 'AMBIGUOUS'
-  FAILED = 'FAILED'
+module Cucumber
+  module Messages
+    class TestStepResultStatus
+      UNKNOWN = 'UNKNOWN'
+      PASSED = 'PASSED'
+      SKIPPED = 'SKIPPED'
+      PENDING = 'PENDING'
+      UNDEFINED = 'UNDEFINED'
+      AMBIGUOUS = 'AMBIGUOUS'
+      FAILED = 'FAILED'
+    end
+  end
 end
