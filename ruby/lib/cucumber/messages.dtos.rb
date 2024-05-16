@@ -10,15 +10,15 @@ module Cucumber
     # Represents the Attachment message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # //// Attachments (parse errors, execution errors, screenshots, links...)
-    # 
+    #
     # *
     #  An attachment represents any kind of data associated with a line in a
     #  [Source](#io.cucumber.messages.Source) file. It can be used for:
-    # 
+    #
     #  * Syntax errors during parse time
     #  * Screenshots captured and attached during execution
     #  * Logs captured and attached during execution
-    # 
+    #
     #  It is not to be used for runtime errors raised/thrown during execution. This
     #  is captured in `TestResult`.
     ##
@@ -34,10 +34,10 @@ module Cucumber
       ##
       # *
       #  Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
-      # 
+      #
       #  Content encoding is *not* determined by the media type, but rather by the type
       #  of the object being attached:
-      # 
+      #
       #  - string: IDENTITY
       #  - byte array: BASE64
       #  - stream: BASE64
@@ -70,11 +70,11 @@ module Cucumber
       #  A URL where the attachment can be retrieved. This field should not be set by Cucumber.
       #  It should be set by a program that reads a message stream and does the following for
       #  each Attachment message:
-      # 
+      #
       #  - Writes the body (after base64 decoding if necessary) to a new file.
       #  - Sets `body` and `contentEncoding` to `null`
       #  - Writes out the new attachment message
-      # 
+      #
       #  This will result in a smaller message stream, which can improve performance and
       #  reduce bandwidth of message consumers. It also makes it easier to process and download attachments
       #  separately from reports.
@@ -136,7 +136,7 @@ module Cucumber
     # When removing a field, replace it with reserved, rather than deleting the line.
     #  When adding a field, add it to the end and increment the number by one.
     #  See https://developers.google.com/protocol-buffers/docs/proto#updating for details
-    # 
+    #
     # *
     #  All the messages that are passed between different components/processes are Envelope
     #  messages.
@@ -256,7 +256,7 @@ module Cucumber
     #  The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
     #  Cucumber implementations should *not* depend on `GherkinDocument` or any of its
     #  children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
-    # 
+    #
     #  The only consumers of `GherkinDocument` should only be formatters that produce
     #  "rich" output, resembling the original Gherkin document.
     ##
@@ -1028,17 +1028,17 @@ module Cucumber
     # Represents the Pickle message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # //// Pickles
-    # 
+    #
     # *
     #  A `Pickle` represents a template for a `TestCase`. It is typically derived
     #  from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
     #  In the future a `Pickle` may be derived from other formats such as Markdown or
     #  Excel files.
-    # 
+    #
     #  By making `Pickle` the main data structure Cucumber uses for execution, the
     #  implementation of Cucumber itself becomes simpler, as it doesn't have to deal
     #  with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
-    # 
+    #
     #  Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
     ##
     class Pickle < ::Cucumber::Messages::Message
@@ -1143,7 +1143,7 @@ module Cucumber
 
       ##
       # The context in which the step was specified: context (Given), action (When) or outcome (Then).
-      # 
+      #
       # Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
       ##
       attr_reader :type
@@ -1256,7 +1256,7 @@ module Cucumber
     # Represents the Source message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # //// Source
-    # 
+    #
     # *
     #  A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
     ##
@@ -1409,7 +1409,7 @@ module Cucumber
     # Represents the TestCase message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # //// TestCases
-    # 
+    #
     # *
     #  A `TestCase` contains a sequence of `TestStep`s.
     ##
@@ -1465,7 +1465,7 @@ module Cucumber
     #  This is used for the following purposes:
     #  - Construct an argument to pass to a step definition (possibly through a parameter type transform)
     #  - Highlight the matched parameter in rich formatters such as the HTML formatter
-    # 
+    #
     #  This message closely matches the `Argument` class in the `cucumber-expressions` library.
     ##
     class StepMatchArgument < ::Cucumber::Messages::Message
