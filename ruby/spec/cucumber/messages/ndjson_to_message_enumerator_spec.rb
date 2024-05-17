@@ -3,8 +3,8 @@
 describe Cucumber::Messages::NdjsonToMessageEnumerator do
   let(:outgoing_messages) do
     [
-      Envelope.new(source: Source.new(data: 'Feature: Hello')),
-      Envelope.new(attachment: Attachment.new(body: 'Hello', content_encoding: AttachmentContentEncoding::IDENTITY))
+      Cucumber::Messages::Envelope.new(source: Cucumber::Messages::Source.new(data: 'Feature: Hello')),
+      Cucumber::Messages::Envelope.new(attachment: Cucumber::Messages::Attachment.new(body: 'Hello', content_encoding: Cucumber::Messages::AttachmentContentEncoding::IDENTITY))
     ]
   end
 
@@ -13,7 +13,7 @@ describe Cucumber::Messages::NdjsonToMessageEnumerator do
     write_outgoing_messages(outgoing_messages, io)
 
     io.rewind
-    incoming_messages = NdjsonToMessageEnumerator.new(io)
+    incoming_messages = Cucumber::Messages::NdjsonToMessageEnumerator.new(io)
 
     expect(incoming_messages.to_a.map(&:to_h)).to(eq(outgoing_messages.map(&:to_h)))
   end
@@ -24,7 +24,7 @@ describe Cucumber::Messages::NdjsonToMessageEnumerator do
     io.write("\n\n")
 
     io.rewind
-    incoming_messages = NdjsonToMessageEnumerator.new(io)
+    incoming_messages = Cucumber::Messages::NdjsonToMessageEnumerator.new(io)
 
     expect(incoming_messages.to_a.map(&:to_h)).to(eq(outgoing_messages.map(&:to_h)))
   end
@@ -34,7 +34,7 @@ describe Cucumber::Messages::NdjsonToMessageEnumerator do
     io.puts('BLA BLA')
 
     io.rewind
-    incoming_messages = NdjsonToMessageEnumerator.new(io)
+    incoming_messages = Cucumber::Messages::NdjsonToMessageEnumerator.new(io)
 
     expect { incoming_messages.to_a }.to(raise_error('Not JSON: BLA BLA'))
   end
