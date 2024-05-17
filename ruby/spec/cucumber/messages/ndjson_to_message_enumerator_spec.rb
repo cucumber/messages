@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Cucumber::Messages::NdjsonToMessageEnumerator do
-  subject(:incoming_messages) { Cucumber::Messages::NdjsonToMessageEnumerator.new(io) }
+  subject(:incoming_messages) { described_class.new(io) }
 
   let(:outgoing_messages) do
     [
