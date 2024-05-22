@@ -12,7 +12,7 @@ FROM scratch AS schema-codegen
 
 FROM golang AS with-dependencies
 
-COPY --link go.mod go.sum .
+COPY --link go.mod go.sum ./
 RUN --mount=type=cache,target=/go/pkg/mod/cache \
     go mod download && go mod verify
 
