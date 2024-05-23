@@ -1,8 +1,0 @@
-dist
-node_modules
-schema
-.gitignore
-Dockerfile
-LICENSE
-Makefile
-README.md
