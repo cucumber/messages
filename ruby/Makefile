@@ -22,3 +22,13 @@ lib/cucumber/messages.dtos.rb: $(schemas) ../jsonschema/scripts/codegen.rb ../js
 
 lib/cucumber/messages.deserializers.rb: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/ruby_deserializers.rb.erb
 	ruby ../jsonschema/scripts/codegen.rb Ruby ../jsonschema ruby_deserializers.rb.erb > $@
+
+.generate-messages: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/ruby.rb.erb ../jsonschema/scripts/templates/ruby.enum.rb.erb
+	ruby ../jsonschema/scripts/codegen.rb Ruby ../jsonschema ruby.rb.erb > Generated.rb.tmp
+	ruby ../jsonschema/scripts/codegen.rb Ruby ../jsonschema ruby.enum.rb.erb >> Generated.rb.tmp
+	csplit --quiet --prefix=Generated --suffix-format=%02d.rb.tmp --elide-empty-files Generated.rb.tmp /^[A-Za-z.]*[.]rb/ {*}
+	rm Generated.rb.tmp
+    # 	From Java
+    # 	rm -rf src/generated/java/io/cucumber/messages/types - maybe do this later
+    # 	mkdir --parents src/generated/java/io/cucumber/messages/types - maybe do this later
+	for file in Generated**; do tail -n +2 $$file > ./$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done
