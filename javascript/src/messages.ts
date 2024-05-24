@@ -314,6 +314,8 @@ export class Hook {
   sourceReference: SourceReference = new SourceReference()
 
   tagExpression?: string
+
+  type?: HookType
 }
 
 export class Location {
@@ -673,6 +675,13 @@ export class UndefinedParameterType {
 export enum AttachmentContentEncoding {
   IDENTITY = 'IDENTITY',
   BASE64 = 'BASE64',
+}
+
+export enum HookType {
+  BEFORE = 'BEFORE',
+  AFTER = 'AFTER',
+  BEFORE_STEP = 'BEFORE_STEP',
+  AFTER_STEP = 'AFTER_STEP',
 }
 
 export enum PickleStepType {

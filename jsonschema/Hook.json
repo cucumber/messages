@@ -18,6 +18,15 @@
     },
     "tagExpression": {
       "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "BEFORE",
+        "AFTER",
+        "BEFORE_STEP",
+        "AFTER_STEP"
+      ]
     }
   },
   "type": "object"

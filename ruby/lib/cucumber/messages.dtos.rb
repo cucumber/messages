@@ -769,16 +769,20 @@ module Cucumber
 
       attr_reader :tag_expression
 
+      attr_reader :type
+
       def initialize(
         id: '',
         name: nil,
         source_reference: SourceReference.new,
-        tag_expression: nil
+        tag_expression: nil,
+        type: nil
       )
         @id = id
         @name = name
         @source_reference = source_reference
         @tag_expression = tag_expression
+        @type = type
       end
     end
 
@@ -1744,6 +1748,13 @@ end
 class Cucumber::Messages::AttachmentContentEncoding
   IDENTITY = 'IDENTITY'
   BASE64 = 'BASE64'
+end
+
+class Cucumber::Messages::HookType
+  BEFORE = 'BEFORE'
+  AFTER = 'AFTER'
+  BEFORE_STEP = 'BEFORE_STEP'
+  AFTER_STEP = 'AFTER_STEP'
 end
 
 class Cucumber::Messages::PickleStepType
