@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'cucumber/messages/ndjson_to_message_enumerator'
-require 'cucumber/messages/time_conversion'
-require 'cucumber/messages/id_generator'
+require 'cucumber/messages/helpers/ndjson_to_message_enumerator'
+require 'cucumber/messages/helpers/time_conversion'
+require 'cucumber/messages/helpers/id_generator'
 require 'cucumber/messages.deserializers'
 
 module Cucumber

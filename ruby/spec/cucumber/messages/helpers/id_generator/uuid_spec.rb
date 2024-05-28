@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Cucumber::Messages::IdGenerator::UUID do
+describe Cucumber::Messages::Helpers::IdGenerator::UUID do
   subject(:generator) { described_class.new }
 
   describe '#new_id' do

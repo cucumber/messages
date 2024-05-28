@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Cucumber::Messages::NdjsonToMessageEnumerator do
+describe Cucumber::Messages::Helpers::NdjsonToMessageEnumerator do
   subject(:incoming_messages) { described_class.new(io) }
 
   let(:outgoing_messages) do
