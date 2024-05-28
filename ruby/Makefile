@@ -28,7 +28,4 @@ deserializers-file: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/sc
 	ruby ../jsonschema/scripts/codegen.rb Ruby ../jsonschema ruby.enum.rb.erb >> Generated.rb.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.rb.tmp --elide-empty-files Generated.rb.tmp /^[A-Za-z.]*[.]rb/ {*}
 	rm Generated.rb.tmp
-    # 	From Java
-    # 	rm -rf src/generated/java/io/cucumber/messages/types - maybe do this later
-    # 	mkdir --parents src/generated/java/io/cucumber/messages/types - maybe do this later
-	for file in Generated**; do tail -n +2 $$file > ./$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done
+	for file in Generated**; do tail -n +2 $$file > ./lib/cucumber/messages/$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done
