@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'cucumber/messages.deserializers'
+require 'cucumber/messages'
 
 module Cucumber
   module Messages

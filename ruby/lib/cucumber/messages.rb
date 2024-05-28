@@ -3,7 +3,6 @@
 require 'cucumber/messages/helpers/ndjson_to_message_enumerator'
 require 'cucumber/messages/helpers/time_conversion'
 require 'cucumber/messages/helpers/id_generator'
-require 'cucumber/messages.deserializers'
 
 ## New requirements
 
