@@ -5,6 +5,10 @@ require 'cucumber/messages/helpers/time_conversion'
 require 'cucumber/messages/helpers/id_generator'
 require 'cucumber/messages.deserializers'
 
+## New requirements
+
+require 'cucumber/messages/message'
+
 module Cucumber
   module Messages
     VERSION = File.read(File.expand_path('../../VERSION', __dir__)).strip

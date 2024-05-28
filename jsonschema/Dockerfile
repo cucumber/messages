@@ -68,9 +68,11 @@ EOF
 FROM ruby AS ruby-codegen
 
 RUN <<-EOF
-      ruby scripts/codegen.rb Ruby . ruby.rb.erb > /build/messages.dtos.rb
-      ruby scripts/codegen.rb Ruby . ruby.enum.rb.erb >> /build/messages.dtos.rb
-      ruby scripts/codegen.rb Ruby . ruby_deserializers.rb.erb > /build/messages.deserializers.rb
+      ruby ../jsonschema/scripts/codegen.rb Ruby ../jsonschema ruby.rb.erb > Generated.rb.tmp
+      ruby ../jsonschema/scripts/codegen.rb Ruby ../jsonschema ruby.enum.rb.erb >> Generated.rb.tmp
+      csplit --quiet --prefix=Generated --suffix-format=%02d.rb.tmp --elide-empty-files Generated.rb.tmp /^[A-Za-z_.]*[.]rb/ {*}
+      rm Generated.rb.tmp
+      for file in Generated**; do tail -n +2 $$file > ./lib/cucumber/messages/$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done
 EOF
 
 
