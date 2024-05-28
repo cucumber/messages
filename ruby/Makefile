@@ -17,7 +17,7 @@ clean: ## Remove automatically generated files and related artifacts
 	rm -f lib/cucumber/messages.deserializers.rb
 
 new-clean: ## Clean up new generated individual files
-	find ./lib/cucumber/messages ! -name 'message.rb' -type f -exec rm -f {} +
+	find ./lib/cucumber/messages/*.rb ! -name 'message.rb' -type f -exec rm -f {} +
 
 dtos-file: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/ruby.rb.erb ../jsonschema/scripts/templates/ruby.enum.rb.erb
 	ruby ../jsonschema/scripts/codegen.rb Ruby ../jsonschema ruby.rb.erb > lib/cucumber/messages.dtos.rb
