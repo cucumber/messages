@@ -1,5 +1,5 @@
 <%- @schemas.each do |key, schema| -%>
-<%= class_name(key) %>.rb
+<%= underscore(class_name(key)) %>.rb
 require 'cucumber/messages/message'
 
 "New name - <%= underscore(class_name(key)) %>.rb"
