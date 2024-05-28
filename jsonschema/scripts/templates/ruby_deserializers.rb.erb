@@ -15,8 +15,7 @@ module Cucumber
       # corresponding snake_cased attributes.
       #
       #   Cucumber::Messages::<%= class_name(key) %>.from_h(some_hash) # => #<Cucumber::Messages::<%= class_name(key) %>:0x... ...>
-      #
-
+      ##
       def self.from_h(hash)
         return nil if hash.nil?
 
