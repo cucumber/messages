@@ -25,7 +25,7 @@ module Cucumber
         return nil if hash.nil?
 
         new(
-          rows: hash[:rows]&.map { |item| PickleTableRow.from_h(item) },
+          rows: hash[:rows]&.map { |item| PickleTableRow.from_h(item) }
         )
       end
     end

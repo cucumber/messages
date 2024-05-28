@@ -40,7 +40,7 @@ module Cucumber
           test_case_started_id: hash[:testCaseStartedId],
           test_step_id: hash[:testStepId],
           test_step_result: TestStepResult.from_h(hash[:testStepResult]),
-          timestamp: Timestamp.from_h(hash[:timestamp]),
+          timestamp: Timestamp.from_h(hash[:timestamp])
         )
       end
     end

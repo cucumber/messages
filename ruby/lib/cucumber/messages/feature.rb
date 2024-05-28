@@ -76,7 +76,7 @@ module Cucumber
           keyword: hash[:keyword],
           name: hash[:name],
           description: hash[:description],
-          children: hash[:children]&.map { |item| FeatureChild.from_h(item) },
+          children: hash[:children]&.map { |item| FeatureChild.from_h(item) }
         )
       end
     end

@@ -25,7 +25,7 @@ module Cucumber
         return nil if hash.nil?
 
         new(
-          step_match_arguments: hash[:stepMatchArguments]&.map { |item| StepMatchArgument.from_h(item) },
+          step_match_arguments: hash[:stepMatchArguments]&.map { |item| StepMatchArgument.from_h(item) }
         )
       end
     end

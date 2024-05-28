@@ -51,7 +51,7 @@ module Cucumber
         new(
           uri: hash[:uri],
           feature: Feature.from_h(hash[:feature]),
-          comments: hash[:comments]&.map { |item| Comment.from_h(item) },
+          comments: hash[:comments]&.map { |item| Comment.from_h(item) }
         )
       end
     end

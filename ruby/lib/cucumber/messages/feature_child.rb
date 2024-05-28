@@ -38,7 +38,7 @@ module Cucumber
         new(
           rule: Rule.from_h(hash[:rule]),
           background: Background.from_h(hash[:background]),
-          scenario: Scenario.from_h(hash[:scenario]),
+          scenario: Scenario.from_h(hash[:scenario])
         )
       end
     end

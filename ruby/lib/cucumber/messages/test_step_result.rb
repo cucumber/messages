@@ -46,7 +46,7 @@ module Cucumber
           duration: Duration.from_h(hash[:duration]),
           message: hash[:message],
           status: hash[:status],
-          exception: Exception.from_h(hash[:exception]),
+          exception: Exception.from_h(hash[:exception])
         )
       end
     end

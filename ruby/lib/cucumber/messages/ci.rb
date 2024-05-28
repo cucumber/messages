@@ -51,7 +51,7 @@ module Cucumber
           name: hash[:name],
           url: hash[:url],
           build_number: hash[:buildNumber],
-          git: Git.from_h(hash[:git]),
+          git: Git.from_h(hash[:git])
         )
       end
     end

@@ -70,7 +70,7 @@ module Cucumber
           runtime: Product.from_h(hash[:runtime]),
           os: Product.from_h(hash[:os]),
           cpu: Product.from_h(hash[:cpu]),
-          ci: Ci.from_h(hash[:ci]),
+          ci: Ci.from_h(hash[:ci])
         )
       end
     end

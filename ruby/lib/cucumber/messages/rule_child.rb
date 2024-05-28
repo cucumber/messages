@@ -33,7 +33,7 @@ module Cucumber
 
         new(
           background: Background.from_h(hash[:background]),
-          scenario: Scenario.from_h(hash[:scenario]),
+          scenario: Scenario.from_h(hash[:scenario])
         )
       end
     end

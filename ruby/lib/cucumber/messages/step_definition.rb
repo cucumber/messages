@@ -35,7 +35,7 @@ module Cucumber
         new(
           id: hash[:id],
           pattern: StepDefinitionPattern.from_h(hash[:pattern]),
-          source_reference: SourceReference.from_h(hash[:sourceReference]),
+          source_reference: SourceReference.from_h(hash[:sourceReference])
         )
       end
     end

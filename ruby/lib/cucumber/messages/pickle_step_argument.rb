@@ -32,7 +32,7 @@ module Cucumber
 
         new(
           doc_string: PickleDocString.from_h(hash[:docString]),
-          data_table: PickleTable.from_h(hash[:dataTable]),
+          data_table: PickleTable.from_h(hash[:dataTable])
         )
       end
     end

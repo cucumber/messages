@@ -25,7 +25,7 @@ module Cucumber
         return nil if hash.nil?
 
         new(
-          timestamp: Timestamp.from_h(hash[:timestamp]),
+          timestamp: Timestamp.from_h(hash[:timestamp])
         )
       end
     end

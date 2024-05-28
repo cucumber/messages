@@ -30,7 +30,7 @@ module Cucumber
 
         new(
           location: Location.from_h(hash[:location]),
-          rows: hash[:rows]&.map { |item| TableRow.from_h(item) },
+          rows: hash[:rows]&.map { |item| TableRow.from_h(item) }
         )
       end
     end

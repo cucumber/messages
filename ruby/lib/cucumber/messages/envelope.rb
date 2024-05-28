@@ -113,7 +113,7 @@ module Cucumber
           test_run_started: TestRunStarted.from_h(hash[:testRunStarted]),
           test_step_finished: TestStepFinished.from_h(hash[:testStepFinished]),
           test_step_started: TestStepStarted.from_h(hash[:testStepStarted]),
-          undefined_parameter_type: UndefinedParameterType.from_h(hash[:undefinedParameterType]),
+          undefined_parameter_type: UndefinedParameterType.from_h(hash[:undefinedParameterType])
         )
       end
     end

@@ -63,7 +63,7 @@ module Cucumber
           id: hash[:id],
           pickle_step_id: hash[:pickleStepId],
           step_definition_ids: hash[:stepDefinitionIds],
-          step_match_arguments_lists: hash[:stepMatchArgumentsLists]&.map { |item| StepMatchArgumentsList.from_h(item) },
+          step_match_arguments_lists: hash[:stepMatchArgumentsLists]&.map { |item| StepMatchArgumentsList.from_h(item) }
         )
       end
     end

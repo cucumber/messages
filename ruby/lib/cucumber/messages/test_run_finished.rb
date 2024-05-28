@@ -52,7 +52,7 @@ module Cucumber
           message: hash[:message],
           success: hash[:success],
           timestamp: Timestamp.from_h(hash[:timestamp]),
-          exception: Exception.from_h(hash[:exception]),
+          exception: Exception.from_h(hash[:exception])
         )
       end
     end

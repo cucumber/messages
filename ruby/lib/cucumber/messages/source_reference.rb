@@ -44,7 +44,7 @@ module Cucumber
           uri: hash[:uri],
           java_method: JavaMethod.from_h(hash[:javaMethod]),
           java_stack_trace_element: JavaStackTraceElement.from_h(hash[:javaStackTraceElement]),
-          location: Location.from_h(hash[:location]),
+          location: Location.from_h(hash[:location])
         )
       end
     end

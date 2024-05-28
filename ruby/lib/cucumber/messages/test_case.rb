@@ -43,7 +43,7 @@ module Cucumber
         new(
           id: hash[:id],
           pickle_id: hash[:pickleId],
-          test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) },
+          test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) }
         )
       end
     end
