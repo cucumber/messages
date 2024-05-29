@@ -45,10 +45,11 @@ module Cucumber
               items_ref = property.dig('items', '$ref')
           -%>
           <%- final_key = property_name == schema['properties'].keys.last -%>
+          <%- comma = final_key ? '' : ',' -%>
           <%= "#{underscore(property_name)}: " -%>
-          <%- if items_ref -%>hash[:<%= property_name -%>]&.map { |item| <%= class_name(items_ref) %>.from_h(item) },
-          <%- elsif ref -%><%= class_name(ref) %>.from_h(hash[:<%= property_name %>]),
-          <%- else -%>hash[:<%= property_name %>]<%= final_key ? '' : ',' %>
+          <%- if items_ref -%>hash[:<%= property_name -%>]&.map { |item| <%= class_name(items_ref) %>.from_h(item) }<%= comma %>
+          <%- elsif ref -%><%= class_name(ref) %>.from_h(hash[:<%= property_name %>])<%= comma %>
+          <%- else -%>hash[:<%= property_name %>]<%= comma %>
           <%- end -%>
           <%- end -%>
         )
