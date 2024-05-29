@@ -203,6 +203,7 @@ will only have one of its fields set, which indicates the payload of the message
 | `name` | string | no | |
 | `sourceReference` | [SourceReference](#sourcereference) | yes | |
 | `tagExpression` | string | no | |
+| `type` | [HookType](#hooktype) | no | |
 
 ## Location
 
@@ -492,6 +493,16 @@ One of the following:
 
 * `"IDENTITY"`
 * `"BASE64"`
+
+
+## HookType
+
+One of the following:
+
+* `"BEFORE"`
+* `"AFTER"`
+* `"BEFORE_STEP"`
+* `"AFTER_STEP"`
 
 
 ## PickleStepType

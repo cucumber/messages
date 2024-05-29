@@ -444,6 +444,7 @@ module Cucumber
           name: hash[:name],
           source_reference: SourceReference.from_h(hash[:sourceReference]),
           tag_expression: hash[:tagExpression],
+          type: hash[:type],
         )
       end
     end

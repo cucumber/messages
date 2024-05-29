@@ -1,3 +1,4 @@
 node_modules
 .idea
 *.iml
+.php-cs-fixer.cache

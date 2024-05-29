@@ -159,6 +159,7 @@ type Hook struct {
 	Name            string           `json:"name,omitempty"`
 	SourceReference *SourceReference `json:"sourceReference"`
 	TagExpression   string           `json:"tagExpression,omitempty"`
+	Type            HookType         `json:"type,omitempty"`
 }
 
 type Location struct {
@@ -388,6 +389,30 @@ func (e AttachmentContentEncoding) String() string {
 		return "BASE64"
 	default:
 		panic("Bad enum value for AttachmentContentEncoding")
+	}
+}
+
+type HookType string
+
+const (
+	HookType_BEFORE      HookType = "BEFORE"
+	HookType_AFTER       HookType = "AFTER"
+	HookType_BEFORE_STEP HookType = "BEFORE_STEP"
+	HookType_AFTER_STEP  HookType = "AFTER_STEP"
+)
+
+func (e HookType) String() string {
+	switch e {
+	case HookType_BEFORE:
+		return "BEFORE"
+	case HookType_AFTER:
+		return "AFTER"
+	case HookType_BEFORE_STEP:
+		return "BEFORE_STEP"
+	case HookType_AFTER_STEP:
+		return "AFTER_STEP"
+	default:
+		panic("Bad enum value for HookType")
 	}
 }
 
