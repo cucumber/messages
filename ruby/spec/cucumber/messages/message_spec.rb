@@ -11,15 +11,15 @@ describe Cucumber::Messages::Message do
   end
 
   describe '.from_json' do
-    subject(:message) { Cucumber::Messages::Message.from_json(json_document) }
+    subject(:message) { described_class.from_json(json_document) }
 
     context 'with a valid JSON document' do
       let(:json_document) { '{"simpleMessage":{"isString":"answer"}}' }
 
       it 'deserialize the message using #from_h' do
-        allow(Cucumber::Messages::Message).to receive(:from_h)
+        allow(described_class).to receive(:from_h)
 
-        expect(Cucumber::Messages::Message).to receive(:from_h).with({ simpleMessage: { isString: 'answer' } })
+        expect(described_class).to receive(:from_h).with({ simpleMessage: { isString: 'answer' } })
 
         message
       end
