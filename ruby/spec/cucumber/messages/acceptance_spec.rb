@@ -17,10 +17,8 @@ module Cucumber
           it 'deserializes and serializes messages in the ndjson file' do
             File.open(ndjson_filepath, 'r:utf-8') do |file|
               file.each_line do |message|
-                parsed_actual_message = JSON.parse(message)
-                parsed_regenerated_message = JSON.parse(Envelope.from_json(message).to_json)
-
-                expect(parsed_regenerated_message).to eq(parsed_actual_message)
+                # Check that the Envelope re-generated message equals the originally parsed message
+                expect(JSON.parse(Envelope.from_json(message).to_json)).to eq(JSON.parse(message))
               end
             end
           end
