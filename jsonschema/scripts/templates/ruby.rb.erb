@@ -5,6 +5,7 @@ module Cucumber
   module Messages
     ##
     # Represents the <%= class_name(key) %> message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
+    ##
     <%= "#\n    " if schema['description'] %><%= format_description(schema['description']) %>
     class <%= class_name(key) %> < Message
     <%- schema['properties'].each do |property_name, property| -%>
