@@ -5,7 +5,7 @@ require 'cucumber/messages/helpers/time_conversion'
 require 'cucumber/messages/helpers/id_generator'
 require 'cucumber/messages/message'
 
-Dir["#{File.dirname(__FILE__)}/messages/*.rb"].each {|file| require file }
+Dir["#{File.dirname(__FILE__)}/messages/*.rb"].each { |file| require file }
 
 module Cucumber
   module Messages
