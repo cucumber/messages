@@ -4,7 +4,4 @@ acceptance/
 pkg/
 *.gem
 .compared
-.deps
-.tested*
-*-go
 *.iml

@@ -1,32 +1,30 @@
+# frozen_string_literal: true
+
 require 'json'
-require 'cucumber/messages'
 require 'cucumber-compatibility-kit'
 
 module Cucumber
   module Messages
-    describe 'messages acdeptance tests' do
-      ndjson_files = Dir["#{Cucumber::CompatibilityKit::examples_path}/**/*.ndjson"]
+    describe 'messages acceptance tests' do
+      CCK::Examples.gherkin.each do |example_name|
+        context "with the '#{example_name}' example" do
+          let(:ndjson_filepath) { "#{CCK::Examples.feature_code_for(example_name)}/#{example_name}.feature.ndjson" }
 
-      it 'must have ndjson_files as reference messages' do
-        expect(ndjson_files).not_to be_empty
-      end
+          it 'has a ndjson reference filepath' do
+            expect(File).to exist(ndjson_filepath)
+          end
 
-      ndjson_files.each do |ndjson_file|
-        it "deserialises and serialises messages in #{ndjson_file}" do
-          File.open(ndjson_file, 'r:utf-8') do |io|
-            io.each_line do |json|
-              check(json)
+          it 'deserializes and serializes messages in the ndjson file' do
+            File.open(ndjson_filepath, 'r:utf-8') do |file|
+              file.each_line do |message|
+                parsed_actual_message = JSON.parse(message)
+                parsed_regenerated_message = JSON.parse(Envelope.from_json(message).to_json)
+
+                expect(parsed_regenerated_message).to eq(parsed_actual_message)
+              end
             end
           end
         end
-      end
-
-      def check(json)
-        hash = JSON.parse(json)
-        envelope = Envelope.from_json(json)
-        new_json = envelope.to_json
-        new_hash = JSON.parse(new_json)
-        expect(new_hash).to eq(hash)
       end
     end
   end

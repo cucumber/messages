@@ -29,7 +29,7 @@ class Codegen
 
   def generate(template_name)
     template_source = File.read("#{TEMPLATES_DIRECTORY}/#{template_name}")
-    template = ERB.new(template_source, nil, '-')
+    template = ERB.new(template_source, trim_mode: '-')
     STDOUT.write template.result(binding)
   end
 
@@ -300,9 +300,19 @@ class Ruby < Codegen
 
     raw_description
       .split("\n")
-      .map { |description_line| "# #{description_line}" }
+      .map { |description_line| line_as_comment(description_line) }
       .push('##')
       .join("\n#{indent_string}")
+  end
+
+  private
+
+  def line_as_comment(line)
+    if line.empty?
+      '#'
+    else
+      "# #{line}"
+    end
   end
 end
 

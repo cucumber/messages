@@ -7,8 +7,10 @@ help: ## Show this help
 
 generate: require lib/cucumber/messages.dtos.rb lib/cucumber/messages.deserializers.rb ## Generate ruby code based on the schemas found in ../jsonschema and using the scripts in ../jsonschema/scripts for the generation
 
-require: ## Check requirements for the code generation (ruby is required)
+require: ## Check requirements for the code generation (ruby, csplit and tail are required)
 	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
+	@csplit --version >/dev/null 2>&1 || (echo "ERROR: csplit is required."; exit 1)
+	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
 
 clean: ## Remove automatically generated files and related artifacts
 	rm -f lib/cucumber/messages.dtos.rb

@@ -1,4 +1,4 @@
-require 'cucumber/messages'
+# frozen_string_literal: true
 
 module Cucumber
   module Messages

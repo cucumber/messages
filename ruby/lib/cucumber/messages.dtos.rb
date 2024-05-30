@@ -10,15 +10,15 @@ module Cucumber
     # Represents the Attachment message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # //// Attachments (parse errors, execution errors, screenshots, links...)
-    # 
+    #
     # *
     #  An attachment represents any kind of data associated with a line in a
     #  [Source](#io.cucumber.messages.Source) file. It can be used for:
-    # 
+    #
     #  * Syntax errors during parse time
     #  * Screenshots captured and attached during execution
     #  * Logs captured and attached during execution
-    # 
+    #
     #  It is not to be used for runtime errors raised/thrown during execution. This
     #  is captured in `TestResult`.
     ##
@@ -34,10 +34,10 @@ module Cucumber
       ##
       # *
       #  Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
-      # 
+      #
       #  Content encoding is *not* determined by the media type, but rather by the type
       #  of the object being attached:
-      # 
+      #
       #  - string: IDENTITY
       #  - byte array: BASE64
       #  - stream: BASE64
@@ -70,11 +70,11 @@ module Cucumber
       #  A URL where the attachment can be retrieved. This field should not be set by Cucumber.
       #  It should be set by a program that reads a message stream and does the following for
       #  each Attachment message:
-      # 
+      #
       #  - Writes the body (after base64 decoding if necessary) to a new file.
       #  - Sets `body` and `contentEncoding` to `null`
       #  - Writes out the new attachment message
-      # 
+      #
       #  This will result in a smaller message stream, which can improve performance and
       #  reduce bandwidth of message consumers. It also makes it easier to process and download attachments
       #  separately from reports.
@@ -99,6 +99,7 @@ module Cucumber
         @test_case_started_id = test_case_started_id
         @test_step_id = test_step_id
         @url = url
+        super()
       end
     end
 
@@ -125,6 +126,7 @@ module Cucumber
       )
         @seconds = seconds
         @nanos = nanos
+        super()
       end
     end
 
@@ -134,7 +136,7 @@ module Cucumber
     # When removing a field, replace it with reserved, rather than deleting the line.
     #  When adding a field, add it to the end and increment the number by one.
     #  See https://developers.google.com/protocol-buffers/docs/proto#updating for details
-    # 
+    #
     # *
     #  All the messages that are passed between different components/processes are Envelope
     #  messages.
@@ -210,6 +212,7 @@ module Cucumber
         @test_step_finished = test_step_finished
         @test_step_started = test_step_started
         @undefined_parameter_type = undefined_parameter_type
+        super()
       end
     end
 
@@ -242,6 +245,7 @@ module Cucumber
         @type = type
         @message = message
         @stack_trace = stack_trace
+        super()
       end
     end
 
@@ -252,7 +256,7 @@ module Cucumber
     #  The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
     #  Cucumber implementations should *not* depend on `GherkinDocument` or any of its
     #  children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
-    # 
+    #
     #  The only consumers of `GherkinDocument` should only be formatters that produce
     #  "rich" output, resembling the original Gherkin document.
     ##
@@ -279,6 +283,7 @@ module Cucumber
         @uri = uri
         @feature = feature
         @comments = comments
+        super()
       end
     end
 
@@ -315,6 +320,7 @@ module Cucumber
         @description = description
         @steps = steps
         @id = id
+        super()
       end
     end
 
@@ -341,6 +347,7 @@ module Cucumber
       )
         @location = location
         @text = text
+        super()
       end
     end
 
@@ -358,6 +365,7 @@ module Cucumber
       )
         @location = location
         @rows = rows
+        super()
       end
     end
 
@@ -383,6 +391,7 @@ module Cucumber
         @media_type = media_type
         @content = content
         @delimiter = delimiter
+        super()
       end
     end
 
@@ -427,6 +436,7 @@ module Cucumber
         @table_header = table_header
         @table_body = table_body
         @id = id
+        super()
       end
     end
 
@@ -485,6 +495,7 @@ module Cucumber
         @name = name
         @description = description
         @children = children
+        super()
       end
     end
 
@@ -509,6 +520,7 @@ module Cucumber
         @rule = rule
         @background = background
         @scenario = scenario
+        super()
       end
     end
 
@@ -552,6 +564,7 @@ module Cucumber
         @description = description
         @children = children
         @id = id
+        super()
       end
     end
 
@@ -572,6 +585,7 @@ module Cucumber
       )
         @background = background
         @scenario = scenario
+        super()
       end
     end
 
@@ -616,6 +630,7 @@ module Cucumber
         @steps = steps
         @examples = examples
         @id = id
+        super()
       end
     end
 
@@ -667,6 +682,7 @@ module Cucumber
         @doc_string = doc_string
         @data_table = data_table
         @id = id
+        super()
       end
     end
 
@@ -692,6 +708,7 @@ module Cucumber
       )
         @location = location
         @value = value
+        super()
       end
     end
 
@@ -721,6 +738,7 @@ module Cucumber
         @location = location
         @cells = cells
         @id = id
+        super()
       end
     end
 
@@ -754,6 +772,7 @@ module Cucumber
         @location = location
         @name = name
         @id = id
+        super()
       end
     end
 
@@ -779,6 +798,7 @@ module Cucumber
         @name = name
         @source_reference = source_reference
         @tag_expression = tag_expression
+        super()
       end
     end
 
@@ -799,6 +819,7 @@ module Cucumber
       )
         @line = line
         @column = column
+        super()
       end
     end
 
@@ -852,6 +873,7 @@ module Cucumber
         @os = os
         @cpu = cpu
         @ci = ci
+        super()
       end
     end
 
@@ -888,6 +910,7 @@ module Cucumber
         @url = url
         @build_number = build_number
         @git = git
+        super()
       end
     end
 
@@ -916,6 +939,7 @@ module Cucumber
         @revision = revision
         @branch = branch
         @tag = tag
+        super()
       end
     end
 
@@ -941,6 +965,7 @@ module Cucumber
       )
         @name = name
         @version = version
+        super()
       end
     end
 
@@ -977,6 +1002,7 @@ module Cucumber
         @use_for_snippets = use_for_snippets
         @id = id
         @source_reference = source_reference
+        super()
       end
     end
 
@@ -994,6 +1020,7 @@ module Cucumber
       )
         @source = source
         @message = message
+        super()
       end
     end
 
@@ -1001,17 +1028,17 @@ module Cucumber
     # Represents the Pickle message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # //// Pickles
-    # 
+    #
     # *
     #  A `Pickle` represents a template for a `TestCase`. It is typically derived
     #  from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
     #  In the future a `Pickle` may be derived from other formats such as Markdown or
     #  Excel files.
-    # 
+    #
     #  By making `Pickle` the main data structure Cucumber uses for execution, the
     #  implementation of Cucumber itself becomes simpler, as it doesn't have to deal
     #  with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
-    # 
+    #
     #  Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
     ##
     class Pickle < ::Cucumber::Messages::Message
@@ -1072,6 +1099,7 @@ module Cucumber
         @steps = steps
         @tags = tags
         @ast_node_ids = ast_node_ids
+        super()
       end
     end
 
@@ -1089,6 +1117,7 @@ module Cucumber
       )
         @media_type = media_type
         @content = content
+        super()
       end
     end
 
@@ -1114,7 +1143,7 @@ module Cucumber
 
       ##
       # The context in which the step was specified: context (Given), action (When) or outcome (Then).
-      # 
+      #
       # Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
       ##
       attr_reader :type
@@ -1133,6 +1162,7 @@ module Cucumber
         @id = id
         @type = type
         @text = text
+        super()
       end
     end
 
@@ -1152,6 +1182,7 @@ module Cucumber
       )
         @doc_string = doc_string
         @data_table = data_table
+        super()
       end
     end
 
@@ -1165,6 +1196,7 @@ module Cucumber
         rows: []
       )
         @rows = rows
+        super()
       end
     end
 
@@ -1178,6 +1210,7 @@ module Cucumber
         value: ''
       )
         @value = value
+        super()
       end
     end
 
@@ -1191,6 +1224,7 @@ module Cucumber
         cells: []
       )
         @cells = cells
+        super()
       end
     end
 
@@ -1214,6 +1248,7 @@ module Cucumber
       )
         @name = name
         @ast_node_id = ast_node_id
+        super()
       end
     end
 
@@ -1221,7 +1256,7 @@ module Cucumber
     # Represents the Source message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # //// Source
-    # 
+    #
     # *
     #  A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
     ##
@@ -1252,6 +1287,7 @@ module Cucumber
         @uri = uri
         @data = data
         @media_type = media_type
+        super()
       end
     end
 
@@ -1281,6 +1317,7 @@ module Cucumber
         @java_method = java_method
         @java_stack_trace_element = java_stack_trace_element
         @location = location
+        super()
       end
     end
 
@@ -1302,6 +1339,7 @@ module Cucumber
         @class_name = class_name
         @method_name = method_name
         @method_parameter_types = method_parameter_types
+        super()
       end
     end
 
@@ -1323,6 +1361,7 @@ module Cucumber
         @class_name = class_name
         @file_name = file_name
         @method_name = method_name
+        super()
       end
     end
 
@@ -1344,6 +1383,7 @@ module Cucumber
         @id = id
         @pattern = pattern
         @source_reference = source_reference
+        super()
       end
     end
 
@@ -1361,6 +1401,7 @@ module Cucumber
       )
         @source = source
         @type = type
+        super()
       end
     end
 
@@ -1368,7 +1409,7 @@ module Cucumber
     # Represents the TestCase message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     #
     # //// TestCases
-    # 
+    #
     # *
     #  A `TestCase` contains a sequence of `TestStep`s.
     ##
@@ -1390,6 +1431,7 @@ module Cucumber
         @id = id
         @pickle_id = pickle_id
         @test_steps = test_steps
+        super()
       end
     end
 
@@ -1411,6 +1453,7 @@ module Cucumber
         @children = children
         @start = start
         @value = value
+        super()
       end
     end
 
@@ -1422,7 +1465,7 @@ module Cucumber
     #  This is used for the following purposes:
     #  - Construct an argument to pass to a step definition (possibly through a parameter type transform)
     #  - Highlight the matched parameter in rich formatters such as the HTML formatter
-    # 
+    #
     #  This message closely matches the `Argument` class in the `cucumber-expressions` library.
     ##
     class StepMatchArgument < ::Cucumber::Messages::Message
@@ -1441,6 +1484,7 @@ module Cucumber
       )
         @group = group
         @parameter_type_name = parameter_type_name
+        super()
       end
     end
 
@@ -1454,6 +1498,7 @@ module Cucumber
         step_match_arguments: []
       )
         @step_match_arguments = step_match_arguments
+        super()
       end
     end
 
@@ -1501,6 +1546,7 @@ module Cucumber
         @pickle_step_id = pickle_step_id
         @step_definition_ids = step_definition_ids
         @step_match_arguments_lists = step_match_arguments_lists
+        super()
       end
     end
 
@@ -1522,6 +1568,7 @@ module Cucumber
         @test_case_started_id = test_case_started_id
         @timestamp = timestamp
         @will_be_retried = will_be_retried
+        super()
       end
     end
 
@@ -1564,6 +1611,7 @@ module Cucumber
         @test_case_id = test_case_id
         @worker_id = worker_id
         @timestamp = timestamp
+        super()
       end
     end
 
@@ -1601,6 +1649,7 @@ module Cucumber
         @success = success
         @timestamp = timestamp
         @exception = exception
+        super()
       end
     end
 
@@ -1614,6 +1663,7 @@ module Cucumber
         timestamp: Timestamp.new
       )
         @timestamp = timestamp
+        super()
       end
     end
 
@@ -1639,6 +1689,7 @@ module Cucumber
         @test_step_id = test_step_id
         @test_step_result = test_step_result
         @timestamp = timestamp
+        super()
       end
     end
 
@@ -1670,6 +1721,7 @@ module Cucumber
         @message = message
         @status = status
         @exception = exception
+        super()
       end
     end
 
@@ -1691,6 +1743,7 @@ module Cucumber
         @test_case_started_id = test_case_started_id
         @test_step_id = test_step_id
         @timestamp = timestamp
+        super()
       end
     end
 
@@ -1719,6 +1772,7 @@ module Cucumber
       )
         @seconds = seconds
         @nanos = nanos
+        super()
       end
     end
 
@@ -1736,47 +1790,72 @@ module Cucumber
       )
         @expression = expression
         @name = name
+        super()
       end
     end
   end
 end
 
-class Cucumber::Messages::AttachmentContentEncoding
-  IDENTITY = 'IDENTITY'
-  BASE64 = 'BASE64'
+module Cucumber
+  module Messages
+    class AttachmentContentEncoding
+      IDENTITY = 'IDENTITY'
+      BASE64 = 'BASE64'
+    end
+  end
 end
 
-class Cucumber::Messages::PickleStepType
-  UNKNOWN = 'Unknown'
-  CONTEXT = 'Context'
-  ACTION = 'Action'
-  OUTCOME = 'Outcome'
+module Cucumber
+  module Messages
+    class PickleStepType
+      UNKNOWN = 'Unknown'
+      CONTEXT = 'Context'
+      ACTION = 'Action'
+      OUTCOME = 'Outcome'
+    end
+  end
 end
 
-class Cucumber::Messages::SourceMediaType
-  TEXT_X_CUCUMBER_GHERKIN_PLAIN = 'text/x.cucumber.gherkin+plain'
-  TEXT_X_CUCUMBER_GHERKIN_MARKDOWN = 'text/x.cucumber.gherkin+markdown'
+module Cucumber
+  module Messages
+    class SourceMediaType
+      TEXT_X_CUCUMBER_GHERKIN_PLAIN = 'text/x.cucumber.gherkin+plain'
+      TEXT_X_CUCUMBER_GHERKIN_MARKDOWN = 'text/x.cucumber.gherkin+markdown'
+    end
+  end
 end
 
-class Cucumber::Messages::StepDefinitionPatternType
-  CUCUMBER_EXPRESSION = 'CUCUMBER_EXPRESSION'
-  REGULAR_EXPRESSION = 'REGULAR_EXPRESSION'
+module Cucumber
+  module Messages
+    class StepDefinitionPatternType
+      CUCUMBER_EXPRESSION = 'CUCUMBER_EXPRESSION'
+      REGULAR_EXPRESSION = 'REGULAR_EXPRESSION'
+    end
+  end
 end
 
-class Cucumber::Messages::StepKeywordType
-  UNKNOWN = 'Unknown'
-  CONTEXT = 'Context'
-  ACTION = 'Action'
-  OUTCOME = 'Outcome'
-  CONJUNCTION = 'Conjunction'
+module Cucumber
+  module Messages
+    class StepKeywordType
+      UNKNOWN = 'Unknown'
+      CONTEXT = 'Context'
+      ACTION = 'Action'
+      OUTCOME = 'Outcome'
+      CONJUNCTION = 'Conjunction'
+    end
+  end
 end
 
-class Cucumber::Messages::TestStepResultStatus
-  UNKNOWN = 'UNKNOWN'
-  PASSED = 'PASSED'
-  SKIPPED = 'SKIPPED'
-  PENDING = 'PENDING'
-  UNDEFINED = 'UNDEFINED'
-  AMBIGUOUS = 'AMBIGUOUS'
-  FAILED = 'FAILED'
+module Cucumber
+  module Messages
+    class TestStepResultStatus
+      UNKNOWN = 'UNKNOWN'
+      PASSED = 'PASSED'
+      SKIPPED = 'SKIPPED'
+      PENDING = 'PENDING'
+      UNDEFINED = 'UNDEFINED'
+      AMBIGUOUS = 'AMBIGUOUS'
+      FAILED = 'FAILED'
+    end
+  end
 end
