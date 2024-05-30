@@ -27,7 +27,7 @@ defmodule CucumberMessages.MixProject do
     [
       {:protox, "~> 1.7.0"},
       {:jason, "~> 1.2"},
-      {:ex_doc, "~> 0.33", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false}
     ]
   end
 
