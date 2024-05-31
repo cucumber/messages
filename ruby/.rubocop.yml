@@ -21,7 +21,13 @@ Gemspec/RequireMFA:
 Layout/LineLength:
   Max: 1000
 
-# This is disabled because most messages have many properties
+# This is disabled because messages can have many input properties for #initialize and .from_h
+# Which are generated 1-per-line
+Metrics/MethodLength:
+  Enabled: false
+
+# This is disabled because messages can have many input properties for #initialize and .from_h
+# Which are generated 1-per-line
 Metrics/ParameterLists:
   Enabled: false
 
