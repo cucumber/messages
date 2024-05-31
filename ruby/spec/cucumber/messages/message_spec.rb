@@ -62,7 +62,7 @@ describe Cucumber::Messages::Message do
     subject(:message) { Cucumber::Messages::ComprehensiveMessage.new }
 
     let(:expected_snake_cased_hash) { { is_nil: nil, is_string: '', is_array: [], is_number: 0 } }
-    let(:expected_camel_cased_hash) { { isNil: nil, isString: '', isArray: [], isNumber: 0 } }
+    let(:expected_camelized_hash) { { isNil: nil, isString: '', isArray: [], isNumber: 0 } }
 
     describe '#to_h' do
       it 'includes a hash representation of embedded messages' do
@@ -78,23 +78,23 @@ describe Cucumber::Messages::Message do
       end
 
       it 'can be configured to camelize the keys of an embedded messages and the resulting hash' do
-        expect(message.to_h(camelize: true)[:simpleMessage]).to eq(expected_camel_cased_hash)
+        expect(message.to_h(camelize: true)[:simpleMessage]).to eq(expected_camelized_hash)
       end
 
       it 'can be configured to camelize the keys of a more complex messages and the resulting hashes' do
-        expect(message.to_h(camelize: true)[:messageArray]).to eq([expected_camel_cased_hash, expected_camel_cased_hash])
+        expect(message.to_h(camelize: true)[:messageArray]).to eq([expected_camelized_hash, expected_camelized_hash])
       end
     end
 
     describe '#to_json' do
-      let(:expected_camel_cased_hash) { { isString: '', isArray: [], isNumber: 0 } }
+      let(:expected_camelized_hash) { { isString: '', isArray: [], isNumber: 0 } }
 
       it 'returns a JSON document that includes simple embedded messages' do
-        expect(message.to_json).to include(expected_camel_cased_hash.to_json)
+        expect(message.to_json).to include(expected_camelized_hash.to_json)
       end
 
       it 'returns a JSON document that includes complex embedded messages' do
-        expect(message.to_json).to include([expected_camel_cased_hash, expected_camel_cased_hash].to_json)
+        expect(message.to_json).to include([expected_camelized_hash, expected_camelized_hash].to_json)
       end
 
       it 'returns a JSON document that includes enums' do

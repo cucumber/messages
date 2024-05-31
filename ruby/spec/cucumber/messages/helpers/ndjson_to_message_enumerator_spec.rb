@@ -9,7 +9,8 @@ describe Cucumber::Messages::Helpers::NdjsonToMessageEnumerator do
       Cucumber::Messages::Envelope.new(source: source)
     ]
   end
-  let(:attachment) { Cucumber::Messages::Attachment.new(body: 'Hello', content_encoding: Cucumber::Messages::AttachmentContentEncoding::IDENTITY) }
+  let(:attachment) { Cucumber::Messages::Attachment.new(body: 'Hello', content_encoding: content_encoding) }
+  let(:content_encoding) { Cucumber::Messages::AttachmentContentEncoding::IDENTITY }
   let(:source) { Cucumber::Messages::Source.new(data: 'Feature: Hello') }
   let(:io) { StringIO.new }
 
