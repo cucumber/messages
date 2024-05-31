@@ -11,6 +11,8 @@ require:
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
+  Exclude:
+    - lib/cucumber/messages/*.rb
 
 Gemspec/RequireMFA:
   Enabled: false
