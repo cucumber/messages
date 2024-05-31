@@ -1,7 +1,0 @@
-Makefile
-build
-composer.lock
-Dockerfile
-vendor
-.phpunit.cache
-.gitignore
