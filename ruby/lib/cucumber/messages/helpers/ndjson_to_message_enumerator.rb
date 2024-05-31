@@ -10,6 +10,7 @@ module Cucumber
           super() do |yielder|
             io.each_line do |line|
               next if line.strip.empty?
+
               begin
                 m = Envelope.from_json(line)
               rescue StandardError
