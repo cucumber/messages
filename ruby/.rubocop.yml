@@ -21,6 +21,10 @@ Gemspec/RequireMFA:
 Layout/LineLength:
   Max: 1000
 
+# This is disabled because most messages have many properties
+Metrics/ParameterLists:
+  Enabled: false
+
 Naming/MethodParameterName:
   AllowedNames:
     - ci
