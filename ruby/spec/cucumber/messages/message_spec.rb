@@ -42,16 +42,12 @@ describe Cucumber::Messages::Message do
         expect(message.to_h).to eq({ is_nil: nil, is_string: '', is_array: [], is_number: 0 })
       end
 
-      context 'with camelize: true' do
-        it 'camelizes the keys of the resulting hash' do
-          expect(message.to_h(camelize: true)).to eq({ isNil: nil, isString: '', isArray: [], isNumber: 0 })
-        end
+      it 'can be configured to camelize the keys of the resulting hash' do
+        expect(message.to_h(camelize: true)).to eq({ isNil: nil, isString: '', isArray: [], isNumber: 0 })
       end
 
-      context 'with reject_nil_values: true' do
-        it 'rejects nil values from the resulting hash' do
-          expect(message.to_h(reject_nil_values: true)).to eq({ is_string: '', is_array: [], is_number: 0 })
-        end
+      it 'can be configured to sanitize out any nil values from the resulting hash' do
+        expect(message.to_h(reject_nil_values: true)).to eq({ is_string: '', is_array: [], is_number: 0 })
       end
     end
 
@@ -77,18 +73,16 @@ describe Cucumber::Messages::Message do
         expect(message.to_h[:is_enum]).to eq('an enum')
       end
 
-      it 'includes a hash representation of messages arrays' do
+      it 'includes a hash representation of more complex messages' do
         expect(message.to_h[:message_array]).to eq([expected_snake_cased_hash, expected_snake_cased_hash])
       end
 
-      context 'with camelize: true' do
-        it 'camelizes the keys of the embedded messages resulting hashes' do
-          expect(message.to_h(camelize: true)[:simpleMessage]).to eq(expected_camel_cased_hash)
-        end
+      it 'can be configured to camelize the keys of an embedded messages and the resulting hash' do
+        expect(message.to_h(camelize: true)[:simpleMessage]).to eq(expected_camel_cased_hash)
+      end
 
-        it 'camelizes the keys of hashes for messages arrays' do
-          expect(message.to_h(camelize: true)[:messageArray]).to eq([expected_camel_cased_hash, expected_camel_cased_hash])
-        end
+      it 'can be configured to camelize the keys of a more complex messages and the resulting hashes' do
+        expect(message.to_h(camelize: true)[:messageArray]).to eq([expected_camel_cased_hash, expected_camel_cased_hash])
       end
     end
 
