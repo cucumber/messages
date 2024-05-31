@@ -29,9 +29,7 @@ describe Cucumber::Messages::Helpers::TimeConversion do
 
   it 'converts to a hash where seconds and nanos are integers' do
     duration_in_seconds = 3.000161
-    duration = seconds_to_duration(duration_in_seconds)
 
-    expect(duration['seconds']).to be_integer
-    expect(duration['nanos']).to be_integer
+    expect(seconds_to_duration(duration_in_seconds).values).to all be_integer
   end
 end

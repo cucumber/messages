@@ -71,6 +71,9 @@ describe Cucumber::Messages::Message do
     describe '#to_h' do
       it 'includes a hash representation of embedded messages' do
         expect(message.to_h[:simple_message]).to eq(expected_snake_cased_hash)
+      end
+
+      it 'stores enums' do
         expect(message.to_h[:is_enum]).to eq('an enum')
       end
 
@@ -92,13 +95,16 @@ describe Cucumber::Messages::Message do
     describe '#to_json' do
       let(:expected_camel_cased_hash) { { isString: '', isArray: [], isNumber: 0 } }
 
-      it 'returns a JSON document with embedded messages' do
+      it 'returns a JSON document that includes simple embedded messages' do
         expect(message.to_json).to include(expected_camel_cased_hash.to_json)
-        expect(message.to_json).to include('"isEnum":"an enum"')
       end
 
-      it 'returns a JSON document with messages arrays' do
+      it 'returns a JSON document that includes complex embedded messages' do
         expect(message.to_json).to include([expected_camel_cased_hash, expected_camel_cased_hash].to_json)
+      end
+
+      it 'returns a JSON document that includes enums' do
+        expect(message.to_json).to include('"isEnum":"an enum"')
       end
     end
   end
