@@ -11,14 +11,18 @@ module Cucumber
             io.each_line do |line|
               next if line.strip.empty?
 
-              begin
-                m = Envelope.from_json(line)
-              rescue StandardError
-                raise "Not JSON: #{line.strip}"
-              end
-              yielder.yield(m)
+              message = extract_message(line)
+              yielder.yield(message)
             end
           end
+        end
+
+        private
+
+        def extract_message(json_line)
+          Envelope.from_json(json_line)
+        rescue StandardError
+          raise "Not JSON: #{json_line.strip}"
         end
       end
     end
