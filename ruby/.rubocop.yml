@@ -11,17 +11,20 @@ require:
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
-  # Generated messages (including the Envelope) aren't tested by rubocop because they can have many input properties
-  # for #initialize and .from_h which are generated 1-per-line. This renders most Metrics redundant
-  Exclude:
-    - lib/cucumber/messages/*.rb
 
 Gemspec/RequireMFA:
   Enabled: false
 
-# Some long comments in the JSON Schema cause this to be un-enforceable
+# Generated messages (including the Envelope) aren't tested by the Metrics department because they have many
+# input properties for #initialize and .from_h which are generated 1-per-line. This renders most Metrics redundant
+Metrics:
+  Exclude:
+    - lib/cucumber/messages/*.rb
+
+# Long comments in the generated messages from the JSON Schemas cause this to be un-enforceable
 Layout/LineLength:
-  Max: 1000
+  Exclude:
+    - lib/cucumber/messages/*.rb
 
 Naming/MethodParameterName:
   AllowedNames:
