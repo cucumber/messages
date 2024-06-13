@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [25.0.1] - 2024-06-13
 ### Fixed
 - [Php] Fixed a workflow issue with publishing the package
 
@@ -526,7 +528,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v25.0.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v25.0.1...HEAD
+[25.0.1]: https://github.com/cucumber/messages/compare/v25.0.0...v25.0.1
 [25.0.0]: https://github.com/cucumber/messages/compare/v24.1.0...v25.0.0
 [24.1.0]: https://github.com/cucumber/messages/compare/v24.0.1...v24.1.0
 [24.0.1]: https://github.com/cucumber/messages/compare/v24.0.0...v24.0.1
