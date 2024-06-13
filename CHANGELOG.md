@@ -7,9 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- [Ruby] **Breaking change** Messages are now altered to be 1 message class per file ([#225](https://github.com/cucumber/messages/pull/225) [luke-hill](https://github.com/luke-hill))
 - [Ruby] Updated minimum Ruby version to 3.0 ([#216](https://github.com/cucumber/messages/pull/216) [luke-hill](https://github.com/luke-hill))
 - [Ruby] Use latest CCK conformance for signing off message releases ([#216](https://github.com/cucumber/messages/pull/216) [luke-hill](https://github.com/luke-hill))
-- [Ruby] Tidied up around 80% of all of the rubocop `Layout` offenses (This included 2 minor alterations to the generator code) ([#217](https://github.com/cucumber/messages/pull/217) [luke-hill](https://github.com/luke-hill))
+- [Ruby] Tidied up all remaining rubocop offenses (This included 2 minor alterations to the generator code) ([#217](https://github.com/cucumber/messages/pull/217) [#225](https://github.com/cucumber/messages/pull/225) [luke-hill](https://github.com/luke-hill))
 - [Php] Permit both PHPUnit 10 and PHPUnit 11 ([#200](https://github.com/cucumber/messages/pull/200) [ciaranmcnulty](https://github.com/ciaranmcnulty))
 
 ### Fixed

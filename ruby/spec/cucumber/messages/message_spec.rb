@@ -11,15 +11,15 @@ describe Cucumber::Messages::Message do
   end
 
   describe '.from_json' do
-    subject(:message) { Cucumber::Messages::Message.from_json(json_document) }
+    subject(:message) { described_class.from_json(json_document) }
 
     context 'with a valid JSON document' do
       let(:json_document) { '{"simpleMessage":{"isString":"answer"}}' }
 
       it 'deserialize the message using #from_h' do
-        allow(Cucumber::Messages::Message).to receive(:from_h)
+        allow(described_class).to receive(:from_h)
 
-        expect(Cucumber::Messages::Message).to receive(:from_h).with({ simpleMessage: { isString: 'answer' } })
+        expect(described_class).to receive(:from_h).with({ simpleMessage: { isString: 'answer' } })
 
         message
       end
@@ -42,16 +42,12 @@ describe Cucumber::Messages::Message do
         expect(message.to_h).to eq({ is_nil: nil, is_string: '', is_array: [], is_number: 0 })
       end
 
-      context 'with camelize: true' do
-        it 'camelizes the keys of the resulting hash' do
-          expect(message.to_h(camelize: true)).to eq({ isNil: nil, isString: '', isArray: [], isNumber: 0 })
-        end
+      it 'can be configured to camelize the keys of the resulting hash' do
+        expect(message.to_h(camelize: true)).to eq({ isNil: nil, isString: '', isArray: [], isNumber: 0 })
       end
 
-      context 'with reject_nil_values: true' do
-        it 'rejects nil values from the resulting hash' do
-          expect(message.to_h(reject_nil_values: true)).to eq({ is_string: '', is_array: [], is_number: 0 })
-        end
+      it 'can be configured to sanitize out any nil values from the resulting hash' do
+        expect(message.to_h(reject_nil_values: true)).to eq({ is_string: '', is_array: [], is_number: 0 })
       end
     end
 
@@ -66,39 +62,43 @@ describe Cucumber::Messages::Message do
     subject(:message) { Cucumber::Messages::ComprehensiveMessage.new }
 
     let(:expected_snake_cased_hash) { { is_nil: nil, is_string: '', is_array: [], is_number: 0 } }
-    let(:expected_camel_cased_hash) { { isNil: nil, isString: '', isArray: [], isNumber: 0 } }
+    let(:expected_camelized_hash) { { isNil: nil, isString: '', isArray: [], isNumber: 0 } }
 
     describe '#to_h' do
       it 'includes a hash representation of embedded messages' do
         expect(message.to_h[:simple_message]).to eq(expected_snake_cased_hash)
+      end
+
+      it 'stores enums' do
         expect(message.to_h[:is_enum]).to eq('an enum')
       end
 
-      it 'includes a hash representation of messages arrays' do
+      it 'includes a hash representation of more complex messages' do
         expect(message.to_h[:message_array]).to eq([expected_snake_cased_hash, expected_snake_cased_hash])
       end
 
-      context 'with camelize: true' do
-        it 'camelizes the keys of the embedded messages resulting hashes' do
-          expect(message.to_h(camelize: true)[:simpleMessage]).to eq(expected_camel_cased_hash)
-        end
+      it 'can be configured to camelize the keys of an embedded messages and the resulting hash' do
+        expect(message.to_h(camelize: true)[:simpleMessage]).to eq(expected_camelized_hash)
+      end
 
-        it 'camelizes the keys of hashes for messages arrays' do
-          expect(message.to_h(camelize: true)[:messageArray]).to eq([expected_camel_cased_hash, expected_camel_cased_hash])
-        end
+      it 'can be configured to camelize the keys of a more complex messages and the resulting hashes' do
+        expect(message.to_h(camelize: true)[:messageArray]).to eq([expected_camelized_hash, expected_camelized_hash])
       end
     end
 
     describe '#to_json' do
-      let(:expected_camel_cased_hash) { { isString: '', isArray: [], isNumber: 0 } }
+      let(:expected_camelized_hash) { { isString: '', isArray: [], isNumber: 0 } }
 
-      it 'returns a JSON document with embedded messages' do
-        expect(message.to_json).to include(expected_camel_cased_hash.to_json)
-        expect(message.to_json).to include('"isEnum":"an enum"')
+      it 'returns a JSON document that includes simple embedded messages' do
+        expect(message.to_json).to include(expected_camelized_hash.to_json)
       end
 
-      it 'returns a JSON document with messages arrays' do
-        expect(message.to_json).to include([expected_camel_cased_hash, expected_camel_cased_hash].to_json)
+      it 'returns a JSON document that includes complex embedded messages' do
+        expect(message.to_json).to include([expected_camelized_hash, expected_camelized_hash].to_json)
+      end
+
+      it 'returns a JSON document that includes enums' do
+        expect(message.to_json).to include('"isEnum":"an enum"')
       end
     end
   end

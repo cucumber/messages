@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 inherit_mode:
   merge:
     - Exclude
@@ -17,9 +15,16 @@ AllCops:
 Gemspec/RequireMFA:
   Enabled: false
 
-# Some long comments in the JSON Schema cause this to be un-enforceable
+# Generated messages (including the Envelope) aren't tested by the Metrics department because they have many
+# input properties for #initialize and .from_h which are generated 1-per-line. This renders most Metrics redundant
+Metrics:
+  Exclude:
+    - lib/cucumber/messages/*.rb
+
+# Long comments in the generated messages from the JSON Schemas cause this to be un-enforceable
 Layout/LineLength:
-  Max: 1000
+  Exclude:
+    - lib/cucumber/messages/*.rb
 
 Naming/MethodParameterName:
   AllowedNames:
@@ -31,7 +36,8 @@ RSpec/MessageSpies:
 # Because of the nature of large amounts of Accessors, we disable this cop
 # This is because many of them will have custom documentation which are auto-generated from the jsonschema
 Style/AccessorGrouping:
-  Enabled: false
+  Exclude:
+    - lib/cucumber/messages/*.rb
 
 Style/Documentation:
   Enabled: false
