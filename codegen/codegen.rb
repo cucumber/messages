@@ -96,7 +96,9 @@ class Codegen
       if type == 'array'
         array_type_for(type_for(parent_type_name, nil, items))
       else
-        raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}" unless @language_type_by_schema_type[type]
+        unless @language_type_by_schema_type[type]
+          raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}"
+        end
 
         if enum
           enum_type_name = enum_name(parent_type_name, property_name, enum)
@@ -404,7 +406,9 @@ class Php < Codegen
   end
 
   def scalar_type_for(property)
-    raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}" unless @language_type_by_schema_type[property['type']]
+    unless @language_type_by_schema_type[property['type']]
+      raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}"
+    end
 
     @language_type_by_schema_type[property['type']]
   end
