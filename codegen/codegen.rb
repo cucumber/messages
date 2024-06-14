@@ -234,7 +234,7 @@ class Perl < Codegen
     "Cucumber::Messages::#{class_name(ref)}"
   end
 
-  def property_type_from_enum(enum)
+  def property_type_from_enum(_enum)
     ''
   end
 
@@ -275,7 +275,7 @@ class Ruby < Codegen
     super(paths, language_type_by_schema_type)
   end
 
-  def array_type_for(type_name)
+  def array_type_for(_type_name)
     '[]'
   end
 
@@ -379,7 +379,7 @@ class Php < Codegen
       .join("\n#{indent_string}")
   end
 
-  def array_type_for(type_name)
+  def array_type_for(_type_name)
     'array'
   end
 
@@ -389,7 +389,7 @@ class Php < Codegen
     enum_type_name
   end
 
-  def array_contents_type(parent_type_name, property_name, property)
+  def array_contents_type(parent_type_name, _property_name, property)
     type_for(parent_type_name, nil, property['items'])
   end
 
