@@ -417,7 +417,7 @@ class Php < Codegen
   end
 
   def non_nullable_constructor_for(parent_type, property, property_name, schema, arr_name)
-    source = property_name.nil? ? "#{arr_name}" : "#{arr_name}['#{property_name}']"
+    source = property_name.nil? ? arr_name : "#{arr_name}['#{property_name}']"
     if is_scalar(property)
       if property['enum']
         "#{enum_name(parent_type, property_name, property['enum'])}::from((#{scalar_type_for(property)}) $#{source})"
