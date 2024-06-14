@@ -436,9 +436,7 @@ class Php < Codegen
   end
 
   def default_value(class_name, property_name, property, schema)
-    if is_nullable(property_name, schema)
-      return 'null'
-    end
+    return 'null' if is_nullable(property_name, schema)
 
     super(class_name, property_name, property)
   end
