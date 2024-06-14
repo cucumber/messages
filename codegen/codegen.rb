@@ -2,6 +2,8 @@ require 'json'
 require 'erb'
 require 'set'
 
+# CodeGen
+# Automatic Code generation base class for generating cucumber messages
 class Codegen
   TEMPLATES_DIRECTORY = "#{File.dirname(__FILE__)}/templates/".freeze
 
@@ -145,6 +147,8 @@ class Codegen
   end
 end
 
+# Typescript < Codegen
+# Automatic Code generation overrides for TypeScript programming language
 class TypeScript < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
@@ -161,6 +165,8 @@ class TypeScript < Codegen
   end
 end
 
+# Cpp < Codegen
+# Automatic Code generation overrides for C++ programming language
 class Cpp < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
@@ -188,6 +194,8 @@ class Cpp < Codegen
   end
 end
 
+# Java < Codegen
+# Automatic Code generation overrides for Java programming language
 class Java < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
@@ -215,6 +223,8 @@ class Java < Codegen
   end
 end
 
+# Perl < Codegen
+# Automatic Code generation overrides for Perl programming language
 class Perl < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
@@ -264,6 +274,8 @@ class Perl < Codegen
   end
 end
 
+# Ruby < Codegen
+# Automatic Code generation overrides for Ruby programming language
 class Ruby < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
@@ -316,6 +328,8 @@ class Ruby < Codegen
   end
 end
 
+# Go < Codegen
+# Automatic Code generation overrides for Go programming language
 class Go < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
@@ -335,6 +349,9 @@ class Go < Codegen
   end
 end
 
+# Markdown < Codegen
+# Automatic Code generation overrides for 'Cucumber with Markdown' programming language
+# NB: This is based on the cucumber-js implementation
 class Markdown < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
@@ -358,6 +375,8 @@ class Markdown < Codegen
   end
 end
 
+# Php < Codegen
+# Automatic Code generation overrides for Php programming language
 class Php < Codegen
   def initialize(paths)
     language_type_by_schema_type = {
