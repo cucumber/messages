@@ -17,7 +17,7 @@ class Codegen
       begin
         schema = JSON.parse(File.read(path))
         add_schema(expanded_path, schema)
-      rescue => e
+      rescue JSON::ParserError => e
         e.message << "\npath: #{path}"
         raise e
       end
