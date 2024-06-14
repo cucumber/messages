@@ -153,7 +153,7 @@ class TypeScript < Codegen
     language_type_by_schema_type = {
       'integer' => 'number',
       'string' => 'string',
-      'boolean' => 'boolean',
+      'boolean' => 'boolean'
     }
 
     super(paths, language_type_by_schema_type)
@@ -169,7 +169,7 @@ class Cpp < Codegen
     language_type_by_schema_type = {
       'integer' => 'std::size_t',
       'string' => 'std::string',
-      'boolean' => 'bool',
+      'boolean' => 'bool'
     }
 
     super(paths, language_type_by_schema_type)
@@ -196,7 +196,7 @@ class Java < Codegen
     language_type_by_schema_type = {
       'integer' => 'Long',
       'string' => 'String',
-      'boolean' => 'Boolean',
+      'boolean' => 'Boolean'
     }
 
     super(paths, language_type_by_schema_type)
@@ -223,7 +223,7 @@ class Perl < Codegen
     language_type_by_schema_type = {
       'integer' => 'number',
       'string' => 'string',
-      'boolean' => 'boolean',
+      'boolean' => 'boolean'
     }
 
     super(paths, language_type_by_schema_type)
@@ -270,7 +270,7 @@ class Ruby < Codegen
     language_type_by_schema_type = {
       'integer' => 'number',
       'string' => 'string',
-      'boolean' => 'boolean',
+      'boolean' => 'boolean'
     }
 
     super(paths, language_type_by_schema_type)
@@ -322,7 +322,7 @@ class Go < Codegen
     language_type_by_schema_type = {
       'integer' => 'int64',
       'string' => 'string',
-      'boolean' => 'bool',
+      'boolean' => 'bool'
     }
     super(paths, language_type_by_schema_type)
   end
@@ -341,7 +341,7 @@ class Markdown < Codegen
     language_type_by_schema_type = {
       'integer' => 'integer',
       'string' => 'string',
-      'boolean' => 'boolean',
+      'boolean' => 'boolean'
     }
     super(paths, language_type_by_schema_type)
   end
@@ -364,7 +364,7 @@ class Php < Codegen
     language_type_by_schema_type = {
       'string' => 'string',
       'integer' => 'int',
-      'boolean' => 'bool',
+      'boolean' => 'bool'
     }
     super(paths, language_type_by_schema_type)
   end
