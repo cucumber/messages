@@ -50,10 +50,7 @@ module Codegen
 
       schema['properties'].each do |property_name, property|
         enum = property['enum']
-        if enum
-          parent_type_name = class_name(key)
-          enum_name(parent_type_name, property_name, enum)
-        end
+        enum_name(class_name(key), property_name, enum) if enum
       end
     end
 
@@ -114,22 +111,17 @@ module Codegen
       class_name(ref)
     end
 
-    def property_type_from_type(parent_type_name, property_name, property)
-      type = property['type']
+    def property_type_from_type(parent_type_name, property_name, property, type:)
+      return array_type_for(type_for(parent_type_name, nil, property['items'])) if type == 'array'
 
-      if type == 'array'
-        array_type_for(type_for(parent_type_name, nil, property['items']))
+      unless @language_type_by_schema_type[type]
+        raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}"
+      end
+
+      if property['enum']
+        property_type_from_enum(enum_name(parent_type_name, property_name, property['enum']))
       else
-        unless @language_type_by_schema_type[type]
-          raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}"
-        end
-
-        if property['enum']
-          enum_type_name = enum_name(parent_type_name, property_name, property['enum'])
-          property_type_from_enum(enum_type_name)
-        else
-          @language_type_by_schema_type[type]
-        end
+        @language_type_by_schema_type[type]
       end
     end
 
@@ -139,7 +131,7 @@ module Codegen
       if property['$ref']
         property_type_from_ref(property['$ref'])
       elsif type
-        property_type_from_type(parent_type_name, property_name, property)
+        property_type_from_type(parent_type_name, property_name, property, type: type)
       else
         # Inline schema (not supported)
         raise "Property #{name} did not define 'type' or '$ref'"
