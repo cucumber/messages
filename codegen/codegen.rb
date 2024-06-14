@@ -81,7 +81,7 @@ class Codegen
   end
 
   def enum_constant(value)
-    value.gsub(/[\.\/\+]/, '_').upcase
+    value.gsub(/[.\/+]/, '_').upcase
   end
 
   def type_for(parent_type_name, property_name, property)
