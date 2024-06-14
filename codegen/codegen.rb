@@ -24,7 +24,7 @@ class Codegen
     end
 
     @schemas = @schemas.sort
-    @enums = @enum_set.to_a.sort { |a, b| a[:name] <=> b[:name] }
+    @enums = @enum_set.to_a.sort_by { |a| a[:name] }
   end
 
   def generate(template_name)
