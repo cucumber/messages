@@ -13,6 +13,6 @@ require: ## Check requirements for the code generation (ruby is required)
 clean: ## Remove automatically generated files and related artifacts
 	rm -f src/messages.ts
 
-src/messages.ts: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/typescript.ts.erb ../jsonschema/scripts/templates/typescript.enum.ts.erb
-	ruby ../jsonschema/scripts/codegen.rb TypeScript ../jsonschema typescript.ts.erb > $@
-	ruby ../jsonschema/scripts/codegen.rb TypeScript ../jsonschema typescript.enum.ts.erb >> $@
+src/messages.ts: $(schemas) ../codegen/codegen.rb ../jsonschema/scripts/templates/typescript.ts.erb ../jsonschema/scripts/templates/typescript.enum.ts.erb
+	ruby ../codegen/codegen.rb TypeScript ../jsonschema typescript.ts.erb > $@
+	ruby ../codegen/codegen.rb TypeScript ../jsonschema typescript.enum.ts.erb >> $@
