@@ -33,6 +33,8 @@ class Codegen
     STDOUT.write template.result(binding)
   end
 
+  private
+
   def add_schema(key, schema)
     @schemas[key] = schema
     (schema['definitions'] || {}).each do |name, subschema|
@@ -228,6 +230,22 @@ class Perl < Codegen
     "[]#{type_name}"
   end
 
+  def property_type_from_ref(ref)
+    "Cucumber::Messages::#{class_name(ref)}"
+  end
+
+  def property_type_from_enum(enum)
+    ''
+  end
+
+  def format_description(raw_description)
+    return '' if raw_description.nil?
+
+    raw_description
+  end
+
+  private
+
   def default_value(parent_type_name, property_name, property)
     if property['type'] == 'string'
       if property['enum']
@@ -243,20 +261,6 @@ class Perl < Codegen
     else
       super(parent_type_name, property_name, property)
     end
-  end
-
-  def property_type_from_ref(ref)
-    "Cucumber::Messages::#{class_name(ref)}"
-  end
-
-  def property_type_from_enum(enum)
-    ''
-  end
-
-  def format_description(raw_description)
-    return '' if raw_description.nil?
-
-    raw_description
   end
 end
 
@@ -275,6 +279,18 @@ class Ruby < Codegen
     '[]'
   end
 
+  def format_description(raw_description, indent_string: '    ')
+    return '##' if raw_description.nil?
+
+    raw_description
+      .split("\n")
+      .map { |description_line| line_as_comment(description_line) }
+      .push('##')
+      .join("\n#{indent_string}")
+  end
+
+  private
+
   def default_value(parent_type_name, property_name, property)
     if property['type'] == 'string'
       if property['enum']
@@ -290,18 +306,6 @@ class Ruby < Codegen
       super(parent_type_name, property_name, property)
     end
   end
-
-  def format_description(raw_description, indent_string: '    ')
-    return '##' if raw_description.nil?
-
-    raw_description
-      .split("\n")
-      .map { |description_line| line_as_comment(description_line) }
-      .push('##')
-      .join("\n#{indent_string}")
-  end
-
-  private
 
   def line_as_comment(line)
     if line.empty?
@@ -431,14 +435,16 @@ class Php < Codegen
     end
   end
 
+  def default_enum(enum_type_name, property)
+    "#{enum_type_name}::#{enum_constant(property['enum'][0])}"
+  end
+
+  private
+
   def default_value(class_name, property_name, property, schema)
     return 'null' if is_nullable(property_name, schema)
 
     super(class_name, property_name, property)
-  end
-
-  def default_enum(enum_type_name, property)
-    "#{enum_type_name}::#{enum_constant(property['enum'][0])}"
   end
 end
 
