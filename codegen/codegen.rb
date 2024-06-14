@@ -131,8 +131,8 @@ class Codegen
     File.basename(ref, '.json')
   end
 
-  def capitalize(s)
-    s.sub(/./, &:upcase)
+  def capitalize(string)
+    string.sub(/./, &:upcase)
   end
 
   # Thank you very much rails!
