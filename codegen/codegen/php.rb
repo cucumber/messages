@@ -63,20 +63,9 @@ module Codegen
     def non_nullable_constructor_for(parent_type, property, property_name, schema, arr_name)
       source = property_name.nil? ? arr_name : "#{arr_name}['#{property_name}']"
       if is_scalar(property)
-        if property['enum']
-          "#{enum_name(parent_type, property_name, property['enum'])}::from((#{scalar_type_for(property)}) $#{source})"
-        else
-          "(#{scalar_type_for(property)}) $#{source}"
-        end
+        non_nullable_scalar_constructor(parent_type, property, property_name, source)
       else
-        type = type_for(parent_type, property_name, property)
-        if type == 'array'
-          constructor = non_nullable_constructor_for(parent_type, property['items'], nil, schema, 'member')
-          member_type = (property['items']['type'] ? 'mixed' : 'array')
-          "array_values(array_map(fn (#{member_type} $member) => #{constructor}, $#{source}))"
-        else
-          "#{type_for(parent_type, property_name, property)}::fromArray($#{source})"
-        end
+        non_nullable_nonscalar_constructor(parent_type, property, property_name, schema, source)
       end
     end
 
@@ -90,6 +79,25 @@ module Codegen
       return 'null' if is_nullable(property_name, schema)
 
       super(class_name, property_name, property)
+    end
+
+    def non_nullable_scalar_constructor(parent_type, property, property_name, source)
+      if property['enum']
+        "#{enum_name(parent_type, property_name, property['enum'])}::from((#{scalar_type_for(property)}) $#{source})"
+      else
+        "(#{scalar_type_for(property)}) $#{source}"
+      end
+    end
+
+    def non_nullable_nonscalar_constructor(parent_type, property, property_name, schema, source)
+      type = type_for(parent_type, property_name, property)
+      if type == 'array'
+        constructor = non_nullable_constructor_for(parent_type, property['items'], nil, schema, 'member')
+        member_type = (property['items']['type'] ? 'mixed' : 'array')
+        "array_values(array_map(fn (#{member_type} $member) => #{constructor}, $#{source}))"
+      else
+        "#{type_for(parent_type, property_name, property)}::fromArray($#{source})"
+      end
     end
   end
 end
