@@ -24,7 +24,7 @@ class Codegen
     end
 
     @schemas = @schemas.sort
-    @enums = @enum_set.to_a.sort{|a,b| a[:name] <=> b[:name]}
+    @enums = @enum_set.to_a.sort { |a, b| a[:name] <=> b[:name] }
   end
 
   def generate(template_name)
@@ -97,6 +97,7 @@ class Codegen
         array_type_for(type_for(parent_type_name, nil, items))
       else
         raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}" unless @language_type_by_schema_type[type]
+
         if enum
           enum_type_name = enum_name(parent_type_name, property_name, enum)
           property_type_from_enum(enum_type_name)
@@ -129,13 +130,14 @@ class Codegen
   end
 
   def capitalize(s)
-    s.sub(/./,&:upcase)
+    s.sub(/./, &:upcase)
   end
 
   # Thank you very much rails!
   # https://github.com/rails/rails/blob/v6.1.3.2/activesupport/lib/active_support/inflector/methods.rb#L92
   def underscore(camel_cased_word)
     return camel_cased_word unless /[A-Z-]/.match?(camel_cased_word)
+
     word = camel_cased_word.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
     word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
     word.tr!("-", "_")
@@ -237,7 +239,7 @@ class Perl < Codegen
         "''"
       end
     elsif property['type'] == 'boolean'
-      "''"  # an empty string renders evaluates to false
+      "''" # an empty string renders evaluates to false
     elsif property['$ref']
       type = type_for(parent_type_name, nil, property)
       "#{type}->new()"
