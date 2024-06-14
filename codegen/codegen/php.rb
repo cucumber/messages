@@ -43,7 +43,7 @@ module Codegen
     end
 
     def is_scalar(property)
-      property.has_key?('type') && @language_type_by_schema_type.has_key?(property['type'])
+      property.key?('type') && @language_type_by_schema_type.key?(property['type'])
     end
 
     def scalar_type_for(property)
