@@ -65,9 +65,9 @@ class Codegen
         "''"
       end
     elsif property['type'] == 'integer'
-      "0"
+      '0'
     elsif property['type'] == 'boolean'
-      "false"
+      'false'
     elsif property['$ref']
       type = type_for(parent_type_name, nil, property)
       "new #{type}()"
@@ -140,7 +140,7 @@ class Codegen
 
     word = camel_cased_word.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
     word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-    word.tr!("-", "_")
+    word.tr!('-', '_')
     word.downcase!
     word
   end
@@ -177,7 +177,7 @@ class Cpp < Codegen
     "std::vector<#{type_name}>"
   end
 
-  def format_description(raw_description, indent_string: "")
+  def format_description(raw_description, indent_string: '')
     return '' if raw_description.nil?
 
     raw_description
@@ -204,7 +204,7 @@ class Java < Codegen
     "java.util.List<#{type_name}>"
   end
 
-  def format_description(raw_description, indent_string: "")
+  def format_description(raw_description, indent_string: '')
     return '' if raw_description.nil?
 
     raw_description
@@ -278,7 +278,7 @@ class Ruby < Codegen
   end
 
   def array_type_for(type_name)
-    "[]"
+    '[]'
   end
 
   def default_value(parent_type_name, property_name, property)
@@ -297,7 +297,7 @@ class Ruby < Codegen
     end
   end
 
-  def format_description(raw_description, indent_string: "    ")
+  def format_description(raw_description, indent_string: '    ')
     return '##' if raw_description.nil?
 
     raw_description
@@ -370,7 +370,7 @@ class Php < Codegen
     super(paths, language_type_by_schema_type)
   end
 
-  def format_description(raw_description, indent_string: "        ")
+  def format_description(raw_description, indent_string: '        ')
     return '' if raw_description.nil?
 
     raw_description
@@ -382,7 +382,7 @@ class Php < Codegen
   end
 
   def array_type_for(type_name)
-    "array"
+    'array'
   end
 
   def enum_name(parent_type_name, property_name, enum)
@@ -426,7 +426,7 @@ class Php < Codegen
     else
       type = type_for(parent_type, property_name, property)
       if type == 'array'
-        constructor = non_nullable_constructor_for(parent_type, property['items'], nil, schema, "member")
+        constructor = non_nullable_constructor_for(parent_type, property['items'], nil, schema, 'member')
         member_type = (property['items']['type'] ? 'mixed' : 'array')
         "array_values(array_map(fn (#{member_type} $member) => #{constructor}, $#{source}))"
       else
