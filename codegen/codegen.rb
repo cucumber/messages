@@ -184,9 +184,9 @@ class Cpp < Codegen
 
     raw_description
       .split("\n")
-      .map { |line| line.strip() }
+      .map { |line| line.strip }
       .filter { |line| line != '*' }
-      .map { |line| "// #{line}".rstrip() }
+      .map { |line| "// #{line}".rstrip }
       .join("\n#{indent_string}")
   end
 end
@@ -211,9 +211,9 @@ class Java < Codegen
 
     raw_description
       .split("\n")
-      .map { |line| line.strip() }
+      .map { |line| line.strip }
       .filter { |line| line != '*' }
-      .map { |line| " * #{line}".rstrip() }
+      .map { |line| " * #{line}".rstrip }
       .join("\n#{indent_string}")
   end
 end
@@ -377,9 +377,9 @@ class Php < Codegen
 
     raw_description
       .split("\n")
-      .map { |line| line.strip() }
+      .map { |line| line.strip }
       .filter { |line| line != '*' }
-      .map { |line| " * #{line}".rstrip() }
+      .map { |line| " * #{line}".rstrip }
       .join("\n#{indent_string}")
   end
 
