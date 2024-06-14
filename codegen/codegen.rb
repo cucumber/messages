@@ -262,9 +262,6 @@ class Perl < Codegen
     return '' if raw_description.nil?
 
     raw_description
-      .split("\n")
-      .map { |description_line| "#{description_line}" }
-      .join("\n")
   end
 end
 
