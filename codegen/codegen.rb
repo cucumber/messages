@@ -434,11 +434,11 @@ class Php < Codegen
   end
 
   def default_value(class_name, property_name, property, schema)
-	if is_nullable(property_name, schema)
-	  return 'null'
-	end
+    if is_nullable(property_name, schema)
+      return 'null'
+    end
 
-	super(class_name, property_name, property)
+    super(class_name, property_name, property)
   end
 
   def default_enum(enum_type_name, property)
