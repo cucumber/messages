@@ -23,21 +23,18 @@ module Codegen
     def generate(template_name)
       template_source = File.read("#{TEMPLATES_DIRECTORY}/#{template_name}")
       template = ERB.new(template_source, trim_mode: '-')
-      $stdout.write template.result(binding)
+      $stdout.write(template.result(binding))
     end
 
     private
 
     def add_all_schemas
       @paths.each do |path|
-        expanded_path = File.expand_path(path)
-        begin
-          schema = JSON.parse(File.read(path))
-          add_individual_schema(expanded_path, schema)
-        rescue JSON::ParserError => e
-          e.message << "\npath: #{path}"
-          raise e
-        end
+        schema = JSON.parse(File.read(path))
+        add_individual_schema(File.expand_path(path), schema)
+      rescue JSON::ParserError => e
+        e.message << "\npath: #{path}"
+        raise e
       end
     end
 
@@ -72,8 +69,7 @@ module Codegen
       elsif %w[string integer boolean].include?(property['type'])
         default_value_for_non_objects(parent_type_name, property_name, property)
       elsif property['$ref']
-        type = type_for(parent_type_name, nil, property)
-        "new #{type}()"
+        "new #{type_for(parent_type_name, nil, property)}()"
       else
         raise "Cannot create default value for #{parent_type_name}##{property.to_json}"
       end
@@ -126,28 +122,24 @@ module Codegen
     end
 
     def type_for(parent_type_name, property_name, property)
-      type = property['type']
-
       if property['$ref']
         property_type_from_ref(property['$ref'])
-      elsif type
-        property_type_from_type(parent_type_name, property_name, property, type: type)
+      elsif property['type']
+        property_type_from_type(parent_type_name, property_name, property, type: property['type'])
       else
         # Inline schema (not supported)
-        raise "Property #{name} did not define 'type' or '$ref'"
+        raise "Property #{property_name} did not define 'type' or '$ref'"
       end
     end
 
-    # Thank you very much rails!
-    # https://github.com/rails/rails/blob/v6.1.3.2/activesupport/lib/active_support/inflector/methods.rb#L92
+    # Adapted from rails -> https://github.com/rails/rails/blob/v6.1.3.2/activesupport/lib/active_support/inflector/methods.rb#L92
     def underscore(camel_cased_word)
       return camel_cased_word unless /[A-Z-]/.match?(camel_cased_word)
 
-      word = camel_cased_word.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
-      word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-      word.tr!('-', '_')
-      word.downcase!
-      word
+      camel_cased_word.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+                      .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+                      .tr('-', '_')
+                      .downcase
     end
   end
 end
