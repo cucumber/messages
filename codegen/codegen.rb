@@ -49,11 +49,6 @@ class Codegen
     end
   end
 
-  def native_type?(type_name)
-    STDERR.puts "NATIVE #{type_name}"
-    @language_type_by_schema_type.values.include?(type_name)
-  end
-
   def default_value(parent_type_name, property_name, property)
     if property['items']
       '[]'
