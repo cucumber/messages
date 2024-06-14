@@ -67,7 +67,7 @@ class Codegen
       raise "Cannot create default value for #{parent_type_name}##{property.to_json}"
     end
   end
-  
+
   def default_value_for_non_objects(parent_type_name, property_name, property)
     case property['type']
     when 'string'
@@ -197,7 +197,7 @@ class Cpp < Codegen
 
     raw_description
       .split("\n")
-      .map { |line| line.strip }
+      .map(&:strip)
       .filter { |line| line != '*' }
       .map { |line| "// #{line}".rstrip }
       .join("\n#{indent_string}")
@@ -226,7 +226,7 @@ class Java < Codegen
 
     raw_description
       .split("\n")
-      .map { |line| line.strip }
+      .map(&:strip)
       .filter { |line| line != '*' }
       .map { |line| " * #{line}".rstrip }
       .join("\n#{indent_string}")
@@ -402,7 +402,7 @@ class Php < Codegen
 
     raw_description
       .split("\n")
-      .map { |line| line.strip }
+      .map(&:strip)
       .filter { |line| line != '*' }
       .map { |line| " * #{line}".rstrip }
       .join("\n#{indent_string}")
