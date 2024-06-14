@@ -8,7 +8,7 @@ module Codegen
   # CodeGen::Base
   # Automatic Code generation base class for generating cucumber messages
   class Base
-    TEMPLATES_DIRECTORY = "#{File.dirname(__FILE__)}/templates/".freeze
+    TEMPLATES_DIRECTORY = "#{File.dirname(__FILE__)}/../templates".freeze
 
     def initialize(paths, language_type_by_schema_type)
       @paths = paths
