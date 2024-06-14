@@ -13,21 +13,9 @@ module Codegen
     def initialize(paths, language_type_by_schema_type)
       @paths = paths
       @language_type_by_schema_type = language_type_by_schema_type
-
       @schemas = {}
       @enum_set = Set.new
-
-      @paths.each do |path|
-        expanded_path = File.expand_path(path)
-        begin
-          schema = JSON.parse(File.read(path))
-          add_schema(expanded_path, schema)
-        rescue JSON::ParserError => e
-          e.message << "\npath: #{path}"
-          raise e
-        end
-      end
-
+      add_all_schemas
       @schemas = @schemas.sort
       @enums = @enum_set.to_a.sort_by { |a| a[:name] }
     end
@@ -40,11 +28,24 @@ module Codegen
 
     private
 
-    def add_schema(key, schema)
+    def add_all_schemas
+      @paths.each do |path|
+        expanded_path = File.expand_path(path)
+        begin
+          schema = JSON.parse(File.read(path))
+          add_individual_schema(expanded_path, schema)
+        rescue JSON::ParserError => e
+          e.message << "\npath: #{path}"
+          raise e
+        end
+      end
+    end
+
+    def add_individual_schema(key, schema)
       @schemas[key] = schema
       (schema['definitions'] || {}).each do |name, subschema|
         subkey = "#{key}/#{name}"
-        add_schema(subkey, subschema)
+        add_individual_schema(subkey, subschema)
       end
 
       schema['properties'].each do |property_name, property|
