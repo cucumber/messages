@@ -3,7 +3,7 @@ require 'erb'
 require 'set'
 
 class Codegen
-  TEMPLATES_DIRECTORY = "#{File.dirname(__FILE__)}/templates/"
+  TEMPLATES_DIRECTORY = "#{File.dirname(__FILE__)}/templates/".freeze
 
   def initialize(paths, language_type_by_schema_type)
     @paths = paths
