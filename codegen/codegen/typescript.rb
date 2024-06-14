@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Codegen
-  # CodeGen::Typescript
+  # CodeGen::TypeScript
   # Automatic Code generation overrides for TypeScript programming language
   class TypeScript < Base
     def initialize(paths)

@@ -14,4 +14,4 @@ clean: ## Remove automatically generated files and related artifacts
 	rm -f lib/Cucumber/Messages.pm
 
 lib/Cucumber/Messages.pm: $(schemas) ../codegen/codegen.rb ../codegen/templates/perl.pm.erb
-	ruby ../codegen/codegen.rb Perl ../jsonschema perl.pm.erb > $@
+	ruby ../codegen/codegen.rb Codegen::Perl ../jsonschema perl.pm.erb > $@

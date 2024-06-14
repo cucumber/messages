@@ -16,8 +16,8 @@ clean: ## Remove automatically generated files and related artifacts
 	find ./lib/cucumber/messages/*.rb ! -name 'message.rb' -type f -exec rm -f {} +
 
 .generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/ruby.rb.erb ../codegen/templates/ruby.enum.rb.erb
-	ruby ../codegen/codegen.rb Ruby ../jsonschema ruby.rb.erb > Generated.rb.tmp
-	ruby ../codegen/codegen.rb Ruby ../jsonschema ruby.enum.rb.erb >> Generated.rb.tmp
+	ruby ../codegen/codegen.rb Codegen::Ruby ../jsonschema ruby.rb.erb > Generated.rb.tmp
+	ruby ../codegen/codegen.rb Codegen::Ruby ../jsonschema ruby.enum.rb.erb >> Generated.rb.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.rb.tmp --elide-empty-files Generated.rb.tmp /^[A-Za-z_.]*[.]rb/ {*}
 	rm Generated.rb.tmp
 	for file in Generated**; do tail -n +2 $$file > ./lib/cucumber/messages/$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done

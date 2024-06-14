@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
-require 'json'
-require 'erb'
-require 'set'
+require_relative 'codegen/base'
+
+require_relative 'codegen/cpp'
+require_relative 'codegen/go'
+require_relative 'codegen/java'
+require_relative 'codegen/markdown'
+require_relative 'codegen/perl'
+require_relative 'codegen/php'
+require_relative 'codegen/ruby'
+require_relative 'codegen/typescript'
 
 clazz = Object.const_get(ARGV[0])
 path = ARGV[1]
