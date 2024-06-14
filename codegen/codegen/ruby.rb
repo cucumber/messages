@@ -32,17 +32,20 @@ module Codegen
 
     def default_value(parent_type_name, property_name, property)
       if property['type'] == 'string'
-        if property['enum']
-          enum_type_name = type_for(parent_type_name, property_name, property)
-          "#{enum_type_name}::#{enum_constant(property['enum'][0])}"
-        else
-          "''"
-        end
+        default_value_for_string(parent_type_name, property_name, property)
       elsif property['$ref']
-        type = type_for(parent_type_name, nil, property)
-        "#{type}.new"
+        "#{type_for(parent_type_name, nil, property)}.new"
       else
         super(parent_type_name, property_name, property)
+      end
+    end
+
+    def default_value_for_string(parent_type_name, property_name, property)
+      if property['enum']
+        enum_type_name = type_for(parent_type_name, property_name, property)
+        "#{enum_type_name}::#{enum_constant(property['enum'][0])}"
+      else
+        "''"
       end
     end
 
