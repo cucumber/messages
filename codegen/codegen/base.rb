@@ -56,6 +56,18 @@ module Codegen
       end
     end
 
+    def capitalize(string)
+      string.sub(/./, &:upcase)
+    end
+
+    def class_name(ref)
+      File.basename(ref, '.json')
+    end
+
+    def default_enum(enum_type_name, property)
+      "#{enum_type_name}.#{enum_constant(property['enum'][0])}"
+    end
+
     def default_value(parent_type_name, property_name, property)
       if property['items']
         '[]'
@@ -83,25 +95,18 @@ module Codegen
       end
     end
 
-    def default_enum(enum_type_name, property)
-      "#{enum_type_name}.#{enum_constant(property['enum'][0])}"
-    end
-
     def enum_constant(value)
       value.gsub(/[.\/+]/, '_').upcase
     end
 
-    def type_for(parent_type_name, property_name, property)
-      type = property['type']
+    def enum_name(parent_type_name, property_name, enum)
+      enum_type_name = "#{parent_type_name}#{capitalize(property_name)}"
+      @enum_set.add({ name: enum_type_name, values: enum })
+      enum_type_name
+    end
 
-      if property['$ref']
-        property_type_from_ref(property['$ref'])
-      elsif type
-        property_type_from_type(parent_type_name, property_name, property)
-      else
-        # Inline schema (not supported)
-        raise "Property #{name} did not define 'type' or '$ref'"
-      end
+    def property_type_from_enum(enum)
+      enum
     end
 
     def property_type_from_ref(ref)
@@ -127,22 +132,17 @@ module Codegen
       end
     end
 
-    def property_type_from_enum(enum)
-      enum
-    end
+    def type_for(parent_type_name, property_name, property)
+      type = property['type']
 
-    def enum_name(parent_type_name, property_name, enum)
-      enum_type_name = "#{parent_type_name}#{capitalize(property_name)}"
-      @enum_set.add({ name: enum_type_name, values: enum })
-      enum_type_name
-    end
-
-    def class_name(ref)
-      File.basename(ref, '.json')
-    end
-
-    def capitalize(string)
-      string.sub(/./, &:upcase)
+      if property['$ref']
+        property_type_from_ref(property['$ref'])
+      elsif type
+        property_type_from_type(parent_type_name, property_name, property)
+      else
+        # Inline schema (not supported)
+        raise "Property #{name} did not define 'type' or '$ref'"
+      end
     end
 
     # Thank you very much rails!
