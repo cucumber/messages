@@ -17,7 +17,7 @@ clean: ## Remove automatically generated files and related artifacts
 	rm -rf build/Generated*.php.tmp
 	rm -rf src-generated/*
 
-build/messages.php: $(schemas) ../codegen/codegen.rb ../jsonschema/scripts/templates/php.php.erb ../jsonschema/scripts/templates/php.enum.php.erb
+build/messages.php: $(schemas) ../codegen/codegen.rb ../codegen/templates/php.php.erb ../codegen/templates/php.enum.php.erb
 	mkdir -p build
 	ruby ../codegen/codegen.rb Php ../jsonschema php.php.erb > build/messages.php
 	ruby ../codegen/codegen.rb Php ../jsonschema php.enum.php.erb >> build/messages.php

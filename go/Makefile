@@ -14,7 +14,7 @@ require: ## Check requirements for the code generation (ruby and go are required
 clean: ## Remove automatically generated files and related artifacts
 	rm -f messages.go
 
-messages.go: $(schemas) ../codegen/codegen.rb ../jsonschema/scripts/templates/go.go.erb ../jsonschema/scripts/templates/go.enum.go.erb
+messages.go: $(schemas) ../codegen/codegen.rb ../codegen/templates/go.go.erb ../codegen/templates/go.enum.go.erb
 	ruby ../codegen/codegen.rb Go ../jsonschema go.go.erb > $@
 	ruby ../codegen/codegen.rb Go ../jsonschema go.enum.go.erb >> $@
 	go fmt messages.go

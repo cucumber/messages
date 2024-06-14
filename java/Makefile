@@ -15,7 +15,7 @@ require: ## Check requirements for the code generation (ruby, csplit and tail ar
 clean: ## Remove automatically generated files and related artifacts
 	rm -rf src/generated/java/io/cucumber/messages/types
 
-.generate-messages: $(schemas) ../codegen/codegen.rb ../jsonschema/scripts/templates/java.java.erb ../jsonschema/scripts/templates/java.enum.java.erb
+.generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/java.java.erb ../codegen/templates/java.enum.java.erb
 	ruby ../codegen/codegen.rb Java ../jsonschema java.java.erb > Generated.java.tmp
 	ruby ../codegen/codegen.rb Java ../jsonschema java.enum.java.erb >> Generated.java.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.java.tmp --elide-empty-files Generated.java.tmp /^[A-Za-z.]*[.]java/ {*}

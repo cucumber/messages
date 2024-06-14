@@ -26,7 +26,7 @@ require: ## Check requirements for the code generation (ruby, csplit and tail ar
 clean: ## Remove automatically generated files and related artifacts
 	rm -rf build .configured
 
-.generate-messages: $(schemas) ../codegen/codegen.rb ../jsonschema/scripts/templates/cpp.hpp.erb ../jsonschema/scripts/templates/cpp.enum.hpp.erb
+.generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/cpp.hpp.erb ../codegen/templates/cpp.enum.hpp.erb
 	ruby ../codegen/codegen.rb Cpp ../jsonschema cpp.hpp.erb > Generated.hpp.tmp
 	ruby ../codegen/codegen.rb Cpp ../jsonschema cpp.enum.hpp.erb >> Generated.hpp.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.hpp.tmp --elide-empty-files Generated.hpp.tmp /^[A-Za-z_.]*[.][ch]pp/ {*}
