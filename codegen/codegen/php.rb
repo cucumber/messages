@@ -38,11 +38,11 @@ module Codegen
       type_for(parent_type_name, nil, property['items'])
     end
 
-    def is_nullable(property_name, schema)
+    def nullable?(property_name, schema)
       !(schema['required'] || []).index(property_name)
     end
 
-    def is_scalar(property)
+    def scalar?(property)
       property.key?('type') && @language_type_by_schema_type.key?(property['type'])
     end
 
@@ -57,12 +57,12 @@ module Codegen
     def constructor_for(parent_type, property, property_name, schema, arr_name)
       constr = non_nullable_constructor_for(parent_type, property, property_name, schema, arr_name)
 
-      is_nullable(property_name, schema) ? "isset($#{arr_name}['#{property_name}']) ? #{constr} : null" : constr
+      nullable?(property_name, schema) ? "isset($#{arr_name}['#{property_name}']) ? #{constr} : null" : constr
     end
 
     def non_nullable_constructor_for(parent_type, property, property_name, schema, arr_name)
       source = property_name.nil? ? arr_name : "#{arr_name}['#{property_name}']"
-      if is_scalar(property)
+      if scalar?(property)
         non_nullable_scalar_constructor(parent_type, property, property_name, source)
       else
         non_nullable_nonscalar_constructor(parent_type, property, property_name, schema, source)
@@ -76,7 +76,7 @@ module Codegen
     private
 
     def default_value(class_name, property_name, property, schema)
-      return 'null' if is_nullable(property_name, schema)
+      return 'null' if nullable?(property_name, schema)
 
       super(class_name, property_name, property)
     end
