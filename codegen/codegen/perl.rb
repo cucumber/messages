@@ -18,18 +18,18 @@ module Codegen
       "[]#{type_name}"
     end
 
-    def property_type_from_ref(ref)
-      "Cucumber::Messages::#{class_name(ref)}"
+    def format_description(raw_description)
+      return '' if raw_description.nil?
+
+      raw_description
     end
 
     def property_type_from_enum(_enum)
       ''
     end
 
-    def format_description(raw_description)
-      return '' if raw_description.nil?
-
-      raw_description
+    def property_type_from_ref(ref)
+      "Cucumber::Messages::#{class_name(ref)}"
     end
 
     private

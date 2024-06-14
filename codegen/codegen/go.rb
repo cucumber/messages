@@ -13,12 +13,12 @@ module Codegen
       super(paths, language_type_by_schema_type)
     end
 
-    def property_type_from_ref(ref)
-      "*#{class_name(ref)}"
-    end
-
     def array_type_for(type_name)
       "[]#{type_name}"
+    end
+
+    def property_type_from_ref(ref)
+      "*#{class_name(ref)}"
     end
   end
 end
