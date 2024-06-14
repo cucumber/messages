@@ -58,7 +58,19 @@ class Codegen
   def default_value(parent_type_name, property_name, property)
     if property['items']
       '[]'
-    elsif property['type'] == 'string'
+    elsif property.key?('type')
+      default_value_by_type(parent_type_name, property_name, property)
+    elsif property['$ref']
+      type = type_for(parent_type_name, nil, property)
+      "new #{type}()"
+    else
+      raise "Cannot create default value for #{parent_type_name}##{property.to_json}"
+    end
+  end
+
+  # NB: This isn't 100% a direct replacement. This assumes property type (if present), is always string/integer/boolean
+  def default_value_by_type(parent_type_name, property_name, property)
+    if property['type'] == 'string'
       if property['enum']
         enum_type_name = type_for(parent_type_name, property_name, property)
         default_enum(enum_type_name, property)
@@ -69,11 +81,6 @@ class Codegen
       '0'
     elsif property['type'] == 'boolean'
       'false'
-    elsif property['$ref']
-      type = type_for(parent_type_name, nil, property)
-      "new #{type}()"
-    else
-      raise "Cannot create default value for #{parent_type_name}##{property.to_json}"
     end
   end
 
