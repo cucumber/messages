@@ -15,6 +15,6 @@ clean: ## Remove automatically generated files and related artifacts
 	rm -f messages.go
 
 messages.go: $(schemas) ../codegen/codegen.rb ../codegen/templates/go.go.erb ../codegen/templates/go.enum.go.erb
-	ruby ../codegen/codegen.rb Generator::Go ../jsonschema go.go.erb > $@
-	ruby ../codegen/codegen.rb Generator::Go ../jsonschema go.enum.go.erb >> $@
+	ruby ../codegen/codegen.rb Generator::Go go.go.erb > $@
+	ruby ../codegen/codegen.rb Generator::Go go.enum.go.erb >> $@
 	go fmt messages.go

@@ -54,8 +54,8 @@ clean-all: clean-doc $(patsubst %,clean-%,$(languages)) ## Clean generated docum
 .PHONY: clean-all
 
 messages.md: $(schemas) ./codegen/codegen.rb ./codegen/templates/markdown.md.erb ./codegen/templates/markdown.enum.md.erb
-	ruby ./codegen/codegen.rb Generator::Markdown ./jsonschema markdown.md.erb > $@
-	ruby ./codegen/codegen.rb Generator::Markdown ./jsonschema markdown.enum.md.erb >> $@
+	ruby ./codegen/codegen.rb Generator::Markdown markdown.md.erb > $@
+	ruby ./codegen/codegen.rb Generator::Markdown markdown.enum.md.erb >> $@
 
 generate-%: %
 	cd $< && make generate
