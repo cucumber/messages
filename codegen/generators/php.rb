@@ -10,7 +10,7 @@ module Generator
         'integer' => 'int',
         'boolean' => 'bool'
       }
-      super(paths, language_type_by_schema_type)
+      super(language_type_by_schema_type, paths: paths)
     end
 
     def array_contents_type(parent_type_name, _property_name, property)

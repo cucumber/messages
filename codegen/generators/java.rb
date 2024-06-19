@@ -10,8 +10,7 @@ module Generator
         'string' => 'String',
         'boolean' => 'Boolean'
       }
-
-      super(paths, language_type_by_schema_type)
+      super(language_type_by_schema_type, paths: paths)
     end
 
     def array_type_for(type_name)
