@@ -11,6 +11,7 @@ module Generator
         'string' => 'string',
         'boolean' => 'boolean'
       }
+      # This path is different because the make task is ran from the TLD, not a language specific one
       super(language_type_by_schema_type, paths: Dir['./jsonschema/*.json'])
     end
 
