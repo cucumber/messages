@@ -99,5 +99,13 @@ module Generator
         "(#{scalar_type_for(property)}) $#{source}"
       end
     end
+
+    def language_translations_for_data_types
+      {
+        'string' => 'string',
+        'integer' => 'int',
+        'boolean' => 'bool'
+      }
+    end
   end
 end

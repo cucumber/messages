@@ -53,5 +53,13 @@ module Generator
         "''" # an empty string rendering will evaluate to false - this won't
       end
     end
+
+    def language_translations_for_data_types
+      {
+        'integer' => 'number',
+        'string' => 'string',
+        'boolean' => 'boolean'
+      }
+    end
   end
 end

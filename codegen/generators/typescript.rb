@@ -16,5 +16,15 @@ module Generator
     def array_type_for(type_name)
       "readonly #{type_name}[]"
     end
+
+    private
+
+    def language_translations_for_data_types
+      {
+        'integer' => 'number',
+        'string' => 'string',
+        'boolean' => 'boolean'
+      }
+    end
   end
 end

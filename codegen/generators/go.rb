@@ -20,5 +20,15 @@ module Generator
     def property_type_from_ref(ref)
       "*#{class_name(ref)}"
     end
+
+    private
+
+    def language_translations_for_data_types
+      {
+        'integer' => 'int64',
+        'string' => 'string',
+        'boolean' => 'bool'
+      }
+    end
   end
 end

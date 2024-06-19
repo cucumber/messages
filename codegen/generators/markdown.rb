@@ -26,5 +26,15 @@ module Generator
     def property_type_from_ref(ref)
       "[#{class_name(ref)}](##{class_name(ref).downcase})"
     end
+
+    private
+
+    def language_translations_for_data_types
+      {
+        'integer' => 'integer',
+        'string' => 'string',
+        'boolean' => 'boolean'
+      }
+    end
   end
 end

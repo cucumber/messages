@@ -55,5 +55,13 @@ module Generator
         "# #{line}"
       end
     end
+
+    def language_translations_for_data_types
+      {
+        'integer' => 'number',
+        'string' => 'string',
+        'boolean' => 'boolean'
+      }
+    end
   end
 end

@@ -27,5 +27,15 @@ module Generator
         .map { |line| "// #{line}".rstrip }
         .join("\n#{indent_string}")
     end
+
+    private
+
+    def language_translations_for_data_types
+      {
+        'integer' => 'std::size_t',
+        'string' => 'std::string',
+        'boolean' => 'bool'
+      }
+    end
   end
 end

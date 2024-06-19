@@ -110,14 +110,14 @@ module Generator
     def property_type_from_type(parent_type_name, property_name, property, type:)
       return array_type_for(type_for(parent_type_name, nil, property['items'])) if type == 'array'
 
-      unless @language_type_by_schema_type[type]
+      unless language_translations_for_data_types.key?(type)
         raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}"
       end
 
       if property['enum']
         property_type_from_enum(enum_name(parent_type_name, property_name, property['enum']))
       else
-        @language_type_by_schema_type[type]
+        language_translations_for_data_types.fetch(type)
       end
     end
 

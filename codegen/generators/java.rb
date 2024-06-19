@@ -27,5 +27,15 @@ module Generator
         .map { |line| " * #{line}".rstrip }
         .join("\n#{indent_string}")
     end
+
+    private
+
+    def language_translations_for_data_types
+      {
+        'integer' => 'Long',
+        'string' => 'String',
+        'boolean' => 'Boolean'
+      }
+    end
   end
 end
