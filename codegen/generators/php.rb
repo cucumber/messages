@@ -4,7 +4,7 @@ module Generator
   # Generator::Php
   # Automatic Code generation overrides for Php programming language
   class Php < Base
-    def initialize(paths)
+    def initialize
       language_type_by_schema_type = {
         'string' => 'string',
         'integer' => 'int',

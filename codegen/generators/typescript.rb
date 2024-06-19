@@ -4,7 +4,7 @@ module Generator
   # Generator::TypeScript
   # Automatic Code generation overrides for TypeScript programming language
   class TypeScript < Base
-    def initialize(paths)
+    def initialize
       language_type_by_schema_type = {
         'integer' => 'number',
         'string' => 'string',

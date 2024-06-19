@@ -4,7 +4,7 @@ module Generator
   # Generator::Perl
   # Automatic Code generation overrides for Perl programming language
   class Perl < Base
-    def initialize(paths)
+    def initialize
       language_type_by_schema_type = {
         'integer' => 'number',
         'string' => 'string',

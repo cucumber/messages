@@ -13,6 +13,4 @@ require_relative 'generators/typescript'
 
 clazz = Object.const_get(ARGV[0])
 template_name = ARGV[1]
-jsonschema_directory = Dir['../jsonschema/*.json'] # Markdown will be one dot not two, needs fixing
-generator = clazz.new(jsonschema_directory)
-generator.generate(template_name)
+clazz.new.generate(template_name)

@@ -4,7 +4,7 @@ module Generator
   # Generator::Typescript
   # Automatic Code generation overrides for Java programming language
   class Java < Base
-    def initialize(paths)
+    def initialize
       language_type_by_schema_type = {
         'integer' => 'Long',
         'string' => 'String',

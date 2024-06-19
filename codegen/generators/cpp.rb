@@ -4,7 +4,7 @@ module Generator
   # Generator::Typescript
   # Automatic Code generation overrides for C++ programming language
   class Cpp < Base
-    def initialize(paths)
+    def initialize
       language_type_by_schema_type = {
         'integer' => 'std::size_t',
         'string' => 'std::string',

@@ -5,7 +5,7 @@ module Generator
   # Automatic Code generation overrides for 'Cucumber with Markdown' programming language
   # NB: This is based on the cucumber-js implementation
   class Markdown < Base
-    def initialize(paths)
+    def initialize
       language_type_by_schema_type = {
         'integer' => 'integer',
         'string' => 'string',

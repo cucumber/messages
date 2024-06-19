@@ -4,7 +4,7 @@ module Generator
   # Generator::Go
   # Automatic Code generation overrides for Go programming language
   class Go < Base
-    def initialize(paths)
+    def initialize
       language_type_by_schema_type = {
         'integer' => 'int64',
         'string' => 'string',
