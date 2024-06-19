@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Codegen
-  # Codegen::Perl
+module Generator
+  # Generator::Perl
   # Automatic Code generation overrides for Perl programming language
   class Perl < Base
     def initialize(paths)

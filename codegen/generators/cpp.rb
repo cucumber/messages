@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Codegen
-  # CodeGen::Typescript
+module Generator
+  # Generator::Typescript
   # Automatic Code generation overrides for C++ programming language
   class Cpp < Base
     def initialize(paths)

@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'codegen/base'
+require_relative 'generators/base'
 
-require_relative 'codegen/cpp'
-require_relative 'codegen/go'
-require_relative 'codegen/java'
-require_relative 'codegen/markdown'
-require_relative 'codegen/perl'
-require_relative 'codegen/php'
-require_relative 'codegen/ruby'
-require_relative 'codegen/typescript'
+require_relative 'generators/cpp'
+require_relative 'generators/go'
+require_relative 'generators/java'
+require_relative 'generators/markdown'
+require_relative 'generators/perl'
+require_relative 'generators/php'
+require_relative 'generators/ruby'
+require_relative 'generators/typescript'
 
 clazz = Object.const_get(ARGV[0])
 path = ARGV[1]

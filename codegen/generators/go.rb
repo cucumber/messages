@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Codegen
-  # CodeGen::Go
+module Generator
+  # Generator::Go
   # Automatic Code generation overrides for Go programming language
   class Go < Base
     def initialize(paths)

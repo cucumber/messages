@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Codegen
-  # Codegen::Ruby
+module Generator
+  # Generator::Ruby
   # Automatic Code generation overrides for Ruby programming language
   class Ruby < Base
     def initialize(paths)

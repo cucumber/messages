@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Codegen
-  # CodeGen::Typescript
+module Generator
+  # Generator::Typescript
   # Automatic Code generation overrides for Java programming language
   class Java < Base
     def initialize(paths)

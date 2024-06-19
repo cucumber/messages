@@ -4,8 +4,8 @@ require 'json'
 require 'erb'
 require 'set'
 
-module Codegen
-  # CodeGen::Base
+module Generator
+  # Generator::Base
   # Automatic Code generation base class for generating cucumber messages
   class Base
     TEMPLATES_DIRECTORY = "#{File.dirname(__FILE__)}/../templates".freeze

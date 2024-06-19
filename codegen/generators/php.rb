@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Codegen
-  # Codegen::Php
+module Generator
+  # Generator::Php
   # Automatic Code generation overrides for Php programming language
   class Php < Base
     def initialize(paths)

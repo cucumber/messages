@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Codegen
-  # Codegen::Markdown
+module Generator
+  # Generator::Markdown
   # Automatic Code generation overrides for 'Cucumber with Markdown' programming language
   # NB: This is based on the cucumber-js implementation
   class Markdown < Base
