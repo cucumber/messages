@@ -12,8 +12,8 @@ require_relative 'generators/ruby'
 require_relative 'generators/typescript'
 
 clazz = Object.const_get(ARGV[0])
-path = ARGV[1]
+directory = ARGV[1]
 template_name = ARGV[2]
-paths = File.file?(path) ? [path] : Dir["#{path}/*.json"]
+paths = Dir["#{directory}/*.json"]
 generator = clazz.new(paths)
 generator.generate(template_name)
