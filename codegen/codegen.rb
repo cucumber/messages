@@ -12,7 +12,7 @@ require_relative 'generators/ruby'
 require_relative 'generators/typescript'
 
 clazz = Object.const_get(ARGV[0])
-directory = ARGV[1]
+directory = ARGV[1] # Always '../jsonschema'
 template_name = ARGV[2]
 paths = Dir["#{directory}/*.json"]
 generator = clazz.new(paths)
