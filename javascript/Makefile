@@ -14,5 +14,5 @@ clean: ## Remove automatically generated files and related artifacts
 	rm -f src/messages.ts
 
 src/messages.ts: $(schemas) ../codegen/codegen.rb ../codegen/templates/typescript.ts.erb ../codegen/templates/typescript.enum.ts.erb
-	ruby ../codegen/codegen.rb Codegen::TypeScript ../jsonschema typescript.ts.erb > $@
-	ruby ../codegen/codegen.rb Codegen::TypeScript ../jsonschema typescript.enum.ts.erb >> $@
+	ruby ../codegen/codegen.rb Generator::TypeScript ../jsonschema typescript.ts.erb > $@
+	ruby ../codegen/codegen.rb Generator::TypeScript ../jsonschema typescript.enum.ts.erb >> $@
