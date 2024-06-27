@@ -19,7 +19,7 @@
     <PackageId>Cucumber.Messages</PackageId>
     <Authors>Cucumber Ltd, TechTalk</Authors>
     <Copyright>Copyright &#xA9; Cucumber Ltd, TechTalk</Copyright>
-    <Description>Protocol Buffer messages for Cucumber's and SpecFlow's inter-process communication</Description>
+    <Description>Cucumber messages for Cucumber's and SpecFlow's inter-process communication</Description>
     <PackageTags>cucumber-messages cucumber specflow gherkin</PackageTags>
     <PackageProjectUrl>https://github.com/cucumber/messages</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cucumber/messages</RepositoryUrl>
@@ -32,20 +32,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.27.2"/>
-    <PackageReference Include="Grpc.Tools" Version="2.64.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Messages.cs"/>
+    <Compile />
     <Protobuf Include="../messages.proto" OutputDir="$(MsBuildThisFileDirectory)" GrpcServices="None"/>
   </ItemGroup>
 

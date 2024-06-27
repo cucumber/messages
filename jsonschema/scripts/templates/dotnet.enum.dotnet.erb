@@ -1,0 +1,14 @@
+<% @enums.each do |enum| -%>
+<%= enum[:name] %>.cs
+using System;
+
+namespace io.cucumber.messages.types;
+
+// Generated code
+public enum <%= enum[:name] %> {
+<% enum[:values].each_with_index do |value, index| -%>
+
+    <%= enum_constant(value) %>("<%= value %>")<%= index < enum[:values].length-1 ? ',' : ';' %>
+<% end -%>
+}
+<% end -%>

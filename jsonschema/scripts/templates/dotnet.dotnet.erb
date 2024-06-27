@@ -1,0 +1,87 @@
+<%- @schemas.each do |key, schema| -%>
+<%= class_name(key) -%>.cs
+using System;
+using System.Collections.Generic;
+
+namespace io.cucumber.messages.types;
+
+/**
+ * Represents the <%= class_name(key) %> message in Cucumber's message protocol
+ * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ <%- if not (schema['description'] || []).empty? -%>
+ *
+<%= format_description(schema['description'], indent_string: '') %>
+<%- end -%>
+ */
+// Generated code
+public sealed class <%= class_name(key) %> {
+  <%- schema['properties'].each do |property_name, property| 
+    required = (schema['required'] || []).index(property_name)
+  -%>
+    <%- if not (property['description'] || []).empty? -%>
+    /**
+    <%= format_description(property['description'], indent_string: '    ') %>
+     */
+    <%- end -%>
+    public <%= type_for(class_name(key), property_name, property) -%><%- if not required -%>?<%- end -%> <%= capitalize(property_name) %> { get; private set; };
+  <%- end -%>
+  <%- if (schema['required'] || []).empty? -%>
+  <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+
+    public static <%= class_name(key) %> Create(<%= type_for(class_name(key), property_name, property) -%> <%= property_name %>) {
+        return new <%= class_name(key) %>(
+        <%- schema['properties'].each_with_index do |(property_name_2, property_2), index_2| -%>
+          <%- if property_name_2 == property_name -%>
+            <%= property_name %><%= index_2 < schema['properties'].length-1 ? ',' : '' %>
+          <%- else -%>
+            null<%= index_2 < schema['properties'].length-1 ? ',' : '' %>
+          <%- end -%>
+        <%- end -%>
+        );
+    }
+  <%- end -%>
+  <%- end -%>
+
+    public <%= class_name(key) %>(
+    <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+        <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
+    <%- end -%>
+    ) 
+    {
+      <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+        this.<%= capitalize(property_name) %> = <%= property_name %>;
+      <%- end -%>
+    }
+
+    public override boolean Equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.GetType() != o.GetType()) return false;
+        <%= class_name(key) %> that = (<%= class_name(key) %>) o;
+        return <%- schema['properties'].each_with_index do |(property_name, property), index| %>
+            <%- if (schema['required'] || []).index(property_name) -%>
+            <%= capitalize(property_name) -%>.Equals(that.<%= capitalize(property_name) -%>)<%= index < schema['properties'].length-1 ? ' && ' : ';' -%>
+            <%- else -%>
+            Object.Equals(<%= capitalize(property_name) -%>, that.<%= capitalize(property_name) -%>)<%= index < schema['properties'].length-1 ? ' && ' : ';' -%>
+            <%- end -%>
+        <% end -%>
+
+    }
+
+    public override int GetHashCode() {
+        int hash = 17;
+        <%- schema['properties'].each_with_index do |(property_name, property), index| 
+        required = (schema['required'] || []).index(property_name) -%>
+        hash = hash * 31 + <%= capitalize(property_name) -%><%- if not required -%>?<%- end -%>.GetHashCode()<%- if not required %>?? 0<%- end -%>;
+        <%- end -%>
+        return hash;
+    }
+
+    public override string ToString() {
+        return "<%= class_name(key) %>{" +
+        <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+            "<%= index == 0 ? '' : ', '%><%= property_name %>=" + <%= capitalize(property_name) %> +
+        <%- end -%>
+            '}';
+    }
+}
+<% end -%>
