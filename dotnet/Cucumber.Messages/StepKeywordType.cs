@@ -21,8 +21,11 @@ public enum StepKeywordType {
 
     [Description("Conjunction")]
     CONJUNCTION
+}
 
-    public static string Value(StepKeywordType v) {
+public static class StepKeywordTypeExtensions
+{
+    public static string Value(this StepKeywordType v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }

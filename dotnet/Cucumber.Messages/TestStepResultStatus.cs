@@ -27,8 +27,11 @@ public enum TestStepResultStatus {
 
     [Description("FAILED")]
     FAILED
+}
 
-    public static string Value(TestStepResultStatus v) {
+public static class TestStepResultStatusExtensions
+{
+    public static string Value(this TestStepResultStatus v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }

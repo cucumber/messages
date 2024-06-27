@@ -18,8 +18,11 @@ public enum PickleStepType {
 
     [Description("Outcome")]
     OUTCOME
+}
 
-    public static string Value(PickleStepType v) {
+public static class PickleStepTypeExtensions
+{
+    public static string Value(this PickleStepType v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }

@@ -12,8 +12,11 @@ public enum StepDefinitionPatternType {
 
     [Description("REGULAR_EXPRESSION")]
     REGULAR_EXPRESSION
+}
 
-    public static string Value(StepDefinitionPatternType v) {
+public static class StepDefinitionPatternTypeExtensions
+{
+    public static string Value(this StepDefinitionPatternType v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }

@@ -12,8 +12,11 @@ public enum AttachmentContentEncoding {
 
     [Description("BASE64")]
     BASE64
+}
 
-    public static string Value(AttachmentContentEncoding v) {
+public static class AttachmentContentEncodingExtensions
+{
+    public static string Value(this AttachmentContentEncoding v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }

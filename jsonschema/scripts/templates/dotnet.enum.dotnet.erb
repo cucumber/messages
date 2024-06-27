@@ -13,8 +13,11 @@ public enum <%= enum[:name] %> {
     [Description("<%= value%>")]
     <%= enum_constant(value) %><%= index < enum[:values].length-1 ? ',' : '' %>
 <% end -%>
+}
 
-    public static string Value(<%= enum[:name] %> v) {
+public static class <%= enum[:name] -%>Extensions
+{
+    public static string Value(this <%= enum[:name] %> v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }
