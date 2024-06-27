@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace io.cucumber.messages.types;
 
@@ -10,7 +11,8 @@ public enum AttachmentContentEncoding {
     IDENTITY,
 
     [Description("BASE64")]
-    BASE64;
+    BASE64
+
     public static string Value(AttachmentContentEncoding v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 

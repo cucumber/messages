@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace io.cucumber.messages.types;
 
@@ -19,7 +20,8 @@ public enum StepKeywordType {
     OUTCOME,
 
     [Description("Conjunction")]
-    CONJUNCTION;
+    CONJUNCTION
+
     public static string Value(StepKeywordType v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 

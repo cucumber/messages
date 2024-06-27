@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace io.cucumber.messages.types;
 
@@ -10,7 +11,8 @@ public enum StepDefinitionPatternType {
     CUCUMBER_EXPRESSION,
 
     [Description("REGULAR_EXPRESSION")]
-    REGULAR_EXPRESSION;
+    REGULAR_EXPRESSION
+
     public static string Value(StepDefinitionPatternType v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 

@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace io.cucumber.messages.types;
 
@@ -16,7 +17,8 @@ public enum PickleStepType {
     ACTION,
 
     [Description("Outcome")]
-    OUTCOME;
+    OUTCOME
+
     public static string Value(PickleStepType v) {
         var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
