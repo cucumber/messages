@@ -5,7 +5,7 @@ namespace io.cucumber.messages.types;
 
 /**
  * Represents the Attachment message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
  * //// Attachments (parse errors, execution errors, screenshots, links...)
  *
@@ -88,7 +88,7 @@ public sealed class Attachment {
         this.Url = url;
     }
 
-    public override boolean Equals(Object o) {
+    public override bool Equals(Object o) {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Attachment that = (Attachment) o;

@@ -5,7 +5,7 @@ namespace io.cucumber.messages.types;
 
 /**
  * Represents the RuleChild message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
  * A child node of a `Rule` node
  */
@@ -37,7 +37,7 @@ public sealed class RuleChild {
         this.Scenario = scenario;
     }
 
-    public override boolean Equals(Object o) {
+    public override bool Equals(Object o) {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         RuleChild that = (RuleChild) o;

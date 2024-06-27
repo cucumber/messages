@@ -5,7 +5,7 @@ namespace io.cucumber.messages.types;
 
 /**
  * Represents the Hook message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 // Generated code
 public sealed class Hook {
@@ -27,7 +27,7 @@ public sealed class Hook {
         this.TagExpression = tagExpression;
     }
 
-    public override boolean Equals(Object o) {
+    public override bool Equals(Object o) {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Hook that = (Hook) o;

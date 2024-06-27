@@ -5,17 +5,28 @@ namespace io.cucumber.messages.types;
 // Generated code
 public enum TestStepResultStatus {
 
-    UNKNOWN("UNKNOWN"),
+    [Description("UNKNOWN")]
+    UNKNOWN,
 
-    PASSED("PASSED"),
+    [Description("PASSED")]
+    PASSED,
 
-    SKIPPED("SKIPPED"),
+    [Description("SKIPPED")]
+    SKIPPED,
 
-    PENDING("PENDING"),
+    [Description("PENDING")]
+    PENDING,
 
-    UNDEFINED("UNDEFINED"),
+    [Description("UNDEFINED")]
+    UNDEFINED,
 
-    AMBIGUOUS("AMBIGUOUS"),
+    [Description("AMBIGUOUS")]
+    AMBIGUOUS,
 
-    FAILED("FAILED");
+    [Description("FAILED")]
+    FAILED;
+    public static string Value(TestStepResultStatus v) {
+        var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
+        return attribute == null ? v.ToString() : attribute.Description; 
+    }
 }

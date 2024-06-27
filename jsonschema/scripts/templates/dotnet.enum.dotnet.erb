@@ -8,7 +8,12 @@ namespace io.cucumber.messages.types;
 public enum <%= enum[:name] %> {
 <% enum[:values].each_with_index do |value, index| -%>
 
-    <%= enum_constant(value) %>("<%= value %>")<%= index < enum[:values].length-1 ? ',' : ';' %>
+    [Description("<%= value%>")]
+    <%= enum_constant(value) %><%= index < enum[:values].length-1 ? ',' : ';' %>
 <% end -%>
+    public static string Value(<%= enum[:name] %> v) {
+        var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
+        return attribute == null ? v.ToString() : attribute.Description; 
+    }
 }
 <% end -%>

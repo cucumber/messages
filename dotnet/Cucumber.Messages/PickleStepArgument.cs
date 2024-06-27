@@ -5,7 +5,7 @@ namespace io.cucumber.messages.types;
 
 /**
  * Represents the PickleStepArgument message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
  * An optional argument
  */
@@ -37,7 +37,7 @@ public sealed class PickleStepArgument {
         this.DataTable = dataTable;
     }
 
-    public override boolean Equals(Object o) {
+    public override bool Equals(Object o) {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         PickleStepArgument that = (PickleStepArgument) o;

@@ -5,7 +5,7 @@ namespace io.cucumber.messages.types;
 
 /**
  * Represents the TestCaseFinished message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 // Generated code
 public sealed class TestCaseFinished {
@@ -24,7 +24,7 @@ public sealed class TestCaseFinished {
         this.WillBeRetried = willBeRetried;
     }
 
-    public override boolean Equals(Object o) {
+    public override bool Equals(Object o) {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         TestCaseFinished that = (TestCaseFinished) o;

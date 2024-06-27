@@ -5,13 +5,22 @@ namespace io.cucumber.messages.types;
 // Generated code
 public enum StepKeywordType {
 
-    UNKNOWN("Unknown"),
+    [Description("Unknown")]
+    UNKNOWN,
 
-    CONTEXT("Context"),
+    [Description("Context")]
+    CONTEXT,
 
-    ACTION("Action"),
+    [Description("Action")]
+    ACTION,
 
-    OUTCOME("Outcome"),
+    [Description("Outcome")]
+    OUTCOME,
 
-    CONJUNCTION("Conjunction");
+    [Description("Conjunction")]
+    CONJUNCTION;
+    public static string Value(StepKeywordType v) {
+        var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
+        return attribute == null ? v.ToString() : attribute.Description; 
+    }
 }

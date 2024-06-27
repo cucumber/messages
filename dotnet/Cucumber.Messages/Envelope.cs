@@ -5,7 +5,7 @@ namespace io.cucumber.messages.types;
 
 /**
  * Represents the Envelope message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
  * When removing a field, replace it with reserved, rather than deleting the line.
  * When adding a field, add it to the end and increment the number by one.
@@ -447,7 +447,7 @@ public sealed class Envelope {
         this.UndefinedParameterType = undefinedParameterType;
     }
 
-    public override boolean Equals(Object o) {
+    public override bool Equals(Object o) {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Envelope that = (Envelope) o;
