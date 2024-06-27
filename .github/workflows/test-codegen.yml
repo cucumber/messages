@@ -31,9 +31,6 @@ jobs:
         with:
           ruby-version: '3.1'
 
-      - run: composer install
-        working-directory: php
-
       - name: generate code for all languages
         run: |
           make clean-all
