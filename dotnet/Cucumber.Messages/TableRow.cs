@@ -14,12 +14,12 @@ public sealed class TableRow {
     /**
      * The location of the first cell in the row
      */
-    public Location Location { get; private set; };
+    public Location Location { get; private set; }
     /**
      * Cells in the row
      */
-    public List<TableCell> Cells { get; private set; };
-    public string Id { get; private set; };
+    public List<TableCell> Cells { get; private set; }
+    public string Id { get; private set; }
 
     public TableRow(
         Location location,

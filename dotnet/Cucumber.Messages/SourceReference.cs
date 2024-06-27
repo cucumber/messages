@@ -12,10 +12,10 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class SourceReference {
-    public string? Uri { get; private set; };
-    public JavaMethod? JavaMethod { get; private set; };
-    public JavaStackTraceElement? JavaStackTraceElement { get; private set; };
-    public Location? Location { get; private set; };
+    public string? Uri { get; private set; }
+    public JavaMethod? JavaMethod { get; private set; }
+    public JavaStackTraceElement? JavaStackTraceElement { get; private set; }
+    public Location? Location { get; private set; }
 
     public static SourceReference Create(string uri) {
         return new SourceReference(

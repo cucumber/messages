@@ -14,11 +14,11 @@ public sealed class Comment {
     /**
      * The location of the comment
      */
-    public Location Location { get; private set; };
+    public Location Location { get; private set; }
     /**
      * The text of the comment
      */
-    public string Text { get; private set; };
+    public string Text { get; private set; }
 
     public Comment(
         Location location,

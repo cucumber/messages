@@ -14,22 +14,22 @@ public sealed class Step {
     /**
      * The location of the steps' `keyword`
      */
-    public Location Location { get; private set; };
+    public Location Location { get; private set; }
     /**
      * The actual keyword as it appeared in the source.
      */
-    public string Keyword { get; private set; };
+    public string Keyword { get; private set; }
     /**
      * The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
      */
-    public StepKeywordType? KeywordType { get; private set; };
-    public string Text { get; private set; };
-    public DocString? DocString { get; private set; };
-    public DataTable? DataTable { get; private set; };
+    public StepKeywordType? KeywordType { get; private set; }
+    public string Text { get; private set; }
+    public DocString? DocString { get; private set; }
+    public DataTable? DataTable { get; private set; }
     /**
      * Unique ID to be able to reference the Step from PickleStep
      */
-    public string Id { get; private set; };
+    public string Id { get; private set; }
 
     public Step(
         Location location,

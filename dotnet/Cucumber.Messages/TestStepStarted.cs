@@ -9,9 +9,9 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class TestStepStarted {
-    public string TestCaseStartedId { get; private set; };
-    public string TestStepId { get; private set; };
-    public Timestamp Timestamp { get; private set; };
+    public string TestCaseStartedId { get; private set; }
+    public string TestStepId { get; private set; }
+    public Timestamp Timestamp { get; private set; }
 
     public TestStepStarted(
         string testCaseStartedId,

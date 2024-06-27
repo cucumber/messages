@@ -1,6 +1,6 @@
 using Xunit;
 ﻿using System.IO;
-using static Io.Cucumber.Messages.PickleStepArgument.Types;
+using static Io.Cucumber.Messages.Types.PickleStepArgument;
 
 namespace Io.Cucumber.Messages.Specs
 {

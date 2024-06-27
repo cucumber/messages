@@ -12,14 +12,14 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class Duration {
-    public long Seconds { get; private set; };
+    public long Seconds { get; private set; }
     /**
      * Non-negative fractions of a second at nanosecond resolution. Negative
      * second values with fractions must still have non-negative nanos values
      * that count forward in time. Must be from 0 to 999,999,999
      * inclusive.
      */
-    public long Nanos { get; private set; };
+    public long Nanos { get; private set; }
 
     public Duration(
         long seconds,

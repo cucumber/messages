@@ -12,14 +12,14 @@ public sealed class Examples {
     /**
      * The location of the `Examples` keyword
      */
-    public Location Location { get; private set; };
-    public List<Tag> Tags { get; private set; };
-    public string Keyword { get; private set; };
-    public string Name { get; private set; };
-    public string Description { get; private set; };
-    public TableRow? TableHeader { get; private set; };
-    public List<TableRow> TableBody { get; private set; };
-    public string Id { get; private set; };
+    public Location Location { get; private set; }
+    public List<Tag> Tags { get; private set; }
+    public string Keyword { get; private set; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public TableRow? TableHeader { get; private set; }
+    public List<TableRow> TableBody { get; private set; }
+    public string Id { get; private set; }
 
     public Examples(
         Location location,

@@ -26,7 +26,7 @@ public sealed class Attachment {
      * is simply the string. If it's `BASE64`, the string should be Base64 decoded to
      * obtain the attachment.
      */
-    public string Body { get; private set; };
+    public string Body { get; private set; }
     /**
      * Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
      *
@@ -37,21 +37,21 @@ public sealed class Attachment {
      * - byte array: BASE64
      * - stream: BASE64
      */
-    public AttachmentContentEncoding ContentEncoding { get; private set; };
+    public AttachmentContentEncoding ContentEncoding { get; private set; }
     /**
      * Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
      */
-    public string? FileName { get; private set; };
+    public string? FileName { get; private set; }
     /**
      * The media type of the data. This can be any valid
      * [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
      * as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
      * and `text/x.cucumber.stacktrace+plain`
      */
-    public string MediaType { get; private set; };
-    public Source? Source { get; private set; };
-    public string? TestCaseStartedId { get; private set; };
-    public string? TestStepId { get; private set; };
+    public string MediaType { get; private set; }
+    public Source? Source { get; private set; }
+    public string? TestCaseStartedId { get; private set; }
+    public string? TestStepId { get; private set; }
     /**
      * A URL where the attachment can be retrieved. This field should not be set by Cucumber.
      * It should be set by a program that reads a message stream and does the following for
@@ -65,7 +65,7 @@ public sealed class Attachment {
      * reduce bandwidth of message consumers. It also makes it easier to process and download attachments
      * separately from reports.
      */
-    public string? Url { get; private set; };
+    public string? Url { get; private set; }
 
     public Attachment(
         string body,

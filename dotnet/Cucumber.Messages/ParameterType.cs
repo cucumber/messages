@@ -12,12 +12,12 @@ public sealed class ParameterType {
     /**
      * The name is unique, so we don't need an id.
      */
-    public string Name { get; private set; };
-    public List<string> RegularExpressions { get; private set; };
-    public bool PreferForRegularExpressionMatch { get; private set; };
-    public bool UseForSnippets { get; private set; };
-    public string Id { get; private set; };
-    public SourceReference? SourceReference { get; private set; };
+    public string Name { get; private set; }
+    public List<string> RegularExpressions { get; private set; }
+    public bool PreferForRegularExpressionMatch { get; private set; }
+    public bool UseForSnippets { get; private set; }
+    public string Id { get; private set; }
+    public SourceReference? SourceReference { get; private set; }
 
     public ParameterType(
         string name,

@@ -9,8 +9,8 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class UndefinedParameterType {
-    public string Expression { get; private set; };
-    public string Name { get; private set; };
+    public string Expression { get; private set; }
+    public string Name { get; private set; }
 
     public UndefinedParameterType(
         string expression,

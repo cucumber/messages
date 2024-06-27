@@ -13,18 +13,18 @@ public sealed class TestCaseStarted {
      * The first attempt should have value 0, and for each retry the value
      * should increase by 1.
      */
-    public long Attempt { get; private set; };
+    public long Attempt { get; private set; }
     /**
      * Because a `TestCase` can be run multiple times (in case of a retry),
      * we use this field to group messages relating to the same attempt.
      */
-    public string Id { get; private set; };
-    public string TestCaseId { get; private set; };
+    public string Id { get; private set; }
+    public string TestCaseId { get; private set; }
     /**
      * An identifier for the worker process running this test case, if test cases are being run in parallel. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
      */
-    public string? WorkerId { get; private set; };
-    public Timestamp Timestamp { get; private set; };
+    public string? WorkerId { get; private set; }
+    public Timestamp Timestamp { get; private set; }
 
     public TestCaseStarted(
         long attempt,

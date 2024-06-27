@@ -12,10 +12,10 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class Git {
-    public string Remote { get; private set; };
-    public string Revision { get; private set; };
-    public string? Branch { get; private set; };
-    public string? Tag { get; private set; };
+    public string Remote { get; private set; }
+    public string Revision { get; private set; }
+    public string? Branch { get; private set; }
+    public string? Tag { get; private set; }
 
     public Git(
         string remote,

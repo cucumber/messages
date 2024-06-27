@@ -11,8 +11,8 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class Location {
-    public long Line { get; private set; };
-    public long? Column { get; private set; };
+    public long Line { get; private set; }
+    public long? Column { get; private set; }
 
     public Location(
         long line,

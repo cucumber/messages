@@ -14,15 +14,15 @@ public sealed class Exception {
     /**
      * The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
      */
-    public string Type { get; private set; };
+    public string Type { get; private set; }
     /**
      * The message of exception that caused this result. E.g. expected: "a" but was: "b"
      */
-    public string? Message { get; private set; };
+    public string? Message { get; private set; }
     /**
      * The stringified stack trace of the exception that caused this result
      */
-    public string? StackTrace { get; private set; };
+    public string? StackTrace { get; private set; }
 
     public Exception(
         string type,

@@ -11,8 +11,8 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class PickleStepArgument {
-    public PickleDocString? DocString { get; private set; };
-    public PickleTable? DataTable { get; private set; };
+    public PickleDocString? DocString { get; private set; }
+    public PickleTable? DataTable { get; private set; }
 
     public static PickleStepArgument Create(PickleDocString docString) {
         return new PickleStepArgument(

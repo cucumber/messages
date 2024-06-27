@@ -20,12 +20,12 @@ public sealed class GherkinDocument {
      * The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
      * of the source, typically a file path relative to the root directory
      */
-    public string? Uri { get; private set; };
-    public Feature? Feature { get; private set; };
+    public string? Uri { get; private set; }
+    public Feature? Feature { get; private set; }
     /**
      * All the comments in the Gherkin document
      */
-    public List<Comment> Comments { get; private set; };
+    public List<Comment> Comments { get; private set; }
 
     public GherkinDocument(
         string uri,

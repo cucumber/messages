@@ -15,24 +15,24 @@ public sealed class Meta {
     /**
      * The [SEMVER](https://semver.org/) version number of the protocol
      */
-    public string ProtocolVersion { get; private set; };
+    public string ProtocolVersion { get; private set; }
     /**
      * SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
      */
-    public Product Implementation { get; private set; };
+    public Product Implementation { get; private set; }
     /**
      * Java, Ruby, Node.js etc
      */
-    public Product Runtime { get; private set; };
+    public Product Runtime { get; private set; }
     /**
      * Windows, Linux, MacOS etc
      */
-    public Product Os { get; private set; };
+    public Product Os { get; private set; }
     /**
      * 386, arm, amd64 etc
      */
-    public Product Cpu { get; private set; };
-    public Ci? Ci { get; private set; };
+    public Product Cpu { get; private set; }
+    public Ci? Ci { get; private set; }
 
     public Meta(
         string protocolVersion,

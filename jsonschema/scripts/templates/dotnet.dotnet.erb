@@ -23,7 +23,7 @@ public sealed class <%= class_name(key) %> {
     <%= format_description(property['description'], indent_string: '    ') %>
      */
     <%- end -%>
-    public <%= type_for(class_name(key), property_name, property) -%><%- if not required -%>?<%- end -%> <%= capitalize(property_name) %> { get; private set; };
+    public <%= type_for(class_name(key), property_name, property) -%><%- if not required -%>?<%- end -%> <%= capitalize(property_name) %> { get; private set; }
   <%- end -%>
   <%- if (schema['required'] || []).empty? -%>
   <%- schema['properties'].each_with_index do |(property_name, property), index| -%>

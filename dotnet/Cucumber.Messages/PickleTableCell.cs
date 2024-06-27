@@ -9,7 +9,7 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class PickleTableCell {
-    public string Value { get; private set; };
+    public string Value { get; private set; }
 
     public PickleTableCell(
         string value

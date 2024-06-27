@@ -11,8 +11,8 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class RuleChild {
-    public Background? Background { get; private set; };
-    public Scenario? Scenario { get; private set; };
+    public Background? Background { get; private set; }
+    public Scenario? Scenario { get; private set; }
 
     public static RuleChild Create(Background background) {
         return new RuleChild(

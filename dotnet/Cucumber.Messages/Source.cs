@@ -17,16 +17,16 @@ public sealed class Source {
      * The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
      * of the source, typically a file path relative to the root directory
      */
-    public string Uri { get; private set; };
+    public string Uri { get; private set; }
     /**
      * The contents of the file
      */
-    public string Data { get; private set; };
+    public string Data { get; private set; }
     /**
      * The media type of the file. Can be used to specify custom types, such as
      * text/x.cucumber.gherkin+plain
      */
-    public SourceMediaType MediaType { get; private set; };
+    public SourceMediaType MediaType { get; private set; }
 
     public Source(
         string uri,

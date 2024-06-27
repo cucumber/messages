@@ -14,16 +14,16 @@ public sealed class Ci {
     /**
      * Name of the CI product, e.g. "Jenkins", "CircleCI" etc.
      */
-    public string Name { get; private set; };
+    public string Name { get; private set; }
     /**
      * Link to the build
      */
-    public string? Url { get; private set; };
+    public string? Url { get; private set; }
     /**
      * The build number. Some CI servers use non-numeric build numbers, which is why this is a string
      */
-    public string? BuildNumber { get; private set; };
-    public Git? Git { get; private set; };
+    public string? BuildNumber { get; private set; }
+    public Git? Git { get; private set; }
 
     public Ci(
         string name,

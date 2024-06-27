@@ -9,9 +9,9 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class TestCaseFinished {
-    public string TestCaseStartedId { get; private set; };
-    public Timestamp Timestamp { get; private set; };
-    public bool WillBeRetried { get; private set; };
+    public string TestCaseStartedId { get; private set; }
+    public Timestamp Timestamp { get; private set; }
+    public bool WillBeRetried { get; private set; }
 
     public TestCaseFinished(
         string testCaseStartedId,

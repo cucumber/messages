@@ -9,16 +9,16 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class TestStepResult {
-    public Duration Duration { get; private set; };
+    public Duration Duration { get; private set; }
     /**
      * An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
      */
-    public string? Message { get; private set; };
-    public TestStepResultStatus Status { get; private set; };
+    public string? Message { get; private set; }
+    public TestStepResultStatus Status { get; private set; }
     /**
      * Exception thrown while executing this step, if any.
      */
-    public Exception? Exception { get; private set; };
+    public Exception? Exception { get; private set; }
 
     public TestStepResult(
         Duration duration,

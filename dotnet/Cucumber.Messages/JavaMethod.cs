@@ -9,9 +9,9 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class JavaMethod {
-    public string ClassName { get; private set; };
-    public string MethodName { get; private set; };
-    public List<string> MethodParameterTypes { get; private set; };
+    public string ClassName { get; private set; }
+    public string MethodName { get; private set; }
+    public List<string> MethodParameterTypes { get; private set; }
 
     public JavaMethod(
         string className,

@@ -9,8 +9,8 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class DataTable {
-    public Location Location { get; private set; };
-    public List<TableRow> Rows { get; private set; };
+    public Location Location { get; private set; }
+    public List<TableRow> Rows { get; private set; }
 
     public DataTable(
         Location location,

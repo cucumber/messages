@@ -9,7 +9,7 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class TestRunStarted {
-    public Timestamp Timestamp { get; private set; };
+    public Timestamp Timestamp { get; private set; }
 
     public TestRunStarted(
         Timestamp timestamp

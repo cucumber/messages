@@ -9,10 +9,10 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class Hook {
-    public string Id { get; private set; };
-    public string? Name { get; private set; };
-    public SourceReference SourceReference { get; private set; };
-    public string? TagExpression { get; private set; };
+    public string Id { get; private set; }
+    public string? Name { get; private set; }
+    public SourceReference SourceReference { get; private set; }
+    public string? TagExpression { get; private set; }
 
     public Hook(
         string id,

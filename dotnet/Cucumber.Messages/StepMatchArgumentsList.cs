@@ -9,7 +9,7 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class StepMatchArgumentsList {
-    public List<StepMatchArgument> StepMatchArguments { get; private set; };
+    public List<StepMatchArgument> StepMatchArguments { get; private set; }
 
     public StepMatchArgumentsList(
         List<StepMatchArgument> stepMatchArguments

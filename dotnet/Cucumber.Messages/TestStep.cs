@@ -15,22 +15,22 @@ public sealed class TestStep {
     /**
      * Pointer to the `Hook` (if derived from a Hook)
      */
-    public string? HookId { get; private set; };
-    public string Id { get; private set; };
+    public string? HookId { get; private set; }
+    public string Id { get; private set; }
     /**
      * Pointer to the `PickleStep` (if derived from a `PickleStep`)
      */
-    public string? PickleStepId { get; private set; };
+    public string? PickleStepId { get; private set; }
     /**
      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
      */
-    public List<string>? StepDefinitionIds { get; private set; };
+    public List<string>? StepDefinitionIds { get; private set; }
     /**
      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
      * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
      * and a size of 2+ means `AMBIGUOUS`
      */
-    public List<StepMatchArgumentsList>? StepMatchArgumentsLists { get; private set; };
+    public List<StepMatchArgumentsList>? StepMatchArgumentsLists { get; private set; }
 
     public TestStep(
         string hookId,

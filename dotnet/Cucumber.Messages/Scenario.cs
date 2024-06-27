@@ -12,14 +12,14 @@ public sealed class Scenario {
     /**
      * The location of the `Scenario` keyword
      */
-    public Location Location { get; private set; };
-    public List<Tag> Tags { get; private set; };
-    public string Keyword { get; private set; };
-    public string Name { get; private set; };
-    public string Description { get; private set; };
-    public List<Step> Steps { get; private set; };
-    public List<Examples> Examples { get; private set; };
-    public string Id { get; private set; };
+    public Location Location { get; private set; }
+    public List<Tag> Tags { get; private set; }
+    public string Keyword { get; private set; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public List<Step> Steps { get; private set; }
+    public List<Examples> Examples { get; private set; }
+    public string Id { get; private set; }
 
     public Scenario(
         Location location,

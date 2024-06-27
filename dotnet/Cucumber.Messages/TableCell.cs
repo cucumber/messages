@@ -14,11 +14,11 @@ public sealed class TableCell {
     /**
      * The location of the cell
      */
-    public Location Location { get; private set; };
+    public Location Location { get; private set; }
     /**
      * The value of the cell
      */
-    public string Value { get; private set; };
+    public string Value { get; private set; }
 
     public TableCell(
         Location location,

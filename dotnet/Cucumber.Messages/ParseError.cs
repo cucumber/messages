@@ -9,8 +9,8 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class ParseError {
-    public SourceReference Source { get; private set; };
-    public string Message { get; private set; };
+    public SourceReference Source { get; private set; }
+    public string Message { get; private set; }
 
     public ParseError(
         SourceReference source,

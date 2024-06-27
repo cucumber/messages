@@ -12,12 +12,12 @@ public sealed class Background {
     /**
      * The location of the `Background` keyword
      */
-    public Location Location { get; private set; };
-    public string Keyword { get; private set; };
-    public string Name { get; private set; };
-    public string Description { get; private set; };
-    public List<Step> Steps { get; private set; };
-    public string Id { get; private set; };
+    public Location Location { get; private set; }
+    public string Keyword { get; private set; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public List<Step> Steps { get; private set; }
+    public string Id { get; private set; }
 
     public Background(
         Location location,

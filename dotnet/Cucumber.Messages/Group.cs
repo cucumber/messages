@@ -9,9 +9,9 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class Group {
-    public List<Group> Children { get; private set; };
-    public long? Start { get; private set; };
-    public string? Value { get; private set; };
+    public List<Group> Children { get; private set; }
+    public long? Start { get; private set; }
+    public string? Value { get; private set; }
 
     public Group(
         List<Group> children,

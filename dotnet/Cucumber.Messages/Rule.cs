@@ -12,16 +12,16 @@ public sealed class Rule {
     /**
      * The location of the `Rule` keyword
      */
-    public Location Location { get; private set; };
+    public Location Location { get; private set; }
     /**
      * All the tags placed above the `Rule` keyword
      */
-    public List<Tag> Tags { get; private set; };
-    public string Keyword { get; private set; };
-    public string Name { get; private set; };
-    public string Description { get; private set; };
-    public List<RuleChild> Children { get; private set; };
-    public string Id { get; private set; };
+    public List<Tag> Tags { get; private set; }
+    public string Keyword { get; private set; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public List<RuleChild> Children { get; private set; }
+    public string Id { get; private set; }
 
     public Rule(
         Location location,

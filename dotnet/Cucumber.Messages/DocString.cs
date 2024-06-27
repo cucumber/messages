@@ -9,10 +9,10 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class DocString {
-    public Location Location { get; private set; };
-    public string? MediaType { get; private set; };
-    public string Content { get; private set; };
-    public string Delimiter { get; private set; };
+    public Location Location { get; private set; }
+    public string? MediaType { get; private set; }
+    public string Content { get; private set; }
+    public string Delimiter { get; private set; }
 
     public DocString(
         Location location,

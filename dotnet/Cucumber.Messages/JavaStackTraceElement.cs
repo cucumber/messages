@@ -9,9 +9,9 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class JavaStackTraceElement {
-    public string ClassName { get; private set; };
-    public string FileName { get; private set; };
-    public string MethodName { get; private set; };
+    public string ClassName { get; private set; }
+    public string FileName { get; private set; }
+    public string MethodName { get; private set; }
 
     public JavaStackTraceElement(
         string className,

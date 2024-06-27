@@ -16,23 +16,23 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class Envelope {
-    public Attachment? Attachment { get; private set; };
-    public GherkinDocument? GherkinDocument { get; private set; };
-    public Hook? Hook { get; private set; };
-    public Meta? Meta { get; private set; };
-    public ParameterType? ParameterType { get; private set; };
-    public ParseError? ParseError { get; private set; };
-    public Pickle? Pickle { get; private set; };
-    public Source? Source { get; private set; };
-    public StepDefinition? StepDefinition { get; private set; };
-    public TestCase? TestCase { get; private set; };
-    public TestCaseFinished? TestCaseFinished { get; private set; };
-    public TestCaseStarted? TestCaseStarted { get; private set; };
-    public TestRunFinished? TestRunFinished { get; private set; };
-    public TestRunStarted? TestRunStarted { get; private set; };
-    public TestStepFinished? TestStepFinished { get; private set; };
-    public TestStepStarted? TestStepStarted { get; private set; };
-    public UndefinedParameterType? UndefinedParameterType { get; private set; };
+    public Attachment? Attachment { get; private set; }
+    public GherkinDocument? GherkinDocument { get; private set; }
+    public Hook? Hook { get; private set; }
+    public Meta? Meta { get; private set; }
+    public ParameterType? ParameterType { get; private set; }
+    public ParseError? ParseError { get; private set; }
+    public Pickle? Pickle { get; private set; }
+    public Source? Source { get; private set; }
+    public StepDefinition? StepDefinition { get; private set; }
+    public TestCase? TestCase { get; private set; }
+    public TestCaseFinished? TestCaseFinished { get; private set; }
+    public TestCaseStarted? TestCaseStarted { get; private set; }
+    public TestRunFinished? TestRunFinished { get; private set; }
+    public TestRunStarted? TestRunStarted { get; private set; }
+    public TestStepFinished? TestStepFinished { get; private set; }
+    public TestStepStarted? TestStepStarted { get; private set; }
+    public UndefinedParameterType? UndefinedParameterType { get; private set; }
 
     public static Envelope Create(Attachment attachment) {
         return new Envelope(

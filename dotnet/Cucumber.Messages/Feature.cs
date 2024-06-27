@@ -12,31 +12,31 @@ public sealed class Feature {
     /**
      * The location of the `Feature` keyword
      */
-    public Location Location { get; private set; };
+    public Location Location { get; private set; }
     /**
      * All the tags placed above the `Feature` keyword
      */
-    public List<Tag> Tags { get; private set; };
+    public List<Tag> Tags { get; private set; }
     /**
      * The [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code of the Gherkin document
      */
-    public string Language { get; private set; };
+    public string Language { get; private set; }
     /**
      * The text of the `Feature` keyword (in the language specified by `language`)
      */
-    public string Keyword { get; private set; };
+    public string Keyword { get; private set; }
     /**
      * The name of the feature (the text following the `keyword`)
      */
-    public string Name { get; private set; };
+    public string Name { get; private set; }
     /**
      * The line(s) underneath the line with the `keyword` that are used as description
      */
-    public string Description { get; private set; };
+    public string Description { get; private set; }
     /**
      * Zero or more children
      */
-    public List<FeatureChild> Children { get; private set; };
+    public List<FeatureChild> Children { get; private set; }
 
     public Feature(
         Location location,

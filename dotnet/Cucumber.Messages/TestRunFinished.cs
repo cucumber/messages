@@ -12,19 +12,19 @@ public sealed class TestRunFinished {
     /**
      * An informative message about the test run. Typically additional information about failure, but not necessarily.
      */
-    public string? Message { get; private set; };
+    public string? Message { get; private set; }
     /**
      * A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
      */
-    public bool Success { get; private set; };
+    public bool Success { get; private set; }
     /**
      * Timestamp when the TestRun is finished
      */
-    public Timestamp Timestamp { get; private set; };
+    public Timestamp Timestamp { get; private set; }
     /**
      * Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
      */
-    public Exception? Exception { get; private set; };
+    public Exception? Exception { get; private set; }
 
     public TestRunFinished(
         string message,

@@ -9,8 +9,8 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class StepDefinitionPattern {
-    public string Source { get; private set; };
-    public StepDefinitionPatternType Type { get; private set; };
+    public string Source { get; private set; }
+    public StepDefinitionPatternType Type { get; private set; }
 
     public StepDefinitionPattern(
         string source,

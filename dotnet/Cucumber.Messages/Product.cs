@@ -14,11 +14,11 @@ public sealed class Product {
     /**
      * The product name
      */
-    public string Name { get; private set; };
+    public string Name { get; private set; }
     /**
      * The product version
      */
-    public string? Version { get; private set; };
+    public string? Version { get; private set; }
 
     public Product(
         string name,

@@ -9,8 +9,8 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class PickleDocString {
-    public string? MediaType { get; private set; };
-    public string Content { get; private set; };
+    public string? MediaType { get; private set; }
+    public string Content { get; private set; }
 
     public PickleDocString(
         string mediaType,

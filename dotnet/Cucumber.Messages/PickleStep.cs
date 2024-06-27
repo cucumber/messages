@@ -11,23 +11,23 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class PickleStep {
-    public PickleStepArgument? Argument { get; private set; };
+    public PickleStepArgument? Argument { get; private set; }
     /**
      * References the IDs of the source of the step. For Gherkin, this can be
      * the ID of a Step, and possibly also the ID of a TableRow
      */
-    public List<string> AstNodeIds { get; private set; };
+    public List<string> AstNodeIds { get; private set; }
     /**
      * A unique ID for the PickleStep
      */
-    public string Id { get; private set; };
+    public string Id { get; private set; }
     /**
      * The context in which the step was specified: context (Given), action (When) or outcome (Then).
      *
      * Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
      */
-    public PickleStepType? Type { get; private set; };
-    public string Text { get; private set; };
+    public PickleStepType? Type { get; private set; }
+    public string Text { get; private set; }
 
     public PickleStep(
         PickleStepArgument argument,

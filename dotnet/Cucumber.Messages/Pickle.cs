@@ -25,34 +25,34 @@ public sealed class Pickle {
     /**
      * A unique id for the pickle
      */
-    public string Id { get; private set; };
+    public string Id { get; private set; }
     /**
      * The uri of the source file
      */
-    public string Uri { get; private set; };
+    public string Uri { get; private set; }
     /**
      * The name of the pickle
      */
-    public string Name { get; private set; };
+    public string Name { get; private set; }
     /**
      * The language of the pickle
      */
-    public string Language { get; private set; };
+    public string Language { get; private set; }
     /**
      * One or more steps
      */
-    public List<PickleStep> Steps { get; private set; };
+    public List<PickleStep> Steps { get; private set; }
     /**
      * One or more tags. If this pickle is constructed from a Gherkin document,
      * It includes inherited tags from the `Feature` as well.
      */
-    public List<PickleTag> Tags { get; private set; };
+    public List<PickleTag> Tags { get; private set; }
     /**
      * Points to the AST node locations of the pickle. The last one represents the unique
      * id of the pickle. A pickle constructed from `Examples` will have the first
      * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
      */
-    public List<string> AstNodeIds { get; private set; };
+    public List<string> AstNodeIds { get; private set; }
 
     public Pickle(
         string id,

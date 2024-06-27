@@ -20,8 +20,8 @@ public sealed class StepMatchArgument {
      * Represents the outermost capture group of an argument. This message closely matches the
      * `Group` class in the `cucumber-expressions` library.
      */
-    public Group Group { get; private set; };
-    public string? ParameterTypeName { get; private set; };
+    public Group Group { get; private set; }
+    public string? ParameterTypeName { get; private set; }
 
     public StepMatchArgument(
         Group group,

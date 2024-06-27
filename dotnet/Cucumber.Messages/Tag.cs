@@ -14,15 +14,15 @@ public sealed class Tag {
     /**
      * Location of the tag
      */
-    public Location Location { get; private set; };
+    public Location Location { get; private set; }
     /**
      * The name of the tag (including the leading `@`)
      */
-    public string Name { get; private set; };
+    public string Name { get; private set; }
     /**
      * Unique ID to be able to reference the Tag from PickleTag
      */
-    public string Id { get; private set; };
+    public string Id { get; private set; }
 
     public Tag(
         Location location,

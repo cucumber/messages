@@ -11,11 +11,11 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class PickleTag {
-    public string Name { get; private set; };
+    public string Name { get; private set; }
     /**
      * Points to the AST node this was created from
      */
-    public string AstNodeId { get; private set; };
+    public string AstNodeId { get; private set; }
 
     public PickleTag(
         string name,

@@ -13,12 +13,12 @@ namespace io.cucumber.messages.types;
  */
 // Generated code
 public sealed class TestCase {
-    public string Id { get; private set; };
+    public string Id { get; private set; }
     /**
      * The ID of the `Pickle` this `TestCase` is derived from.
      */
-    public string PickleId { get; private set; };
-    public List<TestStep> TestSteps { get; private set; };
+    public string PickleId { get; private set; }
+    public List<TestStep> TestSteps { get; private set; }
 
     public TestCase(
         string id,
