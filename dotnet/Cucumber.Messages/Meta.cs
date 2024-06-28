@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Meta message in Cucumber's message protocol
@@ -11,7 +11,8 @@ namespace io.cucumber.messages.types;
  * this for various purposes.
  */
 // Generated code
-public sealed class Meta {
+public sealed class Meta 
+{
     /**
      * The [SEMVER](https://semver.org/) version number of the protocol
      */
@@ -32,7 +33,8 @@ public sealed class Meta {
      * 386, arm, amd64 etc
      */
     public Product Cpu { get; private set; }
-    public Ci? Ci { get; private set; }
+    public Ci Ci { get; private set; }
+
 
     public Meta(
         string protocolVersion,
@@ -43,15 +45,21 @@ public sealed class Meta {
         Ci ci
     ) 
     {
+              RequireNonNull<string>(protocolVersion, "ProtocolVersion", "Meta.ProtocolVersion cannot be null");
         this.ProtocolVersion = protocolVersion;
+              RequireNonNull<Product>(implementation, "Implementation", "Meta.Implementation cannot be null");
         this.Implementation = implementation;
+              RequireNonNull<Product>(runtime, "Runtime", "Meta.Runtime cannot be null");
         this.Runtime = runtime;
+              RequireNonNull<Product>(os, "Os", "Meta.Os cannot be null");
         this.Os = os;
+              RequireNonNull<Product>(cpu, "Cpu", "Meta.Cpu cannot be null");
         this.Cpu = cpu;
-        this.Ci = ci;
+              this.Ci = ci;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Meta that = (Meta) o;
@@ -64,18 +72,26 @@ public sealed class Meta {
             Object.Equals(Ci, that.Ci);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + ProtocolVersion.GetHashCode();
-        hash = hash * 31 + Implementation.GetHashCode();
-        hash = hash * 31 + Runtime.GetHashCode();
-        hash = hash * 31 + Os.GetHashCode();
-        hash = hash * 31 + Cpu.GetHashCode();
-        hash = hash * 31 + Ci?.GetHashCode()?? 0;
+        if (ProtocolVersion != null)
+          hash = hash * 31 + ProtocolVersion.GetHashCode();
+        if (Implementation != null)
+          hash = hash * 31 + Implementation.GetHashCode();
+        if (Runtime != null)
+          hash = hash * 31 + Runtime.GetHashCode();
+        if (Os != null)
+          hash = hash * 31 + Os.GetHashCode();
+        if (Cpu != null)
+          hash = hash * 31 + Cpu.GetHashCode();
+        if (Ci != null)
+          hash = hash * 31 + Ci.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Meta{" +
             "protocolVersion=" + ProtocolVersion +
             ", implementation=" + Implementation +
@@ -84,5 +100,15 @@ public sealed class Meta {
             ", cpu=" + Cpu +
             ", ci=" + Ci +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

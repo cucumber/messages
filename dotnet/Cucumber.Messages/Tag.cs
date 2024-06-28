@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Tag message in Cucumber's message protocol
@@ -10,7 +10,8 @@ namespace io.cucumber.messages.types;
  * A tag
  */
 // Generated code
-public sealed class Tag {
+public sealed class Tag 
+{
     /**
      * Location of the tag
      */
@@ -24,18 +25,23 @@ public sealed class Tag {
      */
     public string Id { get; private set; }
 
+
     public Tag(
         Location location,
         string name,
         string id
     ) 
     {
+              RequireNonNull<Location>(location, "Location", "Tag.Location cannot be null");
         this.Location = location;
+              RequireNonNull<string>(name, "Name", "Tag.Name cannot be null");
         this.Name = name;
+              RequireNonNull<string>(id, "Id", "Tag.Id cannot be null");
         this.Id = id;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Tag that = (Tag) o;
@@ -45,19 +51,34 @@ public sealed class Tag {
             Id.Equals(that.Id);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Location.GetHashCode();
-        hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + Id.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
+        if (Name != null)
+          hash = hash * 31 + Name.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Tag{" +
             "location=" + Location +
             ", name=" + Name +
             ", id=" + Id +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

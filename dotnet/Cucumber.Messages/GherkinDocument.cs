@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the GherkinDocument message in Cucumber's message protocol
@@ -15,17 +15,19 @@ namespace io.cucumber.messages.types;
  * "rich" output, resembling the original Gherkin document.
  */
 // Generated code
-public sealed class GherkinDocument {
+public sealed class GherkinDocument 
+{
     /**
      * The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
      * of the source, typically a file path relative to the root directory
      */
-    public string? Uri { get; private set; }
-    public Feature? Feature { get; private set; }
+    public string Uri { get; private set; }
+    public Feature Feature { get; private set; }
     /**
      * All the comments in the Gherkin document
      */
     public List<Comment> Comments { get; private set; }
+
 
     public GherkinDocument(
         string uri,
@@ -33,12 +35,14 @@ public sealed class GherkinDocument {
         List<Comment> comments
     ) 
     {
-        this.Uri = uri;
-        this.Feature = feature;
-        this.Comments = comments;
+              this.Uri = uri;
+              this.Feature = feature;
+              RequireNonNull<List<Comment>>(comments, "Comments", "GherkinDocument.Comments cannot be null");
+        this.Comments = new List<Comment>(comments);
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         GherkinDocument that = (GherkinDocument) o;
@@ -48,19 +52,34 @@ public sealed class GherkinDocument {
             Comments.Equals(that.Comments);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Uri?.GetHashCode()?? 0;
-        hash = hash * 31 + Feature?.GetHashCode()?? 0;
-        hash = hash * 31 + Comments.GetHashCode();
+        if (Uri != null)
+          hash = hash * 31 + Uri.GetHashCode();
+        if (Feature != null)
+          hash = hash * 31 + Feature.GetHashCode();
+        if (Comments != null)
+          hash = hash * 31 + Comments.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "GherkinDocument{" +
             "uri=" + Uri +
             ", feature=" + Feature +
             ", comments=" + Comments +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

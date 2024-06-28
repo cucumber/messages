@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the PickleStepArgument message in Cucumber's message protocol
@@ -10,21 +10,25 @@ namespace io.cucumber.messages.types;
  * An optional argument
  */
 // Generated code
-public sealed class PickleStepArgument {
-    public PickleDocString? DocString { get; private set; }
-    public PickleTable? DataTable { get; private set; }
+public sealed class PickleStepArgument 
+{
+    public PickleDocString DocString { get; private set; }
+    public PickleTable DataTable { get; private set; }
 
-    public static PickleStepArgument Create(PickleDocString docString) {
+
+    public static PickleStepArgument Create(PickleDocString docString) 
+    {
         return new PickleStepArgument(
-            docString,
+            Require<PickleDocString>(docString, "DocString", "PickleStepArgument.DocString cannot be null"),
             null
         );
     }
 
-    public static PickleStepArgument Create(PickleTable dataTable) {
+    public static PickleStepArgument Create(PickleTable dataTable) 
+    {
         return new PickleStepArgument(
             null,
-            dataTable
+            Require<PickleTable>(dataTable, "DataTable", "PickleStepArgument.DataTable cannot be null")
         );
     }
 
@@ -33,11 +37,12 @@ public sealed class PickleStepArgument {
         PickleTable dataTable
     ) 
     {
-        this.DocString = docString;
-        this.DataTable = dataTable;
+              this.DocString = docString;
+              this.DataTable = dataTable;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         PickleStepArgument that = (PickleStepArgument) o;
@@ -46,17 +51,31 @@ public sealed class PickleStepArgument {
             Object.Equals(DataTable, that.DataTable);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + DocString?.GetHashCode()?? 0;
-        hash = hash * 31 + DataTable?.GetHashCode()?? 0;
+        if (DocString != null)
+          hash = hash * 31 + DocString.GetHashCode();
+        if (DataTable != null)
+          hash = hash * 31 + DataTable.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "PickleStepArgument{" +
             "docString=" + DocString +
             ", dataTable=" + DataTable +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

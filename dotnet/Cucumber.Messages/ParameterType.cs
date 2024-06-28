@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the ParameterType message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 // Generated code
-public sealed class ParameterType {
+public sealed class ParameterType 
+{
     /**
      * The name is unique, so we don't need an id.
      */
@@ -17,7 +18,8 @@ public sealed class ParameterType {
     public bool PreferForRegularExpressionMatch { get; private set; }
     public bool UseForSnippets { get; private set; }
     public string Id { get; private set; }
-    public SourceReference? SourceReference { get; private set; }
+    public SourceReference SourceReference { get; private set; }
+
 
     public ParameterType(
         string name,
@@ -28,15 +30,21 @@ public sealed class ParameterType {
         SourceReference sourceReference
     ) 
     {
+              RequireNonNull<string>(name, "Name", "ParameterType.Name cannot be null");
         this.Name = name;
-        this.RegularExpressions = regularExpressions;
+              RequireNonNull<List<string>>(regularExpressions, "RegularExpressions", "ParameterType.RegularExpressions cannot be null");
+        this.RegularExpressions = new List<string>(regularExpressions);
+              RequireNonNull<bool>(preferForRegularExpressionMatch, "PreferForRegularExpressionMatch", "ParameterType.PreferForRegularExpressionMatch cannot be null");
         this.PreferForRegularExpressionMatch = preferForRegularExpressionMatch;
+              RequireNonNull<bool>(useForSnippets, "UseForSnippets", "ParameterType.UseForSnippets cannot be null");
         this.UseForSnippets = useForSnippets;
+              RequireNonNull<string>(id, "Id", "ParameterType.Id cannot be null");
         this.Id = id;
-        this.SourceReference = sourceReference;
+              this.SourceReference = sourceReference;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         ParameterType that = (ParameterType) o;
@@ -49,18 +57,26 @@ public sealed class ParameterType {
             Object.Equals(SourceReference, that.SourceReference);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + RegularExpressions.GetHashCode();
-        hash = hash * 31 + PreferForRegularExpressionMatch.GetHashCode();
-        hash = hash * 31 + UseForSnippets.GetHashCode();
-        hash = hash * 31 + Id.GetHashCode();
-        hash = hash * 31 + SourceReference?.GetHashCode()?? 0;
+        if (Name != null)
+          hash = hash * 31 + Name.GetHashCode();
+        if (RegularExpressions != null)
+          hash = hash * 31 + RegularExpressions.GetHashCode();
+        if (PreferForRegularExpressionMatch != null)
+          hash = hash * 31 + PreferForRegularExpressionMatch.GetHashCode();
+        if (UseForSnippets != null)
+          hash = hash * 31 + UseForSnippets.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
+        if (SourceReference != null)
+          hash = hash * 31 + SourceReference.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "ParameterType{" +
             "name=" + Name +
             ", regularExpressions=" + RegularExpressions +
@@ -69,5 +85,15 @@ public sealed class ParameterType {
             ", id=" + Id +
             ", sourceReference=" + SourceReference +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

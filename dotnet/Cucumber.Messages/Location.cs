@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Location message in Cucumber's message protocol
@@ -10,20 +10,24 @@ namespace io.cucumber.messages.types;
  * Points to a line and a column in a text file
  */
 // Generated code
-public sealed class Location {
+public sealed class Location 
+{
     public long Line { get; private set; }
-    public long? Column { get; private set; }
+    public Nullable<long> Column { get; private set; }
+
 
     public Location(
         long line,
-        long column
+        Nullable<long> column
     ) 
     {
+              RequireNonNull<long>(line, "Line", "Location.Line cannot be null");
         this.Line = line;
-        this.Column = column;
+              this.Column = column;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Location that = (Location) o;
@@ -32,17 +36,31 @@ public sealed class Location {
             Object.Equals(Column, that.Column);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Line.GetHashCode();
-        hash = hash * 31 + Column?.GetHashCode()?? 0;
+        if (Line != null)
+          hash = hash * 31 + Line.GetHashCode();
+        if (Column.HasValue)
+          hash = hash * 31 + Column.Value.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Location{" +
             "line=" + Line +
-            ", column=" + Column +
+            (Column.HasValue ? ", column=" + Column.Value : "") +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

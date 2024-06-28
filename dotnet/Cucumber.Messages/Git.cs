@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Git message in Cucumber's message protocol
@@ -11,11 +11,13 @@ namespace io.cucumber.messages.types;
  * variables.
  */
 // Generated code
-public sealed class Git {
+public sealed class Git 
+{
     public string Remote { get; private set; }
     public string Revision { get; private set; }
-    public string? Branch { get; private set; }
-    public string? Tag { get; private set; }
+    public string Branch { get; private set; }
+    public string Tag { get; private set; }
+
 
     public Git(
         string remote,
@@ -24,13 +26,16 @@ public sealed class Git {
         string tag
     ) 
     {
+              RequireNonNull<string>(remote, "Remote", "Git.Remote cannot be null");
         this.Remote = remote;
+              RequireNonNull<string>(revision, "Revision", "Git.Revision cannot be null");
         this.Revision = revision;
-        this.Branch = branch;
-        this.Tag = tag;
+              this.Branch = branch;
+              this.Tag = tag;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Git that = (Git) o;
@@ -41,21 +46,37 @@ public sealed class Git {
             Object.Equals(Tag, that.Tag);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Remote.GetHashCode();
-        hash = hash * 31 + Revision.GetHashCode();
-        hash = hash * 31 + Branch?.GetHashCode()?? 0;
-        hash = hash * 31 + Tag?.GetHashCode()?? 0;
+        if (Remote != null)
+          hash = hash * 31 + Remote.GetHashCode();
+        if (Revision != null)
+          hash = hash * 31 + Revision.GetHashCode();
+        if (Branch != null)
+          hash = hash * 31 + Branch.GetHashCode();
+        if (Tag != null)
+          hash = hash * 31 + Tag.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Git{" +
             "remote=" + Remote +
             ", revision=" + Revision +
             ", branch=" + Branch +
             ", tag=" + Tag +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

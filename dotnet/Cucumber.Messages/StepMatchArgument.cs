@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the StepMatchArgument message in Cucumber's message protocol
@@ -15,24 +15,28 @@ namespace io.cucumber.messages.types;
  * This message closely matches the `Argument` class in the `cucumber-expressions` library.
  */
 // Generated code
-public sealed class StepMatchArgument {
+public sealed class StepMatchArgument 
+{
     /**
      * Represents the outermost capture group of an argument. This message closely matches the
      * `Group` class in the `cucumber-expressions` library.
      */
     public Group Group { get; private set; }
-    public string? ParameterTypeName { get; private set; }
+    public string ParameterTypeName { get; private set; }
+
 
     public StepMatchArgument(
         Group group,
         string parameterTypeName
     ) 
     {
+              RequireNonNull<Group>(group, "Group", "StepMatchArgument.Group cannot be null");
         this.Group = group;
-        this.ParameterTypeName = parameterTypeName;
+              this.ParameterTypeName = parameterTypeName;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         StepMatchArgument that = (StepMatchArgument) o;
@@ -41,17 +45,31 @@ public sealed class StepMatchArgument {
             Object.Equals(ParameterTypeName, that.ParameterTypeName);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Group.GetHashCode();
-        hash = hash * 31 + ParameterTypeName?.GetHashCode()?? 0;
+        if (Group != null)
+          hash = hash * 31 + Group.GetHashCode();
+        if (ParameterTypeName != null)
+          hash = hash * 31 + ParameterTypeName.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "StepMatchArgument{" +
             "group=" + Group +
             ", parameterTypeName=" + ParameterTypeName +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

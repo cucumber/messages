@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Feature message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 // Generated code
-public sealed class Feature {
+public sealed class Feature 
+{
     /**
      * The location of the `Feature` keyword
      */
@@ -38,6 +39,7 @@ public sealed class Feature {
      */
     public List<FeatureChild> Children { get; private set; }
 
+
     public Feature(
         Location location,
         List<Tag> tags,
@@ -48,16 +50,24 @@ public sealed class Feature {
         List<FeatureChild> children
     ) 
     {
+              RequireNonNull<Location>(location, "Location", "Feature.Location cannot be null");
         this.Location = location;
-        this.Tags = tags;
+              RequireNonNull<List<Tag>>(tags, "Tags", "Feature.Tags cannot be null");
+        this.Tags = new List<Tag>(tags);
+              RequireNonNull<string>(language, "Language", "Feature.Language cannot be null");
         this.Language = language;
+              RequireNonNull<string>(keyword, "Keyword", "Feature.Keyword cannot be null");
         this.Keyword = keyword;
+              RequireNonNull<string>(name, "Name", "Feature.Name cannot be null");
         this.Name = name;
+              RequireNonNull<string>(description, "Description", "Feature.Description cannot be null");
         this.Description = description;
-        this.Children = children;
+              RequireNonNull<List<FeatureChild>>(children, "Children", "Feature.Children cannot be null");
+        this.Children = new List<FeatureChild>(children);
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Feature that = (Feature) o;
@@ -71,19 +81,28 @@ public sealed class Feature {
             Children.Equals(that.Children);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Location.GetHashCode();
-        hash = hash * 31 + Tags.GetHashCode();
-        hash = hash * 31 + Language.GetHashCode();
-        hash = hash * 31 + Keyword.GetHashCode();
-        hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + Description.GetHashCode();
-        hash = hash * 31 + Children.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
+        if (Tags != null)
+          hash = hash * 31 + Tags.GetHashCode();
+        if (Language != null)
+          hash = hash * 31 + Language.GetHashCode();
+        if (Keyword != null)
+          hash = hash * 31 + Keyword.GetHashCode();
+        if (Name != null)
+          hash = hash * 31 + Name.GetHashCode();
+        if (Description != null)
+          hash = hash * 31 + Description.GetHashCode();
+        if (Children != null)
+          hash = hash * 31 + Children.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Feature{" +
             "location=" + Location +
             ", tags=" + Tags +
@@ -93,5 +112,15 @@ public sealed class Feature {
             ", description=" + Description +
             ", children=" + Children +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

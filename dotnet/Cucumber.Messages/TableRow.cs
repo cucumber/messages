@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the TableRow message in Cucumber's message protocol
@@ -10,7 +10,8 @@ namespace io.cucumber.messages.types;
  * A row in a table
  */
 // Generated code
-public sealed class TableRow {
+public sealed class TableRow 
+{
     /**
      * The location of the first cell in the row
      */
@@ -21,18 +22,23 @@ public sealed class TableRow {
     public List<TableCell> Cells { get; private set; }
     public string Id { get; private set; }
 
+
     public TableRow(
         Location location,
         List<TableCell> cells,
         string id
     ) 
     {
+              RequireNonNull<Location>(location, "Location", "TableRow.Location cannot be null");
         this.Location = location;
-        this.Cells = cells;
+              RequireNonNull<List<TableCell>>(cells, "Cells", "TableRow.Cells cannot be null");
+        this.Cells = new List<TableCell>(cells);
+              RequireNonNull<string>(id, "Id", "TableRow.Id cannot be null");
         this.Id = id;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         TableRow that = (TableRow) o;
@@ -42,19 +48,34 @@ public sealed class TableRow {
             Id.Equals(that.Id);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Location.GetHashCode();
-        hash = hash * 31 + Cells.GetHashCode();
-        hash = hash * 31 + Id.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
+        if (Cells != null)
+          hash = hash * 31 + Cells.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "TableRow{" +
             "location=" + Location +
             ", cells=" + Cells +
             ", id=" + Id +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

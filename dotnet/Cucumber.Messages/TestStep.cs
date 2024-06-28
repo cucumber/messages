@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the TestStep message in Cucumber's message protocol
@@ -11,26 +11,28 @@ namespace io.cucumber.messages.types;
  * combined with a `StepDefinition`, or from a `Hook`.
  */
 // Generated code
-public sealed class TestStep {
+public sealed class TestStep 
+{
     /**
      * Pointer to the `Hook` (if derived from a Hook)
      */
-    public string? HookId { get; private set; }
+    public string HookId { get; private set; }
     public string Id { get; private set; }
     /**
      * Pointer to the `PickleStep` (if derived from a `PickleStep`)
      */
-    public string? PickleStepId { get; private set; }
+    public string PickleStepId { get; private set; }
     /**
      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
      */
-    public List<string>? StepDefinitionIds { get; private set; }
+    public List<string> StepDefinitionIds { get; private set; }
     /**
      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
      * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
      * and a size of 2+ means `AMBIGUOUS`
      */
-    public List<StepMatchArgumentsList>? StepMatchArgumentsLists { get; private set; }
+    public List<StepMatchArgumentsList> StepMatchArgumentsLists { get; private set; }
+
 
     public TestStep(
         string hookId,
@@ -40,14 +42,16 @@ public sealed class TestStep {
         List<StepMatchArgumentsList> stepMatchArgumentsLists
     ) 
     {
-        this.HookId = hookId;
+              this.HookId = hookId;
+              RequireNonNull<string>(id, "Id", "TestStep.Id cannot be null");
         this.Id = id;
-        this.PickleStepId = pickleStepId;
-        this.StepDefinitionIds = stepDefinitionIds;
-        this.StepMatchArgumentsLists = stepMatchArgumentsLists;
+              this.PickleStepId = pickleStepId;
+              this.StepDefinitionIds = new List<string>(stepDefinitionIds);
+              this.StepMatchArgumentsLists = new List<StepMatchArgumentsList>(stepMatchArgumentsLists);
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         TestStep that = (TestStep) o;
@@ -59,17 +63,24 @@ public sealed class TestStep {
             Object.Equals(StepMatchArgumentsLists, that.StepMatchArgumentsLists);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + HookId?.GetHashCode()?? 0;
-        hash = hash * 31 + Id.GetHashCode();
-        hash = hash * 31 + PickleStepId?.GetHashCode()?? 0;
-        hash = hash * 31 + StepDefinitionIds?.GetHashCode()?? 0;
-        hash = hash * 31 + StepMatchArgumentsLists?.GetHashCode()?? 0;
+        if (HookId != null)
+          hash = hash * 31 + HookId.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
+        if (PickleStepId != null)
+          hash = hash * 31 + PickleStepId.GetHashCode();
+        if (StepDefinitionIds != null)
+          hash = hash * 31 + StepDefinitionIds.GetHashCode();
+        if (StepMatchArgumentsLists != null)
+          hash = hash * 31 + StepMatchArgumentsLists.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "TestStep{" +
             "hookId=" + HookId +
             ", id=" + Id +
@@ -77,5 +88,15 @@ public sealed class TestStep {
             ", stepDefinitionIds=" + StepDefinitionIds +
             ", stepMatchArgumentsLists=" + StepMatchArgumentsLists +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

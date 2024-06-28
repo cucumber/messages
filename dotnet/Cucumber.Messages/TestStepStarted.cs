@@ -1,17 +1,19 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the TestStepStarted message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 // Generated code
-public sealed class TestStepStarted {
+public sealed class TestStepStarted 
+{
     public string TestCaseStartedId { get; private set; }
     public string TestStepId { get; private set; }
     public Timestamp Timestamp { get; private set; }
+
 
     public TestStepStarted(
         string testCaseStartedId,
@@ -19,12 +21,16 @@ public sealed class TestStepStarted {
         Timestamp timestamp
     ) 
     {
+              RequireNonNull<string>(testCaseStartedId, "TestCaseStartedId", "TestStepStarted.TestCaseStartedId cannot be null");
         this.TestCaseStartedId = testCaseStartedId;
+              RequireNonNull<string>(testStepId, "TestStepId", "TestStepStarted.TestStepId cannot be null");
         this.TestStepId = testStepId;
+              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestStepStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         TestStepStarted that = (TestStepStarted) o;
@@ -34,19 +40,34 @@ public sealed class TestStepStarted {
             Timestamp.Equals(that.Timestamp);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + TestCaseStartedId.GetHashCode();
-        hash = hash * 31 + TestStepId.GetHashCode();
-        hash = hash * 31 + Timestamp.GetHashCode();
+        if (TestCaseStartedId != null)
+          hash = hash * 31 + TestCaseStartedId.GetHashCode();
+        if (TestStepId != null)
+          hash = hash * 31 + TestStepId.GetHashCode();
+        if (Timestamp != null)
+          hash = hash * 31 + Timestamp.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "TestStepStarted{" +
             "testCaseStartedId=" + TestCaseStartedId +
             ", testStepId=" + TestStepId +
             ", timestamp=" + Timestamp +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

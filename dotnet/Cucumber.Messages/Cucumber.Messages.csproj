@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LangVersion>10.0</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591</NoWarn>
@@ -19,7 +19,7 @@
     <Product>Cucumber.Messages</Product>
     <PackageId>Cucumber.Messages</PackageId>
     <Authors>Cucumber Ltd, TechTalk</Authors>
-    <Copyright>Copyright &#xA9; Cucumber Ltd, TechTalk</Copyright>
+    <Copyright>Copyright © Cucumber Ltd, TechTalk</Copyright>
     <Description>Cucumber messages for Cucumber's and SpecFlow's inter-process communication</Description>
     <PackageTags>cucumber-messages cucumber specflow gherkin</PackageTags>
     <PackageProjectUrl>https://github.com/cucumber/messages</PackageProjectUrl>

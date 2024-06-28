@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Envelope message in Cucumber's message protocol
@@ -15,28 +15,31 @@ namespace io.cucumber.messages.types;
  * messages.
  */
 // Generated code
-public sealed class Envelope {
-    public Attachment? Attachment { get; private set; }
-    public GherkinDocument? GherkinDocument { get; private set; }
-    public Hook? Hook { get; private set; }
-    public Meta? Meta { get; private set; }
-    public ParameterType? ParameterType { get; private set; }
-    public ParseError? ParseError { get; private set; }
-    public Pickle? Pickle { get; private set; }
-    public Source? Source { get; private set; }
-    public StepDefinition? StepDefinition { get; private set; }
-    public TestCase? TestCase { get; private set; }
-    public TestCaseFinished? TestCaseFinished { get; private set; }
-    public TestCaseStarted? TestCaseStarted { get; private set; }
-    public TestRunFinished? TestRunFinished { get; private set; }
-    public TestRunStarted? TestRunStarted { get; private set; }
-    public TestStepFinished? TestStepFinished { get; private set; }
-    public TestStepStarted? TestStepStarted { get; private set; }
-    public UndefinedParameterType? UndefinedParameterType { get; private set; }
+public sealed class Envelope 
+{
+    public Attachment Attachment { get; private set; }
+    public GherkinDocument GherkinDocument { get; private set; }
+    public Hook Hook { get; private set; }
+    public Meta Meta { get; private set; }
+    public ParameterType ParameterType { get; private set; }
+    public ParseError ParseError { get; private set; }
+    public Pickle Pickle { get; private set; }
+    public Source Source { get; private set; }
+    public StepDefinition StepDefinition { get; private set; }
+    public TestCase TestCase { get; private set; }
+    public TestCaseFinished TestCaseFinished { get; private set; }
+    public TestCaseStarted TestCaseStarted { get; private set; }
+    public TestRunFinished TestRunFinished { get; private set; }
+    public TestRunStarted TestRunStarted { get; private set; }
+    public TestStepFinished TestStepFinished { get; private set; }
+    public TestStepStarted TestStepStarted { get; private set; }
+    public UndefinedParameterType UndefinedParameterType { get; private set; }
 
-    public static Envelope Create(Attachment attachment) {
+
+    public static Envelope Create(Attachment attachment) 
+    {
         return new Envelope(
-            attachment,
+            Require<Attachment>(attachment, "Attachment", "Envelope.Attachment cannot be null"),
             null,
             null,
             null,
@@ -56,10 +59,11 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(GherkinDocument gherkinDocument) {
+    public static Envelope Create(GherkinDocument gherkinDocument) 
+    {
         return new Envelope(
             null,
-            gherkinDocument,
+            Require<GherkinDocument>(gherkinDocument, "GherkinDocument", "Envelope.GherkinDocument cannot be null"),
             null,
             null,
             null,
@@ -78,11 +82,12 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(Hook hook) {
+    public static Envelope Create(Hook hook) 
+    {
         return new Envelope(
             null,
             null,
-            hook,
+            Require<Hook>(hook, "Hook", "Envelope.Hook cannot be null"),
             null,
             null,
             null,
@@ -100,12 +105,13 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(Meta meta) {
+    public static Envelope Create(Meta meta) 
+    {
         return new Envelope(
             null,
             null,
             null,
-            meta,
+            Require<Meta>(meta, "Meta", "Envelope.Meta cannot be null"),
             null,
             null,
             null,
@@ -122,13 +128,14 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(ParameterType parameterType) {
+    public static Envelope Create(ParameterType parameterType) 
+    {
         return new Envelope(
             null,
             null,
             null,
             null,
-            parameterType,
+            Require<ParameterType>(parameterType, "ParameterType", "Envelope.ParameterType cannot be null"),
             null,
             null,
             null,
@@ -144,14 +151,15 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(ParseError parseError) {
+    public static Envelope Create(ParseError parseError) 
+    {
         return new Envelope(
             null,
             null,
             null,
             null,
             null,
-            parseError,
+            Require<ParseError>(parseError, "ParseError", "Envelope.ParseError cannot be null"),
             null,
             null,
             null,
@@ -166,7 +174,8 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(Pickle pickle) {
+    public static Envelope Create(Pickle pickle) 
+    {
         return new Envelope(
             null,
             null,
@@ -174,7 +183,7 @@ public sealed class Envelope {
             null,
             null,
             null,
-            pickle,
+            Require<Pickle>(pickle, "Pickle", "Envelope.Pickle cannot be null"),
             null,
             null,
             null,
@@ -188,7 +197,8 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(Source source) {
+    public static Envelope Create(Source source) 
+    {
         return new Envelope(
             null,
             null,
@@ -197,7 +207,7 @@ public sealed class Envelope {
             null,
             null,
             null,
-            source,
+            Require<Source>(source, "Source", "Envelope.Source cannot be null"),
             null,
             null,
             null,
@@ -210,7 +220,8 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(StepDefinition stepDefinition) {
+    public static Envelope Create(StepDefinition stepDefinition) 
+    {
         return new Envelope(
             null,
             null,
@@ -220,7 +231,7 @@ public sealed class Envelope {
             null,
             null,
             null,
-            stepDefinition,
+            Require<StepDefinition>(stepDefinition, "StepDefinition", "Envelope.StepDefinition cannot be null"),
             null,
             null,
             null,
@@ -232,7 +243,8 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(TestCase testCase) {
+    public static Envelope Create(TestCase testCase) 
+    {
         return new Envelope(
             null,
             null,
@@ -243,7 +255,7 @@ public sealed class Envelope {
             null,
             null,
             null,
-            testCase,
+            Require<TestCase>(testCase, "TestCase", "Envelope.TestCase cannot be null"),
             null,
             null,
             null,
@@ -254,7 +266,8 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(TestCaseFinished testCaseFinished) {
+    public static Envelope Create(TestCaseFinished testCaseFinished) 
+    {
         return new Envelope(
             null,
             null,
@@ -266,7 +279,7 @@ public sealed class Envelope {
             null,
             null,
             null,
-            testCaseFinished,
+            Require<TestCaseFinished>(testCaseFinished, "TestCaseFinished", "Envelope.TestCaseFinished cannot be null"),
             null,
             null,
             null,
@@ -276,7 +289,8 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(TestCaseStarted testCaseStarted) {
+    public static Envelope Create(TestCaseStarted testCaseStarted) 
+    {
         return new Envelope(
             null,
             null,
@@ -289,7 +303,7 @@ public sealed class Envelope {
             null,
             null,
             null,
-            testCaseStarted,
+            Require<TestCaseStarted>(testCaseStarted, "TestCaseStarted", "Envelope.TestCaseStarted cannot be null"),
             null,
             null,
             null,
@@ -298,7 +312,8 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(TestRunFinished testRunFinished) {
+    public static Envelope Create(TestRunFinished testRunFinished) 
+    {
         return new Envelope(
             null,
             null,
@@ -312,7 +327,7 @@ public sealed class Envelope {
             null,
             null,
             null,
-            testRunFinished,
+            Require<TestRunFinished>(testRunFinished, "TestRunFinished", "Envelope.TestRunFinished cannot be null"),
             null,
             null,
             null,
@@ -320,7 +335,8 @@ public sealed class Envelope {
         );
     }
 
-    public static Envelope Create(TestRunStarted testRunStarted) {
+    public static Envelope Create(TestRunStarted testRunStarted) 
+    {
         return new Envelope(
             null,
             null,
@@ -335,14 +351,15 @@ public sealed class Envelope {
             null,
             null,
             null,
-            testRunStarted,
+            Require<TestRunStarted>(testRunStarted, "TestRunStarted", "Envelope.TestRunStarted cannot be null"),
             null,
             null,
             null
         );
     }
 
-    public static Envelope Create(TestStepFinished testStepFinished) {
+    public static Envelope Create(TestStepFinished testStepFinished) 
+    {
         return new Envelope(
             null,
             null,
@@ -358,13 +375,14 @@ public sealed class Envelope {
             null,
             null,
             null,
-            testStepFinished,
+            Require<TestStepFinished>(testStepFinished, "TestStepFinished", "Envelope.TestStepFinished cannot be null"),
             null,
             null
         );
     }
 
-    public static Envelope Create(TestStepStarted testStepStarted) {
+    public static Envelope Create(TestStepStarted testStepStarted) 
+    {
         return new Envelope(
             null,
             null,
@@ -381,12 +399,13 @@ public sealed class Envelope {
             null,
             null,
             null,
-            testStepStarted,
+            Require<TestStepStarted>(testStepStarted, "TestStepStarted", "Envelope.TestStepStarted cannot be null"),
             null
         );
     }
 
-    public static Envelope Create(UndefinedParameterType undefinedParameterType) {
+    public static Envelope Create(UndefinedParameterType undefinedParameterType) 
+    {
         return new Envelope(
             null,
             null,
@@ -404,7 +423,7 @@ public sealed class Envelope {
             null,
             null,
             null,
-            undefinedParameterType
+            Require<UndefinedParameterType>(undefinedParameterType, "UndefinedParameterType", "Envelope.UndefinedParameterType cannot be null")
         );
     }
 
@@ -428,26 +447,27 @@ public sealed class Envelope {
         UndefinedParameterType undefinedParameterType
     ) 
     {
-        this.Attachment = attachment;
-        this.GherkinDocument = gherkinDocument;
-        this.Hook = hook;
-        this.Meta = meta;
-        this.ParameterType = parameterType;
-        this.ParseError = parseError;
-        this.Pickle = pickle;
-        this.Source = source;
-        this.StepDefinition = stepDefinition;
-        this.TestCase = testCase;
-        this.TestCaseFinished = testCaseFinished;
-        this.TestCaseStarted = testCaseStarted;
-        this.TestRunFinished = testRunFinished;
-        this.TestRunStarted = testRunStarted;
-        this.TestStepFinished = testStepFinished;
-        this.TestStepStarted = testStepStarted;
-        this.UndefinedParameterType = undefinedParameterType;
+              this.Attachment = attachment;
+              this.GherkinDocument = gherkinDocument;
+              this.Hook = hook;
+              this.Meta = meta;
+              this.ParameterType = parameterType;
+              this.ParseError = parseError;
+              this.Pickle = pickle;
+              this.Source = source;
+              this.StepDefinition = stepDefinition;
+              this.TestCase = testCase;
+              this.TestCaseFinished = testCaseFinished;
+              this.TestCaseStarted = testCaseStarted;
+              this.TestRunFinished = testRunFinished;
+              this.TestRunStarted = testRunStarted;
+              this.TestStepFinished = testStepFinished;
+              this.TestStepStarted = testStepStarted;
+              this.UndefinedParameterType = undefinedParameterType;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Envelope that = (Envelope) o;
@@ -471,29 +491,48 @@ public sealed class Envelope {
             Object.Equals(UndefinedParameterType, that.UndefinedParameterType);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Attachment?.GetHashCode()?? 0;
-        hash = hash * 31 + GherkinDocument?.GetHashCode()?? 0;
-        hash = hash * 31 + Hook?.GetHashCode()?? 0;
-        hash = hash * 31 + Meta?.GetHashCode()?? 0;
-        hash = hash * 31 + ParameterType?.GetHashCode()?? 0;
-        hash = hash * 31 + ParseError?.GetHashCode()?? 0;
-        hash = hash * 31 + Pickle?.GetHashCode()?? 0;
-        hash = hash * 31 + Source?.GetHashCode()?? 0;
-        hash = hash * 31 + StepDefinition?.GetHashCode()?? 0;
-        hash = hash * 31 + TestCase?.GetHashCode()?? 0;
-        hash = hash * 31 + TestCaseFinished?.GetHashCode()?? 0;
-        hash = hash * 31 + TestCaseStarted?.GetHashCode()?? 0;
-        hash = hash * 31 + TestRunFinished?.GetHashCode()?? 0;
-        hash = hash * 31 + TestRunStarted?.GetHashCode()?? 0;
-        hash = hash * 31 + TestStepFinished?.GetHashCode()?? 0;
-        hash = hash * 31 + TestStepStarted?.GetHashCode()?? 0;
-        hash = hash * 31 + UndefinedParameterType?.GetHashCode()?? 0;
+        if (Attachment != null)
+          hash = hash * 31 + Attachment.GetHashCode();
+        if (GherkinDocument != null)
+          hash = hash * 31 + GherkinDocument.GetHashCode();
+        if (Hook != null)
+          hash = hash * 31 + Hook.GetHashCode();
+        if (Meta != null)
+          hash = hash * 31 + Meta.GetHashCode();
+        if (ParameterType != null)
+          hash = hash * 31 + ParameterType.GetHashCode();
+        if (ParseError != null)
+          hash = hash * 31 + ParseError.GetHashCode();
+        if (Pickle != null)
+          hash = hash * 31 + Pickle.GetHashCode();
+        if (Source != null)
+          hash = hash * 31 + Source.GetHashCode();
+        if (StepDefinition != null)
+          hash = hash * 31 + StepDefinition.GetHashCode();
+        if (TestCase != null)
+          hash = hash * 31 + TestCase.GetHashCode();
+        if (TestCaseFinished != null)
+          hash = hash * 31 + TestCaseFinished.GetHashCode();
+        if (TestCaseStarted != null)
+          hash = hash * 31 + TestCaseStarted.GetHashCode();
+        if (TestRunFinished != null)
+          hash = hash * 31 + TestRunFinished.GetHashCode();
+        if (TestRunStarted != null)
+          hash = hash * 31 + TestRunStarted.GetHashCode();
+        if (TestStepFinished != null)
+          hash = hash * 31 + TestStepFinished.GetHashCode();
+        if (TestStepStarted != null)
+          hash = hash * 31 + TestStepStarted.GetHashCode();
+        if (UndefinedParameterType != null)
+          hash = hash * 31 + UndefinedParameterType.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Envelope{" +
             "attachment=" + Attachment +
             ", gherkinDocument=" + GherkinDocument +
@@ -513,5 +552,15 @@ public sealed class Envelope {
             ", testStepStarted=" + TestStepStarted +
             ", undefinedParameterType=" + UndefinedParameterType +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Pickle message in Cucumber's message protocol
@@ -21,7 +21,8 @@ namespace io.cucumber.messages.types;
  * Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
  */
 // Generated code
-public sealed class Pickle {
+public sealed class Pickle 
+{
     /**
      * A unique id for the pickle
      */
@@ -54,6 +55,7 @@ public sealed class Pickle {
      */
     public List<string> AstNodeIds { get; private set; }
 
+
     public Pickle(
         string id,
         string uri,
@@ -64,16 +66,24 @@ public sealed class Pickle {
         List<string> astNodeIds
     ) 
     {
+              RequireNonNull<string>(id, "Id", "Pickle.Id cannot be null");
         this.Id = id;
+              RequireNonNull<string>(uri, "Uri", "Pickle.Uri cannot be null");
         this.Uri = uri;
+              RequireNonNull<string>(name, "Name", "Pickle.Name cannot be null");
         this.Name = name;
+              RequireNonNull<string>(language, "Language", "Pickle.Language cannot be null");
         this.Language = language;
-        this.Steps = steps;
-        this.Tags = tags;
-        this.AstNodeIds = astNodeIds;
+              RequireNonNull<List<PickleStep>>(steps, "Steps", "Pickle.Steps cannot be null");
+        this.Steps = new List<PickleStep>(steps);
+              RequireNonNull<List<PickleTag>>(tags, "Tags", "Pickle.Tags cannot be null");
+        this.Tags = new List<PickleTag>(tags);
+              RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "Pickle.AstNodeIds cannot be null");
+        this.AstNodeIds = new List<string>(astNodeIds);
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Pickle that = (Pickle) o;
@@ -87,19 +97,28 @@ public sealed class Pickle {
             AstNodeIds.Equals(that.AstNodeIds);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Id.GetHashCode();
-        hash = hash * 31 + Uri.GetHashCode();
-        hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + Language.GetHashCode();
-        hash = hash * 31 + Steps.GetHashCode();
-        hash = hash * 31 + Tags.GetHashCode();
-        hash = hash * 31 + AstNodeIds.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
+        if (Uri != null)
+          hash = hash * 31 + Uri.GetHashCode();
+        if (Name != null)
+          hash = hash * 31 + Name.GetHashCode();
+        if (Language != null)
+          hash = hash * 31 + Language.GetHashCode();
+        if (Steps != null)
+          hash = hash * 31 + Steps.GetHashCode();
+        if (Tags != null)
+          hash = hash * 31 + Tags.GetHashCode();
+        if (AstNodeIds != null)
+          hash = hash * 31 + AstNodeIds.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Pickle{" +
             "id=" + Id +
             ", uri=" + Uri +
@@ -109,5 +128,15 @@ public sealed class Pickle {
             ", tags=" + Tags +
             ", astNodeIds=" + AstNodeIds +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

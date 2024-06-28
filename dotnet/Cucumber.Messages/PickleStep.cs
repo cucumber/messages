@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the PickleStep message in Cucumber's message protocol
@@ -10,8 +10,9 @@ namespace io.cucumber.messages.types;
  * An executable step
  */
 // Generated code
-public sealed class PickleStep {
-    public PickleStepArgument? Argument { get; private set; }
+public sealed class PickleStep 
+{
+    public PickleStepArgument Argument { get; private set; }
     /**
      * References the IDs of the source of the step. For Gherkin, this can be
      * the ID of a Step, and possibly also the ID of a TableRow
@@ -26,8 +27,9 @@ public sealed class PickleStep {
      *
      * Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
      */
-    public PickleStepType? Type { get; private set; }
+    public PickleStepType Type { get; private set; }
     public string Text { get; private set; }
+
 
     public PickleStep(
         PickleStepArgument argument,
@@ -37,14 +39,18 @@ public sealed class PickleStep {
         string text
     ) 
     {
-        this.Argument = argument;
-        this.AstNodeIds = astNodeIds;
+              this.Argument = argument;
+              RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "PickleStep.AstNodeIds cannot be null");
+        this.AstNodeIds = new List<string>(astNodeIds);
+              RequireNonNull<string>(id, "Id", "PickleStep.Id cannot be null");
         this.Id = id;
-        this.Type = type;
+              this.Type = type;
+              RequireNonNull<string>(text, "Text", "PickleStep.Text cannot be null");
         this.Text = text;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         PickleStep that = (PickleStep) o;
@@ -56,17 +62,24 @@ public sealed class PickleStep {
             Text.Equals(that.Text);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Argument?.GetHashCode()?? 0;
-        hash = hash * 31 + AstNodeIds.GetHashCode();
-        hash = hash * 31 + Id.GetHashCode();
-        hash = hash * 31 + Type?.GetHashCode()?? 0;
-        hash = hash * 31 + Text.GetHashCode();
+        if (Argument != null)
+          hash = hash * 31 + Argument.GetHashCode();
+        if (AstNodeIds != null)
+          hash = hash * 31 + AstNodeIds.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
+        if (Type != null)
+          hash = hash * 31 + Type.GetHashCode();
+        if (Text != null)
+          hash = hash * 31 + Text.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "PickleStep{" +
             "argument=" + Argument +
             ", astNodeIds=" + AstNodeIds +
@@ -74,5 +87,15 @@ public sealed class PickleStep {
             ", type=" + Type +
             ", text=" + Text +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

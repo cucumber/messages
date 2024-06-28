@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Source message in Cucumber's message protocol
@@ -12,7 +12,8 @@ namespace io.cucumber.messages.types;
  * A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
  */
 // Generated code
-public sealed class Source {
+public sealed class Source 
+{
     /**
      * The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
      * of the source, typically a file path relative to the root directory
@@ -28,18 +29,23 @@ public sealed class Source {
      */
     public SourceMediaType MediaType { get; private set; }
 
+
     public Source(
         string uri,
         string data,
         SourceMediaType mediaType
     ) 
     {
+              RequireNonNull<string>(uri, "Uri", "Source.Uri cannot be null");
         this.Uri = uri;
+              RequireNonNull<string>(data, "Data", "Source.Data cannot be null");
         this.Data = data;
+              RequireNonNull<SourceMediaType>(mediaType, "MediaType", "Source.MediaType cannot be null");
         this.MediaType = mediaType;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Source that = (Source) o;
@@ -49,19 +55,34 @@ public sealed class Source {
             MediaType.Equals(that.MediaType);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Uri.GetHashCode();
-        hash = hash * 31 + Data.GetHashCode();
-        hash = hash * 31 + MediaType.GetHashCode();
+        if (Uri != null)
+          hash = hash * 31 + Uri.GetHashCode();
+        if (Data != null)
+          hash = hash * 31 + Data.GetHashCode();
+        if (MediaType != null)
+          hash = hash * 31 + MediaType.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Source{" +
             "uri=" + Uri +
             ", data=" + Data +
             ", mediaType=" + MediaType +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

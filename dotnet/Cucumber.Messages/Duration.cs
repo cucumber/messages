@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Duration message in Cucumber's message protocol
@@ -11,7 +11,8 @@ namespace io.cucumber.messages.types;
  * of message is used.
  */
 // Generated code
-public sealed class Duration {
+public sealed class Duration 
+{
     public long Seconds { get; private set; }
     /**
      * Non-negative fractions of a second at nanosecond resolution. Negative
@@ -21,16 +22,20 @@ public sealed class Duration {
      */
     public long Nanos { get; private set; }
 
+
     public Duration(
         long seconds,
         long nanos
     ) 
     {
+              RequireNonNull<long>(seconds, "Seconds", "Duration.Seconds cannot be null");
         this.Seconds = seconds;
+              RequireNonNull<long>(nanos, "Nanos", "Duration.Nanos cannot be null");
         this.Nanos = nanos;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Duration that = (Duration) o;
@@ -39,17 +44,31 @@ public sealed class Duration {
             Nanos.Equals(that.Nanos);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Seconds.GetHashCode();
-        hash = hash * 31 + Nanos.GetHashCode();
+        if (Seconds != null)
+          hash = hash * 31 + Seconds.GetHashCode();
+        if (Nanos != null)
+          hash = hash * 31 + Nanos.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Duration{" +
             "seconds=" + Seconds +
             ", nanos=" + Nanos +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

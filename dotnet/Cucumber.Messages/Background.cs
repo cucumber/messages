@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Background message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 // Generated code
-public sealed class Background {
+public sealed class Background 
+{
     /**
      * The location of the `Background` keyword
      */
@@ -19,6 +20,7 @@ public sealed class Background {
     public List<Step> Steps { get; private set; }
     public string Id { get; private set; }
 
+
     public Background(
         Location location,
         string keyword,
@@ -28,15 +30,22 @@ public sealed class Background {
         string id
     ) 
     {
+              RequireNonNull<Location>(location, "Location", "Background.Location cannot be null");
         this.Location = location;
+              RequireNonNull<string>(keyword, "Keyword", "Background.Keyword cannot be null");
         this.Keyword = keyword;
+              RequireNonNull<string>(name, "Name", "Background.Name cannot be null");
         this.Name = name;
+              RequireNonNull<string>(description, "Description", "Background.Description cannot be null");
         this.Description = description;
-        this.Steps = steps;
+              RequireNonNull<List<Step>>(steps, "Steps", "Background.Steps cannot be null");
+        this.Steps = new List<Step>(steps);
+              RequireNonNull<string>(id, "Id", "Background.Id cannot be null");
         this.Id = id;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Background that = (Background) o;
@@ -49,18 +58,26 @@ public sealed class Background {
             Id.Equals(that.Id);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Location.GetHashCode();
-        hash = hash * 31 + Keyword.GetHashCode();
-        hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + Description.GetHashCode();
-        hash = hash * 31 + Steps.GetHashCode();
-        hash = hash * 31 + Id.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
+        if (Keyword != null)
+          hash = hash * 31 + Keyword.GetHashCode();
+        if (Name != null)
+          hash = hash * 31 + Name.GetHashCode();
+        if (Description != null)
+          hash = hash * 31 + Description.GetHashCode();
+        if (Steps != null)
+          hash = hash * 31 + Steps.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Background{" +
             "location=" + Location +
             ", keyword=" + Keyword +
@@ -69,5 +86,15 @@ public sealed class Background {
             ", steps=" + Steps +
             ", id=" + Id +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

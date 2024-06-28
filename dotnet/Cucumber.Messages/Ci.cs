@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Ci message in Cucumber's message protocol
@@ -10,7 +10,8 @@ namespace io.cucumber.messages.types;
  * CI environment
  */
 // Generated code
-public sealed class Ci {
+public sealed class Ci 
+{
     /**
      * Name of the CI product, e.g. "Jenkins", "CircleCI" etc.
      */
@@ -18,12 +19,13 @@ public sealed class Ci {
     /**
      * Link to the build
      */
-    public string? Url { get; private set; }
+    public string Url { get; private set; }
     /**
      * The build number. Some CI servers use non-numeric build numbers, which is why this is a string
      */
-    public string? BuildNumber { get; private set; }
-    public Git? Git { get; private set; }
+    public string BuildNumber { get; private set; }
+    public Git Git { get; private set; }
+
 
     public Ci(
         string name,
@@ -32,13 +34,15 @@ public sealed class Ci {
         Git git
     ) 
     {
+              RequireNonNull<string>(name, "Name", "Ci.Name cannot be null");
         this.Name = name;
-        this.Url = url;
-        this.BuildNumber = buildNumber;
-        this.Git = git;
+              this.Url = url;
+              this.BuildNumber = buildNumber;
+              this.Git = git;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Ci that = (Ci) o;
@@ -49,21 +53,37 @@ public sealed class Ci {
             Object.Equals(Git, that.Git);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + Url?.GetHashCode()?? 0;
-        hash = hash * 31 + BuildNumber?.GetHashCode()?? 0;
-        hash = hash * 31 + Git?.GetHashCode()?? 0;
+        if (Name != null)
+          hash = hash * 31 + Name.GetHashCode();
+        if (Url != null)
+          hash = hash * 31 + Url.GetHashCode();
+        if (BuildNumber != null)
+          hash = hash * 31 + BuildNumber.GetHashCode();
+        if (Git != null)
+          hash = hash * 31 + Git.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Ci{" +
             "name=" + Name +
             ", url=" + Url +
             ", buildNumber=" + BuildNumber +
             ", git=" + Git +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

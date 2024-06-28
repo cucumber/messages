@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Step message in Cucumber's message protocol
@@ -10,7 +10,8 @@ namespace io.cucumber.messages.types;
  * A step
  */
 // Generated code
-public sealed class Step {
+public sealed class Step 
+{
     /**
      * The location of the steps' `keyword`
      */
@@ -22,14 +23,15 @@ public sealed class Step {
     /**
      * The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
      */
-    public StepKeywordType? KeywordType { get; private set; }
+    public StepKeywordType KeywordType { get; private set; }
     public string Text { get; private set; }
-    public DocString? DocString { get; private set; }
-    public DataTable? DataTable { get; private set; }
+    public DocString DocString { get; private set; }
+    public DataTable DataTable { get; private set; }
     /**
      * Unique ID to be able to reference the Step from PickleStep
      */
     public string Id { get; private set; }
+
 
     public Step(
         Location location,
@@ -41,16 +43,21 @@ public sealed class Step {
         string id
     ) 
     {
+              RequireNonNull<Location>(location, "Location", "Step.Location cannot be null");
         this.Location = location;
+              RequireNonNull<string>(keyword, "Keyword", "Step.Keyword cannot be null");
         this.Keyword = keyword;
-        this.KeywordType = keywordType;
+              this.KeywordType = keywordType;
+              RequireNonNull<string>(text, "Text", "Step.Text cannot be null");
         this.Text = text;
-        this.DocString = docString;
-        this.DataTable = dataTable;
+              this.DocString = docString;
+              this.DataTable = dataTable;
+              RequireNonNull<string>(id, "Id", "Step.Id cannot be null");
         this.Id = id;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Step that = (Step) o;
@@ -64,19 +71,28 @@ public sealed class Step {
             Id.Equals(that.Id);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Location.GetHashCode();
-        hash = hash * 31 + Keyword.GetHashCode();
-        hash = hash * 31 + KeywordType?.GetHashCode()?? 0;
-        hash = hash * 31 + Text.GetHashCode();
-        hash = hash * 31 + DocString?.GetHashCode()?? 0;
-        hash = hash * 31 + DataTable?.GetHashCode()?? 0;
-        hash = hash * 31 + Id.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
+        if (Keyword != null)
+          hash = hash * 31 + Keyword.GetHashCode();
+        if (KeywordType != null)
+          hash = hash * 31 + KeywordType.GetHashCode();
+        if (Text != null)
+          hash = hash * 31 + Text.GetHashCode();
+        if (DocString != null)
+          hash = hash * 31 + DocString.GetHashCode();
+        if (DataTable != null)
+          hash = hash * 31 + DataTable.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Step{" +
             "location=" + Location +
             ", keyword=" + Keyword +
@@ -86,5 +102,15 @@ public sealed class Step {
             ", dataTable=" + DataTable +
             ", id=" + Id +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

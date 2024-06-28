@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace io.cucumber.messages.types;
+namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Rule message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 // Generated code
-public sealed class Rule {
+public sealed class Rule 
+{
     /**
      * The location of the `Rule` keyword
      */
@@ -23,6 +24,7 @@ public sealed class Rule {
     public List<RuleChild> Children { get; private set; }
     public string Id { get; private set; }
 
+
     public Rule(
         Location location,
         List<Tag> tags,
@@ -33,16 +35,24 @@ public sealed class Rule {
         string id
     ) 
     {
+              RequireNonNull<Location>(location, "Location", "Rule.Location cannot be null");
         this.Location = location;
-        this.Tags = tags;
+              RequireNonNull<List<Tag>>(tags, "Tags", "Rule.Tags cannot be null");
+        this.Tags = new List<Tag>(tags);
+              RequireNonNull<string>(keyword, "Keyword", "Rule.Keyword cannot be null");
         this.Keyword = keyword;
+              RequireNonNull<string>(name, "Name", "Rule.Name cannot be null");
         this.Name = name;
+              RequireNonNull<string>(description, "Description", "Rule.Description cannot be null");
         this.Description = description;
-        this.Children = children;
+              RequireNonNull<List<RuleChild>>(children, "Children", "Rule.Children cannot be null");
+        this.Children = new List<RuleChild>(children);
+              RequireNonNull<string>(id, "Id", "Rule.Id cannot be null");
         this.Id = id;
     }
 
-    public override bool Equals(Object o) {
+    public override bool Equals(Object o) 
+    {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         Rule that = (Rule) o;
@@ -56,19 +66,28 @@ public sealed class Rule {
             Id.Equals(that.Id);        
     }
 
-    public override int GetHashCode() {
+    public override int GetHashCode() 
+    {
         int hash = 17;
-        hash = hash * 31 + Location.GetHashCode();
-        hash = hash * 31 + Tags.GetHashCode();
-        hash = hash * 31 + Keyword.GetHashCode();
-        hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + Description.GetHashCode();
-        hash = hash * 31 + Children.GetHashCode();
-        hash = hash * 31 + Id.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
+        if (Tags != null)
+          hash = hash * 31 + Tags.GetHashCode();
+        if (Keyword != null)
+          hash = hash * 31 + Keyword.GetHashCode();
+        if (Name != null)
+          hash = hash * 31 + Name.GetHashCode();
+        if (Description != null)
+          hash = hash * 31 + Description.GetHashCode();
+        if (Children != null)
+          hash = hash * 31 + Children.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
         return hash;
     }
 
-    public override string ToString() {
+    public override string ToString() 
+    {
         return "Rule{" +
             "location=" + Location +
             ", tags=" + Tags +
@@ -78,5 +97,15 @@ public sealed class Rule {
             ", children=" + Children +
             ", id=" + Id +
             '}';
+    }
+
+    private static T Require<T>(T property, string propertyName, string errorMessage)
+    {
+      RequireNonNull<T>(property, propertyName, errorMessage);
+      return property;
+    }
+    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
+    {
+      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }
