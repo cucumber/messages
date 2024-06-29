@@ -22,5 +22,6 @@ jobs:
 
       - name: run tests
         run: |
-          make
+         echo "No tests yet"
+         exit 1
         working-directory: dotnet
