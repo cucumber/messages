@@ -13,12 +13,12 @@ require: ## Check requirements for the code generation (ruby, csplit and tail ar
 	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
 
 clean: ## Remove automatically generated files and related artifacts
-	rm -rf Cucumber.Messages/*.cs
+	rm -rf Cucumber.Messages/generated/*.cs
 
 .generate-messages: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/dotnet.dotnet.erb ../jsonschema/scripts/templates/dotnet.enum.dotnet.erb
 	ruby ../jsonschema/scripts/codegen.rb Dotnet ../jsonschema dotnet.dotnet.erb > Generated.dotnet.tmp
 	ruby ../jsonschema/scripts/codegen.rb Dotnet ../jsonschema dotnet.enum.dotnet.erb >> Generated.dotnet.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.dotnet.tmp --elide-empty-files Generated.dotnet.tmp /^[A-Za-z.]*[.]cs/ {*}
 	rm Generated.dotnet.tmp
-	rm -rf Cucumber.Messages/*.cs
-	for file in Generated**; do tail -n +2 $$file > Cucumber.Messages/$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done
+	rm -rf Cucumber.Messages/generated/*.cs
+	for file in Generated**; do tail -n +2 $$file > Cucumber.Messages/generated/$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done
