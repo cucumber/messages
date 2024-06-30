@@ -1,3 +1,5 @@
+include default.mk
+
 schemas = $(shell find ../jsonschema -name "*.json")
 
 .DEFAULT_GOAL = help

@@ -18,10 +18,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '5.0.x'
+          dotnet-version: '8.0.x'
 
       - name: run tests
         run: |
-         echo "No tests yet"
-         exit 1
+         dotnet test
         working-directory: dotnet
