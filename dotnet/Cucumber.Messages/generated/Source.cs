@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -11,7 +17,7 @@ namespace Io.Cucumber.Messages.Types;
  *
  * A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
  */
-// Generated code
+
 public sealed class Source 
 {
     /**
@@ -62,8 +68,7 @@ public sealed class Source
           hash = hash * 31 + Uri.GetHashCode();
         if (Data != null)
           hash = hash * 31 + Data.GetHashCode();
-        if (MediaType != null)
-          hash = hash * 31 + MediaType.GetHashCode();
+          hash = hash * 31 + MediaType.GetHashCode();  
         return hash;
     }
 

@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -10,7 +16,7 @@ namespace Io.Cucumber.Messages.Types;
  * Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
  * [Location](#io.cucumber.messages.Location) within that file.
  */
-// Generated code
+
 public sealed class SourceReference 
 {
     public string Uri { get; private set; }

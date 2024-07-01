@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -9,7 +15,7 @@ namespace Io.Cucumber.Messages.Types;
  *
  * A step
  */
-// Generated code
+
 public sealed class Step 
 {
     /**
@@ -78,8 +84,7 @@ public sealed class Step
           hash = hash * 31 + Location.GetHashCode();
         if (Keyword != null)
           hash = hash * 31 + Keyword.GetHashCode();
-        if (KeywordType != null)
-          hash = hash * 31 + KeywordType.GetHashCode();
+          hash = hash * 31 + KeywordType.GetHashCode();  
         if (Text != null)
           hash = hash * 31 + Text.GetHashCode();
         if (DocString != null)

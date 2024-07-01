@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -19,7 +25,7 @@ namespace Io.Cucumber.Messages.Types;
  * It is not to be used for runtime errors raised/thrown during execution. This
  * is captured in `TestResult`.
  */
-// Generated code
+
 public sealed class Attachment 
 {
     /**
@@ -114,8 +120,7 @@ public sealed class Attachment
         int hash = 17;
         if (Body != null)
           hash = hash * 31 + Body.GetHashCode();
-        if (ContentEncoding != null)
-          hash = hash * 31 + ContentEncoding.GetHashCode();
+          hash = hash * 31 + ContentEncoding.GetHashCode();  
         if (FileName != null)
           hash = hash * 31 + FileName.GetHashCode();
         if (MediaType != null)

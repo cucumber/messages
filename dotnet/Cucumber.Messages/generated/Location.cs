@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -9,7 +15,7 @@ namespace Io.Cucumber.Messages.Types;
  *
  * Points to a line and a column in a text file
  */
-// Generated code
+
 public sealed class Location 
 {
     public long Line { get; private set; }
@@ -39,8 +45,7 @@ public sealed class Location
     public override int GetHashCode() 
     {
         int hash = 17;
-        if (Line != null)
-          hash = hash * 31 + Line.GetHashCode();
+          hash = hash * 31 + Line.GetHashCode();  
         if (Column.HasValue)
           hash = hash * 31 + Column.Value.GetHashCode();
         return hash;

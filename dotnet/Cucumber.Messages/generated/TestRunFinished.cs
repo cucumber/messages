@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the TestRunFinished message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
-// Generated code
+
 public sealed class TestRunFinished 
 {
     /**
@@ -60,8 +66,7 @@ public sealed class TestRunFinished
         int hash = 17;
         if (Message != null)
           hash = hash * 31 + Message.GetHashCode();
-        if (Success != null)
-          hash = hash * 31 + Success.GetHashCode();
+          hash = hash * 31 + Success.GetHashCode();  
         if (Timestamp != null)
           hash = hash * 31 + Timestamp.GetHashCode();
         if (Exception != null)

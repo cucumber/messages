@@ -3,6 +3,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -13,7 +19,7 @@ namespace Io.Cucumber.Messages.Types;
 <%= format_description(schema['description'], indent_string: '') %>
 <%- end -%>
  */
-// Generated code
+
 public sealed class <%= class_name(key) %> 
 {
   <%- schema['properties'].each do |property_name, property| 
@@ -98,10 +104,15 @@ public sealed class <%= class_name(key) %>
         <%- schema['properties'].each_with_index do |(property_name, property), index| 
         required = (schema['required'] || []).index(property_name) 
         isValueType = type_for(class_name(key), property_name, property) == "long" || type_for(class_name(key), property_name, property) == "bool"
+        isEnum = property['enum']
         -%>
-        <%- if isValueType && !required -%>
+        <%- if isEnum -%>
+          hash = hash * 31 + <%= capitalize(property_name) -%>.GetHashCode();  
+        <%- elsif isValueType && !required -%>
         if (<%= capitalize(property_name) -%>.HasValue)
           hash = hash * 31 + <%= capitalize(property_name) -%>.Value.GetHashCode();
+        <%- elsif isValueType -%>
+          hash = hash * 31 + <%= capitalize(property_name) -%>.GetHashCode();  
         <%- else -%>
         if (<%= capitalize(property_name) -%> != null)
           hash = hash * 31 + <%= capitalize(property_name) -%>.GetHashCode();

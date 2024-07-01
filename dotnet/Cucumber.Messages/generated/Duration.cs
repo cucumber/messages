@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -10,7 +16,7 @@ namespace Io.Cucumber.Messages.Types;
  * The structure is pretty close of the Timestamp one. For clarity, a second type
  * of message is used.
  */
-// Generated code
+
 public sealed class Duration 
 {
     public long Seconds { get; private set; }
@@ -47,10 +53,8 @@ public sealed class Duration
     public override int GetHashCode() 
     {
         int hash = 17;
-        if (Seconds != null)
-          hash = hash * 31 + Seconds.GetHashCode();
-        if (Nanos != null)
-          hash = hash * 31 + Nanos.GetHashCode();
+          hash = hash * 31 + Seconds.GetHashCode();  
+          hash = hash * 31 + Nanos.GetHashCode();  
         return hash;
     }
 

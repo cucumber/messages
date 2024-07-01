@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -9,7 +15,7 @@ namespace Io.Cucumber.Messages.Types;
  *
  * A comment in a Gherkin document
  */
-// Generated code
+
 public sealed class Comment 
 {
     /**

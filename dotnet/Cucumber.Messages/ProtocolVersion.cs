@@ -11,8 +11,14 @@ namespace Cucumber.Messages
         {
             get
             {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                return GetPackageVersion(typeof(ProtocolVersion).GetTypeInfo().Assembly);
             }
+        }
+
+        private static string GetPackageVersion(Assembly assembly)
+        {
+            var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+            return version?.Split(new char['+'], 2)[0];
         }
     }
 }

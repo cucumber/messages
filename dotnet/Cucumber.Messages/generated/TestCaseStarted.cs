@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the TestCaseStarted message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
-// Generated code
+
 public sealed class TestCaseStarted 
 {
     /**
@@ -63,8 +69,7 @@ public sealed class TestCaseStarted
     public override int GetHashCode() 
     {
         int hash = 17;
-        if (Attempt != null)
-          hash = hash * 31 + Attempt.GetHashCode();
+          hash = hash * 31 + Attempt.GetHashCode();  
         if (Id != null)
           hash = hash * 31 + Id.GetHashCode();
         if (TestCaseId != null)

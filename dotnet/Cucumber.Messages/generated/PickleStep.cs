@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -9,7 +15,7 @@ namespace Io.Cucumber.Messages.Types;
  *
  * An executable step
  */
-// Generated code
+
 public sealed class PickleStep 
 {
     public PickleStepArgument Argument { get; private set; }
@@ -71,8 +77,7 @@ public sealed class PickleStep
           hash = hash * 31 + AstNodeIds.GetHashCode();
         if (Id != null)
           hash = hash * 31 + Id.GetHashCode();
-        if (Type != null)
-          hash = hash * 31 + Type.GetHashCode();
+          hash = hash * 31 + Type.GetHashCode();  
         if (Text != null)
           hash = hash * 31 + Text.GetHashCode();
         return hash;

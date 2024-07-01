@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -10,7 +16,7 @@ namespace Io.Cucumber.Messages.Types;
  * Information about Git, provided by the Build/CI server as environment
  * variables.
  */
-// Generated code
+
 public sealed class Git 
 {
     public string Remote { get; private set; }

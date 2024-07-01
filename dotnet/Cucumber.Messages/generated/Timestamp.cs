@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the Timestamp message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
-// Generated code
+
 public sealed class Timestamp 
 {
     /**
@@ -49,10 +55,8 @@ public sealed class Timestamp
     public override int GetHashCode() 
     {
         int hash = 17;
-        if (Seconds != null)
-          hash = hash * 31 + Seconds.GetHashCode();
-        if (Nanos != null)
-          hash = hash * 31 + Nanos.GetHashCode();
+          hash = hash * 31 + Seconds.GetHashCode();  
+          hash = hash * 31 + Nanos.GetHashCode();  
         return hash;
     }
 

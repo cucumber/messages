@@ -20,8 +20,8 @@
     <PackageId>Cucumber.Messages</PackageId>
     <Authors>Cucumber Ltd, TechTalk</Authors>
     <Copyright>Copyright © Cucumber Ltd, TechTalk</Copyright>
-    <Description>Cucumber messages for Cucumber's and SpecFlow's inter-process communication</Description>
-    <PackageTags>cucumber-messages cucumber specflow gherkin</PackageTags>
+    <Description>Cucumber messages to represent source data and execution results in Cucumber-family tools</Description>
+    <PackageTags>cucumber-messages cucumber reqnroll specflow gherkin</PackageTags>
     <PackageProjectUrl>https://github.com/cucumber/messages</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cucumber/messages</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -33,18 +33,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-     <PackageReference Include="System.Text.Json" Version="8.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)\Resources\cucumber-mark-green-128.png">
       <Pack>True</Pack>
       <PackagePath>.</PackagePath>
       <Visible>true</Visible>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
   </ItemGroup>
 </Project>

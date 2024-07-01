@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the StepDefinitionPattern message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
-// Generated code
+
 public sealed class StepDefinitionPattern 
 {
     public string Source { get; private set; }
@@ -40,8 +46,7 @@ public sealed class StepDefinitionPattern
         int hash = 17;
         if (Source != null)
           hash = hash * 31 + Source.GetHashCode();
-        if (Type != null)
-          hash = hash * 31 + Type.GetHashCode();
+          hash = hash * 31 + Type.GetHashCode();  
         return hash;
     }
 

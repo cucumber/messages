@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the ParameterType message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
-// Generated code
+
 public sealed class ParameterType 
 {
     /**
@@ -64,10 +70,8 @@ public sealed class ParameterType
           hash = hash * 31 + Name.GetHashCode();
         if (RegularExpressions != null)
           hash = hash * 31 + RegularExpressions.GetHashCode();
-        if (PreferForRegularExpressionMatch != null)
-          hash = hash * 31 + PreferForRegularExpressionMatch.GetHashCode();
-        if (UseForSnippets != null)
-          hash = hash * 31 + UseForSnippets.GetHashCode();
+          hash = hash * 31 + PreferForRegularExpressionMatch.GetHashCode();  
+          hash = hash * 31 + UseForSnippets.GetHashCode();  
         if (Id != null)
           hash = hash * 31 + Id.GetHashCode();
         if (SourceReference != null)

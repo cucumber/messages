@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
@@ -14,7 +20,7 @@ namespace Io.Cucumber.Messages.Types;
  * All the messages that are passed between different components/processes are Envelope
  * messages.
  */
-// Generated code
+
 public sealed class Envelope 
 {
     public Attachment Attachment { get; private set; }

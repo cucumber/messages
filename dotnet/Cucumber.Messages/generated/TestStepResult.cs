@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 namespace Io.Cucumber.Messages.Types;
 
 /**
  * Represents the TestStepResult message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
-// Generated code
+
 public sealed class TestStepResult 
 {
     public Duration Duration { get; private set; }
@@ -56,8 +62,7 @@ public sealed class TestStepResult
           hash = hash * 31 + Duration.GetHashCode();
         if (Message != null)
           hash = hash * 31 + Message.GetHashCode();
-        if (Status != null)
-          hash = hash * 31 + Status.GetHashCode();
+          hash = hash * 31 + Status.GetHashCode();  
         if (Exception != null)
           hash = hash * 31 + Exception.GetHashCode();
         return hash;
