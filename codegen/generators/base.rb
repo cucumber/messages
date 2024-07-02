@@ -34,7 +34,7 @@ module Generator
         e.message << "\npath: #{path}"
         raise e
       end
-      @schemas.sort!
+      @schemas = @schemas.sort
     end
 
     def add_individual_schema(key, schema)
