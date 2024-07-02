@@ -24,7 +24,7 @@ schemas = \
 	./jsonschema/UndefinedParameterType.json \
 	./jsonschema/Envelope.json
 
-languages = cpp go java javascript perl php ruby
+languages = cpp go java javascript perl php ruby dotnet
 
 .DEFAULT_GOAL = help
 
