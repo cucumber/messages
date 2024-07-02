@@ -53,9 +53,9 @@ clean-doc: ## Remove automatically generated documentation files and related art
 clean-all: clean-doc $(patsubst %,clean-%,$(languages)) ## Clean generated documentation and code of all supported languages
 .PHONY: clean-all
 
-messages.md: $(schemas) ./jsonschema/scripts/codegen.rb ./jsonschema/scripts/templates/markdown.md.erb ./jsonschema/scripts/templates/markdown.enum.md.erb
-	ruby ./jsonschema/scripts/codegen.rb Markdown ./jsonschema markdown.md.erb > $@
-	ruby ./jsonschema/scripts/codegen.rb Markdown ./jsonschema markdown.enum.md.erb >> $@
+messages.md: $(schemas) ./codegen/codegen.rb ./codegen/templates/markdown.md.erb ./codegen/templates/markdown.enum.md.erb
+	ruby ./codegen/codegen.rb Generator::Markdown markdown.md.erb > $@
+	ruby ./codegen/codegen.rb Generator::Markdown markdown.enum.md.erb >> $@
 
 generate-%: %
 	cd $< && make generate
