@@ -39,20 +39,20 @@ module Generator
       end
     end
 
-    def line_as_comment(line)
-      if line.empty?
-        '#'
-      else
-        "# #{line}"
-      end
-    end
-
     def language_translations_for_data_types
       {
         'integer' => 'number',
         'string' => 'string',
         'boolean' => 'boolean'
       }
+    end
+
+    def line_as_comment(line)
+      if line.empty?
+        '#'
+      else
+        "# #{line}"
+      end
     end
   end
 end

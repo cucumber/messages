@@ -44,7 +44,7 @@ module Generator
       if scalar?(property)
         non_nullable_scalar_constructor(parent_type, property, property_name, source)
       else
-        non_nullable_nonscalar_constructor(parent_type, property, property_name, schema, source)
+        non_nullable_non_scalar_constructor(parent_type, property, property_name, schema, source)
       end
     end
 
@@ -72,7 +72,15 @@ module Generator
       super(class_name, property_name, property)
     end
 
-    def non_nullable_nonscalar_constructor(parent_type, property, property_name, schema, source)
+    def language_translations_for_data_types
+      {
+        'string' => 'string',
+        'integer' => 'int',
+        'boolean' => 'bool'
+      }
+    end
+
+    def non_nullable_non_scalar_constructor(parent_type, property, property_name, schema, source)
       type = type_for(parent_type, property_name, property)
       if type == 'array'
         constructor = non_nullable_constructor_for(parent_type, property['items'], nil, schema, 'member')
@@ -89,14 +97,6 @@ module Generator
       else
         "(#{scalar_type_for(property)}) $#{source}"
       end
-    end
-
-    def language_translations_for_data_types
-      {
-        'string' => 'string',
-        'integer' => 'int',
-        'boolean' => 'bool'
-      }
     end
   end
 end
