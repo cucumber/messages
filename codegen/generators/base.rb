@@ -10,9 +10,8 @@ module Generator
   class Base
     TEMPLATES_DIRECTORY = "#{File.dirname(__FILE__)}/../templates".freeze
 
-    def initialize(language_type_by_schema_type, paths: Dir['../jsonschema/*.json'])
+    def initialize(paths: Dir['../jsonschema/*.json'])
       @paths = paths
-      @language_type_by_schema_type = language_type_by_schema_type
       @schemas = {}
       @enum_set = Set.new
       add_all_schemas

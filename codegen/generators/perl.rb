@@ -2,17 +2,8 @@
 
 module Generator
   # Generator::Perl
-  # Automatic Code generation overrides for Perl programming language
+  # Automatic Code generation overrides for the Perl programming language
   class Perl < Base
-    def initialize
-      language_type_by_schema_type = {
-        'integer' => 'number',
-        'string' => 'string',
-        'boolean' => 'boolean'
-      }
-      super(language_type_by_schema_type)
-    end
-
     def array_type_for(type_name)
       "[]#{type_name}"
     end

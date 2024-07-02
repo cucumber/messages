@@ -2,17 +2,8 @@
 
 module Generator
   # Generator::Ruby
-  # Automatic Code generation overrides for Ruby programming language
+  # Automatic Code generation overrides for the Ruby programming language
   class Ruby < Base
-    def initialize
-      language_type_by_schema_type = {
-        'integer' => 'number',
-        'string' => 'string',
-        'boolean' => 'boolean'
-      }
-      super(language_type_by_schema_type)
-    end
-
     def array_type_for(_type_name)
       '[]'
     end

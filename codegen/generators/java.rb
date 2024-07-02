@@ -1,18 +1,9 @@
 # frozen_string_literal: true
 
 module Generator
-  # Generator::Typescript
-  # Automatic Code generation overrides for Java programming language
+  # Generator::Java
+  # Automatic Code generation overrides for the Java programming language
   class Java < Base
-    def initialize
-      language_type_by_schema_type = {
-        'integer' => 'Long',
-        'string' => 'String',
-        'boolean' => 'Boolean'
-      }
-      super(language_type_by_schema_type)
-    end
-
     def array_type_for(type_name)
       "java.util.List<#{type_name}>"
     end

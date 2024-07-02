@@ -2,17 +2,8 @@
 
 module Generator
   # Generator::Php
-  # Automatic Code generation overrides for Php programming language
+  # Automatic Code generation overrides for the Php programming language
   class Php < Base
-    def initialize
-      language_type_by_schema_type = {
-        'string' => 'string',
-        'integer' => 'int',
-        'boolean' => 'bool'
-      }
-      super(language_type_by_schema_type)
-    end
-
     def array_contents_type(parent_type_name, _property_name, property)
       type_for(parent_type_name, nil, property['items'])
     end
