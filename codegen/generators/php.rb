@@ -57,10 +57,6 @@ module Generator
     end
 
     def scalar_type_for(property)
-      unless language_translations_for_data_types[property['type']]
-        raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}"
-      end
-
       language_translations_for_data_types[property['type']]
     end
 
