@@ -1,4 +1,5 @@
 ﻿using Io.Cucumber.Messages.Types;
+using System;
 using System.Text.Json;
 
 namespace Cucumber.Messages
@@ -6,29 +7,25 @@ namespace Cucumber.Messages
     public static class NdjsonSerializer
     {
         private static object lockObject = new object();
-        private static JsonSerializerOptions _jsonOptions;
+        private static Lazy<JsonSerializerOptions> _jsonOptions = new Lazy<JsonSerializerOptions>(() =>
+        {
+            var jso = new JsonSerializerOptions();
+            jso.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            jso.Converters.Add(new CucumberMessagEnumConverter<AttachmentContentEncoding>());
+            jso.Converters.Add(new CucumberMessagEnumConverter<PickleStepType>());
+            jso.Converters.Add(new CucumberMessagEnumConverter<SourceMediaType>());
+            jso.Converters.Add(new CucumberMessagEnumConverter<StepDefinitionPatternType>());
+            jso.Converters.Add(new CucumberMessagEnumConverter<StepKeywordType>());
+            jso.Converters.Add(new CucumberMessagEnumConverter<TestStepResultStatus>());
+            jso.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+            jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+
+            return jso;
+        });
+
         private static JsonSerializerOptions JsonOptions { get 
             { 
-                if (_jsonOptions == null)
-                {
-                    lock (lockObject)
-                    {
-                        if (_jsonOptions == null)
-                        {
-                            _jsonOptions = new JsonSerializerOptions();
-                            _jsonOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                            _jsonOptions.Converters.Add(new CucumberMessagEnumConverter<AttachmentContentEncoding>());
-                            _jsonOptions.Converters.Add(new CucumberMessagEnumConverter<PickleStepType>());
-                            _jsonOptions.Converters.Add(new CucumberMessagEnumConverter<SourceMediaType>());
-                            _jsonOptions.Converters.Add(new CucumberMessagEnumConverter<StepDefinitionPatternType>());
-                            _jsonOptions.Converters.Add(new CucumberMessagEnumConverter<StepKeywordType>());
-                            _jsonOptions.Converters.Add(new CucumberMessagEnumConverter<TestStepResultStatus>());
-                            _jsonOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-                            _jsonOptions.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-                        }
-                    }
-                }
-                return _jsonOptions;
+                return _jsonOptions.Value;
             }
         } 
 
