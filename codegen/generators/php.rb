@@ -53,15 +53,15 @@ module Generator
     end
 
     def scalar?(property)
-      property.key?('type') && @language_type_by_schema_type.key?(property['type'])
+      property.key?('type') && language_translations_for_data_types.key?(property['type'])
     end
 
     def scalar_type_for(property)
-      unless @language_type_by_schema_type[property['type']]
+      unless language_translations_for_data_types[property['type']]
         raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}"
       end
 
-      @language_type_by_schema_type[property['type']]
+      language_translations_for_data_types[property['type']]
     end
 
     private
