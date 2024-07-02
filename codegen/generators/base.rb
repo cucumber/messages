@@ -15,7 +15,6 @@ module Generator
       @schemas = {}
       @enum_set = Set.new
       add_all_schemas
-      @schemas = @schemas.sort
       @enums = @enum_set.to_a.sort_by { |a| a[:name] }
     end
 
@@ -35,6 +34,7 @@ module Generator
         e.message << "\npath: #{path}"
         raise e
       end
+      @schemas.sort!
     end
 
     def add_individual_schema(key, schema)
