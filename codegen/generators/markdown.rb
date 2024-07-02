@@ -2,17 +2,12 @@
 
 module Generator
   # Generator::Markdown
-  # Automatic Code generation overrides for 'Cucumber with Markdown' programming language
+  # Automatic Code generation overrides for the 'Cucumber with Markdown' programming language
   # NB: This is based on the cucumber-js implementation
   class Markdown < Base
     def initialize
-      language_type_by_schema_type = {
-        'integer' => 'integer',
-        'string' => 'string',
-        'boolean' => 'boolean'
-      }
       # This path is different because the make task is ran from the TLD, not a language specific one
-      super(language_type_by_schema_type, paths: Dir['./jsonschema/*.json'])
+      super(paths: Dir['./jsonschema/*.json'])
     end
 
     def array_type_for(type_name)
