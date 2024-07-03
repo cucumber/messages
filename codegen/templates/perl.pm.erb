@@ -93,7 +93,7 @@ Available constants for valid values of this field:
 
 =over
 
-<%- property['enum'].to_a.each_with_index do |value, index| -%>
+<%- property['enum'].each do |value| -%>
 =item * <%= property_name.upcase %>_<%= enum_constant(value) %>
 
 <%- end -%>
@@ -105,7 +105,7 @@ Available constants for valid values of this field:
 <% if property['enum'] -%>
 
 use constant {
-<%- property['enum'].to_a.each_with_index do |value, index| -%>
+<%- property['enum'].each do |value| -%>
    <%= property_name.upcase %>_<%= enum_constant(value) %> => '<%= value %>',
 <%- end -%>
    };
@@ -142,5 +142,3 @@ This work is loosely derived from prior work of the same library for Ruby,
 called C<cucumber-messages>.
 
 =cut
-
-
