@@ -1,5 +1,5 @@
 all.hpp
-<%- @schemas.each do |key, schema| -%>
+<%- @schemas.each do |key, _schema| -%>
 <%-
     myclass = underscore(class_name(key))
 -%>
@@ -16,7 +16,7 @@ all.hpp
 #include <string>
 <%-
     optionals = 0
-    schema['properties'].each do |property_name, property|
+    schema['properties'].each do |property_name, _property|
         prequired = (schema['required'] || []).index(property_name)
         optionals += prequired ? 0 : 1
     end
@@ -39,7 +39,7 @@ all.hpp
         incs.append(type)
     end
 
-    if incs.length > 0
+    if incs.length.positive?
 -%>
 
     <%- incs.each do |type| -%>
@@ -54,7 +54,7 @@ using json = nlohmann::json;
 //
 // Represents the <%= class_name(key) %> message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
-<%- if not (schema['description'] || []).empty? -%>
+<%- unless (schema['description'] || []).empty? -%>
 //
 <%= format_description(schema['description'], indent_string: '') %>
 <%- end -%>
@@ -70,13 +70,13 @@ struct <%= myclass %>
         pname = underscore(property_name)
         prequired = (schema['required'] || []).index(property_name)
         if m = /std::vector<(?<vtype>.+)>/.match(type)
-            if !m['vtype'].start_with?("std::")
+            unless m['vtype'].start_with?("std::")
                 ptype = "std::vector<cucumber::messages::" + m['vtype'] + ">"
             end
         elsif !type.start_with?("std::") && type != "bool"
             ptype = "cucumber::messages::" + type
         end
-        if !prequired
+        unless prequired
             ptype = "std::optional<" + ptype + ">"
         end
     -%>
@@ -109,7 +109,7 @@ std::string
     std::ostringstream oss;
 
     <%-
-    schema['properties'].each_with_index do |(property_name, property), index|
+    schema['properties'].each_with_index do |(property_name, _property), index|
         pname = underscore(property_name)
         prefix = '"' + (index == 0 ? '' : ', ') + pname + '="'
     -%>
@@ -123,8 +123,7 @@ void
 <%= myclass %>::to_json(json& j) const
 {
     <%-
-    exprs = []
-    schema['properties'].each_with_index do |(property_name, property), index|
+    schema['properties'].each do |(property_name, _property)|
         pname = underscore(property_name)
     -%>
     cucumber::messages::to_json(j, camelize("<%= pname %>"), <%= pname %>);
