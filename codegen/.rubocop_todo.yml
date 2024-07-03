@@ -11,12 +11,12 @@
 # Initial creation - 3rd iteration (FILE MIGRATION) (June) - 10 files inspected, 14 offenses detected, 2 offenses autocorrectable
 # Initial creation - 4th iteration (Manual tidies) (June) - 10 files inspected, 2 offenses detected
 
-# Offense count: 1
-# Configuration parameters: CountComments, CountAsOne.
-Metrics/ClassLength:
-  Max: 110
-
-# Offense count: 1
-# Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
-Metrics/MethodLength:
-  Max: 11
+## Offense count: 1
+## Configuration parameters: CountComments, CountAsOne.
+#Metrics/ClassLength:
+#  Max: 110
+#
+## Offense count: 1
+## Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
+#Metrics/MethodLength:
+#  Max: 11

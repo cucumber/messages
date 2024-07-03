@@ -13,7 +13,7 @@ namespace Cucumber\Messages\<%= namespaces.slice(0,1)[0] %>;
 
 enum <%= namespaces[-1] %>: string
 {
-<%- enum[:values].each_with_index do |value, index| -%>
+<%- enum[:values].each do |value| -%>
     case <%= enum_constant(value) %> = '<%= value %>';
 <%- end -%>
 }
