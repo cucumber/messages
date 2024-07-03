@@ -76,15 +76,18 @@ module Generator
 
     def default_value_for_non_objects(parent_type_name, property_name, property)
       case property['type']
-      when 'string'
-        if property['enum']
-          enum_type_name = type_for(parent_type_name, property_name, property)
-          default_enum(enum_type_name, property)
-        else
-          "''"
-        end
+      when 'string'; then default_value_for_string(parent_type_name, property_name, property)
       when 'integer'; then '0'
       when 'boolean'; then 'false'
+      end
+    end
+
+    def default_value_for_string(parent_type_name, property_name, property)
+      if property['enum']
+        enum_type_name = type_for(parent_type_name, property_name, property)
+        default_enum(enum_type_name, property)
+      else
+        "''"
       end
     end
 
@@ -93,9 +96,7 @@ module Generator
     end
 
     def enum_name(parent_type_name, property_name, enum)
-      enum_type_name = "#{parent_type_name}#{capitalize(property_name)}"
-      @enum_set.add({ name: enum_type_name, values: enum })
-      enum_type_name
+      "#{parent_type_name}#{capitalize(property_name)}".tap { |name| @enum_set.add({ name: name, values: enum }) }
     end
 
     def property_type_from_enum(enum)
