@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- **Internal breaking change** The code generation has undergone a large refactor (No visible changes expected). All new code
+generation logic is now contained in `/codegen` ([#228](https://github.com/cucumber/messages/pull/228) [luke-hill](https://github.com/luke-hill))
 
 ## [25.0.1] - 2024-06-13
 ### Fixed
