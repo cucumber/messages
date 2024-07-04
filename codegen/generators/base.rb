@@ -10,6 +10,8 @@ module Generator
   class Base
     TEMPLATES_DIRECTORY = "#{File.dirname(__FILE__)}/../templates".freeze
 
+    include TextHelpers
+
     def initialize(paths: Dir['../jsonschema/*.json'])
       @paths = paths
       @schemas = {}
@@ -48,10 +50,6 @@ module Generator
         enum = property['enum']
         enum_name(class_name(key), property_name, enum) if enum
       end
-    end
-
-    def capitalize(string)
-      string.sub(/./, &:upcase)
     end
 
     def class_name(ref)
@@ -130,16 +128,6 @@ module Generator
         # Inline schema (not supported)
         raise "Property #{property_name} did not define 'type' or '$ref'"
       end
-    end
-
-    # Adapted from rails -> https://github.com/rails/rails/blob/v6.1.3.2/activesupport/lib/active_support/inflector/methods.rb#L92
-    def underscore(camel_cased_word)
-      return camel_cased_word unless /[A-Z-]/.match?(camel_cased_word)
-
-      camel_cased_word.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
-                      .gsub(/([a-z\d])([A-Z])/, '\1_\2')
-                      .tr('-', '_')
-                      .downcase
     end
   end
 end
