@@ -10,9 +10,9 @@ namespace cucumber::messages {
 enum class <%= ename %>
 {
 <%-
-  vals = enum[:values].map { |v| enum_constant(v) }
+  values = enum[:values].map { |value| enum_constant(value) }
 -%>
-    <%= vals.join(",\n    ") %>
+    <%= values.join(",\n    ") %>
 };
 
 std::string_view
@@ -37,7 +37,7 @@ to_string(<%= ename %> v)
 
     static const map_type m = {
 <%- enum[:values].each_with_index do |value, index| -%>
-        { <%= ename %>::<%= enum_constant(value) %>, "<%= value %>" }<%= index < enum[:values].length-1 ? ',' : '' %>
+        { <%= ename %>::<%= enum_constant(value) %>, "<%= value %>" }<%= index < enum[:values].length - 1 ? ',' : '' %>
 <% end -%>
     };
 
