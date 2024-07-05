@@ -13,15 +13,6 @@ namespace Cucumber.Messages.Specs
 {
     public class BasicMessageSerializationTests
     {
-        [Fact]
-        public void CanDeserializeEnum()
-        {
-            var source = new Source("hello.feature", "Feature: Hello", SourceMediaType.TEXT_X_CUCUMBER_GHERKIN_PLAIN);
-            string json = NdjsonSerializer.Serialize<Source>(source);
-
-            var deserialized = NdjsonSerializer.Deserialize<Source>(json);
-            Assert.Equal(source, deserialized);
-        }
 
         [Fact]
         public void SerializesAnEnvelopeToNDJSONCorrectly()

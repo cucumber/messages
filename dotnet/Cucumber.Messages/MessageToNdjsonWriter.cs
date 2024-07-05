@@ -26,6 +26,7 @@ namespace Cucumber.Messages
 
         public void Dispose()
         {
+            _streamWriter.Close();
             _streamWriter.Dispose();
         }
 

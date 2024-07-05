@@ -12,7 +12,7 @@ namespace Cucumber.Messages
         private StreamReader _inputStreamReader;
         private Func<string, Envelope> _deserializer;
 
-        public NdjsonMessageReader(Stream inputStream) : this( inputStream, (string line) => NdjsonSerializer.Deserialize<Envelope>(line)) { }
+        public NdjsonMessageReader(Stream inputStream) : this( inputStream, (string line) => NdjsonSerializer.Deserialize(line)) { }
         public NdjsonMessageReader(Stream inputStream, Func<string, Envelope> deserializer)
         {
             if (inputStream == null)
@@ -26,6 +26,7 @@ namespace Cucumber.Messages
 
         public void Dispose()
         {
+            _inputStreamReader.Close();
             _inputStreamReader.Dispose();
         }
 

@@ -7,12 +7,12 @@ using System.Text.Json.Serialization;
 
 namespace Cucumber.Messages
 {
-    public class CucumberMessagEnumConverter<T> : JsonConverter<T> where T : struct, Enum
+    internal class CucumberMessagEnumConverter<T> : JsonConverter<T> where T : struct, Enum
     {
         private readonly Dictionary<T, string> _enumToString = new Dictionary<T, string>();
         private readonly Dictionary<string, T> _stringToEnum = new Dictionary<string, T>();
 
-        public CucumberMessagEnumConverter()
+        protected internal CucumberMessagEnumConverter()
         {
             var type = typeof(T);
             foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.Static))

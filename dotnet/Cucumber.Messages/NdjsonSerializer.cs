@@ -4,9 +4,8 @@ using System.Text.Json;
 
 namespace Cucumber.Messages
 {
-    public static class NdjsonSerializer
+    public class NdjsonSerializer
     {
-        private static object lockObject = new object();
         private static Lazy<JsonSerializerOptions> _jsonOptions = new Lazy<JsonSerializerOptions>(() =>
         {
             var jso = new JsonSerializerOptions();
@@ -34,20 +33,19 @@ namespace Cucumber.Messages
             return NdjsonSerializer.Serialize<Envelope>(message);
         }
 
-        public static string Serialize<T>(T message)
+        internal static string Serialize<T>(T message)
         {
             return JsonSerializer.Serialize(message, JsonOptions);
         }
+
         public static Envelope Deserialize(string json)
         {
             return NdjsonSerializer.Deserialize<Envelope>(json);
         }
 
-        public static T Deserialize<T>(string json)
+        internal static T Deserialize<T>(string json)
         {
             return JsonSerializer.Deserialize<T>(json, JsonOptions);
         }
-
     }
-
 }
