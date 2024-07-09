@@ -11,7 +11,7 @@ public enum <%= enum[:name] %> {
 <% enum[:values].each_with_index do |value, index| -%>
 
     [Description("<%= value%>")]
-    <%= enum_constant(value) %><%= index < enum[:values].length-1 ? ',' : '' %>
+    <%= enum_constant(value) %><%= index < enum[:values].length - 1 ? ',' : '' %>
 <% end -%>
 }
 

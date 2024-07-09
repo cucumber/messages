@@ -14,7 +14,7 @@ namespace Io.Cucumber.Messages.Types;
 /**
  * Represents the <%= class_name(key) %> message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
- <%- if not (schema['description'] || []).empty? -%>
+ <%- unless (schema['description'] || []).empty? -%>
  *
 <%= format_description(schema['description'], indent_string: '') %>
 <%- end -%>
@@ -26,7 +26,7 @@ public sealed class <%= class_name(key) %>
       required = (schema['required'] || []).index(property_name) 
       isValueType = type_for(class_name(key), property_name, property) == "long" || type_for(class_name(key), property_name, property) == "bool"
   -%>
-    <%- if not (property['description'] || []).empty? -%>
+    <%- unless (property['description'] || []).empty? -%>
     /**
     <%= format_description(property['description'], indent_string: '    ') %>
      */
@@ -39,16 +39,16 @@ public sealed class <%= class_name(key) %>
   <%- end -%>
 
   <%- if (schema['required'] || []).empty? -%>
-  <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+  <%- schema['properties'].each do |property_name, property| -%>
 
     public static <%= class_name(key) %> Create(<%= type_for(class_name(key), property_name, property) -%> <%= property_name %>) 
     {
         return new <%= class_name(key) %>(
-        <%- schema['properties'].each_with_index do |(property_name_2, property_2), index_2| -%>
+        <%- schema['properties'].each_with_index do |(property_name_2, property_2), index| -%>
           <%- if property_name_2 == property_name -%>
-            Require<<%= type_for(class_name(key), property_name, property) -%>>(<%= property_name %>, "<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null")<%= index_2 < schema['properties'].length-1 ? ',' : '' %>
+            Require<<%= type_for(class_name(key), property_name, property) -%>>(<%= property_name %>, "<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null")<%= index < schema['properties'].length - 1 ? ',' : '' %>
           <%- else -%>
-            null<%= index_2 < schema['properties'].length-1 ? ',' : '' %>
+            null<%= index < schema['properties'].length - 1 ? ',' : '' %>
           <%- end -%>
         <%- end -%>
         );
@@ -62,9 +62,9 @@ public sealed class <%= class_name(key) %>
         required = (schema['required'] || []).index(property_name) 
     -%>
     <%- if isValueType && !required -%>
-        Nullable<<%= type_for(class_name(key), property_name, property) -%>> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
+        Nullable<<%= type_for(class_name(key), property_name, property) -%>> <%= property_name %><%= index < schema['properties'].length - 1 ? ',' : ''%>
     <%- else -%>
-        <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
+        <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length - 1 ? ',' : ''%>
     <%- end -%>
     <%- end -%>
     ) 

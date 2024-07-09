@@ -20,7 +20,7 @@
     <PackageId>Cucumber.Messages</PackageId>
     <Authors>Cucumber Ltd, TechTalk</Authors>
     <Copyright>Copyright © Cucumber Ltd, TechTalk</Copyright>
-    <Description>Cucumber messages to represent source data and execution results in Cucumber-family tools</Description>
+    <Description>JSON schema-based messages for Cucumber's inter-process communication</Description>
     <PackageTags>cucumber-messages cucumber reqnroll specflow gherkin</PackageTags>
     <PackageProjectUrl>https://github.com/cucumber/messages</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cucumber/messages</RepositoryUrl>

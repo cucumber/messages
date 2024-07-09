@@ -40,7 +40,7 @@ namespace Cucumber.Messages.Specs
         public void IgnoresEmptyLines()
         {
             MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes("{}\n{}\n\n{}\n"));
-            var enumerator= new NdjsonMessageReader(memoryStream).GetEnumerator();
+            var enumerator = new NdjsonMessageReader(memoryStream).GetEnumerator();
             
             var expectedEnvelope = new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
             for (int i = 0; i < 3; i++)

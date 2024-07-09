@@ -14,7 +14,7 @@ namespace Cucumber.Messages.Specs
         [Fact]
         public void ThrowsWhenRequiredFieldsAreMissing()
         {
-            Assert.Throws<ArgumentNullException>(() => new Background( null, null, null, null, null, null));
+            Assert.Throws<ArgumentNullException>(() => new Background(null, null, null, null, null, null));
         }
 
         [Fact]

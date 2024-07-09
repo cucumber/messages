@@ -8,18 +8,18 @@ namespace Cucumber.Messages
     {
         private static Lazy<JsonSerializerOptions> _jsonOptions = new Lazy<JsonSerializerOptions>(() =>
         {
-            var jso = new JsonSerializerOptions();
-            jso.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-            jso.Converters.Add(new CucumberMessagEnumConverter<AttachmentContentEncoding>());
-            jso.Converters.Add(new CucumberMessagEnumConverter<PickleStepType>());
-            jso.Converters.Add(new CucumberMessagEnumConverter<SourceMediaType>());
-            jso.Converters.Add(new CucumberMessagEnumConverter<StepDefinitionPatternType>());
-            jso.Converters.Add(new CucumberMessagEnumConverter<StepKeywordType>());
-            jso.Converters.Add(new CucumberMessagEnumConverter<TestStepResultStatus>());
-            jso.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-            jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            var options = new JsonSerializerOptions();
+            options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            options.Converters.Add(new CucumberMessageEnumConverter<AttachmentContentEncoding>());
+            options.Converters.Add(new CucumberMessageEnumConverter<PickleStepType>());
+            options.Converters.Add(new CucumberMessageEnumConverter<SourceMediaType>());
+            options.Converters.Add(new CucumberMessageEnumConverter<StepDefinitionPatternType>());
+            options.Converters.Add(new CucumberMessageEnumConverter<StepKeywordType>());
+            options.Converters.Add(new CucumberMessageEnumConverter<TestStepResultStatus>());
+            options.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+            options.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
 
-            return jso;
+            return options;
         });
 
         private static JsonSerializerOptions JsonOptions { get 

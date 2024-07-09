@@ -19,10 +19,10 @@ namespace Cucumber.Messages.Specs
         {
             var stepDefinitionNDJSON = @"{""stepDefinition"":{""id"":""0"",""pattern"":{""source"":""I have {int} cukes in my belly"",""type"":""CUCUMBER_EXPRESSION""},""sourceReference"":{""location"":{""line"":3},""uri"":""samples/minimal/minimal.feature.ts""}}}
 ";          
-            var soureReference = new SourceReference("samples/minimal/minimal.feature.ts",
+            var sourceReference = new SourceReference("samples/minimal/minimal.feature.ts",
                 null, null, new Location(3, null));
             var stepDefPattern = new StepDefinitionPattern("I have {int} cukes in my belly", StepDefinitionPatternType.CUCUMBER_EXPRESSION);
-            var stepDefinition = new StepDefinition("0", stepDefPattern, soureReference);
+            var stepDefinition = new StepDefinition("0", stepDefPattern, sourceReference);
             var env = new Envelope(null, null, null, null, null, null, null, null, stepDefinition, null, null, null, null, null, null, null, null);
 
             var serializedStepDefinition = NdjsonSerializer.Serialize(env);
