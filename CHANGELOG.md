@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-
+- [Dotnet] **Breaking Change** Rewritten to align with the code generation techniques used for the other languages. Added support classes aligned with what is provided for the Java implementation. Upgraded from .NET 5 to .NET 8. Dropped .NET Framework 4.x as a target (but did retain .NET Standard 2.0 as the primary target framework). (https://github.com/cucumber/messages/pull/233) [clrudolphi](https://github.com/clrudolphi)
 ## [25.0.1] - 2024-06-13
 ### Fixed
 - [Php] Fixed a workflow issue with publishing the package
