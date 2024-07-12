@@ -6,14 +6,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-- [Dotnet] **Breaking Change** Rewritten to align with the code generation techniques used for the other languages. Added support classes aligned with what is provided for the Java implementation. Upgraded from .NET 5 to .NET 8. Dropped .NET Framework 4.x as a target (but did retain .NET Standard 2.0 as the primary target framework). (https://github.com/cucumber/messages/pull/233) [clrudolphi](https://github.com/clrudolphi)
+### Added
+- [Dotnet] Added support classes aligned with what is provided for the Java implementation (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
+
+### Changed
+- [Dotnet] Rewritten to align with the code generation techniques used for the other languages (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
+- [Dotnet] Upgraded from .NET 5 to .NET 8. Dropped .NET Framework 4.x as a target while retaining .NET Standard 2.0 as the primary target framework (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
+
+
 ## [25.0.1] - 2024-06-13
 ### Fixed
 - [Php] Fixed a workflow issue with publishing the package
 
 ## [25.0.0] - 2024-06-13
 ### Changed
-- [Ruby] **Breaking change** Messages are now altered to be 1 message class per file ([#225](https://github.com/cucumber/messages/pull/225) [luke-hill](https://github.com/luke-hill))
+- [Ruby] Messages are now altered to be 1 message class per file ([#225](https://github.com/cucumber/messages/pull/225) [luke-hill](https://github.com/luke-hill))
 - [Ruby] Updated minimum Ruby version to 3.0 ([#216](https://github.com/cucumber/messages/pull/216) [luke-hill](https://github.com/luke-hill))
 - [Ruby] Use latest CCK conformance for signing off message releases ([#216](https://github.com/cucumber/messages/pull/216) [luke-hill](https://github.com/luke-hill))
 - [Ruby] Tidied up all remaining rubocop offenses (This included 2 minor alterations to the generator code) ([#217](https://github.com/cucumber/messages/pull/217) [#225](https://github.com/cucumber/messages/pull/225) [luke-hill](https://github.com/luke-hill))
