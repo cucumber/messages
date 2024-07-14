@@ -4,27 +4,37 @@ project(cucumber_messages VERSION 0.1.0 LANGUAGES C CXX)
 
 include(GNUInstallDirs)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-if(WIN32)
-  add_definitions(-DUNICODE -D_UNICODE -DSTRICT -DNOMINMAX)
-  add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS)
+if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
 endif()
 
-find_package(nlohmann_json CONFIG REQUIRED)
+set(${CUCUMBER_MESSAGES_LOCAL_DEV} OFF)
 
+if(${CUCUMBER_MESSAGES_LOCAL_DEV})
+    set(CUCUMBER_MESSAGES_BUILD_TESTS_INIT ON)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+else()
+    set(CUCUMBER_MESSAGES_BUILD_TESTS_INIT OFF)
+endif()
+
+option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." ${CUCUMBER_MESSAGES_BUILD_TESTS_INIT})
+
+
+find_package(nlohmann_json CONFIG REQUIRED)
 add_subdirectory(src/lib/messages)
+if(CUCUMBER_MESSAGES_BUILD_TESTS)
+    include(CTest)
+    enable_testing()
+endif()
+
 
 install(
     TARGETS
         cucumber_messages_lib
     EXPORT cucumber_messages-config
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION \${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION \${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION \${CMAKE_INSTALL_LIBDIR}
 )
 
 install(
@@ -32,9 +42,4 @@ install(
     FILE cucumber_messages-config.cmake
     NAMESPACE cucumber::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages
-)
-
-install(
-    DIRECTORY "${PROJECT_SOURCE_DIR}/include/messages/"
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
 )
