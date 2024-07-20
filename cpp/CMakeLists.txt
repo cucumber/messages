@@ -19,22 +19,22 @@ endif()
 
 option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." ${CUCUMBER_MESSAGES_BUILD_TESTS_INIT})
 
-
 find_package(nlohmann_json CONFIG REQUIRED)
+
 add_subdirectory(src/lib/messages)
+
 if(CUCUMBER_MESSAGES_BUILD_TESTS)
     include(CTest)
     enable_testing()
 endif()
 
-
 install(
     TARGETS
         cucumber_messages_lib
     EXPORT cucumber_messages-config
-    RUNTIME DESTINATION \${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION \${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION \${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 install(
@@ -42,4 +42,9 @@ install(
     FILE cucumber_messages-config.cmake
     NAMESPACE cucumber::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages
+)
+
+install(
+    DIRECTORY "${PROJECT_SOURCE_DIR}/include/messages"
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
 )
