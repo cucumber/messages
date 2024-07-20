@@ -29,6 +29,7 @@ target_link_libraries(
     PUBLIC
         nlohmann_json::nlohmann_json
 )
+
 set_target_properties(
     cucumber_messages_lib
     PROPERTIES
