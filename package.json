@@ -1,15 +1,10 @@
 {
-  "name": "messages-validation-kit",
-  "version": "1.0.0",
+  "name": "@cucumber/messages-validation-kit",
+  "version": "0.0.0",
+  "private": true,
   "description": "Allow to validate the schemas",
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cucumber/messages/issues"
-  },
-  "homepage": "https://github.com/cucumber/messages#readme",
   "devDependencies": {
-    "ajv": "^8.11.0",
+    "ajv": "8.17.1",
     "ajv-cli": "^5.0.0"
   }
 }
