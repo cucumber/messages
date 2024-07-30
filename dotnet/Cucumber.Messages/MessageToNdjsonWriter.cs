@@ -6,14 +6,16 @@ using System.Text;
 
 namespace Cucumber.Messages
 {
+    /// <summary>
+    ///  The NdjsonMessageWriter class provides a stream based interface for writing Cucumber messages in ndjson format 
+    /// 
+    /// The actual serialization is delegated to a Action&lt;StreamWriter, Envelope&gt;. This is done to avoid tying this library to any specific JSON library or library version.
+    /// </summary>
     public class MessageToNdjsonWriter : IDisposable
     {
-        private StreamWriter _streamWriter;
-        private Action<StreamWriter, Envelope> _serializer;
+        private readonly StreamWriter _streamWriter;
+        private readonly Action<StreamWriter, Envelope> _serializer;
 
-        public MessageToNdjsonWriter(Stream stream) : this(stream, (StreamWriter streamWriter, Envelope envelope) => streamWriter.Write(NdjsonSerializer.Serialize(envelope)))
-        {
-        }
         public MessageToNdjsonWriter(Stream stream, Action<StreamWriter, Envelope> serializer)
         {
             if (stream == null)
