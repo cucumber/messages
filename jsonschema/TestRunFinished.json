@@ -22,6 +22,9 @@
     "exception": {
       "$ref": "./Exception.json",
       "description": "Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps."
+    },
+    "testRunStartedId": {
+      "type": "string"
     }
   },
   "type": "object"
