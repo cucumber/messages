@@ -5,12 +5,12 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Cucumber.Messages
+namespace Cucumber.Messages.Specs
 {
     internal class CucumberMessageEnumConverter<T> : JsonConverter<T> where T : struct, Enum
     {
-        private readonly Dictionary<T, string> _enumToString = new Dictionary<T, string>();
-        private readonly Dictionary<string, T> _stringToEnum = new Dictionary<string, T>();
+        private readonly Dictionary<T, string> _enumToString = new();
+        private readonly Dictionary<string, T> _stringToEnum = new();
 
         protected internal CucumberMessageEnumConverter()
         {

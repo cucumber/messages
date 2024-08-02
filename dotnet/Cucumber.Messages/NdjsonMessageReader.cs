@@ -7,12 +7,16 @@ using System.Text;
 
 namespace Cucumber.Messages
 {
+    /// <summary>
+    /// The NdjsonMessageReader class provides a stream based interface for reading Cucumber messages in ndjson format and produces Cucumber messages (Envelope)
+    /// 
+    /// The actual deserialization is delegated to a Func&lt;string, Envelope&gt;. This is done to avoid tying this library to any specific JSON library or library version.
+    /// </summary>
     public class NdjsonMessageReader : IDisposable, System.Collections.Generic.IEnumerable<Envelope>
     {
-        private StreamReader _inputStreamReader;
-        private Func<string, Envelope> _deserializer;
+        private readonly StreamReader _inputStreamReader;
+        private readonly Func<string, Envelope> _deserializer;
 
-        public NdjsonMessageReader(Stream inputStream) : this( inputStream, (string line) => NdjsonSerializer.Deserialize(line)) { }
         public NdjsonMessageReader(Stream inputStream, Func<string, Envelope> deserializer)
         {
             if (inputStream == null)
@@ -41,7 +45,7 @@ namespace Cucumber.Messages
                 {
                     envelope = _deserializer(line);
                 }
-                catch (System.Text.Json.JsonException e)
+                catch (System.Exception e)
                 {
                     throw new InvalidOperationException($"Could not parse JSON: {line}", e);
                 }
