@@ -73,6 +73,7 @@ public sealed class Attachment
      * separately from reports.
      */
     public string Url { get; private set; }
+    public string TestRunStartedId { get; private set; }
 
 
     public Attachment(
@@ -83,7 +84,8 @@ public sealed class Attachment
         Source source,
         string testCaseStartedId,
         string testStepId,
-        string url
+        string url,
+        string testRunStartedId
     ) 
     {
               RequireNonNull<string>(body, "Body", "Attachment.Body cannot be null");
@@ -97,6 +99,7 @@ public sealed class Attachment
               this.TestCaseStartedId = testCaseStartedId;
               this.TestStepId = testStepId;
               this.Url = url;
+              this.TestRunStartedId = testRunStartedId;
     }
 
     public override bool Equals(Object o) 
@@ -112,7 +115,8 @@ public sealed class Attachment
             Object.Equals(Source, that.Source) &&         
             Object.Equals(TestCaseStartedId, that.TestCaseStartedId) &&         
             Object.Equals(TestStepId, that.TestStepId) &&         
-            Object.Equals(Url, that.Url);        
+            Object.Equals(Url, that.Url) &&         
+            Object.Equals(TestRunStartedId, that.TestRunStartedId);        
     }
 
     public override int GetHashCode() 
@@ -133,6 +137,8 @@ public sealed class Attachment
           hash = hash * 31 + TestStepId.GetHashCode();
         if (Url != null)
           hash = hash * 31 + Url.GetHashCode();
+        if (TestRunStartedId != null)
+          hash = hash * 31 + TestRunStartedId.GetHashCode();
         return hash;
     }
 
@@ -147,6 +153,7 @@ public sealed class Attachment
             ", testCaseStartedId=" + TestCaseStartedId +
             ", testStepId=" + TestStepId +
             ", url=" + Url +
+            ", testRunStartedId=" + TestRunStartedId +
             '}';
     }
 

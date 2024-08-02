@@ -18,17 +18,20 @@ public final class TestRunFinished {
     private final Boolean success;
     private final Timestamp timestamp;
     private final Exception exception;
+    private final String testRunStartedId;
 
     public TestRunFinished(
         String message,
         Boolean success,
         Timestamp timestamp,
-        Exception exception
+        Exception exception,
+        String testRunStartedId
     ) {
         this.message = message;
         this.success = requireNonNull(success, "TestRunFinished.success cannot be null");
         this.timestamp = requireNonNull(timestamp, "TestRunFinished.timestamp cannot be null");
         this.exception = exception;
+        this.testRunStartedId = testRunStartedId;
     }
 
     /**
@@ -59,6 +62,10 @@ public final class TestRunFinished {
         return Optional.ofNullable(exception);
     }
 
+    public Optional<String> getTestRunStartedId() {
+        return Optional.ofNullable(testRunStartedId);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,7 +75,8 @@ public final class TestRunFinished {
             Objects.equals(message, that.message) &&         
             success.equals(that.success) &&         
             timestamp.equals(that.timestamp) &&         
-            Objects.equals(exception, that.exception);        
+            Objects.equals(exception, that.exception) &&         
+            Objects.equals(testRunStartedId, that.testRunStartedId);        
     }
 
     @Override
@@ -77,7 +85,8 @@ public final class TestRunFinished {
             message,
             success,
             timestamp,
-            exception
+            exception,
+            testRunStartedId
         );
     }
 
@@ -88,6 +97,7 @@ public final class TestRunFinished {
             ", success=" + success +
             ", timestamp=" + timestamp +
             ", exception=" + exception +
+            ", testRunStartedId=" + testRunStartedId +
             '}';
     }
 }

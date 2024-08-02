@@ -6,26 +6,25 @@
 
 #include <nlohmann/json.hpp>
 
+#include <cucumber/messages/test_step_result.hpp>
 #include <cucumber/messages/timestamp.hpp>
-#include <cucumber/messages/exception.hpp>
 
 namespace cucumber::messages {
 
 using json = nlohmann::json;
 
 //
-// Represents the TestRunFinished message in Cucumber's message protocol
+// Represents the GlobalHookFinished message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
 //
 // Generated code
 
-struct test_run_finished
+struct global_hook_finished
 {
-    std::optional<std::string> message;
-    bool success;
+    std::string test_run_started_id;
+    std::string hook_id;
+    cucumber::messages::test_step_result result;
     cucumber::messages::timestamp timestamp;
-    std::optional<cucumber::messages::exception> exception;
-    std::optional<std::string> test_run_started_id;
 
     std::string to_string() const;
 
@@ -34,8 +33,8 @@ struct test_run_finished
 };
 
 std::ostream&
-operator<<(std::ostream& os, const test_run_finished& msg);
+operator<<(std::ostream& os, const global_hook_finished& msg);
 
-void to_json(json& j, const test_run_finished& m);
+void to_json(json& j, const global_hook_finished& m);
 
 }

@@ -15,6 +15,7 @@ will only have one of its fields set, which indicates the payload of the message
 | `testCaseStartedId` | string | no | |
 | `testStepId` | string | no | |
 | `url` | string | no | |
+| `testRunStartedId` | string | no | |
 
 ## Duration
 
@@ -43,6 +44,8 @@ will only have one of its fields set, which indicates the payload of the message
 | `testRunStarted` | [TestRunStarted](#testrunstarted) | no | |
 | `testStepFinished` | [TestStepFinished](#teststepfinished) | no | |
 | `testStepStarted` | [TestStepStarted](#teststepstarted) | no | |
+| `globalHookStarted` | [GlobalHookStarted](#globalhookstarted) | no | |
+| `globalHookFinished` | [GlobalHookFinished](#globalhookfinished) | no | |
 | `undefinedParameterType` | [UndefinedParameterType](#undefinedparametertype) | no | |
 
 ## Exception
@@ -194,6 +197,23 @@ will only have one of its fields set, which indicates the payload of the message
 | `location` | [Location](#location) | yes | |
 | `name` | string | yes | |
 | `id` | string | yes | |
+
+## GlobalHookFinished
+
+| Field | Type | Required    | Description |
+| ----- | ---- | ----------- | ----------- |
+| `testRunStartedId` | string | yes | |
+| `hookId` | string | yes | |
+| `result` | [TestStepResult](#teststepresult) | yes | |
+| `timestamp` | [Timestamp](#timestamp) | yes | |
+
+## GlobalHookStarted
+
+| Field | Type | Required    | Description |
+| ----- | ---- | ----------- | ----------- |
+| `testRunStartedId` | string | yes | |
+| `hookId` | string | yes | |
+| `timestamp` | [Timestamp](#timestamp) | yes | |
 
 ## Hook
 
@@ -381,6 +401,7 @@ will only have one of its fields set, which indicates the payload of the message
 | `id` | string | yes | |
 | `pickleId` | string | yes | |
 | `testSteps` | [TestStep](#teststep)[] | yes | |
+| `testRunStartedId` | string | no | |
 
 ## Group
 
@@ -439,12 +460,14 @@ will only have one of its fields set, which indicates the payload of the message
 | `success` | boolean | yes | |
 | `timestamp` | [Timestamp](#timestamp) | yes | |
 | `exception` | [Exception](#exception) | no | |
+| `testRunStartedId` | string | no | |
 
 ## TestRunStarted
 
 | Field | Type | Required    | Description |
 | ----- | ---- | ----------- | ----------- |
 | `timestamp` | [Timestamp](#timestamp) | yes | |
+| `id` | string | no | |
 
 ## TestStepFinished
 

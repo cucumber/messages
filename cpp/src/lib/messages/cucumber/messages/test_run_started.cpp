@@ -11,6 +11,7 @@ test_run_started::to_string() const
     std::ostringstream oss;
 
     cucumber::messages::to_string(oss, "timestamp=", timestamp);
+    cucumber::messages::to_string(oss, ", id=", id);
 
     return oss.str();
 }
@@ -19,6 +20,7 @@ void
 test_run_started::to_json(json& j) const
 {
     cucumber::messages::to_json(j, camelize("timestamp"), timestamp);
+    cucumber::messages::to_json(j, camelize("id"), id);
 }
 
 std::string
