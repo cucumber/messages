@@ -4,8 +4,6 @@ import io.cucumber.messages.types.AttachmentContentEncoding;
 import io.cucumber.messages.types.Envelope;
 import io.cucumber.messages.types.Source;
 import io.cucumber.messages.types.SourceMediaType;
-import io.cucumber.messages.types.TestRunStarted;
-import io.cucumber.messages.types.Timestamp;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -64,6 +62,8 @@ class NdjsonSerializationTest {
                 null,
                 null,
                 null,
+                null,
+                null,
                 null
         ));
         writer.flush();
@@ -78,6 +78,8 @@ class NdjsonSerializationTest {
         assertTrue(iterator.hasNext());
         Envelope envelope = iterator.next();
         assertEquals(new Envelope(
+                null,
+                null,
                 null,
                 null,
                 null,
@@ -124,6 +126,8 @@ class NdjsonSerializationTest {
                     null,
                     null,
                     null,
+                    null,
+                    null,
                     null
             ), envelope);
         }
@@ -140,19 +144,6 @@ class NdjsonSerializationTest {
         assertTrue(iterator.hasNext());
         Envelope envelope = iterator.next();
         assertEquals(AttachmentContentEncoding.BASE64, envelope.getAttachment().get().getContentEncoding());
-        assertFalse(iterator.hasNext());
-    }
-
-    @Test
-    void handles_single_argument_constructors() {
-        InputStream input = new ByteArrayInputStream(
-                "{\"testRunStarted\": {\"timestamp\":{\"nanos\":0,\"seconds\":0}}}\n".getBytes(UTF_8));
-        Iterable<Envelope> incomingMessages = createMessageIterable(input);
-        Iterator<Envelope> iterator = incomingMessages.iterator();
-        assertTrue(iterator.hasNext());
-        Envelope testRunStarted = iterator.next();
-        Envelope expected = Envelope.of(new TestRunStarted(new Timestamp(0L, 0L)));
-        assertEquals(expected, testRunStarted);
         assertFalse(iterator.hasNext());
     }
 
