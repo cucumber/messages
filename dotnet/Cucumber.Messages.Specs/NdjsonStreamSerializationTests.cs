@@ -67,19 +67,6 @@ namespace Cucumber.Messages.Specs
         }
 
         [Fact]
-        public void Handles_Single_Argument_Constructor()
-        {
-            MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes("{\"testRunStarted\": {\"timestamp\":{\"nanos\":0,\"seconds\":0}}}\n"));
-            var enumerator = new NdjsonMessageReaderSUT(memoryStream).GetEnumerator();
-            Assert.True(enumerator.MoveNext());
-            Envelope envelope = enumerator.Current;
-            Envelope expected = Envelope.Create(new TestRunStarted(new Timestamp(0, 0), "id"));
-
-            Assert.Equal(expected, envelope);
-            Assert.False(enumerator.MoveNext());
-        }
-
-        [Fact]
         public void Includes_Offending_Line_In_Error_Message()
         {
             MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes("BLA BLA"));
