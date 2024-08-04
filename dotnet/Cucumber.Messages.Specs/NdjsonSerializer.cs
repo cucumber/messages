@@ -2,11 +2,16 @@
 using System;
 using System.Text.Json;
 
-namespace Cucumber.Messages
+namespace Cucumber.Messages.Specs
 {
+    /// <summary>
+    /// When using System.Text.Json to serialize a Cucumber Message Envelope, the following serialization options are used.
+    /// Consumers of Cucumber.Messages should use these options, or their serialization library's equivalent options.
+    /// These options should work with System.Text.Json v6 or above.
+    /// </summary>
     public class NdjsonSerializer
     {
-        private static Lazy<JsonSerializerOptions> _jsonOptions = new Lazy<JsonSerializerOptions>(() =>
+        private static readonly Lazy<JsonSerializerOptions> _jsonOptions = new(() =>
         {
             var options = new JsonSerializerOptions();
             options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;

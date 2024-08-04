@@ -39,8 +39,4 @@
       <Visible>true</Visible>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="6.0.9" />
-  </ItemGroup>
 </Project>

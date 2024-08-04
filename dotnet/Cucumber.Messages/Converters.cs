@@ -8,8 +8,8 @@ namespace Cucumber.Messages
 {
     public class Converters
     {
-        private static DateTime EpochStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-        private static long NanoSecondsPerTick = 100L;
+        private static readonly DateTime EpochStart = new(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+        private static readonly long NanoSecondsPerTick = 100L;
 
         public static Timestamp ToTimestamp(DateTime dateTime)
         {
