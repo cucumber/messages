@@ -85,6 +85,7 @@ final class Attachment implements JsonSerializable
          * separately from reports.
          */
         public readonly ?string $url = null,
+        public readonly ?string $testRunStartedId = null,
     ) {
     }
 
@@ -103,6 +104,7 @@ final class Attachment implements JsonSerializable
         self::ensureTestCaseStartedId($arr);
         self::ensureTestStepId($arr);
         self::ensureUrl($arr);
+        self::ensureTestRunStartedId($arr);
 
         return new self(
             (string) $arr['body'],
@@ -113,6 +115,7 @@ final class Attachment implements JsonSerializable
             isset($arr['testCaseStartedId']) ? (string) $arr['testCaseStartedId'] : null,
             isset($arr['testStepId']) ? (string) $arr['testStepId'] : null,
             isset($arr['url']) ? (string) $arr['url'] : null,
+            isset($arr['testRunStartedId']) ? (string) $arr['testRunStartedId'] : null,
         );
     }
 
@@ -202,6 +205,16 @@ final class Attachment implements JsonSerializable
     {
         if (array_key_exists('url', $arr) && is_array($arr['url'])) {
             throw new SchemaViolationException('Property \'url\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{testRunStartedId?: string|int|bool} $arr
+     */
+    private static function ensureTestRunStartedId(array $arr): void
+    {
+        if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
+            throw new SchemaViolationException('Property \'testRunStartedId\' was array');
         }
     }
 }

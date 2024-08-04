@@ -9,6 +9,7 @@ type Attachment struct {
 	TestCaseStartedId string                    `json:"testCaseStartedId,omitempty"`
 	TestStepId        string                    `json:"testStepId,omitempty"`
 	Url               string                    `json:"url,omitempty"`
+	TestRunStartedId  string                    `json:"testRunStartedId,omitempty"`
 }
 
 type Duration struct {
@@ -33,6 +34,8 @@ type Envelope struct {
 	TestRunStarted         *TestRunStarted         `json:"testRunStarted,omitempty"`
 	TestStepFinished       *TestStepFinished       `json:"testStepFinished,omitempty"`
 	TestStepStarted        *TestStepStarted        `json:"testStepStarted,omitempty"`
+	GlobalHookStarted      *GlobalHookStarted      `json:"globalHookStarted,omitempty"`
+	GlobalHookFinished     *GlobalHookFinished     `json:"globalHookFinished,omitempty"`
 	UndefinedParameterType *UndefinedParameterType `json:"undefinedParameterType,omitempty"`
 }
 
@@ -152,6 +155,19 @@ type Tag struct {
 	Location *Location `json:"location"`
 	Name     string    `json:"name"`
 	Id       string    `json:"id"`
+}
+
+type GlobalHookFinished struct {
+	TestRunStartedId string          `json:"testRunStartedId"`
+	HookId           string          `json:"hookId"`
+	Result           *TestStepResult `json:"result"`
+	Timestamp        *Timestamp      `json:"timestamp"`
+}
+
+type GlobalHookStarted struct {
+	TestRunStartedId string     `json:"testRunStartedId"`
+	HookId           string     `json:"hookId"`
+	Timestamp        *Timestamp `json:"timestamp"`
 }
 
 type Hook struct {
@@ -290,9 +306,10 @@ type StepDefinitionPattern struct {
 }
 
 type TestCase struct {
-	Id        string      `json:"id"`
-	PickleId  string      `json:"pickleId"`
-	TestSteps []*TestStep `json:"testSteps"`
+	Id               string      `json:"id"`
+	PickleId         string      `json:"pickleId"`
+	TestSteps        []*TestStep `json:"testSteps"`
+	TestRunStartedId string      `json:"testRunStartedId,omitempty"`
 }
 
 type Group struct {
@@ -333,14 +350,16 @@ type TestCaseStarted struct {
 }
 
 type TestRunFinished struct {
-	Message   string     `json:"message,omitempty"`
-	Success   bool       `json:"success"`
-	Timestamp *Timestamp `json:"timestamp"`
-	Exception *Exception `json:"exception,omitempty"`
+	Message          string     `json:"message,omitempty"`
+	Success          bool       `json:"success"`
+	Timestamp        *Timestamp `json:"timestamp"`
+	Exception        *Exception `json:"exception,omitempty"`
+	TestRunStartedId string     `json:"testRunStartedId,omitempty"`
 }
 
 type TestRunStarted struct {
 	Timestamp *Timestamp `json:"timestamp"`
+	Id        string     `json:"id,omitempty"`
 }
 
 type TestStepFinished struct {

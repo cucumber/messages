@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- BREAKING CHANGE: Add `id` property to `TestRunStarted`, optionally reference in `Attachment`, TestCase` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
+- Add new `GlobalHookStarted` and `GlobalHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
 - [Dotnet] Added support classes aligned with what is provided for the Java implementation (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
 
 ### Changed

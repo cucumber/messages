@@ -19,8 +19,11 @@ schemas = \
 	./jsonschema/TestRunFinished.json \
 	./jsonschema/TestRunStarted.json \
 	./jsonschema/Duration.json \
+	./jsonschema/TestStepResult.json \
 	./jsonschema/TestStepFinished.json \
 	./jsonschema/TestStepStarted.json \
+	./jsonschema/GlobalHookFinished.json \
+	./jsonschema/GlobalHookStarted.json \
 	./jsonschema/UndefinedParameterType.json \
 	./jsonschema/Envelope.json
 

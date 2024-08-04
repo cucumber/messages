@@ -17,6 +17,8 @@
 #include <cucumber/messages/table_cell.hpp>
 #include <cucumber/messages/table_row.hpp>
 #include <cucumber/messages/tag.hpp>
+#include <cucumber/messages/global_hook_finished.hpp>
+#include <cucumber/messages/global_hook_started.hpp>
 #include <cucumber/messages/hook.hpp>
 #include <cucumber/messages/location.hpp>
 #include <cucumber/messages/meta.hpp>

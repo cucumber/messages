@@ -23,7 +23,7 @@ namespace Cucumber.Messages.Specs
                 null, null, new Location(3, null));
             var stepDefPattern = new StepDefinitionPattern("I have {int} cukes in my belly", StepDefinitionPatternType.CUCUMBER_EXPRESSION);
             var stepDefinition = new StepDefinition("0", stepDefPattern, sourceReference);
-            var env = new Envelope(null, null, null, null, null, null, null, null, stepDefinition, null, null, null, null, null, null, null, null);
+            var env = new Envelope(null, null, null, null, null, null, null, null, stepDefinition, null, null, null, null, null, null, null, null, null, null);
 
             var serializedStepDefinition = NdjsonSerializer.Serialize(env);
             var reconstructedStepDefinition = NdjsonSerializer.Deserialize(serializedStepDefinition);

@@ -19,6 +19,8 @@ export class Attachment {
   testStepId?: string
 
   url?: string
+
+  testRunStartedId?: string
 }
 
 export class Duration {
@@ -77,6 +79,12 @@ export class Envelope {
 
   @Type(() => TestStepStarted)
   testStepStarted?: TestStepStarted
+
+  @Type(() => GlobalHookStarted)
+  globalHookStarted?: GlobalHookStarted
+
+  @Type(() => GlobalHookFinished)
+  globalHookFinished?: GlobalHookFinished
 
   @Type(() => UndefinedParameterType)
   undefinedParameterType?: UndefinedParameterType
@@ -302,6 +310,29 @@ export class Tag {
   name: string = ''
 
   id: string = ''
+}
+
+export class GlobalHookFinished {
+
+  testRunStartedId: string = ''
+
+  hookId: string = ''
+
+  @Type(() => TestStepResult)
+  result: TestStepResult = new TestStepResult()
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
+}
+
+export class GlobalHookStarted {
+
+  testRunStartedId: string = ''
+
+  hookId: string = ''
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
 }
 
 export class Hook {
@@ -537,6 +568,8 @@ export class TestCase {
 
   @Type(() => TestStep)
   testSteps: readonly TestStep[] = []
+
+  testRunStartedId?: string
 }
 
 export class Group {
@@ -612,12 +645,16 @@ export class TestRunFinished {
 
   @Type(() => Exception)
   exception?: Exception
+
+  testRunStartedId?: string
 }
 
 export class TestRunStarted {
 
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
+
+  id?: string
 }
 
 export class TestStepFinished {

@@ -1,21 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "TestStepFinished.json",
+  "$id": "GlobalHookFinished.json",
   "additionalProperties": false,
   "required": [
-    "testCaseStartedId",
-    "testStepId",
-    "testStepResult",
+    "testRunStartedId",
+    "hookId",
+    "result",
     "timestamp"
   ],
   "properties": {
-    "testCaseStartedId": {
+    "testRunStartedId": {
+      "description": "Identifier for the test run that this hook execution belongs to",
       "type": "string"
     },
-    "testStepId": {
+    "hookId": {
+      "description": "Identifier for the hook that was executed",
       "type": "string"
     },
-    "testStepResult": {
+    "result": {
       "$ref": "./TestStepResult.json"
     },
     "timestamp": {
