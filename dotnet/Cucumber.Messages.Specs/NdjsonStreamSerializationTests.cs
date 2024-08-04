@@ -73,7 +73,7 @@ namespace Cucumber.Messages.Specs
             var enumerator = new NdjsonMessageReaderSUT(memoryStream).GetEnumerator();
             Assert.True(enumerator.MoveNext());
             Envelope envelope = enumerator.Current;
-            Envelope expected = Envelope.Create(new TestRunStarted(new Timestamp(0, 0)));
+            Envelope expected = Envelope.Create(new TestRunStarted(new Timestamp(0, 0), "id"));
 
             Assert.Equal(expected, envelope);
             Assert.False(enumerator.MoveNext());
