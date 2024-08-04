@@ -30,7 +30,7 @@ namespace Cucumber.Messages.Specs
         {
             MemoryStream memoryStream = new MemoryStream();
             var writer = new MessageToNdjsonWriter(memoryStream);
-            writer.Write(new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
+            writer.Write(new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
 
             var json = Encoding.UTF8.GetString(memoryStream.ToArray());
             Assert.Equal("{}"+Environment.NewLine, json);
@@ -42,7 +42,7 @@ namespace Cucumber.Messages.Specs
             MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes("{}\n{}\n\n{}\n"));
             var enumerator = new NdjsonMessageReader(memoryStream).GetEnumerator();
             
-            var expectedEnvelope = new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            var expectedEnvelope = new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
             for (int i = 0; i < 3; i++)
             {
                 Assert.True(enumerator.MoveNext());
