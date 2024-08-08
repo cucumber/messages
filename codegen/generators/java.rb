@@ -14,7 +14,7 @@ module Generator
       raw_description
         .split("\n")
         .map(&:strip)
-        .filter { |line| line != '*' }
+        .reject { |line| line == '*' }
         .map { |line| " * #{line}".rstrip }
         .join("\n#{indent_string}")
     end
