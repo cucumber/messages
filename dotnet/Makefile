@@ -1,18 +1,24 @@
-include default.mk
+schemas = $(shell find ../jsonschema -name "*.json")
 
-.generated: .fixprotoc
+.DEFAULT_GOAL = help
 
-.fixprotoc:
-ifdef ALPINE
-	# The protoc bundled in the grpc.tools nuget package doesn't work on Alpine,
-	# so we overwrite it with the one bundled inside the Docker image.
-	# In order to prevent nuget from overwriting it again, we first
-	# download the nuget packages, then we do the copy.
-	dotnet restore
-	mkdir -p ~/.nuget/packages/grpc.tools/1.20.1/tools/linux_x64
-	cp /usr/bin/protoc ~/.nuget/packages/grpc.tools/1.20.1/tools/linux_x64/protoc
-endif
-	touch $@
+help: ## Show this help
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nWhere <target> is one of:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
-clean:
-	rm -f Cucumber.Messages/Messages.cs .fixprotoc
+generate: require .generate-messages ## Generate c# code based on the schemas found in ../jsonschema and using the scripts in ../jsonschema/scripts for the generation
+
+require: ## Check requirements for the code generation (ruby, csplit and tail are required)
+	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
+	@csplit --version >/dev/null 2>&1 || (echo "ERROR: csplit is required."; exit 1)
+	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
+
+clean: ## Remove automatically generated files and related artifacts
+	rm -rf Cucumber.Messages/generated/*.cs
+
+.generate-messages: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/dotnet.dotnet.erb ../jsonschema/scripts/templates/dotnet.enum.dotnet.erb
+	ruby ../jsonschema/scripts/codegen.rb Dotnet ../jsonschema dotnet.dotnet.erb > Generated.dotnet.tmp
+	ruby ../jsonschema/scripts/codegen.rb Dotnet ../jsonschema dotnet.enum.dotnet.erb >> Generated.dotnet.tmp
+	csplit --quiet --prefix=Generated --suffix-format=%02d.dotnet.tmp --elide-empty-files Generated.dotnet.tmp /^[A-Za-z.]*[.]cs/ {*}
+	rm Generated.dotnet.tmp
+	rm -rf Cucumber.Messages/generated/*.cs
+	for file in Generated**; do tail -n +2 $$file > Cucumber.Messages/generated/$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done

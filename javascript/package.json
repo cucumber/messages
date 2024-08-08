@@ -36,19 +36,19 @@
     "prepublishOnly": "npm run build && npm run copy-schemas"
   },
   "dependencies": {
-    "@types/uuid": "9.0.8",
+    "@types/uuid": "10.0.0",
     "class-transformer": "0.5.1",
     "reflect-metadata": "0.2.2",
-    "uuid": "9.0.1"
+    "uuid": "10.0.0"
   },
   "devDependencies": {
-    "@types/mocha": "10.0.6",
-    "@types/node": "20.14.2",
+    "@types/mocha": "10.0.7",
+    "@types/node": "20.14.14",
     "copyfiles": "2.4.1",
-    "mocha": "10.4.0",
+    "mocha": "10.7.0",
     "shx": "^0.3.4",
     "ts-node": "10.9.2",
-    "typescript": "5.4.5"
+    "typescript": "5.5.4"
   },
   "bugs": {
     "url": "https://github.com/cucumber/messages/issues"

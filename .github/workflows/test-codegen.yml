@@ -31,14 +31,6 @@ jobs:
         with:
           ruby-version: '3.1'
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.1"
-
-      - run: composer install
-        working-directory: php
-
       - name: generate code for all languages
         run: |
           make clean-all

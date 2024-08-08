@@ -24,7 +24,7 @@ schemas = \
 	./jsonschema/UndefinedParameterType.json \
 	./jsonschema/Envelope.json
 
-languages = cpp go java javascript perl php ruby
+languages = cpp go java javascript perl php ruby dotnet
 
 .DEFAULT_GOAL = help
 
@@ -41,7 +41,7 @@ generate-doc: require-doc messages.md ## Generate markdown documentation using t
 
 validate: $(schemas) ## Validate the json schemas are valid
 	npm install
-	npx ajv compile --data --spec=draft2020 --strict=true $(patsubst %,-s %,$(schemas))
+	node validate.cjs $(patsubst %, %,$(schemas))
 .PHONY: validate-schemas
 
 require-doc: ## Check requirements for the generation of the documentation (ruby is required)
