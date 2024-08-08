@@ -5,6 +5,7 @@ require_relative 'generators/text_helpers'
 require_relative 'generators/base'
 
 require_relative 'generators/cpp'
+require_relative 'generators/dotnet'
 require_relative 'generators/go'
 require_relative 'generators/java'
 require_relative 'generators/markdown'
