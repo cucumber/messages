@@ -33,7 +33,7 @@ module Generator
         type = type_for(parent_type_name, nil, property)
         "#{type}->new()"
       else
-        super(parent_type_name, property_name, property)
+        super
       end
     end
 

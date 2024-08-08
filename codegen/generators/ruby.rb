@@ -26,7 +26,7 @@ module Generator
       elsif property['$ref']
         "#{type_for(parent_type_name, nil, property)}.new"
       else
-        super(parent_type_name, property_name, property)
+        super
       end
     end
 
