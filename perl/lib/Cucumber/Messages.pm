@@ -102,7 +102,6 @@ sub _types {
  The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
  is simply the string. If it's `BASE64`, the string should be Base64 decoded to
  obtain the attachment.
-
 =cut
 
 has body =>
@@ -123,7 +122,6 @@ has body =>
  - string: IDENTITY
  - byte array: BASE64
  - stream: BASE64
-
 
 Available constants for valid values of this field:
 
@@ -154,7 +152,6 @@ has content_encoding =>
 
 *
  Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
-
 =cut
 
 has file_name =>
@@ -169,7 +166,6 @@ has file_name =>
  [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
  as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
  and `text/x.cucumber.stacktrace+plain`
-
 =cut
 
 has media_type =>
@@ -223,7 +219,6 @@ has test_step_id =>
  This will result in a smaller message stream, which can improve performance and
  reduce bandwidth of message consumers. It also makes it easier to process and download attachments
  separately from reports.
-
 =cut
 
 has url =>
@@ -285,7 +280,6 @@ Non-negative fractions of a second at nanosecond resolution. Negative
  second values with fractions must still have non-negative nanos values
  that count forward in time. Must be from 0 to 999,999,999
  inclusive.
-
 =cut
 
 has nanos =>
@@ -560,7 +554,6 @@ sub _types {
 =head4 type
 
 The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
-
 =cut
 
 has type =>
@@ -573,7 +566,6 @@ has type =>
 =head4 message
 
 The message of exception that caused this result. E.g. expected: "a" but was: "b"
-
 =cut
 
 has message =>
@@ -584,7 +576,6 @@ has message =>
 =head4 stack_trace
 
 The stringified stack trace of the exception that caused this result
-
 =cut
 
 has stack_trace =>
@@ -639,7 +630,6 @@ sub _types {
 *
  The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
  of the source, typically a file path relative to the root directory
-
 =cut
 
 has uri =>
@@ -660,7 +650,6 @@ has feature =>
 =head4 comments
 
 All the comments in the Gherkin document
-
 =cut
 
 has comments =>
@@ -712,7 +701,6 @@ sub _types {
 =head4 location
 
 The location of the `Background` keyword
-
 =cut
 
 has location =>
@@ -821,7 +809,6 @@ sub _types {
 =head4 location
 
 The location of the comment
-
 =cut
 
 has location =>
@@ -834,7 +821,6 @@ has location =>
 =head4 text
 
 The text of the comment
-
 =cut
 
 has text =>
@@ -1030,7 +1016,6 @@ sub _types {
 =head4 location
 
 The location of the `Examples` keyword
-
 =cut
 
 has location =>
@@ -1165,7 +1150,6 @@ sub _types {
 =head4 location
 
 The location of the `Feature` keyword
-
 =cut
 
 has location =>
@@ -1178,7 +1162,6 @@ has location =>
 =head4 tags
 
 All the tags placed above the `Feature` keyword
-
 =cut
 
 has tags =>
@@ -1191,7 +1174,6 @@ has tags =>
 =head4 language
 
 The [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code of the Gherkin document
-
 =cut
 
 has language =>
@@ -1204,7 +1186,6 @@ has language =>
 =head4 keyword
 
 The text of the `Feature` keyword (in the language specified by `language`)
-
 =cut
 
 has keyword =>
@@ -1217,7 +1198,6 @@ has keyword =>
 =head4 name
 
 The name of the feature (the text following the `keyword`)
-
 =cut
 
 has name =>
@@ -1230,7 +1210,6 @@ has name =>
 =head4 description
 
 The line(s) underneath the line with the `keyword` that are used as description
-
 =cut
 
 has description =>
@@ -1243,7 +1222,6 @@ has description =>
 =head4 children
 
 Zero or more children
-
 =cut
 
 has children =>
@@ -1363,7 +1341,6 @@ sub _types {
 =head4 location
 
 The location of the `Rule` keyword
-
 =cut
 
 has location =>
@@ -1376,7 +1353,6 @@ has location =>
 =head4 tags
 
 All the tags placed above the `Rule` keyword
-
 =cut
 
 has tags =>
@@ -1546,7 +1522,6 @@ sub _types {
 =head4 location
 
 The location of the `Scenario` keyword
-
 =cut
 
 has location =>
@@ -1683,7 +1658,6 @@ sub _types {
 =head4 location
 
 The location of the steps' `keyword`
-
 =cut
 
 has location =>
@@ -1696,7 +1670,6 @@ has location =>
 =head4 keyword
 
 The actual keyword as it appeared in the source.
-
 =cut
 
 has keyword =>
@@ -1709,7 +1682,6 @@ has keyword =>
 =head4 keyword_type
 
 The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
-
 
 Available constants for valid values of this field:
 
@@ -1778,7 +1750,6 @@ has data_table =>
 =head4 id
 
 Unique ID to be able to reference the Step from PickleStep
-
 =cut
 
 has id =>
@@ -1826,7 +1797,6 @@ sub _types {
 =head4 location
 
 The location of the cell
-
 =cut
 
 has location =>
@@ -1839,7 +1809,6 @@ has location =>
 =head4 value
 
 The value of the cell
-
 =cut
 
 has value =>
@@ -1888,7 +1857,6 @@ sub _types {
 =head4 location
 
 The location of the first cell in the row
-
 =cut
 
 has location =>
@@ -1901,7 +1869,6 @@ has location =>
 =head4 cells
 
 Cells in the row
-
 =cut
 
 has cells =>
@@ -1963,7 +1930,6 @@ sub _types {
 =head4 location
 
 Location of the tag
-
 =cut
 
 has location =>
@@ -1976,7 +1942,6 @@ has location =>
 =head4 name
 
 The name of the tag (including the leading `@`)
-
 =cut
 
 has name =>
@@ -1989,7 +1954,6 @@ has name =>
 =head4 id
 
 Unique ID to be able to reference the Tag from PickleTag
-
 =cut
 
 has id =>
@@ -2183,7 +2147,6 @@ sub _types {
 
 *
  The [SEMVER](https://semver.org/) version number of the protocol
-
 =cut
 
 has protocol_version =>
@@ -2196,7 +2159,6 @@ has protocol_version =>
 =head4 implementation
 
 SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
-
 =cut
 
 has implementation =>
@@ -2209,7 +2171,6 @@ has implementation =>
 =head4 runtime
 
 Java, Ruby, Node.js etc
-
 =cut
 
 has runtime =>
@@ -2222,7 +2183,6 @@ has runtime =>
 =head4 os
 
 Windows, Linux, MacOS etc
-
 =cut
 
 has os =>
@@ -2235,7 +2195,6 @@ has os =>
 =head4 cpu
 
 386, arm, amd64 etc
-
 =cut
 
 has cpu =>
@@ -2295,7 +2254,6 @@ sub _types {
 =head4 name
 
 Name of the CI product, e.g. "Jenkins", "CircleCI" etc.
-
 =cut
 
 has name =>
@@ -2308,7 +2266,6 @@ has name =>
 =head4 url
 
 Link to the build
-
 =cut
 
 has url =>
@@ -2319,7 +2276,6 @@ has url =>
 =head4 build_number
 
 The build number. Some CI servers use non-numeric build numbers, which is why this is a string
-
 =cut
 
 has build_number =>
@@ -2457,7 +2413,6 @@ sub _types {
 =head4 name
 
 The product name
-
 =cut
 
 has name =>
@@ -2470,7 +2425,6 @@ has name =>
 =head4 version
 
 The product version
-
 =cut
 
 has version =>
@@ -2520,7 +2474,6 @@ sub _types {
 =head4 name
 
 The name is unique, so we don't need an id.
-
 =cut
 
 has name =>
@@ -2703,7 +2656,6 @@ sub _types {
 
 *
  A unique id for the pickle
-
 =cut
 
 has id =>
@@ -2716,7 +2668,6 @@ has id =>
 =head4 uri
 
 The uri of the source file
-
 =cut
 
 has uri =>
@@ -2729,7 +2680,6 @@ has uri =>
 =head4 name
 
 The name of the pickle
-
 =cut
 
 has name =>
@@ -2742,7 +2692,6 @@ has name =>
 =head4 language
 
 The language of the pickle
-
 =cut
 
 has language =>
@@ -2755,7 +2704,6 @@ has language =>
 =head4 steps
 
 One or more steps
-
 =cut
 
 has steps =>
@@ -2770,7 +2718,6 @@ has steps =>
 *
  One or more tags. If this pickle is constructed from a Gherkin document,
  It includes inherited tags from the `Feature` as well.
-
 =cut
 
 has tags =>
@@ -2786,7 +2733,6 @@ has tags =>
  Points to the AST node locations of the pickle. The last one represents the unique
  id of the pickle. A pickle constructed from `Examples` will have the first
  id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
-
 =cut
 
 has ast_node_ids =>
@@ -2906,7 +2852,6 @@ has argument =>
 
 References the IDs of the source of the step. For Gherkin, this can be
  the ID of a Step, and possibly also the ID of a TableRow
-
 =cut
 
 has ast_node_ids =>
@@ -2919,7 +2864,6 @@ has ast_node_ids =>
 =head4 id
 
 A unique ID for the PickleStep
-
 =cut
 
 has id =>
@@ -2934,7 +2878,6 @@ has id =>
 The context in which the step was specified: context (Given), action (When) or outcome (Then).
 
 Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
-
 
 Available constants for valid values of this field:
 
@@ -3221,7 +3164,6 @@ has name =>
 =head4 ast_node_id
 
 Points to the AST node this was created from
-
 =cut
 
 has ast_node_id =>
@@ -3275,7 +3217,6 @@ sub _types {
 *
  The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
  of the source, typically a file path relative to the root directory
-
 =cut
 
 has uri =>
@@ -3288,7 +3229,6 @@ has uri =>
 =head4 data
 
 The contents of the file
-
 =cut
 
 has data =>
@@ -3302,7 +3242,6 @@ has data =>
 
 The media type of the file. Can be used to specify custom types, such as
  text/x.cucumber.gherkin+plain
-
 
 Available constants for valid values of this field:
 
@@ -3754,7 +3693,6 @@ has id =>
 =head4 pickle_id
 
 The ID of the `Pickle` this `TestCase` is derived from.
-
 =cut
 
 has pickle_id =>
@@ -3890,7 +3828,6 @@ sub _types {
 *
  Represents the outermost capture group of an argument. This message closely matches the
  `Group` class in the `cucumber-expressions` library.
-
 =cut
 
 has group =>
@@ -3999,7 +3936,6 @@ sub _types {
 =head4 hook_id
 
 Pointer to the `Hook` (if derived from a Hook)
-
 =cut
 
 has hook_id =>
@@ -4022,7 +3958,6 @@ has id =>
 =head4 pickle_step_id
 
 Pointer to the `PickleStep` (if derived from a `PickleStep`)
-
 =cut
 
 has pickle_step_id =>
@@ -4033,7 +3968,6 @@ has pickle_step_id =>
 =head4 step_definition_ids
 
 Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-
 =cut
 
 has step_definition_ids =>
@@ -4046,7 +3980,6 @@ has step_definition_ids =>
 A list of list of StepMatchArgument (if derived from a `PickleStep`).
  Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
  and a size of 2+ means `AMBIGUOUS`
-
 =cut
 
 has step_match_arguments_lists =>
@@ -4169,7 +4102,6 @@ sub _types {
 *
  The first attempt should have value 0, and for each retry the value
  should increase by 1.
-
 =cut
 
 has attempt =>
@@ -4184,7 +4116,6 @@ has attempt =>
 *
  Because a `TestCase` can be run multiple times (in case of a retry),
  we use this field to group messages relating to the same attempt.
-
 =cut
 
 has id =>
@@ -4209,7 +4140,6 @@ has test_case_id =>
 =head4 worker_id
 
 An identifier for the worker process running this test case, if test cases are being run in parallel. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
-
 =cut
 
 has worker_id =>
@@ -4269,7 +4199,6 @@ sub _types {
 =head4 message
 
 An informative message about the test run. Typically additional information about failure, but not necessarily.
-
 =cut
 
 has message =>
@@ -4280,7 +4209,6 @@ has message =>
 =head4 success
 
 A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
-
 =cut
 
 has success =>
@@ -4293,7 +4221,6 @@ has success =>
 =head4 timestamp
 
 Timestamp when the TestRun is finished
-
 =cut
 
 has timestamp =>
@@ -4306,7 +4233,6 @@ has timestamp =>
 =head4 exception
 
 Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
-
 =cut
 
 has exception =>
@@ -4497,7 +4423,6 @@ has duration =>
 =head4 message
 
 An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
-
 =cut
 
 has message =>
@@ -4552,7 +4477,6 @@ has status =>
 =head4 exception
 
 Exception thrown while executing this step, if any.
-
 =cut
 
 has exception =>
@@ -4672,7 +4596,6 @@ sub _types {
 Represents seconds of UTC time since Unix epoch
  1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
  9999-12-31T23:59:59Z inclusive.
-
 =cut
 
 has seconds =>
@@ -4688,7 +4611,6 @@ Non-negative fractions of a second at nanosecond resolution. Negative
  second values with fractions must still have non-negative nanos values
  that count forward in time. Must be from 0 to 999,999,999
  inclusive.
-
 =cut
 
 has nanos =>
