@@ -15,9 +15,9 @@ require: ## Check requirements for the code generation (ruby, csplit and tail ar
 clean: ## Remove automatically generated files and related artifacts
 	rm -rf Cucumber.Messages/generated/*.cs
 
-.generate-messages: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/dotnet.dotnet.erb ../jsonschema/scripts/templates/dotnet.enum.dotnet.erb
-	ruby ../jsonschema/scripts/codegen.rb Generator::Dotnet dotnet.dotnet.erb > Generated.dotnet.tmp
-	ruby ../jsonschema/scripts/codegen.rb Generator::Dotnet dotnet.enum.dotnet.erb >> Generated.dotnet.tmp
+.generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/dotnet.dotnet.erb ../codegen/templates/dotnet.enum.dotnet.erb
+	ruby ../codegen/codegen.rb Generator::Dotnet dotnet.dotnet.erb > Generated.dotnet.tmp
+	ruby ../codegen/codegen.rb Generator::Dotnet dotnet.enum.dotnet.erb >> Generated.dotnet.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.dotnet.tmp --elide-empty-files Generated.dotnet.tmp /^[A-Za-z.]*[.]cs/ {*}
 	rm Generated.dotnet.tmp
 	rm -rf Cucumber.Messages/generated/*.cs
