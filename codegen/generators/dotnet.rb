@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Generator
   # Generator::Dotnet
   # Automatic Code generation overrides for the .NET programming language
@@ -11,8 +13,8 @@ module Generator
 
       raw_description
         .split("\n")
-        .map { |line| line.strip }
-        .filter { |line| line != '*' }
+        .map(&:strip)
+        .reject { |line| line == '*' }
         .map { |line| " * #{line}".rstrip }
         .join("\n#{indent_string}")
     end
