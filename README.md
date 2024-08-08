@@ -32,6 +32,7 @@ Each message in a message stream is of type [Envelope](messages.md#envelope).
 Each subdirectory defines language-specific implementations of these messages,
 generated from the JSON schemas. The current implementations are:
 - C++
+- .NET
 - Go
 - Java
 - Javascript
@@ -39,10 +40,10 @@ generated from the JSON schemas. The current implementations are:
 - PHP
 - Ruby
 
-There are also 2 subdirectories which have the legacy implementation which was largely driven by protobuf.
-These are currently not implemented and are in the process of being ported over to the JSON schema protocol
+There is also 1 subdirectory for Elixir which contains the legacy implementation which was largely
+driven by protobuf. This is currently not implemented or tested / integrated into our CI and will
+require the process of porting over to the JSON schema protocol.
 
-- .Net
 - Elixir
 
 ## Message emitters
