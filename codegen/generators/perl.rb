@@ -8,12 +8,6 @@ module Generator
       "[]#{type_name}"
     end
 
-    def format_description(raw_description)
-      return '' if raw_description.nil?
-
-      raw_description
-    end
-
     def property_type_from_enum(_enum)
       ''
     end

@@ -55,7 +55,7 @@ package Cucumber::Messages::<%= class_name(key) %> {
 Represents the <%= class_name(key) %> message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-<%= format_description(schema['description']) %>
+<%= schema['description'] %>
 
 =head3 ATTRIBUTES
 
@@ -84,7 +84,7 @@ sub _types {
 =head4 <%= underscore(property_name) %>
 
 <%- if property['description'] -%>
-<%= format_description(property['description']) %>
+<%= property['description'] %>
 <%- end -%>
 
 <% if property['enum'] -%>
