@@ -7,7 +7,7 @@ package io.cucumber.messages.types;
 public enum <%= enum[:name] %> {
 <% enum[:values].each_with_index do |value, index| -%>
 
-    <%= enum_constant(value) %>("<%= value %>")<%= index < enum[:values].length-1 ? ',' : ';' %>
+    <%= enum_constant(value) %>("<%= value %>")<%= index < enum[:values].length - 1 ? ',' : ';' %>
 <% end -%>
 
     private final String value;

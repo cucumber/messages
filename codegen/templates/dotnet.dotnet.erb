@@ -24,7 +24,7 @@ public sealed class <%= class_name(key) %>
 {
   <%- schema['properties'].each do |property_name, property| 
       required = (schema['required'] || []).index(property_name) 
-      isValueType = type_for(class_name(key), property_name, property) == "long" || type_for(class_name(key), property_name, property) == "bool"
+      isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool'
   -%>
     <%- unless (property['description'] || []).empty? -%>
     /**
@@ -44,11 +44,11 @@ public sealed class <%= class_name(key) %>
     public static <%= class_name(key) %> Create(<%= type_for(class_name(key), property_name, property) -%> <%= property_name %>) 
     {
         return new <%= class_name(key) %>(
-        <%- schema['properties'].each_with_index do |(property_name_2, property_2), index| -%>
+        <%- schema['properties'].each.with_index(1) do |(property_name_2, _property_2), index| -%>
           <%- if property_name_2 == property_name -%>
-            Require<<%= type_for(class_name(key), property_name, property) -%>>(<%= property_name %>, "<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null")<%= index < schema['properties'].length - 1 ? ',' : '' %>
+            Require<<%= type_for(class_name(key), property_name, property) -%>>(<%= property_name %>, "<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null")<%= index < schema['properties'].length ? ',' : '' %>
           <%- else -%>
-            null<%= index < schema['properties'].length - 1 ? ',' : '' %>
+            null<%= index < schema['properties'].length ? ',' : '' %>
           <%- end -%>
         <%- end -%>
         );
@@ -57,19 +57,19 @@ public sealed class <%= class_name(key) %>
   <%- end -%>
 
     public <%= class_name(key) %>(
-    <%- schema['properties'].each_with_index do |(property_name, property), index| 
-        isValueType = type_for(class_name(key), property_name, property) == "long" || type_for(class_name(key), property_name, property) == "bool"
+    <%- schema['properties'].each.with_index(1) do |(property_name, property), index|
+        isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool'
         required = (schema['required'] || []).index(property_name) 
     -%>
     <%- if isValueType && !required -%>
-        Nullable<<%= type_for(class_name(key), property_name, property) -%>> <%= property_name %><%= index < schema['properties'].length - 1 ? ',' : ''%>
+        Nullable<<%= type_for(class_name(key), property_name, property) -%>> <%= property_name %><%= index < schema['properties'].length ? ',' : ''%>
     <%- else -%>
-        <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length - 1 ? ',' : ''%>
+        <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length ? ',' : ''%>
     <%- end -%>
     <%- end -%>
     ) 
     {
-      <%- schema['properties'].each_with_index do |(property_name, property), index| 
+      <%- schema['properties'].each do |property_name, property|
           required = (schema['required'] || []).index(property_name) 
       -%>
       <% if required -%>
@@ -88,22 +88,21 @@ public sealed class <%= class_name(key) %>
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
         <%= class_name(key) %> that = (<%= class_name(key) %>) o;
-        return <%- schema['properties'].each_with_index do |(property_name, property), index| %>
+        return <%- schema['properties'].each.with_index(1) do |(property_name, _property), index| %>
             <%- if (schema['required'] || []).index(property_name) -%>
-            <%= capitalize(property_name) -%>.Equals(that.<%= capitalize(property_name) -%>)<%= index < schema['properties'].length-1 ? ' && ' : ';' -%>
+            <%= capitalize(property_name) -%>.Equals(that.<%= capitalize(property_name) -%>)<%= index < schema['properties'].length ? ' && ' : ';' -%>
             <%- else -%>
-            Object.Equals(<%= capitalize(property_name) -%>, that.<%= capitalize(property_name) -%>)<%= index < schema['properties'].length-1 ? ' && ' : ';' -%>
+            Object.Equals(<%= capitalize(property_name) -%>, that.<%= capitalize(property_name) -%>)<%= index < schema['properties'].length ? ' && ' : ';' -%>
             <%- end -%>
-        <% end -%>
-
+        <% end %>
     }
 
     public override int GetHashCode() 
     {
         int hash = 17;
-        <%- schema['properties'].each_with_index do |(property_name, property), index| 
+        <%- schema['properties'].each do |property_name, property|
         required = (schema['required'] || []).index(property_name) 
-        isValueType = type_for(class_name(key), property_name, property) == "long" || type_for(class_name(key), property_name, property) == "bool"
+        isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool'
         isEnum = property['enum']
         -%>
         <%- if isEnum -%>
@@ -126,12 +125,12 @@ public sealed class <%= class_name(key) %>
         return "<%= class_name(key) %>{" +
         <%- schema['properties'].each_with_index do |(property_name, property), index| 
             required = (schema['required'] || []).index(property_name) 
-            isValueType = type_for(class_name(key), property_name, property) == "long" || type_for(class_name(key), property_name, property) == "bool"
+            isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool'
         -%>
         <%- if isValueType && !required -%>
-            (<%= capitalize(property_name) -%>.HasValue ? "<%= index == 0 ? '' : ', '%><%= property_name %>=" + <%= capitalize(property_name) %>.Value : "") +
+            (<%= capitalize(property_name) -%>.HasValue ? "<%= index.zero? ? '' : ', '%><%= property_name %>=" + <%= capitalize(property_name) %>.Value : "") +
         <%- else -%>
-            "<%= index == 0 ? '' : ', '%><%= property_name %>=" + <%= capitalize(property_name) %> +
+            "<%= index.zero? ? '' : ', '%><%= property_name %>=" + <%= capitalize(property_name) %> +
         <%- end -%>
         <%- end -%>
             '}';

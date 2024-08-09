@@ -10,9 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Dotnet] Added support classes aligned with what is provided for the Java implementation (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
 
 ### Changed
+- **Internal breaking change** The code generation has undergone a large refactor (No visible changes expected). All new code
+  generation logic is now contained in [/codegen](./codegen) ([#228](https://github.com/cucumber/messages/pull/228) [luke-hill](https://github.com/luke-hill))
 - [Dotnet] Rewritten to align with the code generation techniques used for the other languages (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
 - [Dotnet] Upgraded from .NET 5 to .NET 8. Dropped .NET Framework 4.x as a target while retaining .NET Standard 2.0 as the primary target framework (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
-
 
 ## [25.0.1] - 2024-06-13
 ### Fixed

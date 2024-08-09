@@ -12,7 +12,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents the <%= class_name(key) %> message in Cucumber's message protocol
  * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- <%- if not (schema['description'] || []).empty? -%>
+ <%- unless (schema['description'] || []).empty? -%>
  *
 <%= format_description(schema['description'], indent_string: '') %>
 <%- end -%>
@@ -24,19 +24,19 @@ public final class <%= class_name(key) %> {
     private final <%= type_for(class_name(key), property_name, property) -%> <%= property_name %>;
   <%- end -%>
   <%- if (schema['required'] || []).empty? -%>
-  <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+  <%- schema['properties'].each do |(property_name, property)| -%>
 
     public static <%= class_name(key) %> of(<%= type_for(class_name(key), property_name, property) -%> <%= property_name %>) {
         return new <%= class_name(key) %>(
-        <%- schema['properties'].each_with_index do |(property_name_2, property_2), index_2| -%>
+        <%- schema['properties'].each_with_index do |(property_name_2, _property_2), index| -%>
           <%- if property_name_2 == property_name -%>
             <%- if property['items'] -%>
-            unmodifiableList(new ArrayList<>(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")))<%= index_2 < schema['properties'].length-1 ? ',' : '' %>
+            unmodifiableList(new ArrayList<>(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")))<%= index < schema['properties'].length - 1 ? ',' : '' %>
             <%- else -%>
-            requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")<%= index_2 < schema['properties'].length-1 ? ',' : '' %>
+            requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")<%= index < schema['properties'].length - 1 ? ',' : '' %>
             <%- end -%>
           <%- else -%>
-            null<%= index_2 < schema['properties'].length-1 ? ',' : '' %>
+            null<%= index < schema['properties'].length - 1 ? ',' : '' %>
           <%- end -%>
         <%- end -%>
         );
@@ -49,7 +49,7 @@ public final class <%= class_name(key) %> {
         <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
     <%- end -%>
     ) {
-      <%- schema['properties'].each_with_index do |(property_name, property), index|
+      <%- schema['properties'].each do |(property_name, property)|
       required = (schema['required'] || []).index(property_name)
       -%>
       <%- if required -%>
@@ -70,7 +70,7 @@ public final class <%= class_name(key) %> {
   <%- schema['properties'].each do |property_name, property| -%>
     <%- if (schema['required'] || []).index(property_name) -%>
 
-    <%- if not (property['description'] || []).empty? -%>
+    <%- unless (property['description'] || []).empty? -%>
     /**
     <%= format_description(property['description'], indent_string: '    ') %>
      */
@@ -80,7 +80,7 @@ public final class <%= class_name(key) %> {
     }
     <%- else -%>
 
-    <%- if not (property['description'] || []).empty? -%>
+    <%- unless (property['description'] || []).empty? -%>
     /**
      <%= format_description(property['description'], indent_string: '    ') %>
      */
@@ -96,11 +96,11 @@ public final class <%= class_name(key) %> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         <%= class_name(key) %> that = (<%= class_name(key) %>) o;
-        return <%- schema['properties'].each_with_index do |(property_name, property), index| %>
+        return <%- schema['properties'].each_with_index do |(property_name, _property), index| %>
             <%- if (schema['required'] || []).index(property_name) -%>
-            <%= property_name -%>.equals(that.<%= property_name -%>)<%= index < schema['properties'].length-1 ? ' && ' : ';' -%>
+            <%= property_name -%>.equals(that.<%= property_name -%>)<%= index < schema['properties'].length - 1 ? ' && ' : ';' -%>
             <%- else -%>
-            Objects.equals(<%= property_name -%>, that.<%= property_name -%>)<%= index < schema['properties'].length-1 ? ' && ' : ';' -%>
+            Objects.equals(<%= property_name -%>, that.<%= property_name -%>)<%= index < schema['properties'].length - 1 ? ' && ' : ';' -%>
             <%- end -%>
         <% end -%>
 
@@ -109,8 +109,8 @@ public final class <%= class_name(key) %> {
     @Override
     public int hashCode() {
         return Objects.hash(
-        <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
-            <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
+        <%- schema['properties'].each_with_index do |(property_name, _property), index| -%>
+            <%= property_name %><%= index < schema['properties'].length - 1 ? ',' : ''%>
         <%- end -%>
         );
     }
@@ -118,8 +118,8 @@ public final class <%= class_name(key) %> {
     @Override
     public String toString() {
         return "<%= class_name(key) %>{" +
-        <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
-            "<%= index == 0 ? '' : ', '%><%= property_name %>=" + <%= property_name %> +
+        <%- schema['properties'].each_with_index do |(property_name, _property), index| -%>
+            "<%= index.zero? ? '' : ', '%><%= property_name %>=" + <%= property_name %> +
         <%- end -%>
             '}';
     }

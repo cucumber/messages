@@ -8,10 +8,10 @@ namespace Io.Cucumber.Messages.Types;
 
 // Generated code
 public enum <%= enum[:name] %> {
-<% enum[:values].each_with_index do |value, index| -%>
+<% enum[:values].each.with_index(1) do |value, index| -%>
 
     [Description("<%= value%>")]
-    <%= enum_constant(value) %><%= index < enum[:values].length - 1 ? ',' : '' %>
+    <%= enum_constant(value) %><%= index < enum[:values].length ? ',' : '' %>
 <% end -%>
 }
 
