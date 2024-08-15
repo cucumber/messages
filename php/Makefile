@@ -17,10 +17,10 @@ clean: ## Remove automatically generated files and related artifacts
 	rm -rf build/Generated*.php.tmp
 	rm -rf src-generated/*
 
-build/messages.php: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/php.php.erb ../jsonschema/scripts/templates/php.enum.php.erb
+build/messages.php: $(schemas) ../codegen/codegen.rb ../codegen/templates/php.php.erb ../codegen/templates/php.enum.php.erb
 	mkdir -p build
-	ruby ../jsonschema/scripts/codegen.rb Php ../jsonschema php.php.erb > build/messages.php
-	ruby ../jsonschema/scripts/codegen.rb Php ../jsonschema php.enum.php.erb >> build/messages.php
+	ruby ../codegen/codegen.rb Generator::Php php.php.erb > build/messages.php
+	ruby ../codegen/codegen.rb Generator::Php php.enum.php.erb >> build/messages.php
 	csplit --quiet --prefix=build/Generated --suffix-format=%02d.php.tmp --elide-empty-files build/messages.php /^[A-Za-z/.]*[.]php/ {*}
 	rm -rf src-generated/*
 	for file in build/Generated**; do mkdir -p src-generated/$$(head -n 1 $$file | sed 's/[^/]*.php[\r]*$$//'); done
