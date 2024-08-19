@@ -1,0 +1,12 @@
+---
+name: cucumber_messages
+version: 0.1.0
+namespace: cucumber
+std: 17
+packages:
+  cmake:
+    - nlohmann_json:
+deps:
+  - nlohmann/json@v3.11.3:
+    - -DJSON_BuildTests=OFF
+    - -DJSON_Install=ON
