@@ -921,7 +921,7 @@ function(cmate_dep_get_url URL)
     cmate_setg(CMATE_DEP_SOURCE_DIR ${SDIR})
 endfunction()
 
-cmate_setg(CMATE_DEP_PROPS "TYPE;NAME;URL;HOST;REPO;TAG;ARGS")
+cmate_setg(CMATE_DEP_PROPS "TYPE;NAME;URL;HOST;REPO;TAG;ARGS;SRCDIR")
 
 function(cmate_dep_parse SPEC VAR)
     if(SPEC MATCHES "^([A-Za-z0-9_]+)@([a-z]+://[^ ]+)$")
@@ -1097,8 +1097,6 @@ function(cmate_tmpl_load FILE_OR_VAR VAR)
     string(REGEX REPLACE "[-/\\.]" "_" TVAR "${TVAR}")
     set(CONTENT "")
 
-    message("FOV=${FILE_OR_VAR} TVAR=${TVAR}")
-
     if(NOT "${${TVAR}}" STREQUAL "")
         # In amalgamate mode, template is stored in a variable
         set(CONTENT "${${TVAR}}")
@@ -1156,6 +1154,43 @@ function(cmate_tmpl_process)
         set(${TMPL_TO_VAR} "${VALUE}" PARENT_SCOPE)
     else()
         cmate_die("missing template destination")
+    endif()
+endfunction()
+###############################################################################
+#
+# Content of cmate/commands/config.cmake
+#
+###############################################################################
+list(APPEND CMATE_CMDS "config")
+set(CMATE_CONFIG_SHORT_HELP "Local project configuration")
+set(
+    CMATE_CONFIG_HELP
+    "
+Usage: cmate config [COMMAND]
+
+${CMATE_CONFIG_SHORT_HELP}
+
+Commands:
+  show       Dumps config as JSON"
+)
+
+function(cmate_config_show)
+    cmate_msg(${CMATE_CONF})
+endfunction()
+
+function(cmate_config)
+    if(CMATE_ARGC LESS 1)
+        cmate_die("missing config command")
+    endif()
+
+    list(GET CMATE_ARGS 0 CMD)
+
+    set(CMATE_CONFIG_COMMAND "cmate_config_${CMD}")
+
+    if(COMMAND "${CMATE_CONFIG_COMMAND}")
+        cmake_language(CALL ${CMATE_CONFIG_COMMAND})
+    else()
+        cmate_msg("unknown command: ${CMATE_CONFIG_COMMAND}")
     endif()
 endfunction()
 ###############################################################################
@@ -1298,12 +1333,21 @@ function(cmate_configure_make_dep DEP VAR)
     string(JSON T ERROR_VARIABLE ERR TYPE ${DEP})
 
     if(T STREQUAL "OBJECT")
+        string(JSON DKEYS LENGTH ${DEP})
+
+        if(NOT DKEYS EQUAL 1)
+            cmate_die("invalid dependency: expected a single key, got ${NKEYS}: ${DEP}")
+        endif()
+
         string(JSON SPEC MEMBER ${DEP} 0)
         cmate_dep_parse(${SPEC} DEP)
-        cmate_json_get_array(${DEP} ${SPEC} ARGS)
-        set("DEP.ARGS" ${ARGS})
-    else()
+        cmate_json_get_array(${DEP} "${SPEC};args" DEP.ARGS)
+        cmate_json_get_array(${DEP} "${SPEC};srcdir" DEP.SRCDIR)
+        message("SPEC=${SPEC} A=${DEP.ARGS} S=${DEP.SRCDIR}")
+    elseif(T STREQUAL "STRING")
         cmate_dep_parse(${DEP} DEP)
+    else()
+        cmate_die("invalid dependency: expected object or string, got ${DEP}")
     endif()
 
     cmate_setprops(${VAR} DEP "${CMATE_DEP_PROPS}" PARENT_SCOPE)
@@ -1569,10 +1613,8 @@ function(cmate_configure_generate)
 
     # Set project level template variables
     set(P.NAME "${CMATE_PROJECT.name}")
-    message("P.NAME=${P.NAME}")
     string(TOUPPER "${CMATE_PROJECT.name}" P.UNAME)
     set(P.VER "${CMATE_PROJECT.version}")
-    message("P.VER=${P.VER}")
     set(P.VER_MAJOR "${CMATE_PROJECT.version_major}")
     set(P.VER_MINOR "${CMATE_PROJECT.version_minor}")
     set(P.VER_PATCH "${CMATE_PROJECT.version_patch}")
@@ -2231,6 +2273,18 @@ endfunction()
 
 ###############################################################################
 #
+# Template CMAKE_CONFIG_CMAKE_IN
+#
+###############################################################################
+set(
+    CMATE_CMAKE_CONFIG_CMAKE_IN
+    [=[
+%@PACKAGE_INIT@%
+include("${CMAKE_CURRENT_LIST_DIR}/@P.NAME@-targets.cmake")
+]=])
+
+###############################################################################
+#
 # Template TARGETS_LINK_TXT_IN
 #
 ###############################################################################
@@ -2338,6 +2392,59 @@ set_target_properties(
 
 ###############################################################################
 #
+# Template PROJECT_PKG_PKGCONFIG_TXT_IN
+#
+###############################################################################
+set(
+    CMATE_PROJECT_PKG_PKGCONFIG_TXT_IN
+    [=[
+% if(${P.PC.PKG_COUNT} GREATER 0)
+
+%###
+%#
+%# pkg-config dependencies
+%#
+%###
+%     foreach(PKG ${P.PC.PKGS})
+pkg_check_modules(%{ ${PKG} }% REQUIRED IMPORTED_TARGET %{ ${PKG} }%)
+%     endforeach()
+% endif()
+]=])
+
+###############################################################################
+#
+# Template PROJECT_TARGETS_TXT_IN
+#
+###############################################################################
+set(
+    CMATE_PROJECT_TARGETS_TXT_IN
+    [=[
+
+%###
+%#
+%# Targets
+%#
+%###
+% foreach(TYPE "LIB" "BIN")
+%     foreach(T ${P.TARGETS.${TYPE}})
+add_subdirectory(%{ ${P.TARGETS.${TYPE}.${T}.SUBDIR} }%)
+%     endforeach()
+% endforeach()
+%%
+% if(${P.TARGETS.TEST})
+
+if(@P.UNAME@_BUILD_TESTS)
+    include(CTest)
+    enable_testing()
+% foreach(T ${P.TARGETS.TEST})
+    add_subdirectory(%{ ${P.TARGETS.TEST.${T}.SUBDIR} }%)
+% endforeach()
+endif()
+% endif()
+]=])
+
+###############################################################################
+#
 # Template PROJECT_CMAKELISTS_TXT_IN
 #
 ###############################################################################
@@ -2386,10 +2493,13 @@ if(@P.UNAME@_FETCH_DEPS)
         URL %{ ${P.DEPS.${DEP}.URL} }%
 %         endif()
         OVERRIDE_FIND_PACKAGE
+%         if(NOT "${P.DEPS.${DEP}.SRCDIR}" STREQUAL "")
+        SOURCE_SUBDIR "%{ ${P.DEPS.${DEP}.SRCDIR} }%"
+%         endif()
     )
-%         if(NOT "${DEP.ARGS}" STREQUAL "")
+%         if(NOT "${P.DEPS.${DEP}.ARGS}" STREQUAL "")
 
-%             foreach(ARG ${DEP.ARGS})
+%             foreach(ARG ${P.DEPS.${DEP}.ARGS})
 %                 if (ARG MATCHES "^-D([^=]+)=(([^=]+))$")
     set(%{ ${CMAKE_MATCH_1} }% "%{ ${CMAKE_MATCH_2} }%")
 %                 endif()
@@ -2415,123 +2525,6 @@ find_package(%{ ${PKG} }% CONFIG REQUIRED)
 %         endif()
 %     endforeach()
 % endif()
-]=])
-
-###############################################################################
-#
-# Template PROJECT_PKG_PKGCONFIG_TXT_IN
-#
-###############################################################################
-set(
-    CMATE_PROJECT_PKG_PKGCONFIG_TXT_IN
-    [=[
-% if(${P.PC.PKG_COUNT} GREATER 0)
-
-%###
-%#
-%# pkg-config dependencies
-%#
-%###
-%     foreach(PKG ${P.PC.PKGS})
-pkg_check_modules(%{ ${PKG} }% REQUIRED IMPORTED_TARGET %{ ${PKG} }%)
-%     endforeach()
-% endif()
-]=])
-
-###############################################################################
-#
-# Template PROJECT_PROJECT_TXT_IN
-#
-###############################################################################
-set(
-    CMATE_PROJECT_PROJECT_TXT_IN
-    [=[
-%###
-%#
-%# Project
-%# name and version
-%#
-%###
-cmake_minimum_required(VERSION @CMATE_CMAKE_VER@ FATAL_ERROR)
-
-project(@P.NAME@ VERSION @P.VER@ LANGUAGES C CXX)
-
-%###
-%#
-%# Main project check
-%#
-%###
-set(@P.NAME@_MAIN_PROJECT OFF)
-
-if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-    set(@P.NAME@_MAIN_PROJECT ON)
-endif()
-]=])
-
-###############################################################################
-#
-# Template PROJECT_OPTIONS_TXT_IN
-#
-###############################################################################
-set(
-    CMATE_PROJECT_OPTIONS_TXT_IN
-    [=[
-
-%###
-%#
-%# Options
-%#
-%###
-if(${@P.UNAME@_MAIN_PROJECT})
-    set(@P.UNAME@_BUILD_TESTS_INIT ON)
-    set(@P.UNAME@_EXPORT_COMPILE_INIT ON)
-else()
-    set(@P.UNAME@_BUILD_TESTS_INIT OFF)
-    set(@P.UNAME@_EXPORT_COMPILE_INIT OFF)
-endif()
-
-option(
-    @P.UNAME@_BUILD_TESTS
-    "Build the unit tests."
-    ${@P.UNAME@_BUILD_TESTS_INIT}
-)
-
-option(
-    @P.UNAME@_EXPORT_COMPILE
-    "Export compile commands."
-    ${@P.UNAME@_EXPORT_COMPILE_INIT}
-)
-
-option(
-    @P.UNAME@_FETCH_DEPS
-    "Fetch dependencies via FetchContent."
-    ${@P.UNAME@_FETCH_DEPS}
-)
-]=])
-
-###############################################################################
-#
-# Template PROJECT_CONFIGURATION_TXT_IN
-#
-###############################################################################
-set(
-    CMATE_PROJECT_CONFIGURATION_TXT_IN
-    [=[
-
-%###
-%#
-%# Configuration
-%#
-%###
-include(GNUInstallDirs)
-
-if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
-endif()
-
-if(@P.UNAME@_EXPORT_COMPILE)
-    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-endif()
 ]=])
 
 ###############################################################################
@@ -2598,46 +2591,98 @@ install(
 
 ###############################################################################
 #
-# Template PROJECT_TARGETS_TXT_IN
+# Template PROJECT_OPTIONS_TXT_IN
 #
 ###############################################################################
 set(
-    CMATE_PROJECT_TARGETS_TXT_IN
+    CMATE_PROJECT_OPTIONS_TXT_IN
     [=[
 
 %###
 %#
-%# Targets
+%# Options
 %#
 %###
-% foreach(TYPE "LIB" "BIN")
-%     foreach(T ${P.TARGETS.${TYPE}})
-add_subdirectory(%{ ${P.TARGETS.${TYPE}.${T}.SUBDIR} }%)
-%     endforeach()
-% endforeach()
-%%
-% if(${P.TARGETS.TEST})
-
-if(@P.UNAME@_BUILD_TESTS)
-    include(CTest)
-    enable_testing()
-% foreach(T ${P.TARGETS.TEST})
-    add_subdirectory(%{ ${P.TARGETS.TEST.${T}.SUBDIR} }%)
-% endforeach()
+if(${@P.UNAME@_MAIN_PROJECT})
+    set(@P.UNAME@_BUILD_TESTS_INIT ON)
+    set(@P.UNAME@_EXPORT_COMPILE_INIT ON)
+else()
+    set(@P.UNAME@_BUILD_TESTS_INIT OFF)
+    set(@P.UNAME@_EXPORT_COMPILE_INIT OFF)
 endif()
-% endif()
+
+option(
+    @P.UNAME@_BUILD_TESTS
+    "Build the unit tests."
+    ${@P.UNAME@_BUILD_TESTS_INIT}
+)
+
+option(
+    @P.UNAME@_EXPORT_COMPILE
+    "Export compile commands."
+    ${@P.UNAME@_EXPORT_COMPILE_INIT}
+)
+
+option(
+    @P.UNAME@_FETCH_DEPS
+    "Fetch dependencies via FetchContent."
+    ${@P.UNAME@_FETCH_DEPS}
+)
 ]=])
 
 ###############################################################################
 #
-# Template CMAKE_CONFIG_CMAKE_IN
+# Template PROJECT_PROJECT_TXT_IN
 #
 ###############################################################################
 set(
-    CMATE_CMAKE_CONFIG_CMAKE_IN
+    CMATE_PROJECT_PROJECT_TXT_IN
     [=[
-%@PACKAGE_INIT@%
-include("${CMAKE_CURRENT_LIST_DIR}/@P.NAME@-targets.cmake")
+%###
+%#
+%# Project
+%# name and version
+%#
+%###
+cmake_minimum_required(VERSION @CMATE_CMAKE_VER@ FATAL_ERROR)
+
+project(@P.NAME@ VERSION @P.VER@ LANGUAGES C CXX)
+
+%###
+%#
+%# Main project check
+%#
+%###
+set(@P.NAME@_MAIN_PROJECT OFF)
+
+if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+    set(@P.NAME@_MAIN_PROJECT ON)
+endif()
+]=])
+
+###############################################################################
+#
+# Template PROJECT_CONFIGURATION_TXT_IN
+#
+###############################################################################
+set(
+    CMATE_PROJECT_CONFIGURATION_TXT_IN
+    [=[
+
+%###
+%#
+%# Configuration
+%#
+%###
+include(GNUInstallDirs)
+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
+endif()
+
+if(@P.UNAME@_EXPORT_COMPILE)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+endif()
 ]=])
 
 ##############################################################################
