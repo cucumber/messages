@@ -139,6 +139,6 @@ install(
 
 
 install(
-    DIRECTORY "${PROJECT_SOURCE_DIR}/include/messages"
+    DIRECTORY "${PROJECT_SOURCE_DIR}/include/messages/"
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
 )
