@@ -8,5 +8,6 @@ packages:
     - nlohmann_json:
 deps:
   - nlohmann/json@v3.11.3:
-    - -DJSON_BuildTests=OFF
-    - -DJSON_Install=ON
+      args:
+        - -DJSON_BuildTests=OFF
+        - -DJSON_Install=ON
