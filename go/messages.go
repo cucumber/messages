@@ -158,13 +158,13 @@ type Tag struct {
 }
 
 type GlobalHookFinished struct {
-	TestRunStartedId string          `json:"testRunStartedId"`
-	HookId           string          `json:"hookId"`
-	Result           *TestStepResult `json:"result"`
-	Timestamp        *Timestamp      `json:"timestamp"`
+	GlobalHookStartedId string          `json:"globalHookStartedId"`
+	Result              *TestStepResult `json:"result"`
+	Timestamp           *Timestamp      `json:"timestamp"`
 }
 
 type GlobalHookStarted struct {
+	Id               string     `json:"id"`
 	TestRunStartedId string     `json:"testRunStartedId"`
 	HookId           string     `json:"hookId"`
 	Timestamp        *Timestamp `json:"timestamp"`

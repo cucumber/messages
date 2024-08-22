@@ -10,7 +10,8 @@ global_hook_started::to_string() const
 {
     std::ostringstream oss;
 
-    cucumber::messages::to_string(oss, "test_run_started_id=", test_run_started_id);
+    cucumber::messages::to_string(oss, "id=", id);
+    cucumber::messages::to_string(oss, ", test_run_started_id=", test_run_started_id);
     cucumber::messages::to_string(oss, ", hook_id=", hook_id);
     cucumber::messages::to_string(oss, ", timestamp=", timestamp);
 
@@ -20,6 +21,7 @@ global_hook_started::to_string() const
 void
 global_hook_started::to_json(json& j) const
 {
+    cucumber::messages::to_json(j, camelize("id"), id);
     cucumber::messages::to_json(j, camelize("test_run_started_id"), test_run_started_id);
     cucumber::messages::to_json(j, camelize("hook_id"), hook_id);
     cucumber::messages::to_json(j, camelize("timestamp"), timestamp);

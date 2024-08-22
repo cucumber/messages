@@ -2019,8 +2019,7 @@ extends 'Cucumber::Messages::Message';
 use Scalar::Util qw( blessed );
 
 my %types = (
-   test_run_started_id => 'string',
-   hook_id => 'string',
+   global_hook_started_id => 'string',
    result => 'Cucumber::Messages::TestStepResult',
    timestamp => 'Cucumber::Messages::Timestamp',
 );
@@ -2033,24 +2032,12 @@ sub _types {
 
 
 
-=head4 test_run_started_id
+=head4 global_hook_started_id
 
-Identifier for the test run that this hook execution belongs to
+Identifier for the hook execution that has finished
 =cut
 
-has test_run_started_id =>
-    (is => 'ro',
-     required => 1,
-     default => sub { '' },
-    );
-
-
-=head4 hook_id
-
-Identifier for the hook that was executed
-=cut
-
-has hook_id =>
+has global_hook_started_id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
@@ -2104,6 +2091,7 @@ extends 'Cucumber::Messages::Message';
 use Scalar::Util qw( blessed );
 
 my %types = (
+   id => 'string',
    test_run_started_id => 'string',
    hook_id => 'string',
    timestamp => 'Cucumber::Messages::Timestamp',
@@ -2115,6 +2103,18 @@ sub _types {
     return \%types;
 }
 
+
+
+=head4 id
+
+Unique identifier for this hook execution
+=cut
+
+has id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
 
 
 =head4 test_run_started_id

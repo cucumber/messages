@@ -21,8 +21,7 @@ using json = nlohmann::json;
 
 struct global_hook_finished
 {
-    std::string test_run_started_id;
-    std::string hook_id;
+    std::string global_hook_started_id;
     cucumber::messages::test_step_result result;
     cucumber::messages::timestamp timestamp;
 

@@ -9,27 +9,20 @@ module Cucumber
     ##
     class GlobalHookFinished < Message
       ##
-      # Identifier for the test run that this hook execution belongs to
+      # Identifier for the hook execution that has finished
       ##
-      attr_reader :test_run_started_id
-
-      ##
-      # Identifier for the hook that was executed
-      ##
-      attr_reader :hook_id
+      attr_reader :global_hook_started_id
 
       attr_reader :result
 
       attr_reader :timestamp
 
       def initialize(
-        test_run_started_id: '',
-        hook_id: '',
+        global_hook_started_id: '',
         result: TestStepResult.new,
         timestamp: Timestamp.new
       )
-        @test_run_started_id = test_run_started_id
-        @hook_id = hook_id
+        @global_hook_started_id = global_hook_started_id
         @result = result
         @timestamp = timestamp
         super()
@@ -46,8 +39,7 @@ module Cucumber
         return nil if hash.nil?
 
         new(
-          test_run_started_id: hash[:testRunStartedId],
-          hook_id: hash[:hookId],
+          global_hook_started_id: hash[:globalHookStartedId],
           result: TestStepResult.from_h(hash[:result]),
           timestamp: Timestamp.from_h(hash[:timestamp])
         )

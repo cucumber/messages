@@ -3,11 +3,16 @@
   "$id": "GlobalHookStarted.json",
   "additionalProperties": false,
   "required": [
+    "id",
     "testRunStartedId",
     "hookId",
     "timestamp"
   ],
   "properties": {
+    "id": {
+      "description": "Unique identifier for this hook execution",
+      "type": "string"
+    },
     "testRunStartedId": {
       "description": "Identifier for the test run that this hook execution belongs to",
       "type": "string"

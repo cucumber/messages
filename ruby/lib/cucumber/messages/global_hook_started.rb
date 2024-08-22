@@ -9,6 +9,11 @@ module Cucumber
     ##
     class GlobalHookStarted < Message
       ##
+      # Unique identifier for this hook execution
+      ##
+      attr_reader :id
+
+      ##
       # Identifier for the test run that this hook execution belongs to
       ##
       attr_reader :test_run_started_id
@@ -21,10 +26,12 @@ module Cucumber
       attr_reader :timestamp
 
       def initialize(
+        id: '',
         test_run_started_id: '',
         hook_id: '',
         timestamp: Timestamp.new
       )
+        @id = id
         @test_run_started_id = test_run_started_id
         @hook_id = hook_id
         @timestamp = timestamp
@@ -42,6 +49,7 @@ module Cucumber
         return nil if hash.nil?
 
         new(
+          id: hash[:id],
           test_run_started_id: hash[:testRunStartedId],
           hook_id: hash[:hookId],
           timestamp: Timestamp.from_h(hash[:timestamp])

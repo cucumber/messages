@@ -314,9 +314,7 @@ export class Tag {
 
 export class GlobalHookFinished {
 
-  testRunStartedId: string = ''
-
-  hookId: string = ''
+  globalHookStartedId: string = ''
 
   @Type(() => TestStepResult)
   result: TestStepResult = new TestStepResult()
@@ -326,6 +324,8 @@ export class GlobalHookFinished {
 }
 
 export class GlobalHookStarted {
+
+  id: string = ''
 
   testRunStartedId: string = ''
 

@@ -27,14 +27,9 @@ final class GlobalHookFinished implements JsonSerializable
     public function __construct(
 
         /**
-         * Identifier for the test run that this hook execution belongs to
+         * Identifier for the hook execution that has finished
          */
-        public readonly string $testRunStartedId = '',
-
-        /**
-         * Identifier for the hook that was executed
-         */
-        public readonly string $hookId = '',
+        public readonly string $globalHookStartedId = '',
         public readonly TestStepResult $result = new TestStepResult(),
         public readonly Timestamp $timestamp = new Timestamp(),
     ) {
@@ -47,42 +42,27 @@ final class GlobalHookFinished implements JsonSerializable
      */
     public static function fromArray(array $arr): self
     {
-        self::ensureTestRunStartedId($arr);
-        self::ensureHookId($arr);
+        self::ensureGlobalHookStartedId($arr);
         self::ensureResult($arr);
         self::ensureTimestamp($arr);
 
         return new self(
-            (string) $arr['testRunStartedId'],
-            (string) $arr['hookId'],
+            (string) $arr['globalHookStartedId'],
             TestStepResult::fromArray($arr['result']),
             Timestamp::fromArray($arr['timestamp']),
         );
     }
 
     /**
-     * @psalm-assert array{testRunStartedId: string|int|bool} $arr
+     * @psalm-assert array{globalHookStartedId: string|int|bool} $arr
      */
-    private static function ensureTestRunStartedId(array $arr): void
+    private static function ensureGlobalHookStartedId(array $arr): void
     {
-        if (!array_key_exists('testRunStartedId', $arr)) {
-            throw new SchemaViolationException('Property \'testRunStartedId\' is required but was not found');
+        if (!array_key_exists('globalHookStartedId', $arr)) {
+            throw new SchemaViolationException('Property \'globalHookStartedId\' is required but was not found');
         }
-        if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
-            throw new SchemaViolationException('Property \'testRunStartedId\' was array');
-        }
-    }
-
-    /**
-     * @psalm-assert array{hookId: string|int|bool} $arr
-     */
-    private static function ensureHookId(array $arr): void
-    {
-        if (!array_key_exists('hookId', $arr)) {
-            throw new SchemaViolationException('Property \'hookId\' is required but was not found');
-        }
-        if (array_key_exists('hookId', $arr) && is_array($arr['hookId'])) {
-            throw new SchemaViolationException('Property \'hookId\' was array');
+        if (array_key_exists('globalHookStartedId', $arr) && is_array($arr['globalHookStartedId'])) {
+            throw new SchemaViolationException('Property \'globalHookStartedId\' was array');
         }
     }
 

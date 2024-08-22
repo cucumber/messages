@@ -17,6 +17,10 @@ namespace Io.Cucumber.Messages.Types;
 public sealed class GlobalHookStarted 
 {
     /**
+     * Unique identifier for this hook execution
+     */
+    public string Id { get; private set; }
+    /**
      * Identifier for the test run that this hook execution belongs to
      */
     public string TestRunStartedId { get; private set; }
@@ -28,11 +32,14 @@ public sealed class GlobalHookStarted
 
 
     public GlobalHookStarted(
+        string id,
         string testRunStartedId,
         string hookId,
         Timestamp timestamp
     ) 
     {
+              RequireNonNull<string>(id, "Id", "GlobalHookStarted.Id cannot be null");
+        this.Id = id;
               RequireNonNull<string>(testRunStartedId, "TestRunStartedId", "GlobalHookStarted.TestRunStartedId cannot be null");
         this.TestRunStartedId = testRunStartedId;
               RequireNonNull<string>(hookId, "HookId", "GlobalHookStarted.HookId cannot be null");
@@ -47,6 +54,7 @@ public sealed class GlobalHookStarted
         if (o == null || this.GetType() != o.GetType()) return false;
         GlobalHookStarted that = (GlobalHookStarted) o;
         return 
+            Id.Equals(that.Id) &&         
             TestRunStartedId.Equals(that.TestRunStartedId) &&         
             HookId.Equals(that.HookId) &&         
             Timestamp.Equals(that.Timestamp);        
@@ -55,6 +63,8 @@ public sealed class GlobalHookStarted
     public override int GetHashCode() 
     {
         int hash = 17;
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
         if (TestRunStartedId != null)
           hash = hash * 31 + TestRunStartedId.GetHashCode();
         if (HookId != null)
@@ -67,7 +77,8 @@ public sealed class GlobalHookStarted
     public override string ToString() 
     {
         return "GlobalHookStarted{" +
-            "testRunStartedId=" + TestRunStartedId +
+            "id=" + Id +
+            ", testRunStartedId=" + TestRunStartedId +
             ", hookId=" + HookId +
             ", timestamp=" + Timestamp +
             '}';

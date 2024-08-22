@@ -202,8 +202,7 @@ will only have one of its fields set, which indicates the payload of the message
 
 | Field | Type | Required    | Description |
 | ----- | ---- | ----------- | ----------- |
-| `testRunStartedId` | string | yes | |
-| `hookId` | string | yes | |
+| `globalHookStartedId` | string | yes | |
 | `result` | [TestStepResult](#teststepresult) | yes | |
 | `timestamp` | [Timestamp](#timestamp) | yes | |
 
@@ -211,6 +210,7 @@ will only have one of its fields set, which indicates the payload of the message
 
 | Field | Type | Required    | Description |
 | ----- | ---- | ----------- | ----------- |
+| `id` | string | yes | |
 | `testRunStartedId` | string | yes | |
 | `hookId` | string | yes | |
 | `timestamp` | [Timestamp](#timestamp) | yes | |
