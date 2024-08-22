@@ -1,6 +1,6 @@
 {
   "name": "@cucumber/messages",
-  "version": "25.0.1",
+  "version": "26.0.0",
   "description": "JSON schema-based messages for Cucumber's inter-process communication",
   "type": "module",
   "main": "dist/cjs/src/index.js",
@@ -43,9 +43,9 @@
   },
   "devDependencies": {
     "@types/mocha": "10.0.7",
-    "@types/node": "20.14.14",
+    "@types/node": "20.16.1",
     "copyfiles": "2.4.1",
-    "mocha": "10.7.0",
+    "mocha": "10.7.3",
     "shx": "^0.3.4",
     "ts-node": "10.9.2",
     "typescript": "5.5.4"

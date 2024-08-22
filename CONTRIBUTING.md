@@ -10,7 +10,7 @@ Some guidelines for making schema changes:
 - Don't add a new field as `required` - this will make the new code unable to read existing messages
 - Ideally add a description to any new fields
 
-If you need some advice, drop into the `#committers` channel on the [Cucumber Slack](https://cucumber.io/community#slack) and ask.
+If you need some advice, drop into the `#committers` channel on the [Cucumber Discord](https://cucumber.io/docs/community/get-in-touch#discord) and ask.
 
 ## Generating code
 

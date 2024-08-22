@@ -6,15 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [26.0.0] - 2024-08-15
 ### Added
 - BREAKING CHANGE: Add `id` property to `TestRunStarted`, optionally reference in `Attachment`, TestCase` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
 - Add new `GlobalHookStarted` and `GlobalHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
 - [Dotnet] Added support classes aligned with what is provided for the Java implementation (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
 
 ### Changed
+- **Internal breaking change** The code generation has undergone a large refactor (No visible changes expected). All new code
+generation logic is now contained in [/codegen](./codegen) ([#228](https://github.com/cucumber/messages/pull/228) [luke-hill](https://github.com/luke-hill))
 - [Dotnet] Rewritten to align with the code generation techniques used for the other languages (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
 - [Dotnet] Upgraded from .NET 5 to .NET 8. Dropped .NET Framework 4.x as a target while retaining .NET Standard 2.0 as the primary target framework (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
-
 
 ## [25.0.1] - 2024-06-13
 ### Fixed
@@ -537,7 +540,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v25.0.1...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v26.0.0...HEAD
+[26.0.0]: https://github.com/cucumber/messages/compare/v25.0.1...v26.0.0
 [25.0.1]: https://github.com/cucumber/messages/compare/v25.0.0...v25.0.1
 [25.0.0]: https://github.com/cucumber/messages/compare/v24.1.0...v25.0.0
 [24.1.0]: https://github.com/cucumber/messages/compare/v24.0.1...v24.1.0
