@@ -1,0 +1,136 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=61.0", "wheel"]
+
+[project]
+authors = [
+  {name = "Cucumber Limited", email = "cukes@googlegroups.com"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: MacOS :: MacOS X",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Utilities",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12"
+]
+dependencies = [
+  "eval_type_backport;python_version<'3.10.0'",
+  "pydantic>=2.0.3"
+]
+description = "Cucumber Messages is a message protocol for representing results and other information from Cucumber. "
+license = {text = "MIT"}
+maintainers = [
+  {name = "Konstantin Goloveshko", email = "kostya.goloveshko@gmail.com"}
+]
+name = "cucumber-messages"
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.8"
+urls = {Repository = "https://github.com/cucumber/messages"}
+version = "0.1.0"
+
+[project.entry-points]
+
+[project.optional-dependencies]
+generation = [
+  "datamodel-code-generator"
+]
+test = [
+  # local
+  "cucumber-messages[test-coverage]",
+  # external; Must be in sync with tox.ini
+  "mypy",
+  "pre-commit",
+  "tox>=4.2"
+]
+test-coverage = [
+  "coverage",
+  "importlib_resources",
+  "pytest"
+]
+
+[project.scripts]
+
+[tool.black]
+line-length = 120
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+verbose = true
+
+[tool.isort]
+line_length = 120
+multi_line_output = 3
+profile = "black"
+
+[tool.mypy]
+files = "src/**/*.py"
+install_types = true
+non_interactive = true
+plugins = [
+  "pydantic.mypy"
+]
+show_error_codes = true
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+]
+
+# Wait until is ready: https://github.com/tox-dev/tox/issues/999
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    requires =
+        tox>=4.2
+    env_list =
+        py312-pre-commit-lin
+        py{312, 311, 310, 39, 38}-mypy-lin
+        py{py310, py39, py38, 312, 311, 310, 39, 38}-pytest-coverage-lin
+        py312-pytest-coverage-{win, mac}
+    distshare = {homedir}/.tox/distshare
+
+    [testenv]
+    platform =
+        lin: linux
+        mac: darwin
+        win: win32
+
+    [testenv:py312-pre-commit-lin]
+    skip_install = true
+    deps =
+        pre-commit
+    commands =
+        pre-commit run
+
+    [testenv:py{312, 311, 310, 39, 38}-mypy-lin]
+    deps =
+        mypy
+    commands =
+        python -m mypy
+
+    [testenv:py{py310, py39, py38, 312, 311, 310, 39, 38}-pytest-coverage-{lin, win, mac}]
+    deps =
+        .[test-coverage]
+    commands =
+        coverage run --append -m pytest -vvl
+
+    [gh-actions]
+    python =
+        3.8: py38
+        3.9: py39
+        3.10: py310
+        3.11: py311
+        3.12: py312
+        pypy-3.8: pypy38
+        pypy-3.9: pypy39
+        pypy-3.10: pypy310
+"""

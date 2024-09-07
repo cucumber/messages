@@ -1,0 +1,35 @@
+schemas = $(shell find ../jsonschema -name "*.json")
+
+.DEFAULT_GOAL = help
+
+MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+HERE := $(dir $(MKFILE_PATH))
+
+help: ## Show this help
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nWhere <target> is one of:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+generate: require install-deps
+	datamodel-codegen \
+		--output-model-type "pydantic_v2.BaseModel" \
+		--input $(HERE)../jsonschema/Envelope.json \
+		--output $(HERE)src/cucumber_messages/messages.py \
+		--use-generic-container-types \
+		--allow-extra-fields \
+		--allow-population-by-field-name \
+		--snake-case-field \
+		--input-file-type=jsonschema \
+		--class-name Envelope  \
+		--use-double-quotes \
+		--use-union-operator \
+		--disable-timestamp \
+		--target-python-version=3.8
+
+require: ## Check requirements for the code generation (python is required)
+	@python --version >/dev/null 2>&1 || (echo "ERROR: python is required."; exit 1)
+
+clean: ## Remove automatically generated files and related artifacts
+	rm -rf $(HERE)src/_messages.py
+
+install-deps: ## Install generation dependencies
+	python -m ensurepip --upgrade
+	pip install $(HERE)[generation]

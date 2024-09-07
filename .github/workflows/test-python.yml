@@ -1,0 +1,82 @@
+---
+name: test-python
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main
+      - renovate/**
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        python-version:
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "pypy3.8"
+          - "pypy3.9"
+          - "pypy3.10"
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        exclude:
+          - python-version: "pypy3.8"
+            os: macos-latest
+          - python-version: "pypy3.9"
+            os: macos-latest
+          - python-version: "pypy3.10"
+            os: macos-latest
+          - python-version: "3.8"
+            os: macos-latest
+          - python-version: "3.9"
+            os: macos-latest
+          - python-version: "3.10"
+            os: macos-latest
+          - python-version: "3.11"
+            os: macos-latest
+          - python-version: "pypy3.8"
+            os: windows-latest
+          - python-version: "pypy3.9"
+            os: windows-latest
+          - python-version: "pypy3.10"
+            os: windows-latest
+          - python-version: "3.8"
+            os: windows-latest
+          - python-version: "3.9"
+            os: windows-latest
+          - python-version: "3.10"
+            os: windows-latest
+          - python-version: "3.11"
+            os: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U setuptools
+          pip install tox tox-gh-actions codecov
+      - name: Test with tox
+        working-directory: ./python
+        run: |
+          tox
+      - name: Gather codecov report
+        working-directory: ./python
+        run: |
+          codecov
