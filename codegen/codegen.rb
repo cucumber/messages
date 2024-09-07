@@ -11,6 +11,7 @@ require_relative 'generators/java'
 require_relative 'generators/markdown'
 require_relative 'generators/perl'
 require_relative 'generators/php'
+require_relative 'generators/python'
 require_relative 'generators/ruby'
 require_relative 'generators/typescript'
 
