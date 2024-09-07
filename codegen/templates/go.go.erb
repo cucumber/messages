@@ -2,12 +2,16 @@ package messages
 
 <% @schemas.each do |key, schema| -%>
 type <%= class_name(key) %> struct {
-  <%- schema['properties'].each do |property_name, property| -%>
+  <%-
+  property_name_max_length = schema['properties'].max_by{ |property_name,_| property_name.length }[0].length
+  type_names = schema['properties'].map { |property_name, property| [property_name, type_for(class_name(key), property_name, property)] }
+  type_name_max_length = type_names.max_by{ |_,type_name| type_name.length }[1].length
+  -%>
+  <%- type_names.each do |property_name, type_name| -%>
     <%-
-      type_name = type_for(class_name(key), property_name, property)
       required = (schema['required'] || []).index(property_name)
     -%>
-    <%- %>  <%= capitalize(property_name) %> <%= type_name %> `json:"<%= property_name %><%= required ? '' : ',omitempty' %>"`
+    <%- %>	<%= capitalize(property_name).ljust(property_name_max_length) %> <%= type_name.ljust(type_name_max_length) %> `json:"<%= property_name %><%= required ? '' : ',omitempty' %>"`
   <%- end -%>
 }
 
