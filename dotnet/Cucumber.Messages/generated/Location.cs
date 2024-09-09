@@ -27,7 +27,7 @@ public sealed class Location
         Nullable<long> column
     ) 
     {
-              RequireNonNull<long>(line, "Line", "Location.Line cannot be null");
+        RequireNonNull<long>(line, "Line", "Location.Line cannot be null");
         this.Line = line;
               this.Column = column;
     }

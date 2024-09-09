@@ -72,20 +72,20 @@ public sealed class Pickle
         List<string> astNodeIds
     ) 
     {
-              RequireNonNull<string>(id, "Id", "Pickle.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "Pickle.Id cannot be null");
         this.Id = id;
-              RequireNonNull<string>(uri, "Uri", "Pickle.Uri cannot be null");
+        RequireNonNull<string>(uri, "Uri", "Pickle.Uri cannot be null");
         this.Uri = uri;
-              RequireNonNull<string>(name, "Name", "Pickle.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "Pickle.Name cannot be null");
         this.Name = name;
-              RequireNonNull<string>(language, "Language", "Pickle.Language cannot be null");
+        RequireNonNull<string>(language, "Language", "Pickle.Language cannot be null");
         this.Language = language;
-              RequireNonNull<List<PickleStep>>(steps, "Steps", "Pickle.Steps cannot be null");
-        this.Steps = steps == null ? new List<PickleStep>() : new List<PickleStep>(steps);
-              RequireNonNull<List<PickleTag>>(tags, "Tags", "Pickle.Tags cannot be null");
-        this.Tags = tags == null ? new List<PickleTag>() : new List<PickleTag>(tags);
-              RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "Pickle.AstNodeIds cannot be null");
-        this.AstNodeIds = astNodeIds == null ? new List<string>() : new List<string>(astNodeIds);
+        RequireNonNull<List<PickleStep>>(steps, "Steps", "Pickle.Steps cannot be null");
+        this.Steps = new List<PickleStep>(steps);        
+        RequireNonNull<List<PickleTag>>(tags, "Tags", "Pickle.Tags cannot be null");
+        this.Tags = new List<PickleTag>(tags);        
+        RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "Pickle.AstNodeIds cannot be null");
+        this.AstNodeIds = new List<string>(astNodeIds);        
     }
 
     public override bool Equals(Object o) 

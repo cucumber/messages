@@ -41,19 +41,19 @@ public sealed class Rule
         string id
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "Rule.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "Rule.Location cannot be null");
         this.Location = location;
-              RequireNonNull<List<Tag>>(tags, "Tags", "Rule.Tags cannot be null");
-        this.Tags = tags == null ? new List<Tag>() : new List<Tag>(tags);
-              RequireNonNull<string>(keyword, "Keyword", "Rule.Keyword cannot be null");
+        RequireNonNull<List<Tag>>(tags, "Tags", "Rule.Tags cannot be null");
+        this.Tags = new List<Tag>(tags);        
+        RequireNonNull<string>(keyword, "Keyword", "Rule.Keyword cannot be null");
         this.Keyword = keyword;
-              RequireNonNull<string>(name, "Name", "Rule.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "Rule.Name cannot be null");
         this.Name = name;
-              RequireNonNull<string>(description, "Description", "Rule.Description cannot be null");
+        RequireNonNull<string>(description, "Description", "Rule.Description cannot be null");
         this.Description = description;
-              RequireNonNull<List<RuleChild>>(children, "Children", "Rule.Children cannot be null");
-        this.Children = children == null ? new List<RuleChild>() : new List<RuleChild>(children);
-              RequireNonNull<string>(id, "Id", "Rule.Id cannot be null");
+        RequireNonNull<List<RuleChild>>(children, "Children", "Rule.Children cannot be null");
+        this.Children = new List<RuleChild>(children);        
+        RequireNonNull<string>(id, "Id", "Rule.Id cannot be null");
         this.Id = id;
     }
 

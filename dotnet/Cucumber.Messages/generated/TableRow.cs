@@ -35,11 +35,11 @@ public sealed class TableRow
         string id
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "TableRow.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "TableRow.Location cannot be null");
         this.Location = location;
-              RequireNonNull<List<TableCell>>(cells, "Cells", "TableRow.Cells cannot be null");
-        this.Cells = cells == null ? new List<TableCell>() : new List<TableCell>(cells);
-              RequireNonNull<string>(id, "Id", "TableRow.Id cannot be null");
+        RequireNonNull<List<TableCell>>(cells, "Cells", "TableRow.Cells cannot be null");
+        this.Cells = new List<TableCell>(cells);        
+        RequireNonNull<string>(id, "Id", "TableRow.Id cannot be null");
         this.Id = id;
     }
 

@@ -51,15 +51,15 @@ public sealed class Meta
         Ci ci
     ) 
     {
-              RequireNonNull<string>(protocolVersion, "ProtocolVersion", "Meta.ProtocolVersion cannot be null");
+        RequireNonNull<string>(protocolVersion, "ProtocolVersion", "Meta.ProtocolVersion cannot be null");
         this.ProtocolVersion = protocolVersion;
-              RequireNonNull<Product>(implementation, "Implementation", "Meta.Implementation cannot be null");
+        RequireNonNull<Product>(implementation, "Implementation", "Meta.Implementation cannot be null");
         this.Implementation = implementation;
-              RequireNonNull<Product>(runtime, "Runtime", "Meta.Runtime cannot be null");
+        RequireNonNull<Product>(runtime, "Runtime", "Meta.Runtime cannot be null");
         this.Runtime = runtime;
-              RequireNonNull<Product>(os, "Os", "Meta.Os cannot be null");
+        RequireNonNull<Product>(os, "Os", "Meta.Os cannot be null");
         this.Os = os;
-              RequireNonNull<Product>(cpu, "Cpu", "Meta.Cpu cannot be null");
+        RequireNonNull<Product>(cpu, "Cpu", "Meta.Cpu cannot be null");
         this.Cpu = cpu;
               this.Ci = ci;
     }

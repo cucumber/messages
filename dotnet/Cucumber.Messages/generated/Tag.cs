@@ -38,11 +38,11 @@ public sealed class Tag
         string id
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "Tag.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "Tag.Location cannot be null");
         this.Location = location;
-              RequireNonNull<string>(name, "Name", "Tag.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "Tag.Name cannot be null");
         this.Name = name;
-              RequireNonNull<string>(id, "Id", "Tag.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "Tag.Id cannot be null");
         this.Id = id;
     }
 

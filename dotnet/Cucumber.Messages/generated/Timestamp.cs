@@ -36,9 +36,9 @@ public sealed class Timestamp
         long nanos
     ) 
     {
-              RequireNonNull<long>(seconds, "Seconds", "Timestamp.Seconds cannot be null");
+        RequireNonNull<long>(seconds, "Seconds", "Timestamp.Seconds cannot be null");
         this.Seconds = seconds;
-              RequireNonNull<long>(nanos, "Nanos", "Timestamp.Nanos cannot be null");
+        RequireNonNull<long>(nanos, "Nanos", "Timestamp.Nanos cannot be null");
         this.Nanos = nanos;
     }
 

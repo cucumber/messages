@@ -73,10 +73,14 @@ public sealed class <%= class_name(key) %>
           required = (schema['required'] || []).index(property_name) 
       -%>
       <% if required -%>
-        RequireNonNull<<%= type_for(class_name(key), property_name, property) -%>>(<%= property_name %>, "<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null");
+  RequireNonNull<<%= type_for(class_name(key), property_name, property) -%>>(<%= property_name %>, "<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null");
       <%- end -%>
       <%- if property['items'] -%>
+        <%- if required -%>
+        this.<%= capitalize(property_name) %> = new <%= type_for(class_name(key), property_name, property) -%>(<%= property_name %>);        
+        <%- else -%>
         this.<%= capitalize(property_name) %> = <%= property_name %> == null ? new <%= type_for(class_name(key), property_name, property) -%>() : new <%= type_for(class_name(key), property_name, property) -%>(<%= property_name %>);
+        <%- end -%>
       <%- else -%>
         this.<%= capitalize(property_name) %> = <%= property_name %>;
       <%- end -%>

@@ -42,14 +42,14 @@ public sealed class TestCaseStarted
         Timestamp timestamp
     ) 
     {
-              RequireNonNull<long>(attempt, "Attempt", "TestCaseStarted.Attempt cannot be null");
+        RequireNonNull<long>(attempt, "Attempt", "TestCaseStarted.Attempt cannot be null");
         this.Attempt = attempt;
-              RequireNonNull<string>(id, "Id", "TestCaseStarted.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "TestCaseStarted.Id cannot be null");
         this.Id = id;
-              RequireNonNull<string>(testCaseId, "TestCaseId", "TestCaseStarted.TestCaseId cannot be null");
+        RequireNonNull<string>(testCaseId, "TestCaseId", "TestCaseStarted.TestCaseId cannot be null");
         this.TestCaseId = testCaseId;
               this.WorkerId = workerId;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestCaseStarted.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestCaseStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
 

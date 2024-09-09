@@ -40,7 +40,7 @@ public sealed class Ci
         Git git
     ) 
     {
-              RequireNonNull<string>(name, "Name", "Ci.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "Ci.Name cannot be null");
         this.Name = name;
               this.Url = url;
               this.BuildNumber = buildNumber;

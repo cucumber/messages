@@ -49,7 +49,7 @@ public sealed class TestStep
     ) 
     {
               this.HookId = hookId;
-              RequireNonNull<string>(id, "Id", "TestStep.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "TestStep.Id cannot be null");
         this.Id = id;
               this.PickleStepId = pickleStepId;
               this.StepDefinitionIds = stepDefinitionIds == null ? new List<string>() : new List<string>(stepDefinitionIds);

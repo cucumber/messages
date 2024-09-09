@@ -36,7 +36,7 @@ public sealed class StepMatchArgument
         string parameterTypeName
     ) 
     {
-              RequireNonNull<Group>(group, "Group", "StepMatchArgument.Group cannot be null");
+        RequireNonNull<Group>(group, "Group", "StepMatchArgument.Group cannot be null");
         this.Group = group;
               this.ParameterTypeName = parameterTypeName;
     }

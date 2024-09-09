@@ -27,11 +27,11 @@ public sealed class JavaStackTraceElement
         string methodName
     ) 
     {
-              RequireNonNull<string>(className, "ClassName", "JavaStackTraceElement.ClassName cannot be null");
+        RequireNonNull<string>(className, "ClassName", "JavaStackTraceElement.ClassName cannot be null");
         this.ClassName = className;
-              RequireNonNull<string>(fileName, "FileName", "JavaStackTraceElement.FileName cannot be null");
+        RequireNonNull<string>(fileName, "FileName", "JavaStackTraceElement.FileName cannot be null");
         this.FileName = fileName;
-              RequireNonNull<string>(methodName, "MethodName", "JavaStackTraceElement.MethodName cannot be null");
+        RequireNonNull<string>(methodName, "MethodName", "JavaStackTraceElement.MethodName cannot be null");
         this.MethodName = methodName;
     }
 

@@ -34,9 +34,9 @@ public sealed class Duration
         long nanos
     ) 
     {
-              RequireNonNull<long>(seconds, "Seconds", "Duration.Seconds cannot be null");
+        RequireNonNull<long>(seconds, "Seconds", "Duration.Seconds cannot be null");
         this.Seconds = seconds;
-              RequireNonNull<long>(nanos, "Nanos", "Duration.Nanos cannot be null");
+        RequireNonNull<long>(nanos, "Nanos", "Duration.Nanos cannot be null");
         this.Nanos = nanos;
     }
 

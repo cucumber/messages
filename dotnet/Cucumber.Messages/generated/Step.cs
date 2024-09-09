@@ -49,16 +49,16 @@ public sealed class Step
         string id
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "Step.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "Step.Location cannot be null");
         this.Location = location;
-              RequireNonNull<string>(keyword, "Keyword", "Step.Keyword cannot be null");
+        RequireNonNull<string>(keyword, "Keyword", "Step.Keyword cannot be null");
         this.Keyword = keyword;
               this.KeywordType = keywordType;
-              RequireNonNull<string>(text, "Text", "Step.Text cannot be null");
+        RequireNonNull<string>(text, "Text", "Step.Text cannot be null");
         this.Text = text;
               this.DocString = docString;
               this.DataTable = dataTable;
-              RequireNonNull<string>(id, "Id", "Step.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "Step.Id cannot be null");
         this.Id = id;
     }
 

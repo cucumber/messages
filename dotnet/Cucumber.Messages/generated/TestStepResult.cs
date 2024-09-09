@@ -35,10 +35,10 @@ public sealed class TestStepResult
         Exception exception
     ) 
     {
-              RequireNonNull<Duration>(duration, "Duration", "TestStepResult.Duration cannot be null");
+        RequireNonNull<Duration>(duration, "Duration", "TestStepResult.Duration cannot be null");
         this.Duration = duration;
               this.Message = message;
-              RequireNonNull<TestStepResultStatus>(status, "Status", "TestStepResult.Status cannot be null");
+        RequireNonNull<TestStepResultStatus>(status, "Status", "TestStepResult.Status cannot be null");
         this.Status = status;
               this.Exception = exception;
     }

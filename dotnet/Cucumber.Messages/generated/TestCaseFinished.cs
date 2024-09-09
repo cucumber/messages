@@ -27,11 +27,11 @@ public sealed class TestCaseFinished
         bool willBeRetried
     ) 
     {
-              RequireNonNull<string>(testCaseStartedId, "TestCaseStartedId", "TestCaseFinished.TestCaseStartedId cannot be null");
+        RequireNonNull<string>(testCaseStartedId, "TestCaseStartedId", "TestCaseFinished.TestCaseStartedId cannot be null");
         this.TestCaseStartedId = testCaseStartedId;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestCaseFinished.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestCaseFinished.Timestamp cannot be null");
         this.Timestamp = timestamp;
-              RequireNonNull<bool>(willBeRetried, "WillBeRetried", "TestCaseFinished.WillBeRetried cannot be null");
+        RequireNonNull<bool>(willBeRetried, "WillBeRetried", "TestCaseFinished.WillBeRetried cannot be null");
         this.WillBeRetried = willBeRetried;
     }
 

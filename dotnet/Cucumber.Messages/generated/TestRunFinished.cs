@@ -42,9 +42,9 @@ public sealed class TestRunFinished
     ) 
     {
               this.Message = message;
-              RequireNonNull<bool>(success, "Success", "TestRunFinished.Success cannot be null");
+        RequireNonNull<bool>(success, "Success", "TestRunFinished.Success cannot be null");
         this.Success = success;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunFinished.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunFinished.Timestamp cannot be null");
         this.Timestamp = timestamp;
               this.Exception = exception;
     }

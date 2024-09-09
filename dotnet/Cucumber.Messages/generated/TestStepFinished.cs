@@ -29,13 +29,13 @@ public sealed class TestStepFinished
         Timestamp timestamp
     ) 
     {
-              RequireNonNull<string>(testCaseStartedId, "TestCaseStartedId", "TestStepFinished.TestCaseStartedId cannot be null");
+        RequireNonNull<string>(testCaseStartedId, "TestCaseStartedId", "TestStepFinished.TestCaseStartedId cannot be null");
         this.TestCaseStartedId = testCaseStartedId;
-              RequireNonNull<string>(testStepId, "TestStepId", "TestStepFinished.TestStepId cannot be null");
+        RequireNonNull<string>(testStepId, "TestStepId", "TestStepFinished.TestStepId cannot be null");
         this.TestStepId = testStepId;
-              RequireNonNull<TestStepResult>(testStepResult, "TestStepResult", "TestStepFinished.TestStepResult cannot be null");
+        RequireNonNull<TestStepResult>(testStepResult, "TestStepResult", "TestStepFinished.TestStepResult cannot be null");
         this.TestStepResult = testStepResult;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestStepFinished.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestStepFinished.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
 
