@@ -59,7 +59,7 @@ public sealed class Feature
               RequireNonNull<Location>(location, "Location", "Feature.Location cannot be null");
         this.Location = location;
               RequireNonNull<List<Tag>>(tags, "Tags", "Feature.Tags cannot be null");
-        this.Tags = new List<Tag>(tags);
+        this.Tags = tags == null ? new List<Tag>() : new List<Tag>(tags);
               RequireNonNull<string>(language, "Language", "Feature.Language cannot be null");
         this.Language = language;
               RequireNonNull<string>(keyword, "Keyword", "Feature.Keyword cannot be null");
@@ -69,7 +69,7 @@ public sealed class Feature
               RequireNonNull<string>(description, "Description", "Feature.Description cannot be null");
         this.Description = description;
               RequireNonNull<List<FeatureChild>>(children, "Children", "Feature.Children cannot be null");
-        this.Children = new List<FeatureChild>(children);
+        this.Children = children == null ? new List<FeatureChild>() : new List<FeatureChild>(children);
     }
 
     public override bool Equals(Object o) 

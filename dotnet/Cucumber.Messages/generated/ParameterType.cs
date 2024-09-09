@@ -39,7 +39,7 @@ public sealed class ParameterType
               RequireNonNull<string>(name, "Name", "ParameterType.Name cannot be null");
         this.Name = name;
               RequireNonNull<List<string>>(regularExpressions, "RegularExpressions", "ParameterType.RegularExpressions cannot be null");
-        this.RegularExpressions = new List<string>(regularExpressions);
+        this.RegularExpressions = regularExpressions == null ? new List<string>() : new List<string>(regularExpressions);
               RequireNonNull<bool>(preferForRegularExpressionMatch, "PreferForRegularExpressionMatch", "ParameterType.PreferForRegularExpressionMatch cannot be null");
         this.PreferForRegularExpressionMatch = preferForRegularExpressionMatch;
               RequireNonNull<bool>(useForSnippets, "UseForSnippets", "ParameterType.UseForSnippets cannot be null");

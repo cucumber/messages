@@ -24,7 +24,7 @@ public sealed class PickleTable
     ) 
     {
               RequireNonNull<List<PickleTableRow>>(rows, "Rows", "PickleTable.Rows cannot be null");
-        this.Rows = new List<PickleTableRow>(rows);
+        this.Rows = rows == null ? new List<PickleTableRow>() : new List<PickleTableRow>(rows);
     }
 
     public override bool Equals(Object o) 

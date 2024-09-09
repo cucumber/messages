@@ -52,8 +52,8 @@ public sealed class TestStep
               RequireNonNull<string>(id, "Id", "TestStep.Id cannot be null");
         this.Id = id;
               this.PickleStepId = pickleStepId;
-              this.StepDefinitionIds = new List<string>(stepDefinitionIds);
-              this.StepMatchArgumentsLists = new List<StepMatchArgumentsList>(stepMatchArgumentsLists);
+              this.StepDefinitionIds = stepDefinitionIds == null ? new List<string>() : new List<string>(stepDefinitionIds);
+              this.StepMatchArgumentsLists = stepMatchArgumentsLists == null ? new List<StepMatchArgumentsList>() : new List<StepMatchArgumentsList>(stepMatchArgumentsLists);
     }
 
     public override bool Equals(Object o) 

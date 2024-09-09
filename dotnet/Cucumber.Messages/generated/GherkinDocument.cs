@@ -44,7 +44,7 @@ public sealed class GherkinDocument
               this.Uri = uri;
               this.Feature = feature;
               RequireNonNull<List<Comment>>(comments, "Comments", "GherkinDocument.Comments cannot be null");
-        this.Comments = new List<Comment>(comments);
+        this.Comments = comments == null ? new List<Comment>() : new List<Comment>(comments);
     }
 
     public override bool Equals(Object o) 

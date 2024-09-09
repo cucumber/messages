@@ -32,5 +32,15 @@ namespace Cucumber.Messages.Specs
             Assert.Equal(expectedStepDefinition, reconstructedStepDefinition);
         }
 
+        [Fact]
+        public void ProperlyDeserializesCollectionProperties() {
+
+            // The following is from the CCK hooks sample
+            var json = @"{""id"":""33"",""pickleId"":""20"",""testSteps"":[{""hookId"":""0"",""id"":""29""},{""hookId"":""1"",""id"":""30""},{""id"":""31"",""pickleStepId"":""19"",""stepDefinitionIds"":[""2""],""stepMatchArgumentsLists"":[{""stepMatchArguments"":[]}]},{""hookId"":""4"",""id"":""32""}]}";
+
+            // This test will pass if the deserializer does not throw an exception
+            var testCase = NdjsonSerializer.Deserialize<TestCase>(json);
+            Assert.Equal(4, testCase.TestSteps.Count);
+        }
     }
 }

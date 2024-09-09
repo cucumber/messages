@@ -39,7 +39,7 @@ public sealed class TestCase
               RequireNonNull<string>(pickleId, "PickleId", "TestCase.PickleId cannot be null");
         this.PickleId = pickleId;
               RequireNonNull<List<TestStep>>(testSteps, "TestSteps", "TestCase.TestSteps cannot be null");
-        this.TestSteps = new List<TestStep>(testSteps);
+        this.TestSteps = testSteps == null ? new List<TestStep>() : new List<TestStep>(testSteps);
     }
 
     public override bool Equals(Object o) 

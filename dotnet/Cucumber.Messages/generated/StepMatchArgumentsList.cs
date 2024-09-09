@@ -24,7 +24,7 @@ public sealed class StepMatchArgumentsList
     ) 
     {
               RequireNonNull<List<StepMatchArgument>>(stepMatchArguments, "StepMatchArguments", "StepMatchArgumentsList.StepMatchArguments cannot be null");
-        this.StepMatchArguments = new List<StepMatchArgument>(stepMatchArguments);
+        this.StepMatchArguments = stepMatchArguments == null ? new List<StepMatchArgument>() : new List<StepMatchArgument>(stepMatchArguments);
     }
 
     public override bool Equals(Object o) 

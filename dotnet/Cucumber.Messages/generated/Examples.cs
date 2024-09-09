@@ -43,7 +43,7 @@ public sealed class Examples
               RequireNonNull<Location>(location, "Location", "Examples.Location cannot be null");
         this.Location = location;
               RequireNonNull<List<Tag>>(tags, "Tags", "Examples.Tags cannot be null");
-        this.Tags = new List<Tag>(tags);
+        this.Tags = tags == null ? new List<Tag>() : new List<Tag>(tags);
               RequireNonNull<string>(keyword, "Keyword", "Examples.Keyword cannot be null");
         this.Keyword = keyword;
               RequireNonNull<string>(name, "Name", "Examples.Name cannot be null");
@@ -52,7 +52,7 @@ public sealed class Examples
         this.Description = description;
               this.TableHeader = tableHeader;
               RequireNonNull<List<TableRow>>(tableBody, "TableBody", "Examples.TableBody cannot be null");
-        this.TableBody = new List<TableRow>(tableBody);
+        this.TableBody = tableBody == null ? new List<TableRow>() : new List<TableRow>(tableBody);
               RequireNonNull<string>(id, "Id", "Examples.Id cannot be null");
         this.Id = id;
     }

@@ -32,7 +32,7 @@ public sealed class JavaMethod
               RequireNonNull<string>(methodName, "MethodName", "JavaMethod.MethodName cannot be null");
         this.MethodName = methodName;
               RequireNonNull<List<string>>(methodParameterTypes, "MethodParameterTypes", "JavaMethod.MethodParameterTypes cannot be null");
-        this.MethodParameterTypes = new List<string>(methodParameterTypes);
+        this.MethodParameterTypes = methodParameterTypes == null ? new List<string>() : new List<string>(methodParameterTypes);
     }
 
     public override bool Equals(Object o) 

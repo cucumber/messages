@@ -45,7 +45,7 @@ public sealed class Background
               RequireNonNull<string>(description, "Description", "Background.Description cannot be null");
         this.Description = description;
               RequireNonNull<List<Step>>(steps, "Steps", "Background.Steps cannot be null");
-        this.Steps = new List<Step>(steps);
+        this.Steps = steps == null ? new List<Step>() : new List<Step>(steps);
               RequireNonNull<string>(id, "Id", "Background.Id cannot be null");
         this.Id = id;
     }

@@ -43,7 +43,7 @@ public sealed class Scenario
               RequireNonNull<Location>(location, "Location", "Scenario.Location cannot be null");
         this.Location = location;
               RequireNonNull<List<Tag>>(tags, "Tags", "Scenario.Tags cannot be null");
-        this.Tags = new List<Tag>(tags);
+        this.Tags = tags == null ? new List<Tag>() : new List<Tag>(tags);
               RequireNonNull<string>(keyword, "Keyword", "Scenario.Keyword cannot be null");
         this.Keyword = keyword;
               RequireNonNull<string>(name, "Name", "Scenario.Name cannot be null");
@@ -51,9 +51,9 @@ public sealed class Scenario
               RequireNonNull<string>(description, "Description", "Scenario.Description cannot be null");
         this.Description = description;
               RequireNonNull<List<Step>>(steps, "Steps", "Scenario.Steps cannot be null");
-        this.Steps = new List<Step>(steps);
+        this.Steps = steps == null ? new List<Step>() : new List<Step>(steps);
               RequireNonNull<List<Examples>>(examples, "Examples", "Scenario.Examples cannot be null");
-        this.Examples = new List<Examples>(examples);
+        this.Examples = examples == null ? new List<Examples>() : new List<Examples>(examples);
               RequireNonNull<string>(id, "Id", "Scenario.Id cannot be null");
         this.Id = id;
     }
