@@ -1,21 +1,26 @@
-<% @enums.each do |enum| -%>
+<% @enums.each_with_index do |enum, index| -%>
 type <%= enum[:name] %> string
 
-const(
+const (
+<%-
+  enum_constant_max_length = enum[:values].max_by { |value| enum_constant(value).length }.length
+-%>
 <% enum[:values].each do |value| -%>
-  <%= enum[:name] %>_<%= enum_constant(value) %> <%= enum[:name] %> = "<%= value %>"
+	<%=enum[:name] %>_<%= enum_constant(value).ljust(enum_constant_max_length) %> <%= enum[:name] %> = "<%= value %>"
 <% end -%>
 )
 
 func (e <%= enum[:name] %>) String() string {
 	switch e {
-  <%- enum[:values].each do |value| -%>
-  case <%= enum[:name] %>_<%= enum_constant(value) %>:
-    return "<%= value %>"
-  <%- end -%>
+	<%- enum[:values].each do |value| -%>
+	case <%= enum[:name] %>_<%= enum_constant(value) %>:
+		return "<%= value %>"
+	<%- end -%>
 	default:
 		panic("Bad enum value for <%= enum[:name] %>")
 	}
 }
+<%- if index != @enums.size - 1 -%>
 
-<% end -%>
+<%- end -%>
+<%- end -%>
