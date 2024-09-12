@@ -3,8 +3,9 @@ package messages
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestMessages(t *testing.T) {
