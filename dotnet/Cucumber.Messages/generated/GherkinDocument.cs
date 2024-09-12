@@ -41,8 +41,8 @@ public sealed class GherkinDocument
         List<Comment> comments
     ) 
     {
-              this.Uri = uri;
-              this.Feature = feature;
+        this.Uri = uri;
+        this.Feature = feature;
         RequireNonNull<List<Comment>>(comments, "Comments", "GherkinDocument.Comments cannot be null");
         this.Comments = new List<Comment>(comments);        
     }

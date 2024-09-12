@@ -25,7 +25,7 @@ public sealed class PickleDocString
         string content
     ) 
     {
-              this.MediaType = mediaType;
+        this.MediaType = mediaType;
         RequireNonNull<string>(content, "Content", "PickleDocString.Content cannot be null");
         this.Content = content;
     }

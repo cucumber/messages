@@ -90,13 +90,13 @@ public sealed class Attachment
         this.Body = body;
         RequireNonNull<AttachmentContentEncoding>(contentEncoding, "ContentEncoding", "Attachment.ContentEncoding cannot be null");
         this.ContentEncoding = contentEncoding;
-              this.FileName = fileName;
+        this.FileName = fileName;
         RequireNonNull<string>(mediaType, "MediaType", "Attachment.MediaType cannot be null");
         this.MediaType = mediaType;
-              this.Source = source;
-              this.TestCaseStartedId = testCaseStartedId;
-              this.TestStepId = testStepId;
-              this.Url = url;
+        this.Source = source;
+        this.TestCaseStartedId = testCaseStartedId;
+        this.TestStepId = testStepId;
+        this.Url = url;
     }
 
     public override bool Equals(Object o) 

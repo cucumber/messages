@@ -50,7 +50,7 @@ public sealed class Examples
         this.Name = name;
         RequireNonNull<string>(description, "Description", "Examples.Description cannot be null");
         this.Description = description;
-              this.TableHeader = tableHeader;
+        this.TableHeader = tableHeader;
         RequireNonNull<List<TableRow>>(tableBody, "TableBody", "Examples.TableBody cannot be null");
         this.TableBody = new List<TableRow>(tableBody);        
         RequireNonNull<string>(id, "Id", "Examples.Id cannot be null");

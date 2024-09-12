@@ -29,7 +29,7 @@ public sealed class Location
     {
         RequireNonNull<long>(line, "Line", "Location.Line cannot be null");
         this.Line = line;
-              this.Column = column;
+        this.Column = column;
     }
 
     public override bool Equals(Object o) 

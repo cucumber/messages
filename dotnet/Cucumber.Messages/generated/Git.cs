@@ -36,8 +36,8 @@ public sealed class Git
         this.Remote = remote;
         RequireNonNull<string>(revision, "Revision", "Git.Revision cannot be null");
         this.Revision = revision;
-              this.Branch = branch;
-              this.Tag = tag;
+        this.Branch = branch;
+        this.Tag = tag;
     }
 
     public override bool Equals(Object o) 

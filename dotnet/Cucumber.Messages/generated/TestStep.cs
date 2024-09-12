@@ -48,12 +48,12 @@ public sealed class TestStep
         List<StepMatchArgumentsList> stepMatchArgumentsLists
     ) 
     {
-              this.HookId = hookId;
+        this.HookId = hookId;
         RequireNonNull<string>(id, "Id", "TestStep.Id cannot be null");
         this.Id = id;
-              this.PickleStepId = pickleStepId;
-              this.StepDefinitionIds = stepDefinitionIds == null ? new List<string>() : new List<string>(stepDefinitionIds);
-              this.StepMatchArgumentsLists = stepMatchArgumentsLists == null ? new List<StepMatchArgumentsList>() : new List<StepMatchArgumentsList>(stepMatchArgumentsLists);
+        this.PickleStepId = pickleStepId;
+        this.StepDefinitionIds = stepDefinitionIds == null ? null : new List<string>(stepDefinitionIds);
+        this.StepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : new List<StepMatchArgumentsList>(stepMatchArgumentsLists);
     }
 
     public override bool Equals(Object o) 

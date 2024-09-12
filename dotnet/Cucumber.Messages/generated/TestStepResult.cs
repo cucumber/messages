@@ -37,10 +37,10 @@ public sealed class TestStepResult
     {
         RequireNonNull<Duration>(duration, "Duration", "TestStepResult.Duration cannot be null");
         this.Duration = duration;
-              this.Message = message;
+        this.Message = message;
         RequireNonNull<TestStepResultStatus>(status, "Status", "TestStepResult.Status cannot be null");
         this.Status = status;
-              this.Exception = exception;
+        this.Exception = exception;
     }
 
     public override bool Equals(Object o) 

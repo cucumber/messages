@@ -31,10 +31,10 @@ public sealed class Hook
     {
         RequireNonNull<string>(id, "Id", "Hook.Id cannot be null");
         this.Id = id;
-              this.Name = name;
+        this.Name = name;
         RequireNonNull<SourceReference>(sourceReference, "SourceReference", "Hook.SourceReference cannot be null");
         this.SourceReference = sourceReference;
-              this.TagExpression = tagExpression;
+        this.TagExpression = tagExpression;
     }
 
     public override bool Equals(Object o) 

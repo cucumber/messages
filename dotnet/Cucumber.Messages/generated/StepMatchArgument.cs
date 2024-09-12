@@ -38,7 +38,7 @@ public sealed class StepMatchArgument
     {
         RequireNonNull<Group>(group, "Group", "StepMatchArgument.Group cannot be null");
         this.Group = group;
-              this.ParameterTypeName = parameterTypeName;
+        this.ParameterTypeName = parameterTypeName;
     }
 
     public override bool Equals(Object o) 

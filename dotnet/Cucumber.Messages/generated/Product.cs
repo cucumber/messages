@@ -35,7 +35,7 @@ public sealed class Product
     {
         RequireNonNull<string>(name, "Name", "Product.Name cannot be null");
         this.Name = name;
-              this.Version = version;
+        this.Version = version;
     }
 
     public override bool Equals(Object o) 

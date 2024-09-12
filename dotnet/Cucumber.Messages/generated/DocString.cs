@@ -31,7 +31,7 @@ public sealed class DocString
     {
         RequireNonNull<Location>(location, "Location", "DocString.Location cannot be null");
         this.Location = location;
-              this.MediaType = mediaType;
+        this.MediaType = mediaType;
         RequireNonNull<string>(content, "Content", "DocString.Content cannot be null");
         this.Content = content;
         RequireNonNull<string>(delimiter, "Delimiter", "DocString.Delimiter cannot be null");

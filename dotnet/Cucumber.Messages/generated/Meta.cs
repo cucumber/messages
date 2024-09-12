@@ -61,7 +61,7 @@ public sealed class Meta
         this.Os = os;
         RequireNonNull<Product>(cpu, "Cpu", "Meta.Cpu cannot be null");
         this.Cpu = cpu;
-              this.Ci = ci;
+        this.Ci = ci;
     }
 
     public override bool Equals(Object o) 

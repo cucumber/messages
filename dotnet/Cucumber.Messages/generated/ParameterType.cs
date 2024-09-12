@@ -46,7 +46,7 @@ public sealed class ParameterType
         this.UseForSnippets = useForSnippets;
         RequireNonNull<string>(id, "Id", "ParameterType.Id cannot be null");
         this.Id = id;
-              this.SourceReference = sourceReference;
+        this.SourceReference = sourceReference;
     }
 
     public override bool Equals(Object o) 

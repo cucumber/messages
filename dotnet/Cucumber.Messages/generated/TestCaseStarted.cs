@@ -48,7 +48,7 @@ public sealed class TestCaseStarted
         this.Id = id;
         RequireNonNull<string>(testCaseId, "TestCaseId", "TestCaseStarted.TestCaseId cannot be null");
         this.TestCaseId = testCaseId;
-              this.WorkerId = workerId;
+        this.WorkerId = workerId;
         RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestCaseStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }

@@ -40,8 +40,8 @@ public sealed class Exception
     {
         RequireNonNull<string>(type, "Type", "Exception.Type cannot be null");
         this.Type = type;
-              this.Message = message;
-              this.StackTrace = stackTrace;
+        this.Message = message;
+        this.StackTrace = stackTrace;
     }
 
     public override bool Equals(Object o) 
