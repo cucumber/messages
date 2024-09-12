@@ -56,20 +56,20 @@ public sealed class Feature
         List<FeatureChild> children
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "Feature.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "Feature.Location cannot be null");
         this.Location = location;
-              RequireNonNull<List<Tag>>(tags, "Tags", "Feature.Tags cannot be null");
-        this.Tags = new List<Tag>(tags);
-              RequireNonNull<string>(language, "Language", "Feature.Language cannot be null");
+        RequireNonNull<List<Tag>>(tags, "Tags", "Feature.Tags cannot be null");
+        this.Tags = new List<Tag>(tags);        
+        RequireNonNull<string>(language, "Language", "Feature.Language cannot be null");
         this.Language = language;
-              RequireNonNull<string>(keyword, "Keyword", "Feature.Keyword cannot be null");
+        RequireNonNull<string>(keyword, "Keyword", "Feature.Keyword cannot be null");
         this.Keyword = keyword;
-              RequireNonNull<string>(name, "Name", "Feature.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "Feature.Name cannot be null");
         this.Name = name;
-              RequireNonNull<string>(description, "Description", "Feature.Description cannot be null");
+        RequireNonNull<string>(description, "Description", "Feature.Description cannot be null");
         this.Description = description;
-              RequireNonNull<List<FeatureChild>>(children, "Children", "Feature.Children cannot be null");
-        this.Children = new List<FeatureChild>(children);
+        RequireNonNull<List<FeatureChild>>(children, "Children", "Feature.Children cannot be null");
+        this.Children = new List<FeatureChild>(children);        
     }
 
     public override bool Equals(Object o) 

@@ -25,9 +25,9 @@ public sealed class StepDefinitionPattern
         StepDefinitionPatternType type
     ) 
     {
-              RequireNonNull<string>(source, "Source", "StepDefinitionPattern.Source cannot be null");
+        RequireNonNull<string>(source, "Source", "StepDefinitionPattern.Source cannot be null");
         this.Source = source;
-              RequireNonNull<StepDefinitionPatternType>(type, "Type", "StepDefinitionPattern.Type cannot be null");
+        RequireNonNull<StepDefinitionPatternType>(type, "Type", "StepDefinitionPattern.Type cannot be null");
         this.Type = type;
     }
 

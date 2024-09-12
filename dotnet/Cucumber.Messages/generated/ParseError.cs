@@ -25,9 +25,9 @@ public sealed class ParseError
         string message
     ) 
     {
-              RequireNonNull<SourceReference>(source, "Source", "ParseError.Source cannot be null");
+        RequireNonNull<SourceReference>(source, "Source", "ParseError.Source cannot be null");
         this.Source = source;
-              RequireNonNull<string>(message, "Message", "ParseError.Message cannot be null");
+        RequireNonNull<string>(message, "Message", "ParseError.Message cannot be null");
         this.Message = message;
     }
 

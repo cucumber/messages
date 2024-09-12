@@ -25,10 +25,10 @@ public sealed class DataTable
         List<TableRow> rows
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "DataTable.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "DataTable.Location cannot be null");
         this.Location = location;
-              RequireNonNull<List<TableRow>>(rows, "Rows", "DataTable.Rows cannot be null");
-        this.Rows = new List<TableRow>(rows);
+        RequireNonNull<List<TableRow>>(rows, "Rows", "DataTable.Rows cannot be null");
+        this.Rows = new List<TableRow>(rows);        
     }
 
     public override bool Equals(Object o) 

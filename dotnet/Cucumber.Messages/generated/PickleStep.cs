@@ -45,13 +45,13 @@ public sealed class PickleStep
         string text
     ) 
     {
-              this.Argument = argument;
-              RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "PickleStep.AstNodeIds cannot be null");
-        this.AstNodeIds = new List<string>(astNodeIds);
-              RequireNonNull<string>(id, "Id", "PickleStep.Id cannot be null");
+        this.Argument = argument;
+        RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "PickleStep.AstNodeIds cannot be null");
+        this.AstNodeIds = new List<string>(astNodeIds);        
+        RequireNonNull<string>(id, "Id", "PickleStep.Id cannot be null");
         this.Id = id;
-              this.Type = type;
-              RequireNonNull<string>(text, "Text", "PickleStep.Text cannot be null");
+        this.Type = type;
+        RequireNonNull<string>(text, "Text", "PickleStep.Text cannot be null");
         this.Text = text;
     }
 

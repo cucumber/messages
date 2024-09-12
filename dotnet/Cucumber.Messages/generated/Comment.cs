@@ -33,9 +33,9 @@ public sealed class Comment
         string text
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "Comment.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "Comment.Location cannot be null");
         this.Location = location;
-              RequireNonNull<string>(text, "Text", "Comment.Text cannot be null");
+        RequireNonNull<string>(text, "Text", "Comment.Text cannot be null");
         this.Text = text;
     }
 

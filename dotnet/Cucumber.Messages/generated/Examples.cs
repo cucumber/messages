@@ -40,20 +40,20 @@ public sealed class Examples
         string id
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "Examples.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "Examples.Location cannot be null");
         this.Location = location;
-              RequireNonNull<List<Tag>>(tags, "Tags", "Examples.Tags cannot be null");
-        this.Tags = new List<Tag>(tags);
-              RequireNonNull<string>(keyword, "Keyword", "Examples.Keyword cannot be null");
+        RequireNonNull<List<Tag>>(tags, "Tags", "Examples.Tags cannot be null");
+        this.Tags = new List<Tag>(tags);        
+        RequireNonNull<string>(keyword, "Keyword", "Examples.Keyword cannot be null");
         this.Keyword = keyword;
-              RequireNonNull<string>(name, "Name", "Examples.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "Examples.Name cannot be null");
         this.Name = name;
-              RequireNonNull<string>(description, "Description", "Examples.Description cannot be null");
+        RequireNonNull<string>(description, "Description", "Examples.Description cannot be null");
         this.Description = description;
-              this.TableHeader = tableHeader;
-              RequireNonNull<List<TableRow>>(tableBody, "TableBody", "Examples.TableBody cannot be null");
-        this.TableBody = new List<TableRow>(tableBody);
-              RequireNonNull<string>(id, "Id", "Examples.Id cannot be null");
+        this.TableHeader = tableHeader;
+        RequireNonNull<List<TableRow>>(tableBody, "TableBody", "Examples.TableBody cannot be null");
+        this.TableBody = new List<TableRow>(tableBody);        
+        RequireNonNull<string>(id, "Id", "Examples.Id cannot be null");
         this.Id = id;
     }
 

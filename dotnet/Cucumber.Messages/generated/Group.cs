@@ -27,10 +27,10 @@ public sealed class Group
         string value
     ) 
     {
-              RequireNonNull<List<Group>>(children, "Children", "Group.Children cannot be null");
-        this.Children = new List<Group>(children);
-              this.Start = start;
-              this.Value = value;
+        RequireNonNull<List<Group>>(children, "Children", "Group.Children cannot be null");
+        this.Children = new List<Group>(children);        
+        this.Start = start;
+        this.Value = value;
     }
 
     public override bool Equals(Object o) 

@@ -27,11 +27,11 @@ public sealed class StepDefinition
         SourceReference sourceReference
     ) 
     {
-              RequireNonNull<string>(id, "Id", "StepDefinition.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "StepDefinition.Id cannot be null");
         this.Id = id;
-              RequireNonNull<StepDefinitionPattern>(pattern, "Pattern", "StepDefinition.Pattern cannot be null");
+        RequireNonNull<StepDefinitionPattern>(pattern, "Pattern", "StepDefinition.Pattern cannot be null");
         this.Pattern = pattern;
-              RequireNonNull<SourceReference>(sourceReference, "SourceReference", "StepDefinition.SourceReference cannot be null");
+        RequireNonNull<SourceReference>(sourceReference, "SourceReference", "StepDefinition.SourceReference cannot be null");
         this.SourceReference = sourceReference;
     }
 

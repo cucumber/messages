@@ -43,8 +43,8 @@ public sealed class PickleStepArgument
         PickleTable dataTable
     ) 
     {
-              this.DocString = docString;
-              this.DataTable = dataTable;
+        this.DocString = docString;
+        this.DataTable = dataTable;
     }
 
     public override bool Equals(Object o) 

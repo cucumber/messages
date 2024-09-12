@@ -29,12 +29,12 @@ public sealed class DocString
         string delimiter
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "DocString.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "DocString.Location cannot be null");
         this.Location = location;
-              this.MediaType = mediaType;
-              RequireNonNull<string>(content, "Content", "DocString.Content cannot be null");
+        this.MediaType = mediaType;
+        RequireNonNull<string>(content, "Content", "DocString.Content cannot be null");
         this.Content = content;
-              RequireNonNull<string>(delimiter, "Delimiter", "DocString.Delimiter cannot be null");
+        RequireNonNull<string>(delimiter, "Delimiter", "DocString.Delimiter cannot be null");
         this.Delimiter = delimiter;
     }
 

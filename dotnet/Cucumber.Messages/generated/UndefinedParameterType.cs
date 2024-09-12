@@ -25,9 +25,9 @@ public sealed class UndefinedParameterType
         string name
     ) 
     {
-              RequireNonNull<string>(expression, "Expression", "UndefinedParameterType.Expression cannot be null");
+        RequireNonNull<string>(expression, "Expression", "UndefinedParameterType.Expression cannot be null");
         this.Expression = expression;
-              RequireNonNull<string>(name, "Name", "UndefinedParameterType.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "UndefinedParameterType.Name cannot be null");
         this.Name = name;
     }
 

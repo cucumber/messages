@@ -42,11 +42,11 @@ public sealed class Source
         SourceMediaType mediaType
     ) 
     {
-              RequireNonNull<string>(uri, "Uri", "Source.Uri cannot be null");
+        RequireNonNull<string>(uri, "Uri", "Source.Uri cannot be null");
         this.Uri = uri;
-              RequireNonNull<string>(data, "Data", "Source.Data cannot be null");
+        RequireNonNull<string>(data, "Data", "Source.Data cannot be null");
         this.Data = data;
-              RequireNonNull<SourceMediaType>(mediaType, "MediaType", "Source.MediaType cannot be null");
+        RequireNonNull<SourceMediaType>(mediaType, "MediaType", "Source.MediaType cannot be null");
         this.MediaType = mediaType;
     }
 

@@ -23,7 +23,7 @@ public sealed class PickleTableCell
         string value
     ) 
     {
-              RequireNonNull<string>(value, "Value", "PickleTableCell.Value cannot be null");
+        RequireNonNull<string>(value, "Value", "PickleTableCell.Value cannot be null");
         this.Value = value;
     }
 

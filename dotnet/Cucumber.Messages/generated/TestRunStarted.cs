@@ -23,7 +23,7 @@ public sealed class TestRunStarted
         Timestamp timestamp
     ) 
     {
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunStarted.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
 
