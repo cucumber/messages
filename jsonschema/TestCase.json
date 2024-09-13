@@ -80,14 +80,14 @@
           "type": "string"
         },
         "stepDefinitionIds": {
-          "description": "Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)",
+          "description": "Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)\n Each element represents a matching step definition. A size of 0 means `UNDEFINED`,\n and a size of 2+ means `AMBIGUOUS`",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "stepMatchArgumentsLists": {
-          "description": "A list of list of StepMatchArgument (if derived from a `PickleStep`).\n Each element represents a matching step definition. A size of 0 means `UNDEFINED`,\n and a size of 2+ means `AMBIGUOUS`",
+          "description": "A list of list of StepMatchArgument (if derived from a `PickleStep`).",
           "items": {
             "$ref": "#/definitions/StepMatchArgumentsList"
           },
