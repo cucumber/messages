@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Dotnet] Fixed code generation for types that accept List<T> as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi])
 ### Changed
 - [Go] Switch to Google's UUID module ([#251](https://github.com/cucumber/messages/pull/251))
+- Schema: moved contents of the description of the StepDefinitionIds field from the StepMatchArgumentsList`field where it had been mistakenly placed.[clrudolphi]`
 
 ## [26.0.0] - 2024-08-15
 ### Added
