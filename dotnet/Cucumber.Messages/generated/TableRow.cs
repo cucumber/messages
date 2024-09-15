@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -16,17 +14,17 @@ namespace Io.Cucumber.Messages.Types;
  * A row in a table
  */
 
-public sealed class TableRow 
+public sealed record TableRow 
 {
     /**
      * The location of the first cell in the row
      */
-    public Location Location { get; private set; }
+    public Location Location { get; }
     /**
      * Cells in the row
      */
-    public List<TableCell> Cells { get; private set; }
-    public string Id { get; private set; }
+    public List<TableCell> Cells { get; }
+    public string Id { get; }
 
 
     public TableRow(
@@ -35,53 +33,8 @@ public sealed class TableRow
         string id
     ) 
     {
-        RequireNonNull<Location>(location, "Location", "TableRow.Location cannot be null");
-        this.Location = location;
-        RequireNonNull<List<TableCell>>(cells, "Cells", "TableRow.Cells cannot be null");
-        this.Cells = new List<TableCell>(cells);        
-        RequireNonNull<string>(id, "Id", "TableRow.Id cannot be null");
-        this.Id = id;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        TableRow that = (TableRow) o;
-        return 
-            Location.Equals(that.Location) &&         
-            Cells.Equals(that.Cells) &&         
-            Id.Equals(that.Id);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Location != null)
-          hash = hash * 31 + Location.GetHashCode();
-        if (Cells != null)
-          hash = hash * 31 + Cells.GetHashCode();
-        if (Id != null)
-          hash = hash * 31 + Id.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "TableRow{" +
-            "location=" + Location +
-            ", cells=" + Cells +
-            ", id=" + Id +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.Location = location ?? throw new ArgumentNullException("Location", "TableRow.Location cannot be null");
+        this.Cells = cells ?? throw new ArgumentNullException("Cells", "TableRow.Cells cannot be null");
+        this.Id = id ?? throw new ArgumentNullException("Id", "TableRow.Id cannot be null");
     }
 }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -18,14 +16,14 @@ namespace Io.Cucumber.Messages.Types;
  * A `TestCase` contains a sequence of `TestStep`s.
  */
 
-public sealed class TestCase 
+public sealed record TestCase 
 {
-    public string Id { get; private set; }
+    public string Id { get; }
     /**
      * The ID of the `Pickle` this `TestCase` is derived from.
      */
-    public string PickleId { get; private set; }
-    public List<TestStep> TestSteps { get; private set; }
+    public string PickleId { get; }
+    public List<TestStep> TestSteps { get; }
 
 
     public TestCase(
@@ -34,53 +32,8 @@ public sealed class TestCase
         List<TestStep> testSteps
     ) 
     {
-        RequireNonNull<string>(id, "Id", "TestCase.Id cannot be null");
-        this.Id = id;
-        RequireNonNull<string>(pickleId, "PickleId", "TestCase.PickleId cannot be null");
-        this.PickleId = pickleId;
-        RequireNonNull<List<TestStep>>(testSteps, "TestSteps", "TestCase.TestSteps cannot be null");
-        this.TestSteps = new List<TestStep>(testSteps);        
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        TestCase that = (TestCase) o;
-        return 
-            Id.Equals(that.Id) &&         
-            PickleId.Equals(that.PickleId) &&         
-            TestSteps.Equals(that.TestSteps);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Id != null)
-          hash = hash * 31 + Id.GetHashCode();
-        if (PickleId != null)
-          hash = hash * 31 + PickleId.GetHashCode();
-        if (TestSteps != null)
-          hash = hash * 31 + TestSteps.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "TestCase{" +
-            "id=" + Id +
-            ", pickleId=" + PickleId +
-            ", testSteps=" + TestSteps +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.Id = id ?? throw new ArgumentNullException("Id", "TestCase.Id cannot be null");
+        this.PickleId = pickleId ?? throw new ArgumentNullException("PickleId", "TestCase.PickleId cannot be null");
+        this.TestSteps = testSteps ?? throw new ArgumentNullException("TestSteps", "TestCase.TestSteps cannot be null");
     }
 }

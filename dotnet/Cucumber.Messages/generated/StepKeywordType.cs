@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using System.Reflection;
 
@@ -31,7 +30,7 @@ public enum StepKeywordType {
 public static class StepKeywordTypeExtensions
 {
     public static string Value(this StepKeywordType v) {
-        var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
+        var attribute = v.GetType().GetField(v.ToString())?.GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using System.Reflection;
 
@@ -22,7 +21,7 @@ public enum AttachmentContentEncoding {
 public static class AttachmentContentEncodingExtensions
 {
     public static string Value(this AttachmentContentEncoding v) {
-        var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
+        var attribute = v.GetType().GetField(v.ToString())?.GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }
 }

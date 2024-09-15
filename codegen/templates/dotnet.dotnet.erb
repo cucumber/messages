@@ -1,7 +1,5 @@
 <%- @schemas.each do |key, schema| -%>
 <%= class_name(key) %>.cs
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -20,21 +18,20 @@ namespace Io.Cucumber.Messages.Types;
 <%- end -%>
  */
 
-public sealed class <%= class_name(key) %> 
+public sealed record <%= class_name(key) %> 
 {
   <%- schema['properties'].each do |property_name, property| 
-      required = (schema['required'] || []).index(property_name) 
-      isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool'
+      required = (schema['required'] || []).index(property_name)
   -%>
     <%- unless (property['description'] || []).empty? -%>
     /**
     <%= format_description(property['description'], indent_string: '    ') %>
      */
     <%- end -%>
-    <%- if isValueType && !required -%>
-    public Nullable<<%= type_for(class_name(key), property_name, property) %>> <%= capitalize(property_name) %> { get; private set; }
+    <%- if !required -%>
+    public <%= type_for(class_name(key), property_name, property) %>? <%= capitalize(property_name) %> { get; }
     <%- else -%>
-    public <%= type_for(class_name(key), property_name, property) %> <%= capitalize(property_name) %> { get; private set; }
+    public <%= type_for(class_name(key), property_name, property) %> <%= capitalize(property_name) %> { get; }
     <%- end -%>
   <%- end -%>
 
@@ -46,8 +43,8 @@ public sealed class <%= class_name(key) %>
         return new <%= class_name(key) %>(
         <%- schema['properties'].each.with_index(1) do |(property_name_2, _property_2), index| -%>
           <%- if property_name_2 == property_name -%>
-            Require<<%= type_for(class_name(key), property_name, property) %>>(<%= property_name %>, "<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null")<%= index < schema['properties'].length ? ',' : '' %>
-          <%- else -%>
+            <%= property_name %> ?? throw new ArgumentNullException("<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null")<%= index < schema['properties'].length ? ',' : '' %>
+            <%- else -%>
             null<%= index < schema['properties'].length ? ',' : '' %>
           <%- end -%>
         <%- end -%>
@@ -58,11 +55,10 @@ public sealed class <%= class_name(key) %>
 
     public <%= class_name(key) %>(
     <%- schema['properties'].each.with_index(1) do |(property_name, property), index|
-        isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool'
         required = (schema['required'] || []).index(property_name) 
     -%>
-    <%- if isValueType && !required -%>
-        Nullable<<%= type_for(class_name(key), property_name, property) %>> <%= property_name %><%= index < schema['properties'].length ? ',' : ''%>
+    <%- if !required -%>
+        <%= type_for(class_name(key), property_name, property) %>? <%= property_name %><%= index < schema['properties'].length ? ',' : ''%>
     <%- else -%>
         <%= type_for(class_name(key), property_name, property) %> <%= property_name %><%= index < schema['properties'].length ? ',' : ''%>
     <%- end -%>
@@ -71,83 +67,14 @@ public sealed class <%= class_name(key) %>
     {
       <%- schema['properties'].each do |property_name, property|
           required = (schema['required'] || []).index(property_name) 
+          isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool' || property['enum'] != nil
       -%>
-      <%- if required -%>
-        RequireNonNull<<%= type_for(class_name(key), property_name, property) %>>(<%= property_name %>, "<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null");
-      <%- end -%>
-      <%- if property['items'] -%>
-        <%- if required -%>
-        this.<%= capitalize(property_name) %> = new <%= type_for(class_name(key), property_name, property) %>(<%= property_name %>);        
-        <%- else -%>
-        this.<%= capitalize(property_name) %> = <%= property_name %> == null ? null : new <%= type_for(class_name(key), property_name, property) %>(<%= property_name %>);
-        <%- end -%>
+      <%- if !isValueType && required -%>
+        this.<%= capitalize(property_name) %> = <%= property_name %> ?? throw new ArgumentNullException("<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null");
       <%- else -%>
         this.<%= capitalize(property_name) %> = <%= property_name %>;
       <%- end -%>
       <%- end -%>
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        <%= class_name(key) %> that = (<%= class_name(key) %>) o;
-        return <%- schema['properties'].each.with_index(1) do |(property_name, _property), index| %>
-            <%- if (schema['required'] || []).index(property_name) -%>
-            <%= capitalize(property_name) %>.Equals(that.<%= capitalize(property_name) %>)<%= index < schema['properties'].length ? ' && ' : ';' -%>
-            <%- else -%>
-            Object.Equals(<%= capitalize(property_name) %>, that.<%= capitalize(property_name) %>)<%= index < schema['properties'].length ? ' && ' : ';' -%>
-            <%- end -%>
-        <% end %>
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        <%- schema['properties'].each do |property_name, property|
-        required = (schema['required'] || []).index(property_name) 
-        isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool'
-        isEnum = property['enum']
-        -%>
-        <%- if isEnum -%>
-          hash = hash * 31 + <%= capitalize(property_name) %>.GetHashCode();  
-        <%- elsif isValueType && !required -%>
-        if (<%= capitalize(property_name) -%>.HasValue)
-          hash = hash * 31 + <%= capitalize(property_name) %>.Value.GetHashCode();
-        <%- elsif isValueType -%>
-          hash = hash * 31 + <%= capitalize(property_name) %>.GetHashCode();  
-        <%- else -%>
-        if (<%= capitalize(property_name) -%> != null)
-          hash = hash * 31 + <%= capitalize(property_name) %>.GetHashCode();
-        <%- end -%>
-        <%- end -%>
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "<%= class_name(key) %>{" +
-        <%- schema['properties'].each_with_index do |(property_name, property), index| 
-            required = (schema['required'] || []).index(property_name) 
-            isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool'
-        -%>
-        <%- if isValueType && !required -%>
-            (<%= capitalize(property_name) %>.HasValue ? "<%= index.zero? ? '' : ', '%><%= property_name %>=" + <%= capitalize(property_name) %>.Value : "") +
-        <%- else -%>
-            "<%= index.zero? ? '' : ', '%><%= property_name %>=" + <%= capitalize(property_name) %> +
-        <%- end -%>
-        <%- end -%>
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }
 <% end -%>

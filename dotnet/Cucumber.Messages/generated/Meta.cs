@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -17,29 +15,29 @@ namespace Io.Cucumber.Messages.Types;
  * this for various purposes.
  */
 
-public sealed class Meta 
+public sealed record Meta 
 {
     /**
      * The [SEMVER](https://semver.org/) version number of the protocol
      */
-    public string ProtocolVersion { get; private set; }
+    public string ProtocolVersion { get; }
     /**
      * SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
      */
-    public Product Implementation { get; private set; }
+    public Product Implementation { get; }
     /**
      * Java, Ruby, Node.js etc
      */
-    public Product Runtime { get; private set; }
+    public Product Runtime { get; }
     /**
      * Windows, Linux, MacOS etc
      */
-    public Product Os { get; private set; }
+    public Product Os { get; }
     /**
      * 386, arm, amd64 etc
      */
-    public Product Cpu { get; private set; }
-    public Ci Ci { get; private set; }
+    public Product Cpu { get; }
+    public Ci? Ci { get; }
 
 
     public Meta(
@@ -48,73 +46,14 @@ public sealed class Meta
         Product runtime,
         Product os,
         Product cpu,
-        Ci ci
+        Ci? ci
     ) 
     {
-        RequireNonNull<string>(protocolVersion, "ProtocolVersion", "Meta.ProtocolVersion cannot be null");
-        this.ProtocolVersion = protocolVersion;
-        RequireNonNull<Product>(implementation, "Implementation", "Meta.Implementation cannot be null");
-        this.Implementation = implementation;
-        RequireNonNull<Product>(runtime, "Runtime", "Meta.Runtime cannot be null");
-        this.Runtime = runtime;
-        RequireNonNull<Product>(os, "Os", "Meta.Os cannot be null");
-        this.Os = os;
-        RequireNonNull<Product>(cpu, "Cpu", "Meta.Cpu cannot be null");
-        this.Cpu = cpu;
+        this.ProtocolVersion = protocolVersion ?? throw new ArgumentNullException("ProtocolVersion", "Meta.ProtocolVersion cannot be null");
+        this.Implementation = implementation ?? throw new ArgumentNullException("Implementation", "Meta.Implementation cannot be null");
+        this.Runtime = runtime ?? throw new ArgumentNullException("Runtime", "Meta.Runtime cannot be null");
+        this.Os = os ?? throw new ArgumentNullException("Os", "Meta.Os cannot be null");
+        this.Cpu = cpu ?? throw new ArgumentNullException("Cpu", "Meta.Cpu cannot be null");
         this.Ci = ci;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Meta that = (Meta) o;
-        return 
-            ProtocolVersion.Equals(that.ProtocolVersion) &&         
-            Implementation.Equals(that.Implementation) &&         
-            Runtime.Equals(that.Runtime) &&         
-            Os.Equals(that.Os) &&         
-            Cpu.Equals(that.Cpu) &&         
-            Object.Equals(Ci, that.Ci);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (ProtocolVersion != null)
-          hash = hash * 31 + ProtocolVersion.GetHashCode();
-        if (Implementation != null)
-          hash = hash * 31 + Implementation.GetHashCode();
-        if (Runtime != null)
-          hash = hash * 31 + Runtime.GetHashCode();
-        if (Os != null)
-          hash = hash * 31 + Os.GetHashCode();
-        if (Cpu != null)
-          hash = hash * 31 + Cpu.GetHashCode();
-        if (Ci != null)
-          hash = hash * 31 + Ci.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Meta{" +
-            "protocolVersion=" + ProtocolVersion +
-            ", implementation=" + Implementation +
-            ", runtime=" + Runtime +
-            ", os=" + Os +
-            ", cpu=" + Cpu +
-            ", ci=" + Ci +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using System.Reflection;
 
@@ -22,7 +21,7 @@ public enum StepDefinitionPatternType {
 public static class StepDefinitionPatternTypeExtensions
 {
     public static string Value(this StepDefinitionPatternType v) {
-        var attribute = v.GetType().GetField(v.ToString()).GetCustomAttribute<DescriptionAttribute>();
+        var attribute = v.GetType().GetField(v.ToString())?.GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }
 }

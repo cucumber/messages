@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -16,16 +14,16 @@ namespace Io.Cucumber.Messages.Types;
  * A cell in a `TableRow`
  */
 
-public sealed class TableCell 
+public sealed record TableCell 
 {
     /**
      * The location of the cell
      */
-    public Location Location { get; private set; }
+    public Location Location { get; }
     /**
      * The value of the cell
      */
-    public string Value { get; private set; }
+    public string Value { get; }
 
 
     public TableCell(
@@ -33,47 +31,7 @@ public sealed class TableCell
         string value
     ) 
     {
-        RequireNonNull<Location>(location, "Location", "TableCell.Location cannot be null");
-        this.Location = location;
-        RequireNonNull<string>(value, "Value", "TableCell.Value cannot be null");
-        this.Value = value;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        TableCell that = (TableCell) o;
-        return 
-            Location.Equals(that.Location) &&         
-            Value.Equals(that.Value);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Location != null)
-          hash = hash * 31 + Location.GetHashCode();
-        if (Value != null)
-          hash = hash * 31 + Value.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "TableCell{" +
-            "location=" + Location +
-            ", value=" + Value +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.Location = location ?? throw new ArgumentNullException("Location", "TableCell.Location cannot be null");
+        this.Value = value ?? throw new ArgumentNullException("Value", "TableCell.Value cannot be null");
     }
 }

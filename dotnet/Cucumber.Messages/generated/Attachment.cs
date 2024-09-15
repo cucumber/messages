@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -26,14 +24,14 @@ namespace Io.Cucumber.Messages.Types;
  * is captured in `TestResult`.
  */
 
-public sealed class Attachment 
+public sealed record Attachment 
 {
     /**
      * The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
      * is simply the string. If it's `BASE64`, the string should be Base64 decoded to
      * obtain the attachment.
      */
-    public string Body { get; private set; }
+    public string Body { get; }
     /**
      * Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
      *
@@ -44,21 +42,21 @@ public sealed class Attachment
      * - byte array: BASE64
      * - stream: BASE64
      */
-    public AttachmentContentEncoding ContentEncoding { get; private set; }
+    public AttachmentContentEncoding ContentEncoding { get; }
     /**
      * Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
      */
-    public string FileName { get; private set; }
+    public string? FileName { get; }
     /**
      * The media type of the data. This can be any valid
      * [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
      * as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
      * and `text/x.cucumber.stacktrace+plain`
      */
-    public string MediaType { get; private set; }
-    public Source Source { get; private set; }
-    public string TestCaseStartedId { get; private set; }
-    public string TestStepId { get; private set; }
+    public string MediaType { get; }
+    public Source? Source { get; }
+    public string? TestCaseStartedId { get; }
+    public string? TestStepId { get; }
     /**
      * A URL where the attachment can be retrieved. This field should not be set by Cucumber.
      * It should be set by a program that reads a message stream and does the following for
@@ -72,91 +70,27 @@ public sealed class Attachment
      * reduce bandwidth of message consumers. It also makes it easier to process and download attachments
      * separately from reports.
      */
-    public string Url { get; private set; }
+    public string? Url { get; }
 
 
     public Attachment(
         string body,
         AttachmentContentEncoding contentEncoding,
-        string fileName,
+        string? fileName,
         string mediaType,
-        Source source,
-        string testCaseStartedId,
-        string testStepId,
-        string url
+        Source? source,
+        string? testCaseStartedId,
+        string? testStepId,
+        string? url
     ) 
     {
-        RequireNonNull<string>(body, "Body", "Attachment.Body cannot be null");
-        this.Body = body;
-        RequireNonNull<AttachmentContentEncoding>(contentEncoding, "ContentEncoding", "Attachment.ContentEncoding cannot be null");
+        this.Body = body ?? throw new ArgumentNullException("Body", "Attachment.Body cannot be null");
         this.ContentEncoding = contentEncoding;
         this.FileName = fileName;
-        RequireNonNull<string>(mediaType, "MediaType", "Attachment.MediaType cannot be null");
-        this.MediaType = mediaType;
+        this.MediaType = mediaType ?? throw new ArgumentNullException("MediaType", "Attachment.MediaType cannot be null");
         this.Source = source;
         this.TestCaseStartedId = testCaseStartedId;
         this.TestStepId = testStepId;
         this.Url = url;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Attachment that = (Attachment) o;
-        return 
-            Body.Equals(that.Body) &&         
-            ContentEncoding.Equals(that.ContentEncoding) &&         
-            Object.Equals(FileName, that.FileName) &&         
-            MediaType.Equals(that.MediaType) &&         
-            Object.Equals(Source, that.Source) &&         
-            Object.Equals(TestCaseStartedId, that.TestCaseStartedId) &&         
-            Object.Equals(TestStepId, that.TestStepId) &&         
-            Object.Equals(Url, that.Url);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Body != null)
-          hash = hash * 31 + Body.GetHashCode();
-          hash = hash * 31 + ContentEncoding.GetHashCode();  
-        if (FileName != null)
-          hash = hash * 31 + FileName.GetHashCode();
-        if (MediaType != null)
-          hash = hash * 31 + MediaType.GetHashCode();
-        if (Source != null)
-          hash = hash * 31 + Source.GetHashCode();
-        if (TestCaseStartedId != null)
-          hash = hash * 31 + TestCaseStartedId.GetHashCode();
-        if (TestStepId != null)
-          hash = hash * 31 + TestStepId.GetHashCode();
-        if (Url != null)
-          hash = hash * 31 + Url.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Attachment{" +
-            "body=" + Body +
-            ", contentEncoding=" + ContentEncoding +
-            ", fileName=" + FileName +
-            ", mediaType=" + MediaType +
-            ", source=" + Source +
-            ", testCaseStartedId=" + TestCaseStartedId +
-            ", testStepId=" + TestStepId +
-            ", url=" + Url +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

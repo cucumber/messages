@@ -51,6 +51,6 @@ public class NdjsonSerializer
 
     internal static T Deserialize<T>(string json)
     {
-        return JsonSerializer.Deserialize<T>(json, JsonOptions);
+        return JsonSerializer.Deserialize<T>(json, JsonOptions)!;
     }
 }

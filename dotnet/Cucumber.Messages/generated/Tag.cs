@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -16,20 +14,20 @@ namespace Io.Cucumber.Messages.Types;
  * A tag
  */
 
-public sealed class Tag 
+public sealed record Tag 
 {
     /**
      * Location of the tag
      */
-    public Location Location { get; private set; }
+    public Location Location { get; }
     /**
      * The name of the tag (including the leading `@`)
      */
-    public string Name { get; private set; }
+    public string Name { get; }
     /**
      * Unique ID to be able to reference the Tag from PickleTag
      */
-    public string Id { get; private set; }
+    public string Id { get; }
 
 
     public Tag(
@@ -38,53 +36,8 @@ public sealed class Tag
         string id
     ) 
     {
-        RequireNonNull<Location>(location, "Location", "Tag.Location cannot be null");
-        this.Location = location;
-        RequireNonNull<string>(name, "Name", "Tag.Name cannot be null");
-        this.Name = name;
-        RequireNonNull<string>(id, "Id", "Tag.Id cannot be null");
-        this.Id = id;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Tag that = (Tag) o;
-        return 
-            Location.Equals(that.Location) &&         
-            Name.Equals(that.Name) &&         
-            Id.Equals(that.Id);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Location != null)
-          hash = hash * 31 + Location.GetHashCode();
-        if (Name != null)
-          hash = hash * 31 + Name.GetHashCode();
-        if (Id != null)
-          hash = hash * 31 + Id.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Tag{" +
-            "location=" + Location +
-            ", name=" + Name +
-            ", id=" + Id +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.Location = location ?? throw new ArgumentNullException("Location", "Tag.Location cannot be null");
+        this.Name = name ?? throw new ArgumentNullException("Name", "Tag.Name cannot be null");
+        this.Id = id ?? throw new ArgumentNullException("Id", "Tag.Id cannot be null");
     }
 }

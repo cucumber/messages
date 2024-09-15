@@ -8,8 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Fixed
 - [Dotnet] Fixed code generation for types that accept List<T> as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi])
+
+### Added
+- [Dotnet] Run tests for .NET 8 + .NET Framework 4.6.2
+- [Dotnet] Added editorconfig
+
 ### Changed
 - [Go] Switch to Google's UUID module ([#251](https://github.com/cucumber/messages/pull/251))
+- [Dotnet] Update target frameworks: .NET 8, .NET Standard 2.0
+- [Dotnet] Adopt C# 12 syntax
+- [Dotnet] Enable warnings as errors
+- [Dotnet] Enable nulalble for all projects
 
 ## [26.0.0] - 2024-08-15
 ### Added

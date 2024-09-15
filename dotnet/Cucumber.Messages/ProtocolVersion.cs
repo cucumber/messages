@@ -14,7 +14,8 @@ public class ProtocolVersion
 
     private static string GetPackageVersion(Assembly assembly)
     {
-        var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-        return version?.Split(new char['+'], 2)[0];
+        var informationalVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+        var version = informationalVersion?.Split(new char['+'], 2)[0];
+        return version ?? throw new Exception("Unable to get assembly version");
     }
 }

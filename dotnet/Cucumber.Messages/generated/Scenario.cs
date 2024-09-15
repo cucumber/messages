@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -14,19 +12,19 @@ namespace Io.Cucumber.Messages.Types;
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 
-public sealed class Scenario 
+public sealed record Scenario 
 {
     /**
      * The location of the `Scenario` keyword
      */
-    public Location Location { get; private set; }
-    public List<Tag> Tags { get; private set; }
-    public string Keyword { get; private set; }
-    public string Name { get; private set; }
-    public string Description { get; private set; }
-    public List<Step> Steps { get; private set; }
-    public List<Examples> Examples { get; private set; }
-    public string Id { get; private set; }
+    public Location Location { get; }
+    public List<Tag> Tags { get; }
+    public string Keyword { get; }
+    public string Name { get; }
+    public string Description { get; }
+    public List<Step> Steps { get; }
+    public List<Examples> Examples { get; }
+    public string Id { get; }
 
 
     public Scenario(
@@ -40,83 +38,13 @@ public sealed class Scenario
         string id
     ) 
     {
-        RequireNonNull<Location>(location, "Location", "Scenario.Location cannot be null");
-        this.Location = location;
-        RequireNonNull<List<Tag>>(tags, "Tags", "Scenario.Tags cannot be null");
-        this.Tags = new List<Tag>(tags);        
-        RequireNonNull<string>(keyword, "Keyword", "Scenario.Keyword cannot be null");
-        this.Keyword = keyword;
-        RequireNonNull<string>(name, "Name", "Scenario.Name cannot be null");
-        this.Name = name;
-        RequireNonNull<string>(description, "Description", "Scenario.Description cannot be null");
-        this.Description = description;
-        RequireNonNull<List<Step>>(steps, "Steps", "Scenario.Steps cannot be null");
-        this.Steps = new List<Step>(steps);        
-        RequireNonNull<List<Examples>>(examples, "Examples", "Scenario.Examples cannot be null");
-        this.Examples = new List<Examples>(examples);        
-        RequireNonNull<string>(id, "Id", "Scenario.Id cannot be null");
-        this.Id = id;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Scenario that = (Scenario) o;
-        return 
-            Location.Equals(that.Location) &&         
-            Tags.Equals(that.Tags) &&         
-            Keyword.Equals(that.Keyword) &&         
-            Name.Equals(that.Name) &&         
-            Description.Equals(that.Description) &&         
-            Steps.Equals(that.Steps) &&         
-            Examples.Equals(that.Examples) &&         
-            Id.Equals(that.Id);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Location != null)
-          hash = hash * 31 + Location.GetHashCode();
-        if (Tags != null)
-          hash = hash * 31 + Tags.GetHashCode();
-        if (Keyword != null)
-          hash = hash * 31 + Keyword.GetHashCode();
-        if (Name != null)
-          hash = hash * 31 + Name.GetHashCode();
-        if (Description != null)
-          hash = hash * 31 + Description.GetHashCode();
-        if (Steps != null)
-          hash = hash * 31 + Steps.GetHashCode();
-        if (Examples != null)
-          hash = hash * 31 + Examples.GetHashCode();
-        if (Id != null)
-          hash = hash * 31 + Id.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Scenario{" +
-            "location=" + Location +
-            ", tags=" + Tags +
-            ", keyword=" + Keyword +
-            ", name=" + Name +
-            ", description=" + Description +
-            ", steps=" + Steps +
-            ", examples=" + Examples +
-            ", id=" + Id +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.Location = location ?? throw new ArgumentNullException("Location", "Scenario.Location cannot be null");
+        this.Tags = tags ?? throw new ArgumentNullException("Tags", "Scenario.Tags cannot be null");
+        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Scenario.Keyword cannot be null");
+        this.Name = name ?? throw new ArgumentNullException("Name", "Scenario.Name cannot be null");
+        this.Description = description ?? throw new ArgumentNullException("Description", "Scenario.Description cannot be null");
+        this.Steps = steps ?? throw new ArgumentNullException("Steps", "Scenario.Steps cannot be null");
+        this.Examples = examples ?? throw new ArgumentNullException("Examples", "Scenario.Examples cannot be null");
+        this.Id = id ?? throw new ArgumentNullException("Id", "Scenario.Id cannot be null");
     }
 }

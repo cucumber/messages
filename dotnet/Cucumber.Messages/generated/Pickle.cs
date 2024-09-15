@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -27,39 +25,39 @@ namespace Io.Cucumber.Messages.Types;
  * Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
  */
 
-public sealed class Pickle 
+public sealed record Pickle 
 {
     /**
      * A unique id for the pickle
      */
-    public string Id { get; private set; }
+    public string Id { get; }
     /**
      * The uri of the source file
      */
-    public string Uri { get; private set; }
+    public string Uri { get; }
     /**
      * The name of the pickle
      */
-    public string Name { get; private set; }
+    public string Name { get; }
     /**
      * The language of the pickle
      */
-    public string Language { get; private set; }
+    public string Language { get; }
     /**
      * One or more steps
      */
-    public List<PickleStep> Steps { get; private set; }
+    public List<PickleStep> Steps { get; }
     /**
      * One or more tags. If this pickle is constructed from a Gherkin document,
      * It includes inherited tags from the `Feature` as well.
      */
-    public List<PickleTag> Tags { get; private set; }
+    public List<PickleTag> Tags { get; }
     /**
      * Points to the AST node locations of the pickle. The last one represents the unique
      * id of the pickle. A pickle constructed from `Examples` will have the first
      * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
      */
-    public List<string> AstNodeIds { get; private set; }
+    public List<string> AstNodeIds { get; }
 
 
     public Pickle(
@@ -72,77 +70,12 @@ public sealed class Pickle
         List<string> astNodeIds
     ) 
     {
-        RequireNonNull<string>(id, "Id", "Pickle.Id cannot be null");
-        this.Id = id;
-        RequireNonNull<string>(uri, "Uri", "Pickle.Uri cannot be null");
-        this.Uri = uri;
-        RequireNonNull<string>(name, "Name", "Pickle.Name cannot be null");
-        this.Name = name;
-        RequireNonNull<string>(language, "Language", "Pickle.Language cannot be null");
-        this.Language = language;
-        RequireNonNull<List<PickleStep>>(steps, "Steps", "Pickle.Steps cannot be null");
-        this.Steps = new List<PickleStep>(steps);        
-        RequireNonNull<List<PickleTag>>(tags, "Tags", "Pickle.Tags cannot be null");
-        this.Tags = new List<PickleTag>(tags);        
-        RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "Pickle.AstNodeIds cannot be null");
-        this.AstNodeIds = new List<string>(astNodeIds);        
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Pickle that = (Pickle) o;
-        return 
-            Id.Equals(that.Id) &&         
-            Uri.Equals(that.Uri) &&         
-            Name.Equals(that.Name) &&         
-            Language.Equals(that.Language) &&         
-            Steps.Equals(that.Steps) &&         
-            Tags.Equals(that.Tags) &&         
-            AstNodeIds.Equals(that.AstNodeIds);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Id != null)
-          hash = hash * 31 + Id.GetHashCode();
-        if (Uri != null)
-          hash = hash * 31 + Uri.GetHashCode();
-        if (Name != null)
-          hash = hash * 31 + Name.GetHashCode();
-        if (Language != null)
-          hash = hash * 31 + Language.GetHashCode();
-        if (Steps != null)
-          hash = hash * 31 + Steps.GetHashCode();
-        if (Tags != null)
-          hash = hash * 31 + Tags.GetHashCode();
-        if (AstNodeIds != null)
-          hash = hash * 31 + AstNodeIds.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Pickle{" +
-            "id=" + Id +
-            ", uri=" + Uri +
-            ", name=" + Name +
-            ", language=" + Language +
-            ", steps=" + Steps +
-            ", tags=" + Tags +
-            ", astNodeIds=" + AstNodeIds +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.Id = id ?? throw new ArgumentNullException("Id", "Pickle.Id cannot be null");
+        this.Uri = uri ?? throw new ArgumentNullException("Uri", "Pickle.Uri cannot be null");
+        this.Name = name ?? throw new ArgumentNullException("Name", "Pickle.Name cannot be null");
+        this.Language = language ?? throw new ArgumentNullException("Language", "Pickle.Language cannot be null");
+        this.Steps = steps ?? throw new ArgumentNullException("Steps", "Pickle.Steps cannot be null");
+        this.Tags = tags ?? throw new ArgumentNullException("Tags", "Pickle.Tags cannot be null");
+        this.AstNodeIds = astNodeIds ?? throw new ArgumentNullException("AstNodeIds", "Pickle.AstNodeIds cannot be null");
     }
 }

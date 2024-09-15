@@ -1,6 +1,6 @@
+using Io.Cucumber.Messages.Types;
 using System.Text;
 using Xunit;
-using Io.Cucumber.Messages.Types;
 
 namespace Cucumber.Messages.Specs;
 
@@ -53,9 +53,9 @@ public class NdjsonStreamSerializationTests
         Assert.True(enumerator.MoveNext());
         Envelope envelope = enumerator.Current;
 
-        Assert.Equal(AttachmentContentEncoding.BASE64, envelope.Attachment.ContentEncoding);
-        Assert.Equal("the-body", envelope.Attachment.Body);
-        Assert.Equal("text/plain", envelope.Attachment.MediaType);
+        Assert.Equal(AttachmentContentEncoding.BASE64, envelope.Attachment?.ContentEncoding);
+        Assert.Equal("the-body", envelope.Attachment?.Body);
+        Assert.Equal("text/plain", envelope.Attachment?.MediaType);
         Assert.False(enumerator.MoveNext());
     }
 

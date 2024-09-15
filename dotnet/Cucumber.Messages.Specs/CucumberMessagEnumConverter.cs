@@ -15,7 +15,7 @@ internal class CucumberMessageEnumConverter<T> : JsonConverter<T> where T : stru
         var type = typeof(T);
         foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.Static))
         {
-            var value = (T)field.GetValue(null);
+            var value = (T)field.GetValue(null)!;
             var attribute = field.GetCustomAttribute<DescriptionAttribute>();
             var name = attribute?.Description ?? field.Name;
             _enumToString[value] = name;
@@ -26,7 +26,7 @@ internal class CucumberMessageEnumConverter<T> : JsonConverter<T> where T : stru
     public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var stringValue = reader.GetString();
-        return _stringToEnum.TryGetValue(stringValue, out var enumValue) ? enumValue : default;
+        return _stringToEnum.TryGetValue(stringValue!, out var enumValue) ? enumValue : default;
     }
 
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)

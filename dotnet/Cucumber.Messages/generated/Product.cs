@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -16,63 +14,24 @@ namespace Io.Cucumber.Messages.Types;
  * Used to describe various properties of Meta
  */
 
-public sealed class Product 
+public sealed record Product 
 {
     /**
      * The product name
      */
-    public string Name { get; private set; }
+    public string Name { get; }
     /**
      * The product version
      */
-    public string Version { get; private set; }
+    public string? Version { get; }
 
 
     public Product(
         string name,
-        string version
+        string? version
     ) 
     {
-        RequireNonNull<string>(name, "Name", "Product.Name cannot be null");
-        this.Name = name;
+        this.Name = name ?? throw new ArgumentNullException("Name", "Product.Name cannot be null");
         this.Version = version;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Product that = (Product) o;
-        return 
-            Name.Equals(that.Name) &&         
-            Object.Equals(Version, that.Version);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Name != null)
-          hash = hash * 31 + Name.GetHashCode();
-        if (Version != null)
-          hash = hash * 31 + Version.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Product{" +
-            "name=" + Name +
-            ", version=" + Version +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

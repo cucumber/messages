@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -14,36 +12,36 @@ namespace Io.Cucumber.Messages.Types;
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 
-public sealed class Feature 
+public sealed record Feature 
 {
     /**
      * The location of the `Feature` keyword
      */
-    public Location Location { get; private set; }
+    public Location Location { get; }
     /**
      * All the tags placed above the `Feature` keyword
      */
-    public List<Tag> Tags { get; private set; }
+    public List<Tag> Tags { get; }
     /**
      * The [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code of the Gherkin document
      */
-    public string Language { get; private set; }
+    public string Language { get; }
     /**
      * The text of the `Feature` keyword (in the language specified by `language`)
      */
-    public string Keyword { get; private set; }
+    public string Keyword { get; }
     /**
      * The name of the feature (the text following the `keyword`)
      */
-    public string Name { get; private set; }
+    public string Name { get; }
     /**
      * The line(s) underneath the line with the `keyword` that are used as description
      */
-    public string Description { get; private set; }
+    public string Description { get; }
     /**
      * Zero or more children
      */
-    public List<FeatureChild> Children { get; private set; }
+    public List<FeatureChild> Children { get; }
 
 
     public Feature(
@@ -56,77 +54,12 @@ public sealed class Feature
         List<FeatureChild> children
     ) 
     {
-        RequireNonNull<Location>(location, "Location", "Feature.Location cannot be null");
-        this.Location = location;
-        RequireNonNull<List<Tag>>(tags, "Tags", "Feature.Tags cannot be null");
-        this.Tags = new List<Tag>(tags);        
-        RequireNonNull<string>(language, "Language", "Feature.Language cannot be null");
-        this.Language = language;
-        RequireNonNull<string>(keyword, "Keyword", "Feature.Keyword cannot be null");
-        this.Keyword = keyword;
-        RequireNonNull<string>(name, "Name", "Feature.Name cannot be null");
-        this.Name = name;
-        RequireNonNull<string>(description, "Description", "Feature.Description cannot be null");
-        this.Description = description;
-        RequireNonNull<List<FeatureChild>>(children, "Children", "Feature.Children cannot be null");
-        this.Children = new List<FeatureChild>(children);        
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Feature that = (Feature) o;
-        return 
-            Location.Equals(that.Location) &&         
-            Tags.Equals(that.Tags) &&         
-            Language.Equals(that.Language) &&         
-            Keyword.Equals(that.Keyword) &&         
-            Name.Equals(that.Name) &&         
-            Description.Equals(that.Description) &&         
-            Children.Equals(that.Children);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Location != null)
-          hash = hash * 31 + Location.GetHashCode();
-        if (Tags != null)
-          hash = hash * 31 + Tags.GetHashCode();
-        if (Language != null)
-          hash = hash * 31 + Language.GetHashCode();
-        if (Keyword != null)
-          hash = hash * 31 + Keyword.GetHashCode();
-        if (Name != null)
-          hash = hash * 31 + Name.GetHashCode();
-        if (Description != null)
-          hash = hash * 31 + Description.GetHashCode();
-        if (Children != null)
-          hash = hash * 31 + Children.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Feature{" +
-            "location=" + Location +
-            ", tags=" + Tags +
-            ", language=" + Language +
-            ", keyword=" + Keyword +
-            ", name=" + Name +
-            ", description=" + Description +
-            ", children=" + Children +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.Location = location ?? throw new ArgumentNullException("Location", "Feature.Location cannot be null");
+        this.Tags = tags ?? throw new ArgumentNullException("Tags", "Feature.Tags cannot be null");
+        this.Language = language ?? throw new ArgumentNullException("Language", "Feature.Language cannot be null");
+        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Feature.Keyword cannot be null");
+        this.Name = name ?? throw new ArgumentNullException("Name", "Feature.Name cannot be null");
+        this.Description = description ?? throw new ArgumentNullException("Description", "Feature.Description cannot be null");
+        this.Children = children ?? throw new ArgumentNullException("Children", "Feature.Children cannot be null");
     }
 }

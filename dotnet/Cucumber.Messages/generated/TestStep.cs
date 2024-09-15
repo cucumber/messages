@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -17,92 +15,41 @@ namespace Io.Cucumber.Messages.Types;
  * combined with a `StepDefinition`, or from a `Hook`.
  */
 
-public sealed class TestStep 
+public sealed record TestStep 
 {
     /**
      * Pointer to the `Hook` (if derived from a Hook)
      */
-    public string HookId { get; private set; }
-    public string Id { get; private set; }
+    public string? HookId { get; }
+    public string Id { get; }
     /**
      * Pointer to the `PickleStep` (if derived from a `PickleStep`)
      */
-    public string PickleStepId { get; private set; }
+    public string? PickleStepId { get; }
     /**
      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
      */
-    public List<string> StepDefinitionIds { get; private set; }
+    public List<string>? StepDefinitionIds { get; }
     /**
      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
      * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
      * and a size of 2+ means `AMBIGUOUS`
      */
-    public List<StepMatchArgumentsList> StepMatchArgumentsLists { get; private set; }
+    public List<StepMatchArgumentsList>? StepMatchArgumentsLists { get; }
 
 
     public TestStep(
-        string hookId,
+        string? hookId,
         string id,
-        string pickleStepId,
-        List<string> stepDefinitionIds,
-        List<StepMatchArgumentsList> stepMatchArgumentsLists
+        string? pickleStepId,
+        List<string>? stepDefinitionIds,
+        List<StepMatchArgumentsList>? stepMatchArgumentsLists
     ) 
     {
         this.HookId = hookId;
-        RequireNonNull<string>(id, "Id", "TestStep.Id cannot be null");
-        this.Id = id;
+        this.Id = id ?? throw new ArgumentNullException("Id", "TestStep.Id cannot be null");
         this.PickleStepId = pickleStepId;
-        this.StepDefinitionIds = stepDefinitionIds == null ? null : new List<string>(stepDefinitionIds);
-        this.StepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : new List<StepMatchArgumentsList>(stepMatchArgumentsLists);
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        TestStep that = (TestStep) o;
-        return 
-            Object.Equals(HookId, that.HookId) &&         
-            Id.Equals(that.Id) &&         
-            Object.Equals(PickleStepId, that.PickleStepId) &&         
-            Object.Equals(StepDefinitionIds, that.StepDefinitionIds) &&         
-            Object.Equals(StepMatchArgumentsLists, that.StepMatchArgumentsLists);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (HookId != null)
-          hash = hash * 31 + HookId.GetHashCode();
-        if (Id != null)
-          hash = hash * 31 + Id.GetHashCode();
-        if (PickleStepId != null)
-          hash = hash * 31 + PickleStepId.GetHashCode();
-        if (StepDefinitionIds != null)
-          hash = hash * 31 + StepDefinitionIds.GetHashCode();
-        if (StepMatchArgumentsLists != null)
-          hash = hash * 31 + StepMatchArgumentsLists.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "TestStep{" +
-            "hookId=" + HookId +
-            ", id=" + Id +
-            ", pickleStepId=" + PickleStepId +
-            ", stepDefinitionIds=" + StepDefinitionIds +
-            ", stepMatchArgumentsLists=" + StepMatchArgumentsLists +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.StepDefinitionIds = stepDefinitionIds;
+        this.StepMatchArgumentsLists = stepMatchArgumentsLists;
     }
 }

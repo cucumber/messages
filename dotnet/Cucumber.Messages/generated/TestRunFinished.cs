@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -14,83 +12,36 @@ namespace Io.Cucumber.Messages.Types;
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 
-public sealed class TestRunFinished 
+public sealed record TestRunFinished 
 {
     /**
      * An informative message about the test run. Typically additional information about failure, but not necessarily.
      */
-    public string Message { get; private set; }
+    public string? Message { get; }
     /**
      * A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
      */
-    public bool Success { get; private set; }
+    public bool Success { get; }
     /**
      * Timestamp when the TestRun is finished
      */
-    public Timestamp Timestamp { get; private set; }
+    public Timestamp Timestamp { get; }
     /**
      * Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
      */
-    public Exception Exception { get; private set; }
+    public Exception? Exception { get; }
 
 
     public TestRunFinished(
-        string message,
+        string? message,
         bool success,
         Timestamp timestamp,
-        Exception exception
+        Exception? exception
     ) 
     {
         this.Message = message;
-        RequireNonNull<bool>(success, "Success", "TestRunFinished.Success cannot be null");
         this.Success = success;
-        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunFinished.Timestamp cannot be null");
-        this.Timestamp = timestamp;
+        this.Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestRunFinished.Timestamp cannot be null");
         this.Exception = exception;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        TestRunFinished that = (TestRunFinished) o;
-        return 
-            Object.Equals(Message, that.Message) &&         
-            Success.Equals(that.Success) &&         
-            Timestamp.Equals(that.Timestamp) &&         
-            Object.Equals(Exception, that.Exception);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Message != null)
-          hash = hash * 31 + Message.GetHashCode();
-          hash = hash * 31 + Success.GetHashCode();  
-        if (Timestamp != null)
-          hash = hash * 31 + Timestamp.GetHashCode();
-        if (Exception != null)
-          hash = hash * 31 + Exception.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "TestRunFinished{" +
-            "message=" + Message +
-            ", success=" + Success +
-            ", timestamp=" + Timestamp +
-            ", exception=" + Exception +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }

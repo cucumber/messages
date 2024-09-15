@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -16,106 +14,45 @@ namespace Io.Cucumber.Messages.Types;
  * A step
  */
 
-public sealed class Step 
+public sealed record Step 
 {
     /**
      * The location of the steps' `keyword`
      */
-    public Location Location { get; private set; }
+    public Location Location { get; }
     /**
      * The actual keyword as it appeared in the source.
      */
-    public string Keyword { get; private set; }
+    public string Keyword { get; }
     /**
      * The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
      */
-    public StepKeywordType KeywordType { get; private set; }
-    public string Text { get; private set; }
-    public DocString DocString { get; private set; }
-    public DataTable DataTable { get; private set; }
+    public StepKeywordType? KeywordType { get; }
+    public string Text { get; }
+    public DocString? DocString { get; }
+    public DataTable? DataTable { get; }
     /**
      * Unique ID to be able to reference the Step from PickleStep
      */
-    public string Id { get; private set; }
+    public string Id { get; }
 
 
     public Step(
         Location location,
         string keyword,
-        StepKeywordType keywordType,
+        StepKeywordType? keywordType,
         string text,
-        DocString docString,
-        DataTable dataTable,
+        DocString? docString,
+        DataTable? dataTable,
         string id
     ) 
     {
-        RequireNonNull<Location>(location, "Location", "Step.Location cannot be null");
-        this.Location = location;
-        RequireNonNull<string>(keyword, "Keyword", "Step.Keyword cannot be null");
-        this.Keyword = keyword;
+        this.Location = location ?? throw new ArgumentNullException("Location", "Step.Location cannot be null");
+        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Step.Keyword cannot be null");
         this.KeywordType = keywordType;
-        RequireNonNull<string>(text, "Text", "Step.Text cannot be null");
-        this.Text = text;
+        this.Text = text ?? throw new ArgumentNullException("Text", "Step.Text cannot be null");
         this.DocString = docString;
         this.DataTable = dataTable;
-        RequireNonNull<string>(id, "Id", "Step.Id cannot be null");
-        this.Id = id;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Step that = (Step) o;
-        return 
-            Location.Equals(that.Location) &&         
-            Keyword.Equals(that.Keyword) &&         
-            Object.Equals(KeywordType, that.KeywordType) &&         
-            Text.Equals(that.Text) &&         
-            Object.Equals(DocString, that.DocString) &&         
-            Object.Equals(DataTable, that.DataTable) &&         
-            Id.Equals(that.Id);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Location != null)
-          hash = hash * 31 + Location.GetHashCode();
-        if (Keyword != null)
-          hash = hash * 31 + Keyword.GetHashCode();
-          hash = hash * 31 + KeywordType.GetHashCode();  
-        if (Text != null)
-          hash = hash * 31 + Text.GetHashCode();
-        if (DocString != null)
-          hash = hash * 31 + DocString.GetHashCode();
-        if (DataTable != null)
-          hash = hash * 31 + DataTable.GetHashCode();
-        if (Id != null)
-          hash = hash * 31 + Id.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Step{" +
-            "location=" + Location +
-            ", keyword=" + Keyword +
-            ", keywordType=" + KeywordType +
-            ", text=" + Text +
-            ", docString=" + DocString +
-            ", dataTable=" + DataTable +
-            ", id=" + Id +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
+        this.Id = id ?? throw new ArgumentNullException("Id", "Step.Id cannot be null");
     }
 }

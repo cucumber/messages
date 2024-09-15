@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 // ------------------------------------------------------------------------------
 // This code was generated based on the Cucumber JSON schema
@@ -16,73 +14,30 @@ namespace Io.Cucumber.Messages.Types;
  * A simplified representation of an exception
  */
 
-public sealed class Exception 
+public sealed record Exception 
 {
     /**
      * The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
      */
-    public string Type { get; private set; }
+    public string Type { get; }
     /**
      * The message of exception that caused this result. E.g. expected: "a" but was: "b"
      */
-    public string Message { get; private set; }
+    public string? Message { get; }
     /**
      * The stringified stack trace of the exception that caused this result
      */
-    public string StackTrace { get; private set; }
+    public string? StackTrace { get; }
 
 
     public Exception(
         string type,
-        string message,
-        string stackTrace
+        string? message,
+        string? stackTrace
     ) 
     {
-        RequireNonNull<string>(type, "Type", "Exception.Type cannot be null");
-        this.Type = type;
+        this.Type = type ?? throw new ArgumentNullException("Type", "Exception.Type cannot be null");
         this.Message = message;
         this.StackTrace = stackTrace;
-    }
-
-    public override bool Equals(Object o) 
-    {
-        if (this == o) return true;
-        if (o == null || this.GetType() != o.GetType()) return false;
-        Exception that = (Exception) o;
-        return 
-            Type.Equals(that.Type) &&         
-            Object.Equals(Message, that.Message) &&         
-            Object.Equals(StackTrace, that.StackTrace);        
-    }
-
-    public override int GetHashCode() 
-    {
-        int hash = 17;
-        if (Type != null)
-          hash = hash * 31 + Type.GetHashCode();
-        if (Message != null)
-          hash = hash * 31 + Message.GetHashCode();
-        if (StackTrace != null)
-          hash = hash * 31 + StackTrace.GetHashCode();
-        return hash;
-    }
-
-    public override string ToString() 
-    {
-        return "Exception{" +
-            "type=" + Type +
-            ", message=" + Message +
-            ", stackTrace=" + StackTrace +
-            '}';
-    }
-
-    private static T Require<T>(T property, string propertyName, string errorMessage)
-    {
-      RequireNonNull<T>(property, propertyName, errorMessage);
-      return property;
-    }
-    private static void RequireNonNull<T>(T property, string propertyName, string errorMessage) 
-    {
-      if (property == null) throw new ArgumentNullException(propertyName, errorMessage);
     }
 }
