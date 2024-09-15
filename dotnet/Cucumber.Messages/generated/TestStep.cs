@@ -46,10 +46,10 @@ public sealed record TestStep
         List<StepMatchArgumentsList>? stepMatchArgumentsLists
     ) 
     {
-        this.HookId = hookId;
-        this.Id = id ?? throw new ArgumentNullException("Id", "TestStep.Id cannot be null");
-        this.PickleStepId = pickleStepId;
-        this.StepDefinitionIds = stepDefinitionIds;
-        this.StepMatchArgumentsLists = stepMatchArgumentsLists;
+        HookId = hookId;
+        Id = id ?? throw new ArgumentNullException("Id", "TestStep.Id cannot be null");
+        PickleStepId = pickleStepId;
+        StepDefinitionIds = stepDefinitionIds;
+        StepMatchArgumentsLists = stepMatchArgumentsLists;
     }
 }

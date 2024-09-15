@@ -25,8 +25,8 @@ public sealed record JavaMethod
         List<string> methodParameterTypes
     ) 
     {
-        this.ClassName = className ?? throw new ArgumentNullException("ClassName", "JavaMethod.ClassName cannot be null");
-        this.MethodName = methodName ?? throw new ArgumentNullException("MethodName", "JavaMethod.MethodName cannot be null");
-        this.MethodParameterTypes = methodParameterTypes ?? throw new ArgumentNullException("MethodParameterTypes", "JavaMethod.MethodParameterTypes cannot be null");
+        ClassName = className ?? throw new ArgumentNullException("ClassName", "JavaMethod.ClassName cannot be null");
+        MethodName = methodName ?? throw new ArgumentNullException("MethodName", "JavaMethod.MethodName cannot be null");
+        MethodParameterTypes = methodParameterTypes ?? throw new ArgumentNullException("MethodParameterTypes", "JavaMethod.MethodParameterTypes cannot be null");
     }
 }

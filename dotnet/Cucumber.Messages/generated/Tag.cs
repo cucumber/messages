@@ -36,8 +36,8 @@ public sealed record Tag
         string id
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "Tag.Location cannot be null");
-        this.Name = name ?? throw new ArgumentNullException("Name", "Tag.Name cannot be null");
-        this.Id = id ?? throw new ArgumentNullException("Id", "Tag.Id cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "Tag.Location cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "Tag.Name cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "Tag.Id cannot be null");
     }
 }

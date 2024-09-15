@@ -40,8 +40,8 @@ public sealed record Source
         SourceMediaType mediaType
     ) 
     {
-        this.Uri = uri ?? throw new ArgumentNullException("Uri", "Source.Uri cannot be null");
-        this.Data = data ?? throw new ArgumentNullException("Data", "Source.Data cannot be null");
-        this.MediaType = mediaType;
+        Uri = uri ?? throw new ArgumentNullException("Uri", "Source.Uri cannot be null");
+        Data = data ?? throw new ArgumentNullException("Data", "Source.Data cannot be null");
+        MediaType = mediaType;
     }
 }

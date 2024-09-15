@@ -25,8 +25,8 @@ public sealed record JavaStackTraceElement
         string methodName
     ) 
     {
-        this.ClassName = className ?? throw new ArgumentNullException("ClassName", "JavaStackTraceElement.ClassName cannot be null");
-        this.FileName = fileName ?? throw new ArgumentNullException("FileName", "JavaStackTraceElement.FileName cannot be null");
-        this.MethodName = methodName ?? throw new ArgumentNullException("MethodName", "JavaStackTraceElement.MethodName cannot be null");
+        ClassName = className ?? throw new ArgumentNullException("ClassName", "JavaStackTraceElement.ClassName cannot be null");
+        FileName = fileName ?? throw new ArgumentNullException("FileName", "JavaStackTraceElement.FileName cannot be null");
+        MethodName = methodName ?? throw new ArgumentNullException("MethodName", "JavaStackTraceElement.MethodName cannot be null");
     }
 }

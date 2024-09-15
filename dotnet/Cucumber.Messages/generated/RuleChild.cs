@@ -41,7 +41,7 @@ public sealed record RuleChild
         Scenario? scenario
     ) 
     {
-        this.Background = background;
-        this.Scenario = scenario;
+        Background = background;
+        Scenario = scenario;
     }
 }

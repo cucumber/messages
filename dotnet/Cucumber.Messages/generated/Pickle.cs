@@ -70,12 +70,12 @@ public sealed record Pickle
         List<string> astNodeIds
     ) 
     {
-        this.Id = id ?? throw new ArgumentNullException("Id", "Pickle.Id cannot be null");
-        this.Uri = uri ?? throw new ArgumentNullException("Uri", "Pickle.Uri cannot be null");
-        this.Name = name ?? throw new ArgumentNullException("Name", "Pickle.Name cannot be null");
-        this.Language = language ?? throw new ArgumentNullException("Language", "Pickle.Language cannot be null");
-        this.Steps = steps ?? throw new ArgumentNullException("Steps", "Pickle.Steps cannot be null");
-        this.Tags = tags ?? throw new ArgumentNullException("Tags", "Pickle.Tags cannot be null");
-        this.AstNodeIds = astNodeIds ?? throw new ArgumentNullException("AstNodeIds", "Pickle.AstNodeIds cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "Pickle.Id cannot be null");
+        Uri = uri ?? throw new ArgumentNullException("Uri", "Pickle.Uri cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "Pickle.Name cannot be null");
+        Language = language ?? throw new ArgumentNullException("Language", "Pickle.Language cannot be null");
+        Steps = steps ?? throw new ArgumentNullException("Steps", "Pickle.Steps cannot be null");
+        Tags = tags ?? throw new ArgumentNullException("Tags", "Pickle.Tags cannot be null");
+        AstNodeIds = astNodeIds ?? throw new ArgumentNullException("AstNodeIds", "Pickle.AstNodeIds cannot be null");
     }
 }

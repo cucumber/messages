@@ -25,7 +25,7 @@ public sealed record Location
         long? column
     ) 
     {
-        this.Line = line;
-        this.Column = column;
+        Line = line;
+        Column = column;
     }
 }

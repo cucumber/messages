@@ -27,9 +27,9 @@ public sealed record Hook
         string? tagExpression
     ) 
     {
-        this.Id = id ?? throw new ArgumentNullException("Id", "Hook.Id cannot be null");
-        this.Name = name;
-        this.SourceReference = sourceReference ?? throw new ArgumentNullException("SourceReference", "Hook.SourceReference cannot be null");
-        this.TagExpression = tagExpression;
+        Id = id ?? throw new ArgumentNullException("Id", "Hook.Id cannot be null");
+        Name = name;
+        SourceReference = sourceReference ?? throw new ArgumentNullException("SourceReference", "Hook.SourceReference cannot be null");
+        TagExpression = tagExpression;
     }
 }

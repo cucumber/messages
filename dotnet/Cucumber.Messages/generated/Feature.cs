@@ -54,12 +54,12 @@ public sealed record Feature
         List<FeatureChild> children
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "Feature.Location cannot be null");
-        this.Tags = tags ?? throw new ArgumentNullException("Tags", "Feature.Tags cannot be null");
-        this.Language = language ?? throw new ArgumentNullException("Language", "Feature.Language cannot be null");
-        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Feature.Keyword cannot be null");
-        this.Name = name ?? throw new ArgumentNullException("Name", "Feature.Name cannot be null");
-        this.Description = description ?? throw new ArgumentNullException("Description", "Feature.Description cannot be null");
-        this.Children = children ?? throw new ArgumentNullException("Children", "Feature.Children cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "Feature.Location cannot be null");
+        Tags = tags ?? throw new ArgumentNullException("Tags", "Feature.Tags cannot be null");
+        Language = language ?? throw new ArgumentNullException("Language", "Feature.Language cannot be null");
+        Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Feature.Keyword cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "Feature.Name cannot be null");
+        Description = description ?? throw new ArgumentNullException("Description", "Feature.Description cannot be null");
+        Children = children ?? throw new ArgumentNullException("Children", "Feature.Children cannot be null");
     }
 }

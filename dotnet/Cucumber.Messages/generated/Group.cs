@@ -25,8 +25,8 @@ public sealed record Group
         string? value
     ) 
     {
-        this.Children = children ?? throw new ArgumentNullException("Children", "Group.Children cannot be null");
-        this.Start = start;
-        this.Value = value;
+        Children = children ?? throw new ArgumentNullException("Children", "Group.Children cannot be null");
+        Start = start;
+        Value = value;
     }
 }

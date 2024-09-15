@@ -36,8 +36,8 @@ public sealed record Exception
         string? stackTrace
     ) 
     {
-        this.Type = type ?? throw new ArgumentNullException("Type", "Exception.Type cannot be null");
-        this.Message = message;
-        this.StackTrace = stackTrace;
+        Type = type ?? throw new ArgumentNullException("Type", "Exception.Type cannot be null");
+        Message = message;
+        StackTrace = stackTrace;
     }
 }

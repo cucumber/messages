@@ -47,12 +47,12 @@ public sealed record Step
         string id
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "Step.Location cannot be null");
-        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Step.Keyword cannot be null");
-        this.KeywordType = keywordType;
-        this.Text = text ?? throw new ArgumentNullException("Text", "Step.Text cannot be null");
-        this.DocString = docString;
-        this.DataTable = dataTable;
-        this.Id = id ?? throw new ArgumentNullException("Id", "Step.Id cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "Step.Location cannot be null");
+        Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Step.Keyword cannot be null");
+        KeywordType = keywordType;
+        Text = text ?? throw new ArgumentNullException("Text", "Step.Text cannot be null");
+        DocString = docString;
+        DataTable = dataTable;
+        Id = id ?? throw new ArgumentNullException("Id", "Step.Id cannot be null");
     }
 }

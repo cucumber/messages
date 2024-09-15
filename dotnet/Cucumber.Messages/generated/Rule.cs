@@ -39,12 +39,12 @@ public sealed record Rule
         string id
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "Rule.Location cannot be null");
-        this.Tags = tags ?? throw new ArgumentNullException("Tags", "Rule.Tags cannot be null");
-        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Rule.Keyword cannot be null");
-        this.Name = name ?? throw new ArgumentNullException("Name", "Rule.Name cannot be null");
-        this.Description = description ?? throw new ArgumentNullException("Description", "Rule.Description cannot be null");
-        this.Children = children ?? throw new ArgumentNullException("Children", "Rule.Children cannot be null");
-        this.Id = id ?? throw new ArgumentNullException("Id", "Rule.Id cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "Rule.Location cannot be null");
+        Tags = tags ?? throw new ArgumentNullException("Tags", "Rule.Tags cannot be null");
+        Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Rule.Keyword cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "Rule.Name cannot be null");
+        Description = description ?? throw new ArgumentNullException("Description", "Rule.Description cannot be null");
+        Children = children ?? throw new ArgumentNullException("Children", "Rule.Children cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "Rule.Id cannot be null");
     }
 }

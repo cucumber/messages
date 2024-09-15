@@ -31,7 +31,7 @@ public sealed record Comment
         string text
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "Comment.Location cannot be null");
-        this.Text = text ?? throw new ArgumentNullException("Text", "Comment.Text cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "Comment.Location cannot be null");
+        Text = text ?? throw new ArgumentNullException("Text", "Comment.Text cannot be null");
     }
 }

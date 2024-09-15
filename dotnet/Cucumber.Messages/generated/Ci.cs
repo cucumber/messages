@@ -38,9 +38,9 @@ public sealed record Ci
         Git? git
     ) 
     {
-        this.Name = name ?? throw new ArgumentNullException("Name", "Ci.Name cannot be null");
-        this.Url = url;
-        this.BuildNumber = buildNumber;
-        this.Git = git;
+        Name = name ?? throw new ArgumentNullException("Name", "Ci.Name cannot be null");
+        Url = url;
+        BuildNumber = buildNumber;
+        Git = git;
     }
 }

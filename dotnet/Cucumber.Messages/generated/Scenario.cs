@@ -38,13 +38,13 @@ public sealed record Scenario
         string id
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "Scenario.Location cannot be null");
-        this.Tags = tags ?? throw new ArgumentNullException("Tags", "Scenario.Tags cannot be null");
-        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Scenario.Keyword cannot be null");
-        this.Name = name ?? throw new ArgumentNullException("Name", "Scenario.Name cannot be null");
-        this.Description = description ?? throw new ArgumentNullException("Description", "Scenario.Description cannot be null");
-        this.Steps = steps ?? throw new ArgumentNullException("Steps", "Scenario.Steps cannot be null");
-        this.Examples = examples ?? throw new ArgumentNullException("Examples", "Scenario.Examples cannot be null");
-        this.Id = id ?? throw new ArgumentNullException("Id", "Scenario.Id cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "Scenario.Location cannot be null");
+        Tags = tags ?? throw new ArgumentNullException("Tags", "Scenario.Tags cannot be null");
+        Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Scenario.Keyword cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "Scenario.Name cannot be null");
+        Description = description ?? throw new ArgumentNullException("Description", "Scenario.Description cannot be null");
+        Steps = steps ?? throw new ArgumentNullException("Steps", "Scenario.Steps cannot be null");
+        Examples = examples ?? throw new ArgumentNullException("Examples", "Scenario.Examples cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "Scenario.Id cannot be null");
     }
 }

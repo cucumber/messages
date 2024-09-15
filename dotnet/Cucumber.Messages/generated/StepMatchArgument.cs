@@ -34,7 +34,7 @@ public sealed record StepMatchArgument
         string? parameterTypeName
     ) 
     {
-        this.Group = group ?? throw new ArgumentNullException("Group", "StepMatchArgument.Group cannot be null");
-        this.ParameterTypeName = parameterTypeName;
+        Group = group ?? throw new ArgumentNullException("Group", "StepMatchArgument.Group cannot be null");
+        ParameterTypeName = parameterTypeName;
     }
 }

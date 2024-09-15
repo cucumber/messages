@@ -9,7 +9,8 @@ namespace Io.Cucumber.Messages.Types;
 // the code is regenerated.
 // ------------------------------------------------------------------------------
 
-public enum StepKeywordType {
+public enum StepKeywordType 
+{
 
     [Description("Unknown")]
     UNKNOWN,
@@ -29,7 +30,8 @@ public enum StepKeywordType {
 
 public static class StepKeywordTypeExtensions
 {
-    public static string Value(this StepKeywordType v) {
+    public static string Value(this StepKeywordType v)
+    {
         var attribute = v.GetType().GetField(v.ToString())?.GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }

@@ -11,7 +11,8 @@ namespace Io.Cucumber.Messages.Types;
 // the code is regenerated.
 // ------------------------------------------------------------------------------
 
-public enum <%= enum[:name] %> {
+public enum <%= enum[:name] %> 
+{
 <% enum[:values].each.with_index(1) do |value, index| -%>
 
     [Description("<%= value%>")]
@@ -21,7 +22,8 @@ public enum <%= enum[:name] %> {
 
 public static class <%= enum[:name] %>Extensions
 {
-    public static string Value(this <%= enum[:name] %> v) {
+    public static string Value(this <%= enum[:name] %> v)
+    {
         var attribute = v.GetType().GetField(v.ToString())?.GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }

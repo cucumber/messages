@@ -28,7 +28,7 @@ public sealed record PickleTag
         string astNodeId
     ) 
     {
-        this.Name = name ?? throw new ArgumentNullException("Name", "PickleTag.Name cannot be null");
-        this.AstNodeId = astNodeId ?? throw new ArgumentNullException("AstNodeId", "PickleTag.AstNodeId cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "PickleTag.Name cannot be null");
+        AstNodeId = astNodeId ?? throw new ArgumentNullException("AstNodeId", "PickleTag.AstNodeId cannot be null");
     }
 }

@@ -34,11 +34,11 @@ public sealed record ParameterType
         SourceReference? sourceReference
     ) 
     {
-        this.Name = name ?? throw new ArgumentNullException("Name", "ParameterType.Name cannot be null");
-        this.RegularExpressions = regularExpressions ?? throw new ArgumentNullException("RegularExpressions", "ParameterType.RegularExpressions cannot be null");
-        this.PreferForRegularExpressionMatch = preferForRegularExpressionMatch;
-        this.UseForSnippets = useForSnippets;
-        this.Id = id ?? throw new ArgumentNullException("Id", "ParameterType.Id cannot be null");
-        this.SourceReference = sourceReference;
+        Name = name ?? throw new ArgumentNullException("Name", "ParameterType.Name cannot be null");
+        RegularExpressions = regularExpressions ?? throw new ArgumentNullException("RegularExpressions", "ParameterType.RegularExpressions cannot be null");
+        PreferForRegularExpressionMatch = preferForRegularExpressionMatch;
+        UseForSnippets = useForSnippets;
+        Id = id ?? throw new ArgumentNullException("Id", "ParameterType.Id cannot be null");
+        SourceReference = sourceReference;
     }
 }

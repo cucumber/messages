@@ -33,8 +33,8 @@ public sealed record TableRow
         string id
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "TableRow.Location cannot be null");
-        this.Cells = cells ?? throw new ArgumentNullException("Cells", "TableRow.Cells cannot be null");
-        this.Id = id ?? throw new ArgumentNullException("Id", "TableRow.Id cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "TableRow.Location cannot be null");
+        Cells = cells ?? throw new ArgumentNullException("Cells", "TableRow.Cells cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "TableRow.Id cannot be null");
     }
 }

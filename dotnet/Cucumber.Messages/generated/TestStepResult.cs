@@ -33,9 +33,9 @@ public sealed record TestStepResult
         Exception? exception
     ) 
     {
-        this.Duration = duration ?? throw new ArgumentNullException("Duration", "TestStepResult.Duration cannot be null");
-        this.Message = message;
-        this.Status = status;
-        this.Exception = exception;
+        Duration = duration ?? throw new ArgumentNullException("Duration", "TestStepResult.Duration cannot be null");
+        Message = message;
+        Status = status;
+        Exception = exception;
     }
 }

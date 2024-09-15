@@ -23,7 +23,7 @@ public sealed record UndefinedParameterType
         string name
     ) 
     {
-        this.Expression = expression ?? throw new ArgumentNullException("Expression", "UndefinedParameterType.Expression cannot be null");
-        this.Name = name ?? throw new ArgumentNullException("Name", "UndefinedParameterType.Name cannot be null");
+        Expression = expression ?? throw new ArgumentNullException("Expression", "UndefinedParameterType.Expression cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "UndefinedParameterType.Name cannot be null");
     }
 }

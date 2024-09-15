@@ -25,8 +25,8 @@ public sealed record StepDefinition
         SourceReference sourceReference
     ) 
     {
-        this.Id = id ?? throw new ArgumentNullException("Id", "StepDefinition.Id cannot be null");
-        this.Pattern = pattern ?? throw new ArgumentNullException("Pattern", "StepDefinition.Pattern cannot be null");
-        this.SourceReference = sourceReference ?? throw new ArgumentNullException("SourceReference", "StepDefinition.SourceReference cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "StepDefinition.Id cannot be null");
+        Pattern = pattern ?? throw new ArgumentNullException("Pattern", "StepDefinition.Pattern cannot be null");
+        SourceReference = sourceReference ?? throw new ArgumentNullException("SourceReference", "StepDefinition.SourceReference cannot be null");
     }
 }

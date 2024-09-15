@@ -39,9 +39,9 @@ public sealed record TestRunFinished
         Exception? exception
     ) 
     {
-        this.Message = message;
-        this.Success = success;
-        this.Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestRunFinished.Timestamp cannot be null");
-        this.Exception = exception;
+        Message = message;
+        Success = success;
+        Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestRunFinished.Timestamp cannot be null");
+        Exception = exception;
     }
 }

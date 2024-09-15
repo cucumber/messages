@@ -34,11 +34,11 @@ public sealed record Background
         string id
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "Background.Location cannot be null");
-        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Background.Keyword cannot be null");
-        this.Name = name ?? throw new ArgumentNullException("Name", "Background.Name cannot be null");
-        this.Description = description ?? throw new ArgumentNullException("Description", "Background.Description cannot be null");
-        this.Steps = steps ?? throw new ArgumentNullException("Steps", "Background.Steps cannot be null");
-        this.Id = id ?? throw new ArgumentNullException("Id", "Background.Id cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "Background.Location cannot be null");
+        Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Background.Keyword cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "Background.Name cannot be null");
+        Description = description ?? throw new ArgumentNullException("Description", "Background.Description cannot be null");
+        Steps = steps ?? throw new ArgumentNullException("Steps", "Background.Steps cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "Background.Id cannot be null");
     }
 }

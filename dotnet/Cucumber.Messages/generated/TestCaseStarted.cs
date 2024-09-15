@@ -40,10 +40,10 @@ public sealed record TestCaseStarted
         Timestamp timestamp
     ) 
     {
-        this.Attempt = attempt;
-        this.Id = id ?? throw new ArgumentNullException("Id", "TestCaseStarted.Id cannot be null");
-        this.TestCaseId = testCaseId ?? throw new ArgumentNullException("TestCaseId", "TestCaseStarted.TestCaseId cannot be null");
-        this.WorkerId = workerId;
-        this.Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestCaseStarted.Timestamp cannot be null");
+        Attempt = attempt;
+        Id = id ?? throw new ArgumentNullException("Id", "TestCaseStarted.Id cannot be null");
+        TestCaseId = testCaseId ?? throw new ArgumentNullException("TestCaseId", "TestCaseStarted.TestCaseId cannot be null");
+        WorkerId = workerId;
+        Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestCaseStarted.Timestamp cannot be null");
     }
 }

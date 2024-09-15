@@ -27,9 +27,9 @@ public sealed record DocString
         string delimiter
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "DocString.Location cannot be null");
-        this.MediaType = mediaType;
-        this.Content = content ?? throw new ArgumentNullException("Content", "DocString.Content cannot be null");
-        this.Delimiter = delimiter ?? throw new ArgumentNullException("Delimiter", "DocString.Delimiter cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "DocString.Location cannot be null");
+        MediaType = mediaType;
+        Content = content ?? throw new ArgumentNullException("Content", "DocString.Content cannot be null");
+        Delimiter = delimiter ?? throw new ArgumentNullException("Delimiter", "DocString.Delimiter cannot be null");
     }
 }

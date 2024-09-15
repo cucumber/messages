@@ -23,7 +23,7 @@ public sealed record StepDefinitionPattern
         StepDefinitionPatternType type
     ) 
     {
-        this.Source = source ?? throw new ArgumentNullException("Source", "StepDefinitionPattern.Source cannot be null");
-        this.Type = type;
+        Source = source ?? throw new ArgumentNullException("Source", "StepDefinitionPattern.Source cannot be null");
+        Type = type;
     }
 }

@@ -21,6 +21,6 @@ public sealed record PickleTableCell
         string value
     ) 
     {
-        this.Value = value ?? throw new ArgumentNullException("Value", "PickleTableCell.Value cannot be null");
+        Value = value ?? throw new ArgumentNullException("Value", "PickleTableCell.Value cannot be null");
     }
 }

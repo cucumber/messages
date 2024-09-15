@@ -49,11 +49,11 @@ public sealed record Meta
         Ci? ci
     ) 
     {
-        this.ProtocolVersion = protocolVersion ?? throw new ArgumentNullException("ProtocolVersion", "Meta.ProtocolVersion cannot be null");
-        this.Implementation = implementation ?? throw new ArgumentNullException("Implementation", "Meta.Implementation cannot be null");
-        this.Runtime = runtime ?? throw new ArgumentNullException("Runtime", "Meta.Runtime cannot be null");
-        this.Os = os ?? throw new ArgumentNullException("Os", "Meta.Os cannot be null");
-        this.Cpu = cpu ?? throw new ArgumentNullException("Cpu", "Meta.Cpu cannot be null");
-        this.Ci = ci;
+        ProtocolVersion = protocolVersion ?? throw new ArgumentNullException("ProtocolVersion", "Meta.ProtocolVersion cannot be null");
+        Implementation = implementation ?? throw new ArgumentNullException("Implementation", "Meta.Implementation cannot be null");
+        Runtime = runtime ?? throw new ArgumentNullException("Runtime", "Meta.Runtime cannot be null");
+        Os = os ?? throw new ArgumentNullException("Os", "Meta.Os cannot be null");
+        Cpu = cpu ?? throw new ArgumentNullException("Cpu", "Meta.Cpu cannot be null");
+        Ci = ci;
     }
 }

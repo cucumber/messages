@@ -451,22 +451,22 @@ public sealed record Envelope
         UndefinedParameterType? undefinedParameterType
     ) 
     {
-        this.Attachment = attachment;
-        this.GherkinDocument = gherkinDocument;
-        this.Hook = hook;
-        this.Meta = meta;
-        this.ParameterType = parameterType;
-        this.ParseError = parseError;
-        this.Pickle = pickle;
-        this.Source = source;
-        this.StepDefinition = stepDefinition;
-        this.TestCase = testCase;
-        this.TestCaseFinished = testCaseFinished;
-        this.TestCaseStarted = testCaseStarted;
-        this.TestRunFinished = testRunFinished;
-        this.TestRunStarted = testRunStarted;
-        this.TestStepFinished = testStepFinished;
-        this.TestStepStarted = testStepStarted;
-        this.UndefinedParameterType = undefinedParameterType;
+        Attachment = attachment;
+        GherkinDocument = gherkinDocument;
+        Hook = hook;
+        Meta = meta;
+        ParameterType = parameterType;
+        ParseError = parseError;
+        Pickle = pickle;
+        Source = source;
+        StepDefinition = stepDefinition;
+        TestCase = testCase;
+        TestCaseFinished = testCaseFinished;
+        TestCaseStarted = testCaseStarted;
+        TestRunFinished = testRunFinished;
+        TestRunStarted = testRunStarted;
+        TestStepFinished = testStepFinished;
+        TestStepStarted = testStepStarted;
+        UndefinedParameterType = undefinedParameterType;
     }
 }

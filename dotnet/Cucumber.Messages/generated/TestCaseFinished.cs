@@ -25,8 +25,8 @@ public sealed record TestCaseFinished
         bool willBeRetried
     ) 
     {
-        this.TestCaseStartedId = testCaseStartedId ?? throw new ArgumentNullException("TestCaseStartedId", "TestCaseFinished.TestCaseStartedId cannot be null");
-        this.Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestCaseFinished.Timestamp cannot be null");
-        this.WillBeRetried = willBeRetried;
+        TestCaseStartedId = testCaseStartedId ?? throw new ArgumentNullException("TestCaseStartedId", "TestCaseFinished.TestCaseStartedId cannot be null");
+        Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestCaseFinished.Timestamp cannot be null");
+        WillBeRetried = willBeRetried;
     }
 }

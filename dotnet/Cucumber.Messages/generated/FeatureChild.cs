@@ -54,8 +54,8 @@ public sealed record FeatureChild
         Scenario? scenario
     ) 
     {
-        this.Rule = rule;
-        this.Background = background;
-        this.Scenario = scenario;
+        Rule = rule;
+        Background = background;
+        Scenario = scenario;
     }
 }

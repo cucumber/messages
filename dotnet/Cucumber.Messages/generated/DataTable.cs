@@ -23,7 +23,7 @@ public sealed record DataTable
         List<TableRow> rows
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "DataTable.Location cannot be null");
-        this.Rows = rows ?? throw new ArgumentNullException("Rows", "DataTable.Rows cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "DataTable.Location cannot be null");
+        Rows = rows ?? throw new ArgumentNullException("Rows", "DataTable.Rows cannot be null");
     }
 }

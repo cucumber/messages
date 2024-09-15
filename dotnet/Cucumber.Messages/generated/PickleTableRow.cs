@@ -21,6 +21,6 @@ public sealed record PickleTableRow
         List<PickleTableCell> cells
     ) 
     {
-        this.Cells = cells ?? throw new ArgumentNullException("Cells", "PickleTableRow.Cells cannot be null");
+        Cells = cells ?? throw new ArgumentNullException("Cells", "PickleTableRow.Cells cannot be null");
     }
 }

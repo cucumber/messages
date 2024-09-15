@@ -30,9 +30,9 @@ public sealed record Git
         string? tag
     ) 
     {
-        this.Remote = remote ?? throw new ArgumentNullException("Remote", "Git.Remote cannot be null");
-        this.Revision = revision ?? throw new ArgumentNullException("Revision", "Git.Revision cannot be null");
-        this.Branch = branch;
-        this.Tag = tag;
+        Remote = remote ?? throw new ArgumentNullException("Remote", "Git.Remote cannot be null");
+        Revision = revision ?? throw new ArgumentNullException("Revision", "Git.Revision cannot be null");
+        Branch = branch;
+        Tag = tag;
     }
 }

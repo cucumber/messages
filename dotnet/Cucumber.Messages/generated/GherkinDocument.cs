@@ -39,8 +39,8 @@ public sealed record GherkinDocument
         List<Comment> comments
     ) 
     {
-        this.Uri = uri;
-        this.Feature = feature;
-        this.Comments = comments ?? throw new ArgumentNullException("Comments", "GherkinDocument.Comments cannot be null");
+        Uri = uri;
+        Feature = feature;
+        Comments = comments ?? throw new ArgumentNullException("Comments", "GherkinDocument.Comments cannot be null");
     }
 }

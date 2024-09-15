@@ -9,7 +9,8 @@ namespace Io.Cucumber.Messages.Types;
 // the code is regenerated.
 // ------------------------------------------------------------------------------
 
-public enum PickleStepType {
+public enum PickleStepType 
+{
 
     [Description("Unknown")]
     UNKNOWN,
@@ -26,7 +27,8 @@ public enum PickleStepType {
 
 public static class PickleStepTypeExtensions
 {
-    public static string Value(this PickleStepType v) {
+    public static string Value(this PickleStepType v)
+    {
         var attribute = v.GetType().GetField(v.ToString())?.GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? v.ToString() : attribute.Description; 
     }

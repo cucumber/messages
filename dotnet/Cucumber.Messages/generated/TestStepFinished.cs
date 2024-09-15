@@ -27,9 +27,9 @@ public sealed record TestStepFinished
         Timestamp timestamp
     ) 
     {
-        this.TestCaseStartedId = testCaseStartedId ?? throw new ArgumentNullException("TestCaseStartedId", "TestStepFinished.TestCaseStartedId cannot be null");
-        this.TestStepId = testStepId ?? throw new ArgumentNullException("TestStepId", "TestStepFinished.TestStepId cannot be null");
-        this.TestStepResult = testStepResult ?? throw new ArgumentNullException("TestStepResult", "TestStepFinished.TestStepResult cannot be null");
-        this.Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestStepFinished.Timestamp cannot be null");
+        TestCaseStartedId = testCaseStartedId ?? throw new ArgumentNullException("TestCaseStartedId", "TestStepFinished.TestCaseStartedId cannot be null");
+        TestStepId = testStepId ?? throw new ArgumentNullException("TestStepId", "TestStepFinished.TestStepId cannot be null");
+        TestStepResult = testStepResult ?? throw new ArgumentNullException("TestStepResult", "TestStepFinished.TestStepResult cannot be null");
+        Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestStepFinished.Timestamp cannot be null");
     }
 }

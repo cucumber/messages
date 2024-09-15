@@ -43,10 +43,10 @@ public sealed record PickleStep
         string text
     ) 
     {
-        this.Argument = argument;
-        this.AstNodeIds = astNodeIds ?? throw new ArgumentNullException("AstNodeIds", "PickleStep.AstNodeIds cannot be null");
-        this.Id = id ?? throw new ArgumentNullException("Id", "PickleStep.Id cannot be null");
-        this.Type = type;
-        this.Text = text ?? throw new ArgumentNullException("Text", "PickleStep.Text cannot be null");
+        Argument = argument;
+        AstNodeIds = astNodeIds ?? throw new ArgumentNullException("AstNodeIds", "PickleStep.AstNodeIds cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "PickleStep.Id cannot be null");
+        Type = type;
+        Text = text ?? throw new ArgumentNullException("Text", "PickleStep.Text cannot be null");
     }
 }

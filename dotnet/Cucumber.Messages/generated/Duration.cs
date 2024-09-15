@@ -32,7 +32,7 @@ public sealed record Duration
         long nanos
     ) 
     {
-        this.Seconds = seconds;
-        this.Nanos = nanos;
+        Seconds = seconds;
+        Nanos = nanos;
     }
 }

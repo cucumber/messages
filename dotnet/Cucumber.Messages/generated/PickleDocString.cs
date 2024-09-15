@@ -23,7 +23,7 @@ public sealed record PickleDocString
         string content
     ) 
     {
-        this.MediaType = mediaType;
-        this.Content = content ?? throw new ArgumentNullException("Content", "PickleDocString.Content cannot be null");
+        MediaType = mediaType;
+        Content = content ?? throw new ArgumentNullException("Content", "PickleDocString.Content cannot be null");
     }
 }

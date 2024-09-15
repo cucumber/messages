@@ -38,13 +38,13 @@ public sealed record Examples
         string id
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "Examples.Location cannot be null");
-        this.Tags = tags ?? throw new ArgumentNullException("Tags", "Examples.Tags cannot be null");
-        this.Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Examples.Keyword cannot be null");
-        this.Name = name ?? throw new ArgumentNullException("Name", "Examples.Name cannot be null");
-        this.Description = description ?? throw new ArgumentNullException("Description", "Examples.Description cannot be null");
-        this.TableHeader = tableHeader;
-        this.TableBody = tableBody ?? throw new ArgumentNullException("TableBody", "Examples.TableBody cannot be null");
-        this.Id = id ?? throw new ArgumentNullException("Id", "Examples.Id cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "Examples.Location cannot be null");
+        Tags = tags ?? throw new ArgumentNullException("Tags", "Examples.Tags cannot be null");
+        Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Examples.Keyword cannot be null");
+        Name = name ?? throw new ArgumentNullException("Name", "Examples.Name cannot be null");
+        Description = description ?? throw new ArgumentNullException("Description", "Examples.Description cannot be null");
+        TableHeader = tableHeader;
+        TableBody = tableBody ?? throw new ArgumentNullException("TableBody", "Examples.TableBody cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "Examples.Id cannot be null");
     }
 }

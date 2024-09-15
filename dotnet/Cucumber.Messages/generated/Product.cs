@@ -31,7 +31,7 @@ public sealed record Product
         string? version
     ) 
     {
-        this.Name = name ?? throw new ArgumentNullException("Name", "Product.Name cannot be null");
-        this.Version = version;
+        Name = name ?? throw new ArgumentNullException("Name", "Product.Name cannot be null");
+        Version = version;
     }
 }

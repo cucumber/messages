@@ -31,7 +31,7 @@ public sealed record TableCell
         string value
     ) 
     {
-        this.Location = location ?? throw new ArgumentNullException("Location", "TableCell.Location cannot be null");
-        this.Value = value ?? throw new ArgumentNullException("Value", "TableCell.Value cannot be null");
+        Location = location ?? throw new ArgumentNullException("Location", "TableCell.Location cannot be null");
+        Value = value ?? throw new ArgumentNullException("Value", "TableCell.Value cannot be null");
     }
 }

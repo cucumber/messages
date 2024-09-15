@@ -34,7 +34,7 @@ public sealed record Timestamp
         long nanos
     ) 
     {
-        this.Seconds = seconds;
-        this.Nanos = nanos;
+        Seconds = seconds;
+        Nanos = nanos;
     }
 }

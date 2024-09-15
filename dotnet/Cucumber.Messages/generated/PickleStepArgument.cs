@@ -41,7 +41,7 @@ public sealed record PickleStepArgument
         PickleTable? dataTable
     ) 
     {
-        this.DocString = docString;
-        this.DataTable = dataTable;
+        DocString = docString;
+        DataTable = dataTable;
     }
 }

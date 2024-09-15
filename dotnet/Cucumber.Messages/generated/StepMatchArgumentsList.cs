@@ -21,6 +21,6 @@ public sealed record StepMatchArgumentsList
         List<StepMatchArgument> stepMatchArguments
     ) 
     {
-        this.StepMatchArguments = stepMatchArguments ?? throw new ArgumentNullException("StepMatchArguments", "StepMatchArgumentsList.StepMatchArguments cannot be null");
+        StepMatchArguments = stepMatchArguments ?? throw new ArgumentNullException("StepMatchArguments", "StepMatchArgumentsList.StepMatchArguments cannot be null");
     }
 }

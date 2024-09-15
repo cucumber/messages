@@ -23,7 +23,7 @@ public sealed record ParseError
         string message
     ) 
     {
-        this.Source = source ?? throw new ArgumentNullException("Source", "ParseError.Source cannot be null");
-        this.Message = message ?? throw new ArgumentNullException("Message", "ParseError.Message cannot be null");
+        Source = source ?? throw new ArgumentNullException("Source", "ParseError.Source cannot be null");
+        Message = message ?? throw new ArgumentNullException("Message", "ParseError.Message cannot be null");
     }
 }

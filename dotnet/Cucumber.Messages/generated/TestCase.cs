@@ -32,8 +32,8 @@ public sealed record TestCase
         List<TestStep> testSteps
     ) 
     {
-        this.Id = id ?? throw new ArgumentNullException("Id", "TestCase.Id cannot be null");
-        this.PickleId = pickleId ?? throw new ArgumentNullException("PickleId", "TestCase.PickleId cannot be null");
-        this.TestSteps = testSteps ?? throw new ArgumentNullException("TestSteps", "TestCase.TestSteps cannot be null");
+        Id = id ?? throw new ArgumentNullException("Id", "TestCase.Id cannot be null");
+        PickleId = pickleId ?? throw new ArgumentNullException("PickleId", "TestCase.PickleId cannot be null");
+        TestSteps = testSteps ?? throw new ArgumentNullException("TestSteps", "TestCase.TestSteps cannot be null");
     }
 }

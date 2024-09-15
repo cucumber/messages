@@ -84,13 +84,13 @@ public sealed record Attachment
         string? url
     ) 
     {
-        this.Body = body ?? throw new ArgumentNullException("Body", "Attachment.Body cannot be null");
-        this.ContentEncoding = contentEncoding;
-        this.FileName = fileName;
-        this.MediaType = mediaType ?? throw new ArgumentNullException("MediaType", "Attachment.MediaType cannot be null");
-        this.Source = source;
-        this.TestCaseStartedId = testCaseStartedId;
-        this.TestStepId = testStepId;
-        this.Url = url;
+        Body = body ?? throw new ArgumentNullException("Body", "Attachment.Body cannot be null");
+        ContentEncoding = contentEncoding;
+        FileName = fileName;
+        MediaType = mediaType ?? throw new ArgumentNullException("MediaType", "Attachment.MediaType cannot be null");
+        Source = source;
+        TestCaseStartedId = testCaseStartedId;
+        TestStepId = testStepId;
+        Url = url;
     }
 }

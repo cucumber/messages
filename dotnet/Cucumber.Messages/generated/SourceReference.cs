@@ -70,9 +70,9 @@ public sealed record SourceReference
         Location? location
     ) 
     {
-        this.Uri = uri;
-        this.JavaMethod = javaMethod;
-        this.JavaStackTraceElement = javaStackTraceElement;
-        this.Location = location;
+        Uri = uri;
+        JavaMethod = javaMethod;
+        JavaStackTraceElement = javaStackTraceElement;
+        Location = location;
     }
 }

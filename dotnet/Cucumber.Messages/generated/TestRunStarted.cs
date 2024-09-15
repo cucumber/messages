@@ -21,6 +21,6 @@ public sealed record TestRunStarted
         Timestamp timestamp
     ) 
     {
-        this.Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestRunStarted.Timestamp cannot be null");
+        Timestamp = timestamp ?? throw new ArgumentNullException("Timestamp", "TestRunStarted.Timestamp cannot be null");
     }
 }
