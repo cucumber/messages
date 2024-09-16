@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Fixed
-- [Dotnet] Fixed code generation for types that accept List<T> as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi])
+- [Dotnet] Fixed code generation for types that accept List<T> as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi](https://github.com/clrudolphi))
 
 ### Changed
 - [Go] Switch to Google's UUID module ([#251](https://github.com/cucumber/messages/pull/251))
