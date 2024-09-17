@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Dotnet] Update target frameworks: .NET 8, .NET Standard 2.0
 - [Dotnet] Adopt C# 12 syntax
 - [Dotnet] Enable warnings as errors
-- [Dotnet] Enable nulalble for all projects
+- [Dotnet] Enable nullable for all projects
 
 ## [26.0.0] - 2024-08-15
 ### Added
