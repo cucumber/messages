@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -14,18 +15,18 @@ namespace Io.Cucumber.Messages.Types;
 
 public sealed record Group 
 {
-    public List<Group> Children { get; }
+    public ImmutableArray<Group> Children { get; }
     public long? Start { get; }
     public string? Value { get; }
 
 
     public Group(
-        List<Group> children,
+        ImmutableArray<Group> children,
         long? start,
         string? value
     ) 
     {
-        Children = children ?? throw new ArgumentNullException("Children", "Group.Children cannot be null");
+        Children = children;
         Start = start;
         Value = value;
     }

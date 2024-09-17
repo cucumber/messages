@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -15,15 +16,15 @@ namespace Io.Cucumber.Messages.Types;
 public sealed record DataTable 
 {
     public Location Location { get; }
-    public List<TableRow> Rows { get; }
+    public ImmutableArray<TableRow> Rows { get; }
 
 
     public DataTable(
         Location location,
-        List<TableRow> rows
+        ImmutableArray<TableRow> rows
     ) 
     {
         Location = location ?? throw new ArgumentNullException("Location", "DataTable.Location cannot be null");
-        Rows = rows ?? throw new ArgumentNullException("Rows", "DataTable.Rows cannot be null");
+        Rows = rows;
     }
 }

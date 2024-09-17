@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -18,33 +19,33 @@ public sealed record Examples
      * The location of the `Examples` keyword
      */
     public Location Location { get; }
-    public List<Tag> Tags { get; }
+    public ImmutableArray<Tag> Tags { get; }
     public string Keyword { get; }
     public string Name { get; }
     public string Description { get; }
     public TableRow? TableHeader { get; }
-    public List<TableRow> TableBody { get; }
+    public ImmutableArray<TableRow> TableBody { get; }
     public string Id { get; }
 
 
     public Examples(
         Location location,
-        List<Tag> tags,
+        ImmutableArray<Tag> tags,
         string keyword,
         string name,
         string description,
         TableRow? tableHeader,
-        List<TableRow> tableBody,
+        ImmutableArray<TableRow> tableBody,
         string id
     ) 
     {
         Location = location ?? throw new ArgumentNullException("Location", "Examples.Location cannot be null");
-        Tags = tags ?? throw new ArgumentNullException("Tags", "Examples.Tags cannot be null");
+        Tags = tags;
         Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Examples.Keyword cannot be null");
         Name = name ?? throw new ArgumentNullException("Name", "Examples.Name cannot be null");
         Description = description ?? throw new ArgumentNullException("Description", "Examples.Description cannot be null");
         TableHeader = tableHeader;
-        TableBody = tableBody ?? throw new ArgumentNullException("TableBody", "Examples.TableBody cannot be null");
+        TableBody = tableBody;
         Id = id ?? throw new ArgumentNullException("Id", "Examples.Id cannot be null");
     }
 }

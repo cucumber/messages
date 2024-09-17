@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -23,17 +24,17 @@ public sealed record TestCase
      * The ID of the `Pickle` this `TestCase` is derived from.
      */
     public string PickleId { get; }
-    public List<TestStep> TestSteps { get; }
+    public ImmutableArray<TestStep> TestSteps { get; }
 
 
     public TestCase(
         string id,
         string pickleId,
-        List<TestStep> testSteps
+        ImmutableArray<TestStep> testSteps
     ) 
     {
         Id = id ?? throw new ArgumentNullException("Id", "TestCase.Id cannot be null");
         PickleId = pickleId ?? throw new ArgumentNullException("PickleId", "TestCase.PickleId cannot be null");
-        TestSteps = testSteps ?? throw new ArgumentNullException("TestSteps", "TestCase.TestSteps cannot be null");
+        TestSteps = testSteps;
     }
 }

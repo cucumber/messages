@@ -6,6 +6,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -66,8 +67,8 @@ public sealed record <%= class_name(key) %>
     ) 
     {
       <%- schema['properties'].each do |property_name, property|
-          required = (schema['required'] || []).index(property_name) 
-          isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool' || property['enum'] != nil
+          required = (schema['required'] || []).index(property_name)  
+          isValueType = type_for(class_name(key), property_name, property) == 'long' || type_for(class_name(key), property_name, property) == 'bool' || property['enum'] != nil || property['type'] == 'array'
       -%>
       <%- if !isValueType && required -%>
         <%= capitalize(property_name) %> = <%= property_name %> ?? throw new ArgumentNullException("<%= capitalize(property_name) %>", "<%= class_name(key) %>.<%= capitalize(property_name) %> cannot be null");

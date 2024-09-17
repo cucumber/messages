@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -21,7 +22,7 @@ public sealed record Background
     public string Keyword { get; }
     public string Name { get; }
     public string Description { get; }
-    public List<Step> Steps { get; }
+    public ImmutableArray<Step> Steps { get; }
     public string Id { get; }
 
 
@@ -30,7 +31,7 @@ public sealed record Background
         string keyword,
         string name,
         string description,
-        List<Step> steps,
+        ImmutableArray<Step> steps,
         string id
     ) 
     {
@@ -38,7 +39,7 @@ public sealed record Background
         Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Background.Keyword cannot be null");
         Name = name ?? throw new ArgumentNullException("Name", "Background.Name cannot be null");
         Description = description ?? throw new ArgumentNullException("Description", "Background.Description cannot be null");
-        Steps = steps ?? throw new ArgumentNullException("Steps", "Background.Steps cannot be null");
+        Steps = steps;
         Id = id ?? throw new ArgumentNullException("Id", "Background.Id cannot be null");
     }
 }

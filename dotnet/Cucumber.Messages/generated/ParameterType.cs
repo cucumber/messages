@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -18,7 +19,7 @@ public sealed record ParameterType
      * The name is unique, so we don't need an id.
      */
     public string Name { get; }
-    public List<string> RegularExpressions { get; }
+    public ImmutableArray<string> RegularExpressions { get; }
     public bool PreferForRegularExpressionMatch { get; }
     public bool UseForSnippets { get; }
     public string Id { get; }
@@ -27,7 +28,7 @@ public sealed record ParameterType
 
     public ParameterType(
         string name,
-        List<string> regularExpressions,
+        ImmutableArray<string> regularExpressions,
         bool preferForRegularExpressionMatch,
         bool useForSnippets,
         string id,
@@ -35,7 +36,7 @@ public sealed record ParameterType
     ) 
     {
         Name = name ?? throw new ArgumentNullException("Name", "ParameterType.Name cannot be null");
-        RegularExpressions = regularExpressions ?? throw new ArgumentNullException("RegularExpressions", "ParameterType.RegularExpressions cannot be null");
+        RegularExpressions = regularExpressions;
         PreferForRegularExpressionMatch = preferForRegularExpressionMatch;
         UseForSnippets = useForSnippets;
         Id = id ?? throw new ArgumentNullException("Id", "ParameterType.Id cannot be null");

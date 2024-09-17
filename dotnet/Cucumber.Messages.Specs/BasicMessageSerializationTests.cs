@@ -33,13 +33,13 @@ public class BasicMessageSerializationTests
 
         // This test will pass if the deserializer does not throw an exception
         var testCase = NdjsonSerializer.Deserialize<TestCase>(json);
-        Assert.Equal(4, testCase.TestSteps.Count);
+        Assert.Equal(4, testCase.TestSteps.Length);
 
         var json2 = @"{""id"":""43"",""pickleId"":""24"",""testSteps"":[{""hookId"":""0"",""id"":""39""},{""hookId"":""1"",""id"":""40""},{""id"":""41"",""pickleStepId"":""23"",""stepDefinitionIds"":[],""stepMatchArgumentsLists"":[]},{""hookId"":""4"",""id"":""42""}]}";
 
         // This test will pass if the deserializer does not throw an exception
         var testCase2 = NdjsonSerializer.Deserialize<TestCase>(json2);
-        Assert.Equal(4, testCase2.TestSteps.Count);
+        Assert.Equal(4, testCase2.TestSteps.Length);
 
         var envText = @"{""testCase"":{""id"":""33"",""pickleId"":""20"",""testSteps"":[{""hookId"":""0"",""id"":""29""},{""hookId"":""1"",""id"":""30""},{""id"":""31"",""pickleStepId"":""19"",""stepDefinitionIds"":[""2""],""stepMatchArgumentsLists"":[{""stepMatchArguments"":[]}]},{""hookId"":""4"",""id"":""32""}]}}
 {""testCase"":{""id"":""38"",""pickleId"":""22"",""testSteps"":[{""hookId"":""0"",""id"":""34""},{""hookId"":""1"",""id"":""35""},{""id"":""36"",""pickleStepId"":""21"",""stepDefinitionIds"":[""3""],""stepMatchArgumentsLists"":[{""stepMatchArguments"":[]}]},{""hookId"":""4"",""id"":""37""}]}}

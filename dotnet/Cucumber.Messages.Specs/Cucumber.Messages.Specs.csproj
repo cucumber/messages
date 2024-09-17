@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net462</TargetFrameworks>
@@ -14,11 +14,10 @@
     </PackageReference>
   </ItemGroup>
 	
-	<ItemGroup  Condition="'$(TargetFramework)' == 'net462'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
 		<PackageReference Include="System.Text.Json" Version="8.0.4" />
 	</ItemGroup>
-		
-	
+
   <ItemGroup>
     <ProjectReference Include="..\Cucumber.Messages\Cucumber.Messages.csproj" />
   </ItemGroup>

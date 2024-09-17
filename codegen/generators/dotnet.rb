@@ -5,7 +5,7 @@ module Generator
   # Automatic Code generation overrides for the .NET programming language
   class Dotnet < Base
     def array_type_for(type_name)
-      "List<#{type_name}>"
+      "ImmutableArray<#{type_name}>"
     end
 
     def format_description(raw_description, indent_string: '')

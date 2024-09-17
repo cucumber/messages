@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -29,21 +30,21 @@ public sealed record TestStep
     /**
      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
      */
-    public List<string>? StepDefinitionIds { get; }
+    public ImmutableArray<string>? StepDefinitionIds { get; }
     /**
      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
      * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
      * and a size of 2+ means `AMBIGUOUS`
      */
-    public List<StepMatchArgumentsList>? StepMatchArgumentsLists { get; }
+    public ImmutableArray<StepMatchArgumentsList>? StepMatchArgumentsLists { get; }
 
 
     public TestStep(
         string? hookId,
         string id,
         string? pickleStepId,
-        List<string>? stepDefinitionIds,
-        List<StepMatchArgumentsList>? stepMatchArgumentsLists
+        ImmutableArray<string>? stepDefinitionIds,
+        ImmutableArray<StepMatchArgumentsList>? stepMatchArgumentsLists
     ) 
     {
         HookId = hookId;

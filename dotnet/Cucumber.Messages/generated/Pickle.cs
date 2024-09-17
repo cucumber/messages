@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -46,18 +47,18 @@ public sealed record Pickle
     /**
      * One or more steps
      */
-    public List<PickleStep> Steps { get; }
+    public ImmutableArray<PickleStep> Steps { get; }
     /**
      * One or more tags. If this pickle is constructed from a Gherkin document,
      * It includes inherited tags from the `Feature` as well.
      */
-    public List<PickleTag> Tags { get; }
+    public ImmutableArray<PickleTag> Tags { get; }
     /**
      * Points to the AST node locations of the pickle. The last one represents the unique
      * id of the pickle. A pickle constructed from `Examples` will have the first
      * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
      */
-    public List<string> AstNodeIds { get; }
+    public ImmutableArray<string> AstNodeIds { get; }
 
 
     public Pickle(
@@ -65,17 +66,17 @@ public sealed record Pickle
         string uri,
         string name,
         string language,
-        List<PickleStep> steps,
-        List<PickleTag> tags,
-        List<string> astNodeIds
+        ImmutableArray<PickleStep> steps,
+        ImmutableArray<PickleTag> tags,
+        ImmutableArray<string> astNodeIds
     ) 
     {
         Id = id ?? throw new ArgumentNullException("Id", "Pickle.Id cannot be null");
         Uri = uri ?? throw new ArgumentNullException("Uri", "Pickle.Uri cannot be null");
         Name = name ?? throw new ArgumentNullException("Name", "Pickle.Name cannot be null");
         Language = language ?? throw new ArgumentNullException("Language", "Pickle.Language cannot be null");
-        Steps = steps ?? throw new ArgumentNullException("Steps", "Pickle.Steps cannot be null");
-        Tags = tags ?? throw new ArgumentNullException("Tags", "Pickle.Tags cannot be null");
-        AstNodeIds = astNodeIds ?? throw new ArgumentNullException("AstNodeIds", "Pickle.AstNodeIds cannot be null");
+        Steps = steps;
+        Tags = tags;
+        AstNodeIds = astNodeIds;
     }
 }

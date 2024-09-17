@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -14,13 +15,13 @@ namespace Io.Cucumber.Messages.Types;
 
 public sealed record StepMatchArgumentsList 
 {
-    public List<StepMatchArgument> StepMatchArguments { get; }
+    public ImmutableArray<StepMatchArgument> StepMatchArguments { get; }
 
 
     public StepMatchArgumentsList(
-        List<StepMatchArgument> stepMatchArguments
+        ImmutableArray<StepMatchArgument> stepMatchArguments
     ) 
     {
-        StepMatchArguments = stepMatchArguments ?? throw new ArgumentNullException("StepMatchArguments", "StepMatchArgumentsList.StepMatchArguments cannot be null");
+        StepMatchArguments = stepMatchArguments;
     }
 }

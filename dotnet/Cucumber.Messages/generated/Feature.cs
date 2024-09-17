@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -21,7 +22,7 @@ public sealed record Feature
     /**
      * All the tags placed above the `Feature` keyword
      */
-    public List<Tag> Tags { get; }
+    public ImmutableArray<Tag> Tags { get; }
     /**
      * The [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code of the Gherkin document
      */
@@ -41,25 +42,25 @@ public sealed record Feature
     /**
      * Zero or more children
      */
-    public List<FeatureChild> Children { get; }
+    public ImmutableArray<FeatureChild> Children { get; }
 
 
     public Feature(
         Location location,
-        List<Tag> tags,
+        ImmutableArray<Tag> tags,
         string language,
         string keyword,
         string name,
         string description,
-        List<FeatureChild> children
+        ImmutableArray<FeatureChild> children
     ) 
     {
         Location = location ?? throw new ArgumentNullException("Location", "Feature.Location cannot be null");
-        Tags = tags ?? throw new ArgumentNullException("Tags", "Feature.Tags cannot be null");
+        Tags = tags;
         Language = language ?? throw new ArgumentNullException("Language", "Feature.Language cannot be null");
         Keyword = keyword ?? throw new ArgumentNullException("Keyword", "Feature.Keyword cannot be null");
         Name = name ?? throw new ArgumentNullException("Name", "Feature.Name cannot be null");
         Description = description ?? throw new ArgumentNullException("Description", "Feature.Description cannot be null");
-        Children = children ?? throw new ArgumentNullException("Children", "Feature.Children cannot be null");
+        Children = children;
     }
 }

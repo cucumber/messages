@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -14,13 +15,13 @@ namespace Io.Cucumber.Messages.Types;
 
 public sealed record PickleTable 
 {
-    public List<PickleTableRow> Rows { get; }
+    public ImmutableArray<PickleTableRow> Rows { get; }
 
 
     public PickleTable(
-        List<PickleTableRow> rows
+        ImmutableArray<PickleTableRow> rows
     ) 
     {
-        Rows = rows ?? throw new ArgumentNullException("Rows", "PickleTable.Rows cannot be null");
+        Rows = rows;
     }
 }

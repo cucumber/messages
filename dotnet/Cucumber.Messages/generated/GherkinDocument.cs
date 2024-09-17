@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -30,17 +31,17 @@ public sealed record GherkinDocument
     /**
      * All the comments in the Gherkin document
      */
-    public List<Comment> Comments { get; }
+    public ImmutableArray<Comment> Comments { get; }
 
 
     public GherkinDocument(
         string? uri,
         Feature? feature,
-        List<Comment> comments
+        ImmutableArray<Comment> comments
     ) 
     {
         Uri = uri;
         Feature = feature;
-        Comments = comments ?? throw new ArgumentNullException("Comments", "GherkinDocument.Comments cannot be null");
+        Comments = comments;
     }
 }

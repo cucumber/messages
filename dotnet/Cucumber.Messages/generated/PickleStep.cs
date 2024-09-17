@@ -4,6 +4,7 @@
 // Changes to this file may cause incorrect behavior and will be lost if 
 // the code is regenerated.
 // ------------------------------------------------------------------------------
+using System.Collections.Immutable;
 
 namespace Io.Cucumber.Messages.Types;
 
@@ -21,7 +22,7 @@ public sealed record PickleStep
      * References the IDs of the source of the step. For Gherkin, this can be
      * the ID of a Step, and possibly also the ID of a TableRow
      */
-    public List<string> AstNodeIds { get; }
+    public ImmutableArray<string> AstNodeIds { get; }
     /**
      * A unique ID for the PickleStep
      */
@@ -37,14 +38,14 @@ public sealed record PickleStep
 
     public PickleStep(
         PickleStepArgument? argument,
-        List<string> astNodeIds,
+        ImmutableArray<string> astNodeIds,
         string id,
         PickleStepType? type,
         string text
     ) 
     {
         Argument = argument;
-        AstNodeIds = astNodeIds ?? throw new ArgumentNullException("AstNodeIds", "PickleStep.AstNodeIds cannot be null");
+        AstNodeIds = astNodeIds;
         Id = id ?? throw new ArgumentNullException("Id", "PickleStep.Id cannot be null");
         Type = type;
         Text = text ?? throw new ArgumentNullException("Text", "PickleStep.Text cannot be null");
