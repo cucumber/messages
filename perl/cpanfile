@@ -1,5 +1,5 @@
 
-requires "perl", "5.14.4";
+requires "perl", "5.41.3";
 
 requires "JSON::MaybeXS";
 requires "Moo";
