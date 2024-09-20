@@ -2023,6 +2023,7 @@ my %types = (
    name => 'string',
    source_reference => 'Cucumber::Messages::SourceReference',
    tag_expression => 'string',
+   type => '',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -2073,6 +2074,45 @@ has source_reference =>
 =cut
 
 has tag_expression =>
+    (is => 'ro',
+    );
+
+
+=head4 type
+
+
+
+Available constants for valid values of this field:
+
+=over
+
+=item * TYPE_BEFORE_TEST_RUN
+
+=item * TYPE_AFTER_TEST_RUN
+
+=item * TYPE_BEFORE_TEST_CASE
+
+=item * TYPE_AFTER_TEST_CASE
+
+=item * TYPE_BEFORE_TEST_STEP
+
+=item * TYPE_AFTER_TEST_STEP
+
+=back
+
+=cut
+
+
+use constant {
+   TYPE_BEFORE_TEST_RUN => 'BEFORE_TEST_RUN',
+   TYPE_AFTER_TEST_RUN => 'AFTER_TEST_RUN',
+   TYPE_BEFORE_TEST_CASE => 'BEFORE_TEST_CASE',
+   TYPE_AFTER_TEST_CASE => 'AFTER_TEST_CASE',
+   TYPE_BEFORE_TEST_STEP => 'BEFORE_TEST_STEP',
+   TYPE_AFTER_TEST_STEP => 'AFTER_TEST_STEP',
+   };
+
+has type =>
     (is => 'ro',
     );
 

@@ -162,6 +162,7 @@ type Hook struct {
 	Name            string           `json:"name,omitempty"`
 	SourceReference *SourceReference `json:"sourceReference"`
 	TagExpression   string           `json:"tagExpression,omitempty"`
+	Type            HookType         `json:"type,omitempty"`
 }
 
 type Location struct {
@@ -407,6 +408,36 @@ func (e AttachmentContentEncoding) String() string {
 		return "BASE64"
 	default:
 		panic("Bad enum value for AttachmentContentEncoding")
+	}
+}
+
+type HookType string
+
+const (
+	HookType_BEFORE_TEST_RUN  HookType = "BEFORE_TEST_RUN"
+	HookType_AFTER_TEST_RUN   HookType = "AFTER_TEST_RUN"
+	HookType_BEFORE_TEST_CASE HookType = "BEFORE_TEST_CASE"
+	HookType_AFTER_TEST_CASE  HookType = "AFTER_TEST_CASE"
+	HookType_BEFORE_TEST_STEP HookType = "BEFORE_TEST_STEP"
+	HookType_AFTER_TEST_STEP  HookType = "AFTER_TEST_STEP"
+)
+
+func (e HookType) String() string {
+	switch e {
+	case HookType_BEFORE_TEST_RUN:
+		return "BEFORE_TEST_RUN"
+	case HookType_AFTER_TEST_RUN:
+		return "AFTER_TEST_RUN"
+	case HookType_BEFORE_TEST_CASE:
+		return "BEFORE_TEST_CASE"
+	case HookType_AFTER_TEST_CASE:
+		return "AFTER_TEST_CASE"
+	case HookType_BEFORE_TEST_STEP:
+		return "BEFORE_TEST_STEP"
+	case HookType_AFTER_TEST_STEP:
+		return "AFTER_TEST_STEP"
+	default:
+		panic("Bad enum value for HookType")
 	}
 }
 
