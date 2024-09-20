@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- BREAKING CHANGE: Add `id` property to `TestRunStarted`, optionally reference in `Attachment`, TestCase` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
+- Add new `TestRunHookStarted` and `TestRunHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
+
 ### Fixed
 - [Dotnet] Fixed code generation for types that accept List<T> as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi])
 - Moved contents of the description of the StepDefinitionIds field from the StepMatchArgumentsList field where it had been mistakenly placed. ([#252](https://github.com/cucumber/messages/pull/252) [clrudolphi])
@@ -15,13 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [26.0.0] - 2024-08-15
 ### Added
-<<<<<<< HEAD
-- BREAKING CHANGE: Add `id` property to `TestRunStarted`, optionally reference in `Attachment`, TestCase` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
-- Add new `TestRunHookStarted` and `TestRunHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
-- [Dotnet] Added support classes aligned with what is provided for the Java implementation (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
-=======
 - [Dotnet] Added support classes aligned with what is provided for the Java implementation ([#233](https://github.com/cucumber/messages/pull/233) [clrudolphi](https://github.com/clrudolphi))
->>>>>>> main
 
 ### Changed
 - **Internal breaking change** The code generation has undergone a large refactor (No visible changes expected). All new code
