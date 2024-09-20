@@ -9,7 +9,6 @@ generate: require messages.go ## Generate go code based on the schemas found in 
 
 require: ## Check requirements for the code generation (ruby and go are required)
 	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
-	@go version >/dev/null 2>&1 || (echo "ERROR: go is required."; exit 1)
 
 clean: ## Remove automatically generated files and related artifacts
 	rm -f messages.go
