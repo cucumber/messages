@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "GlobalHookFinished.json",
+  "$id": "TestRunHookFinished.json",
   "additionalProperties": false,
   "required": [
-    "globalHookStartedId",
+    "testRunHookStartedId",
     "result",
     "timestamp"
   ],
   "properties": {
-    "globalHookStartedId": {
+    "testRunHookStartedId": {
       "description": "Identifier for the hook execution that has finished",
       "type": "string"
     },

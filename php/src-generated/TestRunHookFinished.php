@@ -12,16 +12,16 @@ use JsonSerializable;
 use Cucumber\Messages\DecodingException\SchemaViolationException;
 
 /**
- * Represents the GlobalHookFinished message in Cucumber's message protocol
+ * Represents the TestRunHookFinished message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
  */
-final class GlobalHookFinished implements JsonSerializable
+final class TestRunHookFinished implements JsonSerializable
 {
     use JsonEncodingTrait;
 
     /**
-     * Construct the GlobalHookFinished with all properties
+     * Construct the TestRunHookFinished with all properties
      *
      */
     public function __construct(
@@ -29,7 +29,7 @@ final class GlobalHookFinished implements JsonSerializable
         /**
          * Identifier for the hook execution that has finished
          */
-        public readonly string $globalHookStartedId = '',
+        public readonly string $testRunHookStartedId = '',
         public readonly TestStepResult $result = new TestStepResult(),
         public readonly Timestamp $timestamp = new Timestamp(),
     ) {
@@ -42,27 +42,27 @@ final class GlobalHookFinished implements JsonSerializable
      */
     public static function fromArray(array $arr): self
     {
-        self::ensureGlobalHookStartedId($arr);
+        self::ensureTestRunHookStartedId($arr);
         self::ensureResult($arr);
         self::ensureTimestamp($arr);
 
         return new self(
-            (string) $arr['globalHookStartedId'],
+            (string) $arr['testRunHookStartedId'],
             TestStepResult::fromArray($arr['result']),
             Timestamp::fromArray($arr['timestamp']),
         );
     }
 
     /**
-     * @psalm-assert array{globalHookStartedId: string|int|bool} $arr
+     * @psalm-assert array{testRunHookStartedId: string|int|bool} $arr
      */
-    private static function ensureGlobalHookStartedId(array $arr): void
+    private static function ensureTestRunHookStartedId(array $arr): void
     {
-        if (!array_key_exists('globalHookStartedId', $arr)) {
-            throw new SchemaViolationException('Property \'globalHookStartedId\' is required but was not found');
+        if (!array_key_exists('testRunHookStartedId', $arr)) {
+            throw new SchemaViolationException('Property \'testRunHookStartedId\' is required but was not found');
         }
-        if (array_key_exists('globalHookStartedId', $arr) && is_array($arr['globalHookStartedId'])) {
-            throw new SchemaViolationException('Property \'globalHookStartedId\' was array');
+        if (array_key_exists('testRunHookStartedId', $arr) && is_array($arr['testRunHookStartedId'])) {
+            throw new SchemaViolationException('Property \'testRunHookStartedId\' was array');
         }
     }
 

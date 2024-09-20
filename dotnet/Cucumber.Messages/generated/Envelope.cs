@@ -39,8 +39,8 @@ public sealed class Envelope
     public TestRunStarted TestRunStarted { get; private set; }
     public TestStepFinished TestStepFinished { get; private set; }
     public TestStepStarted TestStepStarted { get; private set; }
-    public GlobalHookStarted GlobalHookStarted { get; private set; }
-    public GlobalHookFinished GlobalHookFinished { get; private set; }
+    public TestRunHookStarted TestRunHookStarted { get; private set; }
+    public TestRunHookFinished TestRunHookFinished { get; private set; }
     public UndefinedParameterType UndefinedParameterType { get; private set; }
 
 
@@ -444,7 +444,7 @@ public sealed class Envelope
         );
     }
 
-    public static Envelope Create(GlobalHookStarted globalHookStarted) 
+    public static Envelope Create(TestRunHookStarted testRunHookStarted) 
     {
         return new Envelope(
             null,
@@ -463,13 +463,13 @@ public sealed class Envelope
             null,
             null,
             null,
-            Require<GlobalHookStarted>(globalHookStarted, "GlobalHookStarted", "Envelope.GlobalHookStarted cannot be null"),
+            Require<TestRunHookStarted>(testRunHookStarted, "TestRunHookStarted", "Envelope.TestRunHookStarted cannot be null"),
             null,
             null
         );
     }
 
-    public static Envelope Create(GlobalHookFinished globalHookFinished) 
+    public static Envelope Create(TestRunHookFinished testRunHookFinished) 
     {
         return new Envelope(
             null,
@@ -489,7 +489,7 @@ public sealed class Envelope
             null,
             null,
             null,
-            Require<GlobalHookFinished>(globalHookFinished, "GlobalHookFinished", "Envelope.GlobalHookFinished cannot be null"),
+            Require<TestRunHookFinished>(testRunHookFinished, "TestRunHookFinished", "Envelope.TestRunHookFinished cannot be null"),
             null
         );
     }
@@ -536,8 +536,8 @@ public sealed class Envelope
         TestRunStarted testRunStarted,
         TestStepFinished testStepFinished,
         TestStepStarted testStepStarted,
-        GlobalHookStarted globalHookStarted,
-        GlobalHookFinished globalHookFinished,
+        TestRunHookStarted testRunHookStarted,
+        TestRunHookFinished testRunHookFinished,
         UndefinedParameterType undefinedParameterType
     ) 
     {
@@ -557,8 +557,8 @@ public sealed class Envelope
               this.TestRunStarted = testRunStarted;
               this.TestStepFinished = testStepFinished;
               this.TestStepStarted = testStepStarted;
-              this.GlobalHookStarted = globalHookStarted;
-              this.GlobalHookFinished = globalHookFinished;
+              this.TestRunHookStarted = testRunHookStarted;
+              this.TestRunHookFinished = testRunHookFinished;
               this.UndefinedParameterType = undefinedParameterType;
     }
 
@@ -584,8 +584,8 @@ public sealed class Envelope
             Object.Equals(TestRunStarted, that.TestRunStarted) &&         
             Object.Equals(TestStepFinished, that.TestStepFinished) &&         
             Object.Equals(TestStepStarted, that.TestStepStarted) &&         
-            Object.Equals(GlobalHookStarted, that.GlobalHookStarted) &&         
-            Object.Equals(GlobalHookFinished, that.GlobalHookFinished) &&         
+            Object.Equals(TestRunHookStarted, that.TestRunHookStarted) &&         
+            Object.Equals(TestRunHookFinished, that.TestRunHookFinished) &&         
             Object.Equals(UndefinedParameterType, that.UndefinedParameterType);        
     }
 
@@ -624,10 +624,10 @@ public sealed class Envelope
           hash = hash * 31 + TestStepFinished.GetHashCode();
         if (TestStepStarted != null)
           hash = hash * 31 + TestStepStarted.GetHashCode();
-        if (GlobalHookStarted != null)
-          hash = hash * 31 + GlobalHookStarted.GetHashCode();
-        if (GlobalHookFinished != null)
-          hash = hash * 31 + GlobalHookFinished.GetHashCode();
+        if (TestRunHookStarted != null)
+          hash = hash * 31 + TestRunHookStarted.GetHashCode();
+        if (TestRunHookFinished != null)
+          hash = hash * 31 + TestRunHookFinished.GetHashCode();
         if (UndefinedParameterType != null)
           hash = hash * 31 + UndefinedParameterType.GetHashCode();
         return hash;
@@ -652,8 +652,8 @@ public sealed class Envelope
             ", testRunStarted=" + TestRunStarted +
             ", testStepFinished=" + TestStepFinished +
             ", testStepStarted=" + TestStepStarted +
-            ", globalHookStarted=" + GlobalHookStarted +
-            ", globalHookFinished=" + GlobalHookFinished +
+            ", testRunHookStarted=" + TestRunHookStarted +
+            ", testRunHookFinished=" + TestRunHookFinished +
             ", undefinedParameterType=" + UndefinedParameterType +
             '}';
     }

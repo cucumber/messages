@@ -8,27 +8,27 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the GlobalHookStarted message in Cucumber's message protocol
+ * Represents the TestRunHookStarted message in Cucumber's message protocol
  * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
  */
 // Generated code
 @SuppressWarnings("unused")
-public final class GlobalHookStarted {
+public final class TestRunHookStarted {
     private final String id;
     private final String testRunStartedId;
     private final String hookId;
     private final Timestamp timestamp;
 
-    public GlobalHookStarted(
+    public TestRunHookStarted(
         String id,
         String testRunStartedId,
         String hookId,
         Timestamp timestamp
     ) {
-        this.id = requireNonNull(id, "GlobalHookStarted.id cannot be null");
-        this.testRunStartedId = requireNonNull(testRunStartedId, "GlobalHookStarted.testRunStartedId cannot be null");
-        this.hookId = requireNonNull(hookId, "GlobalHookStarted.hookId cannot be null");
-        this.timestamp = requireNonNull(timestamp, "GlobalHookStarted.timestamp cannot be null");
+        this.id = requireNonNull(id, "TestRunHookStarted.id cannot be null");
+        this.testRunStartedId = requireNonNull(testRunStartedId, "TestRunHookStarted.testRunStartedId cannot be null");
+        this.hookId = requireNonNull(hookId, "TestRunHookStarted.hookId cannot be null");
+        this.timestamp = requireNonNull(timestamp, "TestRunHookStarted.timestamp cannot be null");
     }
 
     /**
@@ -60,7 +60,7 @@ public final class GlobalHookStarted {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GlobalHookStarted that = (GlobalHookStarted) o;
+        TestRunHookStarted that = (TestRunHookStarted) o;
         return 
             id.equals(that.id) &&         
             testRunStartedId.equals(that.testRunStartedId) &&         
@@ -80,7 +80,7 @@ public final class GlobalHookStarted {
 
     @Override
     public String toString() {
-        return "GlobalHookStarted{" +
+        return "TestRunHookStarted{" +
             "id=" + id +
             ", testRunStartedId=" + testRunStartedId +
             ", hookId=" + hookId +

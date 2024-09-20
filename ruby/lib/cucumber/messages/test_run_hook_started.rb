@@ -4,10 +4,10 @@
 module Cucumber
   module Messages
     ##
-    # Represents the GlobalHookStarted message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
+    # Represents the TestRunHookStarted message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     ##
-    class GlobalHookStarted < Message
+    class TestRunHookStarted < Message
       ##
       # Unique identifier for this hook execution
       ##
@@ -39,11 +39,11 @@ module Cucumber
       end
 
       ##
-      # Returns a new GlobalHookStarted from the given hash.
+      # Returns a new TestRunHookStarted from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
       # corresponding snake_cased attributes.
       #
-      #   Cucumber::Messages::GlobalHookStarted.from_h(some_hash) # => #<Cucumber::Messages::GlobalHookStarted:0x... ...>
+      #   Cucumber::Messages::TestRunHookStarted.from_h(some_hash) # => #<Cucumber::Messages::TestRunHookStarted:0x... ...>
       ##
       def self.from_h(hash)
         return nil if hash.nil?

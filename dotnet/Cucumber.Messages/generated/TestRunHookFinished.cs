@@ -10,31 +10,31 @@ using System.Collections.Generic;
 namespace Io.Cucumber.Messages.Types;
 
 /**
- * Represents the GlobalHookFinished message in Cucumber's message protocol
+ * Represents the TestRunHookFinished message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 
-public sealed class GlobalHookFinished 
+public sealed class TestRunHookFinished 
 {
     /**
      * Identifier for the hook execution that has finished
      */
-    public string GlobalHookStartedId { get; private set; }
+    public string TestRunHookStartedId { get; private set; }
     public TestStepResult Result { get; private set; }
     public Timestamp Timestamp { get; private set; }
 
 
-    public GlobalHookFinished(
-        string globalHookStartedId,
+    public TestRunHookFinished(
+        string testRunHookStartedId,
         TestStepResult result,
         Timestamp timestamp
     ) 
     {
-              RequireNonNull<string>(globalHookStartedId, "GlobalHookStartedId", "GlobalHookFinished.GlobalHookStartedId cannot be null");
-        this.GlobalHookStartedId = globalHookStartedId;
-              RequireNonNull<TestStepResult>(result, "Result", "GlobalHookFinished.Result cannot be null");
+              RequireNonNull<string>(testRunHookStartedId, "TestRunHookStartedId", "TestRunHookFinished.TestRunHookStartedId cannot be null");
+        this.TestRunHookStartedId = testRunHookStartedId;
+              RequireNonNull<TestStepResult>(result, "Result", "TestRunHookFinished.Result cannot be null");
         this.Result = result;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "GlobalHookFinished.Timestamp cannot be null");
+              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunHookFinished.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
 
@@ -42,9 +42,9 @@ public sealed class GlobalHookFinished
     {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
-        GlobalHookFinished that = (GlobalHookFinished) o;
+        TestRunHookFinished that = (TestRunHookFinished) o;
         return 
-            GlobalHookStartedId.Equals(that.GlobalHookStartedId) &&         
+            TestRunHookStartedId.Equals(that.TestRunHookStartedId) &&         
             Result.Equals(that.Result) &&         
             Timestamp.Equals(that.Timestamp);        
     }
@@ -52,8 +52,8 @@ public sealed class GlobalHookFinished
     public override int GetHashCode() 
     {
         int hash = 17;
-        if (GlobalHookStartedId != null)
-          hash = hash * 31 + GlobalHookStartedId.GetHashCode();
+        if (TestRunHookStartedId != null)
+          hash = hash * 31 + TestRunHookStartedId.GetHashCode();
         if (Result != null)
           hash = hash * 31 + Result.GetHashCode();
         if (Timestamp != null)
@@ -63,8 +63,8 @@ public sealed class GlobalHookFinished
 
     public override string ToString() 
     {
-        return "GlobalHookFinished{" +
-            "globalHookStartedId=" + GlobalHookStartedId +
+        return "TestRunHookFinished{" +
+            "testRunHookStartedId=" + TestRunHookStartedId +
             ", result=" + Result +
             ", timestamp=" + Timestamp +
             '}';

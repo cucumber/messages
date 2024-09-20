@@ -13,12 +13,12 @@ namespace cucumber::messages {
 using json = nlohmann::json;
 
 //
-// Represents the GlobalHookStarted message in Cucumber's message protocol
+// Represents the TestRunHookStarted message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
 //
 // Generated code
 
-struct global_hook_started
+struct test_run_hook_started
 {
     std::string id;
     std::string test_run_started_id;
@@ -32,8 +32,8 @@ struct global_hook_started
 };
 
 std::ostream&
-operator<<(std::ostream& os, const global_hook_started& msg);
+operator<<(std::ostream& os, const test_run_hook_started& msg);
 
-void to_json(json& j, const global_hook_started& m);
+void to_json(json& j, const test_run_hook_started& m);
 
 }

@@ -52,11 +52,11 @@
     "testStepStarted": {
       "$ref": "./TestStepStarted.json"
     },
-    "globalHookStarted": {
-      "$ref": "./GlobalHookStarted.json"
+    "testRunHookStarted": {
+      "$ref": "TestRunHookStarted.json"
     },
-    "globalHookFinished": {
-      "$ref": "./GlobalHookFinished.json"
+    "testRunHookFinished": {
+      "$ref": "TestRunHookFinished.json"
     },
     "undefinedParameterType": {
       "$ref": "./UndefinedParameterType.json"

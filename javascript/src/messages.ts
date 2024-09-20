@@ -80,11 +80,11 @@ export class Envelope {
   @Type(() => TestStepStarted)
   testStepStarted?: TestStepStarted
 
-  @Type(() => GlobalHookStarted)
-  globalHookStarted?: GlobalHookStarted
+  @Type(() => TestRunHookStarted)
+  testRunHookStarted?: TestRunHookStarted
 
-  @Type(() => GlobalHookFinished)
-  globalHookFinished?: GlobalHookFinished
+  @Type(() => TestRunHookFinished)
+  testRunHookFinished?: TestRunHookFinished
 
   @Type(() => UndefinedParameterType)
   undefinedParameterType?: UndefinedParameterType
@@ -310,29 +310,6 @@ export class Tag {
   name: string = ''
 
   id: string = ''
-}
-
-export class GlobalHookFinished {
-
-  globalHookStartedId: string = ''
-
-  @Type(() => TestStepResult)
-  result: TestStepResult = new TestStepResult()
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
-}
-
-export class GlobalHookStarted {
-
-  id: string = ''
-
-  testRunStartedId: string = ''
-
-  hookId: string = ''
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
 }
 
 export class Hook {
@@ -647,6 +624,29 @@ export class TestRunFinished {
   exception?: Exception
 
   testRunStartedId?: string
+}
+
+export class TestRunHookFinished {
+
+  testRunHookStartedId: string = ''
+
+  @Type(() => TestStepResult)
+  result: TestStepResult = new TestStepResult()
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
+}
+
+export class TestRunHookStarted {
+
+  id: string = ''
+
+  testRunStartedId: string = ''
+
+  hookId: string = ''
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
 }
 
 export class TestRunStarted {

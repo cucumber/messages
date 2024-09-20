@@ -34,8 +34,8 @@ type Envelope struct {
 	TestRunStarted         *TestRunStarted         `json:"testRunStarted,omitempty"`
 	TestStepFinished       *TestStepFinished       `json:"testStepFinished,omitempty"`
 	TestStepStarted        *TestStepStarted        `json:"testStepStarted,omitempty"`
-	GlobalHookStarted      *GlobalHookStarted      `json:"globalHookStarted,omitempty"`
-	GlobalHookFinished     *GlobalHookFinished     `json:"globalHookFinished,omitempty"`
+	TestRunHookStarted     *TestRunHookStarted     `json:"testRunHookStarted,omitempty"`
+	TestRunHookFinished    *TestRunHookFinished    `json:"testRunHookFinished,omitempty"`
 	UndefinedParameterType *UndefinedParameterType `json:"undefinedParameterType,omitempty"`
 }
 
@@ -155,19 +155,6 @@ type Tag struct {
 	Location *Location `json:"location"`
 	Name     string    `json:"name"`
 	Id       string    `json:"id"`
-}
-
-type GlobalHookFinished struct {
-	GlobalHookStartedId string          `json:"globalHookStartedId"`
-	Result              *TestStepResult `json:"result"`
-	Timestamp           *Timestamp      `json:"timestamp"`
-}
-
-type GlobalHookStarted struct {
-	Id               string     `json:"id"`
-	TestRunStartedId string     `json:"testRunStartedId"`
-	HookId           string     `json:"hookId"`
-	Timestamp        *Timestamp `json:"timestamp"`
 }
 
 type Hook struct {
@@ -355,6 +342,19 @@ type TestRunFinished struct {
 	Timestamp        *Timestamp `json:"timestamp"`
 	Exception        *Exception `json:"exception,omitempty"`
 	TestRunStartedId string     `json:"testRunStartedId,omitempty"`
+}
+
+type TestRunHookFinished struct {
+	TestRunHookStartedId string          `json:"testRunHookStartedId"`
+	Result               *TestStepResult `json:"result"`
+	Timestamp            *Timestamp      `json:"timestamp"`
+}
+
+type TestRunHookStarted struct {
+	Id               string     `json:"id"`
+	TestRunStartedId string     `json:"testRunStartedId"`
+	HookId           string     `json:"hookId"`
+	Timestamp        *Timestamp `json:"timestamp"`
 }
 
 type TestRunStarted struct {

@@ -37,8 +37,8 @@ public final class Envelope {
     private final TestRunStarted testRunStarted;
     private final TestStepFinished testStepFinished;
     private final TestStepStarted testStepStarted;
-    private final GlobalHookStarted globalHookStarted;
-    private final GlobalHookFinished globalHookFinished;
+    private final TestRunHookStarted testRunHookStarted;
+    private final TestRunHookFinished testRunHookFinished;
     private final UndefinedParameterType undefinedParameterType;
 
     public static Envelope of(Attachment attachment) {
@@ -425,7 +425,7 @@ public final class Envelope {
         );
     }
 
-    public static Envelope of(GlobalHookStarted globalHookStarted) {
+    public static Envelope of(TestRunHookStarted testRunHookStarted) {
         return new Envelope(
             null,
             null,
@@ -443,13 +443,13 @@ public final class Envelope {
             null,
             null,
             null,
-            requireNonNull(globalHookStarted, "Envelope.globalHookStarted cannot be null"),
+            requireNonNull(testRunHookStarted, "Envelope.testRunHookStarted cannot be null"),
             null,
             null
         );
     }
 
-    public static Envelope of(GlobalHookFinished globalHookFinished) {
+    public static Envelope of(TestRunHookFinished testRunHookFinished) {
         return new Envelope(
             null,
             null,
@@ -468,7 +468,7 @@ public final class Envelope {
             null,
             null,
             null,
-            requireNonNull(globalHookFinished, "Envelope.globalHookFinished cannot be null"),
+            requireNonNull(testRunHookFinished, "Envelope.testRunHookFinished cannot be null"),
             null
         );
     }
@@ -514,8 +514,8 @@ public final class Envelope {
         TestRunStarted testRunStarted,
         TestStepFinished testStepFinished,
         TestStepStarted testStepStarted,
-        GlobalHookStarted globalHookStarted,
-        GlobalHookFinished globalHookFinished,
+        TestRunHookStarted testRunHookStarted,
+        TestRunHookFinished testRunHookFinished,
         UndefinedParameterType undefinedParameterType
     ) {
         this.attachment = attachment;
@@ -534,8 +534,8 @@ public final class Envelope {
         this.testRunStarted = testRunStarted;
         this.testStepFinished = testStepFinished;
         this.testStepStarted = testStepStarted;
-        this.globalHookStarted = globalHookStarted;
-        this.globalHookFinished = globalHookFinished;
+        this.testRunHookStarted = testRunHookStarted;
+        this.testRunHookFinished = testRunHookFinished;
         this.undefinedParameterType = undefinedParameterType;
     }
 
@@ -603,12 +603,12 @@ public final class Envelope {
         return Optional.ofNullable(testStepStarted);
     }
 
-    public Optional<GlobalHookStarted> getGlobalHookStarted() {
-        return Optional.ofNullable(globalHookStarted);
+    public Optional<TestRunHookStarted> getTestRunHookStarted() {
+        return Optional.ofNullable(testRunHookStarted);
     }
 
-    public Optional<GlobalHookFinished> getGlobalHookFinished() {
-        return Optional.ofNullable(globalHookFinished);
+    public Optional<TestRunHookFinished> getTestRunHookFinished() {
+        return Optional.ofNullable(testRunHookFinished);
     }
 
     public Optional<UndefinedParameterType> getUndefinedParameterType() {
@@ -637,8 +637,8 @@ public final class Envelope {
             Objects.equals(testRunStarted, that.testRunStarted) &&         
             Objects.equals(testStepFinished, that.testStepFinished) &&         
             Objects.equals(testStepStarted, that.testStepStarted) &&         
-            Objects.equals(globalHookStarted, that.globalHookStarted) &&         
-            Objects.equals(globalHookFinished, that.globalHookFinished) &&         
+            Objects.equals(testRunHookStarted, that.testRunHookStarted) &&         
+            Objects.equals(testRunHookFinished, that.testRunHookFinished) &&         
             Objects.equals(undefinedParameterType, that.undefinedParameterType);        
     }
 
@@ -661,8 +661,8 @@ public final class Envelope {
             testRunStarted,
             testStepFinished,
             testStepStarted,
-            globalHookStarted,
-            globalHookFinished,
+            testRunHookStarted,
+            testRunHookFinished,
             undefinedParameterType
         );
     }
@@ -686,8 +686,8 @@ public final class Envelope {
             ", testRunStarted=" + testRunStarted +
             ", testStepFinished=" + testStepFinished +
             ", testStepStarted=" + testStepStarted +
-            ", globalHookStarted=" + globalHookStarted +
-            ", globalHookFinished=" + globalHookFinished +
+            ", testRunHookStarted=" + testRunHookStarted +
+            ", testRunHookFinished=" + testRunHookFinished +
             ", undefinedParameterType=" + undefinedParameterType +
             '}';
     }

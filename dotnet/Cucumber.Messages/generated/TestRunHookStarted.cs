@@ -10,11 +10,11 @@ using System.Collections.Generic;
 namespace Io.Cucumber.Messages.Types;
 
 /**
- * Represents the GlobalHookStarted message in Cucumber's message protocol
+ * Represents the TestRunHookStarted message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  */
 
-public sealed class GlobalHookStarted 
+public sealed class TestRunHookStarted 
 {
     /**
      * Unique identifier for this hook execution
@@ -31,20 +31,20 @@ public sealed class GlobalHookStarted
     public Timestamp Timestamp { get; private set; }
 
 
-    public GlobalHookStarted(
+    public TestRunHookStarted(
         string id,
         string testRunStartedId,
         string hookId,
         Timestamp timestamp
     ) 
     {
-              RequireNonNull<string>(id, "Id", "GlobalHookStarted.Id cannot be null");
+              RequireNonNull<string>(id, "Id", "TestRunHookStarted.Id cannot be null");
         this.Id = id;
-              RequireNonNull<string>(testRunStartedId, "TestRunStartedId", "GlobalHookStarted.TestRunStartedId cannot be null");
+              RequireNonNull<string>(testRunStartedId, "TestRunStartedId", "TestRunHookStarted.TestRunStartedId cannot be null");
         this.TestRunStartedId = testRunStartedId;
-              RequireNonNull<string>(hookId, "HookId", "GlobalHookStarted.HookId cannot be null");
+              RequireNonNull<string>(hookId, "HookId", "TestRunHookStarted.HookId cannot be null");
         this.HookId = hookId;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "GlobalHookStarted.Timestamp cannot be null");
+              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunHookStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
 
@@ -52,7 +52,7 @@ public sealed class GlobalHookStarted
     {
         if (this == o) return true;
         if (o == null || this.GetType() != o.GetType()) return false;
-        GlobalHookStarted that = (GlobalHookStarted) o;
+        TestRunHookStarted that = (TestRunHookStarted) o;
         return 
             Id.Equals(that.Id) &&         
             TestRunStartedId.Equals(that.TestRunStartedId) &&         
@@ -76,7 +76,7 @@ public sealed class GlobalHookStarted
 
     public override string ToString() 
     {
-        return "GlobalHookStarted{" +
+        return "TestRunHookStarted{" +
             "id=" + Id +
             ", testRunStartedId=" + TestRunStartedId +
             ", hookId=" + HookId +

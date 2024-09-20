@@ -8,31 +8,31 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the GlobalHookFinished message in Cucumber's message protocol
+ * Represents the TestRunHookFinished message in Cucumber's message protocol
  * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
  */
 // Generated code
 @SuppressWarnings("unused")
-public final class GlobalHookFinished {
-    private final String globalHookStartedId;
+public final class TestRunHookFinished {
+    private final String testRunHookStartedId;
     private final TestStepResult result;
     private final Timestamp timestamp;
 
-    public GlobalHookFinished(
-        String globalHookStartedId,
+    public TestRunHookFinished(
+        String testRunHookStartedId,
         TestStepResult result,
         Timestamp timestamp
     ) {
-        this.globalHookStartedId = requireNonNull(globalHookStartedId, "GlobalHookFinished.globalHookStartedId cannot be null");
-        this.result = requireNonNull(result, "GlobalHookFinished.result cannot be null");
-        this.timestamp = requireNonNull(timestamp, "GlobalHookFinished.timestamp cannot be null");
+        this.testRunHookStartedId = requireNonNull(testRunHookStartedId, "TestRunHookFinished.testRunHookStartedId cannot be null");
+        this.result = requireNonNull(result, "TestRunHookFinished.result cannot be null");
+        this.timestamp = requireNonNull(timestamp, "TestRunHookFinished.timestamp cannot be null");
     }
 
     /**
      * Identifier for the hook execution that has finished
      */
-    public String getGlobalHookStartedId() {
-        return globalHookStartedId;
+    public String getTestRunHookStartedId() {
+        return testRunHookStartedId;
     }
 
     public TestStepResult getResult() {
@@ -47,9 +47,9 @@ public final class GlobalHookFinished {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GlobalHookFinished that = (GlobalHookFinished) o;
+        TestRunHookFinished that = (TestRunHookFinished) o;
         return 
-            globalHookStartedId.equals(that.globalHookStartedId) &&         
+            testRunHookStartedId.equals(that.testRunHookStartedId) &&         
             result.equals(that.result) &&         
             timestamp.equals(that.timestamp);        
     }
@@ -57,7 +57,7 @@ public final class GlobalHookFinished {
     @Override
     public int hashCode() {
         return Objects.hash(
-            globalHookStartedId,
+            testRunHookStartedId,
             result,
             timestamp
         );
@@ -65,8 +65,8 @@ public final class GlobalHookFinished {
 
     @Override
     public String toString() {
-        return "GlobalHookFinished{" +
-            "globalHookStartedId=" + globalHookStartedId +
+        return "TestRunHookFinished{" +
+            "testRunHookStartedId=" + testRunHookStartedId +
             ", result=" + result +
             ", timestamp=" + timestamp +
             '}';

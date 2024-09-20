@@ -12,16 +12,16 @@ use JsonSerializable;
 use Cucumber\Messages\DecodingException\SchemaViolationException;
 
 /**
- * Represents the GlobalHookStarted message in Cucumber's message protocol
+ * Represents the TestRunHookStarted message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
  */
-final class GlobalHookStarted implements JsonSerializable
+final class TestRunHookStarted implements JsonSerializable
 {
     use JsonEncodingTrait;
 
     /**
-     * Construct the GlobalHookStarted with all properties
+     * Construct the TestRunHookStarted with all properties
      *
      */
     public function __construct(

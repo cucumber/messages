@@ -22,8 +22,8 @@ schemas = \
 	./jsonschema/TestStepResult.json \
 	./jsonschema/TestStepFinished.json \
 	./jsonschema/TestStepStarted.json \
-	./jsonschema/GlobalHookFinished.json \
-	./jsonschema/GlobalHookStarted.json \
+	./jsonschema/TestRunHookFinished.json \
+	./jsonschema/TestRunHookStarted.json \
 	./jsonschema/UndefinedParameterType.json \
 	./jsonschema/Envelope.json
 

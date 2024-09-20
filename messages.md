@@ -44,8 +44,8 @@ will only have one of its fields set, which indicates the payload of the message
 | `testRunStarted` | [TestRunStarted](#testrunstarted) | no | |
 | `testStepFinished` | [TestStepFinished](#teststepfinished) | no | |
 | `testStepStarted` | [TestStepStarted](#teststepstarted) | no | |
-| `globalHookStarted` | [GlobalHookStarted](#globalhookstarted) | no | |
-| `globalHookFinished` | [GlobalHookFinished](#globalhookfinished) | no | |
+| `testRunHookStarted` | [TestRunHookStarted](#testrunhookstarted) | no | |
+| `testRunHookFinished` | [TestRunHookFinished](#testrunhookfinished) | no | |
 | `undefinedParameterType` | [UndefinedParameterType](#undefinedparametertype) | no | |
 
 ## Exception
@@ -197,23 +197,6 @@ will only have one of its fields set, which indicates the payload of the message
 | `location` | [Location](#location) | yes | |
 | `name` | string | yes | |
 | `id` | string | yes | |
-
-## GlobalHookFinished
-
-| Field | Type | Required    | Description |
-| ----- | ---- | ----------- | ----------- |
-| `globalHookStartedId` | string | yes | |
-| `result` | [TestStepResult](#teststepresult) | yes | |
-| `timestamp` | [Timestamp](#timestamp) | yes | |
-
-## GlobalHookStarted
-
-| Field | Type | Required    | Description |
-| ----- | ---- | ----------- | ----------- |
-| `id` | string | yes | |
-| `testRunStartedId` | string | yes | |
-| `hookId` | string | yes | |
-| `timestamp` | [Timestamp](#timestamp) | yes | |
 
 ## Hook
 
@@ -461,6 +444,23 @@ will only have one of its fields set, which indicates the payload of the message
 | `timestamp` | [Timestamp](#timestamp) | yes | |
 | `exception` | [Exception](#exception) | no | |
 | `testRunStartedId` | string | no | |
+
+## TestRunHookFinished
+
+| Field | Type | Required    | Description |
+| ----- | ---- | ----------- | ----------- |
+| `testRunHookStartedId` | string | yes | |
+| `result` | [TestStepResult](#teststepresult) | yes | |
+| `timestamp` | [Timestamp](#timestamp) | yes | |
+
+## TestRunHookStarted
+
+| Field | Type | Required    | Description |
+| ----- | ---- | ----------- | ----------- |
+| `id` | string | yes | |
+| `testRunStartedId` | string | yes | |
+| `hookId` | string | yes | |
+| `timestamp` | [Timestamp](#timestamp) | yes | |
 
 ## TestRunStarted
 

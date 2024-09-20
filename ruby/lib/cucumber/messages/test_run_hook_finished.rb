@@ -4,42 +4,42 @@
 module Cucumber
   module Messages
     ##
-    # Represents the GlobalHookFinished message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
+    # Represents the TestRunHookFinished message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     ##
-    class GlobalHookFinished < Message
+    class TestRunHookFinished < Message
       ##
       # Identifier for the hook execution that has finished
       ##
-      attr_reader :global_hook_started_id
+      attr_reader :test_run_hook_started_id
 
       attr_reader :result
 
       attr_reader :timestamp
 
       def initialize(
-        global_hook_started_id: '',
+        test_run_hook_started_id: '',
         result: TestStepResult.new,
         timestamp: Timestamp.new
       )
-        @global_hook_started_id = global_hook_started_id
+        @test_run_hook_started_id = test_run_hook_started_id
         @result = result
         @timestamp = timestamp
         super()
       end
 
       ##
-      # Returns a new GlobalHookFinished from the given hash.
+      # Returns a new TestRunHookFinished from the given hash.
       # If the hash keys are camelCased, they are properly assigned to the
       # corresponding snake_cased attributes.
       #
-      #   Cucumber::Messages::GlobalHookFinished.from_h(some_hash) # => #<Cucumber::Messages::GlobalHookFinished:0x... ...>
+      #   Cucumber::Messages::TestRunHookFinished.from_h(some_hash) # => #<Cucumber::Messages::TestRunHookFinished:0x... ...>
       ##
       def self.from_h(hash)
         return nil if hash.nil?
 
         new(
-          global_hook_started_id: hash[:globalHookStartedId],
+          test_run_hook_started_id: hash[:testRunHookStartedId],
           result: TestStepResult.from_h(hash[:result]),
           timestamp: Timestamp.from_h(hash[:timestamp])
         )

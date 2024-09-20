@@ -48,9 +48,9 @@ module Cucumber
 
       attr_reader :test_step_started
 
-      attr_reader :global_hook_started
+      attr_reader :test_run_hook_started
 
-      attr_reader :global_hook_finished
+      attr_reader :test_run_hook_finished
 
       attr_reader :undefined_parameter_type
 
@@ -71,8 +71,8 @@ module Cucumber
         test_run_started: nil,
         test_step_finished: nil,
         test_step_started: nil,
-        global_hook_started: nil,
-        global_hook_finished: nil,
+        test_run_hook_started: nil,
+        test_run_hook_finished: nil,
         undefined_parameter_type: nil
       )
         @attachment = attachment
@@ -91,8 +91,8 @@ module Cucumber
         @test_run_started = test_run_started
         @test_step_finished = test_step_finished
         @test_step_started = test_step_started
-        @global_hook_started = global_hook_started
-        @global_hook_finished = global_hook_finished
+        @test_run_hook_started = test_run_hook_started
+        @test_run_hook_finished = test_run_hook_finished
         @undefined_parameter_type = undefined_parameter_type
         super()
       end
@@ -124,8 +124,8 @@ module Cucumber
           test_run_started: TestRunStarted.from_h(hash[:testRunStarted]),
           test_step_finished: TestStepFinished.from_h(hash[:testStepFinished]),
           test_step_started: TestStepStarted.from_h(hash[:testStepStarted]),
-          global_hook_started: GlobalHookStarted.from_h(hash[:globalHookStarted]),
-          global_hook_finished: GlobalHookFinished.from_h(hash[:globalHookFinished]),
+          test_run_hook_started: TestRunHookStarted.from_h(hash[:testRunHookStarted]),
+          test_run_hook_finished: TestRunHookFinished.from_h(hash[:testRunHookFinished]),
           undefined_parameter_type: UndefinedParameterType.from_h(hash[:undefinedParameterType])
         )
       end
