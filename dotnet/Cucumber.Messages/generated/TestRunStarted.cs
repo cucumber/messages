@@ -25,9 +25,9 @@ public sealed class TestRunStarted
         string id
     ) 
     {
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunStarted.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
-              this.Id = id;
+        this.Id = id;
     }
 
     public override bool Equals(Object o) 

@@ -4,7 +4,12 @@ using System.Reflection;
 
 namespace Io.Cucumber.Messages.Types;
 
-// Generated code
+// ------------------------------------------------------------------------------
+// This code was generated based on the Cucumber JSON schema
+// Changes to this file may cause incorrect behavior and will be lost if 
+// the code is regenerated.
+// ------------------------------------------------------------------------------
+
 public enum PickleStepType {
 
     [Description("Unknown")]

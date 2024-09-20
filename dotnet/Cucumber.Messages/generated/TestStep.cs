@@ -30,12 +30,12 @@ public sealed class TestStep
     public string PickleStepId { get; private set; }
     /**
      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
+     * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
+     * and a size of 2+ means `AMBIGUOUS`
      */
     public List<string> StepDefinitionIds { get; private set; }
     /**
      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
-     * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-     * and a size of 2+ means `AMBIGUOUS`
      */
     public List<StepMatchArgumentsList> StepMatchArgumentsLists { get; private set; }
 
@@ -48,12 +48,12 @@ public sealed class TestStep
         List<StepMatchArgumentsList> stepMatchArgumentsLists
     ) 
     {
-              this.HookId = hookId;
-              RequireNonNull<string>(id, "Id", "TestStep.Id cannot be null");
+        this.HookId = hookId;
+        RequireNonNull<string>(id, "Id", "TestStep.Id cannot be null");
         this.Id = id;
-              this.PickleStepId = pickleStepId;
-              this.StepDefinitionIds = new List<string>(stepDefinitionIds);
-              this.StepMatchArgumentsLists = new List<StepMatchArgumentsList>(stepMatchArgumentsLists);
+        this.PickleStepId = pickleStepId;
+        this.StepDefinitionIds = stepDefinitionIds == null ? null : new List<string>(stepDefinitionIds);
+        this.StepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : new List<StepMatchArgumentsList>(stepMatchArgumentsLists);
     }
 
     public override bool Equals(Object o) 

@@ -30,9 +30,9 @@ public sealed class PickleTag
         string astNodeId
     ) 
     {
-              RequireNonNull<string>(name, "Name", "PickleTag.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "PickleTag.Name cannot be null");
         this.Name = name;
-              RequireNonNull<string>(astNodeId, "AstNodeId", "PickleTag.AstNodeId cannot be null");
+        RequireNonNull<string>(astNodeId, "AstNodeId", "PickleTag.AstNodeId cannot be null");
         this.AstNodeId = astNodeId;
     }
 

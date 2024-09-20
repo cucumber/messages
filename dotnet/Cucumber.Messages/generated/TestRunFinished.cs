@@ -43,13 +43,13 @@ public sealed class TestRunFinished
         string testRunStartedId
     ) 
     {
-              this.Message = message;
-              RequireNonNull<bool>(success, "Success", "TestRunFinished.Success cannot be null");
+        this.Message = message;
+        RequireNonNull<bool>(success, "Success", "TestRunFinished.Success cannot be null");
         this.Success = success;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunFinished.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunFinished.Timestamp cannot be null");
         this.Timestamp = timestamp;
-              this.Exception = exception;
-              this.TestRunStartedId = testRunStartedId;
+        this.Exception = exception;
+        this.TestRunStartedId = testRunStartedId;
     }
 
     public override bool Equals(Object o) 

@@ -33,9 +33,9 @@ public sealed class TableCell
         string value
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "TableCell.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "TableCell.Location cannot be null");
         this.Location = location;
-              RequireNonNull<string>(value, "Value", "TableCell.Value cannot be null");
+        RequireNonNull<string>(value, "Value", "TableCell.Value cannot be null");
         this.Value = value;
     }
 

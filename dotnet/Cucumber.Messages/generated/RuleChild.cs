@@ -43,8 +43,8 @@ public sealed class RuleChild
         Scenario scenario
     ) 
     {
-              this.Background = background;
-              this.Scenario = scenario;
+        this.Background = background;
+        this.Scenario = scenario;
     }
 
     public override bool Equals(Object o) 

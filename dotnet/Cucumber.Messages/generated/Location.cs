@@ -27,9 +27,9 @@ public sealed class Location
         Nullable<long> column
     ) 
     {
-              RequireNonNull<long>(line, "Line", "Location.Line cannot be null");
+        RequireNonNull<long>(line, "Line", "Location.Line cannot be null");
         this.Line = line;
-              this.Column = column;
+        this.Column = column;
     }
 
     public override bool Equals(Object o) 

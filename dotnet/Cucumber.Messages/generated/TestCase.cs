@@ -39,13 +39,13 @@ public sealed class TestCase
         string testRunStartedId
     ) 
     {
-              RequireNonNull<string>(id, "Id", "TestCase.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "TestCase.Id cannot be null");
         this.Id = id;
-              RequireNonNull<string>(pickleId, "PickleId", "TestCase.PickleId cannot be null");
+        RequireNonNull<string>(pickleId, "PickleId", "TestCase.PickleId cannot be null");
         this.PickleId = pickleId;
-              RequireNonNull<List<TestStep>>(testSteps, "TestSteps", "TestCase.TestSteps cannot be null");
-        this.TestSteps = new List<TestStep>(testSteps);
-              this.TestRunStartedId = testRunStartedId;
+        RequireNonNull<List<TestStep>>(testSteps, "TestSteps", "TestCase.TestSteps cannot be null");
+        this.TestSteps = new List<TestStep>(testSteps);        
+        this.TestRunStartedId = testRunStartedId;
     }
 
     public override bool Equals(Object o) 

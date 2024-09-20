@@ -32,12 +32,12 @@ public sealed class Git
         string tag
     ) 
     {
-              RequireNonNull<string>(remote, "Remote", "Git.Remote cannot be null");
+        RequireNonNull<string>(remote, "Remote", "Git.Remote cannot be null");
         this.Remote = remote;
-              RequireNonNull<string>(revision, "Revision", "Git.Revision cannot be null");
+        RequireNonNull<string>(revision, "Revision", "Git.Revision cannot be null");
         this.Revision = revision;
-              this.Branch = branch;
-              this.Tag = tag;
+        this.Branch = branch;
+        this.Tag = tag;
     }
 
     public override bool Equals(Object o) 

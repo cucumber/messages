@@ -36,17 +36,17 @@ public sealed class Background
         string id
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "Background.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "Background.Location cannot be null");
         this.Location = location;
-              RequireNonNull<string>(keyword, "Keyword", "Background.Keyword cannot be null");
+        RequireNonNull<string>(keyword, "Keyword", "Background.Keyword cannot be null");
         this.Keyword = keyword;
-              RequireNonNull<string>(name, "Name", "Background.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "Background.Name cannot be null");
         this.Name = name;
-              RequireNonNull<string>(description, "Description", "Background.Description cannot be null");
+        RequireNonNull<string>(description, "Description", "Background.Description cannot be null");
         this.Description = description;
-              RequireNonNull<List<Step>>(steps, "Steps", "Background.Steps cannot be null");
-        this.Steps = new List<Step>(steps);
-              RequireNonNull<string>(id, "Id", "Background.Id cannot be null");
+        RequireNonNull<List<Step>>(steps, "Steps", "Background.Steps cannot be null");
+        this.Steps = new List<Step>(steps);        
+        RequireNonNull<string>(id, "Id", "Background.Id cannot be null");
         this.Id = id;
     }
 

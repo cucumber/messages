@@ -36,17 +36,17 @@ public sealed class ParameterType
         SourceReference sourceReference
     ) 
     {
-              RequireNonNull<string>(name, "Name", "ParameterType.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "ParameterType.Name cannot be null");
         this.Name = name;
-              RequireNonNull<List<string>>(regularExpressions, "RegularExpressions", "ParameterType.RegularExpressions cannot be null");
-        this.RegularExpressions = new List<string>(regularExpressions);
-              RequireNonNull<bool>(preferForRegularExpressionMatch, "PreferForRegularExpressionMatch", "ParameterType.PreferForRegularExpressionMatch cannot be null");
+        RequireNonNull<List<string>>(regularExpressions, "RegularExpressions", "ParameterType.RegularExpressions cannot be null");
+        this.RegularExpressions = new List<string>(regularExpressions);        
+        RequireNonNull<bool>(preferForRegularExpressionMatch, "PreferForRegularExpressionMatch", "ParameterType.PreferForRegularExpressionMatch cannot be null");
         this.PreferForRegularExpressionMatch = preferForRegularExpressionMatch;
-              RequireNonNull<bool>(useForSnippets, "UseForSnippets", "ParameterType.UseForSnippets cannot be null");
+        RequireNonNull<bool>(useForSnippets, "UseForSnippets", "ParameterType.UseForSnippets cannot be null");
         this.UseForSnippets = useForSnippets;
-              RequireNonNull<string>(id, "Id", "ParameterType.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "ParameterType.Id cannot be null");
         this.Id = id;
-              this.SourceReference = sourceReference;
+        this.SourceReference = sourceReference;
     }
 
     public override bool Equals(Object o) 

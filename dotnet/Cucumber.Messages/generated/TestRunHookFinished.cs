@@ -30,11 +30,11 @@ public sealed class TestRunHookFinished
         Timestamp timestamp
     ) 
     {
-              RequireNonNull<string>(testRunHookStartedId, "TestRunHookStartedId", "TestRunHookFinished.TestRunHookStartedId cannot be null");
+        RequireNonNull<string>(testRunHookStartedId, "TestRunHookStartedId", "TestRunHookFinished.TestRunHookStartedId cannot be null");
         this.TestRunHookStartedId = testRunHookStartedId;
-              RequireNonNull<TestStepResult>(result, "Result", "TestRunHookFinished.Result cannot be null");
+        RequireNonNull<TestStepResult>(result, "Result", "TestRunHookFinished.Result cannot be null");
         this.Result = result;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunHookFinished.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunHookFinished.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
 

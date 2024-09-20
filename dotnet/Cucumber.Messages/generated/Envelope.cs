@@ -541,25 +541,25 @@ public sealed class Envelope
         UndefinedParameterType undefinedParameterType
     ) 
     {
-              this.Attachment = attachment;
-              this.GherkinDocument = gherkinDocument;
-              this.Hook = hook;
-              this.Meta = meta;
-              this.ParameterType = parameterType;
-              this.ParseError = parseError;
-              this.Pickle = pickle;
-              this.Source = source;
-              this.StepDefinition = stepDefinition;
-              this.TestCase = testCase;
-              this.TestCaseFinished = testCaseFinished;
-              this.TestCaseStarted = testCaseStarted;
-              this.TestRunFinished = testRunFinished;
-              this.TestRunStarted = testRunStarted;
-              this.TestStepFinished = testStepFinished;
-              this.TestStepStarted = testStepStarted;
-              this.TestRunHookStarted = testRunHookStarted;
-              this.TestRunHookFinished = testRunHookFinished;
-              this.UndefinedParameterType = undefinedParameterType;
+        this.Attachment = attachment;
+        this.GherkinDocument = gherkinDocument;
+        this.Hook = hook;
+        this.Meta = meta;
+        this.ParameterType = parameterType;
+        this.ParseError = parseError;
+        this.Pickle = pickle;
+        this.Source = source;
+        this.StepDefinition = stepDefinition;
+        this.TestCase = testCase;
+        this.TestCaseFinished = testCaseFinished;
+        this.TestCaseStarted = testCaseStarted;
+        this.TestRunFinished = testRunFinished;
+        this.TestRunStarted = testRunStarted;
+        this.TestStepFinished = testStepFinished;
+        this.TestStepStarted = testStepStarted;
+        this.TestRunHookStarted = testRunHookStarted;
+        this.TestRunHookFinished = testRunHookFinished;
+        this.UndefinedParameterType = undefinedParameterType;
     }
 
     public override bool Equals(Object o) 

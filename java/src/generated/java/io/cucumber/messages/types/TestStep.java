@@ -57,6 +57,8 @@ public final class TestStep {
 
     /**
       * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
+     * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
+     * and a size of 2+ means `AMBIGUOUS`
      */
     public Optional<java.util.List<String>> getStepDefinitionIds() {
         return Optional.ofNullable(stepDefinitionIds);
@@ -64,8 +66,6 @@ public final class TestStep {
 
     /**
       * A list of list of StepMatchArgument (if derived from a `PickleStep`).
-     * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-     * and a size of 2+ means `AMBIGUOUS`
      */
     public Optional<java.util.List<StepMatchArgumentsList>> getStepMatchArgumentsLists() {
         return Optional.ofNullable(stepMatchArgumentsLists);

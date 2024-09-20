@@ -72,10 +72,10 @@ public sealed class SourceReference
         Location location
     ) 
     {
-              this.Uri = uri;
-              this.JavaMethod = javaMethod;
-              this.JavaStackTraceElement = javaStackTraceElement;
-              this.Location = location;
+        this.Uri = uri;
+        this.JavaMethod = javaMethod;
+        this.JavaStackTraceElement = javaStackTraceElement;
+        this.Location = location;
     }
 
     public override bool Equals(Object o) 

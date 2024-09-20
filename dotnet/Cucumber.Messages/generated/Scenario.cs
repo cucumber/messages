@@ -40,21 +40,21 @@ public sealed class Scenario
         string id
     ) 
     {
-              RequireNonNull<Location>(location, "Location", "Scenario.Location cannot be null");
+        RequireNonNull<Location>(location, "Location", "Scenario.Location cannot be null");
         this.Location = location;
-              RequireNonNull<List<Tag>>(tags, "Tags", "Scenario.Tags cannot be null");
-        this.Tags = new List<Tag>(tags);
-              RequireNonNull<string>(keyword, "Keyword", "Scenario.Keyword cannot be null");
+        RequireNonNull<List<Tag>>(tags, "Tags", "Scenario.Tags cannot be null");
+        this.Tags = new List<Tag>(tags);        
+        RequireNonNull<string>(keyword, "Keyword", "Scenario.Keyword cannot be null");
         this.Keyword = keyword;
-              RequireNonNull<string>(name, "Name", "Scenario.Name cannot be null");
+        RequireNonNull<string>(name, "Name", "Scenario.Name cannot be null");
         this.Name = name;
-              RequireNonNull<string>(description, "Description", "Scenario.Description cannot be null");
+        RequireNonNull<string>(description, "Description", "Scenario.Description cannot be null");
         this.Description = description;
-              RequireNonNull<List<Step>>(steps, "Steps", "Scenario.Steps cannot be null");
-        this.Steps = new List<Step>(steps);
-              RequireNonNull<List<Examples>>(examples, "Examples", "Scenario.Examples cannot be null");
-        this.Examples = new List<Examples>(examples);
-              RequireNonNull<string>(id, "Id", "Scenario.Id cannot be null");
+        RequireNonNull<List<Step>>(steps, "Steps", "Scenario.Steps cannot be null");
+        this.Steps = new List<Step>(steps);        
+        RequireNonNull<List<Examples>>(examples, "Examples", "Scenario.Examples cannot be null");
+        this.Examples = new List<Examples>(examples);        
+        RequireNonNull<string>(id, "Id", "Scenario.Id cannot be null");
         this.Id = id;
     }
 

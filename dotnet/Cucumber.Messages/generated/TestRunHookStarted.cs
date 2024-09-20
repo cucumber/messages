@@ -38,13 +38,13 @@ public sealed class TestRunHookStarted
         Timestamp timestamp
     ) 
     {
-              RequireNonNull<string>(id, "Id", "TestRunHookStarted.Id cannot be null");
+        RequireNonNull<string>(id, "Id", "TestRunHookStarted.Id cannot be null");
         this.Id = id;
-              RequireNonNull<string>(testRunStartedId, "TestRunStartedId", "TestRunHookStarted.TestRunStartedId cannot be null");
+        RequireNonNull<string>(testRunStartedId, "TestRunStartedId", "TestRunHookStarted.TestRunStartedId cannot be null");
         this.TestRunStartedId = testRunStartedId;
-              RequireNonNull<string>(hookId, "HookId", "TestRunHookStarted.HookId cannot be null");
+        RequireNonNull<string>(hookId, "HookId", "TestRunHookStarted.HookId cannot be null");
         this.HookId = hookId;
-              RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunHookStarted.Timestamp cannot be null");
+        RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunHookStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
 

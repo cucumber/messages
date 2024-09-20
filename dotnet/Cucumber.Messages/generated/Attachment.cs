@@ -88,18 +88,18 @@ public sealed class Attachment
         string testRunStartedId
     ) 
     {
-              RequireNonNull<string>(body, "Body", "Attachment.Body cannot be null");
+        RequireNonNull<string>(body, "Body", "Attachment.Body cannot be null");
         this.Body = body;
-              RequireNonNull<AttachmentContentEncoding>(contentEncoding, "ContentEncoding", "Attachment.ContentEncoding cannot be null");
+        RequireNonNull<AttachmentContentEncoding>(contentEncoding, "ContentEncoding", "Attachment.ContentEncoding cannot be null");
         this.ContentEncoding = contentEncoding;
-              this.FileName = fileName;
-              RequireNonNull<string>(mediaType, "MediaType", "Attachment.MediaType cannot be null");
+        this.FileName = fileName;
+        RequireNonNull<string>(mediaType, "MediaType", "Attachment.MediaType cannot be null");
         this.MediaType = mediaType;
-              this.Source = source;
-              this.TestCaseStartedId = testCaseStartedId;
-              this.TestStepId = testStepId;
-              this.Url = url;
-              this.TestRunStartedId = testRunStartedId;
+        this.Source = source;
+        this.TestCaseStartedId = testCaseStartedId;
+        this.TestStepId = testStepId;
+        this.Url = url;
+        this.TestRunStartedId = testRunStartedId;
     }
 
     public override bool Equals(Object o) 
