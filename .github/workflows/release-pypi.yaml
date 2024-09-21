@@ -26,6 +26,12 @@ jobs:
       - name: Show Python version
         run: python --version
 
+      - name: Generate code
+        working-directory: ./python
+        run: |
+          make clean-real
+          make generate-real
+
       - uses: cucumber/action-publish-pypi@v3.0.0
         with:
           working-directory: "python"
