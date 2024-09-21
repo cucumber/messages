@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - [Go] Switch to Google's UUID module ([#251](https://github.com/cucumber/messages/pull/251))
 
+### Added
+- [Python] Added Python implementation ([#165](https://github.com/cucumber/messages/pull/165))
+
 ## [26.0.0] - 2024-08-15
 ### Added
 - [Dotnet] Added support classes aligned with what is provided for the Java implementation ([#233](https://github.com/cucumber/messages/pull/233) [clrudolphi](https://github.com/clrudolphi))
