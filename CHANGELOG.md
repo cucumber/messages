@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- BREAKING CHANGE: Add `id` property to `TestRunStarted`, optionally reference in `Attachment`, TestCase` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
+- BREAKING CHANGE: Add `id` property to `TestRunStarted`, optionally reference in `Attachment` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
 - BREAKING CHANGE: Add `type` property to `Hook` ([#102](https://github.com/cucumber/messages/pull/102))
 - Add new `TestRunHookStarted` and `TestRunHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
 

@@ -13,7 +13,6 @@ test_case::to_string() const
     cucumber::messages::to_string(oss, "id=", id);
     cucumber::messages::to_string(oss, ", pickle_id=", pickle_id);
     cucumber::messages::to_string(oss, ", test_steps=", test_steps);
-    cucumber::messages::to_string(oss, ", test_run_started_id=", test_run_started_id);
 
     return oss.str();
 }
@@ -24,7 +23,6 @@ test_case::to_json(json& j) const
     cucumber::messages::to_json(j, camelize("id"), id);
     cucumber::messages::to_json(j, camelize("pickle_id"), pickle_id);
     cucumber::messages::to_json(j, camelize("test_steps"), test_steps);
-    cucumber::messages::to_json(j, camelize("test_run_started_id"), test_run_started_id);
 }
 
 std::string

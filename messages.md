@@ -385,7 +385,6 @@ will only have one of its fields set, which indicates the payload of the message
 | `id` | string | yes | |
 | `pickleId` | string | yes | |
 | `testSteps` | [TestStep](#teststep)[] | yes | |
-| `testRunStartedId` | string | no | |
 
 ## Group
 

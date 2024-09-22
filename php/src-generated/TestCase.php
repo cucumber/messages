@@ -35,11 +35,6 @@ final class TestCase implements JsonSerializable
          */
         public readonly string $pickleId = '',
         public readonly array $testSteps = [],
-
-        /**
-         * Identifier for the test run that this case belongs to
-         */
-        public readonly ?string $testRunStartedId = null,
     ) {
     }
 
@@ -53,13 +48,11 @@ final class TestCase implements JsonSerializable
         self::ensureId($arr);
         self::ensurePickleId($arr);
         self::ensureTestSteps($arr);
-        self::ensureTestRunStartedId($arr);
 
         return new self(
             (string) $arr['id'],
             (string) $arr['pickleId'],
             array_values(array_map(fn (array $member) => TestStep::fromArray($member), $arr['testSteps'])),
-            isset($arr['testRunStartedId']) ? (string) $arr['testRunStartedId'] : null,
         );
     }
 
@@ -99,16 +92,6 @@ final class TestCase implements JsonSerializable
         }
         if (array_key_exists('testSteps', $arr) && !is_array($arr['testSteps'])) {
             throw new SchemaViolationException('Property \'testSteps\' was not array');
-        }
-    }
-
-    /**
-     * @psalm-assert array{testRunStartedId?: string|int|bool} $arr
-     */
-    private static function ensureTestRunStartedId(array $arr): void
-    {
-        if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
-            throw new SchemaViolationException('Property \'testRunStartedId\' was array');
         }
     }
 }

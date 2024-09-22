@@ -22,21 +22,14 @@ module Cucumber
 
       attr_reader :test_steps
 
-      ##
-      # Identifier for the test run that this case belongs to
-      ##
-      attr_reader :test_run_started_id
-
       def initialize(
         id: '',
         pickle_id: '',
-        test_steps: [],
-        test_run_started_id: nil
+        test_steps: []
       )
         @id = id
         @pickle_id = pickle_id
         @test_steps = test_steps
-        @test_run_started_id = test_run_started_id
         super()
       end
 
@@ -53,8 +46,7 @@ module Cucumber
         new(
           id: hash[:id],
           pickle_id: hash[:pickleId],
-          test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) },
-          test_run_started_id: hash[:testRunStartedId]
+          test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) }
         )
       end
     end

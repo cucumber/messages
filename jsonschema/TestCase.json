@@ -116,10 +116,6 @@
         "$ref": "#/definitions/TestStep"
       },
       "type": "array"
-    },
-    "testRunStartedId": {
-      "description": "Identifier for the test run that this case belongs to",
-      "type": "string"
     }
   },
   "type": "object"
