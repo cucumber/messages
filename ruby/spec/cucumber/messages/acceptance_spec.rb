@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
-require 'cucumber-compatibility-kit'
+require 'cck/examples'
 
 module Cucumber
   module Messages
