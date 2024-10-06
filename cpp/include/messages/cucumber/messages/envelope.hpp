@@ -22,6 +22,8 @@
 #include <cucumber/messages/test_run_started.hpp>
 #include <cucumber/messages/test_step_finished.hpp>
 #include <cucumber/messages/test_step_started.hpp>
+#include <cucumber/messages/test_run_hook_started.hpp>
+#include <cucumber/messages/test_run_hook_finished.hpp>
 #include <cucumber/messages/undefined_parameter_type.hpp>
 
 namespace cucumber::messages {
@@ -59,6 +61,8 @@ struct envelope
     std::optional<cucumber::messages::test_run_started> test_run_started;
     std::optional<cucumber::messages::test_step_finished> test_step_finished;
     std::optional<cucumber::messages::test_step_started> test_step_started;
+    std::optional<cucumber::messages::test_run_hook_started> test_run_hook_started;
+    std::optional<cucumber::messages::test_run_hook_finished> test_run_hook_finished;
     std::optional<cucumber::messages::undefined_parameter_type> undefined_parameter_type;
 
     std::string to_string() const;

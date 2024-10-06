@@ -16,16 +16,20 @@ module Cucumber
 
       attr_reader :tag_expression
 
+      attr_reader :type
+
       def initialize(
         id: '',
         name: nil,
         source_reference: SourceReference.new,
-        tag_expression: nil
+        tag_expression: nil,
+        type: nil
       )
         @id = id
         @name = name
         @source_reference = source_reference
         @tag_expression = tag_expression
+        @type = type
         super()
       end
 
@@ -43,7 +47,8 @@ module Cucumber
           id: hash[:id],
           name: hash[:name],
           source_reference: SourceReference.from_h(hash[:sourceReference]),
-          tag_expression: hash[:tagExpression]
+          tag_expression: hash[:tagExpression],
+          type: hash[:type]
         )
       end
     end

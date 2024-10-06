@@ -26,6 +26,8 @@ envelope::to_string() const
     cucumber::messages::to_string(oss, ", test_run_started=", test_run_started);
     cucumber::messages::to_string(oss, ", test_step_finished=", test_step_finished);
     cucumber::messages::to_string(oss, ", test_step_started=", test_step_started);
+    cucumber::messages::to_string(oss, ", test_run_hook_started=", test_run_hook_started);
+    cucumber::messages::to_string(oss, ", test_run_hook_finished=", test_run_hook_finished);
     cucumber::messages::to_string(oss, ", undefined_parameter_type=", undefined_parameter_type);
 
     return oss.str();
@@ -50,6 +52,8 @@ envelope::to_json(json& j) const
     cucumber::messages::to_json(j, camelize("test_run_started"), test_run_started);
     cucumber::messages::to_json(j, camelize("test_step_finished"), test_step_finished);
     cucumber::messages::to_json(j, camelize("test_step_started"), test_step_started);
+    cucumber::messages::to_json(j, camelize("test_run_hook_started"), test_run_hook_started);
+    cucumber::messages::to_json(j, camelize("test_run_hook_finished"), test_run_hook_finished);
     cucumber::messages::to_json(j, camelize("undefined_parameter_type"), undefined_parameter_type);
 }
 

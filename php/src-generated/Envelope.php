@@ -46,6 +46,8 @@ final class Envelope implements JsonSerializable
         public readonly ?TestRunStarted $testRunStarted = null,
         public readonly ?TestStepFinished $testStepFinished = null,
         public readonly ?TestStepStarted $testStepStarted = null,
+        public readonly ?TestRunHookStarted $testRunHookStarted = null,
+        public readonly ?TestRunHookFinished $testRunHookFinished = null,
         public readonly ?UndefinedParameterType $undefinedParameterType = null,
     ) {
     }
@@ -73,6 +75,8 @@ final class Envelope implements JsonSerializable
         self::ensureTestRunStarted($arr);
         self::ensureTestStepFinished($arr);
         self::ensureTestStepStarted($arr);
+        self::ensureTestRunHookStarted($arr);
+        self::ensureTestRunHookFinished($arr);
         self::ensureUndefinedParameterType($arr);
 
         return new self(
@@ -92,6 +96,8 @@ final class Envelope implements JsonSerializable
             isset($arr['testRunStarted']) ? TestRunStarted::fromArray($arr['testRunStarted']) : null,
             isset($arr['testStepFinished']) ? TestStepFinished::fromArray($arr['testStepFinished']) : null,
             isset($arr['testStepStarted']) ? TestStepStarted::fromArray($arr['testStepStarted']) : null,
+            isset($arr['testRunHookStarted']) ? TestRunHookStarted::fromArray($arr['testRunHookStarted']) : null,
+            isset($arr['testRunHookFinished']) ? TestRunHookFinished::fromArray($arr['testRunHookFinished']) : null,
             isset($arr['undefinedParameterType']) ? UndefinedParameterType::fromArray($arr['undefinedParameterType']) : null,
         );
     }
@@ -253,6 +259,26 @@ final class Envelope implements JsonSerializable
     {
         if (array_key_exists('testStepStarted', $arr) && !is_array($arr['testStepStarted'])) {
             throw new SchemaViolationException('Property \'testStepStarted\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{testRunHookStarted?: array} $arr
+     */
+    private static function ensureTestRunHookStarted(array $arr): void
+    {
+        if (array_key_exists('testRunHookStarted', $arr) && !is_array($arr['testRunHookStarted'])) {
+            throw new SchemaViolationException('Property \'testRunHookStarted\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{testRunHookFinished?: array} $arr
+     */
+    private static function ensureTestRunHookFinished(array $arr): void
+    {
+        if (array_key_exists('testRunHookFinished', $arr) && !is_array($arr['testRunHookFinished'])) {
+            throw new SchemaViolationException('Property \'testRunHookFinished\' was not array');
         }
     }
 

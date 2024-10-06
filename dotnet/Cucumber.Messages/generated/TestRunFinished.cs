@@ -32,13 +32,15 @@ public sealed class TestRunFinished
      * Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
      */
     public Exception Exception { get; private set; }
+    public string TestRunStartedId { get; private set; }
 
 
     public TestRunFinished(
         string message,
         bool success,
         Timestamp timestamp,
-        Exception exception
+        Exception exception,
+        string testRunStartedId
     ) 
     {
         this.Message = message;
@@ -47,6 +49,7 @@ public sealed class TestRunFinished
         RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunFinished.Timestamp cannot be null");
         this.Timestamp = timestamp;
         this.Exception = exception;
+        this.TestRunStartedId = testRunStartedId;
     }
 
     public override bool Equals(Object o) 
@@ -58,7 +61,8 @@ public sealed class TestRunFinished
             Object.Equals(Message, that.Message) &&         
             Success.Equals(that.Success) &&         
             Timestamp.Equals(that.Timestamp) &&         
-            Object.Equals(Exception, that.Exception);        
+            Object.Equals(Exception, that.Exception) &&         
+            Object.Equals(TestRunStartedId, that.TestRunStartedId);        
     }
 
     public override int GetHashCode() 
@@ -71,6 +75,8 @@ public sealed class TestRunFinished
           hash = hash * 31 + Timestamp.GetHashCode();
         if (Exception != null)
           hash = hash * 31 + Exception.GetHashCode();
+        if (TestRunStartedId != null)
+          hash = hash * 31 + TestRunStartedId.GetHashCode();
         return hash;
     }
 
@@ -81,6 +87,7 @@ public sealed class TestRunFinished
             ", success=" + Success +
             ", timestamp=" + Timestamp +
             ", exception=" + Exception +
+            ", testRunStartedId=" + TestRunStartedId +
             '}';
     }
 
