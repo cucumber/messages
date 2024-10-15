@@ -3741,6 +3741,7 @@ my %types = (
    id => 'string',
    pickle_id => 'string',
    test_steps => '[]Cucumber::Messages::TestStep',
+   test_run_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -3784,6 +3785,16 @@ has test_steps =>
     (is => 'ro',
      required => 1,
      default => sub { [] },
+    );
+
+
+=head4 test_run_started_id
+
+Identifier for the test run that this test case belongs to
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
     );
 
 

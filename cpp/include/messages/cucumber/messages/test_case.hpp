@@ -27,6 +27,7 @@ struct test_case
     std::string id;
     std::string pickle_id;
     std::vector<cucumber::messages::test_step> test_steps;
+    std::optional<std::string> test_run_started_id;
 
     std::string to_string() const;
 

@@ -294,9 +294,10 @@ type StepDefinitionPattern struct {
 }
 
 type TestCase struct {
-	Id        string      `json:"id"`
-	PickleId  string      `json:"pickleId"`
-	TestSteps []*TestStep `json:"testSteps"`
+	Id               string      `json:"id"`
+	PickleId         string      `json:"pickleId"`
+	TestSteps        []*TestStep `json:"testSteps"`
+	TestRunStartedId string      `json:"testRunStartedId,omitempty"`
 }
 
 type Group struct {

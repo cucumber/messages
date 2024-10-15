@@ -547,6 +547,8 @@ export class TestCase {
 
   @Type(() => TestStep)
   testSteps: readonly TestStep[] = []
+
+  testRunStartedId?: string
 }
 
 export class Group {
