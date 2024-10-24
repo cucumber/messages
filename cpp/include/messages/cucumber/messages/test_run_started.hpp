@@ -21,6 +21,7 @@ using json = nlohmann::json;
 struct test_run_started
 {
     cucumber::messages::timestamp timestamp;
+    std::optional<std::string> id;
 
     std::string to_string() const;
 

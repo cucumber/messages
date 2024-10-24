@@ -15,15 +15,22 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings("unused")
 public final class TestRunStarted {
     private final Timestamp timestamp;
+    private final String id;
 
     public TestRunStarted(
-        Timestamp timestamp
+        Timestamp timestamp,
+        String id
     ) {
         this.timestamp = requireNonNull(timestamp, "TestRunStarted.timestamp cannot be null");
+        this.id = id;
     }
 
     public Timestamp getTimestamp() {
         return timestamp;
+    }
+
+    public Optional<String> getId() {
+        return Optional.ofNullable(id);
     }
 
     @Override
@@ -32,13 +39,15 @@ public final class TestRunStarted {
         if (o == null || getClass() != o.getClass()) return false;
         TestRunStarted that = (TestRunStarted) o;
         return 
-            timestamp.equals(that.timestamp);        
+            timestamp.equals(that.timestamp) &&         
+            Objects.equals(id, that.id);        
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-            timestamp
+            timestamp,
+            id
         );
     }
 
@@ -46,6 +55,7 @@ public final class TestRunStarted {
     public String toString() {
         return "TestRunStarted{" +
             "timestamp=" + timestamp +
+            ", id=" + id +
             '}';
     }
 }

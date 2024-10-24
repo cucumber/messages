@@ -25,6 +25,7 @@ struct test_run_finished
     bool success;
     cucumber::messages::timestamp timestamp;
     std::optional<cucumber::messages::exception> exception;
+    std::optional<std::string> test_run_started_id;
 
     std::string to_string() const;
 

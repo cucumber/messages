@@ -79,6 +79,8 @@ module Cucumber
       ##
       attr_reader :url
 
+      attr_reader :test_run_started_id
+
       def initialize(
         body: '',
         content_encoding: AttachmentContentEncoding::IDENTITY,
@@ -87,7 +89,8 @@ module Cucumber
         source: nil,
         test_case_started_id: nil,
         test_step_id: nil,
-        url: nil
+        url: nil,
+        test_run_started_id: nil
       )
         @body = body
         @content_encoding = content_encoding
@@ -97,6 +100,7 @@ module Cucumber
         @test_case_started_id = test_case_started_id
         @test_step_id = test_step_id
         @url = url
+        @test_run_started_id = test_run_started_id
         super()
       end
 
@@ -118,7 +122,8 @@ module Cucumber
           source: Source.from_h(hash[:source]),
           test_case_started_id: hash[:testCaseStartedId],
           test_step_id: hash[:testStepId],
-          url: hash[:url]
+          url: hash[:url],
+          test_run_started_id: hash[:testRunStartedId]
         )
       end
     end

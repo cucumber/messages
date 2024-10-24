@@ -14,6 +14,7 @@ test_run_finished::to_string() const
     cucumber::messages::to_string(oss, ", success=", success);
     cucumber::messages::to_string(oss, ", timestamp=", timestamp);
     cucumber::messages::to_string(oss, ", exception=", exception);
+    cucumber::messages::to_string(oss, ", test_run_started_id=", test_run_started_id);
 
     return oss.str();
 }
@@ -25,6 +26,7 @@ test_run_finished::to_json(json& j) const
     cucumber::messages::to_json(j, camelize("success"), success);
     cucumber::messages::to_json(j, camelize("timestamp"), timestamp);
     cucumber::messages::to_json(j, camelize("exception"), exception);
+    cucumber::messages::to_json(j, camelize("test_run_started_id"), test_run_started_id);
 }
 
 std::string

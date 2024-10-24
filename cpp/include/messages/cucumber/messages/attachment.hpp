@@ -41,6 +41,7 @@ struct attachment
     std::optional<std::string> test_case_started_id;
     std::optional<std::string> test_step_id;
     std::optional<std::string> url;
+    std::optional<std::string> test_run_started_id;
 
     std::string to_string() const;
 

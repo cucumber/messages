@@ -29,6 +29,7 @@ final class Hook implements JsonSerializable
         public readonly ?string $name = null,
         public readonly SourceReference $sourceReference = new SourceReference(),
         public readonly ?string $tagExpression = null,
+        public readonly ?Hook\Type $type = null,
     ) {
     }
 
@@ -43,12 +44,14 @@ final class Hook implements JsonSerializable
         self::ensureName($arr);
         self::ensureSourceReference($arr);
         self::ensureTagExpression($arr);
+        self::ensureType($arr);
 
         return new self(
             (string) $arr['id'],
             isset($arr['name']) ? (string) $arr['name'] : null,
             SourceReference::fromArray($arr['sourceReference']),
             isset($arr['tagExpression']) ? (string) $arr['tagExpression'] : null,
+            isset($arr['type']) ? Hook\Type::from((string) $arr['type']) : null,
         );
     }
 
@@ -95,6 +98,16 @@ final class Hook implements JsonSerializable
     {
         if (array_key_exists('tagExpression', $arr) && is_array($arr['tagExpression'])) {
             throw new SchemaViolationException('Property \'tagExpression\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{type?: string|int|bool} $arr
+     */
+    private static function ensureType(array $arr): void
+    {
+        if (array_key_exists('type', $arr) && is_array($arr['type'])) {
+            throw new SchemaViolationException('Property \'type\' was array');
         }
     }
 }

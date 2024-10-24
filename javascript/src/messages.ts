@@ -19,6 +19,8 @@ export class Attachment {
   testStepId?: string
 
   url?: string
+
+  testRunStartedId?: string
 }
 
 export class Duration {
@@ -77,6 +79,12 @@ export class Envelope {
 
   @Type(() => TestStepStarted)
   testStepStarted?: TestStepStarted
+
+  @Type(() => TestRunHookStarted)
+  testRunHookStarted?: TestRunHookStarted
+
+  @Type(() => TestRunHookFinished)
+  testRunHookFinished?: TestRunHookFinished
 
   @Type(() => UndefinedParameterType)
   undefinedParameterType?: UndefinedParameterType
@@ -314,6 +322,8 @@ export class Hook {
   sourceReference: SourceReference = new SourceReference()
 
   tagExpression?: string
+
+  type?: HookType
 }
 
 export class Location {
@@ -537,6 +547,8 @@ export class TestCase {
 
   @Type(() => TestStep)
   testSteps: readonly TestStep[] = []
+
+  testRunStartedId?: string
 }
 
 export class Group {
@@ -612,12 +624,39 @@ export class TestRunFinished {
 
   @Type(() => Exception)
   exception?: Exception
+
+  testRunStartedId?: string
+}
+
+export class TestRunHookFinished {
+
+  testRunHookStartedId: string = ''
+
+  @Type(() => TestStepResult)
+  result: TestStepResult = new TestStepResult()
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
+}
+
+export class TestRunHookStarted {
+
+  id: string = ''
+
+  testRunStartedId: string = ''
+
+  hookId: string = ''
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
 }
 
 export class TestRunStarted {
 
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
+
+  id?: string
 }
 
 export class TestStepFinished {
@@ -673,6 +712,15 @@ export class UndefinedParameterType {
 export enum AttachmentContentEncoding {
   IDENTITY = 'IDENTITY',
   BASE64 = 'BASE64',
+}
+
+export enum HookType {
+  BEFORE_TEST_RUN = 'BEFORE_TEST_RUN',
+  AFTER_TEST_RUN = 'AFTER_TEST_RUN',
+  BEFORE_TEST_CASE = 'BEFORE_TEST_CASE',
+  AFTER_TEST_CASE = 'AFTER_TEST_CASE',
+  BEFORE_TEST_STEP = 'BEFORE_TEST_STEP',
+  AFTER_TEST_STEP = 'AFTER_TEST_STEP',
 }
 
 export enum PickleStepType {
