@@ -23,7 +23,7 @@ See [messages.md](messages.md) for a detailed description of each message type.
 ## Encoding
 
 When Cucumber Messages are stored in a file or sent over a network, they are
-encoded as [NDJSON](http://ndjson.org/). We call this a *message stream*.
+encoded as NDJSON. We call this a *message stream*.
 
 Each message in a message stream is of type [Envelope](messages.md#envelope).
 
