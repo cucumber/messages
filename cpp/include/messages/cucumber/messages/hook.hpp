@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 
 #include <cucumber/messages/source_reference.hpp>
+#include <cucumber/messages/hook_type.hpp>
 
 namespace cucumber::messages {
 
@@ -24,6 +25,7 @@ struct hook
     std::optional<std::string> name;
     cucumber::messages::source_reference source_reference;
     std::optional<std::string> tag_expression;
+    std::optional<cucumber::messages::hook_type> type;
 
     std::string to_string() const;
 

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add new `TestRunHookStarted` and `TestRunHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
+
+### Changed
+- BREAKING CHANGE: Add `id` property to `TestRunStarted`, optionally reference in `TestCase`, `Attachment` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
+- BREAKING CHANGE: Add `type` property to `Hook` ([#102](https://github.com/cucumber/messages/pull/102))
 
 ## [26.0.1] - 2024-09-22
 ### Changed

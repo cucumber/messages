@@ -47,6 +47,8 @@
 #include <cucumber/messages/test_case_finished.hpp>
 #include <cucumber/messages/test_case_started.hpp>
 #include <cucumber/messages/test_run_finished.hpp>
+#include <cucumber/messages/test_run_hook_finished.hpp>
+#include <cucumber/messages/test_run_hook_started.hpp>
 #include <cucumber/messages/test_run_started.hpp>
 #include <cucumber/messages/test_step_finished.hpp>
 #include <cucumber/messages/test_step_result.hpp>

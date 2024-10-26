@@ -41,6 +41,9 @@
     "url": {
       "description": "*\n A URL where the attachment can be retrieved. This field should not be set by Cucumber.\n It should be set by a program that reads a message stream and does the following for\n each Attachment message:\n\n - Writes the body (after base64 decoding if necessary) to a new file.\n - Sets `body` and `contentEncoding` to `null`\n - Writes out the new attachment message\n\n This will result in a smaller message stream, which can improve performance and\n reduce bandwidth of message consumers. It also makes it easier to process and download attachments\n separately from reports.",
       "type": "string"
+    },
+    "testRunStartedId": {
+      "type": "string"
     }
   },
   "type": "object"

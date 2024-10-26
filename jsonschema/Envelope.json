@@ -52,6 +52,12 @@
     "testStepStarted": {
       "$ref": "./TestStepStarted.json"
     },
+    "testRunHookStarted": {
+      "$ref": "TestRunHookStarted.json"
+    },
+    "testRunHookFinished": {
+      "$ref": "TestRunHookFinished.json"
+    },
     "undefinedParameterType": {
       "$ref": "./UndefinedParameterType.json"
     }

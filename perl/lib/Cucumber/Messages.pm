@@ -86,6 +86,7 @@ my %types = (
    test_case_started_id => 'string',
    test_step_id => 'string',
    url => 'string',
+   test_run_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -226,6 +227,16 @@ has url =>
     );
 
 
+=head4 test_run_started_id
+
+
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
+    );
+
+
 }
 
 package Cucumber::Messages::Duration {
@@ -334,6 +345,8 @@ my %types = (
    test_run_started => 'Cucumber::Messages::TestRunStarted',
    test_step_finished => 'Cucumber::Messages::TestStepFinished',
    test_step_started => 'Cucumber::Messages::TestStepStarted',
+   test_run_hook_started => 'Cucumber::Messages::TestRunHookStarted',
+   test_run_hook_finished => 'Cucumber::Messages::TestRunHookFinished',
    undefined_parameter_type => 'Cucumber::Messages::UndefinedParameterType',
 );
 
@@ -501,6 +514,26 @@ has test_step_finished =>
 =cut
 
 has test_step_started =>
+    (is => 'ro',
+    );
+
+
+=head4 test_run_hook_started
+
+
+=cut
+
+has test_run_hook_started =>
+    (is => 'ro',
+    );
+
+
+=head4 test_run_hook_finished
+
+
+=cut
+
+has test_run_hook_finished =>
     (is => 'ro',
     );
 
@@ -1990,6 +2023,7 @@ my %types = (
    name => 'string',
    source_reference => 'Cucumber::Messages::SourceReference',
    tag_expression => 'string',
+   type => '',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -2040,6 +2074,45 @@ has source_reference =>
 =cut
 
 has tag_expression =>
+    (is => 'ro',
+    );
+
+
+=head4 type
+
+
+
+Available constants for valid values of this field:
+
+=over
+
+=item * TYPE_BEFORE_TEST_RUN
+
+=item * TYPE_AFTER_TEST_RUN
+
+=item * TYPE_BEFORE_TEST_CASE
+
+=item * TYPE_AFTER_TEST_CASE
+
+=item * TYPE_BEFORE_TEST_STEP
+
+=item * TYPE_AFTER_TEST_STEP
+
+=back
+
+=cut
+
+
+use constant {
+   TYPE_BEFORE_TEST_RUN => 'BEFORE_TEST_RUN',
+   TYPE_AFTER_TEST_RUN => 'AFTER_TEST_RUN',
+   TYPE_BEFORE_TEST_CASE => 'BEFORE_TEST_CASE',
+   TYPE_AFTER_TEST_CASE => 'AFTER_TEST_CASE',
+   TYPE_BEFORE_TEST_STEP => 'BEFORE_TEST_STEP',
+   TYPE_AFTER_TEST_STEP => 'AFTER_TEST_STEP',
+   };
+
+has type =>
     (is => 'ro',
     );
 
@@ -3668,6 +3741,7 @@ my %types = (
    id => 'string',
    pickle_id => 'string',
    test_steps => '[]Cucumber::Messages::TestStep',
+   test_run_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -3711,6 +3785,16 @@ has test_steps =>
     (is => 'ro',
      required => 1,
      default => sub { [] },
+    );
+
+
+=head4 test_run_started_id
+
+Identifier for the test run that this test case belongs to
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
     );
 
 
@@ -4186,6 +4270,7 @@ my %types = (
    success => 'boolean',
    timestamp => 'Cucumber::Messages::Timestamp',
    exception => 'Cucumber::Messages::Exception',
+   test_run_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4240,6 +4325,173 @@ has exception =>
     );
 
 
+=head4 test_run_started_id
+
+
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
+    );
+
+
+}
+
+package Cucumber::Messages::TestRunHookFinished {
+
+=head2 Cucumber::Messages::TestRunHookFinished
+
+=head3 DESCRIPTION
+
+Represents the TestRunHookFinished message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   test_run_hook_started_id => 'string',
+   result => 'Cucumber::Messages::TestStepResult',
+   timestamp => 'Cucumber::Messages::Timestamp',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 test_run_hook_started_id
+
+Identifier for the hook execution that has finished
+=cut
+
+has test_run_hook_started_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 result
+
+
+=cut
+
+has result =>
+    (is => 'ro',
+     required => 1,
+     default => sub { Cucumber::Messages::TestStepResult->new() },
+    );
+
+
+=head4 timestamp
+
+
+=cut
+
+has timestamp =>
+    (is => 'ro',
+     required => 1,
+     default => sub { Cucumber::Messages::Timestamp->new() },
+    );
+
+
+}
+
+package Cucumber::Messages::TestRunHookStarted {
+
+=head2 Cucumber::Messages::TestRunHookStarted
+
+=head3 DESCRIPTION
+
+Represents the TestRunHookStarted message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   id => 'string',
+   test_run_started_id => 'string',
+   hook_id => 'string',
+   timestamp => 'Cucumber::Messages::Timestamp',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 id
+
+Unique identifier for this hook execution
+=cut
+
+has id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 test_run_started_id
+
+Identifier for the test run that this hook execution belongs to
+=cut
+
+has test_run_started_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 hook_id
+
+Identifier for the hook that will be executed
+=cut
+
+has hook_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 timestamp
+
+
+=cut
+
+has timestamp =>
+    (is => 'ro',
+     required => 1,
+     default => sub { Cucumber::Messages::Timestamp->new() },
+    );
+
+
 }
 
 package Cucumber::Messages::TestRunStarted {
@@ -4264,6 +4516,7 @@ use Scalar::Util qw( blessed );
 
 my %types = (
    timestamp => 'Cucumber::Messages::Timestamp',
+   id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -4283,6 +4536,16 @@ has timestamp =>
     (is => 'ro',
      required => 1,
      default => sub { Cucumber::Messages::Timestamp->new() },
+    );
+
+
+=head4 id
+
+
+=cut
+
+has id =>
+    (is => 'ro',
     );
 
 

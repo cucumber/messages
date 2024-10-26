@@ -30,7 +30,7 @@ namespace Cucumber.Messages.Specs
         {
             MemoryStream memoryStream = new MemoryStream();
             var writer = new MessageToNdjsonWriterSUT(memoryStream);
-            writer.Write(new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
+            writer.Write(new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
 
             var json = Encoding.UTF8.GetString(memoryStream.ToArray());
             Assert.Equal("{}"+Environment.NewLine, json);
@@ -42,7 +42,7 @@ namespace Cucumber.Messages.Specs
             MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes("{}\n{}\n\n{}\n"));
             var enumerator = new NdjsonMessageReaderSUT(memoryStream).GetEnumerator();
             
-            var expectedEnvelope = new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            var expectedEnvelope = new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
             for (int i = 0; i < 3; i++)
             {
                 Assert.True(enumerator.MoveNext());
@@ -63,19 +63,6 @@ namespace Cucumber.Messages.Specs
             Assert.Equal(AttachmentContentEncoding.BASE64, envelope.Attachment.ContentEncoding);
             Assert.Equal("the-body", envelope.Attachment.Body);
             Assert.Equal("text/plain", envelope.Attachment.MediaType);
-            Assert.False(enumerator.MoveNext());
-        }
-
-        [Fact]
-        public void Handles_Single_Argument_Constructor()
-        {
-            MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes("{\"testRunStarted\": {\"timestamp\":{\"nanos\":0,\"seconds\":0}}}\n"));
-            var enumerator = new NdjsonMessageReaderSUT(memoryStream).GetEnumerator();
-            Assert.True(enumerator.MoveNext());
-            Envelope envelope = enumerator.Current;
-            Envelope expected = Envelope.Create(new TestRunStarted(new Timestamp(0, 0)));
-
-            Assert.Equal(expected, envelope);
             Assert.False(enumerator.MoveNext());
         }
 

@@ -21,15 +21,18 @@ public final class TestCase {
     private final String id;
     private final String pickleId;
     private final java.util.List<TestStep> testSteps;
+    private final String testRunStartedId;
 
     public TestCase(
         String id,
         String pickleId,
-        java.util.List<TestStep> testSteps
+        java.util.List<TestStep> testSteps,
+        String testRunStartedId
     ) {
         this.id = requireNonNull(id, "TestCase.id cannot be null");
         this.pickleId = requireNonNull(pickleId, "TestCase.pickleId cannot be null");
         this.testSteps = unmodifiableList(new ArrayList<>(requireNonNull(testSteps, "TestCase.testSteps cannot be null")));
+        this.testRunStartedId = testRunStartedId;
     }
 
     public String getId() {
@@ -47,6 +50,13 @@ public final class TestCase {
         return testSteps;
     }
 
+    /**
+      * Identifier for the test run that this test case belongs to
+     */
+    public Optional<String> getTestRunStartedId() {
+        return Optional.ofNullable(testRunStartedId);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,7 +65,8 @@ public final class TestCase {
         return 
             id.equals(that.id) &&         
             pickleId.equals(that.pickleId) &&         
-            testSteps.equals(that.testSteps);        
+            testSteps.equals(that.testSteps) &&         
+            Objects.equals(testRunStartedId, that.testRunStartedId);        
     }
 
     @Override
@@ -63,7 +74,8 @@ public final class TestCase {
         return Objects.hash(
             id,
             pickleId,
-            testSteps
+            testSteps,
+            testRunStartedId
         );
     }
 
@@ -73,6 +85,7 @@ public final class TestCase {
             "id=" + id +
             ", pickleId=" + pickleId +
             ", testSteps=" + testSteps +
+            ", testRunStartedId=" + testRunStartedId +
             '}';
     }
 }

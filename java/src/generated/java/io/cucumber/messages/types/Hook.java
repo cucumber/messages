@@ -18,17 +18,20 @@ public final class Hook {
     private final String name;
     private final SourceReference sourceReference;
     private final String tagExpression;
+    private final HookType type;
 
     public Hook(
         String id,
         String name,
         SourceReference sourceReference,
-        String tagExpression
+        String tagExpression,
+        HookType type
     ) {
         this.id = requireNonNull(id, "Hook.id cannot be null");
         this.name = name;
         this.sourceReference = requireNonNull(sourceReference, "Hook.sourceReference cannot be null");
         this.tagExpression = tagExpression;
+        this.type = type;
     }
 
     public String getId() {
@@ -47,6 +50,10 @@ public final class Hook {
         return Optional.ofNullable(tagExpression);
     }
 
+    public Optional<HookType> getType() {
+        return Optional.ofNullable(type);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,7 +63,8 @@ public final class Hook {
             id.equals(that.id) &&         
             Objects.equals(name, that.name) &&         
             sourceReference.equals(that.sourceReference) &&         
-            Objects.equals(tagExpression, that.tagExpression);        
+            Objects.equals(tagExpression, that.tagExpression) &&         
+            Objects.equals(type, that.type);        
     }
 
     @Override
@@ -65,7 +73,8 @@ public final class Hook {
             id,
             name,
             sourceReference,
-            tagExpression
+            tagExpression,
+            type
         );
     }
 
@@ -76,6 +85,7 @@ public final class Hook {
             ", name=" + name +
             ", sourceReference=" + sourceReference +
             ", tagExpression=" + tagExpression +
+            ", type=" + type +
             '}';
     }
 }

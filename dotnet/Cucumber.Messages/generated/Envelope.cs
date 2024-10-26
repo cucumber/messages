@@ -39,6 +39,8 @@ public sealed class Envelope
     public TestRunStarted TestRunStarted { get; private set; }
     public TestStepFinished TestStepFinished { get; private set; }
     public TestStepStarted TestStepStarted { get; private set; }
+    public TestRunHookStarted TestRunHookStarted { get; private set; }
+    public TestRunHookFinished TestRunHookFinished { get; private set; }
     public UndefinedParameterType UndefinedParameterType { get; private set; }
 
 
@@ -46,6 +48,8 @@ public sealed class Envelope
     {
         return new Envelope(
             Require<Attachment>(attachment, "Attachment", "Envelope.Attachment cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -84,6 +88,8 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -94,6 +100,8 @@ public sealed class Envelope
             null,
             null,
             Require<Hook>(hook, "Hook", "Envelope.Hook cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -130,6 +138,8 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -142,6 +152,8 @@ public sealed class Envelope
             null,
             null,
             Require<ParameterType>(parameterType, "ParameterType", "Envelope.ParameterType cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -176,6 +188,8 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -190,6 +204,8 @@ public sealed class Envelope
             null,
             null,
             Require<Pickle>(pickle, "Pickle", "Envelope.Pickle cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -222,6 +238,8 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -238,6 +256,8 @@ public sealed class Envelope
             null,
             null,
             Require<StepDefinition>(stepDefinition, "StepDefinition", "Envelope.StepDefinition cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -268,6 +288,8 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -286,6 +308,8 @@ public sealed class Envelope
             null,
             null,
             Require<TestCaseFinished>(testCaseFinished, "TestCaseFinished", "Envelope.TestCaseFinished cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -314,6 +338,8 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -334,6 +360,8 @@ public sealed class Envelope
             null,
             null,
             Require<TestRunFinished>(testRunFinished, "TestRunFinished", "Envelope.TestRunFinished cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -360,6 +388,8 @@ public sealed class Envelope
             Require<TestRunStarted>(testRunStarted, "TestRunStarted", "Envelope.TestRunStarted cannot be null"),
             null,
             null,
+            null,
+            null,
             null
         );
     }
@@ -382,6 +412,8 @@ public sealed class Envelope
             null,
             null,
             Require<TestStepFinished>(testStepFinished, "TestStepFinished", "Envelope.TestStepFinished cannot be null"),
+            null,
+            null,
             null,
             null
         );
@@ -406,6 +438,58 @@ public sealed class Envelope
             null,
             null,
             Require<TestStepStarted>(testStepStarted, "TestStepStarted", "Envelope.TestStepStarted cannot be null"),
+            null,
+            null,
+            null
+        );
+    }
+
+    public static Envelope Create(TestRunHookStarted testRunHookStarted) 
+    {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            Require<TestRunHookStarted>(testRunHookStarted, "TestRunHookStarted", "Envelope.TestRunHookStarted cannot be null"),
+            null,
+            null
+        );
+    }
+
+    public static Envelope Create(TestRunHookFinished testRunHookFinished) 
+    {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            Require<TestRunHookFinished>(testRunHookFinished, "TestRunHookFinished", "Envelope.TestRunHookFinished cannot be null"),
             null
         );
     }
@@ -413,6 +497,8 @@ public sealed class Envelope
     public static Envelope Create(UndefinedParameterType undefinedParameterType) 
     {
         return new Envelope(
+            null,
+            null,
             null,
             null,
             null,
@@ -450,6 +536,8 @@ public sealed class Envelope
         TestRunStarted testRunStarted,
         TestStepFinished testStepFinished,
         TestStepStarted testStepStarted,
+        TestRunHookStarted testRunHookStarted,
+        TestRunHookFinished testRunHookFinished,
         UndefinedParameterType undefinedParameterType
     ) 
     {
@@ -469,6 +557,8 @@ public sealed class Envelope
         this.TestRunStarted = testRunStarted;
         this.TestStepFinished = testStepFinished;
         this.TestStepStarted = testStepStarted;
+        this.TestRunHookStarted = testRunHookStarted;
+        this.TestRunHookFinished = testRunHookFinished;
         this.UndefinedParameterType = undefinedParameterType;
     }
 
@@ -494,6 +584,8 @@ public sealed class Envelope
             Object.Equals(TestRunStarted, that.TestRunStarted) &&         
             Object.Equals(TestStepFinished, that.TestStepFinished) &&         
             Object.Equals(TestStepStarted, that.TestStepStarted) &&         
+            Object.Equals(TestRunHookStarted, that.TestRunHookStarted) &&         
+            Object.Equals(TestRunHookFinished, that.TestRunHookFinished) &&         
             Object.Equals(UndefinedParameterType, that.UndefinedParameterType);        
     }
 
@@ -532,6 +624,10 @@ public sealed class Envelope
           hash = hash * 31 + TestStepFinished.GetHashCode();
         if (TestStepStarted != null)
           hash = hash * 31 + TestStepStarted.GetHashCode();
+        if (TestRunHookStarted != null)
+          hash = hash * 31 + TestRunHookStarted.GetHashCode();
+        if (TestRunHookFinished != null)
+          hash = hash * 31 + TestRunHookFinished.GetHashCode();
         if (UndefinedParameterType != null)
           hash = hash * 31 + UndefinedParameterType.GetHashCode();
         return hash;
@@ -556,6 +652,8 @@ public sealed class Envelope
             ", testRunStarted=" + TestRunStarted +
             ", testStepFinished=" + TestStepFinished +
             ", testStepStarted=" + TestStepStarted +
+            ", testRunHookStarted=" + TestRunHookStarted +
+            ", testRunHookFinished=" + TestRunHookFinished +
             ", undefinedParameterType=" + UndefinedParameterType +
             '}';
     }

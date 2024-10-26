@@ -34,6 +34,7 @@ public final class Attachment {
     private final String testCaseStartedId;
     private final String testStepId;
     private final String url;
+    private final String testRunStartedId;
 
     public Attachment(
         String body,
@@ -43,7 +44,8 @@ public final class Attachment {
         Source source,
         String testCaseStartedId,
         String testStepId,
-        String url
+        String url,
+        String testRunStartedId
     ) {
         this.body = requireNonNull(body, "Attachment.body cannot be null");
         this.contentEncoding = requireNonNull(contentEncoding, "Attachment.contentEncoding cannot be null");
@@ -53,6 +55,7 @@ public final class Attachment {
         this.testCaseStartedId = testCaseStartedId;
         this.testStepId = testStepId;
         this.url = url;
+        this.testRunStartedId = testRunStartedId;
     }
 
     /**
@@ -124,6 +127,10 @@ public final class Attachment {
         return Optional.ofNullable(url);
     }
 
+    public Optional<String> getTestRunStartedId() {
+        return Optional.ofNullable(testRunStartedId);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -137,7 +144,8 @@ public final class Attachment {
             Objects.equals(source, that.source) &&         
             Objects.equals(testCaseStartedId, that.testCaseStartedId) &&         
             Objects.equals(testStepId, that.testStepId) &&         
-            Objects.equals(url, that.url);        
+            Objects.equals(url, that.url) &&         
+            Objects.equals(testRunStartedId, that.testRunStartedId);        
     }
 
     @Override
@@ -150,7 +158,8 @@ public final class Attachment {
             source,
             testCaseStartedId,
             testStepId,
-            url
+            url,
+            testRunStartedId
         );
     }
 
@@ -165,6 +174,7 @@ public final class Attachment {
             ", testCaseStartedId=" + testCaseStartedId +
             ", testStepId=" + testStepId +
             ", url=" + url +
+            ", testRunStartedId=" + testRunStartedId +
             '}';
     }
 }

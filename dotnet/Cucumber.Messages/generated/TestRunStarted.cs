@@ -17,14 +17,17 @@ namespace Io.Cucumber.Messages.Types;
 public sealed class TestRunStarted 
 {
     public Timestamp Timestamp { get; private set; }
+    public string Id { get; private set; }
 
 
     public TestRunStarted(
-        Timestamp timestamp
+        Timestamp timestamp,
+        string id
     ) 
     {
         RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
+        this.Id = id;
     }
 
     public override bool Equals(Object o) 
@@ -33,7 +36,8 @@ public sealed class TestRunStarted
         if (o == null || this.GetType() != o.GetType()) return false;
         TestRunStarted that = (TestRunStarted) o;
         return 
-            Timestamp.Equals(that.Timestamp);        
+            Timestamp.Equals(that.Timestamp) &&         
+            Object.Equals(Id, that.Id);        
     }
 
     public override int GetHashCode() 
@@ -41,6 +45,8 @@ public sealed class TestRunStarted
         int hash = 17;
         if (Timestamp != null)
           hash = hash * 31 + Timestamp.GetHashCode();
+        if (Id != null)
+          hash = hash * 31 + Id.GetHashCode();
         return hash;
     }
 
@@ -48,6 +54,7 @@ public sealed class TestRunStarted
     {
         return "TestRunStarted{" +
             "timestamp=" + Timestamp +
+            ", id=" + Id +
             '}';
     }
 

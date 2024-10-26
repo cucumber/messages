@@ -10,10 +10,14 @@ module Cucumber
     class TestRunStarted < Message
       attr_reader :timestamp
 
+      attr_reader :id
+
       def initialize(
-        timestamp: Timestamp.new
+        timestamp: Timestamp.new,
+        id: nil
       )
         @timestamp = timestamp
+        @id = id
         super()
       end
 
@@ -28,7 +32,8 @@ module Cucumber
         return nil if hash.nil?
 
         new(
-          timestamp: Timestamp.from_h(hash[:timestamp])
+          timestamp: Timestamp.from_h(hash[:timestamp]),
+          id: hash[:id]
         )
       end
     end

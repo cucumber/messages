@@ -14,6 +14,7 @@ hook::to_string() const
     cucumber::messages::to_string(oss, ", name=", name);
     cucumber::messages::to_string(oss, ", source_reference=", source_reference);
     cucumber::messages::to_string(oss, ", tag_expression=", tag_expression);
+    cucumber::messages::to_string(oss, ", type=", type);
 
     return oss.str();
 }
@@ -25,6 +26,7 @@ hook::to_json(json& j) const
     cucumber::messages::to_json(j, camelize("name"), name);
     cucumber::messages::to_json(j, camelize("source_reference"), source_reference);
     cucumber::messages::to_json(j, camelize("tag_expression"), tag_expression);
+    cucumber::messages::to_json(j, camelize("type"), type);
 }
 
 std::string

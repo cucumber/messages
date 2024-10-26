@@ -21,7 +21,7 @@ namespace Cucumber.Messages.Specs
         public void IsValidWhenNoRequiredFieldsAreMissing()
         {
             // This should succeed as no constructor arguments to an Envelope are required.
-            var env = new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            var env = new Envelope(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         }
     }
 }

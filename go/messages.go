@@ -9,6 +9,7 @@ type Attachment struct {
 	TestCaseStartedId string                    `json:"testCaseStartedId,omitempty"`
 	TestStepId        string                    `json:"testStepId,omitempty"`
 	Url               string                    `json:"url,omitempty"`
+	TestRunStartedId  string                    `json:"testRunStartedId,omitempty"`
 }
 
 type Duration struct {
@@ -33,6 +34,8 @@ type Envelope struct {
 	TestRunStarted         *TestRunStarted         `json:"testRunStarted,omitempty"`
 	TestStepFinished       *TestStepFinished       `json:"testStepFinished,omitempty"`
 	TestStepStarted        *TestStepStarted        `json:"testStepStarted,omitempty"`
+	TestRunHookStarted     *TestRunHookStarted     `json:"testRunHookStarted,omitempty"`
+	TestRunHookFinished    *TestRunHookFinished    `json:"testRunHookFinished,omitempty"`
 	UndefinedParameterType *UndefinedParameterType `json:"undefinedParameterType,omitempty"`
 }
 
@@ -159,6 +162,7 @@ type Hook struct {
 	Name            string           `json:"name,omitempty"`
 	SourceReference *SourceReference `json:"sourceReference"`
 	TagExpression   string           `json:"tagExpression,omitempty"`
+	Type            HookType         `json:"type,omitempty"`
 }
 
 type Location struct {
@@ -290,9 +294,10 @@ type StepDefinitionPattern struct {
 }
 
 type TestCase struct {
-	Id        string      `json:"id"`
-	PickleId  string      `json:"pickleId"`
-	TestSteps []*TestStep `json:"testSteps"`
+	Id               string      `json:"id"`
+	PickleId         string      `json:"pickleId"`
+	TestSteps        []*TestStep `json:"testSteps"`
+	TestRunStartedId string      `json:"testRunStartedId,omitempty"`
 }
 
 type Group struct {
@@ -333,14 +338,29 @@ type TestCaseStarted struct {
 }
 
 type TestRunFinished struct {
-	Message   string     `json:"message,omitempty"`
-	Success   bool       `json:"success"`
-	Timestamp *Timestamp `json:"timestamp"`
-	Exception *Exception `json:"exception,omitempty"`
+	Message          string     `json:"message,omitempty"`
+	Success          bool       `json:"success"`
+	Timestamp        *Timestamp `json:"timestamp"`
+	Exception        *Exception `json:"exception,omitempty"`
+	TestRunStartedId string     `json:"testRunStartedId,omitempty"`
+}
+
+type TestRunHookFinished struct {
+	TestRunHookStartedId string          `json:"testRunHookStartedId"`
+	Result               *TestStepResult `json:"result"`
+	Timestamp            *Timestamp      `json:"timestamp"`
+}
+
+type TestRunHookStarted struct {
+	Id               string     `json:"id"`
+	TestRunStartedId string     `json:"testRunStartedId"`
+	HookId           string     `json:"hookId"`
+	Timestamp        *Timestamp `json:"timestamp"`
 }
 
 type TestRunStarted struct {
 	Timestamp *Timestamp `json:"timestamp"`
+	Id        string     `json:"id,omitempty"`
 }
 
 type TestStepFinished struct {
@@ -388,6 +408,36 @@ func (e AttachmentContentEncoding) String() string {
 		return "BASE64"
 	default:
 		panic("Bad enum value for AttachmentContentEncoding")
+	}
+}
+
+type HookType string
+
+const (
+	HookType_BEFORE_TEST_RUN  HookType = "BEFORE_TEST_RUN"
+	HookType_AFTER_TEST_RUN   HookType = "AFTER_TEST_RUN"
+	HookType_BEFORE_TEST_CASE HookType = "BEFORE_TEST_CASE"
+	HookType_AFTER_TEST_CASE  HookType = "AFTER_TEST_CASE"
+	HookType_BEFORE_TEST_STEP HookType = "BEFORE_TEST_STEP"
+	HookType_AFTER_TEST_STEP  HookType = "AFTER_TEST_STEP"
+)
+
+func (e HookType) String() string {
+	switch e {
+	case HookType_BEFORE_TEST_RUN:
+		return "BEFORE_TEST_RUN"
+	case HookType_AFTER_TEST_RUN:
+		return "AFTER_TEST_RUN"
+	case HookType_BEFORE_TEST_CASE:
+		return "BEFORE_TEST_CASE"
+	case HookType_AFTER_TEST_CASE:
+		return "AFTER_TEST_CASE"
+	case HookType_BEFORE_TEST_STEP:
+		return "BEFORE_TEST_STEP"
+	case HookType_AFTER_TEST_STEP:
+		return "AFTER_TEST_STEP"
+	default:
+		panic("Bad enum value for HookType")
 	}
 }
 

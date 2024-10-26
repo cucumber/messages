@@ -8,6 +8,9 @@
   "properties": {
     "timestamp": {
       "$ref": "./Timestamp.json"
+    },
+    "id": {
+      "type": "string"
     }
   },
   "type": "object"
