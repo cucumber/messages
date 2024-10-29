@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/mocha": "10.0.9",
-    "@types/node": "20.17.2",
+    "@types/node": "20.17.3",
     "copyfiles": "2.4.1",
     "mocha": "10.7.3",
     "shx": "^0.3.4",
