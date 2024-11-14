@@ -12,21 +12,22 @@ on:
 
 jobs:
   test-elixir:
+    name: Test Elixir
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: erlef/setup-beam@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Beam
+        uses: erlef/setup-beam@v1
         with:
           otp-version: '27.1'
           elixir-version: '1.17'
-      - run: |
-          mix deps.get
+
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+
+      - name: Run Tests
+        run: make
         working-directory: elixir
 
-      - run: mix test
-        working-directory: elixir
-
-      - name: run acceptance tests
-        run: make acceptance
-        working-directory: 'elixir'

@@ -12,9 +12,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: erlef/setup-beam@v1
+      - name: Setup Beam
+        uses: erlef/setup-beam@v1
         with:
           otp-version: '27.1'
           elixir-version: '1.17'
@@ -22,7 +24,8 @@ jobs:
       - name: Install Protoc
         uses: arduino/setup-protoc@v1
 
-      - uses: cucumber/action-publish-hex@v1.0.0
+      - name: Publish to hex.pm
+        uses: cucumber/action-publish-hex@v1.0.0
         with:
           hex-api-key: ${{ secrets.HEX_API_KEY }}
           working-directory: 'elixir'
