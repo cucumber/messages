@@ -1,0 +1,31 @@
+name: Release Elixir hex package
+
+on:
+  push:
+    branches: [release/*]
+
+jobs:
+  create-hex-release:
+    name: Publish to hex.pm
+    runs-on: ubuntu-latest
+    environment: Release
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Beam
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: '27.1'
+          elixir-version: '1.17'
+
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+
+      - name: Publish to hex.pm
+        uses: cucumber/action-publish-hex@v1.0.0
+        with:
+          hex-api-key: ${{ secrets.HEX_API_KEY }}
+          working-directory: 'elixir'

@@ -110,7 +110,7 @@ defmodule CucumberMessages.Writer do
     # This is sort of a sanity check to see whether the constructed message is
     #   proto compliant
     # As soon as Protox supports json encoding, this is no longer necessary
-    message |> Protox.Encode.encode!()
+    message |> Protox.encode!()
 
     unstruct(message, %{})
   end
