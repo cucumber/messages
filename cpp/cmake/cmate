@@ -3061,7 +3061,7 @@ set_target_properties(
     @T.TNAME@
     PROPERTIES
         CXX_STANDARD @P.STD@
-        OUTPUT_NAME @P.NS@_@T.NAME@
+        OUTPUT_NAME @T.NAME@
 )
 ]=])
 
