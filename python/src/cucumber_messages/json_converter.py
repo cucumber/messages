@@ -6,10 +6,9 @@ import typing
 from dataclasses import fields, is_dataclass, Field, MISSING
 from datetime import datetime, date
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union, get_args, get_origin, TypeVar, Type, Tuple
+from typing import Any, Dict, List, Optional, Union, get_args, get_origin, TypeVar, Type as TypingType, Tuple
 
 T = TypeVar('T')
-
 
 def camel_to_snake(name: str) -> str:
     """Convert string from camelCase to snake_case."""
@@ -40,7 +39,7 @@ class GenericTypeResolver:
         self.module_scope = module_scope
         self.type_cache = {}
 
-    def resolve_container_type(self, container_name: str) -> Type:
+    def resolve_container_type(self, container_name: str) -> TypingType:
         container_types = {
             'Sequence': typing.Sequence,
             'List': list,
@@ -52,7 +51,7 @@ class GenericTypeResolver:
             raise ValueError(f"Unsupported container type: {container_name}")
         return container_types[container_name]
 
-    def parse_generic_type(self, type_str: str) -> Tuple[Type, List[Type]]:
+    def parse_generic_type(self, type_str: str) -> Tuple[TypingType, List[TypingType]]:
         container_name = type_str[:type_str.index('[')].strip()
         args_str = type_str[type_str.index('[') + 1:type_str.rindex(']')]
 
@@ -65,7 +64,7 @@ class GenericTypeResolver:
 
         return container_type, arg_types
 
-    def resolve_type(self, type_str: str) -> Type:
+    def resolve_type(self, type_str: str) -> TypingType:
         if type_str in self.type_cache:
             return self.type_cache[type_str]
 
@@ -84,7 +83,7 @@ class GenericTypeResolver:
         self.type_cache[type_str] = resolved
         return resolved
 
-    def _resolve_union_type(self, type_str: str) -> Type:
+    def _resolve_union_type(self, type_str: str) -> TypingType:
         types_str = [t.strip() for t in type_str.split('|')]
         resolved_types = [
             self.resolve_type(t)
@@ -293,11 +292,11 @@ class JSONDataclassMixin:
         return DataclassJSONEncoder.encode(self)
 
     @classmethod
-    def from_json(cls: Type[T], json_str: str, module_scope: Optional[types.ModuleType] = None) -> T:
+    def from_json(cls: TypingType[T], json_str: str, module_scope: Optional[types.ModuleType] = None) -> T:
         data = json.loads(json_str)
         return cls.from_dict(data, module_scope)
 
     @classmethod
-    def from_dict(cls: Type[T], data: Dict[str, Any], module_scope: Optional[types.ModuleType] = None) -> T:
+    def from_dict(cls: TypingType[T], data: Dict[str, Any], module_scope: Optional[types.ModuleType] = None) -> T:
         decoder = DataclassJSONDecoder(module_scope or sys.modules[cls.__module__])
         return decoder.decode(data, cls)

@@ -39,7 +39,7 @@ from cucumber_messages import (
     TestStepResult,
     TestStepStarted,
     Timestamp,
-    Type,
+    PickleStepType,
 )
 
 resource_path = Path(__file__).parent.absolute() / "data"
@@ -118,7 +118,7 @@ oracle_models = [
             uri="samples/minimal/minimal.feature",
             name="cukes",
             language="en",
-            steps=[PickleStep(ast_node_ids=["1"], id="3", type=Type.context, text="I have 42 cukes in my belly")],
+            steps=[PickleStep(ast_node_ids=["1"], id="3", type=PickleStepType.context, text="I have 42 cukes in my belly")],
             tags=[],
             ast_node_ids=["2"],
         ),
