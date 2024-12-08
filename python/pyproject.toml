@@ -16,16 +16,13 @@ classifiers = [
   "Topic :: Software Development :: Testing",
   "Topic :: Utilities",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12"
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13"
 ]
-dependencies = [
-  "eval_type_backport;python_version<'3.10.0'",
-  "pydantic>=2.0.3"
-]
+dependencies = []
 description = "Cucumber Messages is a message protocol for representing results and other information from Cucumber. "
 license = {text = "MIT"}
 maintainers = [
@@ -33,7 +30,7 @@ maintainers = [
 ]
 name = "cucumber-messages"
 readme = {file = "README.md", content-type = "text/markdown"}
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 urls = {Repository = "https://github.com/cucumber/messages"}
 version = "0.1.0"
 
@@ -60,7 +57,7 @@ test-coverage = [
 
 [tool.black]
 line-length = 120
-target-version = ["py38", "py39", "py310", "py311", "py312"]
+target-version = ["py39", "py310", "py311", "py312", "py313"]
 verbose = true
 
 [tool.isort]
@@ -91,10 +88,10 @@ legacy_tox_ini = """
     requires =
         tox>=4.2
     env_list =
-        py312-pre-commit-lin
-        py{312, 311, 310, 39, 38}-mypy-lin
-        py{py310, py39, py38, 312, 311, 310, 39, 38}-pytest-coverage-lin
-        py312-pytest-coverage-{win, mac}
+        py313-pre-commit-lin
+        py{313, 312, 311, 310, 39}-mypy-lin
+        py{py310, py39, 313, 312, 311, 310, 39}-pytest-coverage-lin
+        py313-pytest-coverage-{win, mac}
     distshare = {homedir}/.tox/distshare
 
     [testenv]
@@ -103,20 +100,20 @@ legacy_tox_ini = """
         mac: darwin
         win: win32
 
-    [testenv:py312-pre-commit-lin]
+    [testenv:py313-pre-commit-lin]
     skip_install = true
     deps =
         pre-commit
     commands =
         pre-commit run
 
-    [testenv:py{312, 311, 310, 39, 38}-mypy-lin]
+    [testenv:py{313, 312, 311, 310, 39}-mypy-lin]
     deps =
         mypy
     commands =
         python -m mypy
 
-    [testenv:py{py310, py39, py38, 312, 311, 310, 39, 38}-pytest-coverage-{lin, win, mac}]
+    [testenv:py{py310, py39, 313, 312, 311, 310, 39}-pytest-coverage-{lin, win, mac}]
     deps =
         .[test-coverage]
     commands =
@@ -124,12 +121,11 @@ legacy_tox_ini = """
 
     [gh-actions]
     python =
-        3.8: py38
         3.9: py39
         3.10: py310
         3.11: py311
         3.12: py312
-        pypy-3.8: pypy38
+        3.13: py313
         pypy-3.9: pypy39
         pypy-3.10: pypy310
 """
