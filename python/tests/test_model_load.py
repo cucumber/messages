@@ -19,6 +19,7 @@ from cucumber_messages import (
     Meta,
     Pickle,
     PickleStep,
+    PickleStepType,
     Product,
     Scenario,
     Source,
@@ -39,7 +40,6 @@ from cucumber_messages import (
     TestStepResult,
     TestStepStarted,
     Timestamp,
-    Type,
 )
 
 resource_path = Path(__file__).parent.absolute() / "data"
@@ -118,7 +118,9 @@ oracle_models = [
             uri="samples/minimal/minimal.feature",
             name="cukes",
             language="en",
-            steps=[PickleStep(ast_node_ids=["1"], id="3", type=Type.context, text="I have 42 cukes in my belly")],
+            steps=[
+                PickleStep(ast_node_ids=["1"], id="3", type=PickleStepType.context, text="I have 42 cukes in my belly")
+            ],
             tags=[],
             ast_node_ids=["2"],
         ),
@@ -198,11 +200,12 @@ oracle_models = [
 
 @mark.parametrize("model_datum, oracle_model", zip(model_data, oracle_models))
 def test_simple_load_model(model_datum, oracle_model):
-    model = Envelope.model_validate(model_datum)  # type: ignore[attr-defined]
+    # Test messages models load
+    model = Envelope.from_dict(model_datum)  # type: ignore[attr-defined]
 
     assert isinstance(model, Envelope)
+    # Models support deep-nested comparison
     assert oracle_model == model
 
-    dumped_ast_datum = json.loads(oracle_model.model_dump_json(by_alias=True, exclude_none=True))
-
-    assert model_datum == dumped_ast_datum
+    # Serialized model must be the same to original non-restored model
+    assert model_datum == model.to_dict()
