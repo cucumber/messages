@@ -1,7 +1,7 @@
 ---
 name: test-python
 
-on:  # yamllint disable-line rule:truthy
+on:
   push:
     branches:
       - main
@@ -18,48 +18,23 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        python-version:
-          - "3.8"
-          - "3.9"
-          - "3.10"
-          - "3.11"
-          - "3.12"
-          - "pypy3.8"
-          - "pypy3.9"
-          - "pypy3.10"
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
-        exclude:
-          - python-version: "pypy3.8"
-            os: macos-latest
-          - python-version: "pypy3.9"
-            os: macos-latest
-          - python-version: "pypy3.10"
-            os: macos-latest
-          - python-version: "3.8"
-            os: macos-latest
-          - python-version: "3.9"
-            os: macos-latest
-          - python-version: "3.10"
-            os: macos-latest
-          - python-version: "3.11"
-            os: macos-latest
-          - python-version: "pypy3.8"
-            os: windows-latest
-          - python-version: "pypy3.9"
-            os: windows-latest
-          - python-version: "pypy3.10"
-            os: windows-latest
-          - python-version: "3.8"
-            os: windows-latest
-          - python-version: "3.9"
-            os: windows-latest
-          - python-version: "3.10"
-            os: windows-latest
-          - python-version: "3.11"
-            os: windows-latest
+        include:
+          - os: ubuntu-latest
+            python-version: "3.9"
+          - os: ubuntu-latest
+            python-version: "3.10"
+          - os: ubuntu-latest
+            python-version: "3.11"
+          - os: ubuntu-latest
+            python-version: "3.12"
+          - os: ubuntu-latest
+            python-version: "pypy3.9"
+          - os: ubuntu-latest
+            python-version: "pypy3.10"
+          - os: windows-latest
+            python-version: "3.13"
+          - os: macos-latest
+            python-version: "3.13"
 
     steps:
       - uses: actions/checkout@v4
