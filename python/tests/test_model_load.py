@@ -198,11 +198,11 @@ oracle_models = [
 
 @mark.parametrize("model_datum, oracle_model", zip(model_data, oracle_models))
 def test_simple_load_model(model_datum, oracle_model):
-    model = Envelope.model_validate(model_datum)  # type: ignore[attr-defined]
+    model = Envelope.from_dict(model_datum)  # type: ignore[attr-defined]
 
     assert isinstance(model, Envelope)
     assert oracle_model == model
 
-    dumped_ast_datum = json.loads(oracle_model.model_dump_json(by_alias=True, exclude_none=True))
+    dumped_ast_datum = json.loads(oracle_model.to_json())
 
     assert model_datum == dumped_ast_datum

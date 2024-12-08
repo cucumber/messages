@@ -13,19 +13,22 @@ generate: ## Stub for the ancestor Makefile
 
 generate-real: require install-deps
 	datamodel-codegen \
-		--output-model-type "pydantic_v2.BaseModel" \
+		--output-model-type "dataclasses.dataclass" \
+		--base-class ".json_converter.JSONDataclassMixin" \
 		--input $(HERE)../jsonschema/Envelope.json \
 		--output $(HERE)src/cucumber_messages/messages.py \
-		--use-generic-container-types \
+		--input-file-type=jsonschema \
+		--class-name Envelope  \
+		--target-python-version=3.9 \
 		--allow-extra-fields \
 		--allow-population-by-field-name \
 		--snake-case-field \
-		--input-file-type=jsonschema \
-		--class-name Envelope  \
+		--use-generic-container-types \
 		--use-double-quotes \
+		--use-exact-imports \
+		--use-field-description \
 		--use-union-operator \
-		--disable-timestamp \
-		--target-python-version=3.8
+		--disable-timestamp
 
 require: ## Check requirements for the code generation (python is required)
 	@python --version >/dev/null 2>&1 || (echo "ERROR: python is required."; exit 1)
