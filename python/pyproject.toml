@@ -91,7 +91,8 @@ legacy_tox_ini = """
         py313-pre-commit-lin
         py{313, 312, 311, 310, 39}-mypy-lin
         py{py310, py39, 313, 312, 311, 310, 39}-pytest-coverage-lin
-        py313-pytest-coverage-{win, mac}
+        py313-pytest-coverage-win
+        py312-pytest-coverage-mac
     distshare = {homedir}/.tox/distshare
 
     [testenv]
