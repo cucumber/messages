@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - [cpp] use VERSION file to version ABI and shared libraries (#268](https://github.com/cucumber/messages/pull/268)
 
+### Added
+- [Python] Added Python implementation ([#165](https://github.com/cucumber/messages/pull/165))
+
 ## [27.0.2] - 2024-11-15
 ### Fixed
 - [Elixir] Fix release process
