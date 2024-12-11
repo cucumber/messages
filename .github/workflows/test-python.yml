@@ -45,8 +45,8 @@ jobs:
       - name: Generate code
         working-directory: ./python
         run: |
-          make clean-real
-          make generate-real
+          make clean
+          make generate
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip

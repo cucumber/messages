@@ -1,5 +1,5 @@
 from . import json_converter
-from .messages import *
+from ._messages import *
 
 # Renaming types because of confusing collision naming
 HookType = Type
