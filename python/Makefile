@@ -20,7 +20,7 @@ generate: require install-deps
 		--allow-extra-fields \
 		--allow-population-by-field-name \
 		--snake-case-field \
-		--use-generic-container-types \
+		--use-standard-collections \
 		--use-double-quotes \
 		--use-exact-imports \
 		--use-field-description \

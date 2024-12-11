@@ -55,11 +55,14 @@ class TypeResolver:
 
     def _get_sequence_type(self, type_str: str) -> Optional[Tuple[Any, str]]:
         sequence_match = re.match(r"Sequence\[(.*)\]", type_str)
-        list_match = re.match(r"List\[(.*)\]", type_str)
+        list_legacy_match = re.match(r"List\[(.*)\]", type_str)
+        list_match = re.match(r"list\[(.*)\]", type_str)
         if sequence_match:
             return (Sequence, sequence_match.group(1))
+        if list_legacy_match:
+            return (List, list_legacy_match.group(1))
         if list_match:
-            return (List, list_match.group(1))
+            return (list, list_match.group(1))
         return None
 
     def resolve_type(self, type_hint: Any) -> Any:

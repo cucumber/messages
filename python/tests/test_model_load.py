@@ -205,7 +205,7 @@ def test_simple_load_model(model_datum, oracle_model):
 
     assert isinstance(model, Envelope)
     # Models support deep-nested comparison
-    assert oracle_model == model
+    assert model == oracle_model
 
     # Serialized model must be the same to original non-restored model
     assert model_datum == model.to_dict()

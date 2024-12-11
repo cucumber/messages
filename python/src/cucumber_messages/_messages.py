@@ -5,7 +5,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Sequence
 
 from .json_converter import JSONDataclassMixin
 
@@ -91,7 +90,7 @@ class TableRow(JSONDataclassMixin):
     """
     The location of the first cell in the row
     """
-    cells: Sequence[TableCell]
+    cells: list[TableCell]
     """
     Cells in the row
     """
@@ -127,7 +126,7 @@ class Type(Enum):
 class JavaMethod(JSONDataclassMixin):
     class_name: str
     method_name: str
-    method_parameter_types: Sequence[str]
+    method_parameter_types: list[str]
 
 
 @dataclass
@@ -177,7 +176,7 @@ class PickleTableCell(JSONDataclassMixin):
 
 @dataclass
 class PickleTableRow(JSONDataclassMixin):
-    cells: Sequence[PickleTableCell]
+    cells: list[PickleTableCell]
 
 
 @dataclass
@@ -202,7 +201,7 @@ class StepDefinitionPattern(JSONDataclassMixin):
 
 @dataclass
 class Group(JSONDataclassMixin):
-    children: Sequence[Group]
+    children: list[Group]
     start: int | None = None
     value: str | None = None
 
@@ -220,7 +219,7 @@ class StepMatchArgument(JSONDataclassMixin):
 
 @dataclass
 class StepMatchArgumentsList(JSONDataclassMixin):
-    step_match_arguments: Sequence[StepMatchArgument]
+    step_match_arguments: list[StepMatchArgument]
 
 
 @dataclass
@@ -234,13 +233,13 @@ class TestStep(JSONDataclassMixin):
     """
     Pointer to the `PickleStep` (if derived from a `PickleStep`)
     """
-    step_definition_ids: Sequence[str] | None = None
+    step_definition_ids: list[str] | None = None
     """
     Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
      Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
      and a size of 2+ means `AMBIGUOUS`
     """
-    step_match_arguments_lists: Sequence[StepMatchArgumentsList] | None = None
+    step_match_arguments_lists: list[StepMatchArgumentsList] | None = None
     """
     A list of list of StepMatchArgument (if derived from a `PickleStep`).
     """
@@ -417,7 +416,7 @@ class Attachment(JSONDataclassMixin):
 @dataclass
 class DataTable(JSONDataclassMixin):
     location: Location
-    rows: Sequence[TableRow]
+    rows: list[TableRow]
 
 
 @dataclass
@@ -426,11 +425,11 @@ class Examples(JSONDataclassMixin):
     """
     The location of the `Examples` keyword
     """
-    tags: Sequence[Tag]
+    tags: list[Tag]
     keyword: str
     name: str
     description: str
-    table_body: Sequence[TableRow]
+    table_body: list[TableRow]
     id: str
     table_header: TableRow | None = None
 
@@ -489,7 +488,7 @@ class ParameterType(JSONDataclassMixin):
     """
     The name is unique, so we don't need an id.
     """
-    regular_expressions: Sequence[str]
+    regular_expressions: list[str]
     prefer_for_regular_expression_match: bool
     use_for_snippets: bool
     id: str
@@ -504,7 +503,7 @@ class ParseError(JSONDataclassMixin):
 
 @dataclass
 class PickleTable(JSONDataclassMixin):
-    rows: Sequence[PickleTableRow]
+    rows: list[PickleTableRow]
 
 
 @dataclass
@@ -521,7 +520,7 @@ class TestCase(JSONDataclassMixin):
     """
     The ID of the `Pickle` this `TestCase` is derived from.
     """
-    test_steps: Sequence[TestStep]
+    test_steps: list[TestStep]
     test_run_started_id: str | None = None
     """
     Identifier for the test run that this test case belongs to
@@ -589,7 +588,7 @@ class Background(JSONDataclassMixin):
     keyword: str
     name: str
     description: str
-    steps: Sequence[Step]
+    steps: list[Step]
     id: str
 
 
@@ -599,12 +598,12 @@ class Scenario(JSONDataclassMixin):
     """
     The location of the `Scenario` keyword
     """
-    tags: Sequence[Tag]
+    tags: list[Tag]
     keyword: str
     name: str
     description: str
-    steps: Sequence[Step]
-    examples: Sequence[Examples]
+    steps: list[Step]
+    examples: list[Examples]
     id: str
 
 
@@ -665,7 +664,7 @@ class RuleChild(JSONDataclassMixin):
 
 @dataclass
 class PickleStep(JSONDataclassMixin):
-    ast_node_ids: Sequence[str]
+    ast_node_ids: list[str]
     """
     References the IDs of the source of the step. For Gherkin, this can be
      the ID of a Step, and possibly also the ID of a TableRow
@@ -690,14 +689,14 @@ class Rule(JSONDataclassMixin):
     """
     The location of the `Rule` keyword
     """
-    tags: Sequence[Tag]
+    tags: list[Tag]
     """
     All the tags placed above the `Rule` keyword
     """
     keyword: str
     name: str
     description: str
-    children: Sequence[RuleChild]
+    children: list[RuleChild]
     id: str
 
 
@@ -720,17 +719,17 @@ class Pickle(JSONDataclassMixin):
     """
     The language of the pickle
     """
-    steps: Sequence[PickleStep]
+    steps: list[PickleStep]
     """
     One or more steps
     """
-    tags: Sequence[PickleTag]
+    tags: list[PickleTag]
     """
     *
      One or more tags. If this pickle is constructed from a Gherkin document,
      It includes inherited tags from the `Feature` as well.
     """
-    ast_node_ids: Sequence[str]
+    ast_node_ids: list[str]
     """
     *
      Points to the AST node locations of the pickle. The last one represents the unique
@@ -752,7 +751,7 @@ class Feature(JSONDataclassMixin):
     """
     The location of the `Feature` keyword
     """
-    tags: Sequence[Tag]
+    tags: list[Tag]
     """
     All the tags placed above the `Feature` keyword
     """
@@ -772,7 +771,7 @@ class Feature(JSONDataclassMixin):
     """
     The line(s) underneath the line with the `keyword` that are used as description
     """
-    children: Sequence[FeatureChild]
+    children: list[FeatureChild]
     """
     Zero or more children
     """
@@ -780,7 +779,7 @@ class Feature(JSONDataclassMixin):
 
 @dataclass
 class GherkinDocument(JSONDataclassMixin):
-    comments: Sequence[Comment]
+    comments: list[Comment]
     """
     All the comments in the Gherkin document
     """
