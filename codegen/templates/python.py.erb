@@ -1,0 +1,41 @@
+# This code was generated using the code generator from cucumber-messages.
+# Manual changes will be lost if the code is regenerated.
+# Generator: cucumber-messages-python
+
+from __future__ import annotations
+from dataclasses import dataclass
+from enum import Enum
+from typing import Optional
+
+
+<%- @enums.each do |enum| -%>
+class <%= enum[:name] %>(Enum):
+    <%- enum[:values].each do |value| -%>
+    <%= format_enum_value(value) %> = "<%= value %>"
+    <%- end -%>
+
+
+<%- end -%>
+<%- @schemas.each_with_index do |schema_pair, index| -%>
+<%- key, definition = schema_pair -%>
+@dataclass
+class <%= class_name(key) %>:
+    <%- if definition['description'] -%>
+    <%= format_description(definition['description']) %>
+    <%- end -%>
+    <%- if definition['properties'].any? -%>
+    <%- required_fields = definition['required'] || [] -%>
+    <%- get_sorted_properties(definition).each do |property_name, property| -%>
+    <%- if property['description'] -%>
+    <%= format_description(property['description']) %>
+    <%- end -%>
+    <%= format_property(key, property_name, property, required_fields) %>
+    <%- end -%>
+    <%- else -%>
+    pass
+    <%- end -%>
+<%- if index < @schemas.length - 1 -%>
+
+
+<%- end -%>
+<%- end -%>
