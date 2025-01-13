@@ -4,18 +4,10 @@
 
 from __future__ import annotations
 from dataclasses import dataclass
-from enum import Enum
 from typing import Optional
 
+from ._message_enums import *
 
-<%- @enums.each do |enum| -%>
-class <%= enum[:name] %>(Enum):
-    <%- enum[:values].each do |value| -%>
-    <%= format_enum_value(value) %> = "<%= value %>"
-    <%- end -%>
-
-
-<%- end -%>
 <%- @schemas.each_with_index do |schema_pair, index| -%>
 <%- key, definition = schema_pair -%>
 @dataclass
@@ -26,10 +18,11 @@ class <%= class_name(key) %>:
     <%- if definition['properties'].any? -%>
     <%- required_fields = definition['required'] || [] -%>
     <%- get_sorted_properties(definition).each do |property_name, property| -%>
-    <%- if property['description'] -%>
-    <%= format_description(property['description']) %>
-    <%- end -%>
     <%= format_property(key, property_name, property, required_fields) %>
+    <%- if property['description'] && property['description'].include?("\n") -%>
+    <%= format_description(property['description']) %>
+
+    <%- end -%>
     <%- end -%>
     <%- else -%>
     pass

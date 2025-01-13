@@ -21,29 +21,21 @@ module Generator
       property_type = get_property_type(parent_type_name, property_name, property)
       is_required = required_fields.include?(property_name)
 
-      if is_required
-        "#{snake_name}: #{property_type}"
+      property_description = if property['description'] && !property['description'].include?("\n")
+        "  # #{property['description']}"
       else
-        "#{snake_name}: Optional[#{property_type}] = None"
+        ''
+      end
+      if is_required
+        "#{snake_name}: #{property_type}#{property_description}"
+      else
+        "#{snake_name}: Optional[#{property_type}] = None#{property_description}"
       end
     end
 
     def get_property_type(parent_type_name, property_name, property)
       type = type_for(parent_type_name, property_name, property)
-
-      if type.start_with?('list[')
-        list_type = type.match(/list\[(.*?)\]/)
-        inner_type = list_type[1]
-        if inner_type =~ /^[A-Z]/
-          "list[\"#{class_name(inner_type)}\"]"
-        else
-          "list[#{inner_type}]"
-        end
-      elsif type =~ /^[A-Z]/
-        "\"#{class_name(type)}\""
-      else
-        type
-      end
+      type.match?(/\A[A-Z]/) ? class_name(type) : type
     end
 
     def array_type_for(type_name)
@@ -52,7 +44,7 @@ module Generator
       else
         class_name(type_name)  # CamelCase for complex types
       end
-      "list[#{inner_type}]"
+      inner_type
     end
 
     def format_description(raw_description, indent_string: '    ')
@@ -117,7 +109,9 @@ module Generator
 
     def property_type_from_type(parent_type_name, property_name, property, type:)
       if type == 'array'
-        array_type_for(type_for(parent_type_name, nil, property['items']))
+        type = type_for(parent_type_name, nil, property['items'])
+        inner_type = array_type_for(type)
+        "list[#{inner_type}]"
       elsif property['enum']
         enum_name(parent_type_name, property_name, property['enum'])
       else

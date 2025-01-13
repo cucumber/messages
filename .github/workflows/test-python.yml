@@ -18,24 +18,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
-            python-version: "3.9"
-          - os: ubuntu-latest
-            python-version: "3.10"
-          - os: ubuntu-latest
-            python-version: "3.11"
-          - os: ubuntu-latest
-            python-version: "3.12"
-          - os: ubuntu-latest
-            python-version: "3.13"
-          - os: ubuntu-latest
-            python-version: "pypy3.9"
-          - os: ubuntu-latest
-            python-version: "pypy3.10"
-          - os: windows-latest
-            python-version: "3.13"
-          - os: macos-latest
-            python-version: "3.13"
+          # Test latest python on Windows / macOS
+          - { os: 'windows-latest', python-version: '3.13' }
+          - { os: 'macos-latest', python-version: '3.13' }
+        os: ['ubuntu-latest']
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', 'pypy3.9', 'pypy3.10']
 
     steps:
       - uses: actions/checkout@v4
@@ -43,11 +30,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Generate code
-        working-directory: ./python
-        run: |
-          make clean
-          make generate
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
