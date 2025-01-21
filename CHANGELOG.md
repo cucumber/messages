@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [27.0.1] - 2024-11-15
 ### Fixed
-- 
 - [Elixir] Restored test and release process
 
 ## [27.0.0] - 2024-10-26
