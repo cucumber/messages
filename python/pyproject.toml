@@ -76,7 +76,7 @@ ignore_missing_imports = true
 module = [
 ]
 
-# Wait until is ready: https://github.com/tox-dev/tox/issues/999
+# Once https://github.com/tox-dev/tox/issues/999 is released and available, migrate to the new tox approach
 [tool.tox]
 # language=INI
 legacy_tox_ini = """
