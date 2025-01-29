@@ -1,0 +1,17 @@
+# This code was generated using the code generator from cucumber-messages.
+# Manual changes will be lost if the code is regenerated.
+# Generator: cucumber-messages-python
+
+from enum import Enum
+
+
+<%- @enums.each_with_index do |enum, index| -%>
+class <%= enum[:name] %>(Enum):
+    <%- enum[:values].each do |value| -%>
+    <%= format_enum_value(value) %> = "<%= value %>"
+    <%- end -%>
+<%- if index < @enums.length - 1 -%>
+
+
+<%- end -%>
+<%- end -%>
