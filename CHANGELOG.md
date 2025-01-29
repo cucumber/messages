@@ -6,11 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [python] Added Python implementation ([#165](https://github.com/cucumber/messages/pull/165))
 
 ## [27.1.0] - 2025-01-28
 ### Added
 - [cpp] use VERSION file to version ABI and shared libraries [#268](https://github.com/cucumber/messages/pull/268)
-- [python] Added Python implementation ([#165](https://github.com/cucumber/messages/pull/165))
 
 ### Changed
 - [JavaScript] Expand tested Node.js versions ([#274](https://github.com/cucumber/messages/pull/274))
