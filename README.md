@@ -59,6 +59,7 @@ driven by protobuf. This has recently been re-integrated into our CI and will be
 the JSON schema protocol in due course, for now it remains written in protobuf
 
 ## Message emitters
+
 Cucumber Messages are currently sent by the following versions of Cucumber (using the `message` formatter):
 
 * Cucumber-JVM `6.0.0` and later
