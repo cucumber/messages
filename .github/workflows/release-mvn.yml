@@ -1,4 +1,4 @@
-name: Release Maven
+name: Release Java
 
 on:
   push:

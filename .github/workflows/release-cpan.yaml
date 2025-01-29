@@ -1,11 +1,11 @@
-name: Release Perl/CPAN
+name: Release Perl
 
 on:
   push:
     branches: [release/*]
 
 jobs:
-  create-perl-release:
+  publish-cpan:
     name: Publish to CPAN
     runs-on: ubuntu-latest
     environment: Release

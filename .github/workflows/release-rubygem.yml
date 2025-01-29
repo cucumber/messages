@@ -1,4 +1,4 @@
-name: Release RubyGems
+name: Release Ruby
 
 on:
   push:

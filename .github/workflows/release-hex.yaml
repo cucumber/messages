@@ -1,11 +1,11 @@
-name: Release Elixir hex package
+name: Release Elixir
 
 on:
   push:
     branches: [release/*]
 
 jobs:
-  create-hex-release:
+  publish-hex:
     name: Publish to hex.pm
     runs-on: ubuntu-latest
     environment: Release
@@ -14,20 +14,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Beam
         uses: erlef/setup-beam@v1
         with:
           otp-version: '27.1'
           elixir-version: '1.17'
-
       - name: Install Protoc
         uses: arduino/setup-protoc@v1
-
       - name: Run Tests
         run: make
         working-directory: elixir
-
       - name: Publish to hex.pm
         uses: cucumber/action-publish-hex@v1.0.0
         with:
