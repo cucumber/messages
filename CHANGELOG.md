@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- [python] Add a LICENSE file for Python ([#278](https://github.com/cucumber/messages/pull/278))
+
 ## [27.2.0] - 2025-01-31
 ### Added
 - [python] Added Python implementation ([#165](https://github.com/cucumber/messages/pull/165))
