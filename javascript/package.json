@@ -36,8 +36,10 @@
     "prepublishOnly": "npm run build && npm run copy-schemas"
   },
   "dependencies": {
+    "@types/uuid": "10.0.0",
     "class-transformer": "0.5.1",
-    "reflect-metadata": "0.2.2"
+    "reflect-metadata": "0.2.2",
+    "uuid": "11.0.5"
   },
   "devDependencies": {
     "@types/mocha": "10.0.10",
