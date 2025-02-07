@@ -7,14 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
-- [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287)) 
+- [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287))
 
 ### Fixed
 - [python] Add a LICENSE file for Python ([#278](https://github.com/cucumber/messages/pull/278))
 - [.NET] Fix NuGet package generation
-
-### Removed
-- [JavaScript] Remove dependency on `uuid` package ([#284](https://github.com/cucumber/messages/pull/284)
 
 ## [27.2.0] - 2025-01-31
 ### Added
