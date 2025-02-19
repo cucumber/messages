@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - [python] Add a LICENSE file for Python ([#278](https://github.com/cucumber/messages/pull/278))
 - [.NET] Fix NuGet package generation
+- [.NET] Fix ndjson deserialization that allowed non-Message json
 
 ## [27.2.0] - 2025-01-31
 ### Added
