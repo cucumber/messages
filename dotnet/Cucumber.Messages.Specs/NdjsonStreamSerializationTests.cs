@@ -74,5 +74,15 @@ namespace Cucumber.Messages.Specs
             var exception = Assert.Throws<InvalidOperationException>( () => enumerator.MoveNext());
             Assert.Equal("Could not parse JSON: BLA BLA", exception.Message);
         }
+
+        [Fact]
+        public void Throws_Error_When_Deserializing_Non_Envelope_JSON_String()
+        {
+            MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes("{\"object\" : \"value\"}"));
+            var enumerator = new NdjsonMessageReaderSUT(memoryStream).GetEnumerator();
+            var exception = Assert.Throws<InvalidOperationException>(() => enumerator.MoveNext());
+            Assert.Equal("Could not parse JSON: {\"object\" : \"value\"}", exception.Message);
+        }
+
     }
 }

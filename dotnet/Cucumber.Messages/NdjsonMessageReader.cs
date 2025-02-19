@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Cucumber.Messages
 {
@@ -44,6 +45,11 @@ namespace Cucumber.Messages
                 try
                 {
                     envelope = _deserializer(line);
+
+                    // This checks for lines that might be valid json but not a valid Message
+                    // It does allow an empty json node, eg "{}" to pass, creating an empty Envelope
+                    if (EnvelopeIsEmpty(envelope) && !Regex.IsMatch(line, @"^\s*\{\s*\}\s*$"))
+                        throw new InvalidOperationException($"JSON is not a valid Envelope");
                 }
                 catch (System.Exception e)
                 {
@@ -56,6 +62,29 @@ namespace Cucumber.Messages
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        private static bool EnvelopeIsEmpty(Envelope message)
+        {
+            return (message.Attachment == null &&
+                message.GherkinDocument == null &&
+                message.Hook == null &&
+                message.Meta == null &&
+                message.ParameterType == null &&
+                message.Pickle == null &&
+                message.Source == null &&
+                message.StepDefinition == null &&
+                message.TestCase == null &&
+                message.TestCaseFinished == null &&
+                message.TestCaseStarted == null &&
+                message.TestRunFinished == null &&
+                message.TestRunHookFinished == null &&
+                message.TestRunHookStarted == null &&
+                message.TestRunStarted == null &&
+                message.TestStepFinished == null &&
+                message.TestStepStarted == null &&
+                message.UndefinedParameterType == null &&
+                message.ParseError == null);
         }
     }
 }
