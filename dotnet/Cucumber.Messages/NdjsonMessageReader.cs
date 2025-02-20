@@ -37,7 +37,7 @@ namespace Cucumber.Messages
 
         public System.Collections.Generic.IEnumerator<Envelope> GetEnumerator()
         {
-            while(!_inputStreamReader.EndOfStream)
+            while (!_inputStreamReader.EndOfStream)
             {
                 var line = _inputStreamReader.ReadLine();
                 if (String.IsNullOrEmpty(line)) continue;
@@ -48,8 +48,21 @@ namespace Cucumber.Messages
 
                     // This checks for lines that might be valid json but not a valid Message
                     // It does allow an empty json node, eg "{}" to pass, creating an empty Envelope
-                    if (EnvelopeIsEmpty(envelope) && !Regex.IsMatch(line, @"^\s*\{\s*\}\s*$"))
-                        throw new InvalidOperationException($"JSON is not a valid Envelope");
+                    if (EnvelopeIsEmpty(envelope))
+                    {
+                        if (Regex.IsMatch(line, @"^\s*\{\s*\}\s*$"))
+                        { } // white listed
+                        else
+                        { // check for black listed patterns
+                            if (
+                                Double.TryParse(line, out var _) ||                                  // disallow stand-alone numbers
+                                Boolean.TryParse(line, out var _) ||                                 // disallow stand-alone booleans
+                                Regex.IsMatch(line, @"^\s*""([^""\\]*(?:\\.[^""\\]*)*)""\s*$") ||    // matches any quote-delimited string
+                                Regex.IsMatch(line, @"^\s*null\s*$")                                 // disallow stand-alone null value (empty strings are handled above)
+                                )
+                                throw new InvalidOperationException($"JSON is not a valid Envelope");
+                        }
+                    }
                 }
                 catch (System.Exception e)
                 {
