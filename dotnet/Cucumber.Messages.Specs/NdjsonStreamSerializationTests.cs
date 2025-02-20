@@ -78,7 +78,7 @@ namespace Cucumber.Messages.Specs
         [Fact]
         public void Throws_Error_When_Deserializing_Non_Envelope_JSON_String()
         {
-            var otherJsonStrings = new List<string>() { "\"this is a string\"", "12345.6789", "true", "false", "null" };
+            var otherJsonStrings = new List<string>() { "\"this is a string\"", "12345.6789", "true", "false", "null", " [  ]" };
             otherJsonStrings.All(s =>
             {
                 MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(s));

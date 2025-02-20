@@ -58,7 +58,8 @@ namespace Cucumber.Messages
                                 Double.TryParse(line, out var _) ||                                  // disallow stand-alone numbers
                                 Boolean.TryParse(line, out var _) ||                                 // disallow stand-alone booleans
                                 Regex.IsMatch(line, @"^\s*""([^""\\]*(?:\\.[^""\\]*)*)""\s*$") ||    // matches any quote-delimited string
-                                Regex.IsMatch(line, @"^\s*null\s*$")                                 // disallow stand-alone null value (empty strings are handled above)
+                                Regex.IsMatch(line, @"^\s*null\s*$") ||                              // disallow stand-alone null value (empty strings are handled above)
+                                Regex.IsMatch(line, @"^\s\[\s*\]\s*$")                               // disallow an empty array
                                 )
                                 throw new InvalidOperationException($"JSON is not a valid Envelope");
                         }
