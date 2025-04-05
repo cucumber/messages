@@ -48,7 +48,7 @@
     "mocha": "11.1.0",
     "shx": "^0.4.0",
     "ts-node": "10.9.2",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "bugs": {
     "url": "https://github.com/cucumber/messages/issues"
