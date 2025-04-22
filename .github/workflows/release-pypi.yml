@@ -5,8 +5,8 @@ on:
     branches: [release/*]
 
 jobs:
-  release:
-    name: Release
+  publish-pypi:
+    name: Publish PyPI Package
     runs-on: ubuntu-latest
     environment: Release
     permissions:
