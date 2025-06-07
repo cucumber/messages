@@ -86,7 +86,7 @@ module Cucumber
       attr_reader :url
 
       ##
-      # Not used; implementers should instead populate `testRunHookStartedIf` for an attachment made from a test run hook
+      # Not used; implementers should instead populate `testRunHookStartedId` for an attachment made from a test run hook
       ##
       attr_reader :test_run_started_id
 

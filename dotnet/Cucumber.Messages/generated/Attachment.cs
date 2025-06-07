@@ -80,7 +80,7 @@ public sealed class Attachment
      */
     public string Url { get; private set; }
     /**
-     * Not used; implementers should instead populate `testRunHookStartedIf` for an attachment made from a test run hook
+     * Not used; implementers should instead populate `testRunHookStartedId` for an attachment made from a test run hook
      */
     public string TestRunStartedId { get; private set; }
     /**

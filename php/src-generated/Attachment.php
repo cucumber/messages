@@ -95,7 +95,7 @@ final class Attachment implements JsonSerializable
         public readonly ?string $url = null,
 
         /**
-         * Not used; implementers should instead populate `testRunHookStartedIf` for an attachment made from a test run hook
+         * Not used; implementers should instead populate `testRunHookStartedId` for an attachment made from a test run hook
          */
         public readonly ?string $testRunStartedId = null,
 

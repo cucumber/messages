@@ -45,7 +45,7 @@
       "type": "string"
     },
     "testRunStartedId": {
-      "description": "Not used; implementers should instead populate `testRunHookStartedIf` for an attachment made from a test run hook",
+      "description": "Not used; implementers should instead populate `testRunHookStartedId` for an attachment made from a test run hook",
       "type": "string",
       "deprecated": true
     },
