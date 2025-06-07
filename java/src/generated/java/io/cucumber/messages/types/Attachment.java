@@ -35,6 +35,7 @@ public final class Attachment {
     private final String testStepId;
     private final String url;
     private final String testRunStartedId;
+    private final String testRunHookStartedId;
 
     public Attachment(
         String body,
@@ -45,7 +46,8 @@ public final class Attachment {
         String testCaseStartedId,
         String testStepId,
         String url,
-        String testRunStartedId
+        String testRunStartedId,
+        String testRunHookStartedId
     ) {
         this.body = requireNonNull(body, "Attachment.body cannot be null");
         this.contentEncoding = requireNonNull(contentEncoding, "Attachment.contentEncoding cannot be null");
@@ -56,6 +58,7 @@ public final class Attachment {
         this.testStepId = testStepId;
         this.url = url;
         this.testRunStartedId = testRunStartedId;
+        this.testRunHookStartedId = testRunHookStartedId;
     }
 
     /**
@@ -102,10 +105,16 @@ public final class Attachment {
         return Optional.ofNullable(source);
     }
 
+    /**
+      * Where the attachment was made from a test step execution, the identifier of the test case attempt
+     */
     public Optional<String> getTestCaseStartedId() {
         return Optional.ofNullable(testCaseStartedId);
     }
 
+    /**
+      * Where the attachment was made from a test step execution, the identifier of the step
+     */
     public Optional<String> getTestStepId() {
         return Optional.ofNullable(testStepId);
     }
@@ -127,8 +136,18 @@ public final class Attachment {
         return Optional.ofNullable(url);
     }
 
+    /**
+      * Not used; implementers should instead populate `testRunHookStartedIf` for an attachment made from a test run hook
+     */
     public Optional<String> getTestRunStartedId() {
         return Optional.ofNullable(testRunStartedId);
+    }
+
+    /**
+      * Where the attachment was made from a test run hook execution, its identifier
+     */
+    public Optional<String> getTestRunHookStartedId() {
+        return Optional.ofNullable(testRunHookStartedId);
     }
 
     @Override
@@ -145,7 +164,8 @@ public final class Attachment {
             Objects.equals(testCaseStartedId, that.testCaseStartedId) &&         
             Objects.equals(testStepId, that.testStepId) &&         
             Objects.equals(url, that.url) &&         
-            Objects.equals(testRunStartedId, that.testRunStartedId);        
+            Objects.equals(testRunStartedId, that.testRunStartedId) &&         
+            Objects.equals(testRunHookStartedId, that.testRunHookStartedId);        
     }
 
     @Override
@@ -159,7 +179,8 @@ public final class Attachment {
             testCaseStartedId,
             testStepId,
             url,
-            testRunStartedId
+            testRunStartedId,
+            testRunHookStartedId
         );
     }
 
@@ -175,6 +196,7 @@ public final class Attachment {
             ", testStepId=" + testStepId +
             ", url=" + url +
             ", testRunStartedId=" + testRunStartedId +
+            ", testRunHookStartedId=" + testRunHookStartedId +
             '}';
     }
 }

@@ -87,6 +87,7 @@ my %types = (
    test_step_id => 'string',
    url => 'string',
    test_run_started_id => 'string',
+   test_run_hook_started_id => 'string',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -188,7 +189,7 @@ has source =>
 
 =head4 test_case_started_id
 
-
+Where the attachment was made from a test step execution, the identifier of the test case attempt
 =cut
 
 has test_case_started_id =>
@@ -198,7 +199,7 @@ has test_case_started_id =>
 
 =head4 test_step_id
 
-
+Where the attachment was made from a test step execution, the identifier of the step
 =cut
 
 has test_step_id =>
@@ -229,10 +230,20 @@ has url =>
 
 =head4 test_run_started_id
 
-
+Not used; implementers should instead populate `testRunHookStartedIf` for an attachment made from a test run hook
 =cut
 
 has test_run_started_id =>
+    (is => 'ro',
+    );
+
+
+=head4 test_run_hook_started_id
+
+Where the attachment was made from a test run hook execution, its identifier
+=cut
+
+has test_run_hook_started_id =>
     (is => 'ro',
     );
 
