@@ -21,6 +21,8 @@ export class Attachment {
   url?: string
 
   testRunStartedId?: string
+
+  testRunHookStartedId?: string
 }
 
 export class Duration {
