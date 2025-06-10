@@ -58,11 +58,11 @@ public sealed class Attachment
     public string MediaType { get; private set; }
     public Source Source { get; private set; }
     /**
-     * Where the attachment was made from a test step execution, the identifier of the test case attempt
+     * The identifier of the test case attempt if the attachment was created during the execution of a test step
      */
     public string TestCaseStartedId { get; private set; }
     /**
-     * Where the attachment was made from a test step execution, the identifier of the step
+     * The identifier of the test step if the attachment was created during the execution of a test step
      */
     public string TestStepId { get; private set; }
     /**
@@ -80,11 +80,11 @@ public sealed class Attachment
      */
     public string Url { get; private set; }
     /**
-     * Not used; implementers should instead populate `testRunHookStartedId` for an attachment made from a test run hook
+     * Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
      */
     public string TestRunStartedId { get; private set; }
     /**
-     * Where the attachment was made from a test run hook execution, its identifier
+     * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
      */
     public string TestRunHookStartedId { get; private set; }
 

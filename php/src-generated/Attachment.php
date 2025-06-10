@@ -70,12 +70,12 @@ final class Attachment implements JsonSerializable
         public readonly ?Source $source = null,
 
         /**
-         * Where the attachment was made from a test step execution, the identifier of the test case attempt
+         * The identifier of the test case attempt if the attachment was created during the execution of a test step
          */
         public readonly ?string $testCaseStartedId = null,
 
         /**
-         * Where the attachment was made from a test step execution, the identifier of the step
+         * The identifier of the test step if the attachment was created during the execution of a test step
          */
         public readonly ?string $testStepId = null,
 
@@ -95,12 +95,12 @@ final class Attachment implements JsonSerializable
         public readonly ?string $url = null,
 
         /**
-         * Not used; implementers should instead populate `testRunHookStartedId` for an attachment made from a test run hook
+         * Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
          */
         public readonly ?string $testRunStartedId = null,
 
         /**
-         * Where the attachment was made from a test run hook execution, its identifier
+         * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
          */
         public readonly ?string $testRunHookStartedId = null,
     ) {

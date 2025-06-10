@@ -60,12 +60,12 @@ module Cucumber
       attr_reader :source
 
       ##
-      # Where the attachment was made from a test step execution, the identifier of the test case attempt
+      # The identifier of the test case attempt if the attachment was created during the execution of a test step
       ##
       attr_reader :test_case_started_id
 
       ##
-      # Where the attachment was made from a test step execution, the identifier of the step
+      # The identifier of the test step if the attachment was created during the execution of a test step
       ##
       attr_reader :test_step_id
 
@@ -86,12 +86,12 @@ module Cucumber
       attr_reader :url
 
       ##
-      # Not used; implementers should instead populate `testRunHookStartedId` for an attachment made from a test run hook
+      # Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
       ##
       attr_reader :test_run_started_id
 
       ##
-      # Where the attachment was made from a test run hook execution, its identifier
+      # The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
       ##
       attr_reader :test_run_hook_started_id
 

@@ -106,14 +106,14 @@ public final class Attachment {
     }
 
     /**
-      * Where the attachment was made from a test step execution, the identifier of the test case attempt
+      * The identifier of the test case attempt if the attachment was created during the execution of a test step
      */
     public Optional<String> getTestCaseStartedId() {
         return Optional.ofNullable(testCaseStartedId);
     }
 
     /**
-      * Where the attachment was made from a test step execution, the identifier of the step
+      * The identifier of the test step if the attachment was created during the execution of a test step
      */
     public Optional<String> getTestStepId() {
         return Optional.ofNullable(testStepId);
@@ -137,14 +137,14 @@ public final class Attachment {
     }
 
     /**
-      * Not used; implementers should instead populate `testRunHookStartedId` for an attachment made from a test run hook
+      * Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
      */
     public Optional<String> getTestRunStartedId() {
         return Optional.ofNullable(testRunStartedId);
     }
 
     /**
-      * Where the attachment was made from a test run hook execution, its identifier
+      * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
      */
     public Optional<String> getTestRunHookStartedId() {
         return Optional.ofNullable(testRunHookStartedId);
