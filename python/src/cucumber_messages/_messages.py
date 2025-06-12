@@ -61,9 +61,10 @@ class Attachment:
     """
 
     source: Optional[Source] = None
-    test_case_started_id: Optional[str] = None
-    test_run_started_id: Optional[str] = None
-    test_step_id: Optional[str] = None
+    test_case_started_id: Optional[str] = None  # The identifier of the test case attempt if the attachment was created during the execution of a test step
+    test_run_hook_started_id: Optional[str] = None  # The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+    test_run_started_id: Optional[str] = None  # Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
+    test_step_id: Optional[str] = None  # The identifier of the test step if the attachment was created during the execution of a test step
     url: Optional[str] = None
     """
     *

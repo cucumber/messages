@@ -59,8 +59,14 @@ module Cucumber
 
       attr_reader :source
 
+      ##
+      # The identifier of the test case attempt if the attachment was created during the execution of a test step
+      ##
       attr_reader :test_case_started_id
 
+      ##
+      # The identifier of the test step if the attachment was created during the execution of a test step
+      ##
       attr_reader :test_step_id
 
       ##
@@ -79,7 +85,15 @@ module Cucumber
       ##
       attr_reader :url
 
+      ##
+      # Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
+      ##
       attr_reader :test_run_started_id
+
+      ##
+      # The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+      ##
+      attr_reader :test_run_hook_started_id
 
       def initialize(
         body: '',
@@ -90,7 +104,8 @@ module Cucumber
         test_case_started_id: nil,
         test_step_id: nil,
         url: nil,
-        test_run_started_id: nil
+        test_run_started_id: nil,
+        test_run_hook_started_id: nil
       )
         @body = body
         @content_encoding = content_encoding
@@ -101,6 +116,7 @@ module Cucumber
         @test_step_id = test_step_id
         @url = url
         @test_run_started_id = test_run_started_id
+        @test_run_hook_started_id = test_run_hook_started_id
         super()
       end
 
@@ -123,7 +139,8 @@ module Cucumber
           test_case_started_id: hash[:testCaseStartedId],
           test_step_id: hash[:testStepId],
           url: hash[:url],
-          test_run_started_id: hash[:testRunStartedId]
+          test_run_started_id: hash[:testRunStartedId],
+          test_run_hook_started_id: hash[:testRunHookStartedId]
         )
       end
     end
