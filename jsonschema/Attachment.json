@@ -33,9 +33,11 @@
       "$ref": "./Source.json"
     },
     "testCaseStartedId": {
+      "description": "The identifier of the test case attempt if the attachment was created during the execution of a test step",
       "type": "string"
     },
     "testStepId": {
+      "description": "The identifier of the test step if the attachment was created during the execution of a test step",
       "type": "string"
     },
     "url": {
@@ -43,6 +45,12 @@
       "type": "string"
     },
     "testRunStartedId": {
+      "description": "Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook",
+      "type": "string",
+      "deprecated": true
+    },
+    "testRunHookStartedId": {
+      "description": "The identifier of the test run hook execution if the attachment was created during the execution of a test run hook",
       "type": "string"
     }
   },

@@ -1,15 +1,16 @@
 package messages
 
 type Attachment struct {
-	Body              string                    `json:"body"`
-	ContentEncoding   AttachmentContentEncoding `json:"contentEncoding"`
-	FileName          string                    `json:"fileName,omitempty"`
-	MediaType         string                    `json:"mediaType"`
-	Source            *Source                   `json:"source,omitempty"`
-	TestCaseStartedId string                    `json:"testCaseStartedId,omitempty"`
-	TestStepId        string                    `json:"testStepId,omitempty"`
-	Url               string                    `json:"url,omitempty"`
-	TestRunStartedId  string                    `json:"testRunStartedId,omitempty"`
+	Body                 string                    `json:"body"`
+	ContentEncoding      AttachmentContentEncoding `json:"contentEncoding"`
+	FileName             string                    `json:"fileName,omitempty"`
+	MediaType            string                    `json:"mediaType"`
+	Source               *Source                   `json:"source,omitempty"`
+	TestCaseStartedId    string                    `json:"testCaseStartedId,omitempty"`
+	TestStepId           string                    `json:"testStepId,omitempty"`
+	Url                  string                    `json:"url,omitempty"`
+	TestRunStartedId     string                    `json:"testRunStartedId,omitempty"`
+	TestRunHookStartedId string                    `json:"testRunHookStartedId,omitempty"`
 }
 
 type Duration struct {

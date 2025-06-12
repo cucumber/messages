@@ -57,7 +57,13 @@ public sealed class Attachment
      */
     public string MediaType { get; private set; }
     public Source Source { get; private set; }
+    /**
+     * The identifier of the test case attempt if the attachment was created during the execution of a test step
+     */
     public string TestCaseStartedId { get; private set; }
+    /**
+     * The identifier of the test step if the attachment was created during the execution of a test step
+     */
     public string TestStepId { get; private set; }
     /**
      * A URL where the attachment can be retrieved. This field should not be set by Cucumber.
@@ -73,7 +79,14 @@ public sealed class Attachment
      * separately from reports.
      */
     public string Url { get; private set; }
+    /**
+     * Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
+     */
     public string TestRunStartedId { get; private set; }
+    /**
+     * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+     */
+    public string TestRunHookStartedId { get; private set; }
 
 
     public Attachment(
@@ -85,7 +98,8 @@ public sealed class Attachment
         string testCaseStartedId,
         string testStepId,
         string url,
-        string testRunStartedId
+        string testRunStartedId,
+        string testRunHookStartedId
     ) 
     {
         RequireNonNull<string>(body, "Body", "Attachment.Body cannot be null");
@@ -100,6 +114,7 @@ public sealed class Attachment
         this.TestStepId = testStepId;
         this.Url = url;
         this.TestRunStartedId = testRunStartedId;
+        this.TestRunHookStartedId = testRunHookStartedId;
     }
 
     public override bool Equals(Object o) 
@@ -116,7 +131,8 @@ public sealed class Attachment
             Object.Equals(TestCaseStartedId, that.TestCaseStartedId) &&         
             Object.Equals(TestStepId, that.TestStepId) &&         
             Object.Equals(Url, that.Url) &&         
-            Object.Equals(TestRunStartedId, that.TestRunStartedId);        
+            Object.Equals(TestRunStartedId, that.TestRunStartedId) &&         
+            Object.Equals(TestRunHookStartedId, that.TestRunHookStartedId);        
     }
 
     public override int GetHashCode() 
@@ -139,6 +155,8 @@ public sealed class Attachment
           hash = hash * 31 + Url.GetHashCode();
         if (TestRunStartedId != null)
           hash = hash * 31 + TestRunStartedId.GetHashCode();
+        if (TestRunHookStartedId != null)
+          hash = hash * 31 + TestRunHookStartedId.GetHashCode();
         return hash;
     }
 
@@ -154,6 +172,7 @@ public sealed class Attachment
             ", testStepId=" + TestStepId +
             ", url=" + Url +
             ", testRunStartedId=" + TestRunStartedId +
+            ", testRunHookStartedId=" + TestRunHookStartedId +
             '}';
     }
 

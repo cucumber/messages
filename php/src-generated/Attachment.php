@@ -68,7 +68,15 @@ final class Attachment implements JsonSerializable
          */
         public readonly string $mediaType = '',
         public readonly ?Source $source = null,
+
+        /**
+         * The identifier of the test case attempt if the attachment was created during the execution of a test step
+         */
         public readonly ?string $testCaseStartedId = null,
+
+        /**
+         * The identifier of the test step if the attachment was created during the execution of a test step
+         */
         public readonly ?string $testStepId = null,
 
         /**
@@ -85,7 +93,16 @@ final class Attachment implements JsonSerializable
          * separately from reports.
          */
         public readonly ?string $url = null,
+
+        /**
+         * Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
+         */
         public readonly ?string $testRunStartedId = null,
+
+        /**
+         * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+         */
+        public readonly ?string $testRunHookStartedId = null,
     ) {
     }
 
@@ -105,6 +122,7 @@ final class Attachment implements JsonSerializable
         self::ensureTestStepId($arr);
         self::ensureUrl($arr);
         self::ensureTestRunStartedId($arr);
+        self::ensureTestRunHookStartedId($arr);
 
         return new self(
             (string) $arr['body'],
@@ -116,6 +134,7 @@ final class Attachment implements JsonSerializable
             isset($arr['testStepId']) ? (string) $arr['testStepId'] : null,
             isset($arr['url']) ? (string) $arr['url'] : null,
             isset($arr['testRunStartedId']) ? (string) $arr['testRunStartedId'] : null,
+            isset($arr['testRunHookStartedId']) ? (string) $arr['testRunHookStartedId'] : null,
         );
     }
 
@@ -215,6 +234,16 @@ final class Attachment implements JsonSerializable
     {
         if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
             throw new SchemaViolationException('Property \'testRunStartedId\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{testRunHookStartedId?: string|int|bool} $arr
+     */
+    private static function ensureTestRunHookStartedId(array $arr): void
+    {
+        if (array_key_exists('testRunHookStartedId', $arr) && is_array($arr['testRunHookStartedId'])) {
+            throw new SchemaViolationException('Property \'testRunHookStartedId\' was array');
         }
     }
 }

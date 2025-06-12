@@ -8,6 +8,8 @@ export type Attachment = {
   testStepId?: string
   url?: string
   testRunStartedId?: string
+
+  testRunHookStartedId?: string
 }
 
 export type Duration = {
