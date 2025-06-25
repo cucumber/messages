@@ -45,7 +45,7 @@
     "@types/mocha": "10.0.10",
     "@types/node": "22.15.33",
     "copyfiles": "2.4.1",
-    "mocha": "11.6.0",
+    "mocha": "11.7.1",
     "shx": "^0.4.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.3"
