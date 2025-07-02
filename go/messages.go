@@ -11,6 +11,7 @@ type Attachment struct {
 	Url                  string                    `json:"url,omitempty"`
 	TestRunStartedId     string                    `json:"testRunStartedId,omitempty"`
 	TestRunHookStartedId string                    `json:"testRunHookStartedId,omitempty"`
+	Timestamp            *Timestamp                `json:"timestamp,omitempty"`
 }
 
 type Duration struct {
