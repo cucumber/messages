@@ -1,7 +1,6 @@
 # The order is significant - ajv needs referenced schemas to be preceded by referencing schemas
 schemas = \
 	./jsonschema/Source.json \
-	./jsonschema/Attachment.json \
 	./jsonschema/Location.json \
 	./jsonschema/Exception.json \
 	./jsonschema/SourceReference.json \
@@ -14,6 +13,7 @@ schemas = \
 	./jsonschema/StepDefinition.json \
 	./jsonschema/TestCase.json \
 	./jsonschema/Timestamp.json \
+	./jsonschema/Attachment.json \
 	./jsonschema/TestCaseFinished.json \
 	./jsonschema/TestCaseStarted.json \
 	./jsonschema/TestRunFinished.json \
