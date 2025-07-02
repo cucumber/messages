@@ -65,6 +65,7 @@ class Attachment:
     test_run_hook_started_id: Optional[str] = None  # The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
     test_run_started_id: Optional[str] = None  # Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
     test_step_id: Optional[str] = None  # The identifier of the test step if the attachment was created during the execution of a test step
+    timestamp: Optional[Timestamp] = None  # When the attachment was created
     url: Optional[str] = None
     """
     *

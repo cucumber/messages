@@ -8,6 +8,7 @@
 
 #include <cucumber/messages/attachment_content_encoding.hpp>
 #include <cucumber/messages/source.hpp>
+#include <cucumber/messages/timestamp.hpp>
 
 namespace cucumber::messages {
 
@@ -43,6 +44,7 @@ struct attachment
     std::optional<std::string> url;
     std::optional<std::string> test_run_started_id;
     std::optional<std::string> test_run_hook_started_id;
+    std::optional<cucumber::messages::timestamp> timestamp;
 
     std::string to_string() const;
 

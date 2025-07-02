@@ -17,6 +17,7 @@ will only have one of its fields set, which indicates the payload of the message
 | `url` | string | no | |
 | `testRunStartedId` | string | no | |
 | `testRunHookStartedId` | string | no | |
+| `timestamp` | [Timestamp](#timestamp) | no | |
 
 ## Duration
 
