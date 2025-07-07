@@ -36,6 +36,7 @@ public final class Attachment {
     private final String url;
     private final String testRunStartedId;
     private final String testRunHookStartedId;
+    private final Timestamp timestamp;
 
     public Attachment(
         String body,
@@ -47,7 +48,8 @@ public final class Attachment {
         String testStepId,
         String url,
         String testRunStartedId,
-        String testRunHookStartedId
+        String testRunHookStartedId,
+        Timestamp timestamp
     ) {
         this.body = requireNonNull(body, "Attachment.body cannot be null");
         this.contentEncoding = requireNonNull(contentEncoding, "Attachment.contentEncoding cannot be null");
@@ -59,6 +61,7 @@ public final class Attachment {
         this.url = url;
         this.testRunStartedId = testRunStartedId;
         this.testRunHookStartedId = testRunHookStartedId;
+        this.timestamp = timestamp;
     }
 
     /**
@@ -150,6 +153,13 @@ public final class Attachment {
         return Optional.ofNullable(testRunHookStartedId);
     }
 
+    /**
+      * When the attachment was created
+     */
+    public Optional<Timestamp> getTimestamp() {
+        return Optional.ofNullable(timestamp);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -165,7 +175,8 @@ public final class Attachment {
             Objects.equals(testStepId, that.testStepId) &&         
             Objects.equals(url, that.url) &&         
             Objects.equals(testRunStartedId, that.testRunStartedId) &&         
-            Objects.equals(testRunHookStartedId, that.testRunHookStartedId);        
+            Objects.equals(testRunHookStartedId, that.testRunHookStartedId) &&         
+            Objects.equals(timestamp, that.timestamp);        
     }
 
     @Override
@@ -180,7 +191,8 @@ public final class Attachment {
             testStepId,
             url,
             testRunStartedId,
-            testRunHookStartedId
+            testRunHookStartedId,
+            timestamp
         );
     }
 
@@ -197,6 +209,7 @@ public final class Attachment {
             ", url=" + url +
             ", testRunStartedId=" + testRunStartedId +
             ", testRunHookStartedId=" + testRunHookStartedId +
+            ", timestamp=" + timestamp +
             '}';
     }
 }

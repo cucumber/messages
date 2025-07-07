@@ -95,6 +95,11 @@ module Cucumber
       ##
       attr_reader :test_run_hook_started_id
 
+      ##
+      # When the attachment was created
+      ##
+      attr_reader :timestamp
+
       def initialize(
         body: '',
         content_encoding: AttachmentContentEncoding::IDENTITY,
@@ -105,7 +110,8 @@ module Cucumber
         test_step_id: nil,
         url: nil,
         test_run_started_id: nil,
-        test_run_hook_started_id: nil
+        test_run_hook_started_id: nil,
+        timestamp: nil
       )
         @body = body
         @content_encoding = content_encoding
@@ -117,6 +123,7 @@ module Cucumber
         @url = url
         @test_run_started_id = test_run_started_id
         @test_run_hook_started_id = test_run_hook_started_id
+        @timestamp = timestamp
         super()
       end
 
@@ -140,7 +147,8 @@ module Cucumber
           test_step_id: hash[:testStepId],
           url: hash[:url],
           test_run_started_id: hash[:testRunStartedId],
-          test_run_hook_started_id: hash[:testRunHookStartedId]
+          test_run_hook_started_id: hash[:testRunHookStartedId],
+          timestamp: Timestamp.from_h(hash[:timestamp])
         )
       end
     end

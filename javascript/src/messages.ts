@@ -23,6 +23,9 @@ export class Attachment {
   testRunStartedId?: string
 
   testRunHookStartedId?: string
+
+  @Type(() => Timestamp)
+  timestamp?: Timestamp
 }
 
 export class Duration {

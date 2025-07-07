@@ -88,6 +88,7 @@ my %types = (
    url => 'string',
    test_run_started_id => 'string',
    test_run_hook_started_id => 'string',
+   timestamp => 'Cucumber::Messages::Timestamp',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -244,6 +245,16 @@ The identifier of the test run hook execution if the attachment was created duri
 =cut
 
 has test_run_hook_started_id =>
+    (is => 'ro',
+    );
+
+
+=head4 timestamp
+
+When the attachment was created
+=cut
+
+has timestamp =>
     (is => 'ro',
     );
 

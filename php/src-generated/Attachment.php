@@ -103,6 +103,11 @@ final class Attachment implements JsonSerializable
          * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
          */
         public readonly ?string $testRunHookStartedId = null,
+
+        /**
+         * When the attachment was created
+         */
+        public readonly ?Timestamp $timestamp = null,
     ) {
     }
 
@@ -123,6 +128,7 @@ final class Attachment implements JsonSerializable
         self::ensureUrl($arr);
         self::ensureTestRunStartedId($arr);
         self::ensureTestRunHookStartedId($arr);
+        self::ensureTimestamp($arr);
 
         return new self(
             (string) $arr['body'],
@@ -135,6 +141,7 @@ final class Attachment implements JsonSerializable
             isset($arr['url']) ? (string) $arr['url'] : null,
             isset($arr['testRunStartedId']) ? (string) $arr['testRunStartedId'] : null,
             isset($arr['testRunHookStartedId']) ? (string) $arr['testRunHookStartedId'] : null,
+            isset($arr['timestamp']) ? Timestamp::fromArray($arr['timestamp']) : null,
         );
     }
 
@@ -244,6 +251,16 @@ final class Attachment implements JsonSerializable
     {
         if (array_key_exists('testRunHookStartedId', $arr) && is_array($arr['testRunHookStartedId'])) {
             throw new SchemaViolationException('Property \'testRunHookStartedId\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{timestamp?: array} $arr
+     */
+    private static function ensureTimestamp(array $arr): void
+    {
+        if (array_key_exists('timestamp', $arr) && !is_array($arr['timestamp'])) {
+            throw new SchemaViolationException('Property \'timestamp\' was not array');
         }
     }
 }

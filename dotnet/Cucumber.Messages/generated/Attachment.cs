@@ -87,6 +87,10 @@ public sealed class Attachment
      * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
      */
     public string TestRunHookStartedId { get; private set; }
+    /**
+     * When the attachment was created
+     */
+    public Timestamp Timestamp { get; private set; }
 
 
     public Attachment(
@@ -99,7 +103,8 @@ public sealed class Attachment
         string testStepId,
         string url,
         string testRunStartedId,
-        string testRunHookStartedId
+        string testRunHookStartedId,
+        Timestamp timestamp
     ) 
     {
         RequireNonNull<string>(body, "Body", "Attachment.Body cannot be null");
@@ -115,6 +120,7 @@ public sealed class Attachment
         this.Url = url;
         this.TestRunStartedId = testRunStartedId;
         this.TestRunHookStartedId = testRunHookStartedId;
+        this.Timestamp = timestamp;
     }
 
     public override bool Equals(Object o) 
@@ -132,7 +138,8 @@ public sealed class Attachment
             Object.Equals(TestStepId, that.TestStepId) &&         
             Object.Equals(Url, that.Url) &&         
             Object.Equals(TestRunStartedId, that.TestRunStartedId) &&         
-            Object.Equals(TestRunHookStartedId, that.TestRunHookStartedId);        
+            Object.Equals(TestRunHookStartedId, that.TestRunHookStartedId) &&         
+            Object.Equals(Timestamp, that.Timestamp);        
     }
 
     public override int GetHashCode() 
@@ -157,6 +164,8 @@ public sealed class Attachment
           hash = hash * 31 + TestRunStartedId.GetHashCode();
         if (TestRunHookStartedId != null)
           hash = hash * 31 + TestRunHookStartedId.GetHashCode();
+        if (Timestamp != null)
+          hash = hash * 31 + Timestamp.GetHashCode();
         return hash;
     }
 
@@ -173,6 +182,7 @@ public sealed class Attachment
             ", url=" + Url +
             ", testRunStartedId=" + TestRunStartedId +
             ", testRunHookStartedId=" + TestRunHookStartedId +
+            ", timestamp=" + Timestamp +
             '}';
     }
 

@@ -52,6 +52,10 @@
     "testRunHookStartedId": {
       "description": "The identifier of the test run hook execution if the attachment was created during the execution of a test run hook",
       "type": "string"
+    },
+    "timestamp": {
+      "description": "When the attachment was created",
+      "$ref": "./Timestamp.json"
     }
   },
   "type": "object"
