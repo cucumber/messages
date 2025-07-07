@@ -34,8 +34,8 @@ set_target_properties(
     cucumber_messages_lib
     PROPERTIES
         CXX_STANDARD 17
-        VERSION 27.0.2
-        SOVERSION 27
+        VERSION ${VERSION}
+        SOVERSION ${VER_MAJOR}
         EXPORT_NAME messages
         OUTPUT_NAME cucumber_messages
 )

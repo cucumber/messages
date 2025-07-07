@@ -1,12 +1,22 @@
-###
-#
-# Project
-# name and version
-#
-###
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+# The VERSION here is a placeholder; the real version is in the VERSION file.
+set(VERSION 28.0.0)
 
-project(cucumber_messages VERSION 27.0.2 LANGUAGES C CXX)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/VERSION")
+    file(STRINGS "VERSION" LINES)
+    list(GET LINES 0 VERSION)
+endif()
+
+# Crude Semver parsing
+if("${VERSION}" MATCHES "^([^\\.]+)\\.([^\\.]+)\\.([^\\.]+)$")
+    set(VER_MAJOR ${CMAKE_MATCH_1})
+    set(VER_MINOR ${CMAKE_MATCH_2})
+    set(VER_PATCH ${CMAKE_MATCH_3})
+else()
+    message(FATAL_ERROR "unable to parse version: ${VERSION}")
+endif()
+
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+project(cucumber_messages VERSION ${VERSION} LANGUAGES C CXX)
 
 ###
 #
