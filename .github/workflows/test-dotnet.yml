@@ -5,9 +5,17 @@ on:
     branches:
       - main
       - renovate/**
+    paths:
+      - dotnet/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
+    paths:
+      - dotnet/**
+      - Makefile
+      - .github/**
   workflow_call:
 
 jobs:

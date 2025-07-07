@@ -5,10 +5,6 @@ module Generator
   # Automatic Code generation overrides for the 'Cucumber with Markdown' programming language
   # NB: This is based on the cucumber-js implementation
   class Markdown < Base
-    def initialize
-      # This path is different because the make task is ran from the TLD, not a language specific one
-      super(paths: Dir['./jsonschema/*.json'])
-    end
 
     def array_type_for(type_name)
       "#{type_name}[]"
