@@ -32,7 +32,7 @@ name = "cucumber-messages"
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.9"
 urls = {Repository = "https://github.com/cucumber/messages"}
-version = "27.2.0"
+version = "28.0.0"
 
 [project.optional-dependencies]
 test = [
