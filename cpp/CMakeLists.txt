@@ -6,7 +6,7 @@
 ###
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
-project(cucumber_messages VERSION 27.0.2 LANGUAGES C CXX)
+project(cucumber_messages VERSION 28.0.0 LANGUAGES C CXX)
 
 ###
 #
