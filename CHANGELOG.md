@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Added
+### Changed
 - Add `Attachment.testRunHookStartedId` for traceability of attachments to test run hooks ([#301](https://github.com/cucumber/messages/pull/301))
 - Add `Attachment.timestamp` ([#305](https://github.com/cucumber/messages/pull/305))
 
