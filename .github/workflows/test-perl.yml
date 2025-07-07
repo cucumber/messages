@@ -5,9 +5,17 @@ on:
     branches:
       - main
       - renovate/**
+    paths:
+      - perl/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
+    paths:
+      - perl/**
+      - Makefile
+      - .github/**
   workflow_call:
 
 jobs:

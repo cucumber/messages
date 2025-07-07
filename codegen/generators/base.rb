@@ -12,7 +12,7 @@ module Generator
 
     include TextHelpers
 
-    def initialize(paths: Dir['../jsonschema/*.json'])
+    def initialize(paths: Dir['../jsonschema/src/*.json'])
       @paths = paths
       @schemas = {}
       @enum_set = Set.new
