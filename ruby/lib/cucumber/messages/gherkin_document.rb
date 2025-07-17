@@ -7,8 +7,7 @@ module Cucumber
     # Represents the GherkinDocument message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
+    # The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
     #  Cucumber implementations should *not* depend on `GherkinDocument` or any of its
     #  children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
     #
@@ -17,8 +16,7 @@ module Cucumber
     ##
     class GherkinDocument < Message
       ##
-      # *
-      #  The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+      # The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
       #  of the source, typically a file path relative to the root directory
       ##
       attr_reader :uri

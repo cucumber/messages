@@ -26,16 +26,14 @@ class Attachment:
     """
     body: str
     """
-    *
-     The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
+    The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
      is simply the string. If it's `BASE64`, the string should be Base64 decoded to
      obtain the attachment.
     """
 
     content_encoding: AttachmentContentEncoding
     """
-    *
-     Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
+    Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
 
      Content encoding is *not* determined by the media type, but rather by the type
      of the object being attached:
@@ -47,19 +45,13 @@ class Attachment:
 
     media_type: str
     """
-    *
-     The media type of the data. This can be any valid
+    The media type of the data. This can be any valid
      [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
      as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
      and `text/x.cucumber.stacktrace+plain`
     """
 
-    file_name: Optional[str] = None
-    """
-    *
-     Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
-    """
-
+    file_name: Optional[str] = None  # Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
     source: Optional[Source] = None
     test_case_started_id: Optional[str] = None  # The identifier of the test case attempt if the attachment was created during the execution of a test step
     test_run_hook_started_id: Optional[str] = None  # The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
@@ -68,8 +60,7 @@ class Attachment:
     timestamp: Optional[Timestamp] = None  # When the attachment was created
     url: Optional[str] = None
     """
-    *
-     A URL where the attachment can be retrieved. This field should not be set by Cucumber.
+    A URL where the attachment can be retrieved. This field should not be set by Cucumber.
      It should be set by a program that reads a message stream and does the following for
      each Attachment message:
 
@@ -146,8 +137,7 @@ class Exception:
 @dataclass
 class GherkinDocument:
     """
-    *
-     The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
+    The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
      Cucumber implementations should *not* depend on `GherkinDocument` or any of its
      children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
 
@@ -158,8 +148,7 @@ class GherkinDocument:
     feature: Optional[Feature] = None
     uri: Optional[str] = None
     """
-    *
-     The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+    The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
      of the source, typically a file path relative to the root directory
     """
 
@@ -178,8 +167,7 @@ class Background:
 @dataclass
 class Comment:
     """
-    *
-     A comment in a Gherkin document
+    A comment in a Gherkin document
     """
     location: Location  # The location of the comment
     text: str  # The text of the comment
@@ -225,8 +213,7 @@ class Feature:
 @dataclass
 class FeatureChild:
     """
-    *
-     A child node of a `Feature` node
+    A child node of a `Feature` node
     """
     background: Optional[Background] = None
     rule: Optional[Rule] = None
@@ -247,8 +234,7 @@ class Rule:
 @dataclass
 class RuleChild:
     """
-    *
-     A child node of a `Rule` node
+    A child node of a `Rule` node
     """
     background: Optional[Background] = None
     scenario: Optional[Scenario] = None
@@ -302,8 +288,7 @@ class TableRow:
 @dataclass
 class Tag:
     """
-    *
-     A tag
+    A tag
     """
     id: str  # Unique ID to be able to reference the Tag from PickleTag
     location: Location  # Location of the tag
@@ -322,8 +307,7 @@ class Hook:
 @dataclass
 class Location:
     """
-    *
-     Points to a line and a column in a text file
+    Points to a line and a column in a text file
     """
     line: int
     column: Optional[int] = None
@@ -332,19 +316,13 @@ class Location:
 @dataclass
 class Meta:
     """
-    *
-     This message contains meta information about the environment. Consumers can use
+    This message contains meta information about the environment. Consumers can use
      this for various purposes.
     """
     cpu: Product  # 386, arm, amd64 etc
     implementation: Product  # SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
     os: Product  # Windows, Linux, MacOS etc
-    protocol_version: str
-    """
-    *
-     The [SEMVER](https://semver.org/) version number of the protocol
-    """
-
+    protocol_version: str  # The [SEMVER](https://semver.org/) version number of the protocol
     runtime: Product  # Java, Ruby, Node.js etc
     ci: Optional[Ci] = None
 
@@ -416,25 +394,18 @@ class Pickle:
     """
     ast_node_ids: list[str]
     """
-    *
-     Points to the AST node locations of the pickle. The last one represents the unique
+    Points to the AST node locations of the pickle. The last one represents the unique
      id of the pickle. A pickle constructed from `Examples` will have the first
      id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
     """
 
-    id: str
-    """
-    *
-     A unique id for the pickle
-    """
-
+    id: str  # A unique id for the pickle
     language: str  # The language of the pickle
     name: str  # The name of the pickle
     steps: list[PickleStep]  # One or more steps
     tags: list[PickleTag]
     """
-    *
-     One or more tags. If this pickle is constructed from a Gherkin document,
+    One or more tags. If this pickle is constructed from a Gherkin document,
      It includes inherited tags from the `Feature` as well.
     """
 
@@ -450,8 +421,7 @@ class PickleDocString:
 @dataclass
 class PickleStep:
     """
-    *
-     An executable step
+    An executable step
     """
     ast_node_ids: list[str]
     """
@@ -498,8 +468,7 @@ class PickleTableRow:
 @dataclass
 class PickleTag:
     """
-    *
-     A tag
+    A tag
     """
     ast_node_id: str  # Points to the AST node this was created from
     name: str
@@ -522,8 +491,7 @@ class Source:
 
     uri: str
     """
-    *
-     The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+    The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
      of the source, typically a file path relative to the root directory
     """
 
@@ -532,8 +500,7 @@ class Source:
 @dataclass
 class SourceReference:
     """
-    *
-     Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
+    Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
      [Location](#io.cucumber.messages.Location) within that file.
     """
     java_method: Optional[JavaMethod] = None
@@ -593,8 +560,7 @@ class Group:
 @dataclass
 class StepMatchArgument:
     """
-    *
-     Represents a single argument extracted from a step match and passed to a step definition.
+    Represents a single argument extracted from a step match and passed to a step definition.
      This is used for the following purposes:
      - Construct an argument to pass to a step definition (possibly through a parameter type transform)
      - Highlight the matched parameter in rich formatters such as the HTML formatter
@@ -603,8 +569,7 @@ class StepMatchArgument:
     """
     group: Group
     """
-    *
-     Represents the outermost capture group of an argument. This message closely matches the
+    Represents the outermost capture group of an argument. This message closely matches the
      `Group` class in the `cucumber-expressions` library.
     """
 
@@ -619,8 +584,7 @@ class StepMatchArgumentsList:
 @dataclass
 class TestStep:
     """
-    *
-     A `TestStep` is derived from either a `PickleStep`
+    A `TestStep` is derived from either a `PickleStep`
      combined with a `StepDefinition`, or from a `Hook`.
     """
     id: str
@@ -647,15 +611,13 @@ class TestCaseFinished:
 class TestCaseStarted:
     attempt: int
     """
-    *
-     The first attempt should have value 0, and for each retry the value
+    The first attempt should have value 0, and for each retry the value
      should increase by 1.
     """
 
     id: str
     """
-    *
-     Because a `TestCase` can be run multiple times (in case of a retry),
+    Because a `TestCase` can be run multiple times (in case of a retry),
      we use this field to group messages relating to the same attempt.
     """
 

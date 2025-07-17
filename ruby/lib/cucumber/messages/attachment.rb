@@ -22,16 +22,14 @@ module Cucumber
     ##
     class Attachment < Message
       ##
-      # *
-      #  The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
+      # The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
       #  is simply the string. If it's `BASE64`, the string should be Base64 decoded to
       #  obtain the attachment.
       ##
       attr_reader :body
 
       ##
-      # *
-      #  Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
+      # Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
       #
       #  Content encoding is *not* determined by the media type, but rather by the type
       #  of the object being attached:
@@ -43,14 +41,12 @@ module Cucumber
       attr_reader :content_encoding
 
       ##
-      # *
-      #  Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
+      # Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
       ##
       attr_reader :file_name
 
       ##
-      # *
-      #  The media type of the data. This can be any valid
+      # The media type of the data. This can be any valid
       #  [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
       #  as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
       #  and `text/x.cucumber.stacktrace+plain`
@@ -70,8 +66,7 @@ module Cucumber
       attr_reader :test_step_id
 
       ##
-      # *
-      #  A URL where the attachment can be retrieved. This field should not be set by Cucumber.
+      # A URL where the attachment can be retrieved. This field should not be set by Cucumber.
       #  It should be set by a program that reads a message stream and does the following for
       #  each Attachment message:
       #

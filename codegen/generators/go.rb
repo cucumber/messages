@@ -14,12 +14,12 @@ module Generator
 
     private
 
-    def language_translations_for_data_types
+    def select_language_translations_for_data_types(type, property)
       {
         'integer' => 'int64',
         'string' => 'string',
         'boolean' => 'bool'
-      }
+      }.fetch(type)
     end
   end
 end

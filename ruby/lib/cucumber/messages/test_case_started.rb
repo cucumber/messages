@@ -9,15 +9,13 @@ module Cucumber
     ##
     class TestCaseStarted < Message
       ##
-      # *
-      #  The first attempt should have value 0, and for each retry the value
+      # The first attempt should have value 0, and for each retry the value
       #  should increase by 1.
       ##
       attr_reader :attempt
 
       ##
-      # *
-      #  Because a `TestCase` can be run multiple times (in case of a retry),
+      # Because a `TestCase` can be run multiple times (in case of a retry),
       #  we use this field to group messages relating to the same attempt.
       ##
       attr_reader :id

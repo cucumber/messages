@@ -14,8 +14,7 @@ module Cucumber
     ##
     class Source < Message
       ##
-      # *
-      #  The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+      # The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
       #  of the source, typically a file path relative to the root directory
       ##
       attr_reader :uri

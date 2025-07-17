@@ -23,8 +23,7 @@ module Cucumber
     ##
     class Pickle < Message
       ##
-      # *
-      #  A unique id for the pickle
+      # A unique id for the pickle
       ##
       attr_reader :id
 
@@ -49,15 +48,13 @@ module Cucumber
       attr_reader :steps
 
       ##
-      # *
-      #  One or more tags. If this pickle is constructed from a Gherkin document,
+      # One or more tags. If this pickle is constructed from a Gherkin document,
       #  It includes inherited tags from the `Feature` as well.
       ##
       attr_reader :tags
 
       ##
-      # *
-      #  Points to the AST node locations of the pickle. The last one represents the unique
+      # Points to the AST node locations of the pickle. The last one represents the unique
       #  id of the pickle. A pickle constructed from `Examples` will have the first
       #  id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
       ##

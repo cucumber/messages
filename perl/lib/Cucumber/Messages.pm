@@ -101,8 +101,7 @@ sub _types {
 
 =head4 body
 
-*
- The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
+The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
  is simply the string. If it's `BASE64`, the string should be Base64 decoded to
  obtain the attachment.
 =cut
@@ -116,8 +115,7 @@ has body =>
 
 =head4 content_encoding
 
-*
- Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
+Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
 
  Content encoding is *not* determined by the media type, but rather by the type
  of the object being attached:
@@ -153,8 +151,7 @@ has content_encoding =>
 
 =head4 file_name
 
-*
- Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
+Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
 =cut
 
 has file_name =>
@@ -164,8 +161,7 @@ has file_name =>
 
 =head4 media_type
 
-*
- The media type of the data. This can be any valid
+The media type of the data. This can be any valid
  [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
  as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
  and `text/x.cucumber.stacktrace+plain`
@@ -210,8 +206,7 @@ has test_step_id =>
 
 =head4 url
 
-*
- A URL where the attachment can be retrieved. This field should not be set by Cucumber.
+A URL where the attachment can be retrieved. This field should not be set by Cucumber.
  It should be set by a program that reads a message stream and does the following for
  each Attachment message:
 
@@ -649,8 +644,7 @@ package Cucumber::Messages::GherkinDocument {
 Represents the GherkinDocument message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
+The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
  Cucumber implementations should *not* depend on `GherkinDocument` or any of its
  children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
 
@@ -682,8 +676,7 @@ sub _types {
 
 =head4 uri
 
-*
- The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
  of the source, typically a file path relative to the root directory
 =cut
 
@@ -836,8 +829,7 @@ package Cucumber::Messages::Comment {
 Represents the Comment message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A comment in a Gherkin document
+A comment in a Gherkin document
 
 =head3 ATTRIBUTES
 
@@ -1297,8 +1289,7 @@ package Cucumber::Messages::FeatureChild {
 Represents the FeatureChild message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A child node of a `Feature` node
+A child node of a `Feature` node
 
 =head3 ATTRIBUTES
 
@@ -1488,8 +1479,7 @@ package Cucumber::Messages::RuleChild {
 Represents the RuleChild message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A child node of a `Rule` node
+A child node of a `Rule` node
 
 =head3 ATTRIBUTES
 
@@ -1956,8 +1946,7 @@ package Cucumber::Messages::Tag {
 Represents the Tag message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A tag
+A tag
 
 =head3 ATTRIBUTES
 
@@ -2150,8 +2139,7 @@ package Cucumber::Messages::Location {
 Represents the Location message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- Points to a line and a column in a text file
+Points to a line and a column in a text file
 
 =head3 ATTRIBUTES
 
@@ -2208,8 +2196,7 @@ package Cucumber::Messages::Meta {
 Represents the Meta message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- This message contains meta information about the environment. Consumers can use
+This message contains meta information about the environment. Consumers can use
  this for various purposes.
 
 =head3 ATTRIBUTES
@@ -2240,8 +2227,7 @@ sub _types {
 
 =head4 protocol_version
 
-*
- The [SEMVER](https://semver.org/) version number of the protocol
+The [SEMVER](https://semver.org/) version number of the protocol
 =cut
 
 has protocol_version =>
@@ -2749,8 +2735,7 @@ sub _types {
 
 =head4 id
 
-*
- A unique id for the pickle
+A unique id for the pickle
 =cut
 
 has id =>
@@ -2810,8 +2795,7 @@ has steps =>
 
 =head4 tags
 
-*
- One or more tags. If this pickle is constructed from a Gherkin document,
+One or more tags. If this pickle is constructed from a Gherkin document,
  It includes inherited tags from the `Feature` as well.
 =cut
 
@@ -2824,8 +2808,7 @@ has tags =>
 
 =head4 ast_node_ids
 
-*
- Points to the AST node locations of the pickle. The last one represents the unique
+Points to the AST node locations of the pickle. The last one represents the unique
  id of the pickle. A pickle constructed from `Examples` will have the first
  id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
 =cut
@@ -2905,8 +2888,7 @@ package Cucumber::Messages::PickleStep {
 Represents the PickleStep message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- An executable step
+An executable step
 
 =head3 ATTRIBUTES
 
@@ -3219,8 +3201,7 @@ package Cucumber::Messages::PickleTag {
 Represents the PickleTag message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A tag
+A tag
 
 =head3 ATTRIBUTES
 
@@ -3309,8 +3290,7 @@ sub _types {
 
 =head4 uri
 
-*
- The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
  of the source, typically a file path relative to the root directory
 =cut
 
@@ -3374,8 +3354,7 @@ package Cucumber::Messages::SourceReference {
 Represents the SourceReference message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
+Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
  [Location](#io.cucumber.messages.Location) within that file.
 
 =head3 ATTRIBUTES
@@ -3899,8 +3878,7 @@ package Cucumber::Messages::StepMatchArgument {
 Represents the StepMatchArgument message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- Represents a single argument extracted from a step match and passed to a step definition.
+Represents a single argument extracted from a step match and passed to a step definition.
  This is used for the following purposes:
  - Construct an argument to pass to a step definition (possibly through a parameter type transform)
  - Highlight the matched parameter in rich formatters such as the HTML formatter
@@ -3931,8 +3909,7 @@ sub _types {
 
 =head4 group
 
-*
- Represents the outermost capture group of an argument. This message closely matches the
+Represents the outermost capture group of an argument. This message closely matches the
  `Group` class in the `cucumber-expressions` library.
 =cut
 
@@ -4010,8 +3987,7 @@ package Cucumber::Messages::TestStep {
 Represents the TestStep message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A `TestStep` is derived from either a `PickleStep`
+A `TestStep` is derived from either a `PickleStep`
  combined with a `StepDefinition`, or from a `Hook`.
 
 =head3 ATTRIBUTES
@@ -4205,8 +4181,7 @@ sub _types {
 
 =head4 attempt
 
-*
- The first attempt should have value 0, and for each retry the value
+The first attempt should have value 0, and for each retry the value
  should increase by 1.
 =cut
 
@@ -4219,8 +4194,7 @@ has attempt =>
 
 =head4 id
 
-*
- Because a `TestCase` can be run multiple times (in case of a retry),
+Because a `TestCase` can be run multiple times (in case of a retry),
  we use this field to group messages relating to the same attempt.
 =cut
 

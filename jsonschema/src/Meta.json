@@ -71,7 +71,7 @@
       "type": "object"
     }
   },
-  "description": "*\n This message contains meta information about the environment. Consumers can use\n this for various purposes.",
+  "description": "This message contains meta information about the environment. Consumers can use\n this for various purposes.",
   "required": [
     "protocolVersion",
     "implementation",
@@ -81,7 +81,7 @@
   ],
   "properties": {
     "protocolVersion": {
-      "description": "*\n The [SEMVER](https://semver.org/) version number of the protocol",
+      "description": "The [SEMVER](https://semver.org/) version number of the protocol",
       "type": "string"
     },
     "implementation": {

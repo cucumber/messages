@@ -7,8 +7,7 @@ module Cucumber
     # Represents the TestStep message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  A `TestStep` is derived from either a `PickleStep`
+    # A `TestStep` is derived from either a `PickleStep`
     #  combined with a `StepDefinition`, or from a `Hook`.
     ##
     class TestStep < Message

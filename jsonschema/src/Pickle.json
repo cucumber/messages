@@ -21,7 +21,7 @@
     "PickleStep": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n An executable step",
+      "description": "An executable step",
       "required": [
         "astNodeIds",
         "id",
@@ -120,7 +120,7 @@
     "PickleTag": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n A tag",
+      "description": "A tag",
       "required": [
         "name",
         "astNodeId"
@@ -149,7 +149,7 @@
   ],
   "properties": {
     "id": {
-      "description": "*\n A unique id for the pickle",
+      "description": "A unique id for the pickle",
       "type": "string"
     },
     "uri": {
@@ -172,14 +172,14 @@
       "type": "array"
     },
     "tags": {
-      "description": "*\n One or more tags. If this pickle is constructed from a Gherkin document,\n It includes inherited tags from the `Feature` as well.",
+      "description": "One or more tags. If this pickle is constructed from a Gherkin document,\n It includes inherited tags from the `Feature` as well.",
       "items": {
         "$ref": "#/definitions/PickleTag"
       },
       "type": "array"
     },
     "astNodeIds": {
-      "description": "*\n Points to the AST node locations of the pickle. The last one represents the unique\n id of the pickle. A pickle constructed from `Examples` will have the first\n id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.",
+      "description": "Points to the AST node locations of the pickle. The last one represents the unique\n id of the pickle. A pickle constructed from `Examples` will have the first\n id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.",
       "items": {
         "type": "string"
       },

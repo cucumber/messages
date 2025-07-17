@@ -7,8 +7,7 @@ module Cucumber
     # Represents the PickleStep message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  An executable step
+    # An executable step
     ##
     class PickleStep < Message
       attr_reader :argument

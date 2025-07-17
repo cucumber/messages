@@ -7,14 +7,12 @@ module Cucumber
     # Represents the Meta message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  This message contains meta information about the environment. Consumers can use
+    # This message contains meta information about the environment. Consumers can use
     #  this for various purposes.
     ##
     class Meta < Message
       ##
-      # *
-      #  The [SEMVER](https://semver.org/) version number of the protocol
+      # The [SEMVER](https://semver.org/) version number of the protocol
       ##
       attr_reader :protocol_version
 
