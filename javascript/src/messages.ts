@@ -429,6 +429,9 @@ export class Pickle {
   tags: readonly PickleTag[] = []
 
   astNodeIds: readonly string[] = []
+
+  @Type(() => Location)
+  location?: Location
 }
 
 export class PickleDocString {

@@ -2737,6 +2737,7 @@ my %types = (
    steps => '[]Cucumber::Messages::PickleStep',
    tags => '[]Cucumber::Messages::PickleTag',
    ast_node_ids => '[]string',
+   location => 'Cucumber::Messages::Location',
 );
 
 # This is a work-around for the fact that Moo doesn't have introspection
@@ -2834,6 +2835,16 @@ has ast_node_ids =>
     (is => 'ro',
      required => 1,
      default => sub { [] },
+    );
+
+
+=head4 location
+
+The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+=cut
+
+has location =>
+    (is => 'ro',
     );
 
 

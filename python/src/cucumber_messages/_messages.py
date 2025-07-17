@@ -439,6 +439,7 @@ class Pickle:
     """
 
     uri: str  # The uri of the source file
+    location: Optional[Location] = None  # The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
 
 
 @dataclass

@@ -77,6 +77,11 @@ final class Pickle implements JsonSerializable
          * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
          */
         public readonly array $astNodeIds = [],
+
+        /**
+         * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+         */
+        public readonly ?Location $location = null,
     ) {
     }
 
@@ -94,6 +99,7 @@ final class Pickle implements JsonSerializable
         self::ensureSteps($arr);
         self::ensureTags($arr);
         self::ensureAstNodeIds($arr);
+        self::ensureLocation($arr);
 
         return new self(
             (string) $arr['id'],
@@ -103,6 +109,7 @@ final class Pickle implements JsonSerializable
             array_values(array_map(fn (array $member) => PickleStep::fromArray($member), $arr['steps'])),
             array_values(array_map(fn (array $member) => PickleTag::fromArray($member), $arr['tags'])),
             array_values(array_map(fn (mixed $member) => (string) $member, $arr['astNodeIds'])),
+            isset($arr['location']) ? Location::fromArray($arr['location']) : null,
         );
     }
 
@@ -194,6 +201,16 @@ final class Pickle implements JsonSerializable
         }
         if (array_key_exists('astNodeIds', $arr) && !is_array($arr['astNodeIds'])) {
             throw new SchemaViolationException('Property \'astNodeIds\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{location?: array} $arr
+     */
+    private static function ensureLocation(array $arr): void
+    {
+        if (array_key_exists('location', $arr) && !is_array($arr['location'])) {
+            throw new SchemaViolationException('Property \'location\' was not array');
         }
     }
 }

@@ -34,6 +34,7 @@ public final class Pickle {
     private final java.util.List<PickleStep> steps;
     private final java.util.List<PickleTag> tags;
     private final java.util.List<String> astNodeIds;
+    private final Location location;
 
     public Pickle(
         String id,
@@ -42,7 +43,8 @@ public final class Pickle {
         String language,
         java.util.List<PickleStep> steps,
         java.util.List<PickleTag> tags,
-        java.util.List<String> astNodeIds
+        java.util.List<String> astNodeIds,
+        Location location
     ) {
         this.id = requireNonNull(id, "Pickle.id cannot be null");
         this.uri = requireNonNull(uri, "Pickle.uri cannot be null");
@@ -51,6 +53,7 @@ public final class Pickle {
         this.steps = unmodifiableList(new ArrayList<>(requireNonNull(steps, "Pickle.steps cannot be null")));
         this.tags = unmodifiableList(new ArrayList<>(requireNonNull(tags, "Pickle.tags cannot be null")));
         this.astNodeIds = unmodifiableList(new ArrayList<>(requireNonNull(astNodeIds, "Pickle.astNodeIds cannot be null")));
+        this.location = location;
     }
 
     /**
@@ -105,6 +108,13 @@ public final class Pickle {
         return astNodeIds;
     }
 
+    /**
+      * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+     */
+    public Optional<Location> getLocation() {
+        return Optional.ofNullable(location);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,7 +127,8 @@ public final class Pickle {
             language.equals(that.language) &&         
             steps.equals(that.steps) &&         
             tags.equals(that.tags) &&         
-            astNodeIds.equals(that.astNodeIds);        
+            astNodeIds.equals(that.astNodeIds) &&         
+            Objects.equals(location, that.location);        
     }
 
     @Override
@@ -129,7 +140,8 @@ public final class Pickle {
             language,
             steps,
             tags,
-            astNodeIds
+            astNodeIds,
+            location
         );
     }
 
@@ -143,6 +155,7 @@ public final class Pickle {
             ", steps=" + steps +
             ", tags=" + tags +
             ", astNodeIds=" + astNodeIds +
+            ", location=" + location +
             '}';
     }
 }

@@ -17,6 +17,7 @@ pickle::to_string() const
     cucumber::messages::to_string(oss, ", steps=", steps);
     cucumber::messages::to_string(oss, ", tags=", tags);
     cucumber::messages::to_string(oss, ", ast_node_ids=", ast_node_ids);
+    cucumber::messages::to_string(oss, ", location=", location);
 
     return oss.str();
 }
@@ -31,6 +32,7 @@ pickle::to_json(json& j) const
     cucumber::messages::to_json(j, camelize("steps"), steps);
     cucumber::messages::to_json(j, camelize("tags"), tags);
     cucumber::messages::to_json(j, camelize("ast_node_ids"), ast_node_ids);
+    cucumber::messages::to_json(j, camelize("location"), location);
 }
 
 std::string
