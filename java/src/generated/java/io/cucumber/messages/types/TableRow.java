@@ -8,9 +8,8 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the TableRow message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
+ * Represents the TableRow message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * A row in a table
  */
 // Generated code

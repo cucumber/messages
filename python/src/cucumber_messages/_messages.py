@@ -11,55 +11,46 @@ from ._message_enums import *
 @dataclass
 class Attachment:
     """
-    //// Attachments (parse errors, execution errors, screenshots, links...)
+    Attachments (parse errors, execution errors, screenshots, links...)
 
-    *
-     An attachment represents any kind of data associated with a line in a
-     [Source](#io.cucumber.messages.Source) file. It can be used for:
+    An attachment represents any kind of data associated with a line in a
+    [Source](#io.cucumber.messages.Source) file. It can be used for:
 
-     * Syntax errors during parse time
-     * Screenshots captured and attached during execution
-     * Logs captured and attached during execution
+    * Syntax errors during parse time
+    * Screenshots captured and attached during execution
+    * Logs captured and attached during execution
 
-     It is not to be used for runtime errors raised/thrown during execution. This
-     is captured in `TestResult`.
+    It is not to be used for runtime errors raised/thrown during execution. This
+    is captured in `TestResult`.
     """
     body: str
     """
-    *
-     The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
-     is simply the string. If it's `BASE64`, the string should be Base64 decoded to
-     obtain the attachment.
+    The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
+    is simply the string. If it's `BASE64`, the string should be Base64 decoded to
+    obtain the attachment.
     """
 
     content_encoding: AttachmentContentEncoding
     """
-    *
-     Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
+    Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
 
-     Content encoding is *not* determined by the media type, but rather by the type
-     of the object being attached:
+    Content encoding is *not* determined by the media type, but rather by the type
+    of the object being attached:
 
-     - string: IDENTITY
-     - byte array: BASE64
-     - stream: BASE64
+    - string: IDENTITY
+    - byte array: BASE64
+    - stream: BASE64
     """
 
     media_type: str
     """
-    *
-     The media type of the data. This can be any valid
-     [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
-     as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
-     and `text/x.cucumber.stacktrace+plain`
+    The media type of the data. This can be any valid
+    [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
+    as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
+    and `text/x.cucumber.stacktrace+plain`
     """
 
-    file_name: Optional[str] = None
-    """
-    *
-     Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
-    """
-
+    file_name: Optional[str] = None  # Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
     source: Optional[Source] = None
     test_case_started_id: Optional[str] = None  # The identifier of the test case attempt if the attachment was created during the execution of a test step
     test_run_hook_started_id: Optional[str] = None  # The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
@@ -68,18 +59,17 @@ class Attachment:
     timestamp: Optional[Timestamp] = None  # When the attachment was created
     url: Optional[str] = None
     """
-    *
-     A URL where the attachment can be retrieved. This field should not be set by Cucumber.
-     It should be set by a program that reads a message stream and does the following for
-     each Attachment message:
+    A URL where the attachment can be retrieved. This field should not be set by Cucumber.
+    It should be set by a program that reads a message stream and does the following for
+    each Attachment message:
 
-     - Writes the body (after base64 decoding if necessary) to a new file.
-     - Sets `body` and `contentEncoding` to `null`
-     - Writes out the new attachment message
+    - Writes the body (after base64 decoding if necessary) to a new file.
+    - Sets `body` and `contentEncoding` to `null`
+    - Writes out the new attachment message
 
-     This will result in a smaller message stream, which can improve performance and
-     reduce bandwidth of message consumers. It also makes it easier to process and download attachments
-     separately from reports.
+    This will result in a smaller message stream, which can improve performance and
+    reduce bandwidth of message consumers. It also makes it easier to process and download attachments
+    separately from reports.
     """
 
 
@@ -88,14 +78,14 @@ class Attachment:
 class Duration:
     """
     The structure is pretty close of the Timestamp one. For clarity, a second type
-     of message is used.
+    of message is used.
     """
     nanos: int
     """
     Non-negative fractions of a second at nanosecond resolution. Negative
-     second values with fractions must still have non-negative nanos values
-     that count forward in time. Must be from 0 to 999,999,999
-     inclusive.
+    second values with fractions must still have non-negative nanos values
+    that count forward in time. Must be from 0 to 999,999,999
+    inclusive.
     """
 
     seconds: int
@@ -103,15 +93,6 @@ class Duration:
 
 @dataclass
 class Envelope:
-    """
-    When removing a field, replace it with reserved, rather than deleting the line.
-     When adding a field, add it to the end and increment the number by one.
-     See https://developers.google.com/protocol-buffers/docs/proto#updating for details
-
-    *
-     All the messages that are passed between different components/processes are Envelope
-     messages.
-    """
     attachment: Optional[Attachment] = None
     gherkin_document: Optional[GherkinDocument] = None
     hook: Optional[Hook] = None
@@ -146,21 +127,19 @@ class Exception:
 @dataclass
 class GherkinDocument:
     """
-    *
-     The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
-     Cucumber implementations should *not* depend on `GherkinDocument` or any of its
-     children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
+    The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
+    Cucumber implementations should *not* depend on `GherkinDocument` or any of its
+    children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
 
-     The only consumers of `GherkinDocument` should only be formatters that produce
-     "rich" output, resembling the original Gherkin document.
+    The only consumers of `GherkinDocument` should only be formatters that produce
+    "rich" output, resembling the original Gherkin document.
     """
     comments: list[Comment]  # All the comments in the Gherkin document
     feature: Optional[Feature] = None
     uri: Optional[str] = None
     """
-    *
-     The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
-     of the source, typically a file path relative to the root directory
+    The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+    of the source, typically a file path relative to the root directory
     """
 
 
@@ -178,8 +157,7 @@ class Background:
 @dataclass
 class Comment:
     """
-    *
-     A comment in a Gherkin document
+    A comment in a Gherkin document
     """
     location: Location  # The location of the comment
     text: str  # The text of the comment
@@ -225,8 +203,7 @@ class Feature:
 @dataclass
 class FeatureChild:
     """
-    *
-     A child node of a `Feature` node
+    A child node of a `Feature` node
     """
     background: Optional[Background] = None
     rule: Optional[Rule] = None
@@ -247,8 +224,7 @@ class Rule:
 @dataclass
 class RuleChild:
     """
-    *
-     A child node of a `Rule` node
+    A child node of a `Rule` node
     """
     background: Optional[Background] = None
     scenario: Optional[Scenario] = None
@@ -302,8 +278,7 @@ class TableRow:
 @dataclass
 class Tag:
     """
-    *
-     A tag
+    A tag
     """
     id: str  # Unique ID to be able to reference the Tag from PickleTag
     location: Location  # Location of the tag
@@ -322,8 +297,7 @@ class Hook:
 @dataclass
 class Location:
     """
-    *
-     Points to a line and a column in a text file
+    Points to a line and a column in a text file
     """
     line: int
     column: Optional[int] = None
@@ -332,19 +306,13 @@ class Location:
 @dataclass
 class Meta:
     """
-    *
-     This message contains meta information about the environment. Consumers can use
-     this for various purposes.
+    This message contains meta information about the environment. Consumers can use
+    this for various purposes.
     """
     cpu: Product  # 386, arm, amd64 etc
     implementation: Product  # SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
     os: Product  # Windows, Linux, MacOS etc
-    protocol_version: str
-    """
-    *
-     The [SEMVER](https://semver.org/) version number of the protocol
-    """
-
+    protocol_version: str  # The [SEMVER](https://semver.org/) version number of the protocol
     runtime: Product  # Java, Ruby, Node.js etc
     ci: Optional[Ci] = None
 
@@ -364,7 +332,7 @@ class Ci:
 class Git:
     """
     Information about Git, provided by the Build/CI server as environment
-     variables.
+    variables.
     """
     remote: str
     revision: str
@@ -400,42 +368,32 @@ class ParseError:
 @dataclass
 class Pickle:
     """
-    //// Pickles
+    A `Pickle` represents a template for a `TestCase`. It is typically derived
+    from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
+    In the future a `Pickle` may be derived from other formats such as Markdown or
+    Excel files.
 
-    *
-     A `Pickle` represents a template for a `TestCase`. It is typically derived
-     from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
-     In the future a `Pickle` may be derived from other formats such as Markdown or
-     Excel files.
+    By making `Pickle` the main data structure Cucumber uses for execution, the
+    implementation of Cucumber itself becomes simpler, as it doesn't have to deal
+    with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
 
-     By making `Pickle` the main data structure Cucumber uses for execution, the
-     implementation of Cucumber itself becomes simpler, as it doesn't have to deal
-     with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
-
-     Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
+    Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
     """
     ast_node_ids: list[str]
     """
-    *
-     Points to the AST node locations of the pickle. The last one represents the unique
-     id of the pickle. A pickle constructed from `Examples` will have the first
-     id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
+    Points to the AST node locations of the pickle. The last one represents the unique
+    id of the pickle. A pickle constructed from `Examples` will have the first
+    id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
     """
 
-    id: str
-    """
-    *
-     A unique id for the pickle
-    """
-
+    id: str  # A unique id for the pickle
     language: str  # The language of the pickle
     name: str  # The name of the pickle
     steps: list[PickleStep]  # One or more steps
     tags: list[PickleTag]
     """
-    *
-     One or more tags. If this pickle is constructed from a Gherkin document,
-     It includes inherited tags from the `Feature` as well.
+    One or more tags. If this pickle is constructed from a Gherkin document,
+    It includes inherited tags from the `Feature` as well.
     """
 
     uri: str  # The uri of the source file
@@ -450,13 +408,12 @@ class PickleDocString:
 @dataclass
 class PickleStep:
     """
-    *
-     An executable step
+    An executable step
     """
     ast_node_ids: list[str]
     """
     References the IDs of the source of the step. For Gherkin, this can be
-     the ID of a Step, and possibly also the ID of a TableRow
+    the ID of a Step, and possibly also the ID of a TableRow
     """
 
     id: str  # A unique ID for the PickleStep
@@ -498,8 +455,7 @@ class PickleTableRow:
 @dataclass
 class PickleTag:
     """
-    *
-     A tag
+    A tag
     """
     ast_node_id: str  # Points to the AST node this was created from
     name: str
@@ -508,23 +464,19 @@ class PickleTag:
 @dataclass
 class Source:
     """
-    //// Source
-
-    *
-     A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
+    A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
     """
     data: str  # The contents of the file
     media_type: SourceMediaType
     """
     The media type of the file. Can be used to specify custom types, such as
-     text/x.cucumber.gherkin+plain
+    text/x.cucumber.gherkin+plain
     """
 
     uri: str
     """
-    *
-     The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
-     of the source, typically a file path relative to the root directory
+    The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+    of the source, typically a file path relative to the root directory
     """
 
 
@@ -532,9 +484,8 @@ class Source:
 @dataclass
 class SourceReference:
     """
-    *
-     Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
-     [Location](#io.cucumber.messages.Location) within that file.
+    Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
+    [Location](#io.cucumber.messages.Location) within that file.
     """
     java_method: Optional[JavaMethod] = None
     java_stack_trace_element: Optional[JavaStackTraceElement] = None
@@ -572,10 +523,7 @@ class StepDefinitionPattern:
 @dataclass
 class TestCase:
     """
-    //// TestCases
-
-    *
-     A `TestCase` contains a sequence of `TestStep`s.
+    A `TestCase` contains a sequence of `TestStep`s.
     """
     id: str
     pickle_id: str  # The ID of the `Pickle` this `TestCase` is derived from.
@@ -593,19 +541,17 @@ class Group:
 @dataclass
 class StepMatchArgument:
     """
-    *
-     Represents a single argument extracted from a step match and passed to a step definition.
-     This is used for the following purposes:
-     - Construct an argument to pass to a step definition (possibly through a parameter type transform)
-     - Highlight the matched parameter in rich formatters such as the HTML formatter
+    Represents a single argument extracted from a step match and passed to a step definition.
+    This is used for the following purposes:
+    - Construct an argument to pass to a step definition (possibly through a parameter type transform)
+    - Highlight the matched parameter in rich formatters such as the HTML formatter
 
-     This message closely matches the `Argument` class in the `cucumber-expressions` library.
+    This message closely matches the `Argument` class in the `cucumber-expressions` library.
     """
     group: Group
     """
-    *
-     Represents the outermost capture group of an argument. This message closely matches the
-     `Group` class in the `cucumber-expressions` library.
+    Represents the outermost capture group of an argument. This message closely matches the
+    `Group` class in the `cucumber-expressions` library.
     """
 
     parameter_type_name: Optional[str] = None
@@ -619,9 +565,8 @@ class StepMatchArgumentsList:
 @dataclass
 class TestStep:
     """
-    *
-     A `TestStep` is derived from either a `PickleStep`
-     combined with a `StepDefinition`, or from a `Hook`.
+    A `TestStep` is derived from either a `PickleStep`
+    combined with a `StepDefinition`, or from a `Hook`.
     """
     id: str
     hook_id: Optional[str] = None  # Pointer to the `Hook` (if derived from a Hook)
@@ -629,8 +574,8 @@ class TestStep:
     step_definition_ids: Optional[list[str]] = None
     """
     Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-     Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-     and a size of 2+ means `AMBIGUOUS`
+    Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
+    and a size of 2+ means `AMBIGUOUS`
     """
 
     step_match_arguments_lists: Optional[list[StepMatchArgumentsList]] = None  # A list of list of StepMatchArgument (if derived from a `PickleStep`).
@@ -647,16 +592,14 @@ class TestCaseFinished:
 class TestCaseStarted:
     attempt: int
     """
-    *
-     The first attempt should have value 0, and for each retry the value
-     should increase by 1.
+    The first attempt should have value 0, and for each retry the value
+    should increase by 1.
     """
 
     id: str
     """
-    *
-     Because a `TestCase` can be run multiple times (in case of a retry),
-     we use this field to group messages relating to the same attempt.
+    Because a `TestCase` can be run multiple times (in case of a retry),
+    we use this field to group messages relating to the same attempt.
     """
 
     test_case_id: str
@@ -722,16 +665,16 @@ class Timestamp:
     nanos: int
     """
     Non-negative fractions of a second at nanosecond resolution. Negative
-     second values with fractions must still have non-negative nanos values
-     that count forward in time. Must be from 0 to 999,999,999
-     inclusive.
+    second values with fractions must still have non-negative nanos values
+    that count forward in time. Must be from 0 to 999,999,999
+    inclusive.
     """
 
     seconds: int
     """
     Represents seconds of UTC time since Unix epoch
-     1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-     9999-12-31T23:59:59Z inclusive.
+    1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+    9999-12-31T23:59:59Z inclusive.
     """
 
 

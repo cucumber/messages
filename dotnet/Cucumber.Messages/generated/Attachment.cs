@@ -13,7 +13,7 @@ namespace Io.Cucumber.Messages.Types;
  * Represents the Attachment message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
- * //// Attachments (parse errors, execution errors, screenshots, links...)
+ * Attachments (parse errors, execution errors, screenshots, links...)
  *
  * An attachment represents any kind of data associated with a line in a
  * [Source](#io.cucumber.messages.Source) file. It can be used for:

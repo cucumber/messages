@@ -7,9 +7,8 @@ module Cucumber
     # Represents the SourceReference message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
-    #  [Location](#io.cucumber.messages.Location) within that file.
+    # Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
+    # [Location](#io.cucumber.messages.Location) within that file.
     ##
     class SourceReference < Message
       attr_reader :uri

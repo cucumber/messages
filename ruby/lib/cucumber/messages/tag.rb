@@ -7,8 +7,7 @@ module Cucumber
     # Represents the Tag message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  A tag
+    # A tag
     ##
     class Tag < Message
       ##

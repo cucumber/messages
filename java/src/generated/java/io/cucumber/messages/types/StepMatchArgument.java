@@ -8,14 +8,13 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the StepMatchArgument message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
+ * Represents the StepMatchArgument message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * Represents a single argument extracted from a step match and passed to a step definition.
  * This is used for the following purposes:
  * - Construct an argument to pass to a step definition (possibly through a parameter type transform)
  * - Highlight the matched parameter in rich formatters such as the HTML formatter
- *
+ * <p>
  * This message closely matches the `Argument` class in the `cucumber-expressions` library.
  */
 // Generated code

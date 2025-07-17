@@ -8,18 +8,17 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Attachment message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
- * //// Attachments (parse errors, execution errors, screenshots, links...)
- *
+ * Represents the Attachment message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
+ * Attachments (parse errors, execution errors, screenshots, links...)
+ * <p>
  * An attachment represents any kind of data associated with a line in a
  * [Source](#io.cucumber.messages.Source) file. It can be used for:
- *
+ * <p>
  * * Syntax errors during parse time
  * * Screenshots captured and attached during execution
  * * Logs captured and attached during execution
- *
+ * <p>
  * It is not to be used for runtime errors raised/thrown during execution. This
  * is captured in `TestResult`.
  */
@@ -75,10 +74,10 @@ public final class Attachment {
 
     /**
      * Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
-     *
+     * <p>
      * Content encoding is *not* determined by the media type, but rather by the type
      * of the object being attached:
-     *
+     * <p>
      * - string: IDENTITY
      * - byte array: BASE64
      * - stream: BASE64
@@ -126,11 +125,11 @@ public final class Attachment {
       * A URL where the attachment can be retrieved. This field should not be set by Cucumber.
      * It should be set by a program that reads a message stream and does the following for
      * each Attachment message:
-     *
+     * <p>
      * - Writes the body (after base64 decoding if necessary) to a new file.
      * - Sets `body` and `contentEncoding` to `null`
      * - Writes out the new attachment message
-     *
+     * <p>
      * This will result in a smaller message stream, which can improve performance and
      * reduce bandwidth of message consumers. It also makes it easier to process and download attachments
      * separately from reports.

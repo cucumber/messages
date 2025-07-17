@@ -7,9 +7,8 @@ module Cucumber
     # Represents the TestStep message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  A `TestStep` is derived from either a `PickleStep`
-    #  combined with a `StepDefinition`, or from a `Hook`.
+    # A `TestStep` is derived from either a `PickleStep`
+    # combined with a `StepDefinition`, or from a `Hook`.
     ##
     class TestStep < Message
       ##
@@ -26,8 +25,8 @@ module Cucumber
 
       ##
       # Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-      #  Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-      #  and a size of 2+ means `AMBIGUOUS`
+      # Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
+      # and a size of 2+ means `AMBIGUOUS`
       ##
       attr_reader :step_definition_ids
 
