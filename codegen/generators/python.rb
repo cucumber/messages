@@ -63,6 +63,12 @@ module Generator
       %("""\n#{lines.join("\n")}\n#{indent_string}""")
     end
 
+    def select_language_translations_for_data_types(type, property)
+      language_translations_for_data_types[type]
+    end
+
+    private
+
     def language_translations_for_data_types
       {
         'integer' => 'int',
@@ -71,9 +77,7 @@ module Generator
         'array' => 'list'
       }
     end
-
-    private
-
+    
     def default_value(parent_type_name, property_name, property)
       if property['type'] == 'string'
         default_value_for_string(parent_type_name, property_name, property)
@@ -107,10 +111,6 @@ module Generator
       "#{class_name(parent_type_name)}#{capitalize(property_name)}".tap do |name|
         @enum_set.add({ name: name, values: enum })
       end
-    end
-
-    def property_type_from_ref(ref)
-      class_name(ref)
     end
 
     def class_name(ref)
