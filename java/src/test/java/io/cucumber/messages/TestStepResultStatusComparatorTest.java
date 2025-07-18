@@ -1,7 +1,6 @@
 package io.cucumber.messages;
 
 import io.cucumber.messages.types.TestStepResultStatus;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
