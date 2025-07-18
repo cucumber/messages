@@ -8,15 +8,7 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Envelope message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
- * When removing a field, replace it with reserved, rather than deleting the line.
- * When adding a field, add it to the end and increment the number by one.
- * See https://developers.google.com/protocol-buffers/docs/proto#updating for details
- *
- * All the messages that are passed between different components/processes are Envelope
- * messages.
+ * Represents the Envelope message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
 @SuppressWarnings("unused")

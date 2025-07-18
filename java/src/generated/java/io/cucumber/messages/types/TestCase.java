@@ -8,11 +8,8 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the TestCase message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
- * //// TestCases
- *
+ * Represents the TestCase message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * A `TestCase` contains a sequence of `TestStep`s.
  */
 // Generated code

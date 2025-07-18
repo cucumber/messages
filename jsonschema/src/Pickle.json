@@ -21,7 +21,7 @@
     "PickleStep": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n An executable step",
+      "description": "An executable step",
       "required": [
         "astNodeIds",
         "id",
@@ -32,7 +32,7 @@
           "$ref": "#/definitions/PickleStepArgument"
         },
         "astNodeIds": {
-          "description": "References the IDs of the source of the step. For Gherkin, this can be\n the ID of a Step, and possibly also the ID of a TableRow",
+          "description": "References the IDs of the source of the step. For Gherkin, this can be\nthe ID of a Step, and possibly also the ID of a TableRow",
           "items": {
             "type": "string"
           },
@@ -120,7 +120,7 @@
     "PickleTag": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n A tag",
+      "description": "A tag",
       "required": [
         "name",
         "astNodeId"
@@ -137,7 +137,7 @@
       "type": "object"
     }
   },
-  "description": "//// Pickles\n\n*\n A `Pickle` represents a template for a `TestCase`. It is typically derived\n from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).\n In the future a `Pickle` may be derived from other formats such as Markdown or\n Excel files.\n\n By making `Pickle` the main data structure Cucumber uses for execution, the\n implementation of Cucumber itself becomes simpler, as it doesn't have to deal\n with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).\n\n Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`",
+  "description": "A `Pickle` represents a template for a `TestCase`. It is typically derived\nfrom another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).\nIn the future a `Pickle` may be derived from other formats such as Markdown or\nExcel files.\n\nBy making `Pickle` the main data structure Cucumber uses for execution, the\nimplementation of Cucumber itself becomes simpler, as it doesn't have to deal\nwith the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).\n\nEach `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`",
   "required": [
     "id",
     "uri",
@@ -149,7 +149,7 @@
   ],
   "properties": {
     "id": {
-      "description": "*\n A unique id for the pickle",
+      "description": "A unique id for the pickle",
       "type": "string"
     },
     "uri": {
@@ -172,14 +172,14 @@
       "type": "array"
     },
     "tags": {
-      "description": "*\n One or more tags. If this pickle is constructed from a Gherkin document,\n It includes inherited tags from the `Feature` as well.",
+      "description": "One or more tags. If this pickle is constructed from a Gherkin document,\nIt includes inherited tags from the `Feature` as well.",
       "items": {
         "$ref": "#/definitions/PickleTag"
       },
       "type": "array"
     },
     "astNodeIds": {
-      "description": "*\n Points to the AST node locations of the pickle. The last one represents the unique\n id of the pickle. A pickle constructed from `Examples` will have the first\n id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.",
+      "description": "Points to the AST node locations of the pickle. The last one represents the unique\nid of the pickle. A pickle constructed from `Examples` will have the first\nid originating from the `Scenario` AST node, and the second from the `TableRow` AST node.",
       "items": {
         "type": "string"
       },
