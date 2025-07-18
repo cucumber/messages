@@ -6,7 +6,7 @@
   "properties": {
     "line": {
       "type": "integer",
-      "minimum": 0,
+      "minimum": 1,
       "maximum": 2147483647
     },
     "column": {
