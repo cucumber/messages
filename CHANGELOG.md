@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [java] Add comparators for comparable objects ([#312](https://github.com/cucumber/messages/pull/312))
 
 ## [28.0.0] - 2025-07-07
 ### Changed
