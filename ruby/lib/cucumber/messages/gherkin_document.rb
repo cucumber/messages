@@ -8,16 +8,16 @@ module Cucumber
     ##
     #
     # The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
-    #  Cucumber implementations should *not* depend on `GherkinDocument` or any of its
-    #  children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
+    # Cucumber implementations should *not* depend on `GherkinDocument` or any of its
+    # children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
     #
-    #  The only consumers of `GherkinDocument` should only be formatters that produce
-    #  "rich" output, resembling the original Gherkin document.
+    # The only consumers of `GherkinDocument` should only be formatters that produce
+    # "rich" output, resembling the original Gherkin document.
     ##
     class GherkinDocument < Message
       ##
       # The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
-      #  of the source, typically a file path relative to the root directory
+      # of the source, typically a file path relative to the root directory
       ##
       attr_reader :uri
 

@@ -8,7 +8,7 @@ module Cucumber
     ##
     #
     # Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
-    #  [Location](#io.cucumber.messages.Location) within that file.
+    # [Location](#io.cucumber.messages.Location) within that file.
     ##
     class SourceReference < Message
       attr_reader :uri

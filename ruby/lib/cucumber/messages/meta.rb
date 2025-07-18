@@ -8,7 +8,7 @@ module Cucumber
     ##
     #
     # This message contains meta information about the environment. Consumers can use
-    #  this for various purposes.
+    # this for various purposes.
     ##
     class Meta < Message
       ##

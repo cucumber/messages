@@ -47,7 +47,7 @@
       "type": "object"
     }
   },
-  "description": "Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a\n [Location](#io.cucumber.messages.Location) within that file.",
+  "description": "Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a\n[Location](#io.cucumber.messages.Location) within that file.",
   "properties": {
     "uri": {
       "type": "string"

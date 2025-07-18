@@ -30,7 +30,7 @@
     },
     "Git": {
       "additionalProperties": false,
-      "description": "Information about Git, provided by the Build/CI server as environment\n variables.",
+      "description": "Information about Git, provided by the Build/CI server as environment\nvariables.",
       "required": [
         "remote",
         "revision"
@@ -71,7 +71,7 @@
       "type": "object"
     }
   },
-  "description": "This message contains meta information about the environment. Consumers can use\n this for various purposes.",
+  "description": "This message contains meta information about the environment. Consumers can use\nthis for various purposes.",
   "required": [
     "protocolVersion",
     "implementation",

@@ -15,8 +15,6 @@ use Cucumber\Messages\DecodingException\SchemaViolationException;
  * Represents the Source message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
- * //// Source
- *
  * A source file, typically a Gherkin document or Java/Ruby/JavaScript source code */
 final class Source implements JsonSerializable
 {

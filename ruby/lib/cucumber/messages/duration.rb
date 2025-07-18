@@ -8,7 +8,7 @@ module Cucumber
     ##
     #
     # The structure is pretty close of the Timestamp one. For clarity, a second type
-    #  of message is used.
+    # of message is used.
     ##
     class Duration < Message
       attr_reader :seconds

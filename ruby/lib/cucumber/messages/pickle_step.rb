@@ -14,7 +14,7 @@ module Cucumber
 
       ##
       # References the IDs of the source of the step. For Gherkin, this can be
-      #  the ID of a Step, and possibly also the ID of a TableRow
+      # the ID of a Step, and possibly also the ID of a TableRow
       ##
       attr_reader :ast_node_ids
 
