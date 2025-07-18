@@ -305,7 +305,7 @@ has seconds =>
 
 Non-negative fractions of a second at nanosecond resolution. Negative
 second values with fractions must still have non-negative nanos values
- that count forward in time. Must be from 0 to 999,999,999
+that count forward in time. Must be from 0 to 999,999,999
  inclusive.
 =cut
 
