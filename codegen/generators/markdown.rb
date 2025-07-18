@@ -25,7 +25,7 @@ module Generator
         'integer' => 'integer',
         'string' => 'string',
         'boolean' => 'boolean'
-      }.fetch(type)
+      }[type]
     end
   end
 end

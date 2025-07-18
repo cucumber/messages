@@ -19,7 +19,7 @@ module Generator
         'integer' => 'int64',
         'string' => 'string',
         'boolean' => 'bool'
-      }.fetch(type)
+      }[type]
     end
   end
 end

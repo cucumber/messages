@@ -26,7 +26,7 @@ module Generator
         'integer' => 'std::size_t',
         'string' => 'std::string',
         'boolean' => 'bool'
-      }.fetch(type)
+      }[type]
     end
   end
 end
