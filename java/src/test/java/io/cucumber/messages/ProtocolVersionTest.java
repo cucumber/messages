@@ -1,16 +1,16 @@
 package io.cucumber.messages;
 
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class ProtocolVersionTest {
 
     @Test
     void should_have_a_resource_bundle_version() {
         String version = ProtocolVersion.getVersion();
-        assertThat(version, Matchers.matchesPattern("\\d+\\.\\d+\\.\\d+(-SNAPSHOT)?"));
+        assertThat(version).matches("\\d+\\.\\d+\\.\\d+(-SNAPSHOT)?");
     }
 
 }
