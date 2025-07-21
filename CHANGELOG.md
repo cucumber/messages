@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [28.1.0] - 2025-07-21
 ### Added
 - [java] Add comparators for comparable objects ([#312](https://github.com/cucumber/messages/pull/312))
 
@@ -587,7 +589,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v28.0.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v28.1.0...HEAD
+[28.1.0]: https://github.com/cucumber/messages/compare/v28.0.0...v28.1.0
 [28.0.0]: https://github.com/cucumber/messages/compare/v27.2.0...v28.0.0
 [27.2.0]: https://github.com/cucumber/messages/compare/v27.1.0...v27.2.0
 [27.1.0]: https://github.com/cucumber/messages/compare/v27.0.2...v27.1.0
