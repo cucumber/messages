@@ -222,6 +222,7 @@ type Pickle struct {
 	Steps      []*PickleStep `json:"steps"`
 	Tags       []*PickleTag  `json:"tags"`
 	AstNodeIds []string      `json:"astNodeIds"`
+	Location   *Location     `json:"location,omitempty"`
 }
 
 type PickleDocString struct {
