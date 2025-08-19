@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
+- [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
 
 ## [28.1.0] - 2025-07-21
 ### Added
