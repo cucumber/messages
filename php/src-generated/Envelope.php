@@ -15,12 +15,7 @@ use Cucumber\Messages\DecodingException\SchemaViolationException;
  * Represents the Envelope message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
- * When removing a field, replace it with reserved, rather than deleting the line.
- * When adding a field, add it to the end and increment the number by one.
- * See https://developers.google.com/protocol-buffers/docs/proto#updating for details
- *
- * All the messages that are passed between different components/processes are Envelope
- * messages. */
+ */
 final class Envelope implements JsonSerializable
 {
     use JsonEncodingTrait;

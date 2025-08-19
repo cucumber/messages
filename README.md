@@ -9,7 +9,7 @@ from Cucumber. The protocol aims to decouple various components of the Cucumber 
 
 ## Message Overview
 
-![messages.png](messages.png)
+![messages.png](jsonschema/messages.png)
 
 Note: Markdown and Excel formats are currently not supported and mentioned here as potential future alternative languages to express BDD scenarios.
 
@@ -18,14 +18,14 @@ Note: Markdown and Excel formats are currently not supported and mentioned here 
 The [jsonschema](jsonschema) directory contains [JSON Schema](https://json-schema.org/)
 definitions for each message type.
 
-See [messages.md](messages.md) for a detailed description of each message type.
+See [messages.md](jsonschema/messages.md) for a detailed description of each message type.
 
 ## Encoding
 
 When Cucumber Messages are stored in a file or sent over a network, they are
 encoded as NDJSON. We call this a *message stream*.
 
-Each message in a message stream is of type [Envelope](messages.md#envelope).
+Each message in a message stream is of type [Envelope](jsonschema/messages.md#envelope).
 
 ## Language implementations
 
@@ -72,7 +72,7 @@ Messages emitters for the other Cucumber languages (e.g. Perl) are not yet imple
 
 Cucumber needs to produce results in a machine-readable format so that other tools can generate reports.
 
-![messages-stream.svg](messages-stream.svg)
+![messages-stream.svg](jsonschema/messages-stream.svg)
 
 Historically, Cucumber did this with the `json` and `junit` formatters.
 These formats however, have several shortcomings that are now addressed by using Cucumber Messages.

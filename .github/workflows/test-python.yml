@@ -6,10 +6,18 @@ on:
     branches:
       - main
       - renovate/**
+    paths:
+      - python/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
-  workflow_dispatch:
+    paths:
+      - python/**
+      - Makefile
+      - .github/**
+  workflow_call:
 
 jobs:
   build:
@@ -25,7 +33,7 @@ jobs:
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', 'pypy3.9', 'pypy3.10']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:

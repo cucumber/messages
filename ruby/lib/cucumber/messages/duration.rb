@@ -8,16 +8,16 @@ module Cucumber
     ##
     #
     # The structure is pretty close of the Timestamp one. For clarity, a second type
-    #  of message is used.
+    # of message is used.
     ##
     class Duration < Message
       attr_reader :seconds
 
       ##
       # Non-negative fractions of a second at nanosecond resolution. Negative
-      #  second values with fractions must still have non-negative nanos values
-      #  that count forward in time. Must be from 0 to 999,999,999
-      #  inclusive.
+      # second values with fractions must still have non-negative nanos values
+      # that count forward in time. Must be from 0 to 999,999,999
+      # inclusive.
       ##
       attr_reader :nanos
 

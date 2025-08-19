@@ -10,7 +10,7 @@ public class MessagesTest {
     @Test
     void is_invalid_when_required_fields_are_missing() {
         assertThrows(NullPointerException.class, () -> {
-            new Attachment(null, null, null, null, null, null, null, null, null);
+            new Attachment(null, null, null, null, null, null, null, null, null, null, null);
         }, "Attachment.body cannot be null");
     }
 

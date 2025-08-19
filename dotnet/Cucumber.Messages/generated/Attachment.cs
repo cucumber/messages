@@ -13,7 +13,7 @@ namespace Io.Cucumber.Messages.Types;
  * Represents the Attachment message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
- * //// Attachments (parse errors, execution errors, screenshots, links...)
+ * Attachments (parse errors, execution errors, screenshots, links...)
  *
  * An attachment represents any kind of data associated with a line in a
  * [Source](#io.cucumber.messages.Source) file. It can be used for:
@@ -57,7 +57,13 @@ public sealed class Attachment
      */
     public string MediaType { get; private set; }
     public Source Source { get; private set; }
+    /**
+     * The identifier of the test case attempt if the attachment was created during the execution of a test step
+     */
     public string TestCaseStartedId { get; private set; }
+    /**
+     * The identifier of the test step if the attachment was created during the execution of a test step
+     */
     public string TestStepId { get; private set; }
     /**
      * A URL where the attachment can be retrieved. This field should not be set by Cucumber.
@@ -73,7 +79,18 @@ public sealed class Attachment
      * separately from reports.
      */
     public string Url { get; private set; }
+    /**
+     * Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
+     */
     public string TestRunStartedId { get; private set; }
+    /**
+     * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+     */
+    public string TestRunHookStartedId { get; private set; }
+    /**
+     * When the attachment was created
+     */
+    public Timestamp Timestamp { get; private set; }
 
 
     public Attachment(
@@ -85,7 +102,9 @@ public sealed class Attachment
         string testCaseStartedId,
         string testStepId,
         string url,
-        string testRunStartedId
+        string testRunStartedId,
+        string testRunHookStartedId,
+        Timestamp timestamp
     ) 
     {
         RequireNonNull<string>(body, "Body", "Attachment.Body cannot be null");
@@ -100,6 +119,8 @@ public sealed class Attachment
         this.TestStepId = testStepId;
         this.Url = url;
         this.TestRunStartedId = testRunStartedId;
+        this.TestRunHookStartedId = testRunHookStartedId;
+        this.Timestamp = timestamp;
     }
 
     public override bool Equals(Object o) 
@@ -116,7 +137,9 @@ public sealed class Attachment
             Object.Equals(TestCaseStartedId, that.TestCaseStartedId) &&         
             Object.Equals(TestStepId, that.TestStepId) &&         
             Object.Equals(Url, that.Url) &&         
-            Object.Equals(TestRunStartedId, that.TestRunStartedId);        
+            Object.Equals(TestRunStartedId, that.TestRunStartedId) &&         
+            Object.Equals(TestRunHookStartedId, that.TestRunHookStartedId) &&         
+            Object.Equals(Timestamp, that.Timestamp);        
     }
 
     public override int GetHashCode() 
@@ -139,6 +162,10 @@ public sealed class Attachment
           hash = hash * 31 + Url.GetHashCode();
         if (TestRunStartedId != null)
           hash = hash * 31 + TestRunStartedId.GetHashCode();
+        if (TestRunHookStartedId != null)
+          hash = hash * 31 + TestRunHookStartedId.GetHashCode();
+        if (Timestamp != null)
+          hash = hash * 31 + Timestamp.GetHashCode();
         return hash;
     }
 
@@ -154,6 +181,8 @@ public sealed class Attachment
             ", testStepId=" + TestStepId +
             ", url=" + Url +
             ", testRunStartedId=" + TestRunStartedId +
+            ", testRunHookStartedId=" + TestRunHookStartedId +
+            ", timestamp=" + Timestamp +
             '}';
     }
 

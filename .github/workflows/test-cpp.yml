@@ -4,11 +4,18 @@ on:
   push:
     branches:
       - main
-      - cpp*
       - renovate/**
+    paths:
+      - cpp/**
+      - Makefile 
+      - .github/**
   pull_request:
     branches:
       - main
+    paths:
+      - cpp/**
+      - Makefile
+      - .github/**
   workflow_call:
 
 jobs:
@@ -26,7 +33,7 @@ jobs:
             cc: cl
     runs-on: ${{ matrix.config.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ilammy/msvc-dev-cmd@v1
       - name: install dependencies
         working-directory: cpp

@@ -5,9 +5,17 @@ on:
     branches:
       - main
       - renovate/**
+    paths:
+      - php/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
+    paths:
+      - php/**
+      - Makefile
+      - .github/**
   workflow_call:
 
 jobs:
@@ -19,7 +27,7 @@ jobs:
         composer-mode: ['low-deps', 'high-deps']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -28,7 +36,7 @@ jobs:
 
       - name: Discover composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-dir)"
+        run: echo "dir=$(composer config cache-dir)" >> $GITHUB_OUTPUT
         working-directory: php
 
       - name: Cache composer

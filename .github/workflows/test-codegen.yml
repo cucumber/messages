@@ -5,26 +5,40 @@ on:
     branches:
       - main
       - renovate/**
+    paths:
+      - jsonschema/**
+      - codegen/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
+    paths:
+      - jsonschema/**
+      - codegen/**
+      - Makefile
+      - .github/**
   workflow_call:
+    
+    
 
 jobs:
   test-codegen:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "npm"
-
+          cache-dependency-path: jsonschema/package-lock.json
+          
       - name: validate the json schemas
         run: make validate
+        working-directory: jsonschema
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -33,8 +47,8 @@ jobs:
 
       - name: generate code for all languages
         run: |
-          make clean-all
-          make generate-all
+          make clean
+          make generate
 
       - name: check the repo is still clean after generation
         run: |

@@ -6,12 +6,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
+- [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
+
+## [28.1.0] - 2025-07-21
+### Added
+- [java] Add comparators for comparable objects ([#312](https://github.com/cucumber/messages/pull/312))
+
+## [28.0.0] - 2025-07-07
+### Changed
+- Add `Attachment.testRunHookStartedId` for traceability of attachments to test run hooks ([#301](https://github.com/cucumber/messages/pull/301))
+- Add `Attachment.timestamp` ([#305](https://github.com/cucumber/messages/pull/305))
+
 ### Fixed
 - [python] Add a LICENSE file for Python ([#278](https://github.com/cucumber/messages/pull/278))
 - [.NET] Fix NuGet package generation
 
 ### Removed
-- [JavaScript] Remove dependency on `uuid` package ([#284](https://github.com/cucumber/messages/pull/284)
+- [JavaScript] BREAKING CHANGE: Remove Node.js 18 support ([#299](https://github.com/cucumber/messages/pull/299))
 
 ## [27.2.0] - 2025-01-31
 ### Added
@@ -579,7 +592,9 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v27.2.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v28.1.0...HEAD
+[28.1.0]: https://github.com/cucumber/messages/compare/v28.0.0...v28.1.0
+[28.0.0]: https://github.com/cucumber/messages/compare/v27.2.0...v28.0.0
 [27.2.0]: https://github.com/cucumber/messages/compare/v27.1.0...v27.2.0
 [27.1.0]: https://github.com/cucumber/messages/compare/v27.0.2...v27.1.0
 [27.0.2]: https://github.com/cucumber/messages/compare/v27.0.1...v27.0.2

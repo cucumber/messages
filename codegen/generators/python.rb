@@ -40,9 +40,11 @@ module Generator
 
     def array_type_for(type_name)
       inner_type = if language_translations_for_data_types.values.include?(type_name)
-        type_name  # Keep primitive types as is
+       # Keep primitive types as is
+       "list[#{type_name}]"
       else
-        class_name(type_name)  # CamelCase for complex types
+        # CamelCase for complex types
+        "list[#{class_name(type_name)}]"
       end
       inner_type
     end
@@ -94,28 +96,6 @@ module Generator
         "#{class_name(enum_type_name)}.#{enum_constant(property['enum'][0])}"
       else
         '""'
-      end
-    end
-
-    def type_for(parent_type_name, property_name, property)
-      if property['$ref']
-        property_type_from_ref(property['$ref'])
-      elsif property['type']
-        property_type_from_type(parent_type_name, property_name, property, type: property['type'])
-      else
-        raise "Property #{property_name} did not define 'type' or '$ref'"
-      end
-    end
-
-    def property_type_from_type(parent_type_name, property_name, property, type:)
-      if type == 'array'
-        type = type_for(parent_type_name, nil, property['items'])
-        inner_type = array_type_for(type)
-        "list[#{inner_type}]"
-      elsif property['enum']
-        enum_name(parent_type_name, property_name, property['enum'])
-      else
-        language_translations_for_data_types.fetch(type)
       end
     end
 

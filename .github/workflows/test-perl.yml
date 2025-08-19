@@ -5,9 +5,17 @@ on:
     branches:
       - main
       - renovate/**
+    paths:
+      - perl/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
+    paths:
+      - perl/**
+      - Makefile
+      - .github/**
   workflow_call:
 
 jobs:
@@ -15,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: install cpanm and multiple modules
         uses: perl-actions/install-with-cpanm@v1

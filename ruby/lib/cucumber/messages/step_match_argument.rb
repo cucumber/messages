@@ -7,19 +7,17 @@ module Cucumber
     # Represents the StepMatchArgument message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  Represents a single argument extracted from a step match and passed to a step definition.
-    #  This is used for the following purposes:
-    #  - Construct an argument to pass to a step definition (possibly through a parameter type transform)
-    #  - Highlight the matched parameter in rich formatters such as the HTML formatter
+    # Represents a single argument extracted from a step match and passed to a step definition.
+    # This is used for the following purposes:
+    # - Construct an argument to pass to a step definition (possibly through a parameter type transform)
+    # - Highlight the matched parameter in rich formatters such as the HTML formatter
     #
-    #  This message closely matches the `Argument` class in the `cucumber-expressions` library.
+    # This message closely matches the `Argument` class in the `cucumber-expressions` library.
     ##
     class StepMatchArgument < Message
       ##
-      # *
-      #  Represents the outermost capture group of an argument. This message closely matches the
-      #  `Group` class in the `cucumber-expressions` library.
+      # Represents the outermost capture group of an argument. This message closely matches the
+      # `Group` class in the `cucumber-expressions` library.
       ##
       attr_reader :group
 

@@ -7,79 +7,92 @@ module Cucumber
     # Represents the Attachment message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # //// Attachments (parse errors, execution errors, screenshots, links...)
+    # Attachments (parse errors, execution errors, screenshots, links...)
     #
-    # *
-    #  An attachment represents any kind of data associated with a line in a
-    #  [Source](#io.cucumber.messages.Source) file. It can be used for:
+    # An attachment represents any kind of data associated with a line in a
+    # [Source](#io.cucumber.messages.Source) file. It can be used for:
     #
-    #  * Syntax errors during parse time
-    #  * Screenshots captured and attached during execution
-    #  * Logs captured and attached during execution
+    # * Syntax errors during parse time
+    # * Screenshots captured and attached during execution
+    # * Logs captured and attached during execution
     #
-    #  It is not to be used for runtime errors raised/thrown during execution. This
-    #  is captured in `TestResult`.
+    # It is not to be used for runtime errors raised/thrown during execution. This
+    # is captured in `TestResult`.
     ##
     class Attachment < Message
       ##
-      # *
-      #  The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
-      #  is simply the string. If it's `BASE64`, the string should be Base64 decoded to
-      #  obtain the attachment.
+      # The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
+      # is simply the string. If it's `BASE64`, the string should be Base64 decoded to
+      # obtain the attachment.
       ##
       attr_reader :body
 
       ##
-      # *
-      #  Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
+      # Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
       #
-      #  Content encoding is *not* determined by the media type, but rather by the type
-      #  of the object being attached:
+      # Content encoding is *not* determined by the media type, but rather by the type
+      # of the object being attached:
       #
-      #  - string: IDENTITY
-      #  - byte array: BASE64
-      #  - stream: BASE64
+      # - string: IDENTITY
+      # - byte array: BASE64
+      # - stream: BASE64
       ##
       attr_reader :content_encoding
 
       ##
-      # *
-      #  Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
+      # Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
       ##
       attr_reader :file_name
 
       ##
-      # *
-      #  The media type of the data. This can be any valid
-      #  [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
-      #  as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
-      #  and `text/x.cucumber.stacktrace+plain`
+      # The media type of the data. This can be any valid
+      # [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
+      # as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
+      # and `text/x.cucumber.stacktrace+plain`
       ##
       attr_reader :media_type
 
       attr_reader :source
 
+      ##
+      # The identifier of the test case attempt if the attachment was created during the execution of a test step
+      ##
       attr_reader :test_case_started_id
 
+      ##
+      # The identifier of the test step if the attachment was created during the execution of a test step
+      ##
       attr_reader :test_step_id
 
       ##
-      # *
-      #  A URL where the attachment can be retrieved. This field should not be set by Cucumber.
-      #  It should be set by a program that reads a message stream and does the following for
-      #  each Attachment message:
+      # A URL where the attachment can be retrieved. This field should not be set by Cucumber.
+      # It should be set by a program that reads a message stream and does the following for
+      # each Attachment message:
       #
-      #  - Writes the body (after base64 decoding if necessary) to a new file.
-      #  - Sets `body` and `contentEncoding` to `null`
-      #  - Writes out the new attachment message
+      # - Writes the body (after base64 decoding if necessary) to a new file.
+      # - Sets `body` and `contentEncoding` to `null`
+      # - Writes out the new attachment message
       #
-      #  This will result in a smaller message stream, which can improve performance and
-      #  reduce bandwidth of message consumers. It also makes it easier to process and download attachments
-      #  separately from reports.
+      # This will result in a smaller message stream, which can improve performance and
+      # reduce bandwidth of message consumers. It also makes it easier to process and download attachments
+      # separately from reports.
       ##
       attr_reader :url
 
+      ##
+      # Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
+      ##
       attr_reader :test_run_started_id
+
+      ##
+      # The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+      ##
+      attr_reader :test_run_hook_started_id
+
+      ##
+      # When the attachment was created
+      ##
+      attr_reader :timestamp
 
       def initialize(
         body: '',
@@ -90,7 +103,9 @@ module Cucumber
         test_case_started_id: nil,
         test_step_id: nil,
         url: nil,
-        test_run_started_id: nil
+        test_run_started_id: nil,
+        test_run_hook_started_id: nil,
+        timestamp: nil
       )
         @body = body
         @content_encoding = content_encoding
@@ -101,6 +116,8 @@ module Cucumber
         @test_step_id = test_step_id
         @url = url
         @test_run_started_id = test_run_started_id
+        @test_run_hook_started_id = test_run_hook_started_id
+        @timestamp = timestamp
         super()
       end
 
@@ -123,7 +140,9 @@ module Cucumber
           test_case_started_id: hash[:testCaseStartedId],
           test_step_id: hash[:testStepId],
           url: hash[:url],
-          test_run_started_id: hash[:testRunStartedId]
+          test_run_started_id: hash[:testRunStartedId],
+          test_run_hook_started_id: hash[:testRunHookStartedId],
+          timestamp: Timestamp.from_h(hash[:timestamp])
         )
       end
     end

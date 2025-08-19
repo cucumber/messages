@@ -29,14 +29,14 @@
     "StepMatchArgument": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n Represents a single argument extracted from a step match and passed to a step definition.\n This is used for the following purposes:\n - Construct an argument to pass to a step definition (possibly through a parameter type transform)\n - Highlight the matched parameter in rich formatters such as the HTML formatter\n\n This message closely matches the `Argument` class in the `cucumber-expressions` library.",
+      "description": "Represents a single argument extracted from a step match and passed to a step definition.\nThis is used for the following purposes:\n- Construct an argument to pass to a step definition (possibly through a parameter type transform)\n- Highlight the matched parameter in rich formatters such as the HTML formatter\n\nThis message closely matches the `Argument` class in the `cucumber-expressions` library.",
       "required": [
         "group"
       ],
       "properties": {
         "group": {
           "$ref": "#/definitions/Group",
-          "description": "*\n Represents the outermost capture group of an argument. This message closely matches the\n `Group` class in the `cucumber-expressions` library."
+          "description": "Represents the outermost capture group of an argument. This message closely matches the\n`Group` class in the `cucumber-expressions` library."
         },
         "parameterTypeName": {
           "type": "string"
@@ -63,7 +63,7 @@
     "TestStep": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n A `TestStep` is derived from either a `PickleStep`\n combined with a `StepDefinition`, or from a `Hook`.",
+      "description": "A `TestStep` is derived from either a `PickleStep`\ncombined with a `StepDefinition`, or from a `Hook`.",
       "required": [
         "id"
       ],
@@ -80,7 +80,7 @@
           "type": "string"
         },
         "stepDefinitionIds": {
-          "description": "Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)\n Each element represents a matching step definition. A size of 0 means `UNDEFINED`,\n and a size of 2+ means `AMBIGUOUS`",
+          "description": "Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)\nEach element represents a matching step definition. A size of 0 means `UNDEFINED`,\nand a size of 2+ means `AMBIGUOUS`",
           "items": {
             "type": "string"
           },
@@ -97,7 +97,7 @@
       "type": "object"
     }
   },
-  "description": "//// TestCases\n\n*\n A `TestCase` contains a sequence of `TestStep`s.",
+  "description": "A `TestCase` contains a sequence of `TestStep`s.",
   "required": [
     "id",
     "pickleId",

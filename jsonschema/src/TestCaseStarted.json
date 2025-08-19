@@ -10,11 +10,11 @@
   ],
   "properties": {
     "attempt": {
-      "description": "*\n The first attempt should have value 0, and for each retry the value\n should increase by 1.",
+      "description": "The first attempt should have value 0, and for each retry the value\nshould increase by 1.",
       "type": "integer"
     },
     "id": {
-      "description": "*\n Because a `TestCase` can be run multiple times (in case of a retry),\n we use this field to group messages relating to the same attempt.",
+      "description": "Because a `TestCase` can be run multiple times (in case of a retry),\nwe use this field to group messages relating to the same attempt.",
       "type": "string"
     },
     "testCaseId": {
