@@ -1,717 +1,398 @@
-import { Type } from 'class-transformer'
-import 'reflect-metadata'
-
-export class Attachment {
-
-  body: string = ''
-
-  contentEncoding: AttachmentContentEncoding = AttachmentContentEncoding.IDENTITY
-
+export type Attachment = {
+  body: string
+  contentEncoding: AttachmentContentEncoding
   fileName?: string
-
-  mediaType: string = ''
-
-  @Type(() => Source)
+  mediaType: string
   source?: Source
-
   testCaseStartedId?: string
-
   testStepId?: string
-
   url?: string
-
   testRunStartedId?: string
-
   testRunHookStartedId?: string
 
   @Type(() => Timestamp)
   timestamp?: Timestamp
 }
 
-export class Duration {
-
-  seconds: number = 0
-
-  nanos: number = 0
+export type Duration = {
+  seconds: number
+  nanos: number
 }
 
-export class Envelope {
-
-  @Type(() => Attachment)
+export type Envelope = {
   attachment?: Attachment
-
-  @Type(() => GherkinDocument)
   gherkinDocument?: GherkinDocument
-
-  @Type(() => Hook)
   hook?: Hook
-
-  @Type(() => Meta)
   meta?: Meta
-
-  @Type(() => ParameterType)
   parameterType?: ParameterType
-
-  @Type(() => ParseError)
   parseError?: ParseError
-
-  @Type(() => Pickle)
   pickle?: Pickle
-
-  @Type(() => Source)
   source?: Source
-
-  @Type(() => StepDefinition)
   stepDefinition?: StepDefinition
-
-  @Type(() => TestCase)
   testCase?: TestCase
-
-  @Type(() => TestCaseFinished)
   testCaseFinished?: TestCaseFinished
-
-  @Type(() => TestCaseStarted)
   testCaseStarted?: TestCaseStarted
-
-  @Type(() => TestRunFinished)
   testRunFinished?: TestRunFinished
-
-  @Type(() => TestRunStarted)
   testRunStarted?: TestRunStarted
-
-  @Type(() => TestStepFinished)
   testStepFinished?: TestStepFinished
-
-  @Type(() => TestStepStarted)
   testStepStarted?: TestStepStarted
-
-  @Type(() => TestRunHookStarted)
   testRunHookStarted?: TestRunHookStarted
-
-  @Type(() => TestRunHookFinished)
   testRunHookFinished?: TestRunHookFinished
-
-  @Type(() => UndefinedParameterType)
   undefinedParameterType?: UndefinedParameterType
 }
 
-export class Exception {
-
-  type: string = ''
-
+export type Exception = {
+  type: string
   message?: string
-
   stackTrace?: string
 }
 
-export class GherkinDocument {
-
+export type GherkinDocument = {
   uri?: string
-
-  @Type(() => Feature)
   feature?: Feature
-
-  @Type(() => Comment)
-  comments: readonly Comment[] = []
+  comments: readonly Comment[]
 }
 
-export class Background {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  keyword: string = ''
-
-  name: string = ''
-
-  description: string = ''
-
-  @Type(() => Step)
-  steps: readonly Step[] = []
-
-  id: string = ''
+export type Background = {
+  location: Location
+  keyword: string
+  name: string
+  description: string
+  steps: readonly Step[]
+  id: string
 }
 
-export class Comment {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  text: string = ''
+export type Comment = {
+  location: Location
+  text: string
 }
 
-export class DataTable {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  @Type(() => TableRow)
-  rows: readonly TableRow[] = []
+export type DataTable = {
+  location: Location
+  rows: readonly TableRow[]
 }
 
-export class DocString {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
+export type DocString = {
+  location: Location
   mediaType?: string
-
-  content: string = ''
-
-  delimiter: string = ''
+  content: string
+  delimiter: string
 }
 
-export class Examples {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  @Type(() => Tag)
-  tags: readonly Tag[] = []
-
-  keyword: string = ''
-
-  name: string = ''
-
-  description: string = ''
-
-  @Type(() => TableRow)
+export type Examples = {
+  location: Location
+  tags: readonly Tag[]
+  keyword: string
+  name: string
+  description: string
   tableHeader?: TableRow
-
-  @Type(() => TableRow)
-  tableBody: readonly TableRow[] = []
-
-  id: string = ''
+  tableBody: readonly TableRow[]
+  id: string
 }
 
-export class Feature {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  @Type(() => Tag)
-  tags: readonly Tag[] = []
-
-  language: string = ''
-
-  keyword: string = ''
-
-  name: string = ''
-
-  description: string = ''
-
-  @Type(() => FeatureChild)
-  children: readonly FeatureChild[] = []
+export type Feature = {
+  location: Location
+  tags: readonly Tag[]
+  language: string
+  keyword: string
+  name: string
+  description: string
+  children: readonly FeatureChild[]
 }
 
-export class FeatureChild {
-
-  @Type(() => Rule)
+export type FeatureChild = {
   rule?: Rule
-
-  @Type(() => Background)
   background?: Background
-
-  @Type(() => Scenario)
   scenario?: Scenario
 }
 
-export class Rule {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  @Type(() => Tag)
-  tags: readonly Tag[] = []
-
-  keyword: string = ''
-
-  name: string = ''
-
-  description: string = ''
-
-  @Type(() => RuleChild)
-  children: readonly RuleChild[] = []
-
-  id: string = ''
+export type Rule = {
+  location: Location
+  tags: readonly Tag[]
+  keyword: string
+  name: string
+  description: string
+  children: readonly RuleChild[]
+  id: string
 }
 
-export class RuleChild {
-
-  @Type(() => Background)
+export type RuleChild = {
   background?: Background
-
-  @Type(() => Scenario)
   scenario?: Scenario
 }
 
-export class Scenario {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  @Type(() => Tag)
-  tags: readonly Tag[] = []
-
-  keyword: string = ''
-
-  name: string = ''
-
-  description: string = ''
-
-  @Type(() => Step)
-  steps: readonly Step[] = []
-
-  @Type(() => Examples)
-  examples: readonly Examples[] = []
-
-  id: string = ''
+export type Scenario = {
+  location: Location
+  tags: readonly Tag[]
+  keyword: string
+  name: string
+  description: string
+  steps: readonly Step[]
+  examples: readonly Examples[]
+  id: string
 }
 
-export class Step {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  keyword: string = ''
-
+export type Step = {
+  location: Location
+  keyword: string
   keywordType?: StepKeywordType
-
-  text: string = ''
-
-  @Type(() => DocString)
+  text: string
   docString?: DocString
-
-  @Type(() => DataTable)
   dataTable?: DataTable
-
-  id: string = ''
+  id: string
 }
 
-export class TableCell {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  value: string = ''
+export type TableCell = {
+  location: Location
+  value: string
 }
 
-export class TableRow {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  @Type(() => TableCell)
-  cells: readonly TableCell[] = []
-
-  id: string = ''
+export type TableRow = {
+  location: Location
+  cells: readonly TableCell[]
+  id: string
 }
 
-export class Tag {
-
-  @Type(() => Location)
-  location: Location = new Location()
-
-  name: string = ''
-
-  id: string = ''
+export type Tag = {
+  location: Location
+  name: string
+  id: string
 }
 
-export class Hook {
-
-  id: string = ''
-
+export type Hook = {
+  id: string
   name?: string
-
-  @Type(() => SourceReference)
-  sourceReference: SourceReference = new SourceReference()
-
+  sourceReference: SourceReference
   tagExpression?: string
-
   type?: HookType
 }
 
-export class Location {
-
-  line: number = 0
-
+export type Location = {
+  line: number
   column?: number
 }
 
-export class Meta {
-
-  protocolVersion: string = ''
-
-  @Type(() => Product)
-  implementation: Product = new Product()
-
-  @Type(() => Product)
-  runtime: Product = new Product()
-
-  @Type(() => Product)
-  os: Product = new Product()
-
-  @Type(() => Product)
-  cpu: Product = new Product()
-
-  @Type(() => Ci)
+export type Meta = {
+  protocolVersion: string
+  implementation: Product
+  runtime: Product
+  os: Product
+  cpu: Product
   ci?: Ci
 }
 
-export class Ci {
-
-  name: string = ''
-
+export type Ci = {
+  name: string
   url?: string
-
   buildNumber?: string
-
-  @Type(() => Git)
   git?: Git
 }
 
-export class Git {
-
-  remote: string = ''
-
-  revision: string = ''
-
+export type Git = {
+  remote: string
+  revision: string
   branch?: string
-
   tag?: string
 }
 
-export class Product {
-
-  name: string = ''
-
+export type Product = {
+  name: string
   version?: string
 }
 
-export class ParameterType {
-
-  name: string = ''
-
-  regularExpressions: readonly string[] = []
-
-  preferForRegularExpressionMatch: boolean = false
-
-  useForSnippets: boolean = false
-
-  id: string = ''
-
-  @Type(() => SourceReference)
+export type ParameterType = {
+  name: string
+  regularExpressions: readonly string[]
+  preferForRegularExpressionMatch: boolean
+  useForSnippets: boolean
+  id: string
   sourceReference?: SourceReference
 }
 
-export class ParseError {
-
-  @Type(() => SourceReference)
-  source: SourceReference = new SourceReference()
-
-  message: string = ''
+export type ParseError = {
+  source: SourceReference
+  message: string
 }
 
-export class Pickle {
-
-  id: string = ''
-
-  uri: string = ''
-
-  name: string = ''
-
-  language: string = ''
-
-  @Type(() => PickleStep)
-  steps: readonly PickleStep[] = []
-
-  @Type(() => PickleTag)
-  tags: readonly PickleTag[] = []
-
-  astNodeIds: readonly string[] = []
+export type Pickle = {
+  id: string
+  uri: string
+  name: string
+  language: string
+  steps: readonly PickleStep[]
+  tags: readonly PickleTag[]
+  astNodeIds: readonly string[]
 }
 
-export class PickleDocString {
-
+export type PickleDocString = {
   mediaType?: string
-
-  content: string = ''
+  content: string
 }
 
-export class PickleStep {
-
-  @Type(() => PickleStepArgument)
+export type PickleStep = {
   argument?: PickleStepArgument
-
-  astNodeIds: readonly string[] = []
-
-  id: string = ''
-
+  astNodeIds: readonly string[]
+  id: string
   type?: PickleStepType
-
-  text: string = ''
+  text: string
 }
 
-export class PickleStepArgument {
-
-  @Type(() => PickleDocString)
+export type PickleStepArgument = {
   docString?: PickleDocString
-
-  @Type(() => PickleTable)
   dataTable?: PickleTable
 }
 
-export class PickleTable {
-
-  @Type(() => PickleTableRow)
-  rows: readonly PickleTableRow[] = []
+export type PickleTable = {
+  rows: readonly PickleTableRow[]
 }
 
-export class PickleTableCell {
-
-  value: string = ''
+export type PickleTableCell = {
+  value: string
 }
 
-export class PickleTableRow {
-
-  @Type(() => PickleTableCell)
-  cells: readonly PickleTableCell[] = []
+export type PickleTableRow = {
+  cells: readonly PickleTableCell[]
 }
 
-export class PickleTag {
-
-  name: string = ''
-
-  astNodeId: string = ''
+export type PickleTag = {
+  name: string
+  astNodeId: string
 }
 
-export class Source {
-
-  uri: string = ''
-
-  data: string = ''
-
-  mediaType: SourceMediaType = SourceMediaType.TEXT_X_CUCUMBER_GHERKIN_PLAIN
+export type Source = {
+  uri: string
+  data: string
+  mediaType: SourceMediaType
 }
 
-export class SourceReference {
-
+export type SourceReference = {
   uri?: string
-
-  @Type(() => JavaMethod)
   javaMethod?: JavaMethod
-
-  @Type(() => JavaStackTraceElement)
   javaStackTraceElement?: JavaStackTraceElement
-
-  @Type(() => Location)
   location?: Location
 }
 
-export class JavaMethod {
-
-  className: string = ''
-
-  methodName: string = ''
-
-  methodParameterTypes: readonly string[] = []
+export type JavaMethod = {
+  className: string
+  methodName: string
+  methodParameterTypes: readonly string[]
 }
 
-export class JavaStackTraceElement {
-
-  className: string = ''
-
-  fileName: string = ''
-
-  methodName: string = ''
+export type JavaStackTraceElement = {
+  className: string
+  fileName: string
+  methodName: string
 }
 
-export class StepDefinition {
-
-  id: string = ''
-
-  @Type(() => StepDefinitionPattern)
-  pattern: StepDefinitionPattern = new StepDefinitionPattern()
-
-  @Type(() => SourceReference)
-  sourceReference: SourceReference = new SourceReference()
+export type StepDefinition = {
+  id: string
+  pattern: StepDefinitionPattern
+  sourceReference: SourceReference
 }
 
-export class StepDefinitionPattern {
-
-  source: string = ''
-
-  type: StepDefinitionPatternType = StepDefinitionPatternType.CUCUMBER_EXPRESSION
+export type StepDefinitionPattern = {
+  source: string
+  type: StepDefinitionPatternType
 }
 
-export class TestCase {
-
-  id: string = ''
-
-  pickleId: string = ''
-
-  @Type(() => TestStep)
-  testSteps: readonly TestStep[] = []
-
+export type TestCase = {
+  id: string
+  pickleId: string
+  testSteps: readonly TestStep[]
   testRunStartedId?: string
 }
 
-export class Group {
-
-  @Type(() => Group)
-  children: readonly Group[] = []
-
+export type Group = {
+  children: readonly Group[]
   start?: number
-
   value?: string
 }
 
-export class StepMatchArgument {
-
-  @Type(() => Group)
-  group: Group = new Group()
-
+export type StepMatchArgument = {
+  group: Group
   parameterTypeName?: string
 }
 
-export class StepMatchArgumentsList {
-
-  @Type(() => StepMatchArgument)
-  stepMatchArguments: readonly StepMatchArgument[] = []
+export type StepMatchArgumentsList = {
+  stepMatchArguments: readonly StepMatchArgument[]
 }
 
-export class TestStep {
-
+export type TestStep = {
   hookId?: string
-
-  id: string = ''
-
+  id: string
   pickleStepId?: string
-
   stepDefinitionIds?: readonly string[]
-
-  @Type(() => StepMatchArgumentsList)
   stepMatchArgumentsLists?: readonly StepMatchArgumentsList[]
 }
 
-export class TestCaseFinished {
-
-  testCaseStartedId: string = ''
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
-
-  willBeRetried: boolean = false
+export type TestCaseFinished = {
+  testCaseStartedId: string
+  timestamp: Timestamp
+  willBeRetried: boolean
 }
 
-export class TestCaseStarted {
-
-  attempt: number = 0
-
-  id: string = ''
-
-  testCaseId: string = ''
-
+export type TestCaseStarted = {
+  attempt: number
+  id: string
+  testCaseId: string
   workerId?: string
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
+  timestamp: Timestamp
 }
 
-export class TestRunFinished {
-
+export type TestRunFinished = {
   message?: string
-
-  success: boolean = false
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
-
-  @Type(() => Exception)
+  success: boolean
+  timestamp: Timestamp
   exception?: Exception
-
   testRunStartedId?: string
 }
 
-export class TestRunHookFinished {
-
-  testRunHookStartedId: string = ''
-
-  @Type(() => TestStepResult)
-  result: TestStepResult = new TestStepResult()
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
+export type TestRunHookFinished = {
+  testRunHookStartedId: string
+  result: TestStepResult
+  timestamp: Timestamp
 }
 
-export class TestRunHookStarted {
-
-  id: string = ''
-
-  testRunStartedId: string = ''
-
-  hookId: string = ''
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
+export type TestRunHookStarted = {
+  id: string
+  testRunStartedId: string
+  hookId: string
+  timestamp: Timestamp
 }
 
-export class TestRunStarted {
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
-
+export type TestRunStarted = {
+  timestamp: Timestamp
   id?: string
 }
 
-export class TestStepFinished {
-
-  testCaseStartedId: string = ''
-
-  testStepId: string = ''
-
-  @Type(() => TestStepResult)
-  testStepResult: TestStepResult = new TestStepResult()
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
+export type TestStepFinished = {
+  testCaseStartedId: string
+  testStepId: string
+  testStepResult: TestStepResult
+  timestamp: Timestamp
 }
 
-export class TestStepResult {
-
-  @Type(() => Duration)
-  duration: Duration = new Duration()
-
+export type TestStepResult = {
+  duration: Duration
   message?: string
-
-  status: TestStepResultStatus = TestStepResultStatus.UNKNOWN
-
-  @Type(() => Exception)
+  status: TestStepResultStatus
   exception?: Exception
 }
 
-export class TestStepStarted {
-
-  testCaseStartedId: string = ''
-
-  testStepId: string = ''
-
-  @Type(() => Timestamp)
-  timestamp: Timestamp = new Timestamp()
+export type TestStepStarted = {
+  testCaseStartedId: string
+  testStepId: string
+  timestamp: Timestamp
 }
 
-export class Timestamp {
-
-  seconds: number = 0
-
-  nanos: number = 0
+export type Timestamp = {
+  seconds: number
+  nanos: number
 }
 
-export class UndefinedParameterType {
-
-  expression: string = ''
-
-  name: string = ''
+export type UndefinedParameterType = {
+  expression: string
+  name: string
 }
 
 export enum AttachmentContentEncoding {
