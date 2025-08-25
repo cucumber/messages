@@ -17,11 +17,11 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings("unused")
 public final class Duration {
     private final Long seconds;
-    private final Long nanos;
+    private final Integer nanos;
 
     public Duration(
         Long seconds,
-        Long nanos
+        Integer nanos
     ) {
         this.seconds = requireNonNull(seconds, "Duration.seconds cannot be null");
         this.nanos = requireNonNull(nanos, "Duration.nanos cannot be null");
@@ -37,7 +37,7 @@ public final class Duration {
      * that count forward in time. Must be from 0 to 999,999,999
      * inclusive.
      */
-    public Long getNanos() {
+    public Integer getNanos() {
         return nanos;
     }
 
