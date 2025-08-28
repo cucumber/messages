@@ -58,6 +58,10 @@ public sealed class Pickle
      * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
      */
     public List<string> AstNodeIds { get; private set; }
+    /**
+     * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+     */
+    public Location Location { get; private set; }
 
 
     public Pickle(
@@ -67,7 +71,8 @@ public sealed class Pickle
         string language,
         List<PickleStep> steps,
         List<PickleTag> tags,
-        List<string> astNodeIds
+        List<string> astNodeIds,
+        Location location
     ) 
     {
         RequireNonNull<string>(id, "Id", "Pickle.Id cannot be null");
@@ -84,6 +89,7 @@ public sealed class Pickle
         this.Tags = new List<PickleTag>(tags);        
         RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "Pickle.AstNodeIds cannot be null");
         this.AstNodeIds = new List<string>(astNodeIds);        
+        this.Location = location;
     }
 
     public override bool Equals(Object o) 
@@ -98,7 +104,8 @@ public sealed class Pickle
             Language.Equals(that.Language) &&         
             Steps.Equals(that.Steps) &&         
             Tags.Equals(that.Tags) &&         
-            AstNodeIds.Equals(that.AstNodeIds);        
+            AstNodeIds.Equals(that.AstNodeIds) &&         
+            Object.Equals(Location, that.Location);        
     }
 
     public override int GetHashCode() 
@@ -118,6 +125,8 @@ public sealed class Pickle
           hash = hash * 31 + Tags.GetHashCode();
         if (AstNodeIds != null)
           hash = hash * 31 + AstNodeIds.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
         return hash;
     }
 
@@ -131,6 +140,7 @@ public sealed class Pickle
             ", steps=" + Steps +
             ", tags=" + Tags +
             ", astNodeIds=" + AstNodeIds +
+            ", location=" + Location +
             '}';
     }
 
