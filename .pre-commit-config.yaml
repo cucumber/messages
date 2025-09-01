@@ -4,6 +4,11 @@
 files: ^python/
 exclude: .*python/src/cucumber_messages/_messages\.py
 repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 73b0f6d59bbfcb75e17a4653d581c9dfaca13969 # frozen: v0.12.5
+    hooks:
+      - id: ruff-check
+        files: "^python/"
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
@@ -26,11 +31,6 @@ repos:
     hooks:
       - id: pretty-format-toml
         args: [--autofix]
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.19.1
-    hooks:
-      - id: pyupgrade
-        args: ["--py39-plus"]
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.13.0
     hooks:
