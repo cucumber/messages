@@ -3,6 +3,7 @@
 
 ```mermaid
 erDiagram
+    direction TB
 <% @schemas.each do |key, schema| -%>
 <%- schema['properties'].each do |property_name, property| -%>
 <%-
@@ -14,6 +15,22 @@ referent[0] = referent[0].upcase
 <%= class_name(key) %> }|..|| <%= referent %>: <%= property_name %> 
 <%- end -%>
 <%- end -%>
+
+
+
+<% @schemas.each do |key, schema| -%>
+<%- schema['properties'].each do |property_name, property| -%>
+<%-
+next unless property_name.end_with?("Ids")
+referent = property_name.delete_suffix("Ids")
+referent[0] = referent[0].upcase
+-%>
+
+<%= class_name(key) %> }|..|{ <%= referent %>: <%= property_name %> 
+<%- end -%>
+<%- end -%>
+
+
 
 <% @schemas.each do |key, schema| -%>
 <%- schema['properties'].each do |property_name, property| -%>

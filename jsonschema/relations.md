@@ -3,6 +3,7 @@
 
 ```mermaid
 erDiagram
+    direction TB
 
 Attachment }|..|| TestCaseStarted: testCaseStartedId 
 
@@ -43,6 +44,17 @@ TestStepFinished }|..|| TestStep: testStepId
 TestStepStarted }|..|| TestCaseStarted: testCaseStartedId 
 
 TestStepStarted }|..|| TestStep: testStepId 
+
+
+
+
+Pickle }|..|{ AstNode: astNodeIds 
+
+PickleStep }|..|{ AstNode: astNodeIds 
+
+TestStep }|..|{ StepDefinition: stepDefinitionIds 
+
+
 
 
 Attachment ||..|| Source: has 
