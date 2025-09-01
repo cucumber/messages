@@ -6,14 +6,21 @@ will only have one of its fields set, which indicates the payload of the message
 <% @schemas.each do |key, schema| -%>
 ## <%= class_name(key) %>
 
-| Field | Type | Required    | Description |
-| ----- | ---- | ----------- | ----------- |
-<% schema['properties'].each do |property_name, property| -%>
+<%= schema['description'] %>
+<%- schema['properties'].each do |property_name, property| -%>
   <%-
   type_name = type_for(class_name(key), property_name, property)
   required = (schema['required'] || []).index(property_name)
+  description = ( property['description'] || '')
   -%>
-  <%- %>| `<%= property_name %>` | <%= type_name %> | <%= required ? 'yes' : 'no' %> | |
-<% end -%>
 
-<% end -%>
+### .<%= property_name %> 
+
+* Type: <%= type_name %> 
+* Required: <%= required ? 'yes' : 'no' %> 
+
+<%= description -%>
+
+<%- end -%>
+
+<%- end -%>
