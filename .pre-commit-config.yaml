@@ -9,6 +9,7 @@ repos:
     hooks:
       - id: ruff-check
         files: "^python/"
+        args: [--fix]
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
@@ -16,10 +17,6 @@ repos:
         args:
           - "python/src"
           - "python/tests"
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
