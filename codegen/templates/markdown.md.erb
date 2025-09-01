@@ -13,8 +13,8 @@ will only have one of its fields set, which indicates the payload of the message
   required = (schema['required'] || []).index(property_name)
   description = ( property['description'] || '')
   -%>
- 
-<h2><a name="<%= class_name(key) %>.<%= property_name %>"></a>.<%= property_name %></h2> 
+
+### <%= class_name(key) %>.<%= property_name %>.<%= property_name %> 
 
 * Type: <%= type_name %> 
 * Required: <%= required ? 'yes' : 'no' %> 
