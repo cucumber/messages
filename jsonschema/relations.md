@@ -6,7 +6,7 @@ Note: The left side cardinality of the relationship is always rendered as one-or
 
 ```mermaid
 ---
-title: Entity relationships  
+title: Entity relationships  - by id
 config:
     layout: elk
 ---
@@ -63,52 +63,19 @@ TestStep }|..o{  StepDefinition: stepDefinitionIds
 
 ```
 
-And all has-a relationships:
+And all has-a relationships, excluding `Envelope`:
 
 ```mermaid
+---
+title: Entity relationships - has a  
+config:
+    layout: elk
+---
 erDiagram
 
 Attachment ||..|| Source: has a
 
 Attachment ||..|| Timestamp: has a
-
-Envelope ||..|| Attachment: has a
-
-Envelope ||..|| GherkinDocument: has a
-
-Envelope ||..|| Hook: has a
-
-Envelope ||..|| Meta: has a
-
-Envelope ||..|| ParameterType: has a
-
-Envelope ||..|| ParseError: has a
-
-Envelope ||..|| Pickle: has a
-
-Envelope ||..|| Source: has a
-
-Envelope ||..|| StepDefinition: has a
-
-Envelope ||..|| TestCase: has a
-
-Envelope ||..|| TestCaseFinished: has a
-
-Envelope ||..|| TestCaseStarted: has a
-
-Envelope ||..|| TestRunFinished: has a
-
-Envelope ||..|| TestRunStarted: has a
-
-Envelope ||..|| TestStepFinished: has a
-
-Envelope ||..|| TestStepStarted: has a
-
-Envelope ||..|| TestRunHookStarted: has a
-
-Envelope ||..|| TestRunHookFinished: has a
-
-Envelope ||..|| UndefinedParameterType: has a
 
 GherkinDocument ||..|| Feature: has a
 

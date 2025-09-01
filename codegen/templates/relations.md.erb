@@ -6,7 +6,7 @@ Note: The left side cardinality of the relationship is always rendered as one-or
 
 ```mermaid
 ---
-title: Entity relationships  
+title: Entity relationships  - by id
 config:
     layout: elk
 ---
@@ -41,14 +41,20 @@ required = (schema['required'] || []).index(property_name)
 
 ```
 
-And all has-a relationships:
+And all has-a relationships, excluding `Envelope`:
 
 ```mermaid
+---
+title: Entity relationships - has a  
+config:
+    layout: elk
+---
 erDiagram
 <% @schemas.each do |key, schema| -%>
 <%- schema['properties'].each do |property_name, property| -%>
 <%-
   next unless property['$ref']    
+  next unless class_name(key) != "Envelope"    
 -%>
 
 <%= class_name(key) %> ||..|| <%= class_name(property['$ref']) %>: has a
