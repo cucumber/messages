@@ -1,0 +1,27 @@
+# Cucumber Messages
+
+
+```mermaid
+erDiagram
+<% @schemas.each do |key, schema| -%>
+<%- schema['properties'].each do |property_name, property| -%>
+<%-
+next unless property_name.end_with?("Id")
+referent = property_name.delete_suffix("Id")
+referent[0] = referent[0].upcase
+-%>
+
+<%= class_name(key) %> }|..|| <%= referent %>: <%= property_name %> 
+<%- end -%>
+<%- end -%>
+
+<% @schemas.each do |key, schema| -%>
+<%- schema['properties'].each do |property_name, property| -%>
+<%-
+  next unless property['$ref']    
+-%>
+
+<%= class_name(key) %> ||..|| <%= class_name(property['$ref']) %>: has 
+<%- end -%>
+<%- end -%>
+```

@@ -32,7 +32,7 @@ schemas = \
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nWhere <target> is one of:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
-generate: require-doc messages.md ## Generate markdown documentation using the scripts in ./jsonschema/scripts for the generation
+generate: require-doc messages.md relations.md ## Generate markdown documentation using the scripts in ./jsonschema/scripts for the generation
 
 validate: $(schemas) ## Validate the json schemas are valid
 	npm install
@@ -46,5 +46,9 @@ messages.md: $(schemas) ../codegen/codegen.rb ../codegen/templates/markdown.md.e
 	ruby ../codegen/codegen.rb Generator::Markdown markdown.md.erb > $@
 	ruby ../codegen/codegen.rb Generator::Markdown markdown.enum.md.erb >> $@
 
+relations.md: $(schemas) ../codegen/codegen.rb ../codegen/templates/relations.md.erb ../codegen/templates/relations.enum.md.erb
+	ruby ../codegen/codegen.rb Generator::Markdown relations.md.erb > $@
+	ruby ../codegen/codegen.rb Generator::Markdown relations.enum.md.erb >> $@
+
 clean: ## Remove automatically generated documentation files and related artifacts
-	rm -f messages.md
+	rm -f messages.md relations.md
