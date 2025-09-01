@@ -81,10 +81,14 @@ testpaths = ["tests"]
 [tool.ruff]
 
 [tool.ruff.lint]
-select = [
+extend-select = [
   "I",
   "UP"
 ]
+
+[tool.ruff.lint.extend-per-file-ignores]
+# TODO: Evaluate whether to use wildcard (removing need for updates) or explicit imports
+"src/cucumber_messages/__init__.py" = ["F403"]
 
 # Once https://github.com/tox-dev/tox/issues/999 is released and available, migrate to the new tox approach
 [tool.tox]
