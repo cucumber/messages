@@ -11,6 +11,7 @@ config:
     layout: elk
 ---
 erDiagram
+group test
 
 Attachment }|..o|  TestCaseStarted: testCaseStartedId 
 
