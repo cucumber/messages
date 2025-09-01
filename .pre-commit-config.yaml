@@ -10,13 +10,8 @@ repos:
       - id: ruff-check
         files: "^python/"
         args: [--fix]
-  - repo: https://github.com/psf/black
-    rev: 24.10.0
-    hooks:
-      - id: black
-        args:
-          - "python/src"
-          - "python/tests"
+      - id: ruff-format
+        files: "^python/"
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
