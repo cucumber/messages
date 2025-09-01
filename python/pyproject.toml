@@ -130,3 +130,6 @@ python =
     pypy-3.9: pypy39
     pypy-3.10: pypy310
 """
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
