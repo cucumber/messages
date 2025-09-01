@@ -1,18 +1,26 @@
-# Cucumber Messages
+# Cucumber Messages  
 
+All relationships where an entity is referenced by `id`.
+
+Note: The left side cardinality of the relationship is always rendered as one-or-more, but may also be exactly-one. This can't be extracted from the json schema easily.
 
 ```mermaid
+---
+title: Entity relationships  
+config:
+    layout: elk
+---
 erDiagram
-    direction TB
 <% @schemas.each do |key, schema| -%>
 <%- schema['properties'].each do |property_name, property| -%>
 <%-
 next unless property_name.end_with?("Id")
 referent = property_name.delete_suffix("Id")
 referent[0] = referent[0].upcase
+required = (schema['required'] || []).index(property_name)
 -%>
 
-<%= class_name(key) %> }|..|| <%= referent %>: <%= property_name %> 
+<%= class_name(key) %> }|..<%= required ? '||' : 'o|' %>  <%= referent %>: <%= property_name %> 
 <%- end -%>
 <%- end -%>
 
@@ -24,21 +32,26 @@ referent[0] = referent[0].upcase
 next unless property_name.end_with?("Ids")
 referent = property_name.delete_suffix("Ids")
 referent[0] = referent[0].upcase
+required = (schema['required'] || []).index(property_name)
 -%>
 
-<%= class_name(key) %> }|..|{ <%= referent %>: <%= property_name %> 
+<%= class_name(key) %> }|..<%= required ? '|{' : 'o{' %>  <%= referent %>: <%= property_name %> 
 <%- end -%>
 <%- end -%>
 
+```
 
+And all has-a relationships:
 
+```mermaid
+erDiagram
 <% @schemas.each do |key, schema| -%>
 <%- schema['properties'].each do |property_name, property| -%>
 <%-
   next unless property['$ref']    
 -%>
 
-<%= class_name(key) %> ||..|| <%= class_name(property['$ref']) %>: has 
+<%= class_name(key) %> ||..|| <%= class_name(property['$ref']) %>: has a
 <%- end -%>
 <%- end -%>
 ```

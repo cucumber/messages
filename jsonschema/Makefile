@@ -46,9 +46,8 @@ messages.md: $(schemas) ../codegen/codegen.rb ../codegen/templates/markdown.md.e
 	ruby ../codegen/codegen.rb Generator::Markdown markdown.md.erb > $@
 	ruby ../codegen/codegen.rb Generator::Markdown markdown.enum.md.erb >> $@
 
-relations.md: $(schemas) ../codegen/codegen.rb ../codegen/templates/relations.md.erb ../codegen/templates/relations.enum.md.erb
+relations.md: $(schemas) ../codegen/codegen.rb ../codegen/templates/relations.md.erb
 	ruby ../codegen/codegen.rb Generator::Markdown relations.md.erb > $@
-	ruby ../codegen/codegen.rb Generator::Markdown relations.enum.md.erb >> $@
 
 clean: ## Remove automatically generated documentation files and related artifacts
 	rm -f messages.md relations.md

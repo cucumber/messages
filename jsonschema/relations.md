@@ -1,205 +1,216 @@
-# Cucumber Messages
+# Cucumber Messages  
 
+All relationships where an entity is referenced by `id`.
+
+Note: The left side cardinality of the relationship is always rendered as one-or-more, but may also be exactly-one. This can't be extracted from the json schema easily.
+
+```mermaid
+---
+title: Entity relationships  
+config:
+    layout: elk
+---
+erDiagram
+
+Attachment }|..o|  TestCaseStarted: testCaseStartedId 
+
+Attachment }|..o|  TestStep: testStepId 
+
+Attachment }|..o|  TestRunStarted: testRunStartedId 
+
+Attachment }|..o|  TestRunHookStarted: testRunHookStartedId 
+
+PickleTag }|..||  AstNode: astNodeId 
+
+TestCase }|..||  Pickle: pickleId 
+
+TestCase }|..o|  TestRunStarted: testRunStartedId 
+
+TestStep }|..o|  Hook: hookId 
+
+TestStep }|..o|  PickleStep: pickleStepId 
+
+TestCaseFinished }|..||  TestCaseStarted: testCaseStartedId 
+
+TestCaseStarted }|..||  TestCase: testCaseId 
+
+TestCaseStarted }|..o|  Worker: workerId 
+
+TestRunFinished }|..o|  TestRunStarted: testRunStartedId 
+
+TestRunHookFinished }|..||  TestRunHookStarted: testRunHookStartedId 
+
+TestRunHookStarted }|..||  TestRunStarted: testRunStartedId 
+
+TestRunHookStarted }|..||  Hook: hookId 
+
+TestStepFinished }|..||  TestCaseStarted: testCaseStartedId 
+
+TestStepFinished }|..||  TestStep: testStepId 
+
+TestStepStarted }|..||  TestCaseStarted: testCaseStartedId 
+
+TestStepStarted }|..||  TestStep: testStepId 
+
+
+
+
+Pickle }|..|{  AstNode: astNodeIds 
+
+PickleStep }|..|{  AstNode: astNodeIds 
+
+TestStep }|..o{  StepDefinition: stepDefinitionIds 
+
+```
+
+And all has-a relationships:
 
 ```mermaid
 erDiagram
-    direction TB
 
-Attachment }|..|| TestCaseStarted: testCaseStartedId 
+Attachment ||..|| Source: has a
 
-Attachment }|..|| TestStep: testStepId 
+Attachment ||..|| Timestamp: has a
 
-Attachment }|..|| TestRunStarted: testRunStartedId 
+Envelope ||..|| Attachment: has a
 
-Attachment }|..|| TestRunHookStarted: testRunHookStartedId 
+Envelope ||..|| GherkinDocument: has a
 
-PickleTag }|..|| AstNode: astNodeId 
+Envelope ||..|| Hook: has a
 
-TestCase }|..|| Pickle: pickleId 
+Envelope ||..|| Meta: has a
 
-TestCase }|..|| TestRunStarted: testRunStartedId 
+Envelope ||..|| ParameterType: has a
 
-TestStep }|..|| Hook: hookId 
+Envelope ||..|| ParseError: has a
 
-TestStep }|..|| PickleStep: pickleStepId 
+Envelope ||..|| Pickle: has a
 
-TestCaseFinished }|..|| TestCaseStarted: testCaseStartedId 
+Envelope ||..|| Source: has a
 
-TestCaseStarted }|..|| TestCase: testCaseId 
+Envelope ||..|| StepDefinition: has a
 
-TestCaseStarted }|..|| Worker: workerId 
+Envelope ||..|| TestCase: has a
 
-TestRunFinished }|..|| TestRunStarted: testRunStartedId 
+Envelope ||..|| TestCaseFinished: has a
 
-TestRunHookFinished }|..|| TestRunHookStarted: testRunHookStartedId 
+Envelope ||..|| TestCaseStarted: has a
 
-TestRunHookStarted }|..|| TestRunStarted: testRunStartedId 
+Envelope ||..|| TestRunFinished: has a
 
-TestRunHookStarted }|..|| Hook: hookId 
+Envelope ||..|| TestRunStarted: has a
 
-TestStepFinished }|..|| TestCaseStarted: testCaseStartedId 
+Envelope ||..|| TestStepFinished: has a
 
-TestStepFinished }|..|| TestStep: testStepId 
+Envelope ||..|| TestStepStarted: has a
 
-TestStepStarted }|..|| TestCaseStarted: testCaseStartedId 
+Envelope ||..|| TestRunHookStarted: has a
 
-TestStepStarted }|..|| TestStep: testStepId 
+Envelope ||..|| TestRunHookFinished: has a
 
+Envelope ||..|| UndefinedParameterType: has a
 
+GherkinDocument ||..|| Feature: has a
 
+Background ||..|| Location: has a
 
-Pickle }|..|{ AstNode: astNodeIds 
+Comment ||..|| Location: has a
 
-PickleStep }|..|{ AstNode: astNodeIds 
+DataTable ||..|| Location: has a
 
-TestStep }|..|{ StepDefinition: stepDefinitionIds 
+DocString ||..|| Location: has a
 
+Examples ||..|| Location: has a
 
+Examples ||..|| TableRow: has a
 
+Feature ||..|| Location: has a
 
-Attachment ||..|| Source: has 
+FeatureChild ||..|| Rule: has a
 
-Attachment ||..|| Timestamp: has 
+FeatureChild ||..|| Background: has a
 
-Envelope ||..|| Attachment: has 
+FeatureChild ||..|| Scenario: has a
 
-Envelope ||..|| GherkinDocument: has 
+Rule ||..|| Location: has a
 
-Envelope ||..|| Hook: has 
+RuleChild ||..|| Background: has a
 
-Envelope ||..|| Meta: has 
+RuleChild ||..|| Scenario: has a
 
-Envelope ||..|| ParameterType: has 
+Scenario ||..|| Location: has a
 
-Envelope ||..|| ParseError: has 
+Step ||..|| Location: has a
 
-Envelope ||..|| Pickle: has 
+Step ||..|| DocString: has a
 
-Envelope ||..|| Source: has 
+Step ||..|| DataTable: has a
 
-Envelope ||..|| StepDefinition: has 
+TableCell ||..|| Location: has a
 
-Envelope ||..|| TestCase: has 
+TableRow ||..|| Location: has a
 
-Envelope ||..|| TestCaseFinished: has 
+Tag ||..|| Location: has a
 
-Envelope ||..|| TestCaseStarted: has 
+Hook ||..|| SourceReference: has a
 
-Envelope ||..|| TestRunFinished: has 
+Meta ||..|| Product: has a
 
-Envelope ||..|| TestRunStarted: has 
+Meta ||..|| Product: has a
 
-Envelope ||..|| TestStepFinished: has 
+Meta ||..|| Product: has a
 
-Envelope ||..|| TestStepStarted: has 
+Meta ||..|| Product: has a
 
-Envelope ||..|| TestRunHookStarted: has 
+Meta ||..|| Ci: has a
 
-Envelope ||..|| TestRunHookFinished: has 
+Ci ||..|| Git: has a
 
-Envelope ||..|| UndefinedParameterType: has 
+ParameterType ||..|| SourceReference: has a
 
-GherkinDocument ||..|| Feature: has 
+ParseError ||..|| SourceReference: has a
 
-Background ||..|| Location: has 
+PickleStep ||..|| PickleStepArgument: has a
 
-Comment ||..|| Location: has 
+PickleStepArgument ||..|| PickleDocString: has a
 
-DataTable ||..|| Location: has 
+PickleStepArgument ||..|| PickleTable: has a
 
-DocString ||..|| Location: has 
+SourceReference ||..|| JavaMethod: has a
 
-Examples ||..|| Location: has 
+SourceReference ||..|| JavaStackTraceElement: has a
 
-Examples ||..|| TableRow: has 
+SourceReference ||..|| Location: has a
 
-Feature ||..|| Location: has 
+StepDefinition ||..|| StepDefinitionPattern: has a
 
-FeatureChild ||..|| Rule: has 
+StepDefinition ||..|| SourceReference: has a
 
-FeatureChild ||..|| Background: has 
+StepMatchArgument ||..|| Group: has a
 
-FeatureChild ||..|| Scenario: has 
+TestCaseFinished ||..|| Timestamp: has a
 
-Rule ||..|| Location: has 
+TestCaseStarted ||..|| Timestamp: has a
 
-RuleChild ||..|| Background: has 
+TestRunFinished ||..|| Timestamp: has a
 
-RuleChild ||..|| Scenario: has 
+TestRunFinished ||..|| Exception: has a
 
-Scenario ||..|| Location: has 
+TestRunHookFinished ||..|| TestStepResult: has a
 
-Step ||..|| Location: has 
+TestRunHookFinished ||..|| Timestamp: has a
 
-Step ||..|| DocString: has 
+TestRunHookStarted ||..|| Timestamp: has a
 
-Step ||..|| DataTable: has 
+TestRunStarted ||..|| Timestamp: has a
 
-TableCell ||..|| Location: has 
+TestStepFinished ||..|| TestStepResult: has a
 
-TableRow ||..|| Location: has 
+TestStepFinished ||..|| Timestamp: has a
 
-Tag ||..|| Location: has 
+TestStepResult ||..|| Duration: has a
 
-Hook ||..|| SourceReference: has 
+TestStepResult ||..|| Exception: has a
 
-Meta ||..|| Product: has 
-
-Meta ||..|| Product: has 
-
-Meta ||..|| Product: has 
-
-Meta ||..|| Product: has 
-
-Meta ||..|| Ci: has 
-
-Ci ||..|| Git: has 
-
-ParameterType ||..|| SourceReference: has 
-
-ParseError ||..|| SourceReference: has 
-
-PickleStep ||..|| PickleStepArgument: has 
-
-PickleStepArgument ||..|| PickleDocString: has 
-
-PickleStepArgument ||..|| PickleTable: has 
-
-SourceReference ||..|| JavaMethod: has 
-
-SourceReference ||..|| JavaStackTraceElement: has 
-
-SourceReference ||..|| Location: has 
-
-StepDefinition ||..|| StepDefinitionPattern: has 
-
-StepDefinition ||..|| SourceReference: has 
-
-StepMatchArgument ||..|| Group: has 
-
-TestCaseFinished ||..|| Timestamp: has 
-
-TestCaseStarted ||..|| Timestamp: has 
-
-TestRunFinished ||..|| Timestamp: has 
-
-TestRunFinished ||..|| Exception: has 
-
-TestRunHookFinished ||..|| TestStepResult: has 
-
-TestRunHookFinished ||..|| Timestamp: has 
-
-TestRunHookStarted ||..|| Timestamp: has 
-
-TestRunStarted ||..|| Timestamp: has 
-
-TestStepFinished ||..|| TestStepResult: has 
-
-TestStepFinished ||..|| Timestamp: has 
-
-TestStepResult ||..|| Duration: has 
-
-TestStepResult ||..|| Exception: has 
-
-TestStepStarted ||..|| Timestamp: has 
+TestStepStarted ||..|| Timestamp: has a
 ```
