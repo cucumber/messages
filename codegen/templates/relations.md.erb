@@ -1,0 +1,56 @@
+# Cucumber Messages  
+
+All relationships where an entity is referenced by `id`.
+
+Notes:
+ * The left side cardinality of the relationship is always rendered as one-or-more, but may also be exactly-one. This can't be extracted from the json schema easily.
+ * Worker is not actually an entity in the message protocol, but is referenced by id.
+ * `AstNode` is not actually an entity in the message protocol, but does reference an element in the `GherkinDocument`. 
+
+```mermaid
+---
+title: Entity relationships  - by id
+config:
+    layout: elk
+---
+erDiagram
+<%- @schemas.each do |key, schema| -%>
+<%- schema['properties'].each do |property_name, property| -%>
+<%- if property_name.end_with?("Id")
+      referent = property_name.delete_suffix("Id")
+      referent[0] = referent[0].upcase
+      required = (schema['required'] || []).index(property_name)
+-%>
+<%= class_name(key) %> }|..<%= required ? '||' : 'o|' %>  <%= referent %>: <%= property_name %>
+<%- end -%>
+<%-
+if property_name.end_with?("Ids")
+    referent = property_name.delete_suffix("Ids")
+    referent[0] = referent[0].upcase
+    required = (schema['required'] || []).index(property_name)
+-%>
+<%= class_name(key) %> }|..<%= required ? '|{' : 'o{' %>  <%= referent %>: <%= property_name %>
+<%- end -%>
+<%- end -%>
+<%- end -%>
+```
+
+And all has-a relationships, excluding `Envelope`:
+
+```mermaid
+---
+title: Entity relationships - has a  
+config:
+    layout: elk
+---
+erDiagram
+<% @schemas.each do |key, schema| -%>
+<%- schema['properties'].each do |property_name, property| -%>
+<%-
+  next unless property['$ref']    
+  next unless class_name(key) != "Envelope"    
+-%>
+<%= class_name(key) %> ||..|| <%= class_name(property['$ref']) %>: has a
+<%- end -%>
+<%- end -%>
+```

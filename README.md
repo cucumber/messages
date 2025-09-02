@@ -11,7 +11,9 @@ from Cucumber. The protocol aims to decouple various components of the Cucumber 
 
 ![messages.png](jsonschema/messages.png)
 
-Note: Markdown and Excel formats are currently not supported and mentioned here as potential future alternative languages to express BDD scenarios.
+Notes:
+ * The image sketches out the general concept, but is incomplete. See [relations.md](jsonschema/relations.md) for a complete visualisation of the relationships between messages. 
+ * Markdown and Excel formats are currently not supported and mentioned here as potential future alternative languages to express BDD scenarios.
 
 ## JSON Schema
 
