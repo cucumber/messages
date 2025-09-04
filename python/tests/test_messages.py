@@ -1,6 +1,11 @@
 import pytest
 
-from cucumber_messages import Attachment, AttachmentContentEncoding, Envelope, SourceMediaType
+from cucumber_messages import (
+    Attachment,
+    AttachmentContentEncoding,
+    Envelope,
+    SourceMediaType,
+)
 from cucumber_messages import TestStepResultStatus as TTestStepResultStatus
 from cucumber_messages import message_converter as default_converter
 
