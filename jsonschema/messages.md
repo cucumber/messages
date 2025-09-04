@@ -191,6 +191,13 @@ inclusive.
 
 
 
+#### Envelope.suggestion 
+
+* Type: [Suggestion](#suggestion) 
+* Required: no 
+
+
+
 #### Envelope.source 
 
 * Type: [Source](#source) 
@@ -1432,6 +1439,56 @@ Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
 * Required: yes 
 
 
+
+## Suggestion
+
+A suggested fragment of code to implement an undefined step
+
+#### Suggestion.id 
+
+* Type: string 
+* Required: yes 
+
+A unique id for this suggestion
+
+#### Suggestion.pickleId 
+
+* Type: string 
+* Required: yes 
+
+The ID of the `Pickle` this `Suggestion` was created for
+
+#### Suggestion.pickleStepId 
+
+* Type: string 
+* Required: yes 
+
+The ID of the `PickleStep` this `Suggestion` was created for.
+
+#### Suggestion.snippets 
+
+* Type: [Snippet](#snippet)[] 
+* Required: yes 
+
+A collection of code snippets that could implement the undefined step
+
+## Snippet
+
+
+
+#### Snippet.language 
+
+* Type: string 
+* Required: yes 
+
+The programming language of the code
+
+#### Snippet.code 
+
+* Type: string 
+* Required: yes 
+
+A snippet of code
 
 ## TestCase
 

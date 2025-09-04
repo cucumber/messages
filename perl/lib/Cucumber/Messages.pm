@@ -346,6 +346,7 @@ my %types = (
    parameter_type => 'Cucumber::Messages::ParameterType',
    parse_error => 'Cucumber::Messages::ParseError',
    pickle => 'Cucumber::Messages::Pickle',
+   suggestion => 'Cucumber::Messages::Suggestion',
    source => 'Cucumber::Messages::Source',
    step_definition => 'Cucumber::Messages::StepDefinition',
    test_case => 'Cucumber::Messages::TestCase',
@@ -434,6 +435,16 @@ has parse_error =>
 =cut
 
 has pickle =>
+    (is => 'ro',
+    );
+
+
+=head4 suggestion
+
+
+=cut
+
+has suggestion =>
     (is => 'ro',
     );
 
@@ -3697,6 +3708,150 @@ has type =>
     (is => 'ro',
      required => 1,
      default => sub { TYPE_CUCUMBER_EXPRESSION },
+    );
+
+
+}
+
+package Cucumber::Messages::Suggestion {
+
+=head2 Cucumber::Messages::Suggestion
+
+=head3 DESCRIPTION
+
+Represents the Suggestion message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+A suggested fragment of code to implement an undefined step
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   id => 'string',
+   pickle_id => 'string',
+   pickle_step_id => 'string',
+   snippets => '[]Cucumber::Messages::Snippet',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 id
+
+A unique id for this suggestion
+=cut
+
+has id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 pickle_id
+
+The ID of the `Pickle` this `Suggestion` was created for
+=cut
+
+has pickle_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 pickle_step_id
+
+The ID of the `PickleStep` this `Suggestion` was created for.
+=cut
+
+has pickle_step_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 snippets
+
+A collection of code snippets that could implement the undefined step
+=cut
+
+has snippets =>
+    (is => 'ro',
+     required => 1,
+     default => sub { [] },
+    );
+
+
+}
+
+package Cucumber::Messages::Snippet {
+
+=head2 Cucumber::Messages::Snippet
+
+=head3 DESCRIPTION
+
+Represents the Snippet message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   language => 'string',
+   code => 'string',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 language
+
+The programming language of the code
+=cut
+
+has language =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 code
+
+A snippet of code
+=cut
+
+has code =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
     );
 
 

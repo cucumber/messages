@@ -13,6 +13,7 @@
 #include <cucumber/messages/parameter_type.hpp>
 #include <cucumber/messages/parse_error.hpp>
 #include <cucumber/messages/pickle.hpp>
+#include <cucumber/messages/suggestion.hpp>
 #include <cucumber/messages/source.hpp>
 #include <cucumber/messages/step_definition.hpp>
 #include <cucumber/messages/test_case.hpp>
@@ -45,6 +46,7 @@ struct envelope
     std::optional<cucumber::messages::parameter_type> parameter_type;
     std::optional<cucumber::messages::parse_error> parse_error;
     std::optional<cucumber::messages::pickle> pickle;
+    std::optional<cucumber::messages::suggestion> suggestion;
     std::optional<cucumber::messages::source> source;
     std::optional<cucumber::messages::step_definition> step_definition;
     std::optional<cucumber::messages::test_case> test_case;
