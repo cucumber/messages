@@ -18,7 +18,8 @@
           "description": "A snippet of code",
           "type": "string"
         }
-      }
+      },
+      "type": "object"
     }
   },
   "description": "A suggested fragment of code to implement an undefined step",
