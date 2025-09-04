@@ -14,6 +14,7 @@ schemas = \
 	./src/TestCase.json \
 	./src/Timestamp.json \
 	./src/Attachment.json \
+	./src/Suggestion.json \
 	./src/TestCaseFinished.json \
 	./src/TestCaseStarted.json \
 	./src/TestRunFinished.json \

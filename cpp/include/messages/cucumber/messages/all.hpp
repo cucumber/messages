@@ -39,6 +39,8 @@
 #include <cucumber/messages/java_stack_trace_element.hpp>
 #include <cucumber/messages/step_definition.hpp>
 #include <cucumber/messages/step_definition_pattern.hpp>
+#include <cucumber/messages/suggestion.hpp>
+#include <cucumber/messages/snippet.hpp>
 #include <cucumber/messages/test_case.hpp>
 #include <cucumber/messages/group.hpp>
 #include <cucumber/messages/step_match_argument.hpp>

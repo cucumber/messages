@@ -17,6 +17,7 @@ envelope::to_string() const
     cucumber::messages::to_string(oss, ", parameter_type=", parameter_type);
     cucumber::messages::to_string(oss, ", parse_error=", parse_error);
     cucumber::messages::to_string(oss, ", pickle=", pickle);
+    cucumber::messages::to_string(oss, ", suggestion=", suggestion);
     cucumber::messages::to_string(oss, ", source=", source);
     cucumber::messages::to_string(oss, ", step_definition=", step_definition);
     cucumber::messages::to_string(oss, ", test_case=", test_case);
@@ -43,6 +44,7 @@ envelope::to_json(json& j) const
     cucumber::messages::to_json(j, camelize("parameter_type"), parameter_type);
     cucumber::messages::to_json(j, camelize("parse_error"), parse_error);
     cucumber::messages::to_json(j, camelize("pickle"), pickle);
+    cucumber::messages::to_json(j, camelize("suggestion"), suggestion);
     cucumber::messages::to_json(j, camelize("source"), source);
     cucumber::messages::to_json(j, camelize("step_definition"), step_definition);
     cucumber::messages::to_json(j, camelize("test_case"), test_case);

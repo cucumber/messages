@@ -24,6 +24,9 @@
     "pickle": {
       "$ref": "./Pickle.json"
     },
+    "suggestion": {
+      "$ref": "./Suggestion.json"
+    },
     "source": {
       "$ref": "./Source.json"
     },

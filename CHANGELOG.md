@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
 - [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
 
+### Added
+- Add Suggestion message ([#329](https://github.com/cucumber/messages/pull/329))
+
 ## [28.1.0] - 2025-07-21
 ### Added
 - [java] Add comparators for comparable objects ([#312](https://github.com/cucumber/messages/pull/312))
