@@ -48,7 +48,8 @@ final class TestStep implements JsonSerializable
         public readonly ?array $stepDefinitionIds = null,
 
         /**
-         * A list of list of StepMatchArgument (if derived from a `PickleStep`).
+         * A list of list of StepMatchArgument (if derived from a `PickleStep`). There is one list for each matched step definition. A size of 0 means `UNDEFINED`,
+         * and a size of 2+ means `AMBIGUOUS`
          */
         public readonly ?array $stepMatchArgumentsLists = null,
     ) {
