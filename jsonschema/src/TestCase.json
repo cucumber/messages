@@ -87,7 +87,7 @@
           "type": "array"
         },
         "stepMatchArgumentsLists": {
-          "description": "A list of list of StepMatchArgument (if derived from a `PickleStep`).",
+          "description": "A list of list of StepMatchArgument (if derived from a `PickleStep`). There is one list for each matched step definition. A size of 0 means `UNDEFINED`,\nand a size of 2+ means `AMBIGUOUS`",
           "items": {
             "$ref": "#/definitions/StepMatchArgumentsList"
           },

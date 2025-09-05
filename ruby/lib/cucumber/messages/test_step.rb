@@ -31,7 +31,8 @@ module Cucumber
       attr_reader :step_definition_ids
 
       ##
-      # A list of list of StepMatchArgument (if derived from a `PickleStep`).
+      # A list of list of StepMatchArgument (if derived from a `PickleStep`). There is one list for each matched step definition. A size of 0 means `UNDEFINED`,
+      # and a size of 2+ means `AMBIGUOUS`
       ##
       attr_reader :step_match_arguments_lists
 
