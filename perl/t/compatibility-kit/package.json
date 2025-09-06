@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@cucumber/compatibility-kit": "^21.0.0"
+    "@cucumber/compatibility-kit": "^22.0.0"
   }
 }
