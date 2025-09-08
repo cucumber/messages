@@ -8,14 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Add `workerId` to `TestRunHookStarted` ([#332](https://github.com/cucumber/messages/pull/332))
+- Add Suggestion message ([#329](https://github.com/cucumber/messages/pull/329))
 
 ### Changed
 - Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
 - Clarify documentation around `TestStep.stepMatchArgumentsLists` ([#330](https://github.com/cucumber/messages/pull/330))
 - [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
-
-### Added
-- Add Suggestion message ([#329](https://github.com/cucumber/messages/pull/329))
 
 ## [28.1.0] - 2025-07-21
 ### Added
