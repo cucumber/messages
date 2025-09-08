@@ -23,10 +23,6 @@ public sealed class Suggestion
      */
     public string Id { get; private set; }
     /**
-     * The ID of the `Pickle` this `Suggestion` was created for
-     */
-    public string PickleId { get; private set; }
-    /**
      * The ID of the `PickleStep` this `Suggestion` was created for.
      */
     public string PickleStepId { get; private set; }
@@ -38,15 +34,12 @@ public sealed class Suggestion
 
     public Suggestion(
         string id,
-        string pickleId,
         string pickleStepId,
         List<Snippet> snippets
     ) 
     {
         RequireNonNull<string>(id, "Id", "Suggestion.Id cannot be null");
         this.Id = id;
-        RequireNonNull<string>(pickleId, "PickleId", "Suggestion.PickleId cannot be null");
-        this.PickleId = pickleId;
         RequireNonNull<string>(pickleStepId, "PickleStepId", "Suggestion.PickleStepId cannot be null");
         this.PickleStepId = pickleStepId;
         RequireNonNull<List<Snippet>>(snippets, "Snippets", "Suggestion.Snippets cannot be null");
@@ -60,7 +53,6 @@ public sealed class Suggestion
         Suggestion that = (Suggestion) o;
         return 
             Id.Equals(that.Id) &&         
-            PickleId.Equals(that.PickleId) &&         
             PickleStepId.Equals(that.PickleStepId) &&         
             Snippets.Equals(that.Snippets);        
     }
@@ -70,8 +62,6 @@ public sealed class Suggestion
         int hash = 17;
         if (Id != null)
           hash = hash * 31 + Id.GetHashCode();
-        if (PickleId != null)
-          hash = hash * 31 + PickleId.GetHashCode();
         if (PickleStepId != null)
           hash = hash * 31 + PickleStepId.GetHashCode();
         if (Snippets != null)
@@ -83,7 +73,6 @@ public sealed class Suggestion
     {
         return "Suggestion{" +
             "id=" + Id +
-            ", pickleId=" + PickleId +
             ", pickleStepId=" + PickleStepId +
             ", snippets=" + Snippets +
             '}';

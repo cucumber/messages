@@ -3735,7 +3735,6 @@ use Scalar::Util qw( blessed );
 
 my %types = (
    id => 'string',
-   pickle_id => 'string',
    pickle_step_id => 'string',
    snippets => '[]Cucumber::Messages::Snippet',
 );
@@ -3754,18 +3753,6 @@ A unique id for this suggestion
 =cut
 
 has id =>
-    (is => 'ro',
-     required => 1,
-     default => sub { '' },
-    );
-
-
-=head4 pickle_id
-
-The ID of the `Pickle` this `Suggestion` was created for
-=cut
-
-has pickle_id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
@@ -3833,7 +3820,10 @@ sub _types {
 
 =head4 language
 
-The programming language of the code
+The programming language of the code.
+
+This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
 =cut
 
 has language =>

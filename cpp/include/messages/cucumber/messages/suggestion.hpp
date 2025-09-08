@@ -23,7 +23,6 @@ using json = nlohmann::json;
 struct suggestion
 {
     std::string id;
-    std::string pickle_id;
     std::string pickle_step_id;
     std::vector<cucumber::messages::snippet> snippets;
 

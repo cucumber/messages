@@ -1451,13 +1451,6 @@ A suggested fragment of code to implement an undefined step
 
 A unique id for this suggestion
 
-#### Suggestion.pickleId 
-
-* Type: string 
-* Required: yes 
-
-The ID of the `Pickle` this `Suggestion` was created for
-
 #### Suggestion.pickleStepId 
 
 * Type: string 
@@ -1481,7 +1474,10 @@ A collection of code snippets that could implement the undefined step
 * Type: string 
 * Required: yes 
 
-The programming language of the code
+The programming language of the code.
+
+This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
 
 #### Snippet.code 
 

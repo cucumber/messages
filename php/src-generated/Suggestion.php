@@ -33,11 +33,6 @@ final class Suggestion implements JsonSerializable
         public readonly string $id = '',
 
         /**
-         * The ID of the `Pickle` this `Suggestion` was created for
-         */
-        public readonly string $pickleId = '',
-
-        /**
          * The ID of the `PickleStep` this `Suggestion` was created for.
          */
         public readonly string $pickleStepId = '',
@@ -57,13 +52,11 @@ final class Suggestion implements JsonSerializable
     public static function fromArray(array $arr): self
     {
         self::ensureId($arr);
-        self::ensurePickleId($arr);
         self::ensurePickleStepId($arr);
         self::ensureSnippets($arr);
 
         return new self(
             (string) $arr['id'],
-            (string) $arr['pickleId'],
             (string) $arr['pickleStepId'],
             array_values(array_map(fn (array $member) => Snippet::fromArray($member), $arr['snippets'])),
         );
@@ -79,19 +72,6 @@ final class Suggestion implements JsonSerializable
         }
         if (array_key_exists('id', $arr) && is_array($arr['id'])) {
             throw new SchemaViolationException('Property \'id\' was array');
-        }
-    }
-
-    /**
-     * @psalm-assert array{pickleId: string|int|bool} $arr
-     */
-    private static function ensurePickleId(array $arr): void
-    {
-        if (!array_key_exists('pickleId', $arr)) {
-            throw new SchemaViolationException('Property \'pickleId\' is required but was not found');
-        }
-        if (array_key_exists('pickleId', $arr) && is_array($arr['pickleId'])) {
-            throw new SchemaViolationException('Property \'pickleId\' was array');
         }
     }
 

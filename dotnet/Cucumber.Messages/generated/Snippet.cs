@@ -17,7 +17,10 @@ namespace Io.Cucumber.Messages.Types;
 public sealed class Snippet 
 {
     /**
-     * The programming language of the code
+     * The programming language of the code.
+     *
+     * This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+     * For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
      */
     public string Language { get; private set; }
     /**

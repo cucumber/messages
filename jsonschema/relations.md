@@ -21,7 +21,6 @@ Attachment }|..o| TestRunHookStarted: testRunHookStartedId
 Pickle }|..|{ AstNode: astNodeIds
 PickleStep }|..|{ AstNode: astNodeIds
 PickleTag }|..|| AstNode: astNodeId
-Suggestion }|..|| Pickle: pickleId
 Suggestion }|..|| PickleStep: pickleStepId
 TestCase }|..|| Pickle: pickleId
 TestCase }|..o| TestRunStarted: testRunStartedId

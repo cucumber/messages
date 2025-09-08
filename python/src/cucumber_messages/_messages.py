@@ -527,7 +527,6 @@ class Suggestion:
     A suggested fragment of code to implement an undefined step
     """
     id: str  # A unique id for this suggestion
-    pickle_id: str  # The ID of the `Pickle` this `Suggestion` was created for
     pickle_step_id: str  # The ID of the `PickleStep` this `Suggestion` was created for.
     snippets: list[Snippet]  # A collection of code snippets that could implement the undefined step
 
@@ -535,7 +534,14 @@ class Suggestion:
 @dataclass
 class Snippet:
     code: str  # A snippet of code
-    language: str  # The programming language of the code
+    language: str
+    """
+    The programming language of the code.
+
+    This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+    For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
+    """
+
 
 
 @dataclass

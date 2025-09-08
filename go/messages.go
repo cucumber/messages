@@ -298,7 +298,6 @@ type StepDefinitionPattern struct {
 
 type Suggestion struct {
 	Id           string     `json:"id"`
-	PickleId     string     `json:"pickleId"`
 	PickleStepId string     `json:"pickleStepId"`
 	Snippets     []*Snippet `json:"snippets"`
 }

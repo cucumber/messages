@@ -11,7 +11,6 @@ suggestion::to_string() const
     std::ostringstream oss;
 
     cucumber::messages::to_string(oss, "id=", id);
-    cucumber::messages::to_string(oss, ", pickle_id=", pickle_id);
     cucumber::messages::to_string(oss, ", pickle_step_id=", pickle_step_id);
     cucumber::messages::to_string(oss, ", snippets=", snippets);
 
@@ -22,7 +21,6 @@ void
 suggestion::to_json(json& j) const
 {
     cucumber::messages::to_json(j, camelize("id"), id);
-    cucumber::messages::to_json(j, camelize("pickle_id"), pickle_id);
     cucumber::messages::to_json(j, camelize("pickle_step_id"), pickle_step_id);
     cucumber::messages::to_json(j, camelize("snippets"), snippets);
 }

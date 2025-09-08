@@ -16,11 +16,6 @@ module Cucumber
       attr_reader :id
 
       ##
-      # The ID of the `Pickle` this `Suggestion` was created for
-      ##
-      attr_reader :pickle_id
-
-      ##
       # The ID of the `PickleStep` this `Suggestion` was created for.
       ##
       attr_reader :pickle_step_id
@@ -32,12 +27,10 @@ module Cucumber
 
       def initialize(
         id: '',
-        pickle_id: '',
         pickle_step_id: '',
         snippets: []
       )
         @id = id
-        @pickle_id = pickle_id
         @pickle_step_id = pickle_step_id
         @snippets = snippets
         super()
@@ -55,7 +48,6 @@ module Cucumber
 
         new(
           id: hash[:id],
-          pickle_id: hash[:pickleId],
           pickle_step_id: hash[:pickleStepId],
           snippets: hash[:snippets]&.map { |item| Snippet.from_h(item) }
         )

@@ -551,8 +551,6 @@ export class Suggestion {
 
   id: string = ''
 
-  pickleId: string = ''
-
   pickleStepId: string = ''
 
   @Type(() => Snippet)

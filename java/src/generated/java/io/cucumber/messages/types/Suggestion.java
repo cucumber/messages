@@ -16,18 +16,15 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings("unused")
 public final class Suggestion {
     private final String id;
-    private final String pickleId;
     private final String pickleStepId;
     private final java.util.List<Snippet> snippets;
 
     public Suggestion(
         String id,
-        String pickleId,
         String pickleStepId,
         java.util.List<Snippet> snippets
     ) {
         this.id = requireNonNull(id, "Suggestion.id cannot be null");
-        this.pickleId = requireNonNull(pickleId, "Suggestion.pickleId cannot be null");
         this.pickleStepId = requireNonNull(pickleStepId, "Suggestion.pickleStepId cannot be null");
         this.snippets = unmodifiableList(new ArrayList<>(requireNonNull(snippets, "Suggestion.snippets cannot be null")));
     }
@@ -37,13 +34,6 @@ public final class Suggestion {
      */
     public String getId() {
         return id;
-    }
-
-    /**
-     * The ID of the `Pickle` this `Suggestion` was created for
-     */
-    public String getPickleId() {
-        return pickleId;
     }
 
     /**
@@ -67,7 +57,6 @@ public final class Suggestion {
         Suggestion that = (Suggestion) o;
         return 
             id.equals(that.id) &&         
-            pickleId.equals(that.pickleId) &&         
             pickleStepId.equals(that.pickleStepId) &&         
             snippets.equals(that.snippets);        
     }
@@ -76,7 +65,6 @@ public final class Suggestion {
     public int hashCode() {
         return Objects.hash(
             id,
-            pickleId,
             pickleStepId,
             snippets
         );
@@ -86,7 +74,6 @@ public final class Suggestion {
     public String toString() {
         return "Suggestion{" +
             "id=" + id +
-            ", pickleId=" + pickleId +
             ", pickleStepId=" + pickleStepId +
             ", snippets=" + snippets +
             '}';

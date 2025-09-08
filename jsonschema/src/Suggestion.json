@@ -11,7 +11,7 @@
       ],
       "properties": {
         "language": {
-          "description": "The programming language of the code",
+          "description": "The programming language of the code.\n\nThis must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.\nFor example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.",
           "type": "string"
         },
         "code": {
@@ -25,17 +25,12 @@
   "description": "A suggested fragment of code to implement an undefined step",
   "required": [
     "id",
-    "pickleId",
     "pickleStepId",
     "snippets"
   ],
   "properties": {
     "id": {
       "description": "A unique id for this suggestion",
-      "type": "string"
-    },
-    "pickleId": {
-      "description": "The ID of the `Pickle` this `Suggestion` was created for",
       "type": "string"
     },
     "pickleStepId": {
