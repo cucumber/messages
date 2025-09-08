@@ -4413,6 +4413,7 @@ my %types = (
    id => 'string',
    test_run_started_id => 'string',
    hook_id => 'string',
+   worker_id => 'string',
    timestamp => 'Cucumber::Messages::Timestamp',
 );
 
@@ -4457,6 +4458,16 @@ has hook_id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
+    );
+
+
+=head4 worker_id
+
+An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+=cut
+
+has worker_id =>
+    (is => 'ro',
     );
 
 
