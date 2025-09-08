@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
+- Clarify documentation around `TestStep.stepMatchArgumentsLists` ([#330](https://github.com/cucumber/messages/pull/330))
 - [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
 
 ### Added
