@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [29.0.0] - 2025-09-08
 ### Added
 - Add `workerId` to `TestRunHookStarted` ([#332](https://github.com/cucumber/messages/pull/332))
 - Add Suggestion message ([#329](https://github.com/cucumber/messages/pull/329))
@@ -597,7 +599,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v28.1.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v29.0.0...HEAD
+[29.0.0]: https://github.com/cucumber/messages/compare/v28.1.0...v29.0.0
 [28.1.0]: https://github.com/cucumber/messages/compare/v28.0.0...v28.1.0
 [28.0.0]: https://github.com/cucumber/messages/compare/v27.2.0...v28.0.0
 [27.2.0]: https://github.com/cucumber/messages/compare/v27.1.0...v27.2.0
