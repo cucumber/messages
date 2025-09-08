@@ -652,6 +652,8 @@ export class TestRunHookStarted {
 
   hookId: string = ''
 
+  workerId?: string
+
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
 }

@@ -636,6 +636,7 @@ class TestRunHookStarted:
     id: str  # Unique identifier for this hook execution
     test_run_started_id: str  # Identifier for the test run that this hook execution belongs to
     timestamp: Timestamp
+    worker_id: Optional[str] = None  # An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
 
 
 @dataclass

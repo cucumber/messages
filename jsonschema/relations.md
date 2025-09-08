@@ -33,6 +33,7 @@ TestRunFinished }|..o| TestRunStarted: testRunStartedId
 TestRunHookFinished }|..|| TestRunHookStarted: testRunHookStartedId
 TestRunHookStarted }|..|| TestRunStarted: testRunStartedId
 TestRunHookStarted }|..|| Hook: hookId
+TestRunHookStarted }|..o| Worker: workerId
 TestStepFinished }|..|| TestCaseStarted: testCaseStartedId
 TestStepFinished }|..|| TestStep: testStepId
 TestStepStarted }|..|| TestCaseStarted: testCaseStartedId

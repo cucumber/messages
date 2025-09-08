@@ -1725,6 +1725,13 @@ Identifier for the test run that this hook execution belongs to
 
 Identifier for the hook that will be executed
 
+#### TestRunHookStarted.workerId 
+
+* Type: string 
+* Required: no 
+
+An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+
 #### TestRunHookStarted.timestamp 
 
 * Type: [Timestamp](#timestamp) 
