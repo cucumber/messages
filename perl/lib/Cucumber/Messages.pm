@@ -3971,8 +3971,11 @@ package Cucumber::Messages::TestStep {
 Represents the TestStep message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-A `TestStep` is derived from either a `PickleStep`
-combined with a `StepDefinition`, or from a `Hook`.
+A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+
+When derived from a PickleStep:
+ * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+ * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
 
 =head3 ATTRIBUTES
 
@@ -4033,9 +4036,8 @@ has pickle_step_id =>
 
 =head4 step_definition_ids
 
-Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-and a size of 2+ means `AMBIGUOUS`
+Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+Each element represents a matching step definition.
 =cut
 
 has step_definition_ids =>
@@ -4045,8 +4047,8 @@ has step_definition_ids =>
 
 =head4 step_match_arguments_lists
 
-A list of list of StepMatchArgument (if derived from a `PickleStep`). There is one list for each matched step definition. A size of 0 means `UNDEFINED`,
-and a size of 2+ means `AMBIGUOUS`
+A list of list of StepMatchArgument (if derived from a `PickleStep`).
+Each element represents the arguments for a matching step definition.
 =cut
 
 has step_match_arguments_lists =>

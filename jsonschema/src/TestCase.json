@@ -63,7 +63,7 @@
     "TestStep": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "A `TestStep` is derived from either a `PickleStep`\ncombined with a `StepDefinition`, or from a `Hook`.",
+      "description": "A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.\n\nWhen derived from a PickleStep:\n * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.\n * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc",
       "required": [
         "id"
       ],
@@ -80,14 +80,14 @@
           "type": "string"
         },
         "stepDefinitionIds": {
-          "description": "Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)\nEach element represents a matching step definition. A size of 0 means `UNDEFINED`,\nand a size of 2+ means `AMBIGUOUS`",
+          "description": "Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).\nEach element represents a matching step definition.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "stepMatchArgumentsLists": {
-          "description": "A list of list of StepMatchArgument (if derived from a `PickleStep`). There is one list for each matched step definition. A size of 0 means `UNDEFINED`,\nand a size of 2+ means `AMBIGUOUS`",
+          "description": "A list of list of StepMatchArgument (if derived from a `PickleStep`).\nEach element represents the arguments for a matching step definition.",
           "items": {
             "$ref": "#/definitions/StepMatchArgumentsList"
           },
