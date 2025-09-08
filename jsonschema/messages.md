@@ -1527,8 +1527,11 @@ Represents the outermost capture group of an argument. This message closely matc
 
 ## TestStep
 
-A `TestStep` is derived from either a `PickleStep`
-combined with a `StepDefinition`, or from a `Hook`.
+A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+
+When derived from a PickleStep:
+ * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+ * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
 
 #### TestStep.hookId 
 
@@ -1556,9 +1559,9 @@ Pointer to the `PickleStep` (if derived from a `PickleStep`)
 * Type: string[] 
 * Required: no 
 
-Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-and a size of 2+ means `AMBIGUOUS`
+Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+
+Each element represents a matching step definition.
 
 #### TestStep.stepMatchArgumentsLists 
 
@@ -1566,6 +1569,8 @@ and a size of 2+ means `AMBIGUOUS`
 * Required: no 
 
 A list of list of StepMatchArgument (if derived from a `PickleStep`).
+
+Each element represents the arguments for a matching step definition.
 
 ## TestCaseFinished
 
