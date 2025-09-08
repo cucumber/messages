@@ -191,6 +191,13 @@ inclusive.
 
 
 
+#### Envelope.suggestion 
+
+* Type: [Suggestion](#suggestion) 
+* Required: no 
+
+
+
 #### Envelope.source 
 
 * Type: [Source](#source) 
@@ -1432,6 +1439,52 @@ Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
 * Required: yes 
 
 
+
+## Suggestion
+
+A suggested fragment of code to implement an undefined step
+
+#### Suggestion.id 
+
+* Type: string 
+* Required: yes 
+
+A unique id for this suggestion
+
+#### Suggestion.pickleStepId 
+
+* Type: string 
+* Required: yes 
+
+The ID of the `PickleStep` this `Suggestion` was created for.
+
+#### Suggestion.snippets 
+
+* Type: [Snippet](#snippet)[] 
+* Required: yes 
+
+A collection of code snippets that could implement the undefined step
+
+## Snippet
+
+
+
+#### Snippet.language 
+
+* Type: string 
+* Required: yes 
+
+The programming language of the code.
+
+This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
+
+#### Snippet.code 
+
+* Type: string 
+* Required: yes 
+
+A snippet of code
 
 ## TestCase
 

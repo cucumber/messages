@@ -22,6 +22,8 @@ module Cucumber
 
       attr_reader :pickle
 
+      attr_reader :suggestion
+
       attr_reader :source
 
       attr_reader :step_definition
@@ -54,6 +56,7 @@ module Cucumber
         parameter_type: nil,
         parse_error: nil,
         pickle: nil,
+        suggestion: nil,
         source: nil,
         step_definition: nil,
         test_case: nil,
@@ -74,6 +77,7 @@ module Cucumber
         @parameter_type = parameter_type
         @parse_error = parse_error
         @pickle = pickle
+        @suggestion = suggestion
         @source = source
         @step_definition = step_definition
         @test_case = test_case
@@ -107,6 +111,7 @@ module Cucumber
           parameter_type: ParameterType.from_h(hash[:parameterType]),
           parse_error: ParseError.from_h(hash[:parseError]),
           pickle: Pickle.from_h(hash[:pickle]),
+          suggestion: Suggestion.from_h(hash[:suggestion]),
           source: Source.from_h(hash[:source]),
           step_definition: StepDefinition.from_h(hash[:stepDefinition]),
           test_case: TestCase.from_h(hash[:testCase]),

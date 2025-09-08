@@ -21,6 +21,7 @@ Attachment }|..o| TestRunHookStarted: testRunHookStartedId
 Pickle }|..|{ AstNode: astNodeIds
 PickleStep }|..|{ AstNode: astNodeIds
 PickleTag }|..|| AstNode: astNodeId
+Suggestion }|..|| PickleStep: pickleStepId
 TestCase }|..|| Pickle: pickleId
 TestCase }|..o| TestRunStarted: testRunStartedId
 TestStep }|..o| Hook: hookId
@@ -106,6 +107,7 @@ SourceReference ||..o| JavaStackTraceElement: "has a"
 SourceReference ||..o| Location: "has a"
 StepDefinition ||..|| StepDefinitionPattern: "has a"
 StepDefinition ||..|| SourceReference: "has a"
+Suggestion ||..|{ Snippet: "has"
 TestCase ||..|{ TestStep: "has"
 Group ||..|{ Group: "has"
 StepMatchArgument ||..|| Group: "has a"

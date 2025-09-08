@@ -102,6 +102,7 @@ class Envelope:
     pickle: Optional[Pickle] = None
     source: Optional[Source] = None
     step_definition: Optional[StepDefinition] = None
+    suggestion: Optional[Suggestion] = None
     test_case: Optional[TestCase] = None
     test_case_finished: Optional[TestCaseFinished] = None
     test_case_started: Optional[TestCaseStarted] = None
@@ -518,6 +519,29 @@ class StepDefinition:
 class StepDefinitionPattern:
     source: str
     type: StepDefinitionPatternType
+
+
+@dataclass
+class Suggestion:
+    """
+    A suggested fragment of code to implement an undefined step
+    """
+    id: str  # A unique id for this suggestion
+    pickle_step_id: str  # The ID of the `PickleStep` this `Suggestion` was created for.
+    snippets: list[Snippet]  # A collection of code snippets that could implement the undefined step
+
+
+@dataclass
+class Snippet:
+    code: str  # A snippet of code
+    language: str
+    """
+    The programming language of the code.
+
+    This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+    For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
+    """
+
 
 
 @dataclass
