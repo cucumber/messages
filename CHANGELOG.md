@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add `workerId` to `TestRunHookStarted` ([#332](https://github.com/cucumber/messages/pull/332))
+
 ### Changed
 - Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
 - [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)

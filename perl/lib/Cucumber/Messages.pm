@@ -4116,8 +4116,11 @@ package Cucumber::Messages::TestStep {
 Represents the TestStep message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-A `TestStep` is derived from either a `PickleStep`
-combined with a `StepDefinition`, or from a `Hook`.
+A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+
+When derived from a PickleStep:
+ * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+ * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
 
 =head3 ATTRIBUTES
 
@@ -4178,9 +4181,9 @@ has pickle_step_id =>
 
 =head4 step_definition_ids
 
-Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-and a size of 2+ means `AMBIGUOUS`
+Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+
+Each element represents a matching step definition.
 =cut
 
 has step_definition_ids =>
@@ -4191,6 +4194,8 @@ has step_definition_ids =>
 =head4 step_match_arguments_lists
 
 A list of list of StepMatchArgument (if derived from a `PickleStep`).
+
+Each element represents the arguments for a matching step definition.
 =cut
 
 has step_match_arguments_lists =>
@@ -4558,6 +4563,7 @@ my %types = (
    id => 'string',
    test_run_started_id => 'string',
    hook_id => 'string',
+   worker_id => 'string',
    timestamp => 'Cucumber::Messages::Timestamp',
 );
 
@@ -4602,6 +4608,16 @@ has hook_id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
+    );
+
+
+=head4 worker_id
+
+An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+=cut
+
+has worker_id =>
+    (is => 'ro',
     );
 
 

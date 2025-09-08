@@ -369,6 +369,7 @@ type TestRunHookStarted struct {
 	Id               string     `json:"id"`
 	TestRunStartedId string     `json:"testRunStartedId"`
 	HookId           string     `json:"hookId"`
+	WorkerId         string     `json:"workerId,omitempty"`
 	Timestamp        *Timestamp `json:"timestamp"`
 }
 
