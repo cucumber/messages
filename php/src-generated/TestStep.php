@@ -45,12 +45,14 @@ final class TestStep implements JsonSerializable
 
         /**
          * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+         *
          * Each element represents a matching step definition.
          */
         public readonly ?array $stepDefinitionIds = null,
 
         /**
          * A list of list of StepMatchArgument (if derived from a `PickleStep`).
+         *
          * Each element represents the arguments for a matching step definition.
          */
         public readonly ?array $stepMatchArgumentsLists = null,

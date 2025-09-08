@@ -59,6 +59,7 @@ public final class TestStep {
 
     /**
       * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+     * <p>
      * Each element represents a matching step definition.
      */
     public Optional<java.util.List<String>> getStepDefinitionIds() {
@@ -67,6 +68,7 @@ public final class TestStep {
 
     /**
       * A list of list of StepMatchArgument (if derived from a `PickleStep`).
+     * <p>
      * Each element represents the arguments for a matching step definition.
      */
     public Optional<java.util.List<StepMatchArgumentsList>> getStepMatchArgumentsLists() {

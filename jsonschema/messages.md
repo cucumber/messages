@@ -1560,6 +1560,7 @@ Pointer to the `PickleStep` (if derived from a `PickleStep`)
 * Required: no 
 
 Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+
 Each element represents a matching step definition.
 
 #### TestStep.stepMatchArgumentsLists 
@@ -1568,6 +1569,7 @@ Each element represents a matching step definition.
 * Required: no 
 
 A list of list of StepMatchArgument (if derived from a `PickleStep`).
+
 Each element represents the arguments for a matching step definition.
 
 ## TestCaseFinished

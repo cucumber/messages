@@ -28,12 +28,14 @@ module Cucumber
 
       ##
       # Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+      #
       # Each element represents a matching step definition.
       ##
       attr_reader :step_definition_ids
 
       ##
       # A list of list of StepMatchArgument (if derived from a `PickleStep`).
+      #
       # Each element represents the arguments for a matching step definition.
       ##
       attr_reader :step_match_arguments_lists

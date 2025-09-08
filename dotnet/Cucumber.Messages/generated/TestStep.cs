@@ -33,11 +33,13 @@ public sealed class TestStep
     public string PickleStepId { get; private set; }
     /**
      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+     *
      * Each element represents a matching step definition.
      */
     public List<string> StepDefinitionIds { get; private set; }
     /**
      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
+     *
      * Each element represents the arguments for a matching step definition.
      */
     public List<StepMatchArgumentsList> StepMatchArgumentsLists { get; private set; }

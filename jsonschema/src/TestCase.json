@@ -80,14 +80,14 @@
           "type": "string"
         },
         "stepDefinitionIds": {
-          "description": "Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).\nEach element represents a matching step definition.",
+          "description": "Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).\n\nEach element represents a matching step definition.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "stepMatchArgumentsLists": {
-          "description": "A list of list of StepMatchArgument (if derived from a `PickleStep`).\nEach element represents the arguments for a matching step definition.",
+          "description": "A list of list of StepMatchArgument (if derived from a `PickleStep`).\n\nEach element represents the arguments for a matching step definition.",
           "items": {
             "$ref": "#/definitions/StepMatchArgumentsList"
           },
