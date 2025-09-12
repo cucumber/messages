@@ -36,7 +36,7 @@ name = "cucumber-messages"
 readme = "README.md"
 requires-python = ">=3.9"
 urls = {Repository = "https://github.com/cucumber/messages"}
-version = "28.1.0"
+version = "29.0.1"
 
 [project.optional-dependencies]
 test = [

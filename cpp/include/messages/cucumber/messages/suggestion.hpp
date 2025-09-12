@@ -6,25 +6,25 @@
 
 #include <nlohmann/json.hpp>
 
-#include <cucumber/messages/timestamp.hpp>
+#include <cucumber/messages/snippet.hpp>
 
 namespace cucumber::messages {
 
 using json = nlohmann::json;
 
 //
-// Represents the TestRunHookStarted message in Cucumber's message protocol
+// Represents the Suggestion message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+//
+// A suggested fragment of code to implement an undefined step
 //
 // Generated code
 
-struct test_run_hook_started
+struct suggestion
 {
     std::string id;
-    std::string test_run_started_id;
-    std::string hook_id;
-    std::optional<std::string> worker_id;
-    cucumber::messages::timestamp timestamp;
+    std::string pickle_step_id;
+    std::vector<cucumber::messages::snippet> snippets;
 
     std::string to_string() const;
 
@@ -33,8 +33,8 @@ struct test_run_hook_started
 };
 
 std::ostream&
-operator<<(std::ostream& os, const test_run_hook_started& msg);
+operator<<(std::ostream& os, const suggestion& msg);
 
-void to_json(json& j, const test_run_hook_started& m);
+void to_json(json& j, const suggestion& m);
 
 }

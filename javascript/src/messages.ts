@@ -58,6 +58,9 @@ export class Envelope {
   @Type(() => Pickle)
   pickle?: Pickle
 
+  @Type(() => Suggestion)
+  suggestion?: Suggestion
+
   @Type(() => Source)
   source?: Source
 
@@ -544,6 +547,23 @@ export class StepDefinitionPattern {
   type: StepDefinitionPatternType = StepDefinitionPatternType.CUCUMBER_EXPRESSION
 }
 
+export class Suggestion {
+
+  id: string = ''
+
+  pickleStepId: string = ''
+
+  @Type(() => Snippet)
+  snippets: readonly Snippet[] = []
+}
+
+export class Snippet {
+
+  language: string = ''
+
+  code: string = ''
+}
+
 export class TestCase {
 
   id: string = ''
@@ -651,6 +671,8 @@ export class TestRunHookStarted {
   testRunStartedId: string = ''
 
   hookId: string = ''
+
+  workerId?: string
 
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()

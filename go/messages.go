@@ -27,6 +27,7 @@ type Envelope struct {
 	ParameterType          *ParameterType          `json:"parameterType,omitempty"`
 	ParseError             *ParseError             `json:"parseError,omitempty"`
 	Pickle                 *Pickle                 `json:"pickle,omitempty"`
+	Suggestion             *Suggestion             `json:"suggestion,omitempty"`
 	Source                 *Source                 `json:"source,omitempty"`
 	StepDefinition         *StepDefinition         `json:"stepDefinition,omitempty"`
 	TestCase               *TestCase               `json:"testCase,omitempty"`
@@ -295,6 +296,17 @@ type StepDefinitionPattern struct {
 	Type   StepDefinitionPatternType `json:"type"`
 }
 
+type Suggestion struct {
+	Id           string     `json:"id"`
+	PickleStepId string     `json:"pickleStepId"`
+	Snippets     []*Snippet `json:"snippets"`
+}
+
+type Snippet struct {
+	Language string `json:"language"`
+	Code     string `json:"code"`
+}
+
 type TestCase struct {
 	Id               string      `json:"id"`
 	PickleId         string      `json:"pickleId"`
@@ -357,6 +369,7 @@ type TestRunHookStarted struct {
 	Id               string     `json:"id"`
 	TestRunStartedId string     `json:"testRunStartedId"`
 	HookId           string     `json:"hookId"`
+	WorkerId         string     `json:"workerId,omitempty"`
 	Timestamp        *Timestamp `json:"timestamp"`
 }
 

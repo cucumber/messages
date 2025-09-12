@@ -191,6 +191,13 @@ inclusive.
 
 
 
+#### Envelope.suggestion 
+
+* Type: [Suggestion](#suggestion) 
+* Required: no 
+
+
+
 #### Envelope.source 
 
 * Type: [Source](#source) 
@@ -1433,6 +1440,52 @@ Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
 
 
 
+## Suggestion
+
+A suggested fragment of code to implement an undefined step
+
+#### Suggestion.id 
+
+* Type: string 
+* Required: yes 
+
+A unique id for this suggestion
+
+#### Suggestion.pickleStepId 
+
+* Type: string 
+* Required: yes 
+
+The ID of the `PickleStep` this `Suggestion` was created for.
+
+#### Suggestion.snippets 
+
+* Type: [Snippet](#snippet)[] 
+* Required: yes 
+
+A collection of code snippets that could implement the undefined step
+
+## Snippet
+
+
+
+#### Snippet.language 
+
+* Type: string 
+* Required: yes 
+
+The programming language of the code.
+
+This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
+
+#### Snippet.code 
+
+* Type: string 
+* Required: yes 
+
+A snippet of code
+
 ## TestCase
 
 A `TestCase` contains a sequence of `TestStep`s.
@@ -1527,8 +1580,11 @@ Represents the outermost capture group of an argument. This message closely matc
 
 ## TestStep
 
-A `TestStep` is derived from either a `PickleStep`
-combined with a `StepDefinition`, or from a `Hook`.
+A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+
+When derived from a PickleStep:
+ * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+ * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
 
 #### TestStep.hookId 
 
@@ -1556,9 +1612,9 @@ Pointer to the `PickleStep` (if derived from a `PickleStep`)
 * Type: string[] 
 * Required: no 
 
-Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-and a size of 2+ means `AMBIGUOUS`
+Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+
+Each element represents a matching step definition.
 
 #### TestStep.stepMatchArgumentsLists 
 
@@ -1566,6 +1622,8 @@ and a size of 2+ means `AMBIGUOUS`
 * Required: no 
 
 A list of list of StepMatchArgument (if derived from a `PickleStep`).
+
+Each element represents the arguments for a matching step definition.
 
 ## TestCaseFinished
 
@@ -1721,6 +1779,13 @@ Identifier for the test run that this hook execution belongs to
 * Required: yes 
 
 Identifier for the hook that will be executed
+
+#### TestRunHookStarted.workerId 
+
+* Type: string 
+* Required: no 
+
+An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
 
 #### TestRunHookStarted.timestamp 
 

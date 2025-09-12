@@ -6,8 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [29.0.1] - 2025-09-08
+### Fixed
+- [JavaScript] Include schemas in npm package ([#333](https://github.com/cucumber/messages/pull/333))
+
+## [29.0.0] - 2025-09-08
+### Added
+- Add `workerId` to `TestRunHookStarted` ([#332](https://github.com/cucumber/messages/pull/332))
+- Add Suggestion message ([#329](https://github.com/cucumber/messages/pull/329))
+
 ### Changed
 - Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
+- Clarify documentation around `TestStep.stepMatchArgumentsLists` ([#330](https://github.com/cucumber/messages/pull/330))
 - [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
 
 ## [28.1.0] - 2025-07-21
@@ -592,7 +603,9 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v28.1.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v29.0.1...HEAD
+[29.0.1]: https://github.com/cucumber/messages/compare/v29.0.0...v29.0.1
+[29.0.0]: https://github.com/cucumber/messages/compare/v28.1.0...v29.0.0
 [28.1.0]: https://github.com/cucumber/messages/compare/v28.0.0...v28.1.0
 [28.0.0]: https://github.com/cucumber/messages/compare/v27.2.0...v28.0.0
 [27.2.0]: https://github.com/cucumber/messages/compare/v27.1.0...v27.2.0

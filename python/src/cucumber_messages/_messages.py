@@ -102,6 +102,7 @@ class Envelope:
     pickle: Optional[Pickle] = None
     source: Optional[Source] = None
     step_definition: Optional[StepDefinition] = None
+    suggestion: Optional[Suggestion] = None
     test_case: Optional[TestCase] = None
     test_case_finished: Optional[TestCaseFinished] = None
     test_case_started: Optional[TestCaseStarted] = None
@@ -521,6 +522,29 @@ class StepDefinitionPattern:
 
 
 @dataclass
+class Suggestion:
+    """
+    A suggested fragment of code to implement an undefined step
+    """
+    id: str  # A unique id for this suggestion
+    pickle_step_id: str  # The ID of the `PickleStep` this `Suggestion` was created for.
+    snippets: list[Snippet]  # A collection of code snippets that could implement the undefined step
+
+
+@dataclass
+class Snippet:
+    code: str  # A snippet of code
+    language: str
+    """
+    The programming language of the code.
+
+    This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+    For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
+    """
+
+
+
+@dataclass
 class TestCase:
     """
     A `TestCase` contains a sequence of `TestStep`s.
@@ -565,20 +589,29 @@ class StepMatchArgumentsList:
 @dataclass
 class TestStep:
     """
-    A `TestStep` is derived from either a `PickleStep`
-    combined with a `StepDefinition`, or from a `Hook`.
+    A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+
+    When derived from a PickleStep:
+     * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+     * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
     """
     id: str
     hook_id: Optional[str] = None  # Pointer to the `Hook` (if derived from a Hook)
     pickle_step_id: Optional[str] = None  # Pointer to the `PickleStep` (if derived from a `PickleStep`)
     step_definition_ids: Optional[list[str]] = None
     """
-    Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-    Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-    and a size of 2+ means `AMBIGUOUS`
+    Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+
+    Each element represents a matching step definition.
     """
 
-    step_match_arguments_lists: Optional[list[StepMatchArgumentsList]] = None  # A list of list of StepMatchArgument (if derived from a `PickleStep`).
+    step_match_arguments_lists: Optional[list[StepMatchArgumentsList]] = None
+    """
+    A list of list of StepMatchArgument (if derived from a `PickleStep`).
+
+    Each element represents the arguments for a matching step definition.
+    """
+
 
 
 @dataclass
@@ -629,6 +662,7 @@ class TestRunHookStarted:
     id: str  # Unique identifier for this hook execution
     test_run_started_id: str  # Identifier for the test run that this hook execution belongs to
     timestamp: Timestamp
+    worker_id: Optional[str] = None  # An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
 
 
 @dataclass

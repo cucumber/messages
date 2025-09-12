@@ -346,6 +346,7 @@ my %types = (
    parameter_type => 'Cucumber::Messages::ParameterType',
    parse_error => 'Cucumber::Messages::ParseError',
    pickle => 'Cucumber::Messages::Pickle',
+   suggestion => 'Cucumber::Messages::Suggestion',
    source => 'Cucumber::Messages::Source',
    step_definition => 'Cucumber::Messages::StepDefinition',
    test_case => 'Cucumber::Messages::TestCase',
@@ -434,6 +435,16 @@ has parse_error =>
 =cut
 
 has pickle =>
+    (is => 'ro',
+    );
+
+
+=head4 suggestion
+
+
+=cut
+
+has suggestion =>
     (is => 'ro',
     );
 
@@ -3702,6 +3713,140 @@ has type =>
 
 }
 
+package Cucumber::Messages::Suggestion {
+
+=head2 Cucumber::Messages::Suggestion
+
+=head3 DESCRIPTION
+
+Represents the Suggestion message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+A suggested fragment of code to implement an undefined step
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   id => 'string',
+   pickle_step_id => 'string',
+   snippets => '[]Cucumber::Messages::Snippet',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 id
+
+A unique id for this suggestion
+=cut
+
+has id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 pickle_step_id
+
+The ID of the `PickleStep` this `Suggestion` was created for.
+=cut
+
+has pickle_step_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 snippets
+
+A collection of code snippets that could implement the undefined step
+=cut
+
+has snippets =>
+    (is => 'ro',
+     required => 1,
+     default => sub { [] },
+    );
+
+
+}
+
+package Cucumber::Messages::Snippet {
+
+=head2 Cucumber::Messages::Snippet
+
+=head3 DESCRIPTION
+
+Represents the Snippet message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   language => 'string',
+   code => 'string',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 language
+
+The programming language of the code.
+
+This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
+=cut
+
+has language =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 code
+
+A snippet of code
+=cut
+
+has code =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+}
+
 package Cucumber::Messages::TestCase {
 
 =head2 Cucumber::Messages::TestCase
@@ -3971,8 +4116,11 @@ package Cucumber::Messages::TestStep {
 Represents the TestStep message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-A `TestStep` is derived from either a `PickleStep`
-combined with a `StepDefinition`, or from a `Hook`.
+A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+
+When derived from a PickleStep:
+ * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+ * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
 
 =head3 ATTRIBUTES
 
@@ -4033,9 +4181,9 @@ has pickle_step_id =>
 
 =head4 step_definition_ids
 
-Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-and a size of 2+ means `AMBIGUOUS`
+Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+
+Each element represents a matching step definition.
 =cut
 
 has step_definition_ids =>
@@ -4046,6 +4194,8 @@ has step_definition_ids =>
 =head4 step_match_arguments_lists
 
 A list of list of StepMatchArgument (if derived from a `PickleStep`).
+
+Each element represents the arguments for a matching step definition.
 =cut
 
 has step_match_arguments_lists =>
@@ -4413,6 +4563,7 @@ my %types = (
    id => 'string',
    test_run_started_id => 'string',
    hook_id => 'string',
+   worker_id => 'string',
    timestamp => 'Cucumber::Messages::Timestamp',
 );
 
@@ -4457,6 +4608,16 @@ has hook_id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
+    );
+
+
+=head4 worker_id
+
+An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+=cut
+
+has worker_id =>
+    (is => 'ro',
     );
 
 
