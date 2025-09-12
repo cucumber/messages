@@ -35,7 +35,6 @@ maintainers = [
 name = "cucumber-messages"
 readme = "README.md"
 requires-python = ">=3.9"
-urls = {Repository = "https://github.com/cucumber/messages"}
 version = "29.0.1"
 
 [project.optional-dependencies]
@@ -43,8 +42,6 @@ test = [
   # local
   "cucumber-messages[test-coverage]",
   # external; Must be in sync with [tool.tox]
-  "mypy",
-  "pre-commit",
   "tox>=4.2"
 ]
 test-coverage = [
@@ -53,6 +50,13 @@ test-coverage = [
   "packaging",
   "pytest"
 ]
+
+[project.urls]
+Changelog = "https://github.com/cucumber/messages/releases"
+Download = "https://pypi.org/project/cucumber-messages"
+Homepage = "https://github.com/cucumber/messages"
+Issues = "https://github.com/cucumber/messages/issues"
+Repository = "https://github.com/cucumber/messages.git"
 
 [tool.mypy]
 files = "src/**/*.py"
@@ -92,8 +96,7 @@ legacy_tox_ini = """
 requires =
     tox>=4.2
 env_list =
-    py313-pre-commit-lin
-    py{313, 312, 311, 310, 39}-mypy-lin
+    py{313, 312, 311, 310, 39}-lint-lin
     py{py310, py39, 313, 312, 311, 310, 39}-pytest-coverage-lin
     py313-pytest-coverage-{win, mac}
 distshare = {homedir}/.tox/distshare
@@ -104,23 +107,13 @@ platform =
     mac: darwin
     win: win32
 
-[testenv:py313-pre-commit-lin]
+[testenv:py{313, 312, 311, 310, 39}-lint-lin]
 skip_install = true
+description = run code formatter and linter (auto-fix)
 deps =
-    pre-commit
+    pre-commit-uv>=4.1.1
 commands =
-    pre-commit run
-
-[testenv:py{313, 312, 311, 310, 39}-mypy-lin]
-deps =
-    mypy
-allowlist_externals =
-    mkdir
-    chmod
-commands =
-    mkdir .mypy_cache
-    chmod 755 .mypy_cache
-    python -m mypy --cache-dir .mypy_cache
+    pre-commit run --all-files --show-diff-on-failure
 
 [testenv:py{py310, py39, 313, 312, 311, 310, 39}-pytest-coverage-{lin, win, mac}]
 deps =

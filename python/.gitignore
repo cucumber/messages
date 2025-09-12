@@ -53,6 +53,7 @@ nosetests.xml
 /include
 /share
 /local
+.venv/
 
 .mypy_cache/
 .ruff_cache/

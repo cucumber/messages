@@ -24,7 +24,6 @@ repos:
       - id: pretty-format-toml
         args: [--autofix]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.13.0
+    rev: v1.18.1
     hooks:
       - id: mypy
-        additional_dependencies: [types-certifi]
