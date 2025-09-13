@@ -4,26 +4,24 @@
 files: ^python/
 exclude: .*python/src/cucumber_messages/_messages\.py
 repos:
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: 73b0f6d59bbfcb75e17a4653d581c9dfaca13969 # frozen: v0.12.5
-    hooks:
-      - id: ruff-check
-        files: "^python/"
-        args: [--fix]
-      - id: ruff-format
-        files: "^python/"
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
   - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.14.0
+    rev: 19b28a9f0a0102b30776f054bea4176e7af50dbe  # frozen: v2.15.0
     hooks:
       - id: pretty-format-toml
         args: [--autofix]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 13a6bda8ea7612b3aec844ded16569d424b9a1ab  # frozen: v0.13.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.18.1
+    rev: 30f435a17e4833cfc546d0c2bff4ec75d815f739  # frozen: v1.18.1
     hooks:
       - id: mypy
