@@ -7,7 +7,11 @@ from typing import Optional
 
 import pytest
 
-from cucumber_messages.json_converter import JsonDataclassConverter, camel_to_snake, snake_to_camel
+from cucumber_messages.json_converter import (
+    JsonDataclassConverter,
+    camel_to_snake,
+    snake_to_camel,
+)
 
 
 class SimpleEnum(Enum):
