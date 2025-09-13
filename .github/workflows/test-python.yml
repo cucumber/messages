@@ -47,8 +47,8 @@ jobs:
           uv tool install tox --with tox-uv
           tox -e="lint,${{ matrix.python-version }}"
 
-      - name: Upload test results to Codecov
-        uses: codecov/test-results-action@v1
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
         with:
           files: python/coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
