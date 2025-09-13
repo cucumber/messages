@@ -43,7 +43,9 @@ jobs:
           version: "0.8.17"
 
       - name: Linting and testing
-        run: uv run tox -e="lint,${{ matrix.python-version }}"
+        run: |
+          uv tool install tox --with tox-uv
+          tox -e="lint,${{ matrix.python-version }}"
 
       - name: Upload test results to Codecov
         uses: codecov/test-results-action@v1
