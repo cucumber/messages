@@ -89,7 +89,10 @@ deps = ["pre-commit-uv>=4.1.1"]
 description = "Run linting and formatting checks (and auto-fixes)"
 
 [tool.tox.env_run_base]
-commands = [["coverage", "run", "--append", "-m", "pytest", "-vvl"]]
+commands = [
+  ["coverage", "run", "--append", "-m", "pytest", "-vvl"],
+  ["coverage", "xml"]
+]
 dependency_groups = [
   "dev"
 ]

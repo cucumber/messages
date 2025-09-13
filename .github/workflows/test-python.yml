@@ -25,7 +25,6 @@ jobs:
     strategy:
       matrix:
         include:
-          # Test latest python on Windows and macOS
           - { os: 'windows-latest', python-version: '3.13' }
           - { os: 'macos-latest', python-version: '3.13' }
         os: ['ubuntu-latest']
@@ -46,8 +45,11 @@ jobs:
       - name: Linting and testing
         run: uv run tox -e="lint,${{ matrix.python-version }}"
 
-      - name: Gather codecov report
-        run: uvx codecov
+      - name: Upload test results to Codecov
+        uses: codecov/test-results-action@v1
+        with:
+          files: python/coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Build package
         run: uv build
