@@ -2,6 +2,15 @@
 build-backend = "uv_build"
 requires = ["uv_build>=0.8.4,<0.9.0"]
 
+[dependency-groups]
+dev = [
+  "coverage>=7.2",
+  "pytest>=6.1",
+  "GitPython",
+  "packaging",
+  "tox>=4.22"
+]
+
 [project]
 authors = [
   {name = "Cucumber Limited", email = "cukes@googlegroups.com"}
@@ -36,20 +45,6 @@ name = "cucumber-messages"
 readme = "README.md"
 requires-python = ">=3.9"
 version = "29.0.1"
-
-[project.optional-dependencies]
-test = [
-  # local
-  "cucumber-messages[test-coverage]",
-  # external; Must be in sync with [tool.tox]
-  "tox>=4.2"
-]
-test-coverage = [
-  "coverage",
-  "GitPython",
-  "packaging",
-  "pytest"
-]
 
 [project.urls]
 Changelog = "https://github.com/cucumber/messages/releases"
@@ -88,46 +83,17 @@ extend-select = [
 # TODO: Evaluate whether to use wildcard (removing need for updates) or explicit imports
 "src/cucumber_messages/__init__.py" = ["F403"]
 
-# Once https://github.com/tox-dev/tox/issues/999 is released and available, migrate to the new tox approach
 [tool.tox]
-# language=INI
-legacy_tox_ini = """
-[tox]
-requires =
-    tox>=4.2
-env_list =
-    py{313, 312, 311, 310, 39}-lint-lin
-    py{py310, py39, 313, 312, 311, 310, 39}-pytest-coverage-lin
-    py313-pytest-coverage-{win, mac}
-distshare = {homedir}/.tox/distshare
+env_list = ["lint", "3.13", "3.12", "3.11", "3.10", "3.9", "pypy310", "pypy39"]
+requires = ["tox>=4.22"]
 
-[testenv]
-platform =
-    lin: linux
-    mac: darwin
-    win: win32
+[tool.tox.env.lint]
+commands = [["pre-commit", "run", "--all-files", "--show-diff-on-failure"]]
+deps = ["pre-commit-uv>=4.1.1"]
+description = "Run linting and formatting checks (and auto-fixes)"
 
-[testenv:py{313, 312, 311, 310, 39}-lint-lin]
-skip_install = true
-description = run code formatter and linter (auto-fix)
-deps =
-    pre-commit-uv>=4.1.1
-commands =
-    pre-commit run --all-files --show-diff-on-failure
-
-[testenv:py{py310, py39, 313, 312, 311, 310, 39}-pytest-coverage-{lin, win, mac}]
-deps =
-    .[test-coverage]
-commands =
-    coverage run --append -m pytest -vvl
-
-[gh-actions]
-python =
-    3.9: py39
-    3.10: py310
-    3.11: py311
-    3.12: py312
-    3.13: py313
-    pypy-3.9: pypy39
-    pypy-3.10: pypy310
-"""
+[tool.tox.env_run_base]
+commands = [["coverage", "run", "--append", "-m", "pytest", "-vvl"]]
+dependency_groups = [
+  "dev"
+]
