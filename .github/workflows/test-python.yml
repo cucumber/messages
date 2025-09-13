@@ -28,7 +28,7 @@ jobs:
           - { os: 'windows-latest', python-version: '3.13' }
           - { os: 'macos-latest', python-version: '3.13' }
         os: ['ubuntu-latest']
-        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', 'pypy3.9', 'pypy3.10']
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', 'pypy3.10', 'pypy3.11']
     defaults:
       run:
         working-directory: python
