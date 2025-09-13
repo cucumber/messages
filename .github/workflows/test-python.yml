@@ -25,10 +25,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - { os: 'windows-latest', python-version: '3.13' }
-          - { os: 'macos-latest', python-version: '3.13' }
+          - { os: 'windows-latest', python-version: '3.13', toxenv: 'py' }
+          - { os: 'macos-latest', python-version: '3.13', toxenv: 'py' }
+          # Running linting through latest Python
+          - { os: 'ubuntu-latest', python-version: '3.13', toxenv: 'lint' }
         os: ['ubuntu-latest']
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', 'pypy3.10', 'pypy3.11']
+        toxenv: ['py']
     defaults:
       run:
         working-directory: python
@@ -45,7 +48,7 @@ jobs:
       - name: Linting and testing
         run: |
           uv tool install tox --with tox-uv
-          tox -e="lint,py"
+          tox -e ${{ matrix.toxenv }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
