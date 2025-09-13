@@ -45,7 +45,7 @@ jobs:
       - name: Linting and testing
         run: |
           uv tool install tox --with tox-uv
-          tox -e="lint,${{ matrix.python-version }}"
+          tox -e="lint,py"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
