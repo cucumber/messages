@@ -71,7 +71,17 @@ exclude = ["src/cucumber_messages/_messages.py"]
 
 [tool.ruff.lint]
 extend-select = [
+  "B",
+  "C4",
+  "COM",
+  "FURB",
   "I",
+  "ISC",
+  "N",
+  "PERF",
+  "PIE",
+  "RET",
+  "TID",
   "UP"
 ]
 

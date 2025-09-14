@@ -179,7 +179,7 @@ class JsonDataclassConverter:
         if value is None:
             return None
 
-        converted = (
+        return (
             self._convert_optional(value, target_type, field_name)
             or self._convert_datetime(value, target_type)
             or self._convert_enum(value, target_type)
@@ -188,7 +188,6 @@ class JsonDataclassConverter:
             or self._convert_dataclass(value, target_type)
             or value
         )
-        return converted
 
     def from_dict(self, data: Any, target_class: type[Any]) -> Any:
         """Convert a dictionary to a dataclass instance."""
@@ -215,7 +214,7 @@ class JsonDataclassConverter:
             try:
                 init_kwargs[field_name] = self._convert_value(value, field_type, field_name)
             except Exception as e:
-                raise TypeError(f"Error converting field {key}: {str(e)}")
+                raise TypeError(f"Error converting field {key}: {str(e)}") from e
 
         missing_required = [
             name

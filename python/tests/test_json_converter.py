@@ -107,7 +107,7 @@ def test_collections_with_optional_field_types(serializer):
                 "floatField": 3.14,
                 "boolField": True,
                 "enumField": "value1",
-            }
+            },
         ],
         "dictField": {
             "key": {
@@ -116,7 +116,7 @@ def test_collections_with_optional_field_types(serializer):
                 "floatField": 6.28,
                 "boolField": False,
                 "enumField": "value2",
-            }
+            },
         },
         "optionalSequence": ["x", "y", "z"],
     }
