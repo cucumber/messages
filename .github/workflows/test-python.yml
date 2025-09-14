@@ -28,9 +28,9 @@ jobs:
           - { os: 'windows-latest', python-version: '3.13', toxenv: 'py' }
           - { os: 'macos-latest', python-version: '3.13', toxenv: 'py' }
           # Running linting through latest Python
-          - { os: 'ubuntu-latest', python-version: '3.13', toxenv: 'lint' }
+          - { os: 'ubuntu-latest', python-version: '3.13', toxenv: 'lint,py' }
         os: ['ubuntu-latest']
-        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', 'pypy3.10', 'pypy3.11']
+        python-version: ['3.9', '3.10', '3.11', '3.12', 'pypy3.10', 'pypy3.11']
         toxenv: ['py']
     defaults:
       run:
