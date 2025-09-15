@@ -7,6 +7,7 @@ on:
       - main
       - renovate/**
     paths:
+      - .pre-commit-config.yaml
       - python/**
       - Makefile
       - .github/**
@@ -14,6 +15,7 @@ on:
     branches:
       - main
     paths:
+      - .pre-commit-config.yaml
       - python/**
       - Makefile
       - .github/**
@@ -21,33 +23,40 @@ on:
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         include:
-          # Test latest python on Windows / macOS
-          - { os: 'windows-latest', python-version: '3.13' }
-          - { os: 'macos-latest', python-version: '3.13' }
+          - { os: 'windows-latest', python-version: '3.13', toxenv: 'py' }
+          - { os: 'macos-latest', python-version: '3.13', toxenv: 'py' }
+          # Running linting through latest Python
+          - { os: 'ubuntu-latest', python-version: '3.13', toxenv: 'lint,py' }
         os: ['ubuntu-latest']
-        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', 'pypy3.9', 'pypy3.10']
-
+        python-version: ['3.9', '3.10', '3.11', '3.12', 'pypy3.10', 'pypy3.11']
+        toxenv: ['py']
+    defaults:
+      run:
+        working-directory: python
     steps:
       - uses: actions/checkout@v5
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
+
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@v6
         with:
+          enable-cache: true
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
+          version: "0.8.17"
+
+      - name: Linting and testing
         run: |
-          python -m pip install --upgrade pip
-          pip install -U setuptools
-          pip install tox tox-gh-actions codecov
-      - name: Test with tox
-        working-directory: ./python
-        run: |
-          tox
-      - name: Gather codecov report
-        working-directory: ./python
-        run: |
-          codecov
+          uv tool install tox --with tox-uv
+          tox -e ${{ matrix.toxenv }}
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: python/coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Build package
+        run: uv build

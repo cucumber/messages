@@ -1,6 +1,11 @@
 import pytest
 
-from cucumber_messages import Attachment, AttachmentContentEncoding, Envelope, SourceMediaType
+from cucumber_messages import (
+    Attachment,
+    AttachmentContentEncoding,
+    Envelope,
+    SourceMediaType,
+)
 from cucumber_messages import TestStepResultStatus as TTestStepResultStatus
 from cucumber_messages import message_converter as default_converter
 
@@ -35,7 +40,7 @@ def test_envelope_with_attachment(converter):
             "body": "some body",
             "contentEncoding": "BASE64",
             "mediaType": "text/x.cucumber.gherkin+plain",
-        }
+        },
     }
 
     envelope = converter.from_dict(data, Envelope)
@@ -55,7 +60,7 @@ def test_envelope_with_source(converter):
             "data": "Feature: Sample\nScenario: Test\n",
             "mediaType": "text/x.cucumber.gherkin+plain",
             "uri": "features/sample.feature",
-        }
+        },
     }
 
     envelope = converter.from_dict(data, Envelope)
@@ -74,7 +79,7 @@ def test_test_run_finished_with_optional_fields(converter):
             "success": True,
             "timestamp": {"seconds": 1700000000, "nanos": 123456789},
             # exception and message are omitted, should be None after deserialization
-        }
+        },
     }
 
     envelope = converter.from_dict(data, Envelope)
@@ -96,7 +101,7 @@ def test_test_case_finished(converter):
             "testCaseStartedId": "some_test_case_started_id",
             "timestamp": {"seconds": 1600000000, "nanos": 500},
             "willBeRetried": False,
-        }
+        },
     }
 
     envelope = converter.from_dict(data, Envelope)
@@ -120,7 +125,7 @@ def test_exception_serialization(converter):
                 "message": "Expected 'X' but got 'Y'",
                 "stackTrace": "Traceback (most recent call last): ...",
             },
-        }
+        },
     }
 
     envelope = converter.from_dict(data, Envelope)
@@ -146,7 +151,7 @@ def test_test_step_result(converter):
                 "message": "Step executed successfully",
             },
             "timestamp": {"seconds": 1700000020, "nanos": 0},
-        }
+        },
     }
 
     envelope = converter.from_dict(data, Envelope)
@@ -168,7 +173,7 @@ def test_missing_optional_fields(converter):
             "body": "no optional fields",
             "contentEncoding": "IDENTITY",
             "mediaType": "text/plain",
-        }
+        },
     }
 
     envelope = converter.from_dict(data, Envelope)

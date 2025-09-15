@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Removed
+- [Python] Dropped legacy .egg-info metadata distribution artifacts ([#324](https://github.com/cucumber/messages/pull/324))
 
 ## [29.0.1] - 2025-09-08
 ### Fixed
