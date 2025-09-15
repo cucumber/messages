@@ -15,7 +15,6 @@ on:
     branches:
       - main
     paths:
-      - .pre-commit-config.yaml
       - python/**
       - Makefile
       - .github/**
