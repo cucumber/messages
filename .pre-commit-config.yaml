@@ -25,3 +25,10 @@ repos:
     rev: v1.18.1
     hooks:
       - id: mypy
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.8.17
+    hooks:
+      # Ensure the uv lock file is up to date
+      - id: uv-lock
+        files: python/pyproject.toml
+        args: [--project, python]
