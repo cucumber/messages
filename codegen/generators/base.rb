@@ -105,25 +105,23 @@ module Generator
       class_name(ref)
     end
 
-    def property_type_from_type(parent_type_name, property_name, property, type:)
+    def property_type_from_type(parent_type_name, property_name, property)
+      type = property['type']
       return array_type_for(type_for(parent_type_name, nil, property['items'])) if type == 'array'
+      return property_type_from_enum(enum_name(parent_type_name, property_name, property['enum'])) if property['enum']
 
-      unless language_translations_for_data_types.key?(type)
+      property = select_language_translations_for_data_types(type, property)
+      unless property
         raise "No type mapping for JSONSchema type #{type}. Schema:\n#{JSON.pretty_generate(property)}"
       end
-
-      if property['enum']
-        property_type_from_enum(enum_name(parent_type_name, property_name, property['enum']))
-      else
-        language_translations_for_data_types.fetch(type)
-      end
+      property
     end
 
     def type_for(parent_type_name, property_name, property)
       if property['$ref']
         property_type_from_ref(property['$ref'])
       elsif property['type']
-        property_type_from_type(parent_type_name, property_name, property, type: property['type'])
+        property_type_from_type(parent_type_name, property_name, property)
       else
         # Inline schema (not supported)
         raise "Property #{property_name} did not define 'type' or '$ref'"
