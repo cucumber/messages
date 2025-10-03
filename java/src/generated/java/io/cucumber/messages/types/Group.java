@@ -14,12 +14,12 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings("unused")
 public final class Group {
     private final java.util.List<Group> children;
-    private final Long start;
+    private final Integer start;
     private final String value;
 
     public Group(
         java.util.List<Group> children,
-        Long start,
+        Integer start,
         String value
     ) {
         this.children = unmodifiableList(new ArrayList<>(requireNonNull(children, "Group.children cannot be null")));
@@ -31,7 +31,7 @@ public final class Group {
         return children;
     }
 
-    public Optional<Long> getStart() {
+    public Optional<Integer> getStart() {
         return Optional.ofNullable(start);
     }
 
