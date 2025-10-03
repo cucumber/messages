@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - [Python] Dropped legacy .egg-info metadata distribution artifacts ([#324](https://github.com/cucumber/messages/pull/324))
 
+### Added
+- [Java] Add OSGi metadata ([#344](https://github.com/cucumber/messages/pull/344))
+
 ## [29.0.1] - 2025-09-08
 ### Fixed
 - [JavaScript] Include schemas in npm package ([#333](https://github.com/cucumber/messages/pull/333))
