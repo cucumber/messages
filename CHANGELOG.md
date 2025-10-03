@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - [Python] Dropped legacy .egg-info metadata distribution artifacts ([#324](https://github.com/cucumber/messages/pull/324))
 
+### Changed
+- [Ruby] Updated minimum Ruby version to 3.2 ([#346](https://github.com/cucumber/messages/pull/346) [luke-hill](https://github.com/luke-hill))
+
 ## [29.0.1] - 2025-09-08
 ### Fixed
 - [JavaScript] Include schemas in npm package ([#333](https://github.com/cucumber/messages/pull/333))
