@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [Java] Add OSGi metadata ([#344](https://github.com/cucumber/messages/pull/344))
 
 ## [30.0.0] - 2025-10-03
 ### Changed
@@ -13,9 +15,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 - [Python] Dropped legacy .egg-info metadata distribution artifacts ([#324](https://github.com/cucumber/messages/pull/324))
-
-### Added
-- [Java] Add OSGi metadata ([#344](https://github.com/cucumber/messages/pull/344))
 
 ## [29.0.1] - 2025-09-08
 ### Fixed
