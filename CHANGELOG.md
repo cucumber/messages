@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [30.1.0] - 2025-10-08
 ### Added
 - [Java] Add OSGi metadata ([#344](https://github.com/cucumber/messages/pull/344))
 
@@ -612,7 +614,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v30.0.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v30.1.0...HEAD
+[30.1.0]: https://github.com/cucumber/messages/compare/v30.0.0...v30.1.0
 [30.0.0]: https://github.com/cucumber/messages/compare/v29.0.1...v30.0.0
 [29.0.1]: https://github.com/cucumber/messages/compare/v29.0.0...v29.0.1
 [29.0.0]: https://github.com/cucumber/messages/compare/v28.1.0...v29.0.0
