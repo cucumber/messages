@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,18 +14,18 @@ import static java.util.Objects.requireNonNull;
  * Represents the TestStepResult message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestStepResult {
     private final Duration duration;
-    private final String message;
+    private final @Nullable String message;
     private final TestStepResultStatus status;
-    private final Exception exception;
+    private final @Nullable Exception exception;
 
     public TestStepResult(
         Duration duration,
-        String message,
+        @Nullable String message,
         TestStepResultStatus status,
-        Exception exception
+        @Nullable Exception exception
     ) {
         this.duration = requireNonNull(duration, "TestStepResult.duration cannot be null");
         this.message = message;

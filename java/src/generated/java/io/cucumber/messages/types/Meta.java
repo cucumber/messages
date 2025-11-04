@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,14 +17,14 @@ import static java.util.Objects.requireNonNull;
  * this for various purposes.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Meta {
     private final String protocolVersion;
     private final Product implementation;
     private final Product runtime;
     private final Product os;
     private final Product cpu;
-    private final Ci ci;
+    private final @Nullable Ci ci;
 
     public Meta(
         String protocolVersion,
@@ -29,7 +32,7 @@ public final class Meta {
         Product runtime,
         Product os,
         Product cpu,
-        Ci ci
+        @Nullable Ci ci
     ) {
         this.protocolVersion = requireNonNull(protocolVersion, "Meta.protocolVersion cannot be null");
         this.implementation = requireNonNull(implementation, "Meta.implementation cannot be null");

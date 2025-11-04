@@ -1,6 +1,7 @@
 package io.cucumber.messages;
 
 import io.cucumber.messages.types.Envelope;
+import org.jspecify.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,8 +42,8 @@ public final class NdjsonToMessageIterable implements Iterable<Envelope>, AutoCl
 
     @Override
     public Iterator<Envelope> iterator() {
-        return new Iterator<Envelope>() {
-            private Envelope next;
+        return new Iterator<>() {
+            private @Nullable Envelope next;
 
             @Override
             public boolean hasNext() {
@@ -50,7 +51,7 @@ public final class NdjsonToMessageIterable implements Iterable<Envelope>, AutoCl
                     String line = reader.readLine();
                     if (line == null)
                         return false;
-                    if (line.trim().equals("")) {
+                    if (line.trim().isEmpty()) {
                         return hasNext();
                     }
                     try {

@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,25 +14,25 @@ import static java.util.Objects.requireNonNull;
  * Represents the Scenario message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Scenario {
     private final Location location;
-    private final java.util.List<Tag> tags;
+    private final List<Tag> tags;
     private final String keyword;
     private final String name;
     private final String description;
-    private final java.util.List<Step> steps;
-    private final java.util.List<Examples> examples;
+    private final List<Step> steps;
+    private final List<Examples> examples;
     private final String id;
 
     public Scenario(
         Location location,
-        java.util.List<Tag> tags,
+        List<Tag> tags,
         String keyword,
         String name,
         String description,
-        java.util.List<Step> steps,
-        java.util.List<Examples> examples,
+        List<Step> steps,
+        List<Examples> examples,
         String id
     ) {
         this.location = requireNonNull(location, "Scenario.location cannot be null");
@@ -49,7 +52,7 @@ public final class Scenario {
         return location;
     }
 
-    public java.util.List<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
@@ -65,11 +68,11 @@ public final class Scenario {
         return description;
     }
 
-    public java.util.List<Step> getSteps() {
+    public List<Step> getSteps() {
         return steps;
     }
 
-    public java.util.List<Examples> getExamples() {
+    public List<Examples> getExamples() {
         return examples;
     }
 

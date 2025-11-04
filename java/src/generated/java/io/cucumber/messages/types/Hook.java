@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,20 +14,20 @@ import static java.util.Objects.requireNonNull;
  * Represents the Hook message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Hook {
     private final String id;
-    private final String name;
+    private final @Nullable String name;
     private final SourceReference sourceReference;
-    private final String tagExpression;
-    private final HookType type;
+    private final @Nullable String tagExpression;
+    private final @Nullable HookType type;
 
     public Hook(
         String id,
-        String name,
+        @Nullable String name,
         SourceReference sourceReference,
-        String tagExpression,
-        HookType type
+        @Nullable String tagExpression,
+        @Nullable HookType type
     ) {
         this.id = requireNonNull(id, "Hook.id cannot be null");
         this.name = name;

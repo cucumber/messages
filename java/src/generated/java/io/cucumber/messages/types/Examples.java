@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,25 +14,25 @@ import static java.util.Objects.requireNonNull;
  * Represents the Examples message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Examples {
     private final Location location;
-    private final java.util.List<Tag> tags;
+    private final List<Tag> tags;
     private final String keyword;
     private final String name;
     private final String description;
-    private final TableRow tableHeader;
-    private final java.util.List<TableRow> tableBody;
+    private final @Nullable TableRow tableHeader;
+    private final List<TableRow> tableBody;
     private final String id;
 
     public Examples(
         Location location,
-        java.util.List<Tag> tags,
+        List<Tag> tags,
         String keyword,
         String name,
         String description,
-        TableRow tableHeader,
-        java.util.List<TableRow> tableBody,
+        @Nullable TableRow tableHeader,
+        List<TableRow> tableBody,
         String id
     ) {
         this.location = requireNonNull(location, "Examples.location cannot be null");
@@ -49,7 +52,7 @@ public final class Examples {
         return location;
     }
 
-    public java.util.List<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
@@ -69,7 +72,7 @@ public final class Examples {
         return Optional.ofNullable(tableHeader);
     }
 
-    public java.util.List<TableRow> getTableBody() {
+    public List<TableRow> getTableBody() {
         return tableBody;
     }
 

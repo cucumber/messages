@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,24 +25,24 @@ import static java.util.Objects.requireNonNull;
  * Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Pickle {
     private final String id;
     private final String uri;
     private final String name;
     private final String language;
-    private final java.util.List<PickleStep> steps;
-    private final java.util.List<PickleTag> tags;
-    private final java.util.List<String> astNodeIds;
+    private final List<PickleStep> steps;
+    private final List<PickleTag> tags;
+    private final List<String> astNodeIds;
 
     public Pickle(
         String id,
         String uri,
         String name,
         String language,
-        java.util.List<PickleStep> steps,
-        java.util.List<PickleTag> tags,
-        java.util.List<String> astNodeIds
+        List<PickleStep> steps,
+        List<PickleTag> tags,
+        List<String> astNodeIds
     ) {
         this.id = requireNonNull(id, "Pickle.id cannot be null");
         this.uri = requireNonNull(uri, "Pickle.uri cannot be null");
@@ -81,7 +84,7 @@ public final class Pickle {
     /**
      * One or more steps
      */
-    public java.util.List<PickleStep> getSteps() {
+    public List<PickleStep> getSteps() {
         return steps;
     }
 
@@ -89,7 +92,7 @@ public final class Pickle {
      * One or more tags. If this pickle is constructed from a Gherkin document,
      * It includes inherited tags from the `Feature` as well.
      */
-    public java.util.List<PickleTag> getTags() {
+    public List<PickleTag> getTags() {
         return tags;
     }
 
@@ -98,7 +101,7 @@ public final class Pickle {
      * id of the pickle. A pickle constructed from `Examples` will have the first
      * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
      */
-    public java.util.List<String> getAstNodeIds() {
+    public List<String> getAstNodeIds() {
         return astNodeIds;
     }
 

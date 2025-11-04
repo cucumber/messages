@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,19 +14,19 @@ import static java.util.Objects.requireNonNull;
  * Represents the TestRunHookStarted message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestRunHookStarted {
     private final String id;
     private final String testRunStartedId;
     private final String hookId;
-    private final String workerId;
+    private final @Nullable String workerId;
     private final Timestamp timestamp;
 
     public TestRunHookStarted(
         String id,
         String testRunStartedId,
         String hookId,
-        String workerId,
+        @Nullable String workerId,
         Timestamp timestamp
     ) {
         this.id = requireNonNull(id, "TestRunHookStarted.id cannot be null");

@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,10 +16,10 @@ import static java.util.Objects.requireNonNull;
  * An optional argument
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleStepArgument {
-    private final PickleDocString docString;
-    private final PickleTable dataTable;
+    private final @Nullable PickleDocString docString;
+    private final @Nullable PickleTable dataTable;
 
     public static PickleStepArgument of(PickleDocString docString) {
         return new PickleStepArgument(
@@ -33,8 +36,8 @@ public final class PickleStepArgument {
     }
 
     public PickleStepArgument(
-        PickleDocString docString,
-        PickleTable dataTable
+        @Nullable PickleDocString docString,
+        @Nullable PickleTable dataTable
     ) {
         this.docString = docString;
         this.dataTable = dataTable;

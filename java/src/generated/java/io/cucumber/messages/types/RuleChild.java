@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,10 +16,10 @@ import static java.util.Objects.requireNonNull;
  * A child node of a `Rule` node
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class RuleChild {
-    private final Background background;
-    private final Scenario scenario;
+    private final @Nullable Background background;
+    private final @Nullable Scenario scenario;
 
     public static RuleChild of(Background background) {
         return new RuleChild(
@@ -33,8 +36,8 @@ public final class RuleChild {
     }
 
     public RuleChild(
-        Background background,
-        Scenario scenario
+        @Nullable Background background,
+        @Nullable Scenario scenario
     ) {
         this.background = background;
         this.scenario = scenario;

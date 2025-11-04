@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,28 +14,28 @@ import static java.util.Objects.requireNonNull;
  * Represents the Envelope message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Envelope {
-    private final Attachment attachment;
-    private final GherkinDocument gherkinDocument;
-    private final Hook hook;
-    private final Meta meta;
-    private final ParameterType parameterType;
-    private final ParseError parseError;
-    private final Pickle pickle;
-    private final Suggestion suggestion;
-    private final Source source;
-    private final StepDefinition stepDefinition;
-    private final TestCase testCase;
-    private final TestCaseFinished testCaseFinished;
-    private final TestCaseStarted testCaseStarted;
-    private final TestRunFinished testRunFinished;
-    private final TestRunStarted testRunStarted;
-    private final TestStepFinished testStepFinished;
-    private final TestStepStarted testStepStarted;
-    private final TestRunHookStarted testRunHookStarted;
-    private final TestRunHookFinished testRunHookFinished;
-    private final UndefinedParameterType undefinedParameterType;
+    private final @Nullable Attachment attachment;
+    private final @Nullable GherkinDocument gherkinDocument;
+    private final @Nullable Hook hook;
+    private final @Nullable Meta meta;
+    private final @Nullable ParameterType parameterType;
+    private final @Nullable ParseError parseError;
+    private final @Nullable Pickle pickle;
+    private final @Nullable Suggestion suggestion;
+    private final @Nullable Source source;
+    private final @Nullable StepDefinition stepDefinition;
+    private final @Nullable TestCase testCase;
+    private final @Nullable TestCaseFinished testCaseFinished;
+    private final @Nullable TestCaseStarted testCaseStarted;
+    private final @Nullable TestRunFinished testRunFinished;
+    private final @Nullable TestRunStarted testRunStarted;
+    private final @Nullable TestStepFinished testStepFinished;
+    private final @Nullable TestStepStarted testStepStarted;
+    private final @Nullable TestRunHookStarted testRunHookStarted;
+    private final @Nullable TestRunHookFinished testRunHookFinished;
+    private final @Nullable UndefinedParameterType undefinedParameterType;
 
     public static Envelope of(Attachment attachment) {
         return new Envelope(
@@ -535,26 +538,26 @@ public final class Envelope {
     }
 
     public Envelope(
-        Attachment attachment,
-        GherkinDocument gherkinDocument,
-        Hook hook,
-        Meta meta,
-        ParameterType parameterType,
-        ParseError parseError,
-        Pickle pickle,
-        Suggestion suggestion,
-        Source source,
-        StepDefinition stepDefinition,
-        TestCase testCase,
-        TestCaseFinished testCaseFinished,
-        TestCaseStarted testCaseStarted,
-        TestRunFinished testRunFinished,
-        TestRunStarted testRunStarted,
-        TestStepFinished testStepFinished,
-        TestStepStarted testStepStarted,
-        TestRunHookStarted testRunHookStarted,
-        TestRunHookFinished testRunHookFinished,
-        UndefinedParameterType undefinedParameterType
+        @Nullable Attachment attachment,
+        @Nullable GherkinDocument gherkinDocument,
+        @Nullable Hook hook,
+        @Nullable Meta meta,
+        @Nullable ParameterType parameterType,
+        @Nullable ParseError parseError,
+        @Nullable Pickle pickle,
+        @Nullable Suggestion suggestion,
+        @Nullable Source source,
+        @Nullable StepDefinition stepDefinition,
+        @Nullable TestCase testCase,
+        @Nullable TestCaseFinished testCaseFinished,
+        @Nullable TestCaseStarted testCaseStarted,
+        @Nullable TestRunFinished testRunFinished,
+        @Nullable TestRunStarted testRunStarted,
+        @Nullable TestStepFinished testStepFinished,
+        @Nullable TestStepStarted testStepStarted,
+        @Nullable TestRunHookStarted testRunHookStarted,
+        @Nullable TestRunHookFinished testRunHookFinished,
+        @Nullable UndefinedParameterType undefinedParameterType
     ) {
         this.attachment = attachment;
         this.gherkinDocument = gherkinDocument;

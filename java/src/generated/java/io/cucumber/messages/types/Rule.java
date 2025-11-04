@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,23 +14,23 @@ import static java.util.Objects.requireNonNull;
  * Represents the Rule message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Rule {
     private final Location location;
-    private final java.util.List<Tag> tags;
+    private final List<Tag> tags;
     private final String keyword;
     private final String name;
     private final String description;
-    private final java.util.List<RuleChild> children;
+    private final List<RuleChild> children;
     private final String id;
 
     public Rule(
         Location location,
-        java.util.List<Tag> tags,
+        List<Tag> tags,
         String keyword,
         String name,
         String description,
-        java.util.List<RuleChild> children,
+        List<RuleChild> children,
         String id
     ) {
         this.location = requireNonNull(location, "Rule.location cannot be null");
@@ -49,7 +52,7 @@ public final class Rule {
     /**
      * All the tags placed above the `Rule` keyword
      */
-    public java.util.List<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
@@ -65,7 +68,7 @@ public final class Rule {
         return description;
     }
 
-    public java.util.List<RuleChild> getChildren() {
+    public List<RuleChild> getChildren() {
         return children;
     }
 

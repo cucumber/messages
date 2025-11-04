@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,24 +14,24 @@ import static java.util.Objects.requireNonNull;
  * Represents the Feature message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Feature {
     private final Location location;
-    private final java.util.List<Tag> tags;
+    private final List<Tag> tags;
     private final String language;
     private final String keyword;
     private final String name;
     private final String description;
-    private final java.util.List<FeatureChild> children;
+    private final List<FeatureChild> children;
 
     public Feature(
         Location location,
-        java.util.List<Tag> tags,
+        List<Tag> tags,
         String language,
         String keyword,
         String name,
         String description,
-        java.util.List<FeatureChild> children
+        List<FeatureChild> children
     ) {
         this.location = requireNonNull(location, "Feature.location cannot be null");
         this.tags = unmodifiableList(new ArrayList<>(requireNonNull(tags, "Feature.tags cannot be null")));
@@ -49,7 +52,7 @@ public final class Feature {
     /**
      * All the tags placed above the `Feature` keyword
      */
-    public java.util.List<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
@@ -84,7 +87,7 @@ public final class Feature {
     /**
      * Zero or more children
      */
-    public java.util.List<FeatureChild> getChildren() {
+    public List<FeatureChild> getChildren() {
         return children;
     }
 

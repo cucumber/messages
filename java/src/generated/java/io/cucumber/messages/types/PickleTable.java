@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,17 +14,17 @@ import static java.util.Objects.requireNonNull;
  * Represents the PickleTable message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleTable {
-    private final java.util.List<PickleTableRow> rows;
+    private final List<PickleTableRow> rows;
 
     public PickleTable(
-        java.util.List<PickleTableRow> rows
+        List<PickleTableRow> rows
     ) {
         this.rows = unmodifiableList(new ArrayList<>(requireNonNull(rows, "PickleTable.rows cannot be null")));
     }
 
-    public java.util.List<PickleTableRow> getRows() {
+    public List<PickleTableRow> getRows() {
         return rows;
     }
 

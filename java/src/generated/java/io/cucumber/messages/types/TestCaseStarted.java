@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,19 +14,19 @@ import static java.util.Objects.requireNonNull;
  * Represents the TestCaseStarted message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestCaseStarted {
     private final Long attempt;
     private final String id;
     private final String testCaseId;
-    private final String workerId;
+    private final @Nullable String workerId;
     private final Timestamp timestamp;
 
     public TestCaseStarted(
         Long attempt,
         String id,
         String testCaseId,
-        String workerId,
+        @Nullable String workerId,
         Timestamp timestamp
     ) {
         this.attempt = requireNonNull(attempt, "TestCaseStarted.attempt cannot be null");

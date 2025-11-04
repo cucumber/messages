@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,16 +16,16 @@ import static java.util.Objects.requireNonNull;
  * A simplified representation of an exception
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Exception {
     private final String type;
-    private final String message;
-    private final String stackTrace;
+    private final @Nullable String message;
+    private final @Nullable String stackTrace;
 
     public Exception(
         String type,
-        String message,
-        String stackTrace
+        @Nullable String message,
+        @Nullable String stackTrace
     ) {
         this.type = requireNonNull(type, "Exception.type cannot be null");
         this.message = message;

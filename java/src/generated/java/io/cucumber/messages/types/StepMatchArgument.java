@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,14 +21,14 @@ import static java.util.Objects.requireNonNull;
  * This message closely matches the `Argument` class in the `cucumber-expressions` library.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class StepMatchArgument {
     private final Group group;
-    private final String parameterTypeName;
+    private final @Nullable String parameterTypeName;
 
     public StepMatchArgument(
         Group group,
-        String parameterTypeName
+        @Nullable String parameterTypeName
     ) {
         this.group = requireNonNull(group, "StepMatchArgument.group cannot be null");
         this.parameterTypeName = parameterTypeName;

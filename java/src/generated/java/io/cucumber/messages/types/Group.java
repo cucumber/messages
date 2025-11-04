@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,23 +14,23 @@ import static java.util.Objects.requireNonNull;
  * Represents the Group message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Group {
-    private final java.util.List<Group> children;
-    private final Long start;
-    private final String value;
+    private final List<Group> children;
+    private final @Nullable Long start;
+    private final @Nullable String value;
 
     public Group(
-        java.util.List<Group> children,
-        Long start,
-        String value
+        List<Group> children,
+        @Nullable Long start,
+        @Nullable String value
     ) {
         this.children = unmodifiableList(new ArrayList<>(requireNonNull(children, "Group.children cannot be null")));
         this.start = start;
         this.value = value;
     }
 
-    public java.util.List<Group> getChildren() {
+    public List<Group> getChildren() {
         return children;
     }
 

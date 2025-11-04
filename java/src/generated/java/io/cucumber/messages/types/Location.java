@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,14 +16,14 @@ import static java.util.Objects.requireNonNull;
  * Points to a line and a column in a text file
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Location {
     private final Long line;
-    private final Long column;
+    private final @Nullable Long column;
 
     public Location(
         Long line,
-        Long column
+        @Nullable Long column
     ) {
         this.line = requireNonNull(line, "Location.line cannot be null");
         this.column = column;

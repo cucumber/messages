@@ -2,6 +2,9 @@
 <%= class_name(key) %>.java
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -17,10 +20,12 @@ import static java.util.Objects.requireNonNull;
 <%- end -%>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class <%= class_name(key) %> {
-  <%- schema['properties'].each do |property_name, property| -%>
-    private final <%= type_for(class_name(key), property_name, property) -%> <%= property_name %>;
+  <%- schema['properties'].each do |property_name, property| 
+      nullable = !(schema['required'] || []).index(property_name)
+  -%>
+    private final <% if nullable -%>@Nullable <%- end -%><%= type_for(class_name(key), property_name, property) -%> <%= property_name %>;
   <%- end -%>
   <%- if (schema['required'] || []).empty? -%>
   <%- schema['properties'].each do |(property_name, property)| -%>
@@ -44,8 +49,10 @@ public final class <%= class_name(key) %> {
   <%- end -%>
 
     public <%= class_name(key) %>(
-    <%- schema['properties'].each_with_index do |(property_name, property), index| -%>
-        <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
+    <%- schema['properties'].each_with_index do |(property_name, property), index| 
+        nullable = !(schema['required'] || []).index(property_name)
+    -%>
+        <% if nullable -%>@Nullable <%- end -%><%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
     <%- end -%>
     ) {
       <%- schema['properties'].each do |(property_name, property)|

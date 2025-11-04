@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,7 +16,7 @@ import static java.util.Objects.requireNonNull;
  * A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Source {
     private final String uri;
     private final String data;

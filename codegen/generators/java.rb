@@ -5,7 +5,7 @@ module Generator
   # Automatic Code generation overrides for the Java programming language
   class Java < Base
     def array_type_for(type_name)
-      "java.util.List<#{type_name}>"
+      "List<#{type_name}>"
     end
 
     def format_description(raw_description, indent_string: '')

@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,18 +16,18 @@ import static java.util.Objects.requireNonNull;
  * A `TestCase` contains a sequence of `TestStep`s.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestCase {
     private final String id;
     private final String pickleId;
-    private final java.util.List<TestStep> testSteps;
-    private final String testRunStartedId;
+    private final List<TestStep> testSteps;
+    private final @Nullable String testRunStartedId;
 
     public TestCase(
         String id,
         String pickleId,
-        java.util.List<TestStep> testSteps,
-        String testRunStartedId
+        List<TestStep> testSteps,
+        @Nullable String testRunStartedId
     ) {
         this.id = requireNonNull(id, "TestCase.id cannot be null");
         this.pickleId = requireNonNull(pickleId, "TestCase.pickleId cannot be null");
@@ -43,7 +46,7 @@ public final class TestCase {
         return pickleId;
     }
 
-    public java.util.List<TestStep> getTestSteps() {
+    public List<TestStep> getTestSteps() {
         return testSteps;
     }
 

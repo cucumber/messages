@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,23 +16,23 @@ import static java.util.Objects.requireNonNull;
  * A step
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Step {
     private final Location location;
     private final String keyword;
-    private final StepKeywordType keywordType;
+    private final @Nullable StepKeywordType keywordType;
     private final String text;
-    private final DocString docString;
-    private final DataTable dataTable;
+    private final @Nullable DocString docString;
+    private final @Nullable DataTable dataTable;
     private final String id;
 
     public Step(
         Location location,
         String keyword,
-        StepKeywordType keywordType,
+        @Nullable StepKeywordType keywordType,
         String text,
-        DocString docString,
-        DataTable dataTable,
+        @Nullable DocString docString,
+        @Nullable DataTable dataTable,
         String id
     ) {
         this.location = requireNonNull(location, "Step.location cannot be null");

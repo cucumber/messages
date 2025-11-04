@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,18 +17,18 @@ import static java.util.Objects.requireNonNull;
  * variables.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Git {
     private final String remote;
     private final String revision;
-    private final String branch;
-    private final String tag;
+    private final @Nullable String branch;
+    private final @Nullable String tag;
 
     public Git(
         String remote,
         String revision,
-        String branch,
-        String tag
+        @Nullable String branch,
+        @Nullable String tag
     ) {
         this.remote = requireNonNull(remote, "Git.remote cannot be null");
         this.revision = requireNonNull(revision, "Git.revision cannot be null");

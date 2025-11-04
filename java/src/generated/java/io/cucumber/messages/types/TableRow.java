@@ -1,5 +1,8 @@
 package io.cucumber.messages.types;
 
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,15 +16,15 @@ import static java.util.Objects.requireNonNull;
  * A row in a table
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TableRow {
     private final Location location;
-    private final java.util.List<TableCell> cells;
+    private final List<TableCell> cells;
     private final String id;
 
     public TableRow(
         Location location,
-        java.util.List<TableCell> cells,
+        List<TableCell> cells,
         String id
     ) {
         this.location = requireNonNull(location, "TableRow.location cannot be null");
@@ -39,7 +42,7 @@ public final class TableRow {
     /**
      * Cells in the row
      */
-    public java.util.List<TableCell> getCells() {
+    public List<TableCell> getCells() {
         return cells;
     }
 
