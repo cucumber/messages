@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -25,7 +23,7 @@ public final class Group {
         @Nullable Long start,
         @Nullable String value
     ) {
-        this.children = unmodifiableList(new ArrayList<>(requireNonNull(children, "Group.children cannot be null")));
+        this.children = List.copyOf(requireNonNull(children, "Group.children cannot be null"));
         this.start = start;
         this.value = value;
     }

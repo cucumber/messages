@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -34,7 +32,7 @@ public final class GherkinDocument {
     ) {
         this.uri = uri;
         this.feature = feature;
-        this.comments = unmodifiableList(new ArrayList<>(requireNonNull(comments, "GherkinDocument.comments cannot be null")));
+        this.comments = List.copyOf(requireNonNull(comments, "GherkinDocument.comments cannot be null"));
     }
 
     /**

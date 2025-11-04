@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -27,7 +25,7 @@ public final class JavaMethod {
     ) {
         this.className = requireNonNull(className, "JavaMethod.className cannot be null");
         this.methodName = requireNonNull(methodName, "JavaMethod.methodName cannot be null");
-        this.methodParameterTypes = unmodifiableList(new ArrayList<>(requireNonNull(methodParameterTypes, "JavaMethod.methodParameterTypes cannot be null")));
+        this.methodParameterTypes = List.copyOf(requireNonNull(methodParameterTypes, "JavaMethod.methodParameterTypes cannot be null"));
     }
 
     public String getClassName() {

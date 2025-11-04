@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -28,7 +26,7 @@ public final class TableRow {
         String id
     ) {
         this.location = requireNonNull(location, "TableRow.location cannot be null");
-        this.cells = unmodifiableList(new ArrayList<>(requireNonNull(cells, "TableRow.cells cannot be null")));
+        this.cells = List.copyOf(requireNonNull(cells, "TableRow.cells cannot be null"));
         this.id = requireNonNull(id, "TableRow.id cannot be null");
     }
 

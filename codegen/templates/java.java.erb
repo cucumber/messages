@@ -5,11 +5,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -35,7 +33,7 @@ public final class <%= class_name(key) %> {
         <%- schema['properties'].each_with_index do |(property_name_2, _property_2), index| -%>
           <%- if property_name_2 == property_name -%>
             <%- if property['items'] -%>
-            unmodifiableList(new ArrayList<>(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")))<%= index < schema['properties'].length - 1 ? ',' : '' %>
+            List.copyOf(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null"))<%= index < schema['properties'].length - 1 ? ',' : '' %>
             <%- else -%>
             requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")<%= index < schema['properties'].length - 1 ? ',' : '' %>
             <%- end -%>
@@ -60,13 +58,13 @@ public final class <%= class_name(key) %> {
       -%>
       <%- if required -%>
        <%- if property['items'] -%>
-        this.<%= property_name %> = unmodifiableList(new ArrayList<>(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")));
+        this.<%= property_name %> = List.copyOf(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null"));
        <%- else -%>
         this.<%= property_name %> = requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null");
        <%- end -%>
       <%- else -%>
        <%- if property['items'] -%>
-        this.<%= property_name %> = <%= property_name %> == null ? null : unmodifiableList(new ArrayList<>(<%= property_name %>));
+        this.<%= property_name %> = <%= property_name %> == null ? null : List.copyOf(<%= property_name %>);
        <%- else -%>
         this.<%= property_name %> = <%= property_name %>;
        <%- end -%>

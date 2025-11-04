@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -34,12 +32,12 @@ public final class Feature {
         List<FeatureChild> children
     ) {
         this.location = requireNonNull(location, "Feature.location cannot be null");
-        this.tags = unmodifiableList(new ArrayList<>(requireNonNull(tags, "Feature.tags cannot be null")));
+        this.tags = List.copyOf(requireNonNull(tags, "Feature.tags cannot be null"));
         this.language = requireNonNull(language, "Feature.language cannot be null");
         this.keyword = requireNonNull(keyword, "Feature.keyword cannot be null");
         this.name = requireNonNull(name, "Feature.name cannot be null");
         this.description = requireNonNull(description, "Feature.description cannot be null");
-        this.children = unmodifiableList(new ArrayList<>(requireNonNull(children, "Feature.children cannot be null")));
+        this.children = List.copyOf(requireNonNull(children, "Feature.children cannot be null"));
     }
 
     /**

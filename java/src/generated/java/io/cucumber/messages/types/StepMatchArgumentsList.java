@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -21,7 +19,7 @@ public final class StepMatchArgumentsList {
     public StepMatchArgumentsList(
         List<StepMatchArgument> stepMatchArguments
     ) {
-        this.stepMatchArguments = unmodifiableList(new ArrayList<>(requireNonNull(stepMatchArguments, "StepMatchArgumentsList.stepMatchArguments cannot be null")));
+        this.stepMatchArguments = List.copyOf(requireNonNull(stepMatchArguments, "StepMatchArgumentsList.stepMatchArguments cannot be null"));
     }
 
     public List<StepMatchArgument> getStepMatchArguments() {

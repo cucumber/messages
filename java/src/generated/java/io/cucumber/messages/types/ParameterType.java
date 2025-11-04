@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -32,7 +30,7 @@ public final class ParameterType {
         @Nullable SourceReference sourceReference
     ) {
         this.name = requireNonNull(name, "ParameterType.name cannot be null");
-        this.regularExpressions = unmodifiableList(new ArrayList<>(requireNonNull(regularExpressions, "ParameterType.regularExpressions cannot be null")));
+        this.regularExpressions = List.copyOf(requireNonNull(regularExpressions, "ParameterType.regularExpressions cannot be null"));
         this.preferForRegularExpressionMatch = requireNonNull(preferForRegularExpressionMatch, "ParameterType.preferForRegularExpressionMatch cannot be null");
         this.useForSnippets = requireNonNull(useForSnippets, "ParameterType.useForSnippets cannot be null");
         this.id = requireNonNull(id, "ParameterType.id cannot be null");

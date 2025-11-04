@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -36,12 +34,12 @@ public final class Scenario {
         String id
     ) {
         this.location = requireNonNull(location, "Scenario.location cannot be null");
-        this.tags = unmodifiableList(new ArrayList<>(requireNonNull(tags, "Scenario.tags cannot be null")));
+        this.tags = List.copyOf(requireNonNull(tags, "Scenario.tags cannot be null"));
         this.keyword = requireNonNull(keyword, "Scenario.keyword cannot be null");
         this.name = requireNonNull(name, "Scenario.name cannot be null");
         this.description = requireNonNull(description, "Scenario.description cannot be null");
-        this.steps = unmodifiableList(new ArrayList<>(requireNonNull(steps, "Scenario.steps cannot be null")));
-        this.examples = unmodifiableList(new ArrayList<>(requireNonNull(examples, "Scenario.examples cannot be null")));
+        this.steps = List.copyOf(requireNonNull(steps, "Scenario.steps cannot be null"));
+        this.examples = List.copyOf(requireNonNull(examples, "Scenario.examples cannot be null"));
         this.id = requireNonNull(id, "Scenario.id cannot be null");
     }
 

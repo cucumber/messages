@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -38,8 +36,8 @@ public final class TestStep {
         this.hookId = hookId;
         this.id = requireNonNull(id, "TestStep.id cannot be null");
         this.pickleStepId = pickleStepId;
-        this.stepDefinitionIds = stepDefinitionIds == null ? null : unmodifiableList(new ArrayList<>(stepDefinitionIds));
-        this.stepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : unmodifiableList(new ArrayList<>(stepMatchArgumentsLists));
+        this.stepDefinitionIds = stepDefinitionIds == null ? null : List.copyOf(stepDefinitionIds);
+        this.stepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : List.copyOf(stepMatchArgumentsLists);
     }
 
     /**

@@ -3,11 +3,9 @@ package io.cucumber.messages.types;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -32,7 +30,7 @@ public final class PickleStep {
         String text
     ) {
         this.argument = argument;
-        this.astNodeIds = unmodifiableList(new ArrayList<>(requireNonNull(astNodeIds, "PickleStep.astNodeIds cannot be null")));
+        this.astNodeIds = List.copyOf(requireNonNull(astNodeIds, "PickleStep.astNodeIds cannot be null"));
         this.id = requireNonNull(id, "PickleStep.id cannot be null");
         this.type = type;
         this.text = requireNonNull(text, "PickleStep.text cannot be null");
