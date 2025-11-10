@@ -156,6 +156,10 @@
       "description": "The uri of the source file",
       "type": "string"
     },
+    "location": {
+      "description": "The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.",
+      "$ref": "./Location.json"
+    },
     "name": {
       "description": "The name of the pickle",
       "type": "string"
