@@ -418,6 +418,9 @@ export class Pickle {
 
   uri: string = ''
 
+  @Type(() => Location)
+  location?: Location
+
   name: string = ''
 
   language: string = ''
@@ -429,9 +432,6 @@ export class Pickle {
   tags: readonly PickleTag[] = []
 
   astNodeIds: readonly string[] = []
-
-  @Type(() => Location)
-  location?: Location
 }
 
 export class PickleDocString {

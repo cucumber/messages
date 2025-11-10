@@ -6,9 +6,9 @@
 
 #include <nlohmann/json.hpp>
 
+#include <cucumber/messages/location.hpp>
 #include <cucumber/messages/pickle_step.hpp>
 #include <cucumber/messages/pickle_tag.hpp>
-#include <cucumber/messages/location.hpp>
 
 namespace cucumber::messages {
 
@@ -37,12 +37,12 @@ struct pickle
 {
     std::string id;
     std::string uri;
+    std::optional<cucumber::messages::location> location;
     std::string name;
     std::string language;
     std::vector<cucumber::messages::pickle_step> steps;
     std::vector<cucumber::messages::pickle_tag> tags;
     std::vector<std::string> ast_node_ids;
-    std::optional<cucumber::messages::location> location;
 
     std::string to_string() const;
 

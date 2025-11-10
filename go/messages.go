@@ -217,12 +217,12 @@ type ParseError struct {
 type Pickle struct {
 	Id         string        `json:"id"`
 	Uri        string        `json:"uri"`
+	Location   *Location     `json:"location,omitempty"`
 	Name       string        `json:"name"`
 	Language   string        `json:"language"`
 	Steps      []*PickleStep `json:"steps"`
 	Tags       []*PickleTag  `json:"tags"`
 	AstNodeIds []string      `json:"astNodeIds"`
-	Location   *Location     `json:"location,omitempty"`
 }
 
 type PickleDocString struct {

@@ -277,12 +277,12 @@ will only have one of its fields set, which indicates the payload of the message
 | ----- | ---- | ----------- | ----------- |
 | `id` | string | yes | |
 | `uri` | string | yes | |
+| `location` | [Location](#location) | no | |
 | `name` | string | yes | |
 | `language` | string | yes | |
 | `steps` | [PickleStep](#picklestep)[] | yes | |
 | `tags` | [PickleTag](#pickletag)[] | yes | |
 | `astNodeIds` | string[] | yes | |
-| `location` | [Location](#location) | no | |
 
 ## PickleDocString
 

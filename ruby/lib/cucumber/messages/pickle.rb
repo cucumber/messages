@@ -34,6 +34,11 @@ module Cucumber
       attr_reader :uri
 
       ##
+      # The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+      ##
+      attr_reader :location
+
+      ##
       # The name of the pickle
       ##
       attr_reader :name
@@ -63,29 +68,24 @@ module Cucumber
       ##
       attr_reader :ast_node_ids
 
-      ##
-      # The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
-      ##
-      attr_reader :location
-
       def initialize(
         id: '',
         uri: '',
+        location: nil,
         name: '',
         language: '',
         steps: [],
         tags: [],
-        ast_node_ids: [],
-        location: nil
+        ast_node_ids: []
       )
         @id = id
         @uri = uri
+        @location = location
         @name = name
         @language = language
         @steps = steps
         @tags = tags
         @ast_node_ids = ast_node_ids
-        @location = location
         super()
       end
 
@@ -102,12 +102,12 @@ module Cucumber
         new(
           id: hash[:id],
           uri: hash[:uri],
+          location: Location.from_h(hash[:location]),
           name: hash[:name],
           language: hash[:language],
           steps: hash[:steps]&.map { |item| PickleStep.from_h(item) },
           tags: hash[:tags]&.map { |item| PickleTag.from_h(item) },
-          ast_node_ids: hash[:astNodeIds],
-          location: Location.from_h(hash[:location])
+          ast_node_ids: hash[:astNodeIds]
         )
       end
     end

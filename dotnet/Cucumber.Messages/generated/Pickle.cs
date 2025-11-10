@@ -38,6 +38,10 @@ public sealed class Pickle
      */
     public string Uri { get; private set; }
     /**
+     * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+     */
+    public Location Location { get; private set; }
+    /**
      * The name of the pickle
      */
     public string Name { get; private set; }
@@ -60,27 +64,24 @@ public sealed class Pickle
      * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
      */
     public List<string> AstNodeIds { get; private set; }
-    /**
-     * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
-     */
-    public Location Location { get; private set; }
 
 
     public Pickle(
         string id,
         string uri,
+        Location location,
         string name,
         string language,
         List<PickleStep> steps,
         List<PickleTag> tags,
-        List<string> astNodeIds,
-        Location location
+        List<string> astNodeIds
     ) 
     {
         RequireNonNull<string>(id, "Id", "Pickle.Id cannot be null");
         this.Id = id;
         RequireNonNull<string>(uri, "Uri", "Pickle.Uri cannot be null");
         this.Uri = uri;
+        this.Location = location;
         RequireNonNull<string>(name, "Name", "Pickle.Name cannot be null");
         this.Name = name;
         RequireNonNull<string>(language, "Language", "Pickle.Language cannot be null");
@@ -91,7 +92,6 @@ public sealed class Pickle
         this.Tags = new List<PickleTag>(tags);        
         RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "Pickle.AstNodeIds cannot be null");
         this.AstNodeIds = new List<string>(astNodeIds);        
-        this.Location = location;
     }
 
     public override bool Equals(Object o) 
@@ -102,12 +102,12 @@ public sealed class Pickle
         return 
             Id.Equals(that.Id) &&         
             Uri.Equals(that.Uri) &&         
+            Object.Equals(Location, that.Location) &&         
             Name.Equals(that.Name) &&         
             Language.Equals(that.Language) &&         
             Steps.Equals(that.Steps) &&         
             Tags.Equals(that.Tags) &&         
-            AstNodeIds.Equals(that.AstNodeIds) &&         
-            Object.Equals(Location, that.Location);        
+            AstNodeIds.Equals(that.AstNodeIds);        
     }
 
     public override int GetHashCode() 
@@ -117,6 +117,8 @@ public sealed class Pickle
           hash = hash * 31 + Id.GetHashCode();
         if (Uri != null)
           hash = hash * 31 + Uri.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
         if (Name != null)
           hash = hash * 31 + Name.GetHashCode();
         if (Language != null)
@@ -127,8 +129,6 @@ public sealed class Pickle
           hash = hash * 31 + Tags.GetHashCode();
         if (AstNodeIds != null)
           hash = hash * 31 + AstNodeIds.GetHashCode();
-        if (Location != null)
-          hash = hash * 31 + Location.GetHashCode();
         return hash;
     }
 
@@ -137,12 +137,12 @@ public sealed class Pickle
         return "Pickle{" +
             "id=" + Id +
             ", uri=" + Uri +
+            ", location=" + Location +
             ", name=" + Name +
             ", language=" + Language +
             ", steps=" + Steps +
             ", tags=" + Tags +
             ", astNodeIds=" + AstNodeIds +
-            ", location=" + Location +
             '}';
     }
 

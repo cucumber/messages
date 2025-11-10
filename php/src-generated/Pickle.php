@@ -51,6 +51,11 @@ final class Pickle implements JsonSerializable
         public readonly string $uri = '',
 
         /**
+         * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+         */
+        public readonly ?Location $location = null,
+
+        /**
          * The name of the pickle
          */
         public readonly string $name = '',
@@ -77,11 +82,6 @@ final class Pickle implements JsonSerializable
          * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
          */
         public readonly array $astNodeIds = [],
-
-        /**
-         * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
-         */
-        public readonly ?Location $location = null,
     ) {
     }
 
@@ -94,22 +94,22 @@ final class Pickle implements JsonSerializable
     {
         self::ensureId($arr);
         self::ensureUri($arr);
+        self::ensureLocation($arr);
         self::ensureName($arr);
         self::ensureLanguage($arr);
         self::ensureSteps($arr);
         self::ensureTags($arr);
         self::ensureAstNodeIds($arr);
-        self::ensureLocation($arr);
 
         return new self(
             (string) $arr['id'],
             (string) $arr['uri'],
+            isset($arr['location']) ? Location::fromArray($arr['location']) : null,
             (string) $arr['name'],
             (string) $arr['language'],
             array_values(array_map(fn (array $member) => PickleStep::fromArray($member), $arr['steps'])),
             array_values(array_map(fn (array $member) => PickleTag::fromArray($member), $arr['tags'])),
             array_values(array_map(fn (mixed $member) => (string) $member, $arr['astNodeIds'])),
-            isset($arr['location']) ? Location::fromArray($arr['location']) : null,
         );
     }
 
@@ -136,6 +136,16 @@ final class Pickle implements JsonSerializable
         }
         if (array_key_exists('uri', $arr) && is_array($arr['uri'])) {
             throw new SchemaViolationException('Property \'uri\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{location?: array} $arr
+     */
+    private static function ensureLocation(array $arr): void
+    {
+        if (array_key_exists('location', $arr) && !is_array($arr['location'])) {
+            throw new SchemaViolationException('Property \'location\' was not array');
         }
     }
 
@@ -201,16 +211,6 @@ final class Pickle implements JsonSerializable
         }
         if (array_key_exists('astNodeIds', $arr) && !is_array($arr['astNodeIds'])) {
             throw new SchemaViolationException('Property \'astNodeIds\' was not array');
-        }
-    }
-
-    /**
-     * @psalm-assert array{location?: array} $arr
-     */
-    private static function ensureLocation(array $arr): void
-    {
-        if (array_key_exists('location', $arr) && !is_array($arr['location'])) {
-            throw new SchemaViolationException('Property \'location\' was not array');
         }
     }
 }
