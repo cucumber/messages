@@ -15,12 +15,12 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class Group {
     private final List<Group> children;
-    private final @Nullable Long start;
+    private final @Nullable Integer start;
     private final @Nullable String value;
 
     public Group(
         List<Group> children,
-        @Nullable Long start,
+        @Nullable Integer start,
         @Nullable String value
     ) {
         this.children = List.copyOf(requireNonNull(children, "Group.children cannot be null"));
@@ -32,7 +32,7 @@ public final class Group {
         return children;
     }
 
-    public Optional<Long> getStart() {
+    public Optional<Integer> getStart() {
         return Optional.ofNullable(start);
     }
 

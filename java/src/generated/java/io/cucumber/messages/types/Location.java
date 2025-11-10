@@ -16,22 +16,22 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class Location {
-    private final Long line;
-    private final @Nullable Long column;
+    private final Integer line;
+    private final @Nullable Integer column;
 
     public Location(
-        Long line,
-        @Nullable Long column
+        Integer line,
+        @Nullable Integer column
     ) {
         this.line = requireNonNull(line, "Location.line cannot be null");
         this.column = column;
     }
 
-    public Long getLine() {
+    public Integer getLine() {
         return line;
     }
 
-    public Optional<Long> getColumn() {
+    public Optional<Integer> getColumn() {
         return Optional.ofNullable(column);
     }
 

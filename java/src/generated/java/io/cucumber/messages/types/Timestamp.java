@@ -15,11 +15,11 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class Timestamp {
     private final Long seconds;
-    private final Long nanos;
+    private final Integer nanos;
 
     public Timestamp(
         Long seconds,
-        Long nanos
+        Integer nanos
     ) {
         this.seconds = requireNonNull(seconds, "Timestamp.seconds cannot be null");
         this.nanos = requireNonNull(nanos, "Timestamp.nanos cannot be null");
@@ -40,7 +40,7 @@ public final class Timestamp {
      * that count forward in time. Must be from 0 to 999,999,999
      * inclusive.
      */
-    public Long getNanos() {
+    public Integer getNanos() {
         return nanos;
     }
 

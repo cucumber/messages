@@ -21,12 +21,12 @@ module Generator
 
     private
 
-    def language_translations_for_data_types
+    def select_language_translations_for_data_types(type, property)
       {
         'integer' => 'long',
         'string' => 'string',
         'boolean' => 'bool'
-      }
+      }[type]
     end
   end
 end
