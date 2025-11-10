@@ -34,7 +34,7 @@ public final class Product {
     }
 
     /**
-      * The product version
+     * The product version
      */
     public Optional<String> getVersion() {
         return Optional.ofNullable(version);

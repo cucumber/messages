@@ -34,7 +34,7 @@ public final class TestRunFinished {
     }
 
     /**
-      * An informative message about the test run. Typically additional information about failure, but not necessarily.
+     * An informative message about the test run. Typically additional information about failure, but not necessarily.
      */
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
@@ -55,7 +55,7 @@ public final class TestRunFinished {
     }
 
     /**
-      * Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
+     * Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
      */
     public Optional<Exception> getException() {
         return Optional.ofNullable(exception);

@@ -27,7 +27,7 @@ class NdjsonSerializationTest {
     }
 
     static Iterable<Envelope> createMessageIterable(InputStream input) {
-        return new NdjsonToMessageIterable(input, (json) -> Jackson.OBJECT_MAPPER.readValue(json, Envelope.class));
+        return new NdjsonToMessageIterable(input, json -> Jackson.OBJECT_MAPPER.readValue(json, Envelope.class));
     }
 
     @Test
