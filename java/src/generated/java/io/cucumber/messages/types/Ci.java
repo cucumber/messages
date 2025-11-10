@@ -41,14 +41,14 @@ public final class Ci {
     }
 
     /**
-      * Link to the build
+     * Link to the build
      */
     public Optional<String> getUrl() {
         return Optional.ofNullable(url);
     }
 
     /**
-      * The build number. Some CI servers use non-numeric build numbers, which is why this is a string
+     * The build number. Some CI servers use non-numeric build numbers, which is why this is a string
      */
     public Optional<String> getBuildNumber() {
         return Optional.ofNullable(buildNumber);

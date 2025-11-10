@@ -36,7 +36,7 @@ public final class GherkinDocument {
     }
 
     /**
-      * The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+     * The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
      * of the source, typically a file path relative to the root directory
      */
     public Optional<String> getUri() {

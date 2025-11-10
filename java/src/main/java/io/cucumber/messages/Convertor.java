@@ -6,7 +6,6 @@ import io.cucumber.messages.types.Timestamp;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.time.Instant;
 
 import static java.util.Objects.requireNonNull;
 

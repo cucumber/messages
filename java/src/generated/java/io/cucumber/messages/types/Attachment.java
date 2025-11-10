@@ -88,7 +88,7 @@ public final class Attachment {
     }
 
     /**
-      * Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
+     * Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
      */
     public Optional<String> getFileName() {
         return Optional.ofNullable(fileName);
@@ -109,21 +109,21 @@ public final class Attachment {
     }
 
     /**
-      * The identifier of the test case attempt if the attachment was created during the execution of a test step
+     * The identifier of the test case attempt if the attachment was created during the execution of a test step
      */
     public Optional<String> getTestCaseStartedId() {
         return Optional.ofNullable(testCaseStartedId);
     }
 
     /**
-      * The identifier of the test step if the attachment was created during the execution of a test step
+     * The identifier of the test step if the attachment was created during the execution of a test step
      */
     public Optional<String> getTestStepId() {
         return Optional.ofNullable(testStepId);
     }
 
     /**
-      * A URL where the attachment can be retrieved. This field should not be set by Cucumber.
+     * A URL where the attachment can be retrieved. This field should not be set by Cucumber.
      * It should be set by a program that reads a message stream and does the following for
      * each Attachment message:
      * <p>
@@ -140,21 +140,21 @@ public final class Attachment {
     }
 
     /**
-      * Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
+     * Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
      */
     public Optional<String> getTestRunStartedId() {
         return Optional.ofNullable(testRunStartedId);
     }
 
     /**
-      * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+     * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
      */
     public Optional<String> getTestRunHookStartedId() {
         return Optional.ofNullable(testRunHookStartedId);
     }
 
     /**
-      * When the attachment was created
+     * When the attachment was created
      */
     public Optional<Timestamp> getTimestamp() {
         return Optional.ofNullable(timestamp);

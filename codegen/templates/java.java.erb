@@ -86,7 +86,7 @@ public final class <%= class_name(key) %> {
 
     <%- unless (property['description'] || []).empty? -%>
     /**
-     <%= format_description(property['description'], indent_string: '    ') %>
+    <%= format_description(property['description'], indent_string: '    ') %>
      */
     <%- end -%>
     public Optional<<%= type_for(class_name(key), property_name, property) -%>> get<%= capitalize(property_name) %>() {

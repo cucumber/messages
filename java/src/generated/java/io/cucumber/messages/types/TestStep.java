@@ -41,7 +41,7 @@ public final class TestStep {
     }
 
     /**
-      * Pointer to the `Hook` (if derived from a Hook)
+     * Pointer to the `Hook` (if derived from a Hook)
      */
     public Optional<String> getHookId() {
         return Optional.ofNullable(hookId);
@@ -52,14 +52,14 @@ public final class TestStep {
     }
 
     /**
-      * Pointer to the `PickleStep` (if derived from a `PickleStep`)
+     * Pointer to the `PickleStep` (if derived from a `PickleStep`)
      */
     public Optional<String> getPickleStepId() {
         return Optional.ofNullable(pickleStepId);
     }
 
     /**
-      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+     * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
      * <p>
      * Each element represents a matching step definition.
      */
@@ -68,7 +68,7 @@ public final class TestStep {
     }
 
     /**
-      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
+     * A list of list of StepMatchArgument (if derived from a `PickleStep`).
      * <p>
      * Each element represents the arguments for a matching step definition.
      */
