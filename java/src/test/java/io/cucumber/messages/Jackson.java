@@ -15,7 +15,7 @@ final class Jackson {
     public static final ObjectMapper OBJECT_MAPPER = JsonMapper.builder()
             .addModule(new Jdk8Module())
             .addModule(new ParameterNamesModule(Mode.PROPERTIES))
-            .serializationInclusion(Include.NON_ABSENT)
+            .defaultPropertyInclusion(construct(NON_ABSENT, NON_ABSENT))
             .constructorDetector(ConstructorDetector.USE_PROPERTIES_BASED)
             .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
             .enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING)
