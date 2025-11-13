@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.19
+#syntax=docker/dockerfile:1.20
 
 # Base image
 FROM debian:bullseye-slim AS cpp
