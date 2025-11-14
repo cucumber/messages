@@ -1,7 +1,6 @@
 package io.cucumber.messages;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +9,9 @@ import com.fasterxml.jackson.databind.cfg.ConstructorDetector;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT;
+import static com.fasterxml.jackson.annotation.JsonInclude.Value.construct;
 
 final class Jackson {
     public static final ObjectMapper OBJECT_MAPPER = JsonMapper.builder()
