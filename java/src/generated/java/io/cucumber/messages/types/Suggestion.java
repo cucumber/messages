@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -13,20 +14,20 @@ import static java.util.Objects.requireNonNull;
  * A suggested fragment of code to implement an undefined step
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Suggestion {
     private final String id;
     private final String pickleStepId;
-    private final java.util.List<Snippet> snippets;
+    private final List<Snippet> snippets;
 
     public Suggestion(
         String id,
         String pickleStepId,
-        java.util.List<Snippet> snippets
+        List<Snippet> snippets
     ) {
         this.id = requireNonNull(id, "Suggestion.id cannot be null");
         this.pickleStepId = requireNonNull(pickleStepId, "Suggestion.pickleStepId cannot be null");
-        this.snippets = unmodifiableList(new ArrayList<>(requireNonNull(snippets, "Suggestion.snippets cannot be null")));
+        this.snippets = List.copyOf(requireNonNull(snippets, "Suggestion.snippets cannot be null"));
     }
 
     /**
@@ -46,7 +47,7 @@ public final class Suggestion {
     /**
      * A collection of code snippets that could implement the undefined step
      */
-    public java.util.List<Snippet> getSnippets() {
+    public List<Snippet> getSnippets() {
         return snippets;
     }
 

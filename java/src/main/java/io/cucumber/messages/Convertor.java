@@ -30,12 +30,12 @@ public final class Convertor {
 
     public static Timestamp toMessage(java.time.Instant instant) {
         requireNonNull(instant, "instant may not be null");
-        return new Timestamp(instant.getEpochSecond(), (long) instant.getNano());
+        return new Timestamp(instant.getEpochSecond(), instant.getNano());
     }
 
     public static Duration toMessage(java.time.Duration duration) {
         requireNonNull(duration, "duration may not be null");
-        return new Duration(duration.getSeconds(), (long) duration.getNano());
+        return new Duration(duration.getSeconds(), duration.getNano());
     }
 
     public static java.time.Instant toInstant(Timestamp timestamp) {

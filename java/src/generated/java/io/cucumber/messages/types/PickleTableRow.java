@@ -1,27 +1,28 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the PickleTableRow message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleTableRow {
-    private final java.util.List<PickleTableCell> cells;
+    private final List<PickleTableCell> cells;
 
     public PickleTableRow(
-        java.util.List<PickleTableCell> cells
+        List<PickleTableCell> cells
     ) {
-        this.cells = unmodifiableList(new ArrayList<>(requireNonNull(cells, "PickleTableRow.cells cannot be null")));
+        this.cells = List.copyOf(requireNonNull(cells, "PickleTableRow.cells cannot be null"));
     }
 
-    public java.util.List<PickleTableCell> getCells() {
+    public List<PickleTableCell> getCells() {
         return cells;
     }
 

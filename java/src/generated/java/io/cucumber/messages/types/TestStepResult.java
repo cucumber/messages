@@ -1,28 +1,29 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the TestStepResult message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestStepResult {
     private final Duration duration;
-    private final String message;
+    private final @Nullable String message;
     private final TestStepResultStatus status;
-    private final Exception exception;
+    private final @Nullable Exception exception;
 
     public TestStepResult(
         Duration duration,
-        String message,
+        @Nullable String message,
         TestStepResultStatus status,
-        Exception exception
+        @Nullable Exception exception
     ) {
         this.duration = requireNonNull(duration, "TestStepResult.duration cannot be null");
         this.message = message;
@@ -35,7 +36,7 @@ public final class TestStepResult {
     }
 
     /**
-      * An arbitrary bit of information that explains this result. If there was an exception, this should include a stringified representation of it including type, message and stack trace (the exact format will vary by platform).
+     * An arbitrary bit of information that explains this result. If there was an exception, this should include a stringified representation of it including type, message and stack trace (the exact format will vary by platform).
      */
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
@@ -46,7 +47,7 @@ public final class TestStepResult {
     }
 
     /**
-      * Exception thrown while executing this step, if any.
+     * Exception thrown while executing this step, if any.
      */
     public Optional<Exception> getException() {
         return Optional.ofNullable(exception);
