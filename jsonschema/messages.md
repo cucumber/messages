@@ -1120,6 +1120,13 @@ A unique id for the pickle
 
 The uri of the source file
 
+#### Pickle.location 
+
+* Type: [Location](#location) 
+* Required: no 
+
+The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+
 #### Pickle.name 
 
 * Type: string 

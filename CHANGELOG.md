@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add `location` to `Pickle` ([#308](https://github.com/cucumber/messages/pull/308))
 
 ## [30.1.0] - 2025-10-08
 ### Added

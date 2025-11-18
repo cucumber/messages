@@ -421,6 +421,9 @@ export class Pickle {
 
   uri: string = ''
 
+  @Type(() => Location)
+  location?: Location
+
   name: string = ''
 
   language: string = ''

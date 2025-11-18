@@ -2719,6 +2719,7 @@ use Scalar::Util qw( blessed );
 my %types = (
    id => 'string',
    uri => 'string',
+   location => 'Cucumber::Messages::Location',
    name => 'string',
    language => 'string',
    steps => '[]Cucumber::Messages::PickleStep',
@@ -2755,6 +2756,16 @@ has uri =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
+    );
+
+
+=head4 location
+
+The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+=cut
+
+has location =>
+    (is => 'ro',
     );
 
 

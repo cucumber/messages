@@ -26,6 +26,7 @@ import static java.util.Objects.requireNonNull;
 public final class Pickle {
     private final String id;
     private final String uri;
+    private final Location location;
     private final String name;
     private final String language;
     private final java.util.List<PickleStep> steps;
@@ -35,6 +36,7 @@ public final class Pickle {
     public Pickle(
         String id,
         String uri,
+        Location location,
         String name,
         String language,
         java.util.List<PickleStep> steps,
@@ -43,6 +45,7 @@ public final class Pickle {
     ) {
         this.id = requireNonNull(id, "Pickle.id cannot be null");
         this.uri = requireNonNull(uri, "Pickle.uri cannot be null");
+        this.location = location;
         this.name = requireNonNull(name, "Pickle.name cannot be null");
         this.language = requireNonNull(language, "Pickle.language cannot be null");
         this.steps = unmodifiableList(new ArrayList<>(requireNonNull(steps, "Pickle.steps cannot be null")));
@@ -62,6 +65,13 @@ public final class Pickle {
      */
     public String getUri() {
         return uri;
+    }
+
+    /**
+      * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+     */
+    public Optional<Location> getLocation() {
+        return Optional.ofNullable(location);
     }
 
     /**
@@ -110,6 +120,7 @@ public final class Pickle {
         return 
             id.equals(that.id) &&         
             uri.equals(that.uri) &&         
+            Objects.equals(location, that.location) &&         
             name.equals(that.name) &&         
             language.equals(that.language) &&         
             steps.equals(that.steps) &&         
@@ -122,6 +133,7 @@ public final class Pickle {
         return Objects.hash(
             id,
             uri,
+            location,
             name,
             language,
             steps,
@@ -135,6 +147,7 @@ public final class Pickle {
         return "Pickle{" +
             "id=" + id +
             ", uri=" + uri +
+            ", location=" + location +
             ", name=" + name +
             ", language=" + language +
             ", steps=" + steps +
