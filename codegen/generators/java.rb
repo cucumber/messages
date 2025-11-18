@@ -15,7 +15,9 @@ module Generator
         .split("\n")
         .map(&:strip)
         .reject { |line| line == '*' }
-        .map { |line| " * #{line}".rstrip }
+        .map { |line| line.rstrip }
+        .map { |line| line.empty? ? "<p>" : line }
+        .map { |line| " * #{line}"}
         .join("\n#{indent_string}")
     end
 

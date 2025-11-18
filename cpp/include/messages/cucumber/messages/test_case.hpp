@@ -16,8 +16,6 @@ using json = nlohmann::json;
 // Represents the TestCase message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
 //
-// //// TestCases
-//
 // A `TestCase` contains a sequence of `TestStep`s.
 //
 // Generated code

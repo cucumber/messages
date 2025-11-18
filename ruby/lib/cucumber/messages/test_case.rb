@@ -7,10 +7,7 @@ module Cucumber
     # Represents the TestCase message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # //// TestCases
-    #
-    # *
-    #  A `TestCase` contains a sequence of `TestStep`s.
+    # A `TestCase` contains a sequence of `TestStep`s.
     ##
     class TestCase < Message
       attr_reader :id

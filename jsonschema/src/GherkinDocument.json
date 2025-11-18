@@ -44,7 +44,7 @@
     "Comment": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n A comment in a Gherkin document",
+      "description": "A comment in a Gherkin document",
       "required": [
         "location",
         "text"
@@ -204,7 +204,7 @@
     "FeatureChild": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n A child node of a `Feature` node",
+      "description": "A child node of a `Feature` node",
       "properties": {
         "rule": {
           "$ref": "#/definitions/Rule"
@@ -266,7 +266,7 @@
     "RuleChild": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n A child node of a `Rule` node",
+      "description": "A child node of a `Rule` node",
       "properties": {
         "background": {
           "$ref": "#/definitions/Background"
@@ -428,7 +428,7 @@
     "Tag": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "description": "*\n A tag",
+      "description": "A tag",
       "required": [
         "location",
         "name",
@@ -451,13 +451,13 @@
       "type": "object"
     }
   },
-  "description": "*\n The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.\n Cucumber implementations should *not* depend on `GherkinDocument` or any of its\n children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.\n\n The only consumers of `GherkinDocument` should only be formatters that produce\n \"rich\" output, resembling the original Gherkin document.",
+  "description": "The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.\nCucumber implementations should *not* depend on `GherkinDocument` or any of its\nchildren for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.\n\nThe only consumers of `GherkinDocument` should only be formatters that produce\n\"rich\" output, resembling the original Gherkin document.",
   "required": [
     "comments"
   ],
   "properties": {
     "uri": {
-      "description": "*\n The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)\n of the source, typically a file path relative to the root directory",
+      "description": "The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)\nof the source, typically a file path relative to the root directory",
       "type": "string"
     },
     "feature": {

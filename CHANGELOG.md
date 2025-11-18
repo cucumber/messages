@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [30.1.0] - 2025-10-08
+### Added
+- [Java] Add OSGi metadata ([#344](https://github.com/cucumber/messages/pull/344))
+
+## [30.0.0] - 2025-10-03
+### Changed
+- [Ruby] Updated minimum Ruby version to 3.2 ([#346](https://github.com/cucumber/messages/pull/346) [luke-hill](https://github.com/luke-hill))
+
+### Removed
+- [Python] Dropped legacy .egg-info metadata distribution artifacts ([#324](https://github.com/cucumber/messages/pull/324))
+
+## [29.0.1] - 2025-09-08
+### Fixed
+- [JavaScript] Include schemas in npm package ([#333](https://github.com/cucumber/messages/pull/333))
+
+## [29.0.0] - 2025-09-08
+### Added
+- Add `workerId` to `TestRunHookStarted` ([#332](https://github.com/cucumber/messages/pull/332))
+- Add Suggestion message ([#329](https://github.com/cucumber/messages/pull/329))
+
+### Changed
+- Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
+- Clarify documentation around `TestStep.stepMatchArgumentsLists` ([#330](https://github.com/cucumber/messages/pull/330))
+- [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
+
+## [28.1.0] - 2025-07-21
+### Added
+- [java] Add comparators for comparable objects ([#312](https://github.com/cucumber/messages/pull/312))
+
 ## [28.0.0] - 2025-07-07
 ### Changed
 - Add `Attachment.testRunHookStartedId` for traceability of attachments to test run hooks ([#301](https://github.com/cucumber/messages/pull/301))
@@ -585,7 +614,12 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v28.0.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v30.1.0...HEAD
+[30.1.0]: https://github.com/cucumber/messages/compare/v30.0.0...v30.1.0
+[30.0.0]: https://github.com/cucumber/messages/compare/v29.0.1...v30.0.0
+[29.0.1]: https://github.com/cucumber/messages/compare/v29.0.0...v29.0.1
+[29.0.0]: https://github.com/cucumber/messages/compare/v28.1.0...v29.0.0
+[28.1.0]: https://github.com/cucumber/messages/compare/v28.0.0...v28.1.0
 [28.0.0]: https://github.com/cucumber/messages/compare/v27.2.0...v28.0.0
 [27.2.0]: https://github.com/cucumber/messages/compare/v27.1.0...v27.2.0
 [27.1.0]: https://github.com/cucumber/messages/compare/v27.0.2...v27.1.0

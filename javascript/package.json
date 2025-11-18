@@ -1,6 +1,6 @@
 {
   "name": "@cucumber/messages",
-  "version": "28.0.0",
+  "version": "30.1.0",
   "description": "JSON schema-based messages for Cucumber's inter-process communication",
   "type": "module",
   "main": "dist/cjs/src/index.js",
@@ -28,7 +28,7 @@
     "build:cjs": "tsc --build tsconfig.build-cjs.json",
     "build:esm": "tsc --build tsconfig.build-esm.json",
     "postbuild:cjs": "cp package.cjs.json dist/cjs/package.json",
-    "copy-schemas": "shx rm -rf ./schema/*.json && shx cp ../jsonschema/*.json ./schema",
+    "copy-schemas": "shx rm -rf ./schema/*.json && shx cp ../jsonschema/src/*.json ./schema",
     "prepare": "make generate",
     "test": "mocha && npm run test:cjs",
     "test:cjs": "npm run build:cjs && mocha --no-config dist/cjs/test",
@@ -36,19 +36,17 @@
     "prepublishOnly": "npm run build && npm run copy-schemas"
   },
   "dependencies": {
-    "@types/uuid": "10.0.0",
     "class-transformer": "0.5.1",
-    "reflect-metadata": "0.2.2",
-    "uuid": "11.1.0"
+    "reflect-metadata": "0.2.2"
   },
   "devDependencies": {
     "@types/mocha": "10.0.10",
-    "@types/node": "22.16.4",
+    "@types/node": "22.19.1",
     "copyfiles": "2.4.1",
-    "mocha": "11.7.1",
+    "mocha": "11.7.5",
     "shx": "^0.4.0",
     "ts-node": "10.9.2",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "bugs": {
     "url": "https://github.com/cucumber/messages/issues"

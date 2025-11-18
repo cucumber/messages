@@ -17,25 +17,15 @@ def compatibility_kit_repo(tmpdir):
         str(repo_path),
         branch="main",
     )
-    repo_tags = list(
-        filter(
-            lambda tag: tag is not None,
-            map(lambda tag: getattr(tag.tag, "tag", None), repo.tags),
-        )
-    )
+    repo_tags = [getattr(tag.tag, "tag", None) for tag in repo.tags if getattr(tag.tag, "tag", None) is not None]
 
     version_pattern = re.compile(r"((.*/)?)v(\d+\.\d+\.\d+)")
     last_version = sorted(
-        map(
-            version.parse,
-            map(
-                lambda match: match.groups()[-1],
-                filter(
-                    lambda match: match is not None,
-                    map(lambda tag: re.match(version_pattern, tag), repo_tags),
-                ),
-            ),
-        )
+        [
+            version.parse(match.groups()[-1])
+            for tag in repo_tags
+            if (match := re.match(version_pattern, tag)) is not None
+        ],
     )[-1]
 
     last_version_tag = next(filter(lambda tag: re.search(re.escape(str(last_version)), tag), repo_tags))

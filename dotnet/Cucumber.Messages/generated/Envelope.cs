@@ -12,13 +12,6 @@ namespace Io.Cucumber.Messages.Types;
 /**
  * Represents the Envelope message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
- *
- * When removing a field, replace it with reserved, rather than deleting the line.
- * When adding a field, add it to the end and increment the number by one.
- * See https://developers.google.com/protocol-buffers/docs/proto#updating for details
- *
- * All the messages that are passed between different components/processes are Envelope
- * messages.
  */
 
 public sealed class Envelope 
@@ -30,6 +23,7 @@ public sealed class Envelope
     public ParameterType ParameterType { get; private set; }
     public ParseError ParseError { get; private set; }
     public Pickle Pickle { get; private set; }
+    public Suggestion Suggestion { get; private set; }
     public Source Source { get; private set; }
     public StepDefinition StepDefinition { get; private set; }
     public TestCase TestCase { get; private set; }
@@ -48,6 +42,7 @@ public sealed class Envelope
     {
         return new Envelope(
             Require<Attachment>(attachment, "Attachment", "Envelope.Attachment cannot be null"),
+            null,
             null,
             null,
             null,
@@ -90,6 +85,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             null
         );
     }
@@ -100,6 +96,7 @@ public sealed class Envelope
             null,
             null,
             Require<Hook>(hook, "Hook", "Envelope.Hook cannot be null"),
+            null,
             null,
             null,
             null,
@@ -140,6 +137,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             null
         );
     }
@@ -152,6 +150,7 @@ public sealed class Envelope
             null,
             null,
             Require<ParameterType>(parameterType, "ParameterType", "Envelope.ParameterType cannot be null"),
+            null,
             null,
             null,
             null,
@@ -190,6 +189,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             null
         );
     }
@@ -215,6 +215,33 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
+            null
+        );
+    }
+
+    public static Envelope Create(Suggestion suggestion) 
+    {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            Require<Suggestion>(suggestion, "Suggestion", "Envelope.Suggestion cannot be null"),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null
         );
     }
@@ -222,6 +249,7 @@ public sealed class Envelope
     public static Envelope Create(Source source) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -255,6 +283,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<StepDefinition>(stepDefinition, "StepDefinition", "Envelope.StepDefinition cannot be null"),
             null,
             null,
@@ -272,6 +301,7 @@ public sealed class Envelope
     public static Envelope Create(TestCase testCase) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -307,6 +337,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<TestCaseFinished>(testCaseFinished, "TestCaseFinished", "Envelope.TestCaseFinished cannot be null"),
             null,
             null,
@@ -322,6 +353,7 @@ public sealed class Envelope
     public static Envelope Create(TestCaseStarted testCaseStarted) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -359,6 +391,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<TestRunFinished>(testRunFinished, "TestRunFinished", "Envelope.TestRunFinished cannot be null"),
             null,
             null,
@@ -372,6 +405,7 @@ public sealed class Envelope
     public static Envelope Create(TestRunStarted testRunStarted) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -411,6 +445,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<TestStepFinished>(testStepFinished, "TestStepFinished", "Envelope.TestStepFinished cannot be null"),
             null,
             null,
@@ -422,6 +457,7 @@ public sealed class Envelope
     public static Envelope Create(TestStepStarted testStepStarted) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -463,6 +499,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<TestRunHookStarted>(testRunHookStarted, "TestRunHookStarted", "Envelope.TestRunHookStarted cannot be null"),
             null,
             null
@@ -472,6 +509,7 @@ public sealed class Envelope
     public static Envelope Create(TestRunHookFinished testRunHookFinished) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -515,6 +553,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<UndefinedParameterType>(undefinedParameterType, "UndefinedParameterType", "Envelope.UndefinedParameterType cannot be null")
         );
     }
@@ -527,6 +566,7 @@ public sealed class Envelope
         ParameterType parameterType,
         ParseError parseError,
         Pickle pickle,
+        Suggestion suggestion,
         Source source,
         StepDefinition stepDefinition,
         TestCase testCase,
@@ -548,6 +588,7 @@ public sealed class Envelope
         this.ParameterType = parameterType;
         this.ParseError = parseError;
         this.Pickle = pickle;
+        this.Suggestion = suggestion;
         this.Source = source;
         this.StepDefinition = stepDefinition;
         this.TestCase = testCase;
@@ -575,6 +616,7 @@ public sealed class Envelope
             Object.Equals(ParameterType, that.ParameterType) &&         
             Object.Equals(ParseError, that.ParseError) &&         
             Object.Equals(Pickle, that.Pickle) &&         
+            Object.Equals(Suggestion, that.Suggestion) &&         
             Object.Equals(Source, that.Source) &&         
             Object.Equals(StepDefinition, that.StepDefinition) &&         
             Object.Equals(TestCase, that.TestCase) &&         
@@ -606,6 +648,8 @@ public sealed class Envelope
           hash = hash * 31 + ParseError.GetHashCode();
         if (Pickle != null)
           hash = hash * 31 + Pickle.GetHashCode();
+        if (Suggestion != null)
+          hash = hash * 31 + Suggestion.GetHashCode();
         if (Source != null)
           hash = hash * 31 + Source.GetHashCode();
         if (StepDefinition != null)
@@ -643,6 +687,7 @@ public sealed class Envelope
             ", parameterType=" + ParameterType +
             ", parseError=" + ParseError +
             ", pickle=" + Pickle +
+            ", suggestion=" + Suggestion +
             ", source=" + Source +
             ", stepDefinition=" + StepDefinition +
             ", testCase=" + TestCase +

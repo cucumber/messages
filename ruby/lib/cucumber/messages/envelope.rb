@@ -6,14 +6,6 @@ module Cucumber
     ##
     # Represents the Envelope message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
-    #
-    # When removing a field, replace it with reserved, rather than deleting the line.
-    #  When adding a field, add it to the end and increment the number by one.
-    #  See https://developers.google.com/protocol-buffers/docs/proto#updating for details
-    #
-    # *
-    #  All the messages that are passed between different components/processes are Envelope
-    #  messages.
     ##
     class Envelope < Message
       attr_reader :attachment
@@ -29,6 +21,8 @@ module Cucumber
       attr_reader :parse_error
 
       attr_reader :pickle
+
+      attr_reader :suggestion
 
       attr_reader :source
 
@@ -62,6 +56,7 @@ module Cucumber
         parameter_type: nil,
         parse_error: nil,
         pickle: nil,
+        suggestion: nil,
         source: nil,
         step_definition: nil,
         test_case: nil,
@@ -82,6 +77,7 @@ module Cucumber
         @parameter_type = parameter_type
         @parse_error = parse_error
         @pickle = pickle
+        @suggestion = suggestion
         @source = source
         @step_definition = step_definition
         @test_case = test_case
@@ -115,6 +111,7 @@ module Cucumber
           parameter_type: ParameterType.from_h(hash[:parameterType]),
           parse_error: ParseError.from_h(hash[:parseError]),
           pickle: Pickle.from_h(hash[:pickle]),
+          suggestion: Suggestion.from_h(hash[:suggestion]),
           source: Source.from_h(hash[:source]),
           step_definition: StepDefinition.from_h(hash[:stepDefinition]),
           test_case: TestCase.from_h(hash[:testCase]),

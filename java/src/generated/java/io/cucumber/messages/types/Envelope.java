@@ -8,15 +8,7 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Envelope message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
- * When removing a field, replace it with reserved, rather than deleting the line.
- * When adding a field, add it to the end and increment the number by one.
- * See https://developers.google.com/protocol-buffers/docs/proto#updating for details
- *
- * All the messages that are passed between different components/processes are Envelope
- * messages.
+ * Represents the Envelope message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
 @SuppressWarnings("unused")
@@ -28,6 +20,7 @@ public final class Envelope {
     private final ParameterType parameterType;
     private final ParseError parseError;
     private final Pickle pickle;
+    private final Suggestion suggestion;
     private final Source source;
     private final StepDefinition stepDefinition;
     private final TestCase testCase;
@@ -44,6 +37,7 @@ public final class Envelope {
     public static Envelope of(Attachment attachment) {
         return new Envelope(
             requireNonNull(attachment, "Envelope.attachment cannot be null"),
+            null,
             null,
             null,
             null,
@@ -85,6 +79,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             null
         );
     }
@@ -94,6 +89,7 @@ public final class Envelope {
             null,
             null,
             requireNonNull(hook, "Envelope.hook cannot be null"),
+            null,
             null,
             null,
             null,
@@ -133,6 +129,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             null
         );
     }
@@ -144,6 +141,7 @@ public final class Envelope {
             null,
             null,
             requireNonNull(parameterType, "Envelope.parameterType cannot be null"),
+            null,
             null,
             null,
             null,
@@ -181,6 +179,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             null
         );
     }
@@ -205,12 +204,39 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null
+        );
+    }
+
+    public static Envelope of(Suggestion suggestion) {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            requireNonNull(suggestion, "Envelope.suggestion cannot be null"),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null
         );
     }
 
     public static Envelope of(Source source) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -243,6 +269,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(stepDefinition, "Envelope.stepDefinition cannot be null"),
             null,
             null,
@@ -259,6 +286,7 @@ public final class Envelope {
 
     public static Envelope of(TestCase testCase) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -293,6 +321,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(testCaseFinished, "Envelope.testCaseFinished cannot be null"),
             null,
             null,
@@ -307,6 +336,7 @@ public final class Envelope {
 
     public static Envelope of(TestCaseStarted testCaseStarted) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -343,6 +373,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(testRunFinished, "Envelope.testRunFinished cannot be null"),
             null,
             null,
@@ -355,6 +386,7 @@ public final class Envelope {
 
     public static Envelope of(TestRunStarted testRunStarted) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -393,6 +425,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(testStepFinished, "Envelope.testStepFinished cannot be null"),
             null,
             null,
@@ -403,6 +436,7 @@ public final class Envelope {
 
     public static Envelope of(TestStepStarted testStepStarted) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -443,6 +477,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(testRunHookStarted, "Envelope.testRunHookStarted cannot be null"),
             null,
             null
@@ -451,6 +486,7 @@ public final class Envelope {
 
     public static Envelope of(TestRunHookFinished testRunHookFinished) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -493,6 +529,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(undefinedParameterType, "Envelope.undefinedParameterType cannot be null")
         );
     }
@@ -505,6 +542,7 @@ public final class Envelope {
         ParameterType parameterType,
         ParseError parseError,
         Pickle pickle,
+        Suggestion suggestion,
         Source source,
         StepDefinition stepDefinition,
         TestCase testCase,
@@ -525,6 +563,7 @@ public final class Envelope {
         this.parameterType = parameterType;
         this.parseError = parseError;
         this.pickle = pickle;
+        this.suggestion = suggestion;
         this.source = source;
         this.stepDefinition = stepDefinition;
         this.testCase = testCase;
@@ -565,6 +604,10 @@ public final class Envelope {
 
     public Optional<Pickle> getPickle() {
         return Optional.ofNullable(pickle);
+    }
+
+    public Optional<Suggestion> getSuggestion() {
+        return Optional.ofNullable(suggestion);
     }
 
     public Optional<Source> getSource() {
@@ -628,6 +671,7 @@ public final class Envelope {
             Objects.equals(parameterType, that.parameterType) &&         
             Objects.equals(parseError, that.parseError) &&         
             Objects.equals(pickle, that.pickle) &&         
+            Objects.equals(suggestion, that.suggestion) &&         
             Objects.equals(source, that.source) &&         
             Objects.equals(stepDefinition, that.stepDefinition) &&         
             Objects.equals(testCase, that.testCase) &&         
@@ -652,6 +696,7 @@ public final class Envelope {
             parameterType,
             parseError,
             pickle,
+            suggestion,
             source,
             stepDefinition,
             testCase,
@@ -677,6 +722,7 @@ public final class Envelope {
             ", parameterType=" + parameterType +
             ", parseError=" + parseError +
             ", pickle=" + pickle +
+            ", suggestion=" + suggestion +
             ", source=" + source +
             ", stepDefinition=" + stepDefinition +
             ", testCase=" + testCase +

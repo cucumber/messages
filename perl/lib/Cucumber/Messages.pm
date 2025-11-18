@@ -55,18 +55,17 @@ package Cucumber::Messages::Attachment {
 Represents the Attachment message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-//// Attachments (parse errors, execution errors, screenshots, links...)
+Attachments (parse errors, execution errors, screenshots, links...)
 
-*
- An attachment represents any kind of data associated with a line in a
- [Source](#io.cucumber.messages.Source) file. It can be used for:
+An attachment represents any kind of data associated with a line in a
+[Source](#io.cucumber.messages.Source) file. It can be used for:
 
- * Syntax errors during parse time
- * Screenshots captured and attached during execution
- * Logs captured and attached during execution
+* Syntax errors during parse time
+* Screenshots captured and attached during execution
+* Logs captured and attached during execution
 
- It is not to be used for runtime errors raised/thrown during execution. This
- is captured in `TestResult`.
+It is not to be used for runtime errors raised/thrown during execution. This
+is captured in `TestResult`.
 
 =head3 ATTRIBUTES
 
@@ -101,10 +100,9 @@ sub _types {
 
 =head4 body
 
-*
- The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
- is simply the string. If it's `BASE64`, the string should be Base64 decoded to
- obtain the attachment.
+The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
+is simply the string. If it's `BASE64`, the string should be Base64 decoded to
+obtain the attachment.
 =cut
 
 has body =>
@@ -116,15 +114,14 @@ has body =>
 
 =head4 content_encoding
 
-*
- Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
+Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
 
- Content encoding is *not* determined by the media type, but rather by the type
- of the object being attached:
+Content encoding is *not* determined by the media type, but rather by the type
+of the object being attached:
 
- - string: IDENTITY
- - byte array: BASE64
- - stream: BASE64
+- string: IDENTITY
+- byte array: BASE64
+- stream: BASE64
 
 Available constants for valid values of this field:
 
@@ -153,8 +150,7 @@ has content_encoding =>
 
 =head4 file_name
 
-*
- Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
+Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
 =cut
 
 has file_name =>
@@ -164,11 +160,10 @@ has file_name =>
 
 =head4 media_type
 
-*
- The media type of the data. This can be any valid
- [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
- as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
- and `text/x.cucumber.stacktrace+plain`
+The media type of the data. This can be any valid
+[IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
+as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
+and `text/x.cucumber.stacktrace+plain`
 =cut
 
 has media_type =>
@@ -210,18 +205,17 @@ has test_step_id =>
 
 =head4 url
 
-*
- A URL where the attachment can be retrieved. This field should not be set by Cucumber.
- It should be set by a program that reads a message stream and does the following for
- each Attachment message:
+A URL where the attachment can be retrieved. This field should not be set by Cucumber.
+It should be set by a program that reads a message stream and does the following for
+each Attachment message:
 
- - Writes the body (after base64 decoding if necessary) to a new file.
- - Sets `body` and `contentEncoding` to `null`
- - Writes out the new attachment message
+- Writes the body (after base64 decoding if necessary) to a new file.
+- Sets `body` and `contentEncoding` to `null`
+- Writes out the new attachment message
 
- This will result in a smaller message stream, which can improve performance and
- reduce bandwidth of message consumers. It also makes it easier to process and download attachments
- separately from reports.
+This will result in a smaller message stream, which can improve performance and
+reduce bandwidth of message consumers. It also makes it easier to process and download attachments
+separately from reports.
 =cut
 
 has url =>
@@ -271,7 +265,7 @@ Represents the Duration message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
 The structure is pretty close of the Timestamp one. For clarity, a second type
- of message is used.
+of message is used.
 
 =head3 ATTRIBUTES
 
@@ -310,9 +304,9 @@ has seconds =>
 =head4 nanos
 
 Non-negative fractions of a second at nanosecond resolution. Negative
- second values with fractions must still have non-negative nanos values
- that count forward in time. Must be from 0 to 999,999,999
- inclusive.
+second values with fractions must still have non-negative nanos values
+that count forward in time. Must be from 0 to 999,999,999
+inclusive.
 =cut
 
 has nanos =>
@@ -333,13 +327,7 @@ package Cucumber::Messages::Envelope {
 Represents the Envelope message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-When removing a field, replace it with reserved, rather than deleting the line.
- When adding a field, add it to the end and increment the number by one.
- See https://developers.google.com/protocol-buffers/docs/proto#updating for details
 
-*
- All the messages that are passed between different components/processes are Envelope
- messages.
 
 =head3 ATTRIBUTES
 
@@ -358,6 +346,7 @@ my %types = (
    parameter_type => 'Cucumber::Messages::ParameterType',
    parse_error => 'Cucumber::Messages::ParseError',
    pickle => 'Cucumber::Messages::Pickle',
+   suggestion => 'Cucumber::Messages::Suggestion',
    source => 'Cucumber::Messages::Source',
    step_definition => 'Cucumber::Messages::StepDefinition',
    test_case => 'Cucumber::Messages::TestCase',
@@ -446,6 +435,16 @@ has parse_error =>
 =cut
 
 has pickle =>
+    (is => 'ro',
+    );
+
+
+=head4 suggestion
+
+
+=cut
+
+has suggestion =>
     (is => 'ro',
     );
 
@@ -649,13 +648,12 @@ package Cucumber::Messages::GherkinDocument {
 Represents the GherkinDocument message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
- Cucumber implementations should *not* depend on `GherkinDocument` or any of its
- children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
+The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
+Cucumber implementations should *not* depend on `GherkinDocument` or any of its
+children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
 
- The only consumers of `GherkinDocument` should only be formatters that produce
- "rich" output, resembling the original Gherkin document.
+The only consumers of `GherkinDocument` should only be formatters that produce
+"rich" output, resembling the original Gherkin document.
 
 =head3 ATTRIBUTES
 
@@ -682,9 +680,8 @@ sub _types {
 
 =head4 uri
 
-*
- The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
- of the source, typically a file path relative to the root directory
+The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+of the source, typically a file path relative to the root directory
 =cut
 
 has uri =>
@@ -836,8 +833,7 @@ package Cucumber::Messages::Comment {
 Represents the Comment message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A comment in a Gherkin document
+A comment in a Gherkin document
 
 =head3 ATTRIBUTES
 
@@ -1297,8 +1293,7 @@ package Cucumber::Messages::FeatureChild {
 Represents the FeatureChild message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A child node of a `Feature` node
+A child node of a `Feature` node
 
 =head3 ATTRIBUTES
 
@@ -1488,8 +1483,7 @@ package Cucumber::Messages::RuleChild {
 Represents the RuleChild message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A child node of a `Rule` node
+A child node of a `Rule` node
 
 =head3 ATTRIBUTES
 
@@ -1956,8 +1950,7 @@ package Cucumber::Messages::Tag {
 Represents the Tag message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A tag
+A tag
 
 =head3 ATTRIBUTES
 
@@ -2150,8 +2143,7 @@ package Cucumber::Messages::Location {
 Represents the Location message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- Points to a line and a column in a text file
+Points to a line and a column in a text file
 
 =head3 ATTRIBUTES
 
@@ -2208,9 +2200,8 @@ package Cucumber::Messages::Meta {
 Represents the Meta message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- This message contains meta information about the environment. Consumers can use
- this for various purposes.
+This message contains meta information about the environment. Consumers can use
+this for various purposes.
 
 =head3 ATTRIBUTES
 
@@ -2240,8 +2231,7 @@ sub _types {
 
 =head4 protocol_version
 
-*
- The [SEMVER](https://semver.org/) version number of the protocol
+The [SEMVER](https://semver.org/) version number of the protocol
 =cut
 
 has protocol_version =>
@@ -2400,7 +2390,7 @@ Represents the Git message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
 Information about Git, provided by the Build/CI server as environment
- variables.
+variables.
 
 =head3 ATTRIBUTES
 
@@ -2706,19 +2696,16 @@ package Cucumber::Messages::Pickle {
 Represents the Pickle message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-//// Pickles
+A `Pickle` represents a template for a `TestCase`. It is typically derived
+from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
+In the future a `Pickle` may be derived from other formats such as Markdown or
+Excel files.
 
-*
- A `Pickle` represents a template for a `TestCase`. It is typically derived
- from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
- In the future a `Pickle` may be derived from other formats such as Markdown or
- Excel files.
+By making `Pickle` the main data structure Cucumber uses for execution, the
+implementation of Cucumber itself becomes simpler, as it doesn't have to deal
+with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
 
- By making `Pickle` the main data structure Cucumber uses for execution, the
- implementation of Cucumber itself becomes simpler, as it doesn't have to deal
- with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
-
- Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
+Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
 
 =head3 ATTRIBUTES
 
@@ -2750,8 +2737,7 @@ sub _types {
 
 =head4 id
 
-*
- A unique id for the pickle
+A unique id for the pickle
 =cut
 
 has id =>
@@ -2821,9 +2807,8 @@ has steps =>
 
 =head4 tags
 
-*
- One or more tags. If this pickle is constructed from a Gherkin document,
- It includes inherited tags from the `Feature` as well.
+One or more tags. If this pickle is constructed from a Gherkin document,
+It includes inherited tags from the `Feature` as well.
 =cut
 
 has tags =>
@@ -2835,10 +2820,9 @@ has tags =>
 
 =head4 ast_node_ids
 
-*
- Points to the AST node locations of the pickle. The last one represents the unique
- id of the pickle. A pickle constructed from `Examples` will have the first
- id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
+Points to the AST node locations of the pickle. The last one represents the unique
+id of the pickle. A pickle constructed from `Examples` will have the first
+id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
 =cut
 
 has ast_node_ids =>
@@ -2916,8 +2900,7 @@ package Cucumber::Messages::PickleStep {
 Represents the PickleStep message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- An executable step
+An executable step
 
 =head3 ATTRIBUTES
 
@@ -2957,7 +2940,7 @@ has argument =>
 =head4 ast_node_ids
 
 References the IDs of the source of the step. For Gherkin, this can be
- the ID of a Step, and possibly also the ID of a TableRow
+the ID of a Step, and possibly also the ID of a TableRow
 =cut
 
 has ast_node_ids =>
@@ -3230,8 +3213,7 @@ package Cucumber::Messages::PickleTag {
 Represents the PickleTag message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A tag
+A tag
 
 =head3 ATTRIBUTES
 
@@ -3290,10 +3272,7 @@ package Cucumber::Messages::Source {
 Represents the Source message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-//// Source
-
-*
- A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
+A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
 
 =head3 ATTRIBUTES
 
@@ -3320,9 +3299,8 @@ sub _types {
 
 =head4 uri
 
-*
- The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
- of the source, typically a file path relative to the root directory
+The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+of the source, typically a file path relative to the root directory
 =cut
 
 has uri =>
@@ -3347,7 +3325,7 @@ has data =>
 =head4 media_type
 
 The media type of the file. Can be used to specify custom types, such as
- text/x.cucumber.gherkin+plain
+text/x.cucumber.gherkin+plain
 
 Available constants for valid values of this field:
 
@@ -3385,9 +3363,8 @@ package Cucumber::Messages::SourceReference {
 Represents the SourceReference message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
- [Location](#io.cucumber.messages.Location) within that file.
+Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
+[Location](#io.cucumber.messages.Location) within that file.
 
 =head3 ATTRIBUTES
 
@@ -3747,6 +3724,140 @@ has type =>
 
 }
 
+package Cucumber::Messages::Suggestion {
+
+=head2 Cucumber::Messages::Suggestion
+
+=head3 DESCRIPTION
+
+Represents the Suggestion message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+A suggested fragment of code to implement an undefined step
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   id => 'string',
+   pickle_step_id => 'string',
+   snippets => '[]Cucumber::Messages::Snippet',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 id
+
+A unique id for this suggestion
+=cut
+
+has id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 pickle_step_id
+
+The ID of the `PickleStep` this `Suggestion` was created for.
+=cut
+
+has pickle_step_id =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 snippets
+
+A collection of code snippets that could implement the undefined step
+=cut
+
+has snippets =>
+    (is => 'ro',
+     required => 1,
+     default => sub { [] },
+    );
+
+
+}
+
+package Cucumber::Messages::Snippet {
+
+=head2 Cucumber::Messages::Snippet
+
+=head3 DESCRIPTION
+
+Represents the Snippet message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   language => 'string',
+   code => 'string',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 language
+
+The programming language of the code.
+
+This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
+For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
+=cut
+
+has language =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 code
+
+A snippet of code
+=cut
+
+has code =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+}
+
 package Cucumber::Messages::TestCase {
 
 =head2 Cucumber::Messages::TestCase
@@ -3756,10 +3867,7 @@ package Cucumber::Messages::TestCase {
 Represents the TestCase message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-//// TestCases
-
-*
- A `TestCase` contains a sequence of `TestStep`s.
+A `TestCase` contains a sequence of `TestStep`s.
 
 =head3 ATTRIBUTES
 
@@ -3910,13 +4018,12 @@ package Cucumber::Messages::StepMatchArgument {
 Represents the StepMatchArgument message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- Represents a single argument extracted from a step match and passed to a step definition.
- This is used for the following purposes:
- - Construct an argument to pass to a step definition (possibly through a parameter type transform)
- - Highlight the matched parameter in rich formatters such as the HTML formatter
+Represents a single argument extracted from a step match and passed to a step definition.
+This is used for the following purposes:
+- Construct an argument to pass to a step definition (possibly through a parameter type transform)
+- Highlight the matched parameter in rich formatters such as the HTML formatter
 
- This message closely matches the `Argument` class in the `cucumber-expressions` library.
+This message closely matches the `Argument` class in the `cucumber-expressions` library.
 
 =head3 ATTRIBUTES
 
@@ -3942,9 +4049,8 @@ sub _types {
 
 =head4 group
 
-*
- Represents the outermost capture group of an argument. This message closely matches the
- `Group` class in the `cucumber-expressions` library.
+Represents the outermost capture group of an argument. This message closely matches the
+`Group` class in the `cucumber-expressions` library.
 =cut
 
 has group =>
@@ -4021,9 +4127,11 @@ package Cucumber::Messages::TestStep {
 Represents the TestStep message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-*
- A `TestStep` is derived from either a `PickleStep`
- combined with a `StepDefinition`, or from a `Hook`.
+A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+
+When derived from a PickleStep:
+ * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+ * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
 
 =head3 ATTRIBUTES
 
@@ -4084,9 +4192,9 @@ has pickle_step_id =>
 
 =head4 step_definition_ids
 
-Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
- Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
- and a size of 2+ means `AMBIGUOUS`
+Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+
+Each element represents a matching step definition.
 =cut
 
 has step_definition_ids =>
@@ -4097,6 +4205,8 @@ has step_definition_ids =>
 =head4 step_match_arguments_lists
 
 A list of list of StepMatchArgument (if derived from a `PickleStep`).
+
+Each element represents the arguments for a matching step definition.
 =cut
 
 has step_match_arguments_lists =>
@@ -4216,9 +4326,8 @@ sub _types {
 
 =head4 attempt
 
-*
- The first attempt should have value 0, and for each retry the value
- should increase by 1.
+The first attempt should have value 0, and for each retry the value
+should increase by 1.
 =cut
 
 has attempt =>
@@ -4230,9 +4339,8 @@ has attempt =>
 
 =head4 id
 
-*
- Because a `TestCase` can be run multiple times (in case of a retry),
- we use this field to group messages relating to the same attempt.
+Because a `TestCase` can be run multiple times (in case of a retry),
+we use this field to group messages relating to the same attempt.
 =cut
 
 has id =>
@@ -4466,6 +4574,7 @@ my %types = (
    id => 'string',
    test_run_started_id => 'string',
    hook_id => 'string',
+   worker_id => 'string',
    timestamp => 'Cucumber::Messages::Timestamp',
 );
 
@@ -4510,6 +4619,16 @@ has hook_id =>
     (is => 'ro',
      required => 1,
      default => sub { '' },
+    );
+
+
+=head4 worker_id
+
+An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+=cut
+
+has worker_id =>
+    (is => 'ro',
     );
 
 
@@ -4718,7 +4837,7 @@ has duration =>
 
 =head4 message
 
-An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
+An arbitrary bit of information that explains this result. If there was an exception, this should include a stringified representation of it including type, message and stack trace (the exact format will vary by platform).
 =cut
 
 has message =>
@@ -4890,8 +5009,8 @@ sub _types {
 =head4 seconds
 
 Represents seconds of UTC time since Unix epoch
- 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
- 9999-12-31T23:59:59Z inclusive.
+1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+9999-12-31T23:59:59Z inclusive.
 =cut
 
 has seconds =>
@@ -4904,9 +5023,9 @@ has seconds =>
 =head4 nanos
 
 Non-negative fractions of a second at nanosecond resolution. Negative
- second values with fractions must still have non-negative nanos values
- that count forward in time. Must be from 0 to 999,999,999
- inclusive.
+second values with fractions must still have non-negative nanos values
+that count forward in time. Must be from 0 to 999,999,999
+inclusive.
 =cut
 
 has nanos =>

@@ -8,11 +8,8 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Source message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
- * //// Source
- *
+ * Represents the Source message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
  */
 // Generated code
