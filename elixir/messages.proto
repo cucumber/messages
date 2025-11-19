@@ -438,23 +438,25 @@ message Pickle {
   string id = 1;
   // The uri of the source file
   string uri = 2;
+  // The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+  Location location = 3;
   // The name of the pickle
-  string name = 3;
+  string name = 4;
   // The language of the pickle
-  string language = 4;
+  string language = 5;
   // One or more steps
-  repeated PickleStep steps = 5;
+  repeated PickleStep steps = 6;
   /**
    * One or more tags. If this pickle is constructed from a Gherkin document,
    * It includes inherited tags from the `Feature` as well.
    */
-  repeated PickleTag tags = 6;
+  repeated PickleTag tags = 7;
   /**
    * Points to the AST node locations of the pickle. The last one represents the unique
    * id of the pickle. A pickle constructed from `Examples` will have the first
    * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
    */
-  repeated string ast_node_ids = 7;
+  repeated string ast_node_ids = 8;
 
   /**
    * A tag
