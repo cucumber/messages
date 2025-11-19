@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Update protobuf schema for Elixir ([#356](https://github.com/cucumber/messages/pull/356))
 
 ## [31.0.0] - 2025-11-18
 ### Added
