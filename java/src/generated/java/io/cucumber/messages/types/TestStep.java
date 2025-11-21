@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -17,30 +18,30 @@ import static java.util.Objects.requireNonNull;
  * * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestStep {
-    private final String hookId;
+    private final @Nullable String hookId;
     private final String id;
-    private final String pickleStepId;
-    private final java.util.List<String> stepDefinitionIds;
-    private final java.util.List<StepMatchArgumentsList> stepMatchArgumentsLists;
+    private final @Nullable String pickleStepId;
+    private final @Nullable List<String> stepDefinitionIds;
+    private final @Nullable List<StepMatchArgumentsList> stepMatchArgumentsLists;
 
     public TestStep(
-        String hookId,
+        @Nullable String hookId,
         String id,
-        String pickleStepId,
-        java.util.List<String> stepDefinitionIds,
-        java.util.List<StepMatchArgumentsList> stepMatchArgumentsLists
+        @Nullable String pickleStepId,
+        @Nullable List<String> stepDefinitionIds,
+        @Nullable List<StepMatchArgumentsList> stepMatchArgumentsLists
     ) {
         this.hookId = hookId;
         this.id = requireNonNull(id, "TestStep.id cannot be null");
         this.pickleStepId = pickleStepId;
-        this.stepDefinitionIds = stepDefinitionIds == null ? null : unmodifiableList(new ArrayList<>(stepDefinitionIds));
-        this.stepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : unmodifiableList(new ArrayList<>(stepMatchArgumentsLists));
+        this.stepDefinitionIds = stepDefinitionIds == null ? null : List.copyOf(stepDefinitionIds);
+        this.stepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : List.copyOf(stepMatchArgumentsLists);
     }
 
     /**
-      * Pointer to the `Hook` (if derived from a Hook)
+     * Pointer to the `Hook` (if derived from a Hook)
      */
     public Optional<String> getHookId() {
         return Optional.ofNullable(hookId);
@@ -51,27 +52,27 @@ public final class TestStep {
     }
 
     /**
-      * Pointer to the `PickleStep` (if derived from a `PickleStep`)
+     * Pointer to the `PickleStep` (if derived from a `PickleStep`)
      */
     public Optional<String> getPickleStepId() {
         return Optional.ofNullable(pickleStepId);
     }
 
     /**
-      * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+     * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
      * <p>
      * Each element represents a matching step definition.
      */
-    public Optional<java.util.List<String>> getStepDefinitionIds() {
+    public Optional<List<String>> getStepDefinitionIds() {
         return Optional.ofNullable(stepDefinitionIds);
     }
 
     /**
-      * A list of list of StepMatchArgument (if derived from a `PickleStep`).
+     * A list of list of StepMatchArgument (if derived from a `PickleStep`).
      * <p>
      * Each element represents the arguments for a matching step definition.
      */
-    public Optional<java.util.List<StepMatchArgumentsList>> getStepMatchArgumentsLists() {
+    public Optional<List<StepMatchArgumentsList>> getStepMatchArgumentsLists() {
         return Optional.ofNullable(stepMatchArgumentsLists);
     }
 

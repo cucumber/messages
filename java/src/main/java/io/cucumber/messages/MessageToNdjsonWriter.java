@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import static java.util.Objects.requireNonNull;
 
 public final class MessageToNdjsonWriter implements AutoCloseable {
+
     private final Writer writer;
     private final Serializer serializer;
 

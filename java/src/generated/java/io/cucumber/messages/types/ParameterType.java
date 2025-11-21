@@ -1,35 +1,36 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the ParameterType message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class ParameterType {
     private final String name;
-    private final java.util.List<String> regularExpressions;
+    private final List<String> regularExpressions;
     private final Boolean preferForRegularExpressionMatch;
     private final Boolean useForSnippets;
     private final String id;
-    private final SourceReference sourceReference;
+    private final @Nullable SourceReference sourceReference;
 
     public ParameterType(
         String name,
-        java.util.List<String> regularExpressions,
+        List<String> regularExpressions,
         Boolean preferForRegularExpressionMatch,
         Boolean useForSnippets,
         String id,
-        SourceReference sourceReference
+        @Nullable SourceReference sourceReference
     ) {
         this.name = requireNonNull(name, "ParameterType.name cannot be null");
-        this.regularExpressions = unmodifiableList(new ArrayList<>(requireNonNull(regularExpressions, "ParameterType.regularExpressions cannot be null")));
+        this.regularExpressions = List.copyOf(requireNonNull(regularExpressions, "ParameterType.regularExpressions cannot be null"));
         this.preferForRegularExpressionMatch = requireNonNull(preferForRegularExpressionMatch, "ParameterType.preferForRegularExpressionMatch cannot be null");
         this.useForSnippets = requireNonNull(useForSnippets, "ParameterType.useForSnippets cannot be null");
         this.id = requireNonNull(id, "ParameterType.id cannot be null");
@@ -43,7 +44,7 @@ public final class ParameterType {
         return name;
     }
 
-    public java.util.List<String> getRegularExpressions() {
+    public List<String> getRegularExpressions() {
         return regularExpressions;
     }
 

@@ -1,30 +1,31 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the JavaMethod message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class JavaMethod {
     private final String className;
     private final String methodName;
-    private final java.util.List<String> methodParameterTypes;
+    private final List<String> methodParameterTypes;
 
     public JavaMethod(
         String className,
         String methodName,
-        java.util.List<String> methodParameterTypes
+        List<String> methodParameterTypes
     ) {
         this.className = requireNonNull(className, "JavaMethod.className cannot be null");
         this.methodName = requireNonNull(methodName, "JavaMethod.methodName cannot be null");
-        this.methodParameterTypes = unmodifiableList(new ArrayList<>(requireNonNull(methodParameterTypes, "JavaMethod.methodParameterTypes cannot be null")));
+        this.methodParameterTypes = List.copyOf(requireNonNull(methodParameterTypes, "JavaMethod.methodParameterTypes cannot be null"));
     }
 
     public String getClassName() {
@@ -35,7 +36,7 @@ public final class JavaMethod {
         return methodName;
     }
 
-    public java.util.List<String> getMethodParameterTypes() {
+    public List<String> getMethodParameterTypes() {
         return methodParameterTypes;
     }
 

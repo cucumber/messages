@@ -1,27 +1,28 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the StepMatchArgumentsList message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class StepMatchArgumentsList {
-    private final java.util.List<StepMatchArgument> stepMatchArguments;
+    private final List<StepMatchArgument> stepMatchArguments;
 
     public StepMatchArgumentsList(
-        java.util.List<StepMatchArgument> stepMatchArguments
+        List<StepMatchArgument> stepMatchArguments
     ) {
-        this.stepMatchArguments = unmodifiableList(new ArrayList<>(requireNonNull(stepMatchArguments, "StepMatchArgumentsList.stepMatchArguments cannot be null")));
+        this.stepMatchArguments = List.copyOf(requireNonNull(stepMatchArguments, "StepMatchArgumentsList.stepMatchArguments cannot be null"));
     }
 
-    public java.util.List<StepMatchArgument> getStepMatchArguments() {
+    public List<StepMatchArgument> getStepMatchArguments() {
         return stepMatchArguments;
     }
 

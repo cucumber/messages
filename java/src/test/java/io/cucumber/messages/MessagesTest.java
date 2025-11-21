@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MessagesTest {
     @Test
+    @SuppressWarnings("NullAway")
     void is_invalid_when_required_fields_are_missing() {
         assertThrows(NullPointerException.class, () -> {
             new Attachment(null, null, null, null, null, null, null, null, null, null, null);
