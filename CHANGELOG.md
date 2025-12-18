@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Removed circular dependency between messages and compatibility-kit([#362](https://github.com/cucumber/messages/pull/362))
 
 ## [31.0.0] - 2025-11-18
 ### Added

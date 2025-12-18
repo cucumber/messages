@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
     'source_code_uri' => 'https://github.com/cucumber/messages'
   }
 
-  s.add_development_dependency 'cucumber-compatibility-kit', '~> 15.0'
   s.add_development_dependency 'rake', '~> 13.1'
   s.add_development_dependency 'rspec', '~> 3.13'
   s.add_development_dependency 'rubocop', '~> 1.80.0'
