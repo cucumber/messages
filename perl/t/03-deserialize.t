@@ -19,7 +19,7 @@ my $json = JSON::MaybeXS->new(
 
 my @files =
     File::Find::Rule->file()->name( '*.ndjson' )
-    ->in( '../testdata' );
+    ->in( '../testdata/src' );
 
 
 

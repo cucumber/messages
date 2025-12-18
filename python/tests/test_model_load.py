@@ -6,7 +6,7 @@ from cucumber_messages import Envelope, message_converter
 
 # Analog of "ruby/spec/cucumber/messages/acceptance_spec.rb" test
 def test_simple_load_model():
-    for ast_path in (Path(__file__).resolve().parent / "testdata").rglob("*.ndjson"):
+    for ast_path in (Path(__file__).resolve().parent / "testdata" / "src").rglob("*.ndjson"):
         print(f"Checking ${ast_path}")
         with ast_path.open(mode="r") as ast_file:
             for ast_line in ast_file:

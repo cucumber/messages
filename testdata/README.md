@@ -1,7 +1,7 @@
 Test Data
 =========
 
-This folder contains (one) interesting sample to test serialization and
+This folder contains (one) interesting samples to test serialization and
 deserialization. It covers attribute casing, enum representation, optional
 values and numbers.
 
@@ -11,4 +11,3 @@ set of test data can be found in the [compatibility-kit](https://github.com/cucu
 
 Note: because the compatibility-kit depends on messages, we can't use it
 to test itself. 
-
