@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 require 'json'
-require 'cucumber-compatibility-kit'
 
 module Cucumber
   module Messages
     describe 'messages acceptance tests' do
       CCK::Examples.gherkin.each do |example_name|
         context "with the '#{example_name}' example" do
-          let(:ndjson_filepath) { "#{CCK::Examples.feature_code_for(example_name)}/#{example_name}.feature.ndjson" }
+          let(:ndjson_filepath) { "??.ndjson" }
 
           it 'has a ndjson reference filepath' do
             expect(File).to exist(ndjson_filepath)
