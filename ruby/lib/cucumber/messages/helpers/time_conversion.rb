@@ -7,11 +7,11 @@ module Cucumber
         NANOSECONDS_PER_SECOND = 1_000_000_000
 
         def time_to_timestamp(time)
-          { 'seconds' => time.to_i, 'nanos' => time.nsec }
+          Cucumber::Messages::Timestamp.new(seconds: time.to_i, nanos: time.nsec)
         end
 
         def timestamp_to_time(timestamp)
-          Time.at(timestamp['seconds'] + (timestamp['nanos'].to_f / NANOSECONDS_PER_SECOND))
+          Time.at(timestamp.seconds, timestamp.nanos, :nanosecond)
         end
 
         def seconds_to_duration(seconds_float)
