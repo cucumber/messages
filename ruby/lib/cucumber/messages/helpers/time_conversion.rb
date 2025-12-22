@@ -13,18 +13,6 @@ module Cucumber
         def timestamp_to_time(timestamp)
           Time.at(timestamp.seconds, timestamp.nanos, :nanosecond)
         end
-
-        def seconds_to_duration(seconds_float)
-          seconds, second_modulus = seconds_float.divmod(1)
-          nanos = second_modulus * NANOSECONDS_PER_SECOND
-          { 'seconds' => seconds, 'nanos' => nanos.to_i }
-        end
-
-        def duration_to_seconds(duration)
-          seconds_part = duration['seconds']
-          nanos_part = duration['nanos'].to_f / NANOSECONDS_PER_SECOND
-          seconds_part + nanos_part
-        end
       end
     end
   end
