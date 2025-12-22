@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- [Ruby] Fix the `TimeConversion` helper file generating a non-conformant `Timestamp` message
+- [Ruby] Improve the `TimeConversion` helper for translating back from a Timestamp by avoiding a rounding error
+
+### Removed
+- [Ruby] Removed the `TimeConversion` helpers that did not serve a purpose in message building
 
 ## [31.0.1] - 2025-12-18
 ### Fixed
