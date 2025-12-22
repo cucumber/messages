@@ -4,11 +4,11 @@ module Cucumber
   module Messages
     module Helpers
       module TestStepResultComparator
-        def weaker_result(result_a, result_b)
+        def worse_result(result_a, result_b)
           ranking[result_a] > ranking[result_b] ? result_a : result_b
         end
 
-        def stronger_result(result_a, result_b)
+        def better_result(result_a, result_b)
           ranking[result_a] < ranking[result_b] ? result_a : result_b
         end
 
