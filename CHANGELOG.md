@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [Ruby] Add a way to analyse and compare the strength of `TestStepResult` messages (To be used in query) ([#365](https://github.com/cucumber/messages/pull/365))
+
 ### Fixed
 - [Ruby] Fix the `TimeConversion` helper file generating a non-conformant `Timestamp` message
 - [Ruby] Improve the `TimeConversion` helper for translating back from a Timestamp by avoiding a rounding error
