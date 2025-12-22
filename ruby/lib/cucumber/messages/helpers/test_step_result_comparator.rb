@@ -4,7 +4,7 @@ module Cucumber
   module Messages
     module Helpers
       module TestStepResultComparator
-        def ranking
+        def test_step_result_rankings
           {
             TestStepResultStatus::UNKNOWN => 0,
             TestStepResultStatus::PASSED => 1,

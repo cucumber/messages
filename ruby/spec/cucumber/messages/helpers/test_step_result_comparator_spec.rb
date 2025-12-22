@@ -11,7 +11,7 @@ describe Cucumber::Messages::Helpers::TestStepResultComparator do
 
   describe '#ranking' do
     it 'will rank the test step result statuses correctly' do
-      expect(instance.ranking)
+      expect(instance.test_step_result_rankings)
         .to eq(
           {
             Cucumber::Messages::TestStepResultStatus::UNKNOWN => 0,
