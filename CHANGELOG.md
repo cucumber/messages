@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [31.0.1] - 2025-12-18
 ### Fixed
-- Removed circular dependency between messages and compatibility-kit([#362](https://github.com/cucumber/messages/pull/362))
+- Removed circular dependency between messages and compatibility-kit ([#362](https://github.com/cucumber/messages/pull/362))
 
 ## [31.0.0] - 2025-11-18
 ### Added

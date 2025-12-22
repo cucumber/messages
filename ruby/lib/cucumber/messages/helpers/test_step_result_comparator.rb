@@ -15,7 +15,6 @@ module Cucumber
             TestStepResultStatus::FAILED => 6
           }
         end
-
       end
     end
   end
