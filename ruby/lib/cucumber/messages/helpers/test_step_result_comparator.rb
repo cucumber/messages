@@ -4,16 +4,6 @@ module Cucumber
   module Messages
     module Helpers
       module TestStepResultComparator
-        def worse_result(result_a, result_b)
-          ranking[result_a] > ranking[result_b] ? result_a : result_b
-        end
-
-        def better_result(result_a, result_b)
-          ranking[result_a] < ranking[result_b] ? result_a : result_b
-        end
-
-        private
-
         def ranking
           {
             TestStepResultStatus::UNKNOWN => 0,
@@ -25,6 +15,7 @@ module Cucumber
             TestStepResultStatus::FAILED => 6
           }
         end
+
       end
     end
   end
