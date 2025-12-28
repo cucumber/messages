@@ -3,6 +3,7 @@ package io.cucumber.messages;
 import io.cucumber.messages.types.Envelope;
 
 import java.io.BufferedWriter;
+import java.io.Flushable;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -18,8 +19,8 @@ import static java.util.Objects.requireNonNull;
  * by a {@code \n} character. The objects written are the serialized
  * representation of {@link Envelope Envelopes}.
  */
-public final class MessageToNdjsonWriter implements AutoCloseable {
-    private final BufferedWriter writer;
+public final class MessageToNdjsonWriter implements AutoCloseable, Flushable {
+    private final Writer writer;
     private final Serializer serializer;
 
     public MessageToNdjsonWriter(OutputStream outputStream, Serializer serializer) {
@@ -34,7 +35,7 @@ public final class MessageToNdjsonWriter implements AutoCloseable {
         return new BufferedWriter(new OutputStreamWriter(outputStream, UTF_8));
     }
 
-    private MessageToNdjsonWriter(BufferedWriter writer, Serializer serializer) {
+    private MessageToNdjsonWriter(Writer writer, Serializer serializer) {
         this.writer = writer;
         this.serializer = serializer;
     }
@@ -48,6 +49,11 @@ public final class MessageToNdjsonWriter implements AutoCloseable {
     @Override
     public void close() throws IOException {
         writer.close();
+    }
+
+    @Override
+    public void flush() throws IOException {
+        writer.flush();
     }
 
     @FunctionalInterface
