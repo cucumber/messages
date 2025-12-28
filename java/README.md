@@ -2,10 +2,27 @@
 
 # Cucumber Messages for Java (JSON schema)
 
+## Reading
+
 ```java
-Iterable<Envelope> envelopes = new io.cucumber.messages.NdjsonToMessageIterable(inputStream)
-for (Envelope envelope : envelopes) {
-  // Do something with the message
+Path path = ...
+NdjsonToMessageReader.Deserializer deserializer = ... 
+try (NdjsonToMessageReader reader = new NdjsonToMessageReader(newInputStream(path), deserializer)) {
+    return reader.lines()
+    // Do something with messages
+    .collect(Collectors.toList());
+}
+```
+
+## Writing
+
+```java
+Path path = ...
+MessageToNdjsonWriter.Serializer serializer = ...
+try(MessageToNdjsonWriter writer = new MessageToNdjsonWriter(newOutputStream(path), serializer)){
+    for(Envelope envelope : messages){
+        writer.write(envelope);
+    }
 }
 ```
 
