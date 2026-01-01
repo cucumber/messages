@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [Java] Add `NdjsonToMessageReader` ([#344](https://github.com/cucumber/messages/pull/367))
+
+### Fixed
+- [Java] Don't flush `MessageToNdjsonWriter` on each write ([#344](https://github.com/cucumber/messages/pull/367))
 
 ## [31.1.0] - 2025-12-22
 ### Added

@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AcceptanceTest {
 
-    private static final NdjsonToMessageIterable.Deserializer deserializer = (json) -> Jackson.OBJECT_MAPPER.readValue(json, Envelope.class);
+    private static final NdjsonToMessageReader.Deserializer deserializer = (json) -> Jackson.OBJECT_MAPPER.readValue(json, Envelope.class);
     private static final MessageToNdjsonWriter.Serializer serializer = Jackson.OBJECT_MAPPER::writeValue;
 
     static List<TestCase> acceptance() throws IOException {
@@ -62,11 +62,9 @@ public class AcceptanceTest {
     }
 
     private static List<Envelope> readMessages(Path testCase) throws IOException {
-        List<Envelope> expectedMessages = new ArrayList<>();
-        try (NdjsonToMessageIterable iterable = new NdjsonToMessageIterable(newInputStream(testCase), deserializer)) {
-            iterable.forEach(expectedMessages::add);
+        try (NdjsonToMessageReader reader = new NdjsonToMessageReader(newInputStream(testCase), deserializer)) {
+            return reader.lines().collect(Collectors.toList());
         }
-        return expectedMessages;
     }
 
     static class TestCase {
