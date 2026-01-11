@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [31.2.0] - 2026-01-11
 ### Added
 - [Java] Add `NdjsonToMessageReader` ([#344](https://github.com/cucumber/messages/pull/367))
 
@@ -638,7 +640,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v31.1.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v31.2.0...HEAD
+[31.2.0]: https://github.com/cucumber/messages/compare/v31.1.0...v31.2.0
 [31.1.0]: https://github.com/cucumber/messages/compare/v31.0.1...v31.1.0
 [31.0.1]: https://github.com/cucumber/messages/compare/v31.0.0...v31.0.1
 [31.0.0]: https://github.com/cucumber/messages/compare/v30.1.0...v31.0.0
