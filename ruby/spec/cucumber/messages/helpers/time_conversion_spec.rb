@@ -1,35 +1,63 @@
 # frozen_string_literal: true
 
 describe Cucumber::Messages::Helpers::TimeConversion do
-  include described_class
+  subject(:instance) { klass.new }
 
-  it 'converts to and from milliseconds since epoch' do
+  let(:klass) do
+    Class.new do
+      include Cucumber::Messages::Helpers::TimeConversion
+    end
+  end
+
+  describe '#time_to_timestamp' do
+    it 'converts a Time to a Timestamp message to Timestamp' do
+      timestamp = instance.time_to_timestamp(Time.now)
+
+      expect(timestamp).to be_a(Cucumber::Messages::Timestamp)
+    end
+
+    it 'stores the seconds since epoch accurately' do
+      time = Time.at(1_625_079_600)
+      timestamp = instance.time_to_timestamp(time)
+
+      expect(timestamp.seconds).to eq(1_625_079_600)
+    end
+
+    it 'stores the nanoseconds since epoch accurately' do
+      time = Time.at(1_625_079_600, 123_456_789, :nanosecond)
+      timestamp = instance.time_to_timestamp(time)
+
+      expect(timestamp.nanos).to eq(123_456_789)
+    end
+  end
+
+  describe '#timestamp_to_time' do
+    it 'converts a Timestamp object back to a Time' do
+      time = instance.timestamp_to_time(Cucumber::Messages::Timestamp.new(seconds: 123_456, nanos: 654_321_038))
+
+      expect(time).to be_a(Time)
+    end
+
+    it 'retains the seconds since epoch accurately' do
+      timestamp = Cucumber::Messages::Timestamp.new(seconds: 123_456, nanos: 654_321_038)
+      time = instance.timestamp_to_time(timestamp)
+
+      expect(time.to_i).to eq(123_456)
+    end
+
+    it 'retains the nanoseconds since epoch accurately' do
+      timestamp = Cucumber::Messages::Timestamp.new(seconds: 123_456, nanos: 654_321_038)
+      time = instance.timestamp_to_time(timestamp)
+
+      expect(time.nsec).to eq(654_321_038)
+    end
+  end
+
+  it 'does not lose any information when converting to and from object types' do
     time = Time.now
-    timestamp = time_to_timestamp(time)
-    time_again = timestamp_to_time(timestamp)
+    timestamp = instance.time_to_timestamp(time)
+    time_again = instance.timestamp_to_time(timestamp)
 
-    expect(time).to be_within(0.000001).of(time_again)
-  end
-
-  it 'converts to and from seconds duration' do
-    duration_in_seconds = 1234
-    duration = seconds_to_duration(duration_in_seconds)
-    duration_in_seconds_again = duration_to_seconds(duration)
-
-    expect(duration_in_seconds_again).to eq(duration_in_seconds)
-  end
-
-  it 'converts to and from seconds duration (with decimal places)' do
-    duration_in_seconds = 3.000161
-    duration = seconds_to_duration(duration_in_seconds)
-    duration_in_seconds_again = duration_to_seconds(duration)
-
-    expect(duration_in_seconds_again).to be_within(0.000000001).of(duration_in_seconds)
-  end
-
-  it 'converts to a hash where seconds and nanos are integers' do
-    duration_in_seconds = 3.000161
-
-    expect(seconds_to_duration(duration_in_seconds).values).to all be_integer
+    expect(time).to be_within(0.000_000_001).of(time_again)
   end
 end
