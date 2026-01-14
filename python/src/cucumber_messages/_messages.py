@@ -558,7 +558,7 @@ class TestCase:
 
 @dataclass
 class Group:
-    children: list[Group]
+    children: Optional[list[Group]] = None
     start: Optional[int] = None
     value: Optional[str] = None
 

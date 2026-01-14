@@ -3982,8 +3982,6 @@ sub _types {
 
 has children =>
     (is => 'ro',
-     required => 1,
-     default => sub { [] },
     );
 
 

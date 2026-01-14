@@ -316,7 +316,7 @@ type TestCase struct {
 }
 
 type Group struct {
-	Children []*Group `json:"children"`
+	Children []*Group `json:"children,omitempty"`
 	Start    int64    `json:"start,omitempty"`
 	Value    string   `json:"value,omitempty"`
 }

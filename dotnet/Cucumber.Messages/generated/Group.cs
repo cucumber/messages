@@ -21,14 +21,40 @@ public sealed class Group
     public string Value { get; private set; }
 
 
+    public static Group Create(List<Group> children) 
+    {
+        return new Group(
+            Require<List<Group>>(children, "Children", "Group.Children cannot be null"),
+            null,
+            null
+        );
+    }
+
+    public static Group Create(long start) 
+    {
+        return new Group(
+            null,
+            Require<long>(start, "Start", "Group.Start cannot be null"),
+            null
+        );
+    }
+
+    public static Group Create(string value) 
+    {
+        return new Group(
+            null,
+            null,
+            Require<string>(value, "Value", "Group.Value cannot be null")
+        );
+    }
+
     public Group(
         List<Group> children,
         Nullable<long> start,
         string value
     ) 
     {
-        RequireNonNull<List<Group>>(children, "Children", "Group.Children cannot be null");
-        this.Children = new List<Group>(children);        
+        this.Children = children == null ? null : new List<Group>(children);
         this.Start = start;
         this.Value = value;
     }
@@ -39,7 +65,7 @@ public sealed class Group
         if (o == null || this.GetType() != o.GetType()) return false;
         Group that = (Group) o;
         return 
-            Children.Equals(that.Children) &&         
+            Object.Equals(Children, that.Children) &&         
             Object.Equals(Start, that.Start) &&         
             Object.Equals(Value, that.Value);        
     }

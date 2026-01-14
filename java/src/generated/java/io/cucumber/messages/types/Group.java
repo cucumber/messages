@@ -17,18 +17,42 @@ public final class Group {
     private final Long start;
     private final String value;
 
+    public static Group of(java.util.List<Group> children) {
+        return new Group(
+            unmodifiableList(new ArrayList<>(requireNonNull(children, "Group.children cannot be null"))),
+            null,
+            null
+        );
+    }
+
+    public static Group of(Long start) {
+        return new Group(
+            null,
+            requireNonNull(start, "Group.start cannot be null"),
+            null
+        );
+    }
+
+    public static Group of(String value) {
+        return new Group(
+            null,
+            null,
+            requireNonNull(value, "Group.value cannot be null")
+        );
+    }
+
     public Group(
         java.util.List<Group> children,
         Long start,
         String value
     ) {
-        this.children = unmodifiableList(new ArrayList<>(requireNonNull(children, "Group.children cannot be null")));
+        this.children = children == null ? null : unmodifiableList(new ArrayList<>(children));
         this.start = start;
         this.value = value;
     }
 
-    public java.util.List<Group> getChildren() {
-        return children;
+    public Optional<java.util.List<Group>> getChildren() {
+        return Optional.ofNullable(children);
     }
 
     public Optional<Long> getStart() {
@@ -45,7 +69,7 @@ public final class Group {
         if (o == null || getClass() != o.getClass()) return false;
         Group that = (Group) o;
         return 
-            children.equals(that.children) &&         
+            Objects.equals(children, that.children) &&         
             Objects.equals(start, that.start) &&         
             Objects.equals(value, that.value);        
     }

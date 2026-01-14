@@ -23,10 +23,10 @@ final class Group implements JsonSerializable
     /**
      * Construct the Group with all properties
      *
-     * @param list<Group> $children
+     * @param ?list<Group> $children
      */
     public function __construct(
-        public readonly array $children = [],
+        public readonly ?array $children = null,
         public readonly ?int $start = null,
         public readonly ?string $value = null,
     ) {
@@ -44,20 +44,17 @@ final class Group implements JsonSerializable
         self::ensureValue($arr);
 
         return new self(
-            array_values(array_map(fn (array $member) => Group::fromArray($member), $arr['children'])),
+            isset($arr['children']) ? array_values(array_map(fn (array $member) => Group::fromArray($member), $arr['children'])) : null,
             isset($arr['start']) ? (int) $arr['start'] : null,
             isset($arr['value']) ? (string) $arr['value'] : null,
         );
     }
 
     /**
-     * @psalm-assert array{children: array} $arr
+     * @psalm-assert array{children?: array} $arr
      */
     private static function ensureChildren(array $arr): void
     {
-        if (!array_key_exists('children', $arr)) {
-            throw new SchemaViolationException('Property \'children\' is required but was not found');
-        }
         if (array_key_exists('children', $arr) && !is_array($arr['children'])) {
             throw new SchemaViolationException('Property \'children\' was not array');
         }

@@ -15,7 +15,7 @@ module Cucumber
       attr_reader :value
 
       def initialize(
-        children: [],
+        children: nil,
         start: nil,
         value: nil
       )
