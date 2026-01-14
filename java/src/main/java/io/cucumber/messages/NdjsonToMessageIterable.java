@@ -60,7 +60,7 @@ public final class NdjsonToMessageIterable implements Iterable<Envelope>, AutoCl
                     try {
                         next = deserializer.readValue(line);
                     } catch (IOException e) {
-                        throw new RuntimeException(String.format("Could not parse JSON: %s", line), e);
+                        throw new RuntimeException("Could not parse JSON: %s".formatted(line), e);
                     }
                     return true;
                 } catch (IOException e) {
