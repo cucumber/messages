@@ -35,7 +35,7 @@ public final class TestStepResult {
     }
 
     /**
-      * An arbitrary bit of information that explains this result. If there was an exception, this should include a stringified representation of it including type, message and stack trace (the exact format will vary by platform).
+     * An arbitrary bit of information that explains this result. If there was an exception, this should include a stringified representation of it including type, message and stack trace (the exact format will vary by platform).
      */
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
@@ -46,7 +46,7 @@ public final class TestStepResult {
     }
 
     /**
-      * Exception thrown while executing this step, if any.
+     * Exception thrown while executing this step, if any.
      */
     public Optional<Exception> getException() {
         return Optional.ofNullable(exception);

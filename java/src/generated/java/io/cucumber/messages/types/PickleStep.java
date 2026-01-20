@@ -55,7 +55,7 @@ public final class PickleStep {
     }
 
     /**
-      * The context in which the step was specified: context (Given), action (When) or outcome (Then).
+     * The context in which the step was specified: context (Given), action (When) or outcome (Then).
      * <p>
      * Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
      */
