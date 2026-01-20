@@ -149,6 +149,13 @@ inclusive.
 
 
 
+#### Envelope.externalAttachment 
+
+* Type: [ExternalAttachment](#externalattachment) 
+* Required: no 
+
+
+
 #### Envelope.gherkinDocument 
 
 * Type: [GherkinDocument](#gherkindocument) 
@@ -306,6 +313,62 @@ The message of exception that caused this result. E.g. expected: "a" but was: "b
 * Required: no 
 
 The stringified stack trace of the exception that caused this result
+
+## ExternalAttachment
+
+Represents an attachment that is stored externally rather than embedded in the message stream.
+
+This message type is used for large attachments (e.g., video files) that are already
+on the filesystem and should not be loaded into memory. Instead of embedding the content,
+only a URL reference is stored.
+
+A formatter or other consumer of messages may replace an Attachment with an ExternalAttachment if it makes sense to do so.
+
+#### ExternalAttachment.url 
+
+* Type: string 
+* Required: yes 
+
+A URL where the attachment can be retrieved. This could be a file:// URL for
+local filesystem paths, or an http(s):// URL for remote resources.
+
+#### ExternalAttachment.mediaType 
+
+* Type: string 
+* Required: yes 
+
+The media type of the data. This can be any valid
+[IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
+as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
+and `text/x.cucumber.stacktrace+plain`
+
+#### ExternalAttachment.testStepId 
+
+* Type: string 
+* Required: no 
+
+The identifier of the test step if the attachment was created during the execution of a test step
+
+#### ExternalAttachment.testCaseStartedId 
+
+* Type: string 
+* Required: no 
+
+The identifier of the test case attempt if the attachment was created during the execution of a test step
+
+#### ExternalAttachment.testRunHookStartedId 
+
+* Type: string 
+* Required: no 
+
+The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+
+#### ExternalAttachment.timestamp 
+
+* Type: [Timestamp](#timestamp) 
+* Required: no 
+
+When the attachment was created
 
 ## GherkinDocument
 

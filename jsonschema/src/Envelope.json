@@ -6,6 +6,9 @@
     "attachment": {
       "$ref": "./Attachment.json"
     },
+    "externalAttachment": {
+      "$ref": "./ExternalAttachment.json"
+    },
     "gherkinDocument": {
       "$ref": "./GherkinDocument.json"
     },

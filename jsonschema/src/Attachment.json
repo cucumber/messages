@@ -30,7 +30,8 @@
       "type": "string"
     },
     "source": {
-      "$ref": "./Source.json"
+      "$ref": "./Source.json",
+      "deprecated": true
     },
     "testCaseStartedId": {
       "description": "The identifier of the test case attempt if the attachment was created during the execution of a test step",
@@ -42,7 +43,8 @@
     },
     "url": {
       "description": "A URL where the attachment can be retrieved. This field should not be set by Cucumber.\nIt should be set by a program that reads a message stream and does the following for\neach Attachment message:\n\n- Writes the body (after base64 decoding if necessary) to a new file.\n- Sets `body` and `contentEncoding` to `null`\n- Writes out the new attachment message\n\nThis will result in a smaller message stream, which can improve performance and\nreduce bandwidth of message consumers. It also makes it easier to process and download attachments\nseparately from reports.",
-      "type": "string"
+      "type": "string",
+      "deprecated": true
     },
     "testRunStartedId": {
       "description": "Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook",

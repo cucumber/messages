@@ -10,6 +10,8 @@ module Cucumber
     class Envelope < Message
       attr_reader :attachment
 
+      attr_reader :external_attachment
+
       attr_reader :gherkin_document
 
       attr_reader :hook
@@ -50,6 +52,7 @@ module Cucumber
 
       def initialize(
         attachment: nil,
+        external_attachment: nil,
         gherkin_document: nil,
         hook: nil,
         meta: nil,
@@ -71,6 +74,7 @@ module Cucumber
         undefined_parameter_type: nil
       )
         @attachment = attachment
+        @external_attachment = external_attachment
         @gherkin_document = gherkin_document
         @hook = hook
         @meta = meta
@@ -105,6 +109,7 @@ module Cucumber
 
         new(
           attachment: Attachment.from_h(hash[:attachment]),
+          external_attachment: ExternalAttachment.from_h(hash[:externalAttachment]),
           gherkin_document: GherkinDocument.from_h(hash[:gherkinDocument]),
           hook: Hook.from_h(hash[:hook]),
           meta: Meta.from_h(hash[:meta]),
