@@ -26,6 +26,11 @@ final class Group implements JsonSerializable
      * @param ?list<Group> $children
      */
     public function __construct(
+
+        /**
+         * The nested capture groups of an argument.
+         * Absent if the group has no nested capture groups.
+         */
         public readonly ?array $children = null,
         public readonly ?int $start = null,
         public readonly ?string $value = null,

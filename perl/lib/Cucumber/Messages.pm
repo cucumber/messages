@@ -3977,7 +3977,8 @@ sub _types {
 
 =head4 children
 
-
+The nested capture groups of an argument.
+Absent if the group has no nested capture groups.
 =cut
 
 has children =>

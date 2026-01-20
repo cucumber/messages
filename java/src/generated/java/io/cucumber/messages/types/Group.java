@@ -51,6 +51,10 @@ public final class Group {
         this.value = value;
     }
 
+    /**
+     * The nested capture groups of an argument.
+     * Absent if the group has no nested capture groups.
+     */
     public Optional<java.util.List<Group>> getChildren() {
         return Optional.ofNullable(children);
     }

@@ -16,6 +16,10 @@ namespace Io.Cucumber.Messages.Types;
 
 public sealed class Group 
 {
+    /**
+     * The nested capture groups of an argument.
+     * Absent if the group has no nested capture groups.
+     */
     public List<Group> Children { get; private set; }
     public Nullable<long> Start { get; private set; }
     public string Value { get; private set; }

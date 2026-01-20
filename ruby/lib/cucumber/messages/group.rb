@@ -8,6 +8,10 @@ module Cucumber
     ##
     ##
     class Group < Message
+      ##
+      # The nested capture groups of an argument.
+      # Absent if the group has no nested capture groups.
+      ##
       attr_reader :children
 
       attr_reader :start
