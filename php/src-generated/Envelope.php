@@ -26,6 +26,7 @@ final class Envelope implements JsonSerializable
      */
     public function __construct(
         public readonly ?Attachment $attachment = null,
+        public readonly ?ExternalAttachment $externalAttachment = null,
         public readonly ?GherkinDocument $gherkinDocument = null,
         public readonly ?Hook $hook = null,
         public readonly ?Meta $meta = null,
@@ -56,6 +57,7 @@ final class Envelope implements JsonSerializable
     public static function fromArray(array $arr): self
     {
         self::ensureAttachment($arr);
+        self::ensureExternalAttachment($arr);
         self::ensureGherkinDocument($arr);
         self::ensureHook($arr);
         self::ensureMeta($arr);
@@ -78,6 +80,7 @@ final class Envelope implements JsonSerializable
 
         return new self(
             isset($arr['attachment']) ? Attachment::fromArray($arr['attachment']) : null,
+            isset($arr['externalAttachment']) ? ExternalAttachment::fromArray($arr['externalAttachment']) : null,
             isset($arr['gherkinDocument']) ? GherkinDocument::fromArray($arr['gherkinDocument']) : null,
             isset($arr['hook']) ? Hook::fromArray($arr['hook']) : null,
             isset($arr['meta']) ? Meta::fromArray($arr['meta']) : null,
@@ -107,6 +110,16 @@ final class Envelope implements JsonSerializable
     {
         if (array_key_exists('attachment', $arr) && !is_array($arr['attachment'])) {
             throw new SchemaViolationException('Property \'attachment\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{externalAttachment?: array} $arr
+     */
+    private static function ensureExternalAttachment(array $arr): void
+    {
+        if (array_key_exists('externalAttachment', $arr) && !is_array($arr['externalAttachment'])) {
+            throw new SchemaViolationException('Property \'externalAttachment\' was not array');
         }
     }
 

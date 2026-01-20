@@ -21,6 +21,7 @@ type Duration struct {
 
 type Envelope struct {
 	Attachment             *Attachment             `json:"attachment,omitempty"`
+	ExternalAttachment     *ExternalAttachment     `json:"externalAttachment,omitempty"`
 	GherkinDocument        *GherkinDocument        `json:"gherkinDocument,omitempty"`
 	Hook                   *Hook                   `json:"hook,omitempty"`
 	Meta                   *Meta                   `json:"meta,omitempty"`
@@ -46,6 +47,15 @@ type Exception struct {
 	Type       string `json:"type"`
 	Message    string `json:"message,omitempty"`
 	StackTrace string `json:"stackTrace,omitempty"`
+}
+
+type ExternalAttachment struct {
+	Url                  string     `json:"url"`
+	MediaType            string     `json:"mediaType"`
+	TestStepId           string     `json:"testStepId,omitempty"`
+	TestCaseStartedId    string     `json:"testCaseStartedId,omitempty"`
+	TestRunHookStartedId string     `json:"testRunHookStartedId,omitempty"`
+	Timestamp            *Timestamp `json:"timestamp,omitempty"`
 }
 
 type GherkinDocument struct {

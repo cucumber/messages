@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ExternalAttachment.json",
+  "additionalProperties": false,
+  "description": "Represents an attachment that is stored externally rather than embedded in the message stream.\n\nThis message type is used for large attachments (e.g., video files) that are already\non the filesystem and should not be loaded into memory. Instead of embedding the content,\nonly a URL reference is stored.\n\nA formatter or other consumer of messages may replace an Attachment with an ExternalAttachment if it makes sense to do so.",
+  "required": [
+    "url",
+    "mediaType"
+  ],
+  "properties": {
+    "url": {
+      "description": "A URL where the attachment can be retrieved. This could be a file:// URL for\nlocal filesystem paths, or an http(s):// URL for remote resources.",
+      "type": "string"
+    },
+    "mediaType": {
+      "description": "The media type of the data. This can be any valid\n[IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)\nas well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`\nand `text/x.cucumber.stacktrace+plain`",
+      "type": "string"
+    },
+    "testStepId": {
+      "description": "The identifier of the test step if the attachment was created during the execution of a test step",
+      "type": "string"
+    },
+    "testCaseStartedId": {
+      "description": "The identifier of the test case attempt if the attachment was created during the execution of a test step",
+      "type": "string"
+    },
+    "testRunHookStartedId": {
+      "description": "The identifier of the test run hook execution if the attachment was created during the execution of a test run hook",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "When the attachment was created",
+      "$ref": "./Timestamp.json"
+    }
+  },
+  "type": "object"
+}

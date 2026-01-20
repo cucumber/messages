@@ -11,6 +11,7 @@ envelope::to_string() const
     std::ostringstream oss;
 
     cucumber::messages::to_string(oss, "attachment=", attachment);
+    cucumber::messages::to_string(oss, ", external_attachment=", external_attachment);
     cucumber::messages::to_string(oss, ", gherkin_document=", gherkin_document);
     cucumber::messages::to_string(oss, ", hook=", hook);
     cucumber::messages::to_string(oss, ", meta=", meta);
@@ -38,6 +39,7 @@ void
 envelope::to_json(json& j) const
 {
     cucumber::messages::to_json(j, camelize("attachment"), attachment);
+    cucumber::messages::to_json(j, camelize("external_attachment"), external_attachment);
     cucumber::messages::to_json(j, camelize("gherkin_document"), gherkin_document);
     cucumber::messages::to_json(j, camelize("hook"), hook);
     cucumber::messages::to_json(j, camelize("meta"), meta);
