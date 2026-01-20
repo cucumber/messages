@@ -95,6 +95,8 @@ This will result in a smaller message stream, which can improve performance and
 reduce bandwidth of message consumers. It also makes it easier to process and download attachments
 separately from reports.
 
+Deprecated; use ExternalAttachment instead.
+
 #### Attachment.testRunStartedId 
 
 * Type: string 

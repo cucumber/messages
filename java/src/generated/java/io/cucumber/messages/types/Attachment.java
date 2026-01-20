@@ -133,6 +133,8 @@ public final class Attachment {
      * This will result in a smaller message stream, which can improve performance and
      * reduce bandwidth of message consumers. It also makes it easier to process and download attachments
      * separately from reports.
+     * <p>
+     * Deprecated; use ExternalAttachment instead.
      */
     public Optional<String> getUrl() {
         return Optional.ofNullable(url);
