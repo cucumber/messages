@@ -1,5 +1,5 @@
 version = 1
-revision = 8
+revision = 9
 requires-python = ">=3.9"
 
 [[package]]
@@ -126,7 +126,7 @@ wheels = [
 
 [[package]]
 name = "cucumber-messages"
-version = "31.2.0"
+version = "32.0.0"
 source = { editable = "." }
 
 [package.dev-dependencies]
