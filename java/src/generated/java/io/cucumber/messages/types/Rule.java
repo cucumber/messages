@@ -1,41 +1,42 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the Rule message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Rule {
     private final Location location;
-    private final java.util.List<Tag> tags;
+    private final List<Tag> tags;
     private final String keyword;
     private final String name;
     private final String description;
-    private final java.util.List<RuleChild> children;
+    private final List<RuleChild> children;
     private final String id;
 
     public Rule(
         Location location,
-        java.util.List<Tag> tags,
+        List<Tag> tags,
         String keyword,
         String name,
         String description,
-        java.util.List<RuleChild> children,
+        List<RuleChild> children,
         String id
     ) {
         this.location = requireNonNull(location, "Rule.location cannot be null");
-        this.tags = unmodifiableList(new ArrayList<>(requireNonNull(tags, "Rule.tags cannot be null")));
+        this.tags = List.copyOf(requireNonNull(tags, "Rule.tags cannot be null"));
         this.keyword = requireNonNull(keyword, "Rule.keyword cannot be null");
         this.name = requireNonNull(name, "Rule.name cannot be null");
         this.description = requireNonNull(description, "Rule.description cannot be null");
-        this.children = unmodifiableList(new ArrayList<>(requireNonNull(children, "Rule.children cannot be null")));
+        this.children = List.copyOf(requireNonNull(children, "Rule.children cannot be null"));
         this.id = requireNonNull(id, "Rule.id cannot be null");
     }
 
@@ -49,7 +50,7 @@ public final class Rule {
     /**
      * All the tags placed above the `Rule` keyword
      */
-    public java.util.List<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
@@ -65,7 +66,7 @@ public final class Rule {
         return description;
     }
 
-    public java.util.List<RuleChild> getChildren() {
+    public List<RuleChild> getChildren() {
         return children;
     }
 

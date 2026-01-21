@@ -5,7 +5,7 @@ module Generator
   # Automatic Code generation overrides for the Java programming language
   class Java < Base
     def array_type_for(type_name)
-      "java.util.List<#{type_name}>"
+      "List<#{type_name}>"
     end
 
     def format_description(raw_description, indent_string: '')
@@ -23,12 +23,20 @@ module Generator
 
     private
 
-    def language_translations_for_data_types
-      {
-        'integer' => 'Long',
-        'string' => 'String',
-        'boolean' => 'Boolean'
-      }
+    def select_language_translations_for_data_types(type, property)
+      if type == 'integer'
+        if property['maximum'] and property['maximum'] <= 2147483647
+          'Integer'
+        else
+          'Long'
+        end
+      elsif type == 'string'
+        'String'
+      elsif type == 'boolean'
+        'Boolean'
+      else 
+        nil
+      end
     end
   end
 end

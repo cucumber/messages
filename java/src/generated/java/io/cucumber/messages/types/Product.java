@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -13,14 +14,14 @@ import static java.util.Objects.requireNonNull;
  * Used to describe various properties of Meta
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Product {
     private final String name;
-    private final String version;
+    private final @Nullable String version;
 
     public Product(
         String name,
-        String version
+        @Nullable String version
     ) {
         this.name = requireNonNull(name, "Product.name cannot be null");
         this.version = version;

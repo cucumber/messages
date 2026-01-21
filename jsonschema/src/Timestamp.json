@@ -13,7 +13,9 @@
     },
     "nanos": {
       "description": "Non-negative fractions of a second at nanosecond resolution. Negative\nsecond values with fractions must still have non-negative nanos values\nthat count forward in time. Must be from 0 to 999,999,999\ninclusive.",
-      "type": "integer"
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 999999999
     }
   },
   "type": "object"

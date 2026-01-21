@@ -2,6 +2,8 @@ package io.cucumber.messages;
 
 import io.cucumber.messages.types.Envelope;
 
+import org.jspecify.annotations.Nullable;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +49,7 @@ public final class NdjsonToMessageReader implements AutoCloseable {
         this.deserializer = deserializer;
     }
 
-    public Envelope readLine() throws IOException {
+    public @Nullable Envelope readLine() throws IOException {
         String json = reader.readLine();
         if (json == null) {
             return null;
@@ -61,7 +63,7 @@ public final class NdjsonToMessageReader implements AutoCloseable {
 
     public Stream<Envelope> lines() {
         Iterator<Envelope> iterator = new Iterator<Envelope>() {
-            private Envelope next;
+            private @Nullable Envelope next;
 
             @Override
             public boolean hasNext() {
@@ -77,7 +79,7 @@ public final class NdjsonToMessageReader implements AutoCloseable {
             }
 
             @Override
-            public Envelope next() {
+            public @Nullable Envelope next() {
                 if (next != null || hasNext()) {
                     Envelope envelope = next;
                     next = null;

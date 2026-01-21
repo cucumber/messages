@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -14,14 +15,14 @@ import static java.util.Objects.requireNonNull;
  * of message is used.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Duration {
     private final Long seconds;
-    private final Long nanos;
+    private final Integer nanos;
 
     public Duration(
         Long seconds,
-        Long nanos
+        Integer nanos
     ) {
         this.seconds = requireNonNull(seconds, "Duration.seconds cannot be null");
         this.nanos = requireNonNull(nanos, "Duration.nanos cannot be null");
@@ -37,7 +38,7 @@ public final class Duration {
      * that count forward in time. Must be from 0 to 999,999,999
      * inclusive.
      */
-    public Long getNanos() {
+    public Integer getNanos() {
         return nanos;
     }
 

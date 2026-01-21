@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -13,23 +14,23 @@ import static java.util.Objects.requireNonNull;
  * An executable step
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleStep {
-    private final PickleStepArgument argument;
-    private final java.util.List<String> astNodeIds;
+    private final @Nullable PickleStepArgument argument;
+    private final List<String> astNodeIds;
     private final String id;
-    private final PickleStepType type;
+    private final @Nullable PickleStepType type;
     private final String text;
 
     public PickleStep(
-        PickleStepArgument argument,
-        java.util.List<String> astNodeIds,
+        @Nullable PickleStepArgument argument,
+        List<String> astNodeIds,
         String id,
-        PickleStepType type,
+        @Nullable PickleStepType type,
         String text
     ) {
         this.argument = argument;
-        this.astNodeIds = unmodifiableList(new ArrayList<>(requireNonNull(astNodeIds, "PickleStep.astNodeIds cannot be null")));
+        this.astNodeIds = List.copyOf(requireNonNull(astNodeIds, "PickleStep.astNodeIds cannot be null"));
         this.id = requireNonNull(id, "PickleStep.id cannot be null");
         this.type = type;
         this.text = requireNonNull(text, "PickleStep.text cannot be null");
@@ -43,7 +44,7 @@ public final class PickleStep {
      * References the IDs of the source of the step. For Gherkin, this can be
      * the ID of a Step, and possibly also the ID of a TableRow
      */
-    public java.util.List<String> getAstNodeIds() {
+    public List<String> getAstNodeIds() {
         return astNodeIds;
     }
 

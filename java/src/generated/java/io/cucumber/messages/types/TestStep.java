@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -17,26 +18,26 @@ import static java.util.Objects.requireNonNull;
  * * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestStep {
-    private final String hookId;
+    private final @Nullable String hookId;
     private final String id;
-    private final String pickleStepId;
-    private final java.util.List<String> stepDefinitionIds;
-    private final java.util.List<StepMatchArgumentsList> stepMatchArgumentsLists;
+    private final @Nullable String pickleStepId;
+    private final @Nullable List<String> stepDefinitionIds;
+    private final @Nullable List<StepMatchArgumentsList> stepMatchArgumentsLists;
 
     public TestStep(
-        String hookId,
+        @Nullable String hookId,
         String id,
-        String pickleStepId,
-        java.util.List<String> stepDefinitionIds,
-        java.util.List<StepMatchArgumentsList> stepMatchArgumentsLists
+        @Nullable String pickleStepId,
+        @Nullable List<String> stepDefinitionIds,
+        @Nullable List<StepMatchArgumentsList> stepMatchArgumentsLists
     ) {
         this.hookId = hookId;
         this.id = requireNonNull(id, "TestStep.id cannot be null");
         this.pickleStepId = pickleStepId;
-        this.stepDefinitionIds = stepDefinitionIds == null ? null : unmodifiableList(new ArrayList<>(stepDefinitionIds));
-        this.stepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : unmodifiableList(new ArrayList<>(stepMatchArgumentsLists));
+        this.stepDefinitionIds = stepDefinitionIds == null ? null : List.copyOf(stepDefinitionIds);
+        this.stepMatchArgumentsLists = stepMatchArgumentsLists == null ? null : List.copyOf(stepMatchArgumentsLists);
     }
 
     /**
@@ -62,7 +63,7 @@ public final class TestStep {
      * <p>
      * Each element represents a matching step definition.
      */
-    public Optional<java.util.List<String>> getStepDefinitionIds() {
+    public Optional<List<String>> getStepDefinitionIds() {
         return Optional.ofNullable(stepDefinitionIds);
     }
 
@@ -71,7 +72,7 @@ public final class TestStep {
      * <p>
      * Each element represents the arguments for a matching step definition.
      */
-    public Optional<java.util.List<StepMatchArgumentsList>> getStepMatchArgumentsLists() {
+    public Optional<List<StepMatchArgumentsList>> getStepMatchArgumentsLists() {
         return Optional.ofNullable(stepMatchArgumentsLists);
     }
 

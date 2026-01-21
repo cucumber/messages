@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -23,32 +24,32 @@ import static java.util.Objects.requireNonNull;
  * is captured in `TestResult`.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Attachment {
     private final String body;
     private final AttachmentContentEncoding contentEncoding;
-    private final String fileName;
+    private final @Nullable String fileName;
     private final String mediaType;
-    private final Source source;
-    private final String testCaseStartedId;
-    private final String testStepId;
-    private final String url;
-    private final String testRunStartedId;
-    private final String testRunHookStartedId;
-    private final Timestamp timestamp;
+    private final @Nullable Source source;
+    private final @Nullable String testCaseStartedId;
+    private final @Nullable String testStepId;
+    private final @Nullable String url;
+    private final @Nullable String testRunStartedId;
+    private final @Nullable String testRunHookStartedId;
+    private final @Nullable Timestamp timestamp;
 
     public Attachment(
         String body,
         AttachmentContentEncoding contentEncoding,
-        String fileName,
+        @Nullable String fileName,
         String mediaType,
-        Source source,
-        String testCaseStartedId,
-        String testStepId,
-        String url,
-        String testRunStartedId,
-        String testRunHookStartedId,
-        Timestamp timestamp
+        @Nullable Source source,
+        @Nullable String testCaseStartedId,
+        @Nullable String testStepId,
+        @Nullable String url,
+        @Nullable String testRunStartedId,
+        @Nullable String testRunHookStartedId,
+        @Nullable Timestamp timestamp
     ) {
         this.body = requireNonNull(body, "Attachment.body cannot be null");
         this.contentEncoding = requireNonNull(contentEncoding, "Attachment.contentEncoding cannot be null");

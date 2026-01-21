@@ -13,9 +13,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Writes messages read to a stream.
+ * Writes messages to a stream.
  *
- * <p>The stream will contain a a sequence of json objects separated
+ * <p>The stream will contain a sequence of json objects separated
  * by a {@code \n} character. The objects written are the serialized
  * representation of {@link Envelope Envelopes}.
  */

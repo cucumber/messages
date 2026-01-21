@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -13,11 +14,11 @@ import static java.util.Objects.requireNonNull;
  * A child node of a `Feature` node
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class FeatureChild {
-    private final Rule rule;
-    private final Background background;
-    private final Scenario scenario;
+    private final @Nullable Rule rule;
+    private final @Nullable Background background;
+    private final @Nullable Scenario scenario;
 
     public static FeatureChild of(Rule rule) {
         return new FeatureChild(
@@ -44,9 +45,9 @@ public final class FeatureChild {
     }
 
     public FeatureChild(
-        Rule rule,
-        Background background,
-        Scenario scenario
+        @Nullable Rule rule,
+        @Nullable Background background,
+        @Nullable Scenario scenario
     ) {
         this.rule = rule;
         this.background = background;

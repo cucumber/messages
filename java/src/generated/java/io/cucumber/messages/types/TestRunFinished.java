@@ -1,30 +1,31 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the TestRunFinished message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestRunFinished {
-    private final String message;
+    private final @Nullable String message;
     private final Boolean success;
     private final Timestamp timestamp;
-    private final Exception exception;
-    private final String testRunStartedId;
+    private final @Nullable Exception exception;
+    private final @Nullable String testRunStartedId;
 
     public TestRunFinished(
-        String message,
+        @Nullable String message,
         Boolean success,
         Timestamp timestamp,
-        Exception exception,
-        String testRunStartedId
+        @Nullable Exception exception,
+        @Nullable String testRunStartedId
     ) {
         this.message = message;
         this.success = requireNonNull(success, "TestRunFinished.success cannot be null");

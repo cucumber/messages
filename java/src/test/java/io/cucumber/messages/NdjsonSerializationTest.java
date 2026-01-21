@@ -27,8 +27,8 @@ class NdjsonSerializationTest {
         return new MessageToNdjsonWriter(output, Jackson.OBJECT_MAPPER::writeValue);
     }
 
-    static NdjsonToMessageReader createMessageIterable(InputStream input) {
-        return new NdjsonToMessageReader(input, (json) -> Jackson.OBJECT_MAPPER.readValue(json, Envelope.class));
+    static NdjsonToMessageReader createMessageReader(InputStream input) {
+        return new NdjsonToMessageReader(input, json -> Jackson.OBJECT_MAPPER.readValue(json, Envelope.class));
     }
 
     @Test
@@ -78,7 +78,7 @@ class NdjsonSerializationTest {
     @Test
     void ignores_missing_fields() {
         InputStream input = new ByteArrayInputStream("{\"unused\": 99}\n".getBytes(UTF_8));
-        Iterator<Envelope> iterator = createMessageIterable(input).lines().iterator();
+        Iterator<Envelope> iterator = createMessageReader(input).lines().iterator();
         assertTrue(iterator.hasNext());
         Envelope envelope = iterator.next();
         assertEquals(new Envelope(
@@ -112,7 +112,7 @@ class NdjsonSerializationTest {
         InputStream input = new ByteArrayInputStream(
                 "{\"attachment\":{\"contentEncoding\":\"BASE64\", \"body\":\"the-body\", \"mediaType\":\"text/plain\"}}\n".getBytes(
                         UTF_8));
-        Iterator<Envelope> iterator = createMessageIterable(input).lines().iterator();
+        Iterator<Envelope> iterator = createMessageReader(input).lines().iterator();
         assertTrue(iterator.hasNext());
         Envelope envelope = iterator.next();
         assertEquals(AttachmentContentEncoding.BASE64, envelope.getAttachment().get().getContentEncoding());
@@ -122,8 +122,10 @@ class NdjsonSerializationTest {
     @Test
     void complains_about_null_ndjson() {
         InputStream input = new ByteArrayInputStream("null\n".getBytes(UTF_8));
-        NdjsonToMessageReader incomingMessages = createMessageIterable(input);
-        IOException exception = assertThrows(IOException.class, incomingMessages::readLine);
+        NdjsonToMessageReader incomingMessages = createMessageReader(input);
+        IOException exception = assertThrows(IOException.class, () -> {
+            incomingMessages.readLine();
+        });
         Assertions.assertThat(exception).hasMessage("inputStream may not contain 'null' values");
     }
 }

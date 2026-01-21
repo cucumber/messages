@@ -1,7 +1,6 @@
 package io.cucumber.messages;
 
 import io.cucumber.messages.types.Envelope;
-import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -19,9 +18,9 @@ import static java.nio.file.Files.newInputStream;
 import static java.nio.file.Files.newOutputStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AcceptanceTest {
+final class AcceptanceTest {
 
-    private static final NdjsonToMessageReader.Deserializer deserializer = (json) -> Jackson.OBJECT_MAPPER.readValue(json, Envelope.class);
+    private static final NdjsonToMessageReader.Deserializer deserializer = json -> Jackson.OBJECT_MAPPER.readValue(json, Envelope.class);
     private static final MessageToNdjsonWriter.Serializer serializer = Jackson.OBJECT_MAPPER::writeValue;
 
     static List<TestCase> acceptance() throws IOException {

@@ -5,10 +5,14 @@
   "description": "Points to a line and a column in a text file",
   "properties": {
     "line": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
     },
     "column": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
     }
   },
   "required": [

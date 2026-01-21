@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -13,18 +14,18 @@ import static java.util.Objects.requireNonNull;
  * CI environment
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Ci {
     private final String name;
-    private final String url;
-    private final String buildNumber;
-    private final Git git;
+    private final @Nullable String url;
+    private final @Nullable String buildNumber;
+    private final @Nullable Git git;
 
     public Ci(
         String name,
-        String url,
-        String buildNumber,
-        Git git
+        @Nullable String url,
+        @Nullable String buildNumber,
+        @Nullable Git git
     ) {
         this.name = requireNonNull(name, "Ci.name cannot be null");
         this.url = url;

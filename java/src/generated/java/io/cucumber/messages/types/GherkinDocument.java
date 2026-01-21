@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -18,20 +19,20 @@ import static java.util.Objects.requireNonNull;
  * "rich" output, resembling the original Gherkin document.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class GherkinDocument {
-    private final String uri;
-    private final Feature feature;
-    private final java.util.List<Comment> comments;
+    private final @Nullable String uri;
+    private final @Nullable Feature feature;
+    private final List<Comment> comments;
 
     public GherkinDocument(
-        String uri,
-        Feature feature,
-        java.util.List<Comment> comments
+        @Nullable String uri,
+        @Nullable Feature feature,
+        List<Comment> comments
     ) {
         this.uri = uri;
         this.feature = feature;
-        this.comments = unmodifiableList(new ArrayList<>(requireNonNull(comments, "GherkinDocument.comments cannot be null")));
+        this.comments = List.copyOf(requireNonNull(comments, "GherkinDocument.comments cannot be null"));
     }
 
     /**
@@ -49,7 +50,7 @@ public final class GherkinDocument {
     /**
      * All the comments in the Gherkin document
      */
-    public java.util.List<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 

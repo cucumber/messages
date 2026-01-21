@@ -1,10 +1,11 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -19,22 +20,22 @@ import static java.util.Objects.requireNonNull;
  * A formatter or other consumer of messages may replace an Attachment with an ExternalAttachment if it makes sense to do so.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class ExternalAttachment {
     private final String url;
     private final String mediaType;
-    private final String testStepId;
-    private final String testCaseStartedId;
-    private final String testRunHookStartedId;
-    private final Timestamp timestamp;
+    private final @Nullable String testStepId;
+    private final @Nullable String testCaseStartedId;
+    private final @Nullable String testRunHookStartedId;
+    private final @Nullable Timestamp timestamp;
 
     public ExternalAttachment(
         String url,
         String mediaType,
-        String testStepId,
-        String testCaseStartedId,
-        String testRunHookStartedId,
-        Timestamp timestamp
+        @Nullable String testStepId,
+        @Nullable String testCaseStartedId,
+        @Nullable String testRunHookStartedId,
+        @Nullable Timestamp timestamp
     ) {
         this.url = requireNonNull(url, "ExternalAttachment.url cannot be null");
         this.mediaType = requireNonNull(mediaType, "ExternalAttachment.mediaType cannot be null");
