@@ -1597,9 +1597,10 @@ Identifier for the test run that this test case belongs to
 #### Group.children 
 
 * Type: [Group](#group)[] 
-* Required: yes 
+* Required: no 
 
-
+The nested capture groups of an argument.
+Absent if the group has no nested capture groups.
 
 #### Group.start 
 

@@ -592,7 +592,12 @@ class TestCase:
 
 @dataclass
 class Group:
-    children: list[Group]
+    children: Optional[list[Group]] = None
+    """
+    The nested capture groups of an argument.
+    Absent if the group has no nested capture groups.
+    """
+
     start: Optional[int] = None
     value: Optional[str] = None
 

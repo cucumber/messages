@@ -601,7 +601,7 @@ export class TestCase {
 export class Group {
 
   @Type(() => Group)
-  children: readonly Group[] = []
+  children?: readonly Group[]
 
   start?: number
 
