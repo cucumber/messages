@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Deprecate `Attachment.url` and `Attachment.source` ([#372](https://github.com/cucumber/messages/pull/372))
 - Make StepMatchArgument.Group.children optional ([#370](https://github.com/cucumber/messages/pull/370))
+- [Java] Set release version to 17 ([#352](https://github.com/cucumber/messages/pull/352))
+- [Java] Copy lists efficiently ([#282](https://github.com/cucumber/messages/issues/282), [#352](https://github.com/cucumber/messages/pull/352))
+- [Java] Use Integers in addition to Longs ([#310](https://github.com/cucumber/messages/issues/310), [#352](https://github.com/cucumber/messages/pull/352))
 
 ## [31.2.0] - 2026-01-11
 ### Added
