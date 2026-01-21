@@ -40,6 +40,9 @@ export class Envelope {
   @Type(() => Attachment)
   attachment?: Attachment
 
+  @Type(() => ExternalAttachment)
+  externalAttachment?: ExternalAttachment
+
   @Type(() => GherkinDocument)
   gherkinDocument?: GherkinDocument
 
@@ -105,6 +108,22 @@ export class Exception {
   message?: string
 
   stackTrace?: string
+}
+
+export class ExternalAttachment {
+
+  url: string = ''
+
+  mediaType: string = ''
+
+  testStepId?: string
+
+  testCaseStartedId?: string
+
+  testRunHookStartedId?: string
+
+  @Type(() => Timestamp)
+  timestamp?: Timestamp
 }
 
 export class GherkinDocument {
@@ -582,7 +601,7 @@ export class TestCase {
 export class Group {
 
   @Type(() => Group)
-  children: readonly Group[] = []
+  children?: readonly Group[]
 
   start?: number
 

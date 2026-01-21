@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 
 #include <cucumber/messages/attachment.hpp>
+#include <cucumber/messages/external_attachment.hpp>
 #include <cucumber/messages/gherkin_document.hpp>
 #include <cucumber/messages/hook.hpp>
 #include <cucumber/messages/meta.hpp>
@@ -40,6 +41,7 @@ using json = nlohmann::json;
 struct envelope
 {
     std::optional<cucumber::messages::attachment> attachment;
+    std::optional<cucumber::messages::external_attachment> external_attachment;
     std::optional<cucumber::messages::gherkin_document> gherkin_document;
     std::optional<cucumber::messages::hook> hook;
     std::optional<cucumber::messages::meta> meta;

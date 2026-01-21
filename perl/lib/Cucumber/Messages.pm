@@ -216,6 +216,8 @@ each Attachment message:
 This will result in a smaller message stream, which can improve performance and
 reduce bandwidth of message consumers. It also makes it easier to process and download attachments
 separately from reports.
+
+Deprecated; use ExternalAttachment instead.
 =cut
 
 has url =>
@@ -340,6 +342,7 @@ use Scalar::Util qw( blessed );
 
 my %types = (
    attachment => 'Cucumber::Messages::Attachment',
+   external_attachment => 'Cucumber::Messages::ExternalAttachment',
    gherkin_document => 'Cucumber::Messages::GherkinDocument',
    hook => 'Cucumber::Messages::Hook',
    meta => 'Cucumber::Messages::Meta',
@@ -375,6 +378,16 @@ sub _types {
 =cut
 
 has attachment =>
+    (is => 'ro',
+    );
+
+
+=head4 external_attachment
+
+
+=cut
+
+has external_attachment =>
     (is => 'ro',
     );
 
@@ -633,6 +646,119 @@ The stringified stack trace of the exception that caused this result
 =cut
 
 has stack_trace =>
+    (is => 'ro',
+    );
+
+
+}
+
+package Cucumber::Messages::ExternalAttachment {
+
+=head2 Cucumber::Messages::ExternalAttachment
+
+=head3 DESCRIPTION
+
+Represents the ExternalAttachment message in Cucumber's
+L<message protocol|https://github.com/cucumber/messages>.
+
+Represents an attachment that is stored externally rather than embedded in the message stream.
+
+This message type is used for large attachments (e.g., video files) that are already
+on the filesystem and should not be loaded into memory. Instead of embedding the content,
+only a URL reference is stored.
+
+A formatter or other consumer of messages may replace an Attachment with an ExternalAttachment if it makes sense to do so.
+
+=head3 ATTRIBUTES
+
+=cut
+
+use Moo;
+extends 'Cucumber::Messages::Message';
+
+use Scalar::Util qw( blessed );
+
+my %types = (
+   url => 'string',
+   media_type => 'string',
+   test_step_id => 'string',
+   test_case_started_id => 'string',
+   test_run_hook_started_id => 'string',
+   timestamp => 'Cucumber::Messages::Timestamp',
+);
+
+# This is a work-around for the fact that Moo doesn't have introspection
+# and Perl doesn't have boolean values...
+sub _types {
+    return \%types;
+}
+
+
+
+=head4 url
+
+A URL where the attachment can be retrieved. This could be a file:// URL for
+local filesystem paths, or an http(s):// URL for remote resources.
+=cut
+
+has url =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 media_type
+
+The media type of the data. This can be any valid
+[IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
+as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
+and `text/x.cucumber.stacktrace+plain`
+=cut
+
+has media_type =>
+    (is => 'ro',
+     required => 1,
+     default => sub { '' },
+    );
+
+
+=head4 test_step_id
+
+The identifier of the test step if the attachment was created during the execution of a test step
+=cut
+
+has test_step_id =>
+    (is => 'ro',
+    );
+
+
+=head4 test_case_started_id
+
+The identifier of the test case attempt if the attachment was created during the execution of a test step
+=cut
+
+has test_case_started_id =>
+    (is => 'ro',
+    );
+
+
+=head4 test_run_hook_started_id
+
+The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
+=cut
+
+has test_run_hook_started_id =>
+    (is => 'ro',
+    );
+
+
+=head4 timestamp
+
+When the attachment was created
+=cut
+
+has timestamp =>
     (is => 'ro',
     );
 
@@ -3977,13 +4103,12 @@ sub _types {
 
 =head4 children
 
-
+The nested capture groups of an argument.
+Absent if the group has no nested capture groups.
 =cut
 
 has children =>
     (is => 'ro',
-     required => 1,
-     default => sub { [] },
     );
 
 

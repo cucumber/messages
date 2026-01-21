@@ -2,6 +2,7 @@
 #include <cucumber/messages/duration.hpp>
 #include <cucumber/messages/envelope.hpp>
 #include <cucumber/messages/exception.hpp>
+#include <cucumber/messages/external_attachment.hpp>
 #include <cucumber/messages/gherkin_document.hpp>
 #include <cucumber/messages/background.hpp>
 #include <cucumber/messages/comment.hpp>

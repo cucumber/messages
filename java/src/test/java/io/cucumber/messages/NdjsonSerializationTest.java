@@ -68,6 +68,7 @@ class NdjsonSerializationTest {
                 null,
                 null,
                 null,
+                null,
                 null
         ));
         writer.flush();
@@ -81,6 +82,7 @@ class NdjsonSerializationTest {
         assertTrue(iterator.hasNext());
         Envelope envelope = iterator.next();
         assertEquals(new Envelope(
+                null,
                 null,
                 null,
                 null,

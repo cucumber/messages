@@ -19,6 +19,9 @@ Attachment }|..o| TestCaseStarted: testCaseStartedId
 Attachment }|..o| TestStep: testStepId
 Attachment }|..o| TestRunStarted: testRunStartedId
 Attachment }|..o| TestRunHookStarted: testRunHookStartedId
+ExternalAttachment }|..o| TestStep: testStepId
+ExternalAttachment }|..o| TestCaseStarted: testCaseStartedId
+ExternalAttachment }|..o| TestRunHookStarted: testRunHookStartedId
 Pickle }|..|{ AstNode: astNodeIds
 PickleStep }|..|{ AstNode: astNodeIds
 PickleTag }|..|| AstNode: astNodeId
@@ -53,6 +56,7 @@ config:
 erDiagram
 Attachment ||..o| Source: "has a"
 Attachment ||..o| Timestamp: "has a"
+ExternalAttachment ||..o| Timestamp: "has a"
 GherkinDocument ||..o| Feature: "has a"
 GherkinDocument ||..|{ Comment: "has"
 Background ||..|| Location: "has a"
@@ -111,7 +115,7 @@ StepDefinition ||..|| StepDefinitionPattern: "has a"
 StepDefinition ||..|| SourceReference: "has a"
 Suggestion ||..|{ Snippet: "has"
 TestCase ||..|{ TestStep: "has"
-Group ||..|{ Group: "has"
+Group ||..o{ Group: "has"
 StepMatchArgument ||..|| Group: "has a"
 StepMatchArgumentsList ||..|{ StepMatchArgument: "has"
 TestStep ||..o{ StepMatchArgumentsList: "has"

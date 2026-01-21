@@ -15,6 +15,7 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class Envelope {
     private final @Nullable Attachment attachment;
+    private final @Nullable ExternalAttachment externalAttachment;
     private final @Nullable GherkinDocument gherkinDocument;
     private final @Nullable Hook hook;
     private final @Nullable Meta meta;
@@ -56,12 +57,40 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null
+        );
+    }
+
+    public static Envelope of(ExternalAttachment externalAttachment) {
+        return new Envelope(
+            null,
+            requireNonNull(externalAttachment, "Envelope.externalAttachment cannot be null"),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null
         );
     }
 
     public static Envelope of(GherkinDocument gherkinDocument) {
         return new Envelope(
+            null,
             null,
             requireNonNull(gherkinDocument, "Envelope.gherkinDocument cannot be null"),
             null,
@@ -87,6 +116,7 @@ public final class Envelope {
 
     public static Envelope of(Hook hook) {
         return new Envelope(
+            null,
             null,
             null,
             requireNonNull(hook, "Envelope.hook cannot be null"),
@@ -115,6 +145,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(meta, "Envelope.meta cannot be null"),
             null,
             null,
@@ -137,6 +168,7 @@ public final class Envelope {
 
     public static Envelope of(ParameterType parameterType) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -167,6 +199,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(parseError, "Envelope.parseError cannot be null"),
             null,
             null,
@@ -187,6 +220,7 @@ public final class Envelope {
 
     public static Envelope of(Pickle pickle) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -219,6 +253,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(suggestion, "Envelope.suggestion cannot be null"),
             null,
             null,
@@ -237,6 +272,7 @@ public final class Envelope {
 
     public static Envelope of(Source source) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -271,6 +307,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(stepDefinition, "Envelope.stepDefinition cannot be null"),
             null,
             null,
@@ -287,6 +324,7 @@ public final class Envelope {
 
     public static Envelope of(TestCase testCase) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -323,6 +361,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(testCaseFinished, "Envelope.testCaseFinished cannot be null"),
             null,
             null,
@@ -337,6 +376,7 @@ public final class Envelope {
 
     public static Envelope of(TestCaseStarted testCaseStarted) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -375,6 +415,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(testRunFinished, "Envelope.testRunFinished cannot be null"),
             null,
             null,
@@ -387,6 +428,7 @@ public final class Envelope {
 
     public static Envelope of(TestRunStarted testRunStarted) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -427,6 +469,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(testStepFinished, "Envelope.testStepFinished cannot be null"),
             null,
             null,
@@ -437,6 +480,7 @@ public final class Envelope {
 
     public static Envelope of(TestStepStarted testStepStarted) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -479,6 +523,7 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(testRunHookStarted, "Envelope.testRunHookStarted cannot be null"),
             null,
             null
@@ -487,6 +532,7 @@ public final class Envelope {
 
     public static Envelope of(TestRunHookFinished testRunHookFinished) {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -531,12 +577,14 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(undefinedParameterType, "Envelope.undefinedParameterType cannot be null")
         );
     }
 
     public Envelope(
         @Nullable Attachment attachment,
+        @Nullable ExternalAttachment externalAttachment,
         @Nullable GherkinDocument gherkinDocument,
         @Nullable Hook hook,
         @Nullable Meta meta,
@@ -558,6 +606,7 @@ public final class Envelope {
         @Nullable UndefinedParameterType undefinedParameterType
     ) {
         this.attachment = attachment;
+        this.externalAttachment = externalAttachment;
         this.gherkinDocument = gherkinDocument;
         this.hook = hook;
         this.meta = meta;
@@ -581,6 +630,10 @@ public final class Envelope {
 
     public Optional<Attachment> getAttachment() {
         return Optional.ofNullable(attachment);
+    }
+
+    public Optional<ExternalAttachment> getExternalAttachment() {
+        return Optional.ofNullable(externalAttachment);
     }
 
     public Optional<GherkinDocument> getGherkinDocument() {
@@ -666,6 +719,7 @@ public final class Envelope {
         Envelope that = (Envelope) o;
         return 
             Objects.equals(attachment, that.attachment) &&         
+            Objects.equals(externalAttachment, that.externalAttachment) &&         
             Objects.equals(gherkinDocument, that.gherkinDocument) &&         
             Objects.equals(hook, that.hook) &&         
             Objects.equals(meta, that.meta) &&         
@@ -691,6 +745,7 @@ public final class Envelope {
     public int hashCode() {
         return Objects.hash(
             attachment,
+            externalAttachment,
             gherkinDocument,
             hook,
             meta,
@@ -717,6 +772,7 @@ public final class Envelope {
     public String toString() {
         return "Envelope{" +
             "attachment=" + attachment +
+            ", externalAttachment=" + externalAttachment +
             ", gherkinDocument=" + gherkinDocument +
             ", hook=" + hook +
             ", meta=" + meta +

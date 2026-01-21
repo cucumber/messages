@@ -6,11 +6,9 @@
     "Group": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
-      "required": [
-        "children"
-      ],
       "properties": {
         "children": {
+          "description": "The nested capture groups of an argument.\nAbsent if the group has no nested capture groups.",
           "items": {
             "$ref": "#/definitions/Group",
             "$schema": "https://json-schema.org/draft/2020-12/schema"
