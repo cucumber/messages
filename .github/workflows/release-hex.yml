@@ -13,9 +13,9 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - name: Setup Beam
-        uses: erlef/setup-beam@v1
+        uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1
         with:
           otp-version: '27.1'
           elixir-version: '1.17'
@@ -25,7 +25,7 @@ jobs:
         run: make
         working-directory: elixir
       - name: Publish to hex.pm
-        uses: cucumber/action-publish-hex@v1.0.0
+        uses: cucumber/action-publish-hex@ea3883bd0b3d07d9144cbd26274d7e2a0c619780 # v1.0.0
         with:
           hex-api-key: ${{ secrets.HEX_API_KEY }}
           working-directory: 'elixir'
