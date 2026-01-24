@@ -16,12 +16,12 @@
       "description": "The media type of the data. This can be any valid\n[IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)\nas well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`\nand `text/x.cucumber.stacktrace+plain`",
       "type": "string"
     },
-    "testStepId": {
-      "description": "The identifier of the test step if the attachment was created during the execution of a test step",
-      "type": "string"
-    },
     "testCaseStartedId": {
       "description": "The identifier of the test case attempt if the attachment was created during the execution of a test step",
+      "type": "string"
+    },
+    "testStepId": {
+      "description": "The identifier of the test step if the attachment was created during the execution of a test step",
       "type": "string"
     },
     "testRunHookStartedId": {
