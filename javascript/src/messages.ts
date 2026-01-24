@@ -116,9 +116,9 @@ export class ExternalAttachment {
 
   mediaType: string = ''
 
-  testStepId?: string
-
   testCaseStartedId?: string
+
+  testStepId?: string
 
   testRunHookStartedId?: string
 

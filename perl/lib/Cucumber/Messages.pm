@@ -681,8 +681,8 @@ use Scalar::Util qw( blessed );
 my %types = (
    url => 'string',
    media_type => 'string',
-   test_step_id => 'string',
    test_case_started_id => 'string',
+   test_step_id => 'string',
    test_run_hook_started_id => 'string',
    timestamp => 'Cucumber::Messages::Timestamp',
 );
@@ -723,22 +723,22 @@ has media_type =>
     );
 
 
-=head4 test_step_id
-
-The identifier of the test step if the attachment was created during the execution of a test step
-=cut
-
-has test_step_id =>
-    (is => 'ro',
-    );
-
-
 =head4 test_case_started_id
 
 The identifier of the test case attempt if the attachment was created during the execution of a test step
 =cut
 
 has test_case_started_id =>
+    (is => 'ro',
+    );
+
+
+=head4 test_step_id
+
+The identifier of the test step if the attachment was created during the execution of a test step
+=cut
+
+has test_step_id =>
     (is => 'ro',
     );
 

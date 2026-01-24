@@ -12,8 +12,8 @@ external_attachment::to_string() const
 
     cucumber::messages::to_string(oss, "url=", url);
     cucumber::messages::to_string(oss, ", media_type=", media_type);
-    cucumber::messages::to_string(oss, ", test_step_id=", test_step_id);
     cucumber::messages::to_string(oss, ", test_case_started_id=", test_case_started_id);
+    cucumber::messages::to_string(oss, ", test_step_id=", test_step_id);
     cucumber::messages::to_string(oss, ", test_run_hook_started_id=", test_run_hook_started_id);
     cucumber::messages::to_string(oss, ", timestamp=", timestamp);
 
@@ -25,8 +25,8 @@ external_attachment::to_json(json& j) const
 {
     cucumber::messages::to_json(j, camelize("url"), url);
     cucumber::messages::to_json(j, camelize("media_type"), media_type);
-    cucumber::messages::to_json(j, camelize("test_step_id"), test_step_id);
     cucumber::messages::to_json(j, camelize("test_case_started_id"), test_case_started_id);
+    cucumber::messages::to_json(j, camelize("test_step_id"), test_step_id);
     cucumber::messages::to_json(j, camelize("test_run_hook_started_id"), test_run_hook_started_id);
     cucumber::messages::to_json(j, camelize("timestamp"), timestamp);
 }

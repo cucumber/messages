@@ -52,8 +52,8 @@ type Exception struct {
 type ExternalAttachment struct {
 	Url                  string     `json:"url"`
 	MediaType            string     `json:"mediaType"`
-	TestStepId           string     `json:"testStepId,omitempty"`
 	TestCaseStartedId    string     `json:"testCaseStartedId,omitempty"`
+	TestStepId           string     `json:"testStepId,omitempty"`
 	TestRunHookStartedId string     `json:"testRunHookStartedId,omitempty"`
 	Timestamp            *Timestamp `json:"timestamp,omitempty"`
 }
