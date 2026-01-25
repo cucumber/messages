@@ -344,19 +344,19 @@ The media type of the data. This can be any valid
 as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
 and `text/x.cucumber.stacktrace+plain`
 
-#### ExternalAttachment.testStepId 
-
-* Type: string 
-* Required: no 
-
-The identifier of the test step if the attachment was created during the execution of a test step
-
 #### ExternalAttachment.testCaseStartedId 
 
 * Type: string 
 * Required: no 
 
 The identifier of the test case attempt if the attachment was created during the execution of a test step
+
+#### ExternalAttachment.testStepId 
+
+* Type: string 
+* Required: no 
+
+The identifier of the test step if the attachment was created during the execution of a test step
 
 #### ExternalAttachment.testRunHookStartedId 
 

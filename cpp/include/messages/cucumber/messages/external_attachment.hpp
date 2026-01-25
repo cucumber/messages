@@ -30,8 +30,8 @@ struct external_attachment
 {
     std::string url;
     std::string media_type;
-    std::optional<std::string> test_step_id;
     std::optional<std::string> test_case_started_id;
+    std::optional<std::string> test_step_id;
     std::optional<std::string> test_run_hook_started_id;
     std::optional<cucumber::messages::timestamp> timestamp;
 

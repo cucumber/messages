@@ -37,13 +37,13 @@ public sealed class ExternalAttachment
      */
     public string MediaType { get; private set; }
     /**
-     * The identifier of the test step if the attachment was created during the execution of a test step
-     */
-    public string TestStepId { get; private set; }
-    /**
      * The identifier of the test case attempt if the attachment was created during the execution of a test step
      */
     public string TestCaseStartedId { get; private set; }
+    /**
+     * The identifier of the test step if the attachment was created during the execution of a test step
+     */
+    public string TestStepId { get; private set; }
     /**
      * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
      */
@@ -57,8 +57,8 @@ public sealed class ExternalAttachment
     public ExternalAttachment(
         string url,
         string mediaType,
-        string testStepId,
         string testCaseStartedId,
+        string testStepId,
         string testRunHookStartedId,
         Timestamp timestamp
     ) 
@@ -67,8 +67,8 @@ public sealed class ExternalAttachment
         this.Url = url;
         RequireNonNull<string>(mediaType, "MediaType", "ExternalAttachment.MediaType cannot be null");
         this.MediaType = mediaType;
-        this.TestStepId = testStepId;
         this.TestCaseStartedId = testCaseStartedId;
+        this.TestStepId = testStepId;
         this.TestRunHookStartedId = testRunHookStartedId;
         this.Timestamp = timestamp;
     }
@@ -81,8 +81,8 @@ public sealed class ExternalAttachment
         return 
             Url.Equals(that.Url) &&         
             MediaType.Equals(that.MediaType) &&         
-            Object.Equals(TestStepId, that.TestStepId) &&         
             Object.Equals(TestCaseStartedId, that.TestCaseStartedId) &&         
+            Object.Equals(TestStepId, that.TestStepId) &&         
             Object.Equals(TestRunHookStartedId, that.TestRunHookStartedId) &&         
             Object.Equals(Timestamp, that.Timestamp);        
     }
@@ -94,10 +94,10 @@ public sealed class ExternalAttachment
           hash = hash * 31 + Url.GetHashCode();
         if (MediaType != null)
           hash = hash * 31 + MediaType.GetHashCode();
-        if (TestStepId != null)
-          hash = hash * 31 + TestStepId.GetHashCode();
         if (TestCaseStartedId != null)
           hash = hash * 31 + TestCaseStartedId.GetHashCode();
+        if (TestStepId != null)
+          hash = hash * 31 + TestStepId.GetHashCode();
         if (TestRunHookStartedId != null)
           hash = hash * 31 + TestRunHookStartedId.GetHashCode();
         if (Timestamp != null)
@@ -110,8 +110,8 @@ public sealed class ExternalAttachment
         return "ExternalAttachment{" +
             "url=" + Url +
             ", mediaType=" + MediaType +
-            ", testStepId=" + TestStepId +
             ", testCaseStartedId=" + TestCaseStartedId +
+            ", testStepId=" + TestStepId +
             ", testRunHookStartedId=" + TestRunHookStartedId +
             ", timestamp=" + Timestamp +
             '}';

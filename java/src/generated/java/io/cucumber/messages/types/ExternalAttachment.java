@@ -24,23 +24,23 @@ import static java.util.Objects.requireNonNull;
 public final class ExternalAttachment {
     private final String url;
     private final String mediaType;
-    private final @Nullable String testStepId;
     private final @Nullable String testCaseStartedId;
+    private final @Nullable String testStepId;
     private final @Nullable String testRunHookStartedId;
     private final @Nullable Timestamp timestamp;
 
     public ExternalAttachment(
         String url,
         String mediaType,
-        @Nullable String testStepId,
         @Nullable String testCaseStartedId,
+        @Nullable String testStepId,
         @Nullable String testRunHookStartedId,
         @Nullable Timestamp timestamp
     ) {
         this.url = requireNonNull(url, "ExternalAttachment.url cannot be null");
         this.mediaType = requireNonNull(mediaType, "ExternalAttachment.mediaType cannot be null");
-        this.testStepId = testStepId;
         this.testCaseStartedId = testCaseStartedId;
+        this.testStepId = testStepId;
         this.testRunHookStartedId = testRunHookStartedId;
         this.timestamp = timestamp;
     }
@@ -64,17 +64,17 @@ public final class ExternalAttachment {
     }
 
     /**
-     * The identifier of the test step if the attachment was created during the execution of a test step
-     */
-    public Optional<String> getTestStepId() {
-        return Optional.ofNullable(testStepId);
-    }
-
-    /**
      * The identifier of the test case attempt if the attachment was created during the execution of a test step
      */
     public Optional<String> getTestCaseStartedId() {
         return Optional.ofNullable(testCaseStartedId);
+    }
+
+    /**
+     * The identifier of the test step if the attachment was created during the execution of a test step
+     */
+    public Optional<String> getTestStepId() {
+        return Optional.ofNullable(testStepId);
     }
 
     /**
@@ -99,8 +99,8 @@ public final class ExternalAttachment {
         return 
             url.equals(that.url) &&         
             mediaType.equals(that.mediaType) &&         
-            Objects.equals(testStepId, that.testStepId) &&         
             Objects.equals(testCaseStartedId, that.testCaseStartedId) &&         
+            Objects.equals(testStepId, that.testStepId) &&         
             Objects.equals(testRunHookStartedId, that.testRunHookStartedId) &&         
             Objects.equals(timestamp, that.timestamp);        
     }
@@ -110,8 +110,8 @@ public final class ExternalAttachment {
         return Objects.hash(
             url,
             mediaType,
-            testStepId,
             testCaseStartedId,
+            testStepId,
             testRunHookStartedId,
             timestamp
         );
@@ -122,8 +122,8 @@ public final class ExternalAttachment {
         return "ExternalAttachment{" +
             "url=" + url +
             ", mediaType=" + mediaType +
-            ", testStepId=" + testStepId +
             ", testCaseStartedId=" + testCaseStartedId +
+            ", testStepId=" + testStepId +
             ", testRunHookStartedId=" + testRunHookStartedId +
             ", timestamp=" + timestamp +
             '}';

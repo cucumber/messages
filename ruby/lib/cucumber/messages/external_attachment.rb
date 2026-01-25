@@ -31,14 +31,14 @@ module Cucumber
       attr_reader :media_type
 
       ##
-      # The identifier of the test step if the attachment was created during the execution of a test step
-      ##
-      attr_reader :test_step_id
-
-      ##
       # The identifier of the test case attempt if the attachment was created during the execution of a test step
       ##
       attr_reader :test_case_started_id
+
+      ##
+      # The identifier of the test step if the attachment was created during the execution of a test step
+      ##
+      attr_reader :test_step_id
 
       ##
       # The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
@@ -53,15 +53,15 @@ module Cucumber
       def initialize(
         url: '',
         media_type: '',
-        test_step_id: nil,
         test_case_started_id: nil,
+        test_step_id: nil,
         test_run_hook_started_id: nil,
         timestamp: nil
       )
         @url = url
         @media_type = media_type
-        @test_step_id = test_step_id
         @test_case_started_id = test_case_started_id
+        @test_step_id = test_step_id
         @test_run_hook_started_id = test_run_hook_started_id
         @timestamp = timestamp
         super()
@@ -80,8 +80,8 @@ module Cucumber
         new(
           url: hash[:url],
           media_type: hash[:mediaType],
-          test_step_id: hash[:testStepId],
           test_case_started_id: hash[:testCaseStartedId],
+          test_step_id: hash[:testStepId],
           test_run_hook_started_id: hash[:testRunHookStartedId],
           timestamp: Timestamp.from_h(hash[:timestamp])
         )

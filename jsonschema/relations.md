@@ -19,8 +19,8 @@ Attachment }|..o| TestCaseStarted: testCaseStartedId
 Attachment }|..o| TestStep: testStepId
 Attachment }|..o| TestRunStarted: testRunStartedId
 Attachment }|..o| TestRunHookStarted: testRunHookStartedId
-ExternalAttachment }|..o| TestStep: testStepId
 ExternalAttachment }|..o| TestCaseStarted: testCaseStartedId
+ExternalAttachment }|..o| TestStep: testStepId
 ExternalAttachment }|..o| TestRunHookStarted: testRunHookStartedId
 Pickle }|..|{ AstNode: astNodeIds
 PickleStep }|..|{ AstNode: astNodeIds

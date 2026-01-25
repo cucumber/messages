@@ -47,14 +47,14 @@ final class ExternalAttachment implements JsonSerializable
         public readonly string $mediaType = '',
 
         /**
-         * The identifier of the test step if the attachment was created during the execution of a test step
-         */
-        public readonly ?string $testStepId = null,
-
-        /**
          * The identifier of the test case attempt if the attachment was created during the execution of a test step
          */
         public readonly ?string $testCaseStartedId = null,
+
+        /**
+         * The identifier of the test step if the attachment was created during the execution of a test step
+         */
+        public readonly ?string $testStepId = null,
 
         /**
          * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
@@ -77,16 +77,16 @@ final class ExternalAttachment implements JsonSerializable
     {
         self::ensureUrl($arr);
         self::ensureMediaType($arr);
-        self::ensureTestStepId($arr);
         self::ensureTestCaseStartedId($arr);
+        self::ensureTestStepId($arr);
         self::ensureTestRunHookStartedId($arr);
         self::ensureTimestamp($arr);
 
         return new self(
             (string) $arr['url'],
             (string) $arr['mediaType'],
-            isset($arr['testStepId']) ? (string) $arr['testStepId'] : null,
             isset($arr['testCaseStartedId']) ? (string) $arr['testCaseStartedId'] : null,
+            isset($arr['testStepId']) ? (string) $arr['testStepId'] : null,
             isset($arr['testRunHookStartedId']) ? (string) $arr['testRunHookStartedId'] : null,
             isset($arr['timestamp']) ? Timestamp::fromArray($arr['timestamp']) : null,
         );
@@ -119,22 +119,22 @@ final class ExternalAttachment implements JsonSerializable
     }
 
     /**
-     * @psalm-assert array{testStepId?: string|int|bool} $arr
-     */
-    private static function ensureTestStepId(array $arr): void
-    {
-        if (array_key_exists('testStepId', $arr) && is_array($arr['testStepId'])) {
-            throw new SchemaViolationException('Property \'testStepId\' was array');
-        }
-    }
-
-    /**
      * @psalm-assert array{testCaseStartedId?: string|int|bool} $arr
      */
     private static function ensureTestCaseStartedId(array $arr): void
     {
         if (array_key_exists('testCaseStartedId', $arr) && is_array($arr['testCaseStartedId'])) {
             throw new SchemaViolationException('Property \'testCaseStartedId\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{testStepId?: string|int|bool} $arr
+     */
+    private static function ensureTestStepId(array $arr): void
+    {
+        if (array_key_exists('testStepId', $arr) && is_array($arr['testStepId'])) {
+            throw new SchemaViolationException('Property \'testStepId\' was array');
         }
     }
 
