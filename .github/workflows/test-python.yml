@@ -45,7 +45,7 @@ jobs:
         with:
           enable-cache: true
           python-version: ${{ matrix.python-version }}
-          version: "0.9.27"
+          version: "0.9.28"
 
       - name: Linting and testing
         run: |
