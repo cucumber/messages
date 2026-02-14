@@ -4,6 +4,6 @@
   "private": true,
   "description": "Allow to validate the schemas",
   "devDependencies": {
-    "ajv": "8.17.1"
+    "ajv": "8.18.0"
   }
 }
