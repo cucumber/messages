@@ -1,10 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "TestStepStarted.json",
+  "$id": "https://cucumber.io/schema/TestStepFinished.schema.json",
   "additionalProperties": false,
   "required": [
     "testCaseStartedId",
     "testStepId",
+    "testStepResult",
     "timestamp"
   ],
   "properties": {
@@ -14,8 +15,11 @@
     "testStepId": {
       "type": "string"
     },
+    "testStepResult": {
+      "$ref": "./TestStepResult.schema.json"
+    },
     "timestamp": {
-      "$ref": "./Timestamp.json"
+      "$ref": "./Timestamp.schema.json"
     }
   },
   "type": "object"

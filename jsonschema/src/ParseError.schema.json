@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "ParseError.json",
+  "$id": "https://cucumber.io/schema/ParseError.schema.json",
   "additionalProperties": false,
   "required": [
     "source",
@@ -8,7 +8,7 @@
   ],
   "properties": {
     "source": {
-      "$ref": "./SourceReference.json"
+      "$ref": "./SourceReference.schema.json"
     },
     "message": {
       "type": "string"

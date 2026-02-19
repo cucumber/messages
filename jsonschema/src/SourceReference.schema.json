@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "SourceReference.json",
+  "$id": "https://cucumber.io/schema/SourceReference.schema.json",
   "additionalProperties": false,
   "definitions": {
     "JavaMethod": {
@@ -59,7 +59,7 @@
       "$ref": "#/definitions/JavaStackTraceElement"
     },
     "location": {
-      "$ref": "./Location.json"
+      "$ref": "./Location.schema.json"
     }
   },
   "type": "object"

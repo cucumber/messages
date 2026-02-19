@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "ParameterType.json",
+  "$id": "https://cucumber.io/schema/ParameterType.schema.json",
   "additionalProperties": false,
   "required": [
     "id",
@@ -31,7 +31,7 @@
       "type": "string"
     },
     "sourceReference": {
-      "$ref": "./SourceReference.json"
+      "$ref": "./SourceReference.schema.json"
     }
   },
   "type": "object"

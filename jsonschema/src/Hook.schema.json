@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "Hook.json",
+  "$id": "https://cucumber.io/schema/Hook.schema.json",
   "additionalProperties": false,
   "required": [
     "id",
@@ -14,7 +14,7 @@
       "type": "string"
     },
     "sourceReference": {
-      "$ref": "./SourceReference.json"
+      "$ref": "./SourceReference.schema.json"
     },
     "tagExpression": {
       "type": "string"

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "Meta.json",
+  "$id": "https://cucumber.io/schema/Meta.schema.json",
   "additionalProperties": false,
   "definitions": {
     "Ci": {

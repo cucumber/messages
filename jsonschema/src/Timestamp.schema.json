@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "Timestamp.json",
+  "$id": "https://cucumber.io/schema/Timestamp.schema.json",
   "additionalProperties": false,
   "required": [
     "seconds",

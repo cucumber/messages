@@ -12,7 +12,7 @@ module Generator
 
     include TextHelpers
 
-    def initialize(paths: Dir['../jsonschema/src/*.json'])
+    def initialize(paths: Dir['../jsonschema/src/*.schema.json'])
       @paths = paths
       @schemas = {}
       @enum_set = Set.new
@@ -53,7 +53,7 @@ module Generator
     end
 
     def class_name(ref)
-      File.basename(ref, '.json')
+      File.basename(ref, '.schema.json')
     end
 
     def default_enum(enum_type_name, property)

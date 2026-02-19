@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "GherkinDocument.json",
+  "$id": "https://cucumber.io/schema/GherkinDocument.schema.json",
   "additionalProperties": false,
   "definitions": {
     "Background": {
@@ -16,7 +16,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the `Background` keyword"
         },
         "keyword": {
@@ -51,7 +51,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the comment"
         },
         "text": {
@@ -69,7 +69,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json"
+          "$ref": "./Location.schema.json"
         },
         "rows": {
           "items": {
@@ -89,7 +89,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json"
+          "$ref": "./Location.schema.json"
         },
         "mediaType": {
           "type": "string"
@@ -116,7 +116,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the `Examples` keyword"
         },
         "tags": {
@@ -164,7 +164,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the `Feature` keyword"
         },
         "tags": {
@@ -231,7 +231,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the `Rule` keyword"
         },
         "tags": {
@@ -292,7 +292,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the `Scenario` keyword"
         },
         "tags": {
@@ -343,7 +343,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the steps' `keyword`"
         },
         "keyword": {
@@ -387,7 +387,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the cell"
         },
         "value": {
@@ -408,7 +408,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "The location of the first cell in the row"
         },
         "cells": {
@@ -436,7 +436,7 @@
       ],
       "properties": {
         "location": {
-          "$ref": "./Location.json",
+          "$ref": "./Location.schema.json",
           "description": "Location of the tag"
         },
         "name": {
