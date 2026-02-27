@@ -8,7 +8,7 @@
         <version>5.2.0</version>
     </parent>
     <artifactId>messages</artifactId>
-    <version>32.1.0</version>
+    <version>32.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Cucumber Messages</name>
     <description>JSON schema-based messages for Cucumber's inter-process communication</description>
@@ -16,14 +16,14 @@
 
     <properties>
         <osgi.bundle-symbolic-name>io.cucumber.messages</osgi.bundle-symbolic-name>
-        <project.build.outputTimestamp>1772190976</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1772190985</project.build.outputTimestamp>
     </properties>
 
     <scm>
         <connection>scm:git:git://github.com/cucumber/messages.git</connection>
         <developerConnection>scm:git:git@github.com:cucumber/messages.git</developerConnection>
         <url>git://github.com/cucumber/messages.git</url>
-        <tag>v32.1.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencyManagement>
