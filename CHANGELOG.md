@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ## [32.1.0] - 2026-02-27
+### Added
 - Generated bundled JSON schema ([#382](https://github.com/cucumber/messages/pull/382))
 
 ## [32.0.1] - 2026-01-25
