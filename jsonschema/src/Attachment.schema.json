@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "Attachment.json",
+  "$id": "https://cucumber.io/schema/Attachment.schema.json",
   "additionalProperties": false,
   "description": "Attachments (parse errors, execution errors, screenshots, links...)\n\nAn attachment represents any kind of data associated with a line in a\n[Source](#io.cucumber.messages.Source) file. It can be used for:\n\n* Syntax errors during parse time\n* Screenshots captured and attached during execution\n* Logs captured and attached during execution\n\nIt is not to be used for runtime errors raised/thrown during execution. This\nis captured in `TestResult`.",
   "required": [
@@ -30,7 +30,7 @@
       "type": "string"
     },
     "source": {
-      "$ref": "./Source.json",
+      "$ref": "./Source.schema.json",
       "deprecated": true
     },
     "testCaseStartedId": {
@@ -57,7 +57,7 @@
     },
     "timestamp": {
       "description": "When the attachment was created",
-      "$ref": "./Timestamp.json"
+      "$ref": "./Timestamp.schema.json"
     }
   },
   "type": "object"

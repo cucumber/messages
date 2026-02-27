@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "Location.json",
+  "$id": "https://cucumber.io/schema/Location.schema.json",
   "additionalProperties": false,
   "description": "Points to a line and a column in a text file",
   "properties": {

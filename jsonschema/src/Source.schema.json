@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "Source.json",
+  "$id": "https://cucumber.io/schema/Source.schema.json",
   "additionalProperties": false,
   "description": "A source file, typically a Gherkin document or Java/Ruby/JavaScript source code",
   "required": [

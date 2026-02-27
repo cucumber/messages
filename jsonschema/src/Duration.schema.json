@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "Duration.json",
+  "$id": "https://cucumber.io/schema/Duration.schema.json",
   "additionalProperties": false,
   "description": "The structure is pretty close of the Timestamp one. For clarity, a second type\nof message is used.",
   "required": [

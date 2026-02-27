@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "Pickle.json",
+  "$id": "https://cucumber.io/schema/Pickle.schema.json",
   "additionalProperties": false,
   "definitions": {
     "PickleDocString": {
@@ -158,7 +158,7 @@
     },
     "location": {
       "description": "The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.",
-      "$ref": "./Location.json"
+      "$ref": "./Location.schema.json"
     },
     "name": {
       "description": "The name of the pickle",

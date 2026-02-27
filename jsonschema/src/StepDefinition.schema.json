@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "StepDefinition.json",
+  "$id": "https://cucumber.io/schema/StepDefinition.schema.json",
   "additionalProperties": false,
   "definitions": {
     "StepDefinitionPattern": {
@@ -37,7 +37,7 @@
       "$ref": "#/definitions/StepDefinitionPattern"
     },
     "sourceReference": {
-      "$ref": "./SourceReference.json"
+      "$ref": "./SourceReference.schema.json"
     }
   },
   "type": "object"

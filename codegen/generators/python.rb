@@ -116,8 +116,8 @@ module Generator
     def class_name(ref)
       return ref if language_translations_for_data_types.values.include?(ref)
 
-      # Remove .json extension if present
-      name = ref.sub(/\.json$/, '')
+      # Remove .schema.json extension if present
+      name = ref.sub(/\.schema\.json$/, '')
       # Get the basename without path
       name = File.basename(name)
       # Convert each word to proper case, handling camelCase and snake_case

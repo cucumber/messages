@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "TestRunFinished.json",
+  "$id": "https://cucumber.io/schema/TestRunFinished.schema.json",
   "additionalProperties": false,
   "required": [
     "success",
@@ -16,11 +16,11 @@
       "type": "boolean"
     },
     "timestamp": {
-      "$ref": "./Timestamp.json",
+      "$ref": "./Timestamp.schema.json",
       "description": "Timestamp when the TestRun is finished"
     },
     "exception": {
-      "$ref": "./Exception.json",
+      "$ref": "./Exception.schema.json",
       "description": "Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps."
     },
     "testRunStartedId": {

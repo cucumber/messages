@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "TestCase.json",
+  "$id": "https://cucumber.io/schema/TestCase.schema.json",
   "additionalProperties": false,
   "definitions": {
     "Group": {

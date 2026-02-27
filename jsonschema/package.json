@@ -1,9 +1,8 @@
 {
-  "name": "@cucumber/messages-validation-kit",
+  "name": "jsonschema",
   "version": "0.0.0",
   "private": true,
-  "description": "Allow to validate the schemas",
   "devDependencies": {
-    "ajv": "8.18.0"
+    "@hyperjump/json-schema": "1.17.4"
   }
 }

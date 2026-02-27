@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "TestStepResult.json",
+  "$id": "https://cucumber.io/schema/TestStepResult.schema.json",
   "additionalProperties": false,
   "required": [
     "duration",
@@ -8,7 +8,7 @@
   ],
   "properties": {
     "duration": {
-      "$ref": "./Duration.json"
+      "$ref": "./Duration.schema.json"
     },
     "message": {
       "type": "string",
@@ -27,7 +27,7 @@
       "type": "string"
     },
     "exception": {
-      "$ref": "./Exception.json",
+      "$ref": "./Exception.schema.json",
       "description": "Exception thrown while executing this step, if any."
     }
   },

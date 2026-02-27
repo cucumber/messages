@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "TestRunHookFinished.json",
+  "$id": "https://cucumber.io/schema/TestRunHookFinished.schema.json",
   "additionalProperties": false,
   "required": [
     "testRunHookStartedId",
@@ -13,10 +13,10 @@
       "type": "string"
     },
     "result": {
-      "$ref": "./TestStepResult.json"
+      "$ref": "./TestStepResult.schema.json"
     },
     "timestamp": {
-      "$ref": "./Timestamp.json"
+      "$ref": "./Timestamp.schema.json"
     }
   },
   "type": "object"

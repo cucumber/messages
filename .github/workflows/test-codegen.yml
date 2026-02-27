@@ -35,10 +35,6 @@ jobs:
           node-version: 22
           cache: "npm"
           cache-dependency-path: jsonschema/package-lock.json
-          
-      - name: validate the json schemas
-        run: make validate
-        working-directory: jsonschema
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "ExternalAttachment.json",
+  "$id": "https://cucumber.io/schema/ExternalAttachment.schema.json",
   "additionalProperties": false,
   "description": "Represents an attachment that is stored externally rather than embedded in the message stream.\n\nThis message type is used for large attachments (e.g., video files) that are already\non the filesystem and should not be loaded into memory. Instead of embedding the content,\nonly a URL reference is stored.\n\nA formatter or other consumer of messages may replace an Attachment with an ExternalAttachment if it makes sense to do so.",
   "required": [
@@ -30,7 +30,7 @@
     },
     "timestamp": {
       "description": "When the attachment was created",
-      "$ref": "./Timestamp.json"
+      "$ref": "./Timestamp.schema.json"
     }
   },
   "type": "object"

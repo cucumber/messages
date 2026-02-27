@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "TestRunStarted.json",
+  "$id": "https://cucumber.io/schema/TestRunStarted.schema.json",
   "additionalProperties": false,
   "required": [
     "timestamp"
   ],
   "properties": {
     "timestamp": {
-      "$ref": "./Timestamp.json"
+      "$ref": "./Timestamp.schema.json"
     },
     "id": {
       "type": "string"

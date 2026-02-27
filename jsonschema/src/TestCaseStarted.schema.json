@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "TestCaseStarted.json",
+  "$id": "https://cucumber.io/schema/TestCaseStarted.schema.json",
   "additionalProperties": false,
   "required": [
     "attempt",
@@ -26,7 +26,7 @@
       "type": "string"
     },
     "timestamp": {
-      "$ref": "./Timestamp.json"
+      "$ref": "./Timestamp.schema.json"
     }
   },
   "type": "object"
