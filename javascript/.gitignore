@@ -4,7 +4,6 @@ dist/
 coverage/
 messages.schema.json
 node_modules/
-schema/*.json
 yarn.lock
 *.log
 .deps
