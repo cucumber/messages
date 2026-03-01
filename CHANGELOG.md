@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [32.2.0] - 2026-03-01
 ### Added
 - [JavaScript] Add export path for bundled schema ([#383](https://github.com/cucumber/messages/pull/383))
 
@@ -661,7 +663,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v32.1.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v32.2.0...HEAD
+[32.2.0]: https://github.com/cucumber/messages/compare/v32.1.0...v32.2.0
 [32.1.0]: https://github.com/cucumber/messages/compare/v32.0.1...v32.1.0
 [32.0.1]: https://github.com/cucumber/messages/compare/v32.0.0...v32.0.1
 [32.0.0]: https://github.com/cucumber/messages/compare/v31.2.0...v32.0.0
