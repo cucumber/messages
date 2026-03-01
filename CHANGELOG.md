@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [JavaScript] Add export path for bundled schema ([#383](https://github.com/cucumber/messages/pull/383))
 
 ## [32.1.0] - 2026-02-27
 ### Added
