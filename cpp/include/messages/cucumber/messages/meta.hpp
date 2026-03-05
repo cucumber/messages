@@ -7,9 +7,6 @@
 #include <nlohmann/json.hpp>
 
 #include <cucumber/messages/product.hpp>
-#include <cucumber/messages/product.hpp>
-#include <cucumber/messages/product.hpp>
-#include <cucumber/messages/product.hpp>
 #include <cucumber/messages/ci.hpp>
 
 namespace cucumber::messages {
