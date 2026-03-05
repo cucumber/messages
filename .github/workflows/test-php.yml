@@ -16,7 +16,6 @@ on:
       - php/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-php:

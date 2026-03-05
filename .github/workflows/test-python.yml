@@ -19,7 +19,6 @@ on:
       - python/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   build:

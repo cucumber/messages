@@ -18,8 +18,7 @@ on:
       - codegen/**
       - Makefile
       - .github/**
-  workflow_call:
-    
+
     
 
 jobs:

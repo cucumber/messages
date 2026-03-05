@@ -16,7 +16,6 @@ on:
       - go/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-go:
