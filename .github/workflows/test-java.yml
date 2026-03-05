@@ -16,7 +16,6 @@ on:
       - java/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-java:

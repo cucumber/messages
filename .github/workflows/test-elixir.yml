@@ -16,7 +16,6 @@ on:
       - elixir/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-elixir:

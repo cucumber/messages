@@ -16,7 +16,6 @@ on:
       - ruby/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-ruby:

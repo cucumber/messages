@@ -16,7 +16,6 @@ on:
       - javascript/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-javascript:
