@@ -14,12 +14,20 @@ on:
     branches:
       - main
     paths:
-      - jsonschema/**
-      - codegen/**
       - Makefile
       - .github/**
-
-    
+      - jsonschema/**
+      - codegen/**
+      - cpp/**
+      - dotnet/**
+      - elixir/**
+      - go/**
+      - java/**
+      - javascript/**
+      - perl/**
+      - php/**
+      - python/**
+      - ruby/**
 
 jobs:
   test-codegen:
