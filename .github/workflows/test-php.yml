@@ -26,7 +26,8 @@ jobs:
       matrix:
         php: ['8.1']
         composer-mode: ['low-deps', 'high-deps']
-
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -36,6 +37,8 @@ jobs:
         uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # v2.36.0
         with:
           php-version: "${{ matrix.php }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Discover composer cache directory
         id: composer-cache
