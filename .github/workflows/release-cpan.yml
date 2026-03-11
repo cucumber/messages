@@ -1,5 +1,7 @@
 name: Release Perl
 
+permissions: {}
+
 on:
   push:
     branches: [release/*]

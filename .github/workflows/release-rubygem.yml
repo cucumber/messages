@@ -1,5 +1,7 @@
 name: Release Ruby
 
+permissions: {}
+
 on:
   push:
     branches: [release/*]
