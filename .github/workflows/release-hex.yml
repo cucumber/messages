@@ -1,5 +1,7 @@
 name: Release Elixir
 
+permissions: {}
+
 on:
   push:
     branches: [release/*]

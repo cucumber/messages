@@ -1,5 +1,7 @@
 name: Release Java
 
+permissions: {}
+
 on:
   push:
     branches: [release/*]

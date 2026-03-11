@@ -1,5 +1,7 @@
 name: Release on GitHub
 
+permissions: {}
+
 on:
   push:
     branches: [release/*]
