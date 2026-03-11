@@ -34,7 +34,7 @@ jobs:
           elixir-version: '1.17'
 
       - name: Install Protoc
-        uses: arduino/setup-protoc@v1
+        uses: arduino/setup-protoc@149f6c87b92550901b26acd1632e11c3662e381f # v1.3.0
 
       - name: Run Tests
         run: make
