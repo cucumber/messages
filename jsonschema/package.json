@@ -3,6 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "@hyperjump/json-schema": "1.17.4"
+    "@hyperjump/json-schema": "1.17.5"
   }
 }
