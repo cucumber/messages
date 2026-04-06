@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -44,9 +44,9 @@ public final class Group {
     }
 
     public Group(
-        @Nullable @PropertyName("children") List<Group> children,
-        @Nullable @PropertyName("start") Integer start,
-        @Nullable @PropertyName("value") String value
+        @Nullable @Property("children") List<Group> children,
+        @Nullable @Property("start") Integer start,
+        @Nullable @Property("value") String value
     ) {
         this.children = children == null ? null : List.copyOf(children);
         this.start = start;

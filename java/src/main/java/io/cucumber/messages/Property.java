@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 /**
  * Marker annotation to provide a property name for an attribute.
  *
- * @implNote this is effectively the same as Jacksons JsonProperty.
+ * @implNote this functions effectively the same as Jacksons
+ * {@code @JsonProperty}.
  * <p>
  * We are trying to solve a few problems here. We don't want a dependency on
  * Jackson as that could affect the system under test. Normally this isn't a
@@ -21,7 +22,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PropertyName {
+public @interface Property {
 
     /**
      * Returns the name of the property.

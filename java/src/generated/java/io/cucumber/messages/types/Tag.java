@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -22,9 +22,9 @@ public final class Tag {
     private final String id;
 
     public Tag(
-        @PropertyName("location") Location location,
-        @PropertyName("name") String name,
-        @PropertyName("id") String id
+        @Property("location") Location location,
+        @Property("name") String name,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "Tag.location cannot be null");
         this.name = requireNonNull(name, "Tag.name cannot be null");

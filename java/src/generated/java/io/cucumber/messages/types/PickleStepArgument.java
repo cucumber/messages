@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -35,8 +35,8 @@ public final class PickleStepArgument {
     }
 
     public PickleStepArgument(
-        @Nullable @PropertyName("docString") PickleDocString docString,
-        @Nullable @PropertyName("dataTable") PickleTable dataTable
+        @Nullable @Property("docString") PickleDocString docString,
+        @Nullable @Property("dataTable") PickleTable dataTable
     ) {
         this.docString = docString;
         this.dataTable = dataTable;

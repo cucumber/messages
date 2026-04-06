@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -26,8 +26,8 @@ public final class StepMatchArgument {
     private final @Nullable String parameterTypeName;
 
     public StepMatchArgument(
-        @PropertyName("group") Group group,
-        @Nullable @PropertyName("parameterTypeName") String parameterTypeName
+        @Property("group") Group group,
+        @Nullable @Property("parameterTypeName") String parameterTypeName
     ) {
         this.group = requireNonNull(group, "StepMatchArgument.group cannot be null");
         this.parameterTypeName = parameterTypeName;

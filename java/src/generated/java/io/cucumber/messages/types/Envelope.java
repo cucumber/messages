@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -584,27 +584,27 @@ public final class Envelope {
     }
 
     public Envelope(
-        @Nullable @PropertyName("attachment") Attachment attachment,
-        @Nullable @PropertyName("externalAttachment") ExternalAttachment externalAttachment,
-        @Nullable @PropertyName("gherkinDocument") GherkinDocument gherkinDocument,
-        @Nullable @PropertyName("hook") Hook hook,
-        @Nullable @PropertyName("meta") Meta meta,
-        @Nullable @PropertyName("parameterType") ParameterType parameterType,
-        @Nullable @PropertyName("parseError") ParseError parseError,
-        @Nullable @PropertyName("pickle") Pickle pickle,
-        @Nullable @PropertyName("suggestion") Suggestion suggestion,
-        @Nullable @PropertyName("source") Source source,
-        @Nullable @PropertyName("stepDefinition") StepDefinition stepDefinition,
-        @Nullable @PropertyName("testCase") TestCase testCase,
-        @Nullable @PropertyName("testCaseFinished") TestCaseFinished testCaseFinished,
-        @Nullable @PropertyName("testCaseStarted") TestCaseStarted testCaseStarted,
-        @Nullable @PropertyName("testRunFinished") TestRunFinished testRunFinished,
-        @Nullable @PropertyName("testRunStarted") TestRunStarted testRunStarted,
-        @Nullable @PropertyName("testStepFinished") TestStepFinished testStepFinished,
-        @Nullable @PropertyName("testStepStarted") TestStepStarted testStepStarted,
-        @Nullable @PropertyName("testRunHookStarted") TestRunHookStarted testRunHookStarted,
-        @Nullable @PropertyName("testRunHookFinished") TestRunHookFinished testRunHookFinished,
-        @Nullable @PropertyName("undefinedParameterType") UndefinedParameterType undefinedParameterType
+        @Nullable @Property("attachment") Attachment attachment,
+        @Nullable @Property("externalAttachment") ExternalAttachment externalAttachment,
+        @Nullable @Property("gherkinDocument") GherkinDocument gherkinDocument,
+        @Nullable @Property("hook") Hook hook,
+        @Nullable @Property("meta") Meta meta,
+        @Nullable @Property("parameterType") ParameterType parameterType,
+        @Nullable @Property("parseError") ParseError parseError,
+        @Nullable @Property("pickle") Pickle pickle,
+        @Nullable @Property("suggestion") Suggestion suggestion,
+        @Nullable @Property("source") Source source,
+        @Nullable @Property("stepDefinition") StepDefinition stepDefinition,
+        @Nullable @Property("testCase") TestCase testCase,
+        @Nullable @Property("testCaseFinished") TestCaseFinished testCaseFinished,
+        @Nullable @Property("testCaseStarted") TestCaseStarted testCaseStarted,
+        @Nullable @Property("testRunFinished") TestRunFinished testRunFinished,
+        @Nullable @Property("testRunStarted") TestRunStarted testRunStarted,
+        @Nullable @Property("testStepFinished") TestStepFinished testStepFinished,
+        @Nullable @Property("testStepStarted") TestStepStarted testStepStarted,
+        @Nullable @Property("testRunHookStarted") TestRunHookStarted testRunHookStarted,
+        @Nullable @Property("testRunHookFinished") TestRunHookFinished testRunHookFinished,
+        @Nullable @Property("undefinedParameterType") UndefinedParameterType undefinedParameterType
     ) {
         this.attachment = attachment;
         this.externalAttachment = externalAttachment;

@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -23,10 +23,10 @@ public final class Ci {
     private final @Nullable Git git;
 
     public Ci(
-        @PropertyName("name") String name,
-        @Nullable @PropertyName("url") String url,
-        @Nullable @PropertyName("buildNumber") String buildNumber,
-        @Nullable @PropertyName("git") Git git
+        @Property("name") String name,
+        @Nullable @Property("url") String url,
+        @Nullable @Property("buildNumber") String buildNumber,
+        @Nullable @Property("git") Git git
     ) {
         this.name = requireNonNull(name, "Ci.name cannot be null");
         this.url = url;

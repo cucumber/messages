@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -24,11 +24,11 @@ public final class PickleStep {
     private final String text;
 
     public PickleStep(
-        @Nullable @PropertyName("argument") PickleStepArgument argument,
-        @PropertyName("astNodeIds") List<String> astNodeIds,
-        @PropertyName("id") String id,
-        @Nullable @PropertyName("type") PickleStepType type,
-        @PropertyName("text") String text
+        @Nullable @Property("argument") PickleStepArgument argument,
+        @Property("astNodeIds") List<String> astNodeIds,
+        @Property("id") String id,
+        @Nullable @Property("type") PickleStepType type,
+        @Property("text") String text
     ) {
         this.argument = argument;
         this.astNodeIds = List.copyOf(requireNonNull(astNodeIds, "PickleStep.astNodeIds cannot be null"));

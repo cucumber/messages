@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -22,9 +22,9 @@ public final class TableRow {
     private final String id;
 
     public TableRow(
-        @PropertyName("location") Location location,
-        @PropertyName("cells") List<TableCell> cells,
-        @PropertyName("id") String id
+        @Property("location") Location location,
+        @Property("cells") List<TableCell> cells,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "TableRow.location cannot be null");
         this.cells = List.copyOf(requireNonNull(cells, "TableRow.cells cannot be null"));

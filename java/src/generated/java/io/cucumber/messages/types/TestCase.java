@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -23,10 +23,10 @@ public final class TestCase {
     private final @Nullable String testRunStartedId;
 
     public TestCase(
-        @PropertyName("id") String id,
-        @PropertyName("pickleId") String pickleId,
-        @PropertyName("testSteps") List<TestStep> testSteps,
-        @Nullable @PropertyName("testRunStartedId") String testRunStartedId
+        @Property("id") String id,
+        @Property("pickleId") String pickleId,
+        @Property("testSteps") List<TestStep> testSteps,
+        @Nullable @Property("testRunStartedId") String testRunStartedId
     ) {
         this.id = requireNonNull(id, "TestCase.id cannot be null");
         this.pickleId = requireNonNull(pickleId, "TestCase.pickleId cannot be null");

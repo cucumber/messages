@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -19,8 +19,8 @@ public final class UndefinedParameterType {
     private final String name;
 
     public UndefinedParameterType(
-        @PropertyName("expression") String expression,
-        @PropertyName("name") String name
+        @Property("expression") String expression,
+        @Property("name") String name
     ) {
         this.expression = requireNonNull(expression, "UndefinedParameterType.expression cannot be null");
         this.name = requireNonNull(name, "UndefinedParameterType.name cannot be null");

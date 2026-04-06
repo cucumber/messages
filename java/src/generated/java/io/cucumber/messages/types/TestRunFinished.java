@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -22,11 +22,11 @@ public final class TestRunFinished {
     private final @Nullable String testRunStartedId;
 
     public TestRunFinished(
-        @Nullable @PropertyName("message") String message,
-        @PropertyName("success") Boolean success,
-        @PropertyName("timestamp") Timestamp timestamp,
-        @Nullable @PropertyName("exception") Exception exception,
-        @Nullable @PropertyName("testRunStartedId") String testRunStartedId
+        @Nullable @Property("message") String message,
+        @Property("success") Boolean success,
+        @Property("timestamp") Timestamp timestamp,
+        @Nullable @Property("exception") Exception exception,
+        @Nullable @Property("testRunStartedId") String testRunStartedId
     ) {
         this.message = message;
         this.success = requireNonNull(success, "TestRunFinished.success cannot be null");

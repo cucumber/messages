@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -26,12 +26,12 @@ public final class Meta {
     private final @Nullable Ci ci;
 
     public Meta(
-        @PropertyName("protocolVersion") String protocolVersion,
-        @PropertyName("implementation") Product implementation,
-        @PropertyName("runtime") Product runtime,
-        @PropertyName("os") Product os,
-        @PropertyName("cpu") Product cpu,
-        @Nullable @PropertyName("ci") Ci ci
+        @Property("protocolVersion") String protocolVersion,
+        @Property("implementation") Product implementation,
+        @Property("runtime") Product runtime,
+        @Property("os") Product os,
+        @Property("cpu") Product cpu,
+        @Nullable @Property("ci") Ci ci
     ) {
         this.protocolVersion = requireNonNull(protocolVersion, "Meta.protocolVersion cannot be null");
         this.implementation = requireNonNull(implementation, "Meta.implementation cannot be null");

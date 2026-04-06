@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -60,10 +60,10 @@ public final class SourceReference {
     }
 
     public SourceReference(
-        @Nullable @PropertyName("uri") String uri,
-        @Nullable @PropertyName("javaMethod") JavaMethod javaMethod,
-        @Nullable @PropertyName("javaStackTraceElement") JavaStackTraceElement javaStackTraceElement,
-        @Nullable @PropertyName("location") Location location
+        @Nullable @Property("uri") String uri,
+        @Nullable @Property("javaMethod") JavaMethod javaMethod,
+        @Nullable @Property("javaStackTraceElement") JavaStackTraceElement javaStackTraceElement,
+        @Nullable @Property("location") Location location
     ) {
         this.uri = uri;
         this.javaMethod = javaMethod;

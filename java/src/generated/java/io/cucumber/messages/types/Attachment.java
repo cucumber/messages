@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -40,17 +40,17 @@ public final class Attachment {
     private final @Nullable Timestamp timestamp;
 
     public Attachment(
-        @PropertyName("body") String body,
-        @PropertyName("contentEncoding") AttachmentContentEncoding contentEncoding,
-        @Nullable @PropertyName("fileName") String fileName,
-        @PropertyName("mediaType") String mediaType,
-        @Nullable @PropertyName("source") Source source,
-        @Nullable @PropertyName("testCaseStartedId") String testCaseStartedId,
-        @Nullable @PropertyName("testStepId") String testStepId,
-        @Nullable @PropertyName("url") String url,
-        @Nullable @PropertyName("testRunStartedId") String testRunStartedId,
-        @Nullable @PropertyName("testRunHookStartedId") String testRunHookStartedId,
-        @Nullable @PropertyName("timestamp") Timestamp timestamp
+        @Property("body") String body,
+        @Property("contentEncoding") AttachmentContentEncoding contentEncoding,
+        @Nullable @Property("fileName") String fileName,
+        @Property("mediaType") String mediaType,
+        @Nullable @Property("source") Source source,
+        @Nullable @Property("testCaseStartedId") String testCaseStartedId,
+        @Nullable @Property("testStepId") String testStepId,
+        @Nullable @Property("url") String url,
+        @Nullable @Property("testRunStartedId") String testRunStartedId,
+        @Nullable @Property("testRunHookStartedId") String testRunHookStartedId,
+        @Nullable @Property("timestamp") Timestamp timestamp
     ) {
         this.body = requireNonNull(body, "Attachment.body cannot be null");
         this.contentEncoding = requireNonNull(contentEncoding, "Attachment.contentEncoding cannot be null");

@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -19,8 +19,8 @@ public final class Snippet {
     private final String code;
 
     public Snippet(
-        @PropertyName("language") String language,
-        @PropertyName("code") String code
+        @Property("language") String language,
+        @Property("code") String code
     ) {
         this.language = requireNonNull(language, "Snippet.language cannot be null");
         this.code = requireNonNull(code, "Snippet.code cannot be null");

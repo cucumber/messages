@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -46,9 +46,9 @@ public final class FeatureChild {
     }
 
     public FeatureChild(
-        @Nullable @PropertyName("rule") Rule rule,
-        @Nullable @PropertyName("background") Background background,
-        @Nullable @PropertyName("scenario") Scenario scenario
+        @Nullable @Property("rule") Rule rule,
+        @Nullable @Property("background") Background background,
+        @Nullable @Property("scenario") Scenario scenario
     ) {
         this.rule = rule;
         this.background = background;

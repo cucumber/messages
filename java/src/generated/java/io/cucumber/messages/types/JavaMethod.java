@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -20,9 +20,9 @@ public final class JavaMethod {
     private final List<String> methodParameterTypes;
 
     public JavaMethod(
-        @PropertyName("className") String className,
-        @PropertyName("methodName") String methodName,
-        @PropertyName("methodParameterTypes") List<String> methodParameterTypes
+        @Property("className") String className,
+        @Property("methodName") String methodName,
+        @Property("methodParameterTypes") List<String> methodParameterTypes
     ) {
         this.className = requireNonNull(className, "JavaMethod.className cannot be null");
         this.methodName = requireNonNull(methodName, "JavaMethod.methodName cannot be null");

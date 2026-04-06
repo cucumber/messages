@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public final class PickleTableCell {
     private final String value;
 
     public PickleTableCell(
-        @PropertyName("value") String value
+        @Property("value") String value
     ) {
         this.value = requireNonNull(value, "PickleTableCell.value cannot be null");
     }

@@ -1,6 +1,6 @@
 package io.cucumber.messages.types;
 
-import io.cucumber.messages.PropertyName;
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -21,8 +21,8 @@ public final class Comment {
     private final String text;
 
     public Comment(
-        @PropertyName("location") Location location,
-        @PropertyName("text") String text
+        @Property("location") Location location,
+        @Property("text") String text
     ) {
         this.location = requireNonNull(location, "Comment.location cannot be null");
         this.text = requireNonNull(text, "Comment.text cannot be null");
