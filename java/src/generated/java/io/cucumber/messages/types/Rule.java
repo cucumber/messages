@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -23,13 +24,13 @@ public final class Rule {
     private final String id;
 
     public Rule(
-        Location location,
-        List<Tag> tags,
-        String keyword,
-        String name,
-        String description,
-        List<RuleChild> children,
-        String id
+        @PropertyName("location") Location location,
+        @PropertyName("tags") List<Tag> tags,
+        @PropertyName("keyword") String keyword,
+        @PropertyName("name") String name,
+        @PropertyName("description") String description,
+        @PropertyName("children") List<RuleChild> children,
+        @PropertyName("id") String id
     ) {
         this.location = requireNonNull(location, "Rule.location cannot be null");
         this.tags = List.copyOf(requireNonNull(tags, "Rule.tags cannot be null"));

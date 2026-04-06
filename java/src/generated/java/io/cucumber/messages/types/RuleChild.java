@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -34,8 +35,8 @@ public final class RuleChild {
     }
 
     public RuleChild(
-        @Nullable Background background,
-        @Nullable Scenario scenario
+        @Nullable @PropertyName("background") Background background,
+        @Nullable @PropertyName("scenario") Scenario scenario
     ) {
         this.background = background;
         this.scenario = scenario;

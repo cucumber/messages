@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public final class PickleDocString {
     private final String content;
 
     public PickleDocString(
-        @Nullable String mediaType,
-        String content
+        @Nullable @PropertyName("mediaType") String mediaType,
+        @PropertyName("content") String content
     ) {
         this.mediaType = mediaType;
         this.content = requireNonNull(content, "PickleDocString.content cannot be null");

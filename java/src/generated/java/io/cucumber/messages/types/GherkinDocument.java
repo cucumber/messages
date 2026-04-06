@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -26,9 +27,9 @@ public final class GherkinDocument {
     private final List<Comment> comments;
 
     public GherkinDocument(
-        @Nullable String uri,
-        @Nullable Feature feature,
-        List<Comment> comments
+        @Nullable @PropertyName("uri") String uri,
+        @Nullable @PropertyName("feature") Feature feature,
+        @PropertyName("comments") List<Comment> comments
     ) {
         this.uri = uri;
         this.feature = feature;

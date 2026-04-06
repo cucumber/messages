@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -35,14 +36,14 @@ public final class Pickle {
     private final List<String> astNodeIds;
 
     public Pickle(
-        String id,
-        String uri,
-        @Nullable Location location,
-        String name,
-        String language,
-        List<PickleStep> steps,
-        List<PickleTag> tags,
-        List<String> astNodeIds
+        @PropertyName("id") String id,
+        @PropertyName("uri") String uri,
+        @Nullable @PropertyName("location") Location location,
+        @PropertyName("name") String name,
+        @PropertyName("language") String language,
+        @PropertyName("steps") List<PickleStep> steps,
+        @PropertyName("tags") List<PickleTag> tags,
+        @PropertyName("astNodeIds") List<String> astNodeIds
     ) {
         this.id = requireNonNull(id, "Pickle.id cannot be null");
         this.uri = requireNonNull(uri, "Pickle.uri cannot be null");

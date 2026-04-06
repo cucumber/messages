@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -23,10 +24,10 @@ public final class Git {
     private final @Nullable String tag;
 
     public Git(
-        String remote,
-        String revision,
-        @Nullable String branch,
-        @Nullable String tag
+        @PropertyName("remote") String remote,
+        @PropertyName("revision") String revision,
+        @Nullable @PropertyName("branch") String branch,
+        @Nullable @PropertyName("tag") String tag
     ) {
         this.remote = requireNonNull(remote, "Git.remote cannot be null");
         this.revision = requireNonNull(revision, "Git.revision cannot be null");

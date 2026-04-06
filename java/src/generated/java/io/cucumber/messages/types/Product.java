@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public final class Product {
     private final @Nullable String version;
 
     public Product(
-        String name,
-        @Nullable String version
+        @PropertyName("name") String name,
+        @Nullable @PropertyName("version") String version
     ) {
         this.name = requireNonNull(name, "Product.name cannot be null");
         this.version = version;

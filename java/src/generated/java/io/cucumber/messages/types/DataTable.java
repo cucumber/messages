@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public final class DataTable {
     private final List<TableRow> rows;
 
     public DataTable(
-        Location location,
-        List<TableRow> rows
+        @PropertyName("location") Location location,
+        @PropertyName("rows") List<TableRow> rows
     ) {
         this.location = requireNonNull(location, "DataTable.location cannot be null");
         this.rows = List.copyOf(requireNonNull(rows, "DataTable.rows cannot be null"));

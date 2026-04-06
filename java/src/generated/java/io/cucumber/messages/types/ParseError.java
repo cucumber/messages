@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public final class ParseError {
     private final String message;
 
     public ParseError(
-        SourceReference source,
-        String message
+        @PropertyName("source") SourceReference source,
+        @PropertyName("message") String message
     ) {
         this.source = requireNonNull(source, "ParseError.source cannot be null");
         this.message = requireNonNull(message, "ParseError.message cannot be null");

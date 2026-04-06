@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public final class StepMatchArgumentsList {
     private final List<StepMatchArgument> stepMatchArguments;
 
     public StepMatchArgumentsList(
-        List<StepMatchArgument> stepMatchArguments
+        @PropertyName("stepMatchArguments") List<StepMatchArgument> stepMatchArguments
     ) {
         this.stepMatchArguments = List.copyOf(requireNonNull(stepMatchArguments, "StepMatchArgumentsList.stepMatchArguments cannot be null"));
     }

@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -21,9 +22,9 @@ public final class Source {
     private final SourceMediaType mediaType;
 
     public Source(
-        String uri,
-        String data,
-        SourceMediaType mediaType
+        @PropertyName("uri") String uri,
+        @PropertyName("data") String data,
+        @PropertyName("mediaType") SourceMediaType mediaType
     ) {
         this.uri = requireNonNull(uri, "Source.uri cannot be null");
         this.data = requireNonNull(data, "Source.data cannot be null");

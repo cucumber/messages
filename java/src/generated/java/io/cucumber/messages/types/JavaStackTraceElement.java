@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -19,9 +20,9 @@ public final class JavaStackTraceElement {
     private final String methodName;
 
     public JavaStackTraceElement(
-        String className,
-        String fileName,
-        String methodName
+        @PropertyName("className") String className,
+        @PropertyName("fileName") String fileName,
+        @PropertyName("methodName") String methodName
     ) {
         this.className = requireNonNull(className, "JavaStackTraceElement.className cannot be null");
         this.fileName = requireNonNull(fileName, "JavaStackTraceElement.fileName cannot be null");

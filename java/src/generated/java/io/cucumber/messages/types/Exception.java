@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -21,9 +22,9 @@ public final class Exception {
     private final @Nullable String stackTrace;
 
     public Exception(
-        String type,
-        @Nullable String message,
-        @Nullable String stackTrace
+        @PropertyName("type") String type,
+        @Nullable @PropertyName("message") String message,
+        @Nullable @PropertyName("stackTrace") String stackTrace
     ) {
         this.type = requireNonNull(type, "Exception.type cannot be null");
         this.message = message;

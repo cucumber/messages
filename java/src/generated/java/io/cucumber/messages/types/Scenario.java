@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -24,14 +25,14 @@ public final class Scenario {
     private final String id;
 
     public Scenario(
-        Location location,
-        List<Tag> tags,
-        String keyword,
-        String name,
-        String description,
-        List<Step> steps,
-        List<Examples> examples,
-        String id
+        @PropertyName("location") Location location,
+        @PropertyName("tags") List<Tag> tags,
+        @PropertyName("keyword") String keyword,
+        @PropertyName("name") String name,
+        @PropertyName("description") String description,
+        @PropertyName("steps") List<Step> steps,
+        @PropertyName("examples") List<Examples> examples,
+        @PropertyName("id") String id
     ) {
         this.location = requireNonNull(location, "Scenario.location cannot be null");
         this.tags = List.copyOf(requireNonNull(tags, "Scenario.tags cannot be null"));

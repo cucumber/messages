@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -19,9 +20,9 @@ public final class TestCaseFinished {
     private final Boolean willBeRetried;
 
     public TestCaseFinished(
-        String testCaseStartedId,
-        Timestamp timestamp,
-        Boolean willBeRetried
+        @PropertyName("testCaseStartedId") String testCaseStartedId,
+        @PropertyName("timestamp") Timestamp timestamp,
+        @PropertyName("willBeRetried") Boolean willBeRetried
     ) {
         this.testCaseStartedId = requireNonNull(testCaseStartedId, "TestCaseFinished.testCaseStartedId cannot be null");
         this.timestamp = requireNonNull(timestamp, "TestCaseFinished.timestamp cannot be null");

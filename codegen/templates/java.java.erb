@@ -2,6 +2,7 @@
 <%= class_name(key) %>.java
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public final class <%= class_name(key) %> {
     <%- schema['properties'].each_with_index do |(property_name, property), index| 
         nullable = !(schema['required'] || []).index(property_name)
     -%>
-        <% if nullable -%>@Nullable <%- end -%><%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
+        <% if nullable -%>@Nullable <%- end -%>@PropertyName("<%= property_name %>") <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
     <%- end -%>
     ) {
       <%- schema['properties'].each do |(property_name, property)|

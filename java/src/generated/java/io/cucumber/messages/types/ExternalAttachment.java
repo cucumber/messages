@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -30,12 +31,12 @@ public final class ExternalAttachment {
     private final @Nullable Timestamp timestamp;
 
     public ExternalAttachment(
-        String url,
-        String mediaType,
-        @Nullable String testCaseStartedId,
-        @Nullable String testStepId,
-        @Nullable String testRunHookStartedId,
-        @Nullable Timestamp timestamp
+        @PropertyName("url") String url,
+        @PropertyName("mediaType") String mediaType,
+        @Nullable @PropertyName("testCaseStartedId") String testCaseStartedId,
+        @Nullable @PropertyName("testStepId") String testStepId,
+        @Nullable @PropertyName("testRunHookStartedId") String testRunHookStartedId,
+        @Nullable @PropertyName("timestamp") Timestamp timestamp
     ) {
         this.url = requireNonNull(url, "ExternalAttachment.url cannot be null");
         this.mediaType = requireNonNull(mediaType, "ExternalAttachment.mediaType cannot be null");

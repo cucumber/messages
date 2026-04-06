@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -23,13 +24,13 @@ public final class Feature {
     private final List<FeatureChild> children;
 
     public Feature(
-        Location location,
-        List<Tag> tags,
-        String language,
-        String keyword,
-        String name,
-        String description,
-        List<FeatureChild> children
+        @PropertyName("location") Location location,
+        @PropertyName("tags") List<Tag> tags,
+        @PropertyName("language") String language,
+        @PropertyName("keyword") String keyword,
+        @PropertyName("name") String name,
+        @PropertyName("description") String description,
+        @PropertyName("children") List<FeatureChild> children
     ) {
         this.location = requireNonNull(location, "Feature.location cannot be null");
         this.tags = List.copyOf(requireNonNull(tags, "Feature.tags cannot be null"));

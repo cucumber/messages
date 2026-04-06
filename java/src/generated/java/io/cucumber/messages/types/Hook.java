@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -21,11 +22,11 @@ public final class Hook {
     private final @Nullable HookType type;
 
     public Hook(
-        String id,
-        @Nullable String name,
-        SourceReference sourceReference,
-        @Nullable String tagExpression,
-        @Nullable HookType type
+        @PropertyName("id") String id,
+        @Nullable @PropertyName("name") String name,
+        @PropertyName("sourceReference") SourceReference sourceReference,
+        @Nullable @PropertyName("tagExpression") String tagExpression,
+        @Nullable @PropertyName("type") HookType type
     ) {
         this.id = requireNonNull(id, "Hook.id cannot be null");
         this.name = name;

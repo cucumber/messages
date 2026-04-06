@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -20,10 +21,10 @@ public final class DocString {
     private final String delimiter;
 
     public DocString(
-        Location location,
-        @Nullable String mediaType,
-        String content,
-        String delimiter
+        @PropertyName("location") Location location,
+        @Nullable @PropertyName("mediaType") String mediaType,
+        @PropertyName("content") String content,
+        @PropertyName("delimiter") String delimiter
     ) {
         this.location = requireNonNull(location, "DocString.location cannot be null");
         this.mediaType = mediaType;

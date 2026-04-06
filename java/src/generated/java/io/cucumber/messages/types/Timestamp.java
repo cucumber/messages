@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public final class Timestamp {
     private final Integer nanos;
 
     public Timestamp(
-        Long seconds,
-        Integer nanos
+        @PropertyName("seconds") Long seconds,
+        @PropertyName("nanos") Integer nanos
     ) {
         this.seconds = requireNonNull(seconds, "Timestamp.seconds cannot be null");
         this.nanos = requireNonNull(nanos, "Timestamp.nanos cannot be null");

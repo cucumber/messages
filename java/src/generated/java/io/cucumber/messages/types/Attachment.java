@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -39,17 +40,17 @@ public final class Attachment {
     private final @Nullable Timestamp timestamp;
 
     public Attachment(
-        String body,
-        AttachmentContentEncoding contentEncoding,
-        @Nullable String fileName,
-        String mediaType,
-        @Nullable Source source,
-        @Nullable String testCaseStartedId,
-        @Nullable String testStepId,
-        @Nullable String url,
-        @Nullable String testRunStartedId,
-        @Nullable String testRunHookStartedId,
-        @Nullable Timestamp timestamp
+        @PropertyName("body") String body,
+        @PropertyName("contentEncoding") AttachmentContentEncoding contentEncoding,
+        @Nullable @PropertyName("fileName") String fileName,
+        @PropertyName("mediaType") String mediaType,
+        @Nullable @PropertyName("source") Source source,
+        @Nullable @PropertyName("testCaseStartedId") String testCaseStartedId,
+        @Nullable @PropertyName("testStepId") String testStepId,
+        @Nullable @PropertyName("url") String url,
+        @Nullable @PropertyName("testRunStartedId") String testRunStartedId,
+        @Nullable @PropertyName("testRunHookStartedId") String testRunHookStartedId,
+        @Nullable @PropertyName("timestamp") Timestamp timestamp
     ) {
         this.body = requireNonNull(body, "Attachment.body cannot be null");
         this.contentEncoding = requireNonNull(contentEncoding, "Attachment.contentEncoding cannot be null");

@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.PropertyName;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -21,9 +22,9 @@ public final class Suggestion {
     private final List<Snippet> snippets;
 
     public Suggestion(
-        String id,
-        String pickleStepId,
-        List<Snippet> snippets
+        @PropertyName("id") String id,
+        @PropertyName("pickleStepId") String pickleStepId,
+        @PropertyName("snippets") List<Snippet> snippets
     ) {
         this.id = requireNonNull(id, "Suggestion.id cannot be null");
         this.pickleStepId = requireNonNull(pickleStepId, "Suggestion.pickleStepId cannot be null");
