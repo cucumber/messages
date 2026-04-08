@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -25,13 +26,13 @@ public final class Step {
     private final String id;
 
     public Step(
-        Location location,
-        String keyword,
-        @Nullable StepKeywordType keywordType,
-        String text,
-        @Nullable DocString docString,
-        @Nullable DataTable dataTable,
-        String id
+        @Property("location") Location location,
+        @Property("keyword") String keyword,
+        @Nullable @Property("keywordType") StepKeywordType keywordType,
+        @Property("text") String text,
+        @Nullable @Property("docString") DocString docString,
+        @Nullable @Property("dataTable") DataTable dataTable,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "Step.location cannot be null");
         this.keyword = requireNonNull(keyword, "Step.keyword cannot be null");

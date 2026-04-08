@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -21,8 +22,8 @@ public final class Duration {
     private final Integer nanos;
 
     public Duration(
-        Long seconds,
-        Integer nanos
+        @Property("seconds") Long seconds,
+        @Property("nanos") Integer nanos
     ) {
         this.seconds = requireNonNull(seconds, "Duration.seconds cannot be null");
         this.nanos = requireNonNull(nanos, "Duration.nanos cannot be null");

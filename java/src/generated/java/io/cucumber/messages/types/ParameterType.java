@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public final class ParameterType {
     private final @Nullable SourceReference sourceReference;
 
     public ParameterType(
-        String name,
-        List<String> regularExpressions,
-        Boolean preferForRegularExpressionMatch,
-        Boolean useForSnippets,
-        String id,
-        @Nullable SourceReference sourceReference
+        @Property("name") String name,
+        @Property("regularExpressions") List<String> regularExpressions,
+        @Property("preferForRegularExpressionMatch") Boolean preferForRegularExpressionMatch,
+        @Property("useForSnippets") Boolean useForSnippets,
+        @Property("id") String id,
+        @Nullable @Property("sourceReference") SourceReference sourceReference
     ) {
         this.name = requireNonNull(name, "ParameterType.name cannot be null");
         this.regularExpressions = List.copyOf(requireNonNull(regularExpressions, "ParameterType.regularExpressions cannot be null"));

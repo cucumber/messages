@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public final class PickleTag {
     private final String astNodeId;
 
     public PickleTag(
-        String name,
-        String astNodeId
+        @Property("name") String name,
+        @Property("astNodeId") String astNodeId
     ) {
         this.name = requireNonNull(name, "PickleTag.name cannot be null");
         this.astNodeId = requireNonNull(astNodeId, "PickleTag.astNodeId cannot be null");

@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public final class Background {
     private final String id;
 
     public Background(
-        Location location,
-        String keyword,
-        String name,
-        String description,
-        List<Step> steps,
-        String id
+        @Property("location") Location location,
+        @Property("keyword") String keyword,
+        @Property("name") String name,
+        @Property("description") String description,
+        @Property("steps") List<Step> steps,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "Background.location cannot be null");
         this.keyword = requireNonNull(keyword, "Background.keyword cannot be null");

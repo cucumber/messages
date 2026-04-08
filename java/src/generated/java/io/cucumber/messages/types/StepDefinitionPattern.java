@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public final class StepDefinitionPattern {
     private final StepDefinitionPatternType type;
 
     public StepDefinitionPattern(
-        String source,
-        StepDefinitionPatternType type
+        @Property("source") String source,
+        @Property("type") StepDefinitionPatternType type
     ) {
         this.source = requireNonNull(source, "StepDefinitionPattern.source cannot be null");
         this.type = requireNonNull(type, "StepDefinitionPattern.type cannot be null");

@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -24,14 +25,14 @@ public final class Examples {
     private final String id;
 
     public Examples(
-        Location location,
-        List<Tag> tags,
-        String keyword,
-        String name,
-        String description,
-        @Nullable TableRow tableHeader,
-        List<TableRow> tableBody,
-        String id
+        @Property("location") Location location,
+        @Property("tags") List<Tag> tags,
+        @Property("keyword") String keyword,
+        @Property("name") String name,
+        @Property("description") String description,
+        @Nullable @Property("tableHeader") TableRow tableHeader,
+        @Property("tableBody") List<TableRow> tableBody,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "Examples.location cannot be null");
         this.tags = List.copyOf(requireNonNull(tags, "Examples.tags cannot be null"));
