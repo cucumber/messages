@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public final class PickleTableRow {
     private final List<PickleTableCell> cells;
 
     public PickleTableRow(
-        List<PickleTableCell> cells
+        @Property("cells") List<PickleTableCell> cells
     ) {
         this.cells = List.copyOf(requireNonNull(cells, "PickleTableRow.cells cannot be null"));
     }

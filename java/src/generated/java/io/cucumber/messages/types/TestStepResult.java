@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -20,10 +21,10 @@ public final class TestStepResult {
     private final @Nullable Exception exception;
 
     public TestStepResult(
-        Duration duration,
-        @Nullable String message,
-        TestStepResultStatus status,
-        @Nullable Exception exception
+        @Property("duration") Duration duration,
+        @Nullable @Property("message") String message,
+        @Property("status") TestStepResultStatus status,
+        @Nullable @Property("exception") Exception exception
     ) {
         this.duration = requireNonNull(duration, "TestStepResult.duration cannot be null");
         this.message = message;

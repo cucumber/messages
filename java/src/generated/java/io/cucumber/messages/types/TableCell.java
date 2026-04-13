@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public final class TableCell {
     private final String value;
 
     public TableCell(
-        Location location,
-        String value
+        @Property("location") Location location,
+        @Property("value") String value
     ) {
         this.location = requireNonNull(location, "TableCell.location cannot be null");
         this.value = requireNonNull(value, "TableCell.value cannot be null");

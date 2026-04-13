@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -583,27 +584,27 @@ public final class Envelope {
     }
 
     public Envelope(
-        @Nullable Attachment attachment,
-        @Nullable ExternalAttachment externalAttachment,
-        @Nullable GherkinDocument gherkinDocument,
-        @Nullable Hook hook,
-        @Nullable Meta meta,
-        @Nullable ParameterType parameterType,
-        @Nullable ParseError parseError,
-        @Nullable Pickle pickle,
-        @Nullable Suggestion suggestion,
-        @Nullable Source source,
-        @Nullable StepDefinition stepDefinition,
-        @Nullable TestCase testCase,
-        @Nullable TestCaseFinished testCaseFinished,
-        @Nullable TestCaseStarted testCaseStarted,
-        @Nullable TestRunFinished testRunFinished,
-        @Nullable TestRunStarted testRunStarted,
-        @Nullable TestStepFinished testStepFinished,
-        @Nullable TestStepStarted testStepStarted,
-        @Nullable TestRunHookStarted testRunHookStarted,
-        @Nullable TestRunHookFinished testRunHookFinished,
-        @Nullable UndefinedParameterType undefinedParameterType
+        @Nullable @Property("attachment") Attachment attachment,
+        @Nullable @Property("externalAttachment") ExternalAttachment externalAttachment,
+        @Nullable @Property("gherkinDocument") GherkinDocument gherkinDocument,
+        @Nullable @Property("hook") Hook hook,
+        @Nullable @Property("meta") Meta meta,
+        @Nullable @Property("parameterType") ParameterType parameterType,
+        @Nullable @Property("parseError") ParseError parseError,
+        @Nullable @Property("pickle") Pickle pickle,
+        @Nullable @Property("suggestion") Suggestion suggestion,
+        @Nullable @Property("source") Source source,
+        @Nullable @Property("stepDefinition") StepDefinition stepDefinition,
+        @Nullable @Property("testCase") TestCase testCase,
+        @Nullable @Property("testCaseFinished") TestCaseFinished testCaseFinished,
+        @Nullable @Property("testCaseStarted") TestCaseStarted testCaseStarted,
+        @Nullable @Property("testRunFinished") TestRunFinished testRunFinished,
+        @Nullable @Property("testRunStarted") TestRunStarted testRunStarted,
+        @Nullable @Property("testStepFinished") TestStepFinished testStepFinished,
+        @Nullable @Property("testStepStarted") TestStepStarted testStepStarted,
+        @Nullable @Property("testRunHookStarted") TestRunHookStarted testRunHookStarted,
+        @Nullable @Property("testRunHookFinished") TestRunHookFinished testRunHookFinished,
+        @Nullable @Property("undefinedParameterType") UndefinedParameterType undefinedParameterType
     ) {
         this.attachment = attachment;
         this.externalAttachment = externalAttachment;

@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public final class Location {
     private final @Nullable Integer column;
 
     public Location(
-        Integer line,
-        @Nullable Integer column
+        @Property("line") Integer line,
+        @Nullable @Property("column") Integer column
     ) {
         this.line = requireNonNull(line, "Location.line cannot be null");
         this.column = column;

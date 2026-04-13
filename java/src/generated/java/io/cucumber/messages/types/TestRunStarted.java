@@ -1,5 +1,6 @@
 package io.cucumber.messages.types;
 
+import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public final class TestRunStarted {
     private final @Nullable String id;
 
     public TestRunStarted(
-        Timestamp timestamp,
-        @Nullable String id
+        @Property("timestamp") Timestamp timestamp,
+        @Nullable @Property("id") String id
     ) {
         this.timestamp = requireNonNull(timestamp, "TestRunStarted.timestamp cannot be null");
         this.id = id;
