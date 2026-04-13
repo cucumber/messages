@@ -44,7 +44,7 @@ maintainers = [
 name = "cucumber-messages"
 readme = "README.md"
 requires-python = ">=3.9"
-version = "32.3.0"
+version = "32.3.1"
 
 [project.urls]
 Changelog = "https://github.com/cucumber/messages/releases"

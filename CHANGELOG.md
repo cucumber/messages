@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [32.3.1] - 2026-04-13
 ### Fixed
 - [Java] Fix broken Javadoc
 
@@ -669,7 +671,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v32.3.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v32.3.1...HEAD
+[32.3.1]: https://github.com/cucumber/messages/compare/v32.3.0...v32.3.1
 [32.3.0]: https://github.com/cucumber/messages/compare/v32.2.0...v32.3.0
 [32.2.0]: https://github.com/cucumber/messages/compare/v32.1.0...v32.2.0
 [32.1.0]: https://github.com/cucumber/messages/compare/v32.0.1...v32.1.0
