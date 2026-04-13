@@ -7,7 +7,7 @@ defmodule CucumberMessages.MixProject do
   def project do
     [
       app: :cucumber_messages,
-      version: "32.2.0",
+      version: "32.3.0",
       name: "CucumberMessages",
       description: description(),
       package: package(),
