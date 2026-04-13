@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [Java] Annotate constructor arguments with property names ([#399](https://github.com/cucumber/messages/pull/399)
 
 ## [32.2.0] - 2026-03-01
 ### Added
