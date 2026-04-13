@@ -49,5 +49,6 @@ jobs:
       - run: mvn install
         working-directory: java
 
-      - run: mvn test
+      - run: |
+          mvn verify javadoc:javadoc
         working-directory: java
