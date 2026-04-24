@@ -29,7 +29,7 @@ jobs:
           persist-credentials: false
 
       - name: install cpanm and multiple modules
-        uses: perl-actions/install-with-cpanm@0f3cc9bc0b055cc20750d218061ebbdebd101bb3 # v2.1
+        uses: perl-actions/install-with-cpanm@8ec40bce95c287169e8c13551e5e49d0185ce955 # v2.2
         with:
           cpanfile: "perl/cpanfile"
 
