@@ -50,7 +50,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@0cb964fd540e0a24c900370abf38a33466142735 # v1.305.0
         with:
-          ruby-version: '3.4.9'
+          ruby-version: '4.0.3'
 
       - name: generate code for all languages
         run: |
