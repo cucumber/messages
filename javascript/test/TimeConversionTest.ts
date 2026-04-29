@@ -1,5 +1,5 @@
-import assert from 'assert'
-import { Duration, TimeConversion } from '../src/index.js'
+import assert from 'node:assert'
+import { type Duration, TimeConversion } from '../src/index.js'
 import { addDurations } from '../src/TimeConversion.js'
 
 const {
@@ -12,7 +12,7 @@ const {
 describe('TimeConversion', () => {
   it('converts legacy string seconds', () => {
     const duration: Duration = {
-      // @ts-ignore
+      // @ts-expect-error
       seconds: '3',
       nanos: 40000,
     }
@@ -71,10 +71,10 @@ describe('TimeConversion', () => {
 
   it('adds durations (seconds and nanos) with legacy string seconds', () => {
     const durationA = millisecondsToDuration(1500)
-    // @ts-ignore
+    // @ts-expect-error
     durationA.seconds = String(durationA.seconds)
     const durationB = millisecondsToDuration(1600)
-    // @ts-ignore
+    // @ts-expect-error
     durationB.seconds = String(durationB.seconds)
     const sumDuration = addDurations(durationA, durationB)
 

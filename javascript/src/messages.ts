@@ -2,7 +2,6 @@ import { Type } from 'class-transformer'
 import 'reflect-metadata'
 
 export class Attachment {
-
   body: string = ''
 
   contentEncoding: AttachmentContentEncoding = AttachmentContentEncoding.IDENTITY
@@ -29,14 +28,12 @@ export class Attachment {
 }
 
 export class Duration {
-
   seconds: number = 0
 
   nanos: number = 0
 }
 
 export class Envelope {
-
   @Type(() => Attachment)
   attachment?: Attachment
 
@@ -102,7 +99,6 @@ export class Envelope {
 }
 
 export class Exception {
-
   type: string = ''
 
   message?: string
@@ -111,7 +107,6 @@ export class Exception {
 }
 
 export class ExternalAttachment {
-
   url: string = ''
 
   mediaType: string = ''
@@ -127,7 +122,6 @@ export class ExternalAttachment {
 }
 
 export class GherkinDocument {
-
   uri?: string
 
   @Type(() => Feature)
@@ -138,7 +132,6 @@ export class GherkinDocument {
 }
 
 export class Background {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -155,7 +148,6 @@ export class Background {
 }
 
 export class Comment {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -163,7 +155,6 @@ export class Comment {
 }
 
 export class DataTable {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -172,7 +163,6 @@ export class DataTable {
 }
 
 export class DocString {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -184,7 +174,6 @@ export class DocString {
 }
 
 export class Examples {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -207,7 +196,6 @@ export class Examples {
 }
 
 export class Feature {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -227,7 +215,6 @@ export class Feature {
 }
 
 export class FeatureChild {
-
   @Type(() => Rule)
   rule?: Rule
 
@@ -239,7 +226,6 @@ export class FeatureChild {
 }
 
 export class Rule {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -259,7 +245,6 @@ export class Rule {
 }
 
 export class RuleChild {
-
   @Type(() => Background)
   background?: Background
 
@@ -268,7 +253,6 @@ export class RuleChild {
 }
 
 export class Scenario {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -291,7 +275,6 @@ export class Scenario {
 }
 
 export class Step {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -311,7 +294,6 @@ export class Step {
 }
 
 export class TableCell {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -319,7 +301,6 @@ export class TableCell {
 }
 
 export class TableRow {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -330,7 +311,6 @@ export class TableRow {
 }
 
 export class Tag {
-
   @Type(() => Location)
   location: Location = new Location()
 
@@ -340,7 +320,6 @@ export class Tag {
 }
 
 export class Hook {
-
   id: string = ''
 
   name?: string
@@ -354,14 +333,12 @@ export class Hook {
 }
 
 export class Location {
-
   line: number = 0
 
   column?: number
 }
 
 export class Meta {
-
   protocolVersion: string = ''
 
   @Type(() => Product)
@@ -381,7 +358,6 @@ export class Meta {
 }
 
 export class Ci {
-
   name: string = ''
 
   url?: string
@@ -393,7 +369,6 @@ export class Ci {
 }
 
 export class Git {
-
   remote: string = ''
 
   revision: string = ''
@@ -404,14 +379,12 @@ export class Git {
 }
 
 export class Product {
-
   name: string = ''
 
   version?: string
 }
 
 export class ParameterType {
-
   name: string = ''
 
   regularExpressions: readonly string[] = []
@@ -427,7 +400,6 @@ export class ParameterType {
 }
 
 export class ParseError {
-
   @Type(() => SourceReference)
   source: SourceReference = new SourceReference()
 
@@ -435,7 +407,6 @@ export class ParseError {
 }
 
 export class Pickle {
-
   id: string = ''
 
   uri: string = ''
@@ -457,14 +428,12 @@ export class Pickle {
 }
 
 export class PickleDocString {
-
   mediaType?: string
 
   content: string = ''
 }
 
 export class PickleStep {
-
   @Type(() => PickleStepArgument)
   argument?: PickleStepArgument
 
@@ -478,7 +447,6 @@ export class PickleStep {
 }
 
 export class PickleStepArgument {
-
   @Type(() => PickleDocString)
   docString?: PickleDocString
 
@@ -487,31 +455,26 @@ export class PickleStepArgument {
 }
 
 export class PickleTable {
-
   @Type(() => PickleTableRow)
   rows: readonly PickleTableRow[] = []
 }
 
 export class PickleTableCell {
-
   value: string = ''
 }
 
 export class PickleTableRow {
-
   @Type(() => PickleTableCell)
   cells: readonly PickleTableCell[] = []
 }
 
 export class PickleTag {
-
   name: string = ''
 
   astNodeId: string = ''
 }
 
 export class Source {
-
   uri: string = ''
 
   data: string = ''
@@ -520,7 +483,6 @@ export class Source {
 }
 
 export class SourceReference {
-
   uri?: string
 
   @Type(() => JavaMethod)
@@ -534,7 +496,6 @@ export class SourceReference {
 }
 
 export class JavaMethod {
-
   className: string = ''
 
   methodName: string = ''
@@ -543,7 +504,6 @@ export class JavaMethod {
 }
 
 export class JavaStackTraceElement {
-
   className: string = ''
 
   fileName: string = ''
@@ -552,7 +512,6 @@ export class JavaStackTraceElement {
 }
 
 export class StepDefinition {
-
   id: string = ''
 
   @Type(() => StepDefinitionPattern)
@@ -563,14 +522,12 @@ export class StepDefinition {
 }
 
 export class StepDefinitionPattern {
-
   source: string = ''
 
   type: StepDefinitionPatternType = StepDefinitionPatternType.CUCUMBER_EXPRESSION
 }
 
 export class Suggestion {
-
   id: string = ''
 
   pickleStepId: string = ''
@@ -580,14 +537,12 @@ export class Suggestion {
 }
 
 export class Snippet {
-
   language: string = ''
 
   code: string = ''
 }
 
 export class TestCase {
-
   id: string = ''
 
   pickleId: string = ''
@@ -599,7 +554,6 @@ export class TestCase {
 }
 
 export class Group {
-
   @Type(() => Group)
   children?: readonly Group[]
 
@@ -609,7 +563,6 @@ export class Group {
 }
 
 export class StepMatchArgument {
-
   @Type(() => Group)
   group: Group = new Group()
 
@@ -617,13 +570,11 @@ export class StepMatchArgument {
 }
 
 export class StepMatchArgumentsList {
-
   @Type(() => StepMatchArgument)
   stepMatchArguments: readonly StepMatchArgument[] = []
 }
 
 export class TestStep {
-
   hookId?: string
 
   id: string = ''
@@ -637,7 +588,6 @@ export class TestStep {
 }
 
 export class TestCaseFinished {
-
   testCaseStartedId: string = ''
 
   @Type(() => Timestamp)
@@ -647,7 +597,6 @@ export class TestCaseFinished {
 }
 
 export class TestCaseStarted {
-
   attempt: number = 0
 
   id: string = ''
@@ -661,7 +610,6 @@ export class TestCaseStarted {
 }
 
 export class TestRunFinished {
-
   message?: string
 
   success: boolean = false
@@ -676,7 +624,6 @@ export class TestRunFinished {
 }
 
 export class TestRunHookFinished {
-
   testRunHookStartedId: string = ''
 
   @Type(() => TestStepResult)
@@ -687,7 +634,6 @@ export class TestRunHookFinished {
 }
 
 export class TestRunHookStarted {
-
   id: string = ''
 
   testRunStartedId: string = ''
@@ -701,7 +647,6 @@ export class TestRunHookStarted {
 }
 
 export class TestRunStarted {
-
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
 
@@ -709,7 +654,6 @@ export class TestRunStarted {
 }
 
 export class TestStepFinished {
-
   testCaseStartedId: string = ''
 
   testStepId: string = ''
@@ -722,7 +666,6 @@ export class TestStepFinished {
 }
 
 export class TestStepResult {
-
   @Type(() => Duration)
   duration: Duration = new Duration()
 
@@ -735,7 +678,6 @@ export class TestStepResult {
 }
 
 export class TestStepStarted {
-
   testCaseStartedId: string = ''
 
   testStepId: string = ''
@@ -745,14 +687,12 @@ export class TestStepStarted {
 }
 
 export class Timestamp {
-
   seconds: number = 0
 
   nanos: number = 0
 }
 
 export class UndefinedParameterType {
-
   expression: string = ''
 
   name: string = ''
@@ -806,4 +746,3 @@ export enum TestStepResultStatus {
   AMBIGUOUS = 'AMBIGUOUS',
   FAILED = 'FAILED',
 }
-
