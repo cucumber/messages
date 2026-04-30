@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "dist/cjs",
     "target": "ES5",
-    "module": "CommonJS",
-  },
+    "module": "CommonJS"
+  }
 }
