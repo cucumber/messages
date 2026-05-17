@@ -8,7 +8,7 @@ help: ## Show this help
 generate: require-doc messages.schema.json messages.md relations.md ## Generate bundled schema and documentation
 
 messages.schema.json: $(schemas) bundle.mjs package.json
-	npm install
+	npm ci
 	node bundle.mjs
 
 require-doc: ## Check requirements for documentation generation
