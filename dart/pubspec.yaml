@@ -7,7 +7,7 @@ issue_tracker: https://github.com/cucumber/messages/issues
 documentation: https://github.com/cucumber/messages/tree/main/dart
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.7.0
 
 topics:
   - cucumber

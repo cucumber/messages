@@ -24,8 +24,9 @@ Future<void> main() async {
   });
 
   final readStreamMicros = await _measureAsyncMicros(() async {
-    await decodeNdjsonEnvelopes(Stream<String>.fromIterable(jsonLines))
-        .drain<void>();
+    await decodeNdjsonEnvelopes(
+      Stream<String>.fromIterable(jsonLines),
+    ).drain<void>();
   });
 
   final writeStreamMicros = await _measureAsyncMicros(() async {

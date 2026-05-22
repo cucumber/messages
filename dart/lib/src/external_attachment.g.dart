@@ -1,5 +1,6 @@
 // This code was generated using the code generator from cucumber-messages.
 // Manual changes will be lost if the code is regenerated.
+// dart format off
 
 part of 'messages.dart';
 

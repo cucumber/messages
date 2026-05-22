@@ -10,7 +10,7 @@ read/write, timestamps, durations, and an `IdGenerator` interface for callers.
 
 ## Requirements
 
-* Dart SDK `>=3.5.0 <4.0.0`
+* Dart SDK `>=3.7.0 <4.0.0`
 
 ## Installation
 

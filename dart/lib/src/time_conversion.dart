@@ -34,7 +34,8 @@ DurationMessage durationToDurationMessage(Duration duration) {
 /// The [timestamp] is interpreted as seconds and nanoseconds since Unix epoch.
 DateTime timestampToDateTime(Timestamp timestamp) {
   _validateTimestampNanos(timestamp.nanos);
-  final micros = (timestamp.seconds * Duration.microsecondsPerSecond) +
+  final micros =
+      (timestamp.seconds * Duration.microsecondsPerSecond) +
       (timestamp.nanos ~/ 1000);
   return DateTime.fromMicrosecondsSinceEpoch(micros, isUtc: true);
 }
