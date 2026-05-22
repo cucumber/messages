@@ -1,4 +1,7 @@
 # Changelog
 
-Release notes for this package are maintained in the repository root
-[CHANGELOG.md](https://github.com/cucumber/messages/blob/main/CHANGELOG.md).
+## 0.0.1
+
+See the repository root [CHANGELOG.md](https://github.com/cucumber/messages/blob/main/CHANGELOG.md).
+
+Release notes for this package are maintained there, not in this file.
