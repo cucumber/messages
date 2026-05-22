@@ -86,9 +86,10 @@ void main() {
         ),
       ];
 
-      final values = await decodeNdjsonEnvelopes(
-        Stream<String>.fromIterable(lines),
-      ).toList();
+      final values =
+          await decodeNdjsonEnvelopes(
+            Stream<String>.fromIterable(lines),
+          ).toList();
 
       expect(values.length, 2);
       expect(values.first.attachment?.body, 'A');
@@ -140,10 +141,7 @@ void main() {
       final longInvalidLine = '{"x":"${'a' * 200}';
 
       expect(
-        () => parseEnvelopeJson(
-          longInvalidLine,
-          includeLineInErrors: true,
-        ),
+        () => parseEnvelopeJson(longInvalidLine, includeLineInErrors: true),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,

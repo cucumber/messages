@@ -43,19 +43,13 @@ void main() {
     test('throws when nanos are out of range', () {
       const timestamp = Timestamp(seconds: 1, nanos: 1000000000);
 
-      expect(
-        () => timestampToDateTime(timestamp),
-        throwsA(isA<RangeError>()),
-      );
+      expect(() => timestampToDateTime(timestamp), throwsA(isA<RangeError>()));
     });
 
     test('throws when nanos are negative', () {
       const timestamp = Timestamp(seconds: -1, nanos: -1);
 
-      expect(
-        () => timestampToDateTime(timestamp),
-        throwsA(isA<RangeError>()),
-      );
+      expect(() => timestampToDateTime(timestamp), throwsA(isA<RangeError>()));
     });
 
     test('converts far negative epoch timestamps', () {
