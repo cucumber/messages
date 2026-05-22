@@ -1,8 +1,5 @@
 // This code was generated using the code generator from cucumber-messages.
 // Manual changes will be lost if the code is regenerated.
-// ignore_for_file: cast_nullable_to_non_nullable, public_member_api_docs
-// ignore_for_file: sort_constructors_first
-// ignore_for_file: unnecessary_null_in_if_null_operators
 
 part of 'messages.dart';
 
@@ -16,8 +13,7 @@ enum PickleStepType {
   const PickleStepType(this.value);
   final String value;
 
-  static PickleStepType fromValue(String value) =>
-      values.firstWhere((v) => v.value == value);
+  static PickleStepType fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
 class PickleStep {
@@ -42,10 +38,7 @@ class PickleStep {
           : PickleStepArgument.fromJson(
               json['argument'] as Map<String, Object?>,
             ),
-      astNodeIds: (json['astNodeIds'] as List<Object?>?)
-              ?.map((item) => item as String)
-              .toList() ??
-          const [],
+      astNodeIds: (json['astNodeIds'] as List<Object?>?)?.map((item) => item as String).toList() ?? const [],
       id: json['id'] as String? ?? '',
       type: json['type'] == null
           ? null
@@ -70,3 +63,4 @@ class PickleStep {
     return json;
   }
 }
+

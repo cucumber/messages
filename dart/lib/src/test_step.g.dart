@@ -1,8 +1,5 @@
 // This code was generated using the code generator from cucumber-messages.
 // Manual changes will be lost if the code is regenerated.
-// ignore_for_file: cast_nullable_to_non_nullable, public_member_api_docs
-// ignore_for_file: sort_constructors_first
-// ignore_for_file: unnecessary_null_in_if_null_operators
 
 part of 'messages.dart';
 
@@ -26,19 +23,15 @@ class TestStep {
       hookId: json['hookId'] as String?,
       id: json['id'] as String? ?? '',
       pickleStepId: json['pickleStepId'] as String?,
-      stepDefinitionIds: (json['stepDefinitionIds'] as List<Object?>?)
-              ?.map((item) => item as String)
+      stepDefinitionIds: (json['stepDefinitionIds'] as List<Object?>?)?.map((item) => item as String).toList() ?? null,
+      stepMatchArgumentsLists: (json['stepMatchArgumentsLists'] as List<Object?>?)
+              ?.map(
+                (item) => StepMatchArgumentsList.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           null,
-      stepMatchArgumentsLists:
-          (json['stepMatchArgumentsLists'] as List<Object?>?)
-                  ?.map(
-                    (item) => StepMatchArgumentsList.fromJson(
-                      item as Map<String, Object?>,
-                    ),
-                  )
-                  .toList() ??
-              null,
     );
   }
 
@@ -55,9 +48,9 @@ class TestStep {
       json['stepDefinitionIds'] = stepDefinitionIds;
     }
     if (stepMatchArgumentsLists != null) {
-      json['stepMatchArgumentsLists'] =
-          stepMatchArgumentsLists!.map((item) => item.toJson()).toList();
+      json['stepMatchArgumentsLists'] = stepMatchArgumentsLists!.map((item) => item.toJson()).toList();
     }
     return json;
   }
 }
+

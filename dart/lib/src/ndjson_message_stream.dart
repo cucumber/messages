@@ -14,7 +14,7 @@ import 'package:cucumber_messages/src/messages.dart';
 Envelope parseEnvelopeJson(
   String json, {
   int? lineNumber,
-  bool includeLineInErrors = true,
+  bool includeLineInErrors = false,
 }) {
   try {
     final decoded = jsonDecode(json);
@@ -54,7 +54,7 @@ String envelopeToJsonString(Envelope envelope) {
 /// line content.
 Stream<Envelope> decodeNdjsonEnvelopes(
   Stream<String> lines, {
-  bool includeLineInErrors = true,
+  bool includeLineInErrors = false,
 }) async* {
   var lineNumber = 0;
   await for (final line in lines) {
