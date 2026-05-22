@@ -6,7 +6,7 @@ representing results and other information from Cucumber. Messages are defined b
 as [NDJSON](https://github.com/cucumber/messages#encoding) in message streams.
 
 This package provides generated Dart types for every message, plus helpers for NDJSON
-read/write, timestamps, durations, and an `IdGenerator` typedef for callers.
+read/write, timestamps, durations, and an `IdGenerator` interface for callers.
 
 ## Requirements
 
