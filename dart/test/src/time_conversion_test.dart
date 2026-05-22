@@ -1,0 +1,50 @@
+import 'package:cucumber_messages/cucumber_messages.dart';
+import 'package:test/test.dart';
+
+void main() {
+  group('timestamp conversion', () {
+    test('converts to and from wall clock time', () {
+      final now = DateTime.fromMicrosecondsSinceEpoch(
+        1000000 + 234,
+        isUtc: true,
+      );
+
+      final timestamp = dartTimeToTimestamp(now);
+      final again = timestampToDartTime(timestamp);
+
+      expect(again, now);
+    });
+
+    test('normalizes local DateTime values to UTC', () {
+      final local = DateTime(2024, 3, 4, 5, 6, 7, 8, 9);
+
+      final timestamp = dartTimeToTimestamp(local);
+      final again = timestampToDartTime(timestamp);
+
+      expect(again.isUtc, isTrue);
+      expect(
+        again.microsecondsSinceEpoch,
+        local.toUtc().microsecondsSinceEpoch,
+      );
+    });
+  });
+
+  group('duration conversion', () {
+    test('converts to and from duration', () {
+      const duration = Duration(milliseconds: 1234);
+
+      final message = dartDurationToDuration(duration);
+      final again = durationToDartDuration(message);
+
+      expect(again, duration);
+    });
+
+    test('converts negative duration messages to Dart Duration', () {
+      const message = DurationMessage(seconds: -1, nanos: 500000000);
+
+      final duration = durationToDartDuration(message);
+
+      expect(duration, const Duration(milliseconds: -500));
+    });
+  });
+}
