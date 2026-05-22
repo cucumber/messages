@@ -8,7 +8,14 @@ import 'package:cucumber_messages/src/messages.dart';
 /// schema.
 ///
 /// The optional [lineNumber] is used only to improve parse error context.
-Envelope parseEnvelope(String json, {int? lineNumber}) {
+///
+/// When [includeLineInErrors] is false, parse errors do not include input
+/// line content.
+Envelope parseEnvelope(
+  String json, {
+  int? lineNumber,
+  bool includeLineInErrors = true,
+}) {
   try {
     final decoded = jsonDecode(json);
     if (decoded is! Map<String, Object?>) {
@@ -17,13 +24,14 @@ Envelope parseEnvelope(String json, {int? lineNumber}) {
           'Expected a JSON object for Envelope but got ${decoded.runtimeType}',
           lineNumber,
           json,
+          includeLineInErrors,
         ),
       );
     }
     return Envelope.fromJson(decoded);
   } on FormatException catch (error) {
     throw FormatException(
-      _errorMessage(error.message, lineNumber, json),
+      _errorMessage(error.message, lineNumber, json, includeLineInErrors),
       error.source,
       error.offset,
     );
@@ -41,14 +49,24 @@ String envelopeToJson(Envelope envelope) {
 /// Each line must contain a single JSON object representing an [Envelope].
 ///
 /// The [lines] stream is consumed in order; whitespace-only lines are ignored.
-Stream<Envelope> readNdjsonLines(Stream<String> lines) async* {
+///
+/// When [includeLineInErrors] is false, parse errors do not include input
+/// line content.
+Stream<Envelope> readNdjsonLines(
+  Stream<String> lines, {
+  bool includeLineInErrors = true,
+}) async* {
   var lineNumber = 0;
   await for (final line in lines) {
     lineNumber++;
     if (line.trim().isEmpty) {
       continue;
     }
-    yield parseEnvelope(line, lineNumber: lineNumber);
+    yield parseEnvelope(
+      line,
+      lineNumber: lineNumber,
+      includeLineInErrors: includeLineInErrors,
+    );
   }
 }
 
@@ -63,10 +81,16 @@ Stream<String> writeNdjsonLines(Stream<Envelope> envelopes) async* {
   }
 }
 
-String _errorMessage(String message, int? lineNumber, String line) {
+String _errorMessage(
+  String message,
+  int? lineNumber,
+  String line,
+  bool includeLineInErrors,
+) {
   final lineSuffix = lineNumber == null ? '' : ' on line $lineNumber';
-  return 'Failed to parse Envelope$lineSuffix: $message. '
-      'Line content: "${_snippet(line)}"';
+  final lineDetails =
+      includeLineInErrors ? ' Line content: "${_snippet(line)}"' : '';
+  return 'Failed to parse Envelope$lineSuffix: $message.$lineDetails';
 }
 
 String _snippet(String line) {

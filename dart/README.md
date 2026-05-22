@@ -89,11 +89,17 @@ See [example/lib/main.dart](example/lib/main.dart) and the unit tests for more e
 
 ## Versioning
 
-Package versions follow the [messages protocol version](https://github.com/cucumber/messages/releases)
+Package versions track the [messages protocol version](https://github.com/cucumber/messages/releases)
 used across language bindings in this repository (for example, Go module `v32` and Python
-`32.x`). The Dart binding is currently at `0.0.1` as its initial release; future versions
-will align with the shared protocol version when the Dart package joins the polyglot release
-process.
+`32.x`).
+
+Current policy:
+
+- While the Dart package is pre-`1.0.0`, releases may use bridge versions to keep
+  compatibility while release automation is being finalized.
+- Once the Dart package is included in the polyglot release process, the published
+  package version will align with the shared protocol major.
+- Any version bump must include a matching `CHANGELOG.md` entry.
 
 See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
@@ -108,7 +114,19 @@ dart format .
 dart analyze
 dart test
 dart pub publish --dry-run
+dart run benchmark/ndjson_benchmark.dart
 ```
+
+## Performance
+
+Run a quick local throughput benchmark for envelope parsing and NDJSON read/write:
+
+```sh
+dart run benchmark/ndjson_benchmark.dart
+```
+
+This benchmark is intended for regression checks across commits, not cross-machine
+comparisons.
 
 Acceptance tests under `test/acceptance/` read fixtures from `../testdata/` in the
 monorepo and are excluded from the published package.

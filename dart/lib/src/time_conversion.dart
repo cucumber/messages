@@ -1,5 +1,7 @@
 import 'package:cucumber_messages/src/messages.dart';
 
+const _nanosPerSecond = 1000000000;
+
 /// Converts a Cucumber [DurationMessage] to a Dart `Duration`.
 ///
 /// Cucumber durations are nanosecond-precision; Dart durations are
@@ -7,6 +9,7 @@ import 'package:cucumber_messages/src/messages.dart';
 ///
 /// The [duration] value is interpreted as whole seconds plus nanoseconds.
 Duration durationToDartDuration(DurationMessage duration) {
+  _validateDurationNanos(duration.nanos);
   return Duration(
     seconds: duration.seconds,
     microseconds: duration.nanos ~/ 1000,
@@ -30,6 +33,7 @@ DurationMessage dartDurationToDuration(Duration duration) {
 ///
 /// The [timestamp] is interpreted as seconds and nanoseconds since Unix epoch.
 DateTime timestampToDartTime(Timestamp timestamp) {
+  _validateTimestampNanos(timestamp.nanos);
   final micros = (timestamp.seconds * Duration.microsecondsPerSecond) +
       (timestamp.nanos ~/ 1000);
   return DateTime.fromMicrosecondsSinceEpoch(micros, isUtc: true);
@@ -44,4 +48,28 @@ Timestamp dartTimeToTimestamp(DateTime dateTime) {
   final seconds = micros ~/ Duration.microsecondsPerSecond;
   final nanos = (micros % Duration.microsecondsPerSecond) * 1000;
   return Timestamp(seconds: seconds, nanos: nanos);
+}
+
+void _validateDurationNanos(int nanos) {
+  if (nanos <= -_nanosPerSecond || nanos >= _nanosPerSecond) {
+    throw RangeError.range(
+      nanos,
+      -_nanosPerSecond + 1,
+      _nanosPerSecond - 1,
+      'DurationMessage.nanos',
+      'must be in (-1e9, 1e9)',
+    );
+  }
+}
+
+void _validateTimestampNanos(int nanos) {
+  if (nanos < 0 || nanos >= _nanosPerSecond) {
+    throw RangeError.range(
+      nanos,
+      0,
+      _nanosPerSecond - 1,
+      'Timestamp.nanos',
+      'must be in [0, 1e9)',
+    );
+  }
 }

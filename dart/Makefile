@@ -14,6 +14,9 @@ require: ## Check requirements for generation and checks
 clean: ## Remove automatically generated files and artifacts
 	rm -f lib/src/messages.dart lib/src/*.g.dart
 
+benchmark: ## Run Dart throughput benchmarks
+	dart run benchmark/ndjson_benchmark.dart
+
 lib/src/messages.dart: $(schemas) ../codegen/codegen.rb ../codegen/templates/dart.index.dart.erb
 	ruby ../codegen/codegen.rb Generator::Dart dart.index.dart.erb > $@
 

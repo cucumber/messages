@@ -61,5 +61,9 @@ jobs:
       - name: Test
         run: dart test
 
+      - name: Benchmark smoke check
+        if: matrix.os == 'ubuntu-latest' && matrix.dart == 'stable'
+        run: dart run benchmark/ndjson_benchmark.dart
+
       - name: Verify publishable package
         run: dart pub publish --dry-run

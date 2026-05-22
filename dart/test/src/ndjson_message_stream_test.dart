@@ -30,6 +30,19 @@ void main() {
       );
     });
 
+    test('can omit line content from parse errors', () {
+      expect(
+        () => parseEnvelope('{"attachment":', includeLineInErrors: false),
+        throwsA(
+          isA<FormatException>().having(
+            (error) => error.message,
+            'message',
+            isNot(contains('Line content:')),
+          ),
+        ),
+      );
+    });
+
     test('throws helpful error for non-object JSON', () {
       expect(
         () => parseEnvelope('[1,2,3]'),
@@ -80,6 +93,39 @@ void main() {
             (error) => error.message,
             'message',
             contains('line 2'),
+          ),
+        ),
+      );
+    });
+
+    test('can omit line content from stream parse errors', () async {
+      final lines = <String>['{"attachment":'];
+
+      await expectLater(
+        readNdjsonLines(
+          Stream<String>.fromIterable(lines),
+          includeLineInErrors: false,
+        ).drain<void>(),
+        throwsA(
+          isA<FormatException>().having(
+            (error) => error.message,
+            'message',
+            isNot(contains('Line content:')),
+          ),
+        ),
+      );
+    });
+
+    test('truncates line content snippet in parse errors', () {
+      final longInvalidLine = '{"x":"${'a' * 200}';
+
+      expect(
+        () => parseEnvelope(longInvalidLine),
+        throwsA(
+          isA<FormatException>().having(
+            (error) => error.message,
+            'message',
+            contains('..."'),
           ),
         ),
       );
