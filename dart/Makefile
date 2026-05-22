@@ -7,8 +7,10 @@ help: ## Show this help
 
 generate: require lib/src/generated/messages.dart .generate-messages ## Generate Dart code from JSON schemas
 
-require: ## Check requirements for code generation
+require: ## Check requirements for code generation (ruby, csplit and tail are required)
 	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
+	@csplit --version >/dev/null 2>&1 || (echo "ERROR: csplit is required."; exit 1)
+	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
 
 clean: ## Remove automatically generated files and artifacts
 	rm -rf lib/src/generated
