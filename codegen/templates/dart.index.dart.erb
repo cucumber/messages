@@ -1,0 +1,7 @@
+<%= Generator::Dart::FILE_HEADER %>
+
+library;
+
+<%- each_schema do |key, _schema| -%>
+part '<%= part_file_name(key) %>';
+<%- end -%>

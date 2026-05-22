@@ -21,6 +21,7 @@ on:
       - jsonschema/**
       - codegen/**
       - cpp/**
+      - dart/**
       - dotnet/**
       - elixir/**
       - go/**

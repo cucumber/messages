@@ -1,0 +1,63 @@
+name: test-dart
+
+permissions: {}
+
+on:
+  push:
+    branches:
+      - main
+      - renovate/**
+    paths:
+      - dart/**
+      - testdata/**
+      - Makefile
+      - .github/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - dart/**
+      - testdata/**
+      - Makefile
+      - .github/**
+
+jobs:
+  test-dart:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        dart:
+          - stable
+        include:
+          - os: windows-latest
+            dart: stable
+          - os: macos-latest
+            dart: stable
+
+    defaults:
+      run:
+        working-directory: dart
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: dart-lang/setup-dart@c7a31f6a04bb9bf94f538fc551f7ef9e40223317 # v1.7.1
+        with:
+          sdk: ${{ matrix.dart }}
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: dart analyze
+
+      - name: Test
+        run: dart test
