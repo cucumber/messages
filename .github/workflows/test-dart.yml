@@ -29,8 +29,7 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-        dart:
-          - stable
+        dart: ["3.5.0", stable]
         include:
           - os: windows-latest
             dart: stable

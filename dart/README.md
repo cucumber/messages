@@ -4,7 +4,7 @@ See main [README](../README.md)
 
 ## Requirements
 
-* Dart SDK ^3.8.0
+* Dart SDK `>=3.5.0 <4.0.0`
 
 ## Installation
 
