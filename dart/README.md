@@ -108,7 +108,7 @@ See the repository root [CHANGELOG.md](../CHANGELOG.md) for release notes.
 From the `dart/` directory:
 
 ```sh
-make generate   # requires Ruby; regenerates lib/src/*.g.dart from JSON schemas
+make generate   # requires Ruby; regenerates lib/src/generated/ from JSON schemas
 dart pub get
 dart format .
 dart analyze
