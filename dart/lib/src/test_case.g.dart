@@ -24,7 +24,11 @@ class TestCase {
       id: json['id'] as String? ?? '',
       pickleId: json['pickleId'] as String? ?? '',
       testSteps: (json['testSteps'] as List<Object?>?)
-              ?.map((item) => TestStep.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => TestStep.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       testRunStartedId: json['testRunStartedId'] as String?,

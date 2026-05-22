@@ -12,7 +12,8 @@ enum HookType {
   beforeTestCase('BEFORE_TEST_CASE'),
   afterTestCase('AFTER_TEST_CASE'),
   beforeTestStep('BEFORE_TEST_STEP'),
-  afterTestStep('AFTER_TEST_STEP');
+  afterTestStep('AFTER_TEST_STEP'),
+  ;
 
   const HookType(this.value);
   final String value;
@@ -48,7 +49,9 @@ class Hook {
       tagExpression: json['tagExpression'] as String?,
       type: json['type'] == null
           ? null
-          : HookType.fromValue(json['type'] as String),
+          : HookType.fromValue(
+              json['type'] as String,
+            ),
     );
   }
 

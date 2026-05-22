@@ -31,9 +31,15 @@ class Examples {
     return Examples(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       tags: (json['tags'] as List<Object?>?)
-              ?.map((item) => Tag.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Tag.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       keyword: json['keyword'] as String? ?? '',
@@ -41,9 +47,15 @@ class Examples {
       description: json['description'] as String? ?? '',
       tableHeader: json['tableHeader'] == null
           ? null
-          : TableRow.fromJson(json['tableHeader'] as Map<String, Object?>),
+          : TableRow.fromJson(
+              json['tableHeader'] as Map<String, Object?>,
+            ),
       tableBody: (json['tableBody'] as List<Object?>?)
-              ?.map((item) => TableRow.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => TableRow.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       id: json['id'] as String? ?? '',

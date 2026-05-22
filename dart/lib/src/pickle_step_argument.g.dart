@@ -10,16 +10,23 @@ class PickleStepArgument {
   final PickleDocString? docString;
   final PickleTable? dataTable;
 
-  const PickleStepArgument({this.docString, this.dataTable});
+  const PickleStepArgument({
+    this.docString,
+    this.dataTable,
+  });
 
   factory PickleStepArgument.fromJson(Map<String, Object?> json) {
     return PickleStepArgument(
       docString: json['docString'] == null
           ? null
-          : PickleDocString.fromJson(json['docString'] as Map<String, Object?>),
+          : PickleDocString.fromJson(
+              json['docString'] as Map<String, Object?>,
+            ),
       dataTable: json['dataTable'] == null
           ? null
-          : PickleTable.fromJson(json['dataTable'] as Map<String, Object?>),
+          : PickleTable.fromJson(
+              json['dataTable'] as Map<String, Object?>,
+            ),
     );
   }
 

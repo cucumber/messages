@@ -27,7 +27,9 @@ class TestRunFinished {
       success: json['success'] as bool? ?? false,
       timestamp: json['timestamp'] == null
           ? const Timestamp()
-          : Timestamp.fromJson(json['timestamp'] as Map<String, Object?>),
+          : Timestamp.fromJson(
+              json['timestamp'] as Map<String, Object?>,
+            ),
       exception: json['exception'] == null
           ? null
           : ExceptionMessage.fromJson(

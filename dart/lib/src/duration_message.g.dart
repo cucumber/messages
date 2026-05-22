@@ -10,7 +10,10 @@ class DurationMessage {
   final int seconds;
   final int nanos;
 
-  const DurationMessage({this.seconds = 0, this.nanos = 0});
+  const DurationMessage({
+    this.seconds = 0,
+    this.nanos = 0,
+  });
 
   factory DurationMessage.fromJson(Map<String, Object?> json) {
     return DurationMessage(

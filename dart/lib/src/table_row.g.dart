@@ -21,9 +21,15 @@ class TableRow {
     return TableRow(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       cells: (json['cells'] as List<Object?>?)
-              ?.map((item) => TableCell.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => TableCell.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       id: json['id'] as String? ?? '',

@@ -8,7 +8,8 @@ part of 'messages.dart';
 
 enum SourceMediaType {
   textXCucumberGherkinPlain('text/x.cucumber.gherkin+plain'),
-  textXCucumberGherkinMarkdown('text/x.cucumber.gherkin+markdown');
+  textXCucumberGherkinMarkdown('text/x.cucumber.gherkin+markdown'),
+  ;
 
   const SourceMediaType(this.value);
   final String value;
@@ -34,7 +35,9 @@ class Source {
       data: json['data'] as String? ?? '',
       mediaType: json['mediaType'] == null
           ? SourceMediaType.textXCucumberGherkinPlain
-          : SourceMediaType.fromValue(json['mediaType'] as String),
+          : SourceMediaType.fromValue(
+              json['mediaType'] as String,
+            ),
     );
   }
 

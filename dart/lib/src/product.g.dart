@@ -10,7 +10,10 @@ class Product {
   final String name;
   final String? version;
 
-  const Product({this.name = '', this.version});
+  const Product({
+    this.name = '',
+    this.version,
+  });
 
   factory Product.fromJson(Map<String, Object?> json) {
     return Product(

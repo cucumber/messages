@@ -13,7 +13,8 @@ enum TestStepResultStatus {
   pending('PENDING'),
   undefined('UNDEFINED'),
   ambiguous('AMBIGUOUS'),
-  failed('FAILED');
+  failed('FAILED'),
+  ;
 
   const TestStepResultStatus(this.value);
   final String value;
@@ -39,11 +40,15 @@ class TestStepResult {
     return TestStepResult(
       duration: json['duration'] == null
           ? const DurationMessage()
-          : DurationMessage.fromJson(json['duration'] as Map<String, Object?>),
+          : DurationMessage.fromJson(
+              json['duration'] as Map<String, Object?>,
+            ),
       message: json['message'] as String?,
       status: json['status'] == null
           ? TestStepResultStatus.unknown
-          : TestStepResultStatus.fromValue(json['status'] as String),
+          : TestStepResultStatus.fromValue(
+              json['status'] as String,
+            ),
       exception: json['exception'] == null
           ? null
           : ExceptionMessage.fromJson(

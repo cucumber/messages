@@ -32,7 +32,9 @@ class ExternalAttachment {
       testRunHookStartedId: json['testRunHookStartedId'] as String?,
       timestamp: json['timestamp'] == null
           ? null
-          : Timestamp.fromJson(json['timestamp'] as Map<String, Object?>),
+          : Timestamp.fromJson(
+              json['timestamp'] as Map<String, Object?>,
+            ),
     );
   }
 

@@ -31,20 +31,34 @@ class Scenario {
     return Scenario(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       tags: (json['tags'] as List<Object?>?)
-              ?.map((item) => Tag.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Tag.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       keyword: json['keyword'] as String? ?? '',
       name: json['name'] as String? ?? '',
       description: json['description'] as String? ?? '',
       steps: (json['steps'] as List<Object?>?)
-              ?.map((item) => Step.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Step.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       examples: (json['examples'] as List<Object?>?)
-              ?.map((item) => Examples.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Examples.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       id: json['id'] as String? ?? '',

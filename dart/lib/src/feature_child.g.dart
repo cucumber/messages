@@ -11,19 +11,29 @@ class FeatureChild {
   final Background? background;
   final Scenario? scenario;
 
-  const FeatureChild({this.rule, this.background, this.scenario});
+  const FeatureChild({
+    this.rule,
+    this.background,
+    this.scenario,
+  });
 
   factory FeatureChild.fromJson(Map<String, Object?> json) {
     return FeatureChild(
       rule: json['rule'] == null
           ? null
-          : Rule.fromJson(json['rule'] as Map<String, Object?>),
+          : Rule.fromJson(
+              json['rule'] as Map<String, Object?>,
+            ),
       background: json['background'] == null
           ? null
-          : Background.fromJson(json['background'] as Map<String, Object?>),
+          : Background.fromJson(
+              json['background'] as Map<String, Object?>,
+            ),
       scenario: json['scenario'] == null
           ? null
-          : Scenario.fromJson(json['scenario'] as Map<String, Object?>),
+          : Scenario.fromJson(
+              json['scenario'] as Map<String, Object?>,
+            ),
     );
   }
 

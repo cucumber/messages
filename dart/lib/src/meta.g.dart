@@ -28,19 +28,29 @@ class Meta {
       protocolVersion: json['protocolVersion'] as String? ?? '',
       implementation: json['implementation'] == null
           ? const Product()
-          : Product.fromJson(json['implementation'] as Map<String, Object?>),
+          : Product.fromJson(
+              json['implementation'] as Map<String, Object?>,
+            ),
       runtime: json['runtime'] == null
           ? const Product()
-          : Product.fromJson(json['runtime'] as Map<String, Object?>),
+          : Product.fromJson(
+              json['runtime'] as Map<String, Object?>,
+            ),
       os: json['os'] == null
           ? const Product()
-          : Product.fromJson(json['os'] as Map<String, Object?>),
+          : Product.fromJson(
+              json['os'] as Map<String, Object?>,
+            ),
       cpu: json['cpu'] == null
           ? const Product()
-          : Product.fromJson(json['cpu'] as Map<String, Object?>),
+          : Product.fromJson(
+              json['cpu'] as Map<String, Object?>,
+            ),
       ci: json['ci'] == null
           ? null
-          : Ci.fromJson(json['ci'] as Map<String, Object?>),
+          : Ci.fromJson(
+              json['ci'] as Map<String, Object?>,
+            ),
     );
   }
 

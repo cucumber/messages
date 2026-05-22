@@ -39,18 +39,48 @@ class <%= class_name(key) %> {
 <%- pname = property_name(property_name) -%>
 <%- required = (schema['required'] || []).index(property_name) -%>
 <%- if property['$ref'] -%>
-      <%= pname %>: json['<%= property_name %>'] == null ? <%= required ? default_value(class_name(key), property_name, property) : 'null' %> : <%= type_for(class_name(key), property_name, property) %>.fromJson(json['<%= property_name %>'] as Map<String, Object?>),
+<%- if required -%>
+      <%= pname %>: json['<%= property_name %>'] == null
+          ? <%= default_value(class_name(key), property_name, property) %>
+          : <%= type_for(class_name(key), property_name, property) %>.fromJson(
+              json['<%= property_name %>'] as Map<String, Object?>,
+            ),
+<%- else -%>
+      <%= pname %>: json['<%= property_name %>'] == null
+          ? null
+          : <%= type_for(class_name(key), property_name, property) %>.fromJson(
+              json['<%= property_name %>'] as Map<String, Object?>,
+            ),
+<%- end -%>
 <%- elsif property['items'] -%>
 <%- item = property['items'] -%>
 <%- if item['$ref'] -%>
-      <%= pname %>: (json['<%= property_name %>'] as List<Object?>?)?.map((item) => <%= type_for(class_name(key), nil, item) %>.fromJson(item as Map<String, Object?>)).toList() ?? <%= required ? 'const []' : 'null' %>,
+      <%= pname %>: (json['<%= property_name %>'] as List<Object?>?)
+              ?.map(
+                (item) => <%= type_for(class_name(key), nil, item) %>.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
+              .toList() ??
+          <%= required ? 'const []' : 'null' %>,
 <%- elsif item['enum'] -%>
-      <%= pname %>: (json['<%= property_name %>'] as List<Object?>?)?.map((item) => <%= type_for(class_name(key), property_name, item) %>.fromValue(item as String)).toList() ?? <%= required ? 'const []' : 'null' %>,
+      <%= pname %>: (json['<%= property_name %>'] as List<Object?>?)
+              ?.map(
+                (item) => <%= type_for(class_name(key), property_name, item) %>.fromValue(
+                  item as String,
+                ),
+              )
+              .toList() ??
+          <%= required ? 'const []' : 'null' %>,
 <%- else -%>
       <%= pname %>: (json['<%= property_name %>'] as List<Object?>?)?.map((item) => item as <%= type_for(class_name(key), nil, item) %>).toList() ?? <%= required ? 'const []' : 'null' %>,
 <%- end -%>
 <%- elsif property['enum'] -%>
-      <%= pname %>: json['<%= property_name %>'] == null ? <%= required ? default_value(class_name(key), property_name, property) : 'null' %> : <%= type_for(class_name(key), property_name, property) %>.fromValue(json['<%= property_name %>'] as String),
+      <%= pname %>: json['<%= property_name %>'] == null
+          ? <%= required ? default_value(class_name(key), property_name, property) : 'null' %>
+          : <%= type_for(class_name(key), property_name, property) %>.fromValue(
+              json['<%= property_name %>'] as String,
+            ),
 <%- elsif property['type'] == 'integer' -%>
       <%= pname %>: (json['<%= property_name %>'] as num?)?.toInt()<%= required ? ' ?? 0' : '' %>,
 <%- elsif property['type'] == 'boolean' -%>

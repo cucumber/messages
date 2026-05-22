@@ -29,16 +29,26 @@ class Rule {
     return Rule(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       tags: (json['tags'] as List<Object?>?)
-              ?.map((item) => Tag.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Tag.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       keyword: json['keyword'] as String? ?? '',
       name: json['name'] as String? ?? '',
       description: json['description'] as String? ?? '',
       children: (json['children'] as List<Object?>?)
-              ?.map((item) => RuleChild.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => RuleChild.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       id: json['id'] as String? ?? '',

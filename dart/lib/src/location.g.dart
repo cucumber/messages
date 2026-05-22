@@ -10,7 +10,10 @@ class Location {
   final int line;
   final int? column;
 
-  const Location({this.line = 0, this.column});
+  const Location({
+    this.line = 0,
+    this.column,
+  });
 
   factory Location.fromJson(Map<String, Object?> json) {
     return Location(

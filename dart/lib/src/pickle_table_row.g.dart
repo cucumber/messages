@@ -9,14 +9,17 @@ part of 'messages.dart';
 class PickleTableRow {
   final List<PickleTableCell> cells;
 
-  const PickleTableRow({this.cells = const []});
+  const PickleTableRow({
+    this.cells = const [],
+  });
 
   factory PickleTableRow.fromJson(Map<String, Object?> json) {
     return PickleTableRow(
       cells: (json['cells'] as List<Object?>?)
               ?.map(
-                (item) =>
-                    PickleTableCell.fromJson(item as Map<String, Object?>),
+                (item) => PickleTableCell.fromJson(
+                  item as Map<String, Object?>,
+                ),
               )
               .toList() ??
           const [],

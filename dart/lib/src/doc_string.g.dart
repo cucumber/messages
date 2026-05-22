@@ -23,7 +23,9 @@ class DocString {
     return DocString(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       mediaType: json['mediaType'] as String?,
       content: json['content'] as String? ?? '',
       delimiter: json['delimiter'] as String? ?? '',

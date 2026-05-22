@@ -10,7 +10,10 @@ class Timestamp {
   final int seconds;
   final int nanos;
 
-  const Timestamp({this.seconds = 0, this.nanos = 0});
+  const Timestamp({
+    this.seconds = 0,
+    this.nanos = 0,
+  });
 
   factory Timestamp.fromJson(Map<String, Object?> json) {
     return Timestamp(

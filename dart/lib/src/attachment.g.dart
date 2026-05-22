@@ -8,7 +8,8 @@ part of 'messages.dart';
 
 enum AttachmentContentEncoding {
   identity('IDENTITY'),
-  base64('BASE64');
+  base64('BASE64'),
+  ;
 
   const AttachmentContentEncoding(this.value);
   final String value;
@@ -56,7 +57,9 @@ class Attachment {
       mediaType: json['mediaType'] as String? ?? '',
       source: json['source'] == null
           ? null
-          : Source.fromJson(json['source'] as Map<String, Object?>),
+          : Source.fromJson(
+              json['source'] as Map<String, Object?>,
+            ),
       testCaseStartedId: json['testCaseStartedId'] as String?,
       testStepId: json['testStepId'] as String?,
       url: json['url'] as String?,
@@ -64,7 +67,9 @@ class Attachment {
       testRunHookStartedId: json['testRunHookStartedId'] as String?,
       timestamp: json['timestamp'] == null
           ? null
-          : Timestamp.fromJson(json['timestamp'] as Map<String, Object?>),
+          : Timestamp.fromJson(
+              json['timestamp'] as Map<String, Object?>,
+            ),
     );
   }
 

@@ -10,13 +10,18 @@ class ParseError {
   final SourceReference source;
   final String message;
 
-  const ParseError({this.source = const SourceReference(), this.message = ''});
+  const ParseError({
+    this.source = const SourceReference(),
+    this.message = '',
+  });
 
   factory ParseError.fromJson(Map<String, Object?> json) {
     return ParseError(
       source: json['source'] == null
           ? const SourceReference()
-          : SourceReference.fromJson(json['source'] as Map<String, Object?>),
+          : SourceReference.fromJson(
+              json['source'] as Map<String, Object?>,
+            ),
       message: json['message'] as String? ?? '',
     );
   }

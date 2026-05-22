@@ -11,13 +11,19 @@ class Tag {
   final String name;
   final String id;
 
-  const Tag({this.location = const Location(), this.name = '', this.id = ''});
+  const Tag({
+    this.location = const Location(),
+    this.name = '',
+    this.id = '',
+  });
 
   factory Tag.fromJson(Map<String, Object?> json) {
     return Tag(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       name: json['name'] as String? ?? '',
       id: json['id'] as String? ?? '',
     );

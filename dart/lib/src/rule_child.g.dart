@@ -10,16 +10,23 @@ class RuleChild {
   final Background? background;
   final Scenario? scenario;
 
-  const RuleChild({this.background, this.scenario});
+  const RuleChild({
+    this.background,
+    this.scenario,
+  });
 
   factory RuleChild.fromJson(Map<String, Object?> json) {
     return RuleChild(
       background: json['background'] == null
           ? null
-          : Background.fromJson(json['background'] as Map<String, Object?>),
+          : Background.fromJson(
+              json['background'] as Map<String, Object?>,
+            ),
       scenario: json['scenario'] == null
           ? null
-          : Scenario.fromJson(json['scenario'] as Map<String, Object?>),
+          : Scenario.fromJson(
+              json['scenario'] as Map<String, Object?>,
+            ),
     );
   }
 

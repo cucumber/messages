@@ -22,10 +22,14 @@ class TestRunHookFinished {
       testRunHookStartedId: json['testRunHookStartedId'] as String? ?? '',
       result: json['result'] == null
           ? const TestStepResult()
-          : TestStepResult.fromJson(json['result'] as Map<String, Object?>),
+          : TestStepResult.fromJson(
+              json['result'] as Map<String, Object?>,
+            ),
       timestamp: json['timestamp'] == null
           ? const Timestamp()
-          : Timestamp.fromJson(json['timestamp'] as Map<String, Object?>),
+          : Timestamp.fromJson(
+              json['timestamp'] as Map<String, Object?>,
+            ),
     );
   }
 

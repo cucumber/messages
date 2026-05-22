@@ -10,13 +10,18 @@ class Comment {
   final Location location;
   final String text;
 
-  const Comment({this.location = const Location(), this.text = ''});
+  const Comment({
+    this.location = const Location(),
+    this.text = '',
+  });
 
   factory Comment.fromJson(Map<String, Object?> json) {
     return Comment(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       text: json['text'] as String? ?? '',
     );
   }

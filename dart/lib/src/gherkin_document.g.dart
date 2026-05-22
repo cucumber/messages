@@ -11,16 +11,26 @@ class GherkinDocument {
   final Feature? feature;
   final List<Comment> comments;
 
-  const GherkinDocument({this.uri, this.feature, this.comments = const []});
+  const GherkinDocument({
+    this.uri,
+    this.feature,
+    this.comments = const [],
+  });
 
   factory GherkinDocument.fromJson(Map<String, Object?> json) {
     return GherkinDocument(
       uri: json['uri'] as String?,
       feature: json['feature'] == null
           ? null
-          : Feature.fromJson(json['feature'] as Map<String, Object?>),
+          : Feature.fromJson(
+              json['feature'] as Map<String, Object?>,
+            ),
       comments: (json['comments'] as List<Object?>?)
-              ?.map((item) => Comment.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Comment.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
     );

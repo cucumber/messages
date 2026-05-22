@@ -12,7 +12,12 @@ class Git {
   final String? branch;
   final String? tag;
 
-  const Git({this.remote = '', this.revision = '', this.branch, this.tag});
+  const Git({
+    this.remote = '',
+    this.revision = '',
+    this.branch,
+    this.tag,
+  });
 
   factory Git.fromJson(Map<String, Object?> json) {
     return Git(

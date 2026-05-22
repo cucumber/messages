@@ -10,7 +10,10 @@ class PickleDocString {
   final String? mediaType;
   final String content;
 
-  const PickleDocString({this.mediaType, this.content = ''});
+  const PickleDocString({
+    this.mediaType,
+    this.content = '',
+  });
 
   factory PickleDocString.fromJson(Map<String, Object?> json) {
     return PickleDocString(

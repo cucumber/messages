@@ -29,7 +29,9 @@ class TestRunHookStarted {
       workerId: json['workerId'] as String?,
       timestamp: json['timestamp'] == null
           ? const Timestamp()
-          : Timestamp.fromJson(json['timestamp'] as Map<String, Object?>),
+          : Timestamp.fromJson(
+              json['timestamp'] as Map<String, Object?>,
+            ),
     );
   }
 

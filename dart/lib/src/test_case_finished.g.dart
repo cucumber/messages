@@ -22,7 +22,9 @@ class TestCaseFinished {
       testCaseStartedId: json['testCaseStartedId'] as String? ?? '',
       timestamp: json['timestamp'] == null
           ? const Timestamp()
-          : Timestamp.fromJson(json['timestamp'] as Map<String, Object?>),
+          : Timestamp.fromJson(
+              json['timestamp'] as Map<String, Object?>,
+            ),
       willBeRetried: json['willBeRetried'] as bool? ?? false,
     );
   }

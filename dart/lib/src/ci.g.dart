@@ -12,7 +12,12 @@ class Ci {
   final String? buildNumber;
   final Git? git;
 
-  const Ci({this.name = '', this.url, this.buildNumber, this.git});
+  const Ci({
+    this.name = '',
+    this.url,
+    this.buildNumber,
+    this.git,
+  });
 
   factory Ci.fromJson(Map<String, Object?> json) {
     return Ci(
@@ -21,7 +26,9 @@ class Ci {
       buildNumber: json['buildNumber'] as String?,
       git: json['git'] == null
           ? null
-          : Git.fromJson(json['git'] as Map<String, Object?>),
+          : Git.fromJson(
+              json['git'] as Map<String, Object?>,
+            ),
     );
   }
 

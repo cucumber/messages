@@ -9,10 +9,14 @@ part of 'messages.dart';
 class PickleTableCell {
   final String value;
 
-  const PickleTableCell({this.value = ''});
+  const PickleTableCell({
+    this.value = '',
+  });
 
   factory PickleTableCell.fromJson(Map<String, Object?> json) {
-    return PickleTableCell(value: json['value'] as String? ?? '');
+    return PickleTableCell(
+      value: json['value'] as String? ?? '',
+    );
   }
 
   Map<String, Object?> toJson() {

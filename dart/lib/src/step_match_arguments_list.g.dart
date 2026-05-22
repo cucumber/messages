@@ -9,14 +9,17 @@ part of 'messages.dart';
 class StepMatchArgumentsList {
   final List<StepMatchArgument> stepMatchArguments;
 
-  const StepMatchArgumentsList({this.stepMatchArguments = const []});
+  const StepMatchArgumentsList({
+    this.stepMatchArguments = const [],
+  });
 
   factory StepMatchArgumentsList.fromJson(Map<String, Object?> json) {
     return StepMatchArgumentsList(
       stepMatchArguments: (json['stepMatchArguments'] as List<Object?>?)
               ?.map(
-                (item) =>
-                    StepMatchArgument.fromJson(item as Map<String, Object?>),
+                (item) => StepMatchArgument.fromJson(
+                  item as Map<String, Object?>,
+                ),
               )
               .toList() ??
           const [],

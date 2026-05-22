@@ -10,7 +10,10 @@ class UndefinedParameterType {
   final String expression;
   final String name;
 
-  const UndefinedParameterType({this.expression = '', this.name = ''});
+  const UndefinedParameterType({
+    this.expression = '',
+    this.name = '',
+  });
 
   factory UndefinedParameterType.fromJson(Map<String, Object?> json) {
     return UndefinedParameterType(

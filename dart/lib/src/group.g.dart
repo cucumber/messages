@@ -11,12 +11,20 @@ class Group {
   final int? start;
   final String? value;
 
-  const Group({this.children, this.start, this.value});
+  const Group({
+    this.children,
+    this.start,
+    this.value,
+  });
 
   factory Group.fromJson(Map<String, Object?> json) {
     return Group(
       children: (json['children'] as List<Object?>?)
-              ?.map((item) => Group.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Group.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           null,
       start: (json['start'] as num?)?.toInt(),

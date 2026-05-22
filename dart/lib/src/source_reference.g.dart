@@ -24,7 +24,9 @@ class SourceReference {
       uri: json['uri'] as String?,
       javaMethod: json['javaMethod'] == null
           ? null
-          : JavaMethod.fromJson(json['javaMethod'] as Map<String, Object?>),
+          : JavaMethod.fromJson(
+              json['javaMethod'] as Map<String, Object?>,
+            ),
       javaStackTraceElement: json['javaStackTraceElement'] == null
           ? null
           : JavaStackTraceElement.fromJson(
@@ -32,7 +34,9 @@ class SourceReference {
             ),
       location: json['location'] == null
           ? null
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
     );
   }
 

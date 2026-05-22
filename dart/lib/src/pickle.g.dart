@@ -33,15 +33,25 @@ class Pickle {
       uri: json['uri'] as String? ?? '',
       location: json['location'] == null
           ? null
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       name: json['name'] as String? ?? '',
       language: json['language'] as String? ?? '',
       steps: (json['steps'] as List<Object?>?)
-              ?.map((item) => PickleStep.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => PickleStep.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       tags: (json['tags'] as List<Object?>?)
-              ?.map((item) => PickleTag.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => PickleTag.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       astNodeIds: (json['astNodeIds'] as List<Object?>?)

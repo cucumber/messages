@@ -57,7 +57,9 @@ class Envelope {
     return Envelope(
       attachment: json['attachment'] == null
           ? null
-          : Attachment.fromJson(json['attachment'] as Map<String, Object?>),
+          : Attachment.fromJson(
+              json['attachment'] as Map<String, Object?>,
+            ),
       externalAttachment: json['externalAttachment'] == null
           ? null
           : ExternalAttachment.fromJson(
@@ -70,10 +72,14 @@ class Envelope {
             ),
       hook: json['hook'] == null
           ? null
-          : Hook.fromJson(json['hook'] as Map<String, Object?>),
+          : Hook.fromJson(
+              json['hook'] as Map<String, Object?>,
+            ),
       meta: json['meta'] == null
           ? null
-          : Meta.fromJson(json['meta'] as Map<String, Object?>),
+          : Meta.fromJson(
+              json['meta'] as Map<String, Object?>,
+            ),
       parameterType: json['parameterType'] == null
           ? null
           : ParameterType.fromJson(
@@ -81,16 +87,24 @@ class Envelope {
             ),
       parseError: json['parseError'] == null
           ? null
-          : ParseError.fromJson(json['parseError'] as Map<String, Object?>),
+          : ParseError.fromJson(
+              json['parseError'] as Map<String, Object?>,
+            ),
       pickle: json['pickle'] == null
           ? null
-          : Pickle.fromJson(json['pickle'] as Map<String, Object?>),
+          : Pickle.fromJson(
+              json['pickle'] as Map<String, Object?>,
+            ),
       suggestion: json['suggestion'] == null
           ? null
-          : Suggestion.fromJson(json['suggestion'] as Map<String, Object?>),
+          : Suggestion.fromJson(
+              json['suggestion'] as Map<String, Object?>,
+            ),
       source: json['source'] == null
           ? null
-          : Source.fromJson(json['source'] as Map<String, Object?>),
+          : Source.fromJson(
+              json['source'] as Map<String, Object?>,
+            ),
       stepDefinition: json['stepDefinition'] == null
           ? null
           : StepDefinition.fromJson(
@@ -98,7 +112,9 @@ class Envelope {
             ),
       testCase: json['testCase'] == null
           ? null
-          : TestCase.fromJson(json['testCase'] as Map<String, Object?>),
+          : TestCase.fromJson(
+              json['testCase'] as Map<String, Object?>,
+            ),
       testCaseFinished: json['testCaseFinished'] == null
           ? null
           : TestCaseFinished.fromJson(

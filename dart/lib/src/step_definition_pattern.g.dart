@@ -8,7 +8,8 @@ part of 'messages.dart';
 
 enum StepDefinitionPatternType {
   cucumberExpression('CUCUMBER_EXPRESSION'),
-  regularExpression('REGULAR_EXPRESSION');
+  regularExpression('REGULAR_EXPRESSION'),
+  ;
 
   const StepDefinitionPatternType(this.value);
   final String value;
@@ -31,7 +32,9 @@ class StepDefinitionPattern {
       source: json['source'] as String? ?? '',
       type: json['type'] == null
           ? StepDefinitionPatternType.cucumberExpression
-          : StepDefinitionPatternType.fromValue(json['type'] as String),
+          : StepDefinitionPatternType.fromValue(
+              json['type'] as String,
+            ),
     );
   }
 

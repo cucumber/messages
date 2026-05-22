@@ -10,7 +10,8 @@ enum PickleStepType {
   unknown('Unknown'),
   context('Context'),
   action('Action'),
-  outcome('Outcome');
+  outcome('Outcome'),
+  ;
 
   const PickleStepType(this.value);
   final String value;
@@ -48,7 +49,9 @@ class PickleStep {
       id: json['id'] as String? ?? '',
       type: json['type'] == null
           ? null
-          : PickleStepType.fromValue(json['type'] as String),
+          : PickleStepType.fromValue(
+              json['type'] as String,
+            ),
       text: json['text'] as String? ?? '',
     );
   }

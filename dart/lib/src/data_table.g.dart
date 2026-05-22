@@ -10,15 +10,24 @@ class DataTable {
   final Location location;
   final List<TableRow> rows;
 
-  const DataTable({this.location = const Location(), this.rows = const []});
+  const DataTable({
+    this.location = const Location(),
+    this.rows = const [],
+  });
 
   factory DataTable.fromJson(Map<String, Object?> json) {
     return DataTable(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       rows: (json['rows'] as List<Object?>?)
-              ?.map((item) => TableRow.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => TableRow.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
     );

@@ -22,7 +22,11 @@ class Suggestion {
       id: json['id'] as String? ?? '',
       pickleStepId: json['pickleStepId'] as String? ?? '',
       snippets: (json['snippets'] as List<Object?>?)
-              ?.map((item) => Snippet.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Snippet.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
     );

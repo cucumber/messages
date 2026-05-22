@@ -10,7 +10,10 @@ class Snippet {
   final String language;
   final String code;
 
-  const Snippet({this.language = '', this.code = ''});
+  const Snippet({
+    this.language = '',
+    this.code = '',
+  });
 
   factory Snippet.fromJson(Map<String, Object?> json) {
     return Snippet(

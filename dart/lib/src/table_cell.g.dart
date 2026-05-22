@@ -10,13 +10,18 @@ class TableCell {
   final Location location;
   final String value;
 
-  const TableCell({this.location = const Location(), this.value = ''});
+  const TableCell({
+    this.location = const Location(),
+    this.value = '',
+  });
 
   factory TableCell.fromJson(Map<String, Object?> json) {
     return TableCell(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       value: json['value'] as String? ?? '',
     );
   }

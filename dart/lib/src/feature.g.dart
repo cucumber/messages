@@ -29,9 +29,15 @@ class Feature {
     return Feature(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       tags: (json['tags'] as List<Object?>?)
-              ?.map((item) => Tag.fromJson(item as Map<String, Object?>))
+              ?.map(
+                (item) => Tag.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
               .toList() ??
           const [],
       language: json['language'] as String? ?? '',
@@ -40,7 +46,9 @@ class Feature {
       description: json['description'] as String? ?? '',
       children: (json['children'] as List<Object?>?)
               ?.map(
-                (item) => FeatureChild.fromJson(item as Map<String, Object?>),
+                (item) => FeatureChild.fromJson(
+                  item as Map<String, Object?>,
+                ),
               )
               .toList() ??
           const [],

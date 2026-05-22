@@ -10,13 +10,18 @@ class StepMatchArgument {
   final Group group;
   final String? parameterTypeName;
 
-  const StepMatchArgument({this.group = const Group(), this.parameterTypeName});
+  const StepMatchArgument({
+    this.group = const Group(),
+    this.parameterTypeName,
+  });
 
   factory StepMatchArgument.fromJson(Map<String, Object?> json) {
     return StepMatchArgument(
       group: json['group'] == null
           ? const Group()
-          : Group.fromJson(json['group'] as Map<String, Object?>),
+          : Group.fromJson(
+              json['group'] as Map<String, Object?>,
+            ),
       parameterTypeName: json['parameterTypeName'] as String?,
     );
   }

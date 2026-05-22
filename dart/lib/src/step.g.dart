@@ -11,7 +11,8 @@ enum StepKeywordType {
   context('Context'),
   action('Action'),
   outcome('Outcome'),
-  conjunction('Conjunction');
+  conjunction('Conjunction'),
+  ;
 
   const StepKeywordType(this.value);
   final String value;
@@ -43,18 +44,26 @@ class Step {
     return Step(
       location: json['location'] == null
           ? const Location()
-          : Location.fromJson(json['location'] as Map<String, Object?>),
+          : Location.fromJson(
+              json['location'] as Map<String, Object?>,
+            ),
       keyword: json['keyword'] as String? ?? '',
       keywordType: json['keywordType'] == null
           ? null
-          : StepKeywordType.fromValue(json['keywordType'] as String),
+          : StepKeywordType.fromValue(
+              json['keywordType'] as String,
+            ),
       text: json['text'] as String? ?? '',
       docString: json['docString'] == null
           ? null
-          : DocString.fromJson(json['docString'] as Map<String, Object?>),
+          : DocString.fromJson(
+              json['docString'] as Map<String, Object?>,
+            ),
       dataTable: json['dataTable'] == null
           ? null
-          : DataTable.fromJson(json['dataTable'] as Map<String, Object?>),
+          : DataTable.fromJson(
+              json['dataTable'] as Map<String, Object?>,
+            ),
       id: json['id'] as String? ?? '',
     );
   }

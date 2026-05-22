@@ -10,7 +10,10 @@ class PickleTag {
   final String name;
   final String astNodeId;
 
-  const PickleTag({this.name = '', this.astNodeId = ''});
+  const PickleTag({
+    this.name = '',
+    this.astNodeId = '',
+  });
 
   factory PickleTag.fromJson(Map<String, Object?> json) {
     return PickleTag(

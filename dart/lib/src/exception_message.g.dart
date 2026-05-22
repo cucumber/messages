@@ -11,7 +11,11 @@ class ExceptionMessage {
   final String? message;
   final String? stackTrace;
 
-  const ExceptionMessage({this.type = '', this.message, this.stackTrace});
+  const ExceptionMessage({
+    this.type = '',
+    this.message,
+    this.stackTrace,
+  });
 
   factory ExceptionMessage.fromJson(Map<String, Object?> json) {
     return ExceptionMessage(
