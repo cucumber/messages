@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- [Dart] Add initial `cucumber_messages` package with generated message types from the Cucumber JSON schema
+- [Dart] Add NDJSON read/write helpers (`parseEnvelopeJson`, `decodeNdjsonEnvelopes`, `encodeNdjsonEnvelopes`) with parse errors that include line number context
+- [Dart] Add time conversion helpers between Cucumber `Timestamp`/`DurationMessage` and Dart `DateTime`/`Duration`, truncating sub-microsecond precision
+- [Dart] Add ID generators (`uuidV4IdGenerator`, `incrementingIdGenerator`, and `IdGenerators`)
+
 ## [32.3.1] - 2026-04-13
 ### Fixed
 - [Java] Fix broken Javadoc
