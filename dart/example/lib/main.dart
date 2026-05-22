@@ -16,8 +16,9 @@ Future<void> main() async {
 
   final lines = Stream<String>.value(line).transform(const LineSplitter());
   await for (final envelope in decodeNdjsonEnvelopes(lines)) {
-    final ndjsonLine =
-        await encodeNdjsonEnvelopes(Stream<Envelope>.value(envelope)).first;
+    final ndjsonLine = await encodeNdjsonEnvelopes(
+      Stream<Envelope>.value(envelope),
+    ).first;
     assert(
       ndjsonLine.trimRight() == envelopeToJsonString(parsed),
       'NDJSON line should serialize back to the same envelope JSON.',

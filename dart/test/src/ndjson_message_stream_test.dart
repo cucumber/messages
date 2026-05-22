@@ -86,10 +86,9 @@ void main() {
         ),
       ];
 
-      final values =
-          await decodeNdjsonEnvelopes(
-            Stream<String>.fromIterable(lines),
-          ).toList();
+      final values = await decodeNdjsonEnvelopes(
+        Stream<String>.fromIterable(lines),
+      ).toList();
 
       expect(values.length, 2);
       expect(values.first.attachment?.body, 'A');

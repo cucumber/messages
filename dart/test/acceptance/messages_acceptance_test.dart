@@ -34,14 +34,12 @@ void main() {
               .where((line) => line.isNotEmpty)
               .toList(growable: false);
 
-          final envelopes =
-              await decodeNdjsonEnvelopes(
-                Stream<String>.fromIterable(inputLines),
-              ).toList();
-          final outputLines =
-              await encodeNdjsonEnvelopes(
-                Stream<Envelope>.fromIterable(envelopes),
-              ).toList();
+          final envelopes = await decodeNdjsonEnvelopes(
+            Stream<String>.fromIterable(inputLines),
+          ).toList();
+          final outputLines = await encodeNdjsonEnvelopes(
+            Stream<Envelope>.fromIterable(envelopes),
+          ).toList();
 
           expect(outputLines.length, inputLines.length);
 

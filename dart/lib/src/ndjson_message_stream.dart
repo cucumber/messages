@@ -88,8 +88,9 @@ String _errorMessage(
   bool includeLineInErrors,
 ) {
   final lineSuffix = lineNumber == null ? '' : ' on line $lineNumber';
-  final lineDetails =
-      includeLineInErrors ? ' Line content: "${_snippet(line)}"' : '';
+  final lineDetails = includeLineInErrors
+      ? ' Line content: "${_snippet(line)}"'
+      : '';
   return 'Failed to parse Envelope$lineSuffix: $message.$lineDetails';
 }
 
