@@ -12,9 +12,10 @@ void main() {
     );
     final ndjsonLines =
         await encodeNdjsonEnvelopes(Stream.value(envelope)).toList();
-    final parsed = await decodeNdjsonEnvelopes(
-      Stream.value(envelopeToJsonString(envelope)),
-    ).toList();
+    final parsed =
+        await decodeNdjsonEnvelopes(
+          Stream.value(envelopeToJsonString(envelope)),
+        ).toList();
 
     expect(IdGenerator, isA<Type>());
     expect(timestampToDateTime(timestamp).isUtc, isTrue);
