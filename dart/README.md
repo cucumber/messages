@@ -40,6 +40,26 @@ import 'package:cucumber_messages/cucumber_messages.dart';
 Do not import from `package:cucumber_messages/src/...`; files under `lib/src/` are
 implementation details and may change without notice.
 
+### Name collisions with `dart:core`
+
+This package exports Cucumber message types named `Duration` and `Exception`, which
+shadow the same names from `dart:core`. If you use both in the same library, hide the
+message types or use a prefix import:
+
+```dart
+import 'package:cucumber_messages/cucumber_messages.dart' hide Duration, Exception;
+```
+
+```dart
+import 'package:cucumber_messages/cucumber_messages.dart' as messages;
+
+final duration = messages.Duration(seconds: 1, nanos: 0);
+```
+
+The time conversion helpers (`durationToDurationMessage`, `durationMessageToDuration`,
+and so on) accept and return Cucumber message types; use a prefix import or `hide
+Duration` when you also need Dart's core `Duration`.
+
 ## Reading
 
 ```dart
