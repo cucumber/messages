@@ -22,7 +22,7 @@ Duration durationToDartDuration(DurationMessage duration) {
 DurationMessage dartDurationToDuration(Duration duration) {
   final micros = duration.inMicroseconds;
   final seconds = micros ~/ Duration.microsecondsPerSecond;
-  final nanos = (micros % Duration.microsecondsPerSecond) * 1000;
+  final nanos = micros.remainder(Duration.microsecondsPerSecond) * 1000;
   return DurationMessage(seconds: seconds, nanos: nanos);
 }
 

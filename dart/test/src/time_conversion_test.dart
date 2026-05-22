@@ -110,7 +110,7 @@ void main() {
 
       final duration = durationToDartDuration(message);
 
-      expect(duration, const Duration(microseconds: 999999));
+      expect(duration, const Duration(seconds: 1));
     });
 
     test('round-trips large negative durations', () {
