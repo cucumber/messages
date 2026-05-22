@@ -64,3 +64,13 @@ await for (final line in writeNdjsonLines(Stream.value(envelope))) {
 ```
 
 See unit tests for more examples.
+
+## Development
+
+Regenerate schema-derived Dart sources:
+
+```sh
+make generate
+```
+
+See `CHANGELOG.md` for release notes.
