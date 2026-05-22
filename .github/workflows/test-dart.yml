@@ -60,3 +60,6 @@ jobs:
 
       - name: Test
         run: dart test
+
+      - name: Verify publishable package
+        run: dart pub publish --dry-run

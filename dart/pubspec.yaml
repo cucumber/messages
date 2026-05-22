@@ -4,9 +4,18 @@ version: 0.0.1
 homepage: https://github.com/cucumber/messages
 repository: https://github.com/cucumber/messages
 issue_tracker: https://github.com/cucumber/messages/issues
+documentation: https://github.com/cucumber/messages/tree/main/dart
+
+license: MIT
 
 environment:
   sdk: '>=3.5.0 <4.0.0'
+
+topics:
+  - cucumber
+  - testing
+  - json
+  - ndjson
 
 dependencies:
 
