@@ -6,7 +6,7 @@ representing results and other information from Cucumber. Messages are defined b
 as [NDJSON](https://github.com/cucumber/messages#encoding) in message streams.
 
 This package provides generated Dart types for every message, plus helpers for NDJSON
-read/write, timestamps, durations, and ID generation.
+read/write, timestamps, durations, and an `IdGenerator` typedef for callers.
 
 ## Requirements
 
@@ -99,9 +99,9 @@ Current policy:
   compatibility while release automation is being finalized.
 - Once the Dart package is included in the polyglot release process, the published
   package version will align with the shared protocol major.
-- Any version bump must include a matching `CHANGELOG.md` entry.
+- Any version bump must include a matching entry in the repository root [CHANGELOG.md](../CHANGELOG.md).
 
-See [CHANGELOG.md](CHANGELOG.md) for release notes.
+See the repository root [CHANGELOG.md](../CHANGELOG.md) for release notes.
 
 ## Development
 
