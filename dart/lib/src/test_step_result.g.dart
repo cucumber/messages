@@ -21,13 +21,13 @@ enum TestStepResultStatus {
 }
 
 class TestStepResult {
-  final DurationMessage duration;
+  final Duration duration;
   final String? message;
   final TestStepResultStatus status;
-  final ExceptionMessage? exception;
+  final Exception? exception;
 
   const TestStepResult({
-    this.duration = const DurationMessage(),
+    this.duration = const Duration(),
     this.message,
     this.status = TestStepResultStatus.unknown,
     this.exception,
@@ -36,8 +36,8 @@ class TestStepResult {
   factory TestStepResult.fromJson(Map<String, Object?> json) {
     return TestStepResult(
       duration: json['duration'] == null
-          ? const DurationMessage()
-          : DurationMessage.fromJson(
+          ? const Duration()
+          : Duration.fromJson(
               json['duration'] as Map<String, Object?>,
             ),
       message: json['message'] as String?,
@@ -48,7 +48,7 @@ class TestStepResult {
             ),
       exception: json['exception'] == null
           ? null
-          : ExceptionMessage.fromJson(
+          : Exception.fromJson(
               json['exception'] as Map<String, Object?>,
             ),
     );

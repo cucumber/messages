@@ -4,19 +4,19 @@
 
 part of 'messages.dart';
 
-class ExceptionMessage {
+class Exception {
   final String type;
   final String? message;
   final String? stackTrace;
 
-  const ExceptionMessage({
+  const Exception({
     this.type = '',
     this.message,
     this.stackTrace,
   });
 
-  factory ExceptionMessage.fromJson(Map<String, Object?> json) {
-    return ExceptionMessage(
+  factory Exception.fromJson(Map<String, Object?> json) {
+    return Exception(
       type: json['type'] as String? ?? '',
       message: json['message'] as String?,
       stackTrace: json['stackTrace'] as String?,

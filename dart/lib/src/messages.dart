@@ -5,9 +5,9 @@
 library;
 
 part 'attachment.g.dart';
-part 'duration_message.g.dart';
+part 'duration.g.dart';
 part 'envelope.g.dart';
-part 'exception_message.g.dart';
+part 'exception.g.dart';
 part 'external_attachment.g.dart';
 part 'gherkin_document.g.dart';
 part 'background.g.dart';

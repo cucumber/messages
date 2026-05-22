@@ -1,4 +1,4 @@
-import 'package:cucumber_messages/cucumber_messages.dart';
+import 'package:cucumber_messages/cucumber_messages.dart' hide Duration;
 import 'package:test/test.dart';
 
 void main() {

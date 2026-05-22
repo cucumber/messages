@@ -8,7 +8,7 @@ class TestRunFinished {
   final String? message;
   final bool success;
   final Timestamp timestamp;
-  final ExceptionMessage? exception;
+  final Exception? exception;
   final String? testRunStartedId;
 
   const TestRunFinished({
@@ -30,7 +30,7 @@ class TestRunFinished {
             ),
       exception: json['exception'] == null
           ? null
-          : ExceptionMessage.fromJson(
+          : Exception.fromJson(
               json['exception'] as Map<String, Object?>,
             ),
       testRunStartedId: json['testRunStartedId'] as String?,

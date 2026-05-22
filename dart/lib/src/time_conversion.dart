@@ -1,14 +1,14 @@
-import 'package:cucumber_messages/src/messages.dart';
+import 'package:cucumber_messages/src/messages.dart' as messages;
 
 const _nanosPerSecond = 1000000000;
 
-/// Converts a Cucumber [DurationMessage] to a Dart `Duration`.
+/// Converts a Cucumber [messages.Duration] to a Dart [Duration].
 ///
 /// Cucumber durations are nanosecond-precision; Dart durations are
 /// microsecond-precision. Any sub-microsecond remainder is truncated.
 ///
 /// The [duration] value is interpreted as whole seconds plus nanoseconds.
-Duration durationMessageToDuration(DurationMessage duration) {
+Duration durationMessageToDuration(messages.Duration duration) {
   _validateDurationNanos(duration.nanos);
   return Duration(
     seconds: duration.seconds,
@@ -16,23 +16,23 @@ Duration durationMessageToDuration(DurationMessage duration) {
   );
 }
 
-/// Converts a Dart `Duration` to a Cucumber [DurationMessage].
+/// Converts a Dart [Duration] to a Cucumber [messages.Duration].
 ///
 /// The [duration] value is exported as whole seconds plus nanoseconds.
-DurationMessage durationToDurationMessage(Duration duration) {
+messages.Duration durationToDurationMessage(Duration duration) {
   final micros = duration.inMicroseconds;
   final seconds = micros ~/ Duration.microsecondsPerSecond;
   final nanos = micros.remainder(Duration.microsecondsPerSecond) * 1000;
-  return DurationMessage(seconds: seconds, nanos: nanos);
+  return messages.Duration(seconds: seconds, nanos: nanos);
 }
 
-/// Converts a Cucumber [Timestamp] to a UTC [DateTime].
+/// Converts a Cucumber [messages.Timestamp] to a UTC [DateTime].
 ///
 /// Cucumber timestamps are nanosecond-precision; Dart `DateTime` is
 /// microsecond-precision. Any sub-microsecond remainder is truncated.
 ///
 /// The [timestamp] is interpreted as seconds and nanoseconds since Unix epoch.
-DateTime timestampToDateTime(Timestamp timestamp) {
+DateTime timestampToDateTime(messages.Timestamp timestamp) {
   _validateTimestampNanos(timestamp.nanos);
   final micros =
       (timestamp.seconds * Duration.microsecondsPerSecond) +
@@ -40,15 +40,15 @@ DateTime timestampToDateTime(Timestamp timestamp) {
   return DateTime.fromMicrosecondsSinceEpoch(micros, isUtc: true);
 }
 
-/// Converts [dateTime] to a Cucumber [Timestamp] in UTC.
+/// Converts [dateTime] to a Cucumber [messages.Timestamp] in UTC.
 ///
 /// The [dateTime] is normalized to UTC before conversion.
-Timestamp dateTimeToTimestamp(DateTime dateTime) {
+messages.Timestamp dateTimeToTimestamp(DateTime dateTime) {
   final utc = dateTime.toUtc();
   final micros = utc.microsecondsSinceEpoch;
   final seconds = micros ~/ Duration.microsecondsPerSecond;
   final nanos = (micros % Duration.microsecondsPerSecond) * 1000;
-  return Timestamp(seconds: seconds, nanos: nanos);
+  return messages.Timestamp(seconds: seconds, nanos: nanos);
 }
 
 void _validateDurationNanos(int nanos) {
@@ -57,7 +57,7 @@ void _validateDurationNanos(int nanos) {
       nanos,
       -_nanosPerSecond + 1,
       _nanosPerSecond - 1,
-      'DurationMessage.nanos',
+      'Duration.nanos',
       'must be in (-1e9, 1e9)',
     );
   }

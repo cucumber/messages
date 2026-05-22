@@ -4,14 +4,6 @@ module Generator
   # Generator::Dart
   # Automatic code generation overrides for the Dart programming language
   class Dart < Base
-    def class_name(ref)
-      base = File.basename(ref, '.schema.json')
-      return 'DurationMessage' if base == 'Duration'
-      return 'ExceptionMessage' if base == 'Exception'
-
-      base
-    end
-
     def array_type_for(type_name)
       "List<#{type_name}>"
     end

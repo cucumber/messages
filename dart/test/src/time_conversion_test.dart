@@ -1,4 +1,5 @@
-import 'package:cucumber_messages/cucumber_messages.dart';
+import 'package:cucumber_messages/cucumber_messages.dart' hide Duration;
+import 'package:cucumber_messages/src/messages.dart' as messages;
 import 'package:test/test.dart';
 
 void main() {
@@ -31,7 +32,7 @@ void main() {
     test(
       'truncates sub-microsecond precision when converting from timestamp',
       () {
-        const timestamp = Timestamp(seconds: 1, nanos: 1234);
+        const timestamp = messages.Timestamp(seconds: 1, nanos: 1234);
 
         final converted = timestampToDateTime(timestamp);
 
@@ -78,7 +79,7 @@ void main() {
     });
 
     test('converts negative duration messages to Dart Duration', () {
-      const message = DurationMessage(seconds: -1, nanos: 500000000);
+      const message = messages.Duration(seconds: -1, nanos: 500000000);
 
       final duration = durationMessageToDuration(message);
 
@@ -88,7 +89,7 @@ void main() {
     test(
       'truncates sub-microsecond precision when converting from message',
       () {
-        const message = DurationMessage(nanos: 1234);
+        const message = messages.Duration(nanos: 1234);
 
         final duration = durationMessageToDuration(message);
 
@@ -97,7 +98,7 @@ void main() {
     );
 
     test('throws when nanos are out of range', () {
-      const message = DurationMessage(nanos: -1000000000);
+      const message = messages.Duration(nanos: -1000000000);
 
       expect(
         () => durationMessageToDuration(message),
@@ -106,7 +107,7 @@ void main() {
     });
 
     test('allows mixed-sign duration components', () {
-      const message = DurationMessage(seconds: 1, nanos: -1);
+      const message = messages.Duration(seconds: 1, nanos: -1);
 
       final duration = durationMessageToDuration(message);
 

@@ -4,17 +4,17 @@
 
 part of 'messages.dart';
 
-class DurationMessage {
+class Duration {
   final int seconds;
   final int nanos;
 
-  const DurationMessage({
+  const Duration({
     this.seconds = 0,
     this.nanos = 0,
   });
 
-  factory DurationMessage.fromJson(Map<String, Object?> json) {
-    return DurationMessage(
+  factory Duration.fromJson(Map<String, Object?> json) {
+    return Duration(
       seconds: (json['seconds'] as num?)?.toInt() ?? 0,
       nanos: (json['nanos'] as num?)?.toInt() ?? 0,
     );
