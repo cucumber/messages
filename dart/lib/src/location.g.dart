@@ -9,13 +9,13 @@ class Location {
   final int? column;
 
   const Location({
-    this.line = 0,
+    required this.line,
     this.column,
   });
 
   factory Location.fromJson(Map<String, Object?> json) {
     return Location(
-      line: (json['line'] as num?)?.toInt() ?? 0,
+      line: (_requireJsonNumber(json, 'line') as num).toInt(),
       column: (json['column'] as num?)?.toInt(),
     );
   }

@@ -27,21 +27,19 @@ class Hook {
   final HookType? type;
 
   const Hook({
-    this.id = '',
+    required this.id,
     this.name,
-    this.sourceReference = const SourceReference(),
+    required this.sourceReference,
     this.tagExpression,
     this.type,
   });
 
   factory Hook.fromJson(Map<String, Object?> json) {
     return Hook(
-      id: json['id'] as String? ?? '',
+      id: _requireJsonString(json, 'id'),
       name: json['name'] as String?,
-      sourceReference: json['sourceReference'] == null
-          ? const SourceReference()
-          : SourceReference.fromJson(
-              json['sourceReference'] as Map<String, Object?>,
+      sourceReference: SourceReference.fromJson(
+              _requireJsonObject(json, 'sourceReference'),
             ),
       tagExpression: json['tagExpression'] as String?,
       type: json['type'] == null

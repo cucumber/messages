@@ -10,20 +10,18 @@ class Tag {
   final String id;
 
   const Tag({
-    this.location = const Location(),
-    this.name = '',
-    this.id = '',
+    required this.location,
+    required this.name,
+    required this.id,
   });
 
   factory Tag.fromJson(Map<String, Object?> json) {
     return Tag(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      name: json['name'] as String? ?? '',
-      id: json['id'] as String? ?? '',
+      name: _requireJsonString(json, 'name'),
+      id: _requireJsonString(json, 'id'),
     );
   }
 

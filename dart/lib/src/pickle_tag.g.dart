@@ -9,14 +9,14 @@ class PickleTag {
   final String astNodeId;
 
   const PickleTag({
-    this.name = '',
-    this.astNodeId = '',
+    required this.name,
+    required this.astNodeId,
   });
 
   factory PickleTag.fromJson(Map<String, Object?> json) {
     return PickleTag(
-      name: json['name'] as String? ?? '',
-      astNodeId: json['astNodeId'] as String? ?? '',
+      name: _requireJsonString(json, 'name'),
+      astNodeId: _requireJsonString(json, 'astNodeId'),
     );
   }
 

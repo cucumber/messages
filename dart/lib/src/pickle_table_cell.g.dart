@@ -8,12 +8,12 @@ class PickleTableCell {
   final String value;
 
   const PickleTableCell({
-    this.value = '',
+    required this.value,
   });
 
   factory PickleTableCell.fromJson(Map<String, Object?> json) {
     return PickleTableCell(
-      value: json['value'] as String? ?? '',
+      value: _requireJsonString(json, 'value'),
     );
   }
 

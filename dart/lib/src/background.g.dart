@@ -13,33 +13,30 @@ class Background {
   final String id;
 
   const Background({
-    this.location = const Location(),
-    this.keyword = '',
-    this.name = '',
-    this.description = '',
-    this.steps = const [],
-    this.id = '',
+    required this.location,
+    required this.keyword,
+    required this.name,
+    required this.description,
+    required this.steps,
+    required this.id,
   });
 
   factory Background.fromJson(Map<String, Object?> json) {
     return Background(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      keyword: json['keyword'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      description: json['description'] as String? ?? '',
-      steps: (json['steps'] as List<Object?>?)
-              ?.map(
+      keyword: _requireJsonString(json, 'keyword'),
+      name: _requireJsonString(json, 'name'),
+      description: _requireJsonString(json, 'description'),
+      steps: _requireJsonList(json, 'steps')
+              .map(
                 (item) => Step.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      id: json['id'] as String? ?? '',
+              .toList(),
+      id: _requireJsonString(json, 'id'),
     );
   }
 

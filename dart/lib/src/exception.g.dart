@@ -10,14 +10,14 @@ class Exception {
   final String? stackTrace;
 
   const Exception({
-    this.type = '',
+    required this.type,
     this.message,
     this.stackTrace,
   });
 
   factory Exception.fromJson(Map<String, Object?> json) {
     return Exception(
-      type: json['type'] as String? ?? '',
+      type: _requireJsonString(json, 'type'),
       message: json['message'] as String?,
       stackTrace: json['stackTrace'] as String?,
     );

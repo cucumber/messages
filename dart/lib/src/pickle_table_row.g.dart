@@ -8,19 +8,18 @@ class PickleTableRow {
   final List<PickleTableCell> cells;
 
   const PickleTableRow({
-    this.cells = const [],
+    required this.cells,
   });
 
   factory PickleTableRow.fromJson(Map<String, Object?> json) {
     return PickleTableRow(
-      cells: (json['cells'] as List<Object?>?)
-              ?.map(
+      cells: _requireJsonList(json, 'cells')
+              .map(
                 (item) => PickleTableCell.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
+              .toList(),
     );
   }
 

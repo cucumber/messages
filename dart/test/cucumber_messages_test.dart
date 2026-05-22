@@ -8,7 +8,7 @@ void main() {
     );
     final duration = durationToDurationMessage(const Duration(seconds: 1));
     final envelope = parseEnvelopeJson(
-      '{"attachment":{"body":"x","mediaType":"text/plain"}}',
+      '{"attachment":{"body":"x","contentEncoding":"IDENTITY","mediaType":"text/plain"}}',
     );
     final ndjsonLines =
         await encodeNdjsonEnvelopes(Stream.value(envelope)).toList();

@@ -27,24 +27,20 @@ class TestStepResult {
   final Exception? exception;
 
   const TestStepResult({
-    this.duration = const Duration(),
+    required this.duration,
     this.message,
-    this.status = TestStepResultStatus.unknown,
+    required this.status,
     this.exception,
   });
 
   factory TestStepResult.fromJson(Map<String, Object?> json) {
     return TestStepResult(
-      duration: json['duration'] == null
-          ? const Duration()
-          : Duration.fromJson(
-              json['duration'] as Map<String, Object?>,
+      duration: Duration.fromJson(
+              _requireJsonObject(json, 'duration'),
             ),
       message: json['message'] as String?,
-      status: json['status'] == null
-          ? TestStepResultStatus.unknown
-          : TestStepResultStatus.fromValue(
-              json['status'] as String,
+      status: TestStepResultStatus.fromValue(
+              _requireJsonString(json, 'status'),
             ),
       exception: json['exception'] == null
           ? null

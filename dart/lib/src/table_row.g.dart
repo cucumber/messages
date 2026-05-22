@@ -10,27 +10,24 @@ class TableRow {
   final String id;
 
   const TableRow({
-    this.location = const Location(),
-    this.cells = const [],
-    this.id = '',
+    required this.location,
+    required this.cells,
+    required this.id,
   });
 
   factory TableRow.fromJson(Map<String, Object?> json) {
     return TableRow(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      cells: (json['cells'] as List<Object?>?)
-              ?.map(
+      cells: _requireJsonList(json, 'cells')
+              .map(
                 (item) => TableCell.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      id: json['id'] as String? ?? '',
+              .toList(),
+      id: _requireJsonString(json, 'id'),
     );
   }
 

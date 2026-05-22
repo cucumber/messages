@@ -10,23 +10,22 @@ class Suggestion {
   final List<Snippet> snippets;
 
   const Suggestion({
-    this.id = '',
-    this.pickleStepId = '',
-    this.snippets = const [],
+    required this.id,
+    required this.pickleStepId,
+    required this.snippets,
   });
 
   factory Suggestion.fromJson(Map<String, Object?> json) {
     return Suggestion(
-      id: json['id'] as String? ?? '',
-      pickleStepId: json['pickleStepId'] as String? ?? '',
-      snippets: (json['snippets'] as List<Object?>?)
-              ?.map(
+      id: _requireJsonString(json, 'id'),
+      pickleStepId: _requireJsonString(json, 'pickleStepId'),
+      snippets: _requireJsonList(json, 'snippets')
+              .map(
                 (item) => Snippet.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
+              .toList(),
     );
   }
 

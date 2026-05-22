@@ -14,42 +14,38 @@ class Feature {
   final List<FeatureChild> children;
 
   const Feature({
-    this.location = const Location(),
-    this.tags = const [],
-    this.language = '',
-    this.keyword = '',
-    this.name = '',
-    this.description = '',
-    this.children = const [],
+    required this.location,
+    required this.tags,
+    required this.language,
+    required this.keyword,
+    required this.name,
+    required this.description,
+    required this.children,
   });
 
   factory Feature.fromJson(Map<String, Object?> json) {
     return Feature(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      tags: (json['tags'] as List<Object?>?)
-              ?.map(
+      tags: _requireJsonList(json, 'tags')
+              .map(
                 (item) => Tag.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      language: json['language'] as String? ?? '',
-      keyword: json['keyword'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      description: json['description'] as String? ?? '',
-      children: (json['children'] as List<Object?>?)
-              ?.map(
+              .toList(),
+      language: _requireJsonString(json, 'language'),
+      keyword: _requireJsonString(json, 'keyword'),
+      name: _requireJsonString(json, 'name'),
+      description: _requireJsonString(json, 'description'),
+      children: _requireJsonList(json, 'children')
+              .map(
                 (item) => FeatureChild.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
+              .toList(),
     );
   }
 

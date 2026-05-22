@@ -9,13 +9,13 @@ class Product {
   final String? version;
 
   const Product({
-    this.name = '',
+    required this.name,
     this.version,
   });
 
   factory Product.fromJson(Map<String, Object?> json) {
     return Product(
-      name: json['name'] as String? ?? '',
+      name: _requireJsonString(json, 'name'),
       version: json['version'] as String?,
     );
   }

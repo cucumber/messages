@@ -8,19 +8,18 @@ class StepMatchArgumentsList {
   final List<StepMatchArgument> stepMatchArguments;
 
   const StepMatchArgumentsList({
-    this.stepMatchArguments = const [],
+    required this.stepMatchArguments,
   });
 
   factory StepMatchArgumentsList.fromJson(Map<String, Object?> json) {
     return StepMatchArgumentsList(
-      stepMatchArguments: (json['stepMatchArguments'] as List<Object?>?)
-              ?.map(
+      stepMatchArguments: _requireJsonList(json, 'stepMatchArguments')
+              .map(
                 (item) => StepMatchArgument.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
+              .toList(),
     );
   }
 

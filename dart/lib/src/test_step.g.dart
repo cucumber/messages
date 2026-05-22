@@ -13,7 +13,7 @@ class TestStep {
 
   const TestStep({
     this.hookId,
-    this.id = '',
+    required this.id,
     this.pickleStepId,
     this.stepDefinitionIds,
     this.stepMatchArgumentsLists,
@@ -22,17 +22,18 @@ class TestStep {
   factory TestStep.fromJson(Map<String, Object?> json) {
     return TestStep(
       hookId: json['hookId'] as String?,
-      id: json['id'] as String? ?? '',
+      id: _requireJsonString(json, 'id'),
       pickleStepId: json['pickleStepId'] as String?,
-      stepDefinitionIds: (json['stepDefinitionIds'] as List<Object?>?)?.map((item) => item as String).toList() ?? null,
+      stepDefinitionIds: (json['stepDefinitionIds'] as List<Object?>?)
+              ?.map((item) => item as String)
+              .toList(),
       stepMatchArgumentsLists: (json['stepMatchArgumentsLists'] as List<Object?>?)
               ?.map(
                 (item) => StepMatchArgumentsList.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          null,
+              .toList(),
     );
   }
 

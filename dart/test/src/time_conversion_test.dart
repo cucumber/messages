@@ -59,7 +59,7 @@ void main() {
     });
 
     test('converts far negative epoch timestamps', () {
-      const timestamp = Timestamp(seconds: -2208988800);
+      const timestamp = Timestamp(seconds: -2208988800, nanos: 0);
 
       final converted = timestampToDateTime(timestamp);
 
@@ -89,7 +89,7 @@ void main() {
     test(
       'truncates sub-microsecond precision when converting from message',
       () {
-        const message = messages.Duration(nanos: 1234);
+        const message = messages.Duration(seconds: 0, nanos: 1234);
 
         final duration = durationMessageToDuration(message);
 
@@ -98,7 +98,7 @@ void main() {
     );
 
     test('throws when nanos are out of range', () {
-      const message = messages.Duration(nanos: -1000000000);
+      const message = messages.Duration(seconds: 0, nanos: -1000000000);
 
       expect(
         () => durationMessageToDuration(message),

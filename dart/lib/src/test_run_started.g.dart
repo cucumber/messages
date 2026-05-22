@@ -9,16 +9,14 @@ class TestRunStarted {
   final String? id;
 
   const TestRunStarted({
-    this.timestamp = const Timestamp(),
+    required this.timestamp,
     this.id,
   });
 
   factory TestRunStarted.fromJson(Map<String, Object?> json) {
     return TestRunStarted(
-      timestamp: json['timestamp'] == null
-          ? const Timestamp()
-          : Timestamp.fromJson(
-              json['timestamp'] as Map<String, Object?>,
+      timestamp: Timestamp.fromJson(
+              _requireJsonObject(json, 'timestamp'),
             ),
       id: json['id'] as String?,
     );

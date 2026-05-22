@@ -9,18 +9,16 @@ class Comment {
   final String text;
 
   const Comment({
-    this.location = const Location(),
-    this.text = '',
+    required this.location,
+    required this.text,
   });
 
   factory Comment.fromJson(Map<String, Object?> json) {
     return Comment(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      text: json['text'] as String? ?? '',
+      text: _requireJsonString(json, 'text'),
     );
   }
 

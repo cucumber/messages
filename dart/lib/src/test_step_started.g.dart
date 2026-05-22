@@ -10,19 +10,17 @@ class TestStepStarted {
   final Timestamp timestamp;
 
   const TestStepStarted({
-    this.testCaseStartedId = '',
-    this.testStepId = '',
-    this.timestamp = const Timestamp(),
+    required this.testCaseStartedId,
+    required this.testStepId,
+    required this.timestamp,
   });
 
   factory TestStepStarted.fromJson(Map<String, Object?> json) {
     return TestStepStarted(
-      testCaseStartedId: json['testCaseStartedId'] as String? ?? '',
-      testStepId: json['testStepId'] as String? ?? '',
-      timestamp: json['timestamp'] == null
-          ? const Timestamp()
-          : Timestamp.fromJson(
-              json['timestamp'] as Map<String, Object?>,
+      testCaseStartedId: _requireJsonString(json, 'testCaseStartedId'),
+      testStepId: _requireJsonString(json, 'testStepId'),
+      timestamp: Timestamp.fromJson(
+              _requireJsonObject(json, 'timestamp'),
             ),
     );
   }

@@ -18,17 +18,6 @@ module Generator
       head + sanitized.map(&:capitalize).join
     end
 
-    def default_enum(enum_type_name, property)
-      "#{enum_type_name}.#{enum_value_name(property['enum'][0])}"
-    end
-
-    def default_value(parent_type_name, property_name, property)
-      return 'const []' if property['items']
-      return "const #{type_for(parent_type_name, property_name, property)}()" if property['$ref']
-
-      super
-    end
-
     def enum_name(parent_type_name, property_name, enum)
       "#{class_name(parent_type_name)}#{capitalize(property_name)}".tap do |name|
         @enum_set.add({ name: name, values: enum })

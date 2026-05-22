@@ -9,18 +9,16 @@ class TableCell {
   final String value;
 
   const TableCell({
-    this.location = const Location(),
-    this.value = '',
+    required this.location,
+    required this.value,
   });
 
   factory TableCell.fromJson(Map<String, Object?> json) {
     return TableCell(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      value: json['value'] as String? ?? '',
+      value: _requireJsonString(json, 'value'),
     );
   }
 

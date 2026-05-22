@@ -10,16 +10,18 @@ class JavaMethod {
   final List<String> methodParameterTypes;
 
   const JavaMethod({
-    this.className = '',
-    this.methodName = '',
-    this.methodParameterTypes = const [],
+    required this.className,
+    required this.methodName,
+    required this.methodParameterTypes,
   });
 
   factory JavaMethod.fromJson(Map<String, Object?> json) {
     return JavaMethod(
-      className: json['className'] as String? ?? '',
-      methodName: json['methodName'] as String? ?? '',
-      methodParameterTypes: (json['methodParameterTypes'] as List<Object?>?)?.map((item) => item as String).toList() ?? const [],
+      className: _requireJsonString(json, 'className'),
+      methodName: _requireJsonString(json, 'methodName'),
+      methodParameterTypes: _requireJsonList(json, 'methodParameterTypes')
+              .map((item) => item as String)
+              .toList(),
     );
   }
 

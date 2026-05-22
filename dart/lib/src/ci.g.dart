@@ -11,7 +11,7 @@ class Ci {
   final Git? git;
 
   const Ci({
-    this.name = '',
+    required this.name,
     this.url,
     this.buildNumber,
     this.git,
@@ -19,7 +19,7 @@ class Ci {
 
   factory Ci.fromJson(Map<String, Object?> json) {
     return Ci(
-      name: json['name'] as String? ?? '',
+      name: _requireJsonString(json, 'name'),
       url: json['url'] as String?,
       buildNumber: json['buildNumber'] as String?,
       git: json['git'] == null

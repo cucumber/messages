@@ -12,23 +12,21 @@ class TestCaseStarted {
   final Timestamp timestamp;
 
   const TestCaseStarted({
-    this.attempt = 0,
-    this.id = '',
-    this.testCaseId = '',
+    required this.attempt,
+    required this.id,
+    required this.testCaseId,
     this.workerId,
-    this.timestamp = const Timestamp(),
+    required this.timestamp,
   });
 
   factory TestCaseStarted.fromJson(Map<String, Object?> json) {
     return TestCaseStarted(
-      attempt: (json['attempt'] as num?)?.toInt() ?? 0,
-      id: json['id'] as String? ?? '',
-      testCaseId: json['testCaseId'] as String? ?? '',
+      attempt: (_requireJsonNumber(json, 'attempt') as num).toInt(),
+      id: _requireJsonString(json, 'id'),
+      testCaseId: _requireJsonString(json, 'testCaseId'),
       workerId: json['workerId'] as String?,
-      timestamp: json['timestamp'] == null
-          ? const Timestamp()
-          : Timestamp.fromJson(
-              json['timestamp'] as Map<String, Object?>,
+      timestamp: Timestamp.fromJson(
+              _requireJsonObject(json, 'timestamp'),
             ),
     );
   }

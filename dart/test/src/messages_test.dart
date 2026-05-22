@@ -2,7 +2,7 @@ import 'package:cucumber_messages/cucumber_messages.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('defaults missing fields when deserializing from JSON', () {
+  test('throws when deserializing JSON with missing required fields', () {
     const json = '''
 {
   "gherkinDocument": {
@@ -36,21 +36,15 @@ void main() {
 }
 ''';
 
-    final envelope = parseEnvelopeJson(json);
-    expect(envelope.gherkinDocument?.comments, isEmpty);
-    expect(envelope.gherkinDocument?.feature?.description, '');
-    expect(envelope.gherkinDocument?.feature?.tags, isEmpty);
     expect(
-      envelope.gherkinDocument?.feature?.children.first.scenario?.examples,
-      isEmpty,
-    );
-    expect(
-      envelope.gherkinDocument?.feature?.children.first.scenario?.description,
-      '',
-    );
-    expect(
-      envelope.gherkinDocument?.feature?.children.first.scenario?.tags,
-      isEmpty,
+      () => parseEnvelopeJson(json),
+      throwsA(
+        isA<SchemaViolationException>().having(
+          (error) => error.message,
+          'message',
+          contains("Property 'tags' is required but was not found"),
+        ),
+      ),
     );
   });
 }

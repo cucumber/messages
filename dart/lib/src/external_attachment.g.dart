@@ -13,8 +13,8 @@ class ExternalAttachment {
   final Timestamp? timestamp;
 
   const ExternalAttachment({
-    this.url = '',
-    this.mediaType = '',
+    required this.url,
+    required this.mediaType,
     this.testCaseStartedId,
     this.testStepId,
     this.testRunHookStartedId,
@@ -23,8 +23,8 @@ class ExternalAttachment {
 
   factory ExternalAttachment.fromJson(Map<String, Object?> json) {
     return ExternalAttachment(
-      url: json['url'] as String? ?? '',
-      mediaType: json['mediaType'] as String? ?? '',
+      url: _requireJsonString(json, 'url'),
+      mediaType: _requireJsonString(json, 'mediaType'),
       testCaseStartedId: json['testCaseStartedId'] as String?,
       testStepId: json['testStepId'] as String?,
       testRunHookStartedId: json['testRunHookStartedId'] as String?,

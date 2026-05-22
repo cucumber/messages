@@ -12,23 +12,21 @@ class TestRunHookStarted {
   final Timestamp timestamp;
 
   const TestRunHookStarted({
-    this.id = '',
-    this.testRunStartedId = '',
-    this.hookId = '',
+    required this.id,
+    required this.testRunStartedId,
+    required this.hookId,
     this.workerId,
-    this.timestamp = const Timestamp(),
+    required this.timestamp,
   });
 
   factory TestRunHookStarted.fromJson(Map<String, Object?> json) {
     return TestRunHookStarted(
-      id: json['id'] as String? ?? '',
-      testRunStartedId: json['testRunStartedId'] as String? ?? '',
-      hookId: json['hookId'] as String? ?? '',
+      id: _requireJsonString(json, 'id'),
+      testRunStartedId: _requireJsonString(json, 'testRunStartedId'),
+      hookId: _requireJsonString(json, 'hookId'),
       workerId: json['workerId'] as String?,
-      timestamp: json['timestamp'] == null
-          ? const Timestamp()
-          : Timestamp.fromJson(
-              json['timestamp'] as Map<String, Object?>,
+      timestamp: Timestamp.fromJson(
+              _requireJsonObject(json, 'timestamp'),
             ),
     );
   }

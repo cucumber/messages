@@ -26,10 +26,10 @@ class PickleStep {
 
   const PickleStep({
     this.argument,
-    this.astNodeIds = const [],
-    this.id = '',
+    required this.astNodeIds,
+    required this.id,
     this.type,
-    this.text = '',
+    required this.text,
   });
 
   factory PickleStep.fromJson(Map<String, Object?> json) {
@@ -39,14 +39,16 @@ class PickleStep {
           : PickleStepArgument.fromJson(
               json['argument'] as Map<String, Object?>,
             ),
-      astNodeIds: (json['astNodeIds'] as List<Object?>?)?.map((item) => item as String).toList() ?? const [],
-      id: json['id'] as String? ?? '',
+      astNodeIds: _requireJsonList(json, 'astNodeIds')
+              .map((item) => item as String)
+              .toList(),
+      id: _requireJsonString(json, 'id'),
       type: json['type'] == null
           ? null
           : PickleStepType.fromValue(
               json['type'] as String,
             ),
-      text: json['text'] as String? ?? '',
+      text: _requireJsonString(json, 'text'),
     );
   }
 

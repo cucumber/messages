@@ -10,23 +10,19 @@ class TestRunHookFinished {
   final Timestamp timestamp;
 
   const TestRunHookFinished({
-    this.testRunHookStartedId = '',
-    this.result = const TestStepResult(),
-    this.timestamp = const Timestamp(),
+    required this.testRunHookStartedId,
+    required this.result,
+    required this.timestamp,
   });
 
   factory TestRunHookFinished.fromJson(Map<String, Object?> json) {
     return TestRunHookFinished(
-      testRunHookStartedId: json['testRunHookStartedId'] as String? ?? '',
-      result: json['result'] == null
-          ? const TestStepResult()
-          : TestStepResult.fromJson(
-              json['result'] as Map<String, Object?>,
+      testRunHookStartedId: _requireJsonString(json, 'testRunHookStartedId'),
+      result: TestStepResult.fromJson(
+              _requireJsonObject(json, 'result'),
             ),
-      timestamp: json['timestamp'] == null
-          ? const Timestamp()
-          : Timestamp.fromJson(
-              json['timestamp'] as Map<String, Object?>,
+      timestamp: Timestamp.fromJson(
+              _requireJsonObject(json, 'timestamp'),
             ),
     );
   }

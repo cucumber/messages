@@ -15,48 +15,44 @@ class Examples {
   final String id;
 
   const Examples({
-    this.location = const Location(),
-    this.tags = const [],
-    this.keyword = '',
-    this.name = '',
-    this.description = '',
+    required this.location,
+    required this.tags,
+    required this.keyword,
+    required this.name,
+    required this.description,
     this.tableHeader,
-    this.tableBody = const [],
-    this.id = '',
+    required this.tableBody,
+    required this.id,
   });
 
   factory Examples.fromJson(Map<String, Object?> json) {
     return Examples(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      tags: (json['tags'] as List<Object?>?)
-              ?.map(
+      tags: _requireJsonList(json, 'tags')
+              .map(
                 (item) => Tag.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      keyword: json['keyword'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      description: json['description'] as String? ?? '',
+              .toList(),
+      keyword: _requireJsonString(json, 'keyword'),
+      name: _requireJsonString(json, 'name'),
+      description: _requireJsonString(json, 'description'),
       tableHeader: json['tableHeader'] == null
           ? null
           : TableRow.fromJson(
               json['tableHeader'] as Map<String, Object?>,
             ),
-      tableBody: (json['tableBody'] as List<Object?>?)
-              ?.map(
+      tableBody: _requireJsonList(json, 'tableBody')
+              .map(
                 (item) => TableRow.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      id: json['id'] as String? ?? '',
+              .toList(),
+      id: _requireJsonString(json, 'id'),
     );
   }
 

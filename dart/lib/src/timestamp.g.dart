@@ -9,14 +9,14 @@ class Timestamp {
   final int nanos;
 
   const Timestamp({
-    this.seconds = 0,
-    this.nanos = 0,
+    required this.seconds,
+    required this.nanos,
   });
 
   factory Timestamp.fromJson(Map<String, Object?> json) {
     return Timestamp(
-      seconds: (json['seconds'] as num?)?.toInt() ?? 0,
-      nanos: (json['nanos'] as num?)?.toInt() ?? 0,
+      seconds: (_requireJsonNumber(json, 'seconds') as num).toInt(),
+      nanos: (_requireJsonNumber(json, 'nanos') as num).toInt(),
     );
   }
 

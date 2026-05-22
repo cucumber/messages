@@ -9,6 +9,7 @@ Future<void> main() async {
   const sample = Envelope(
     attachment: Attachment(
       body: 'benchmark',
+      contentEncoding: AttachmentContentEncoding.identity,
       mediaType: 'text/plain',
     ),
   );

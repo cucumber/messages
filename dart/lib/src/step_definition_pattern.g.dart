@@ -20,17 +20,15 @@ class StepDefinitionPattern {
   final StepDefinitionPatternType type;
 
   const StepDefinitionPattern({
-    this.source = '',
-    this.type = StepDefinitionPatternType.cucumberExpression,
+    required this.source,
+    required this.type,
   });
 
   factory StepDefinitionPattern.fromJson(Map<String, Object?> json) {
     return StepDefinitionPattern(
-      source: json['source'] as String? ?? '',
-      type: json['type'] == null
-          ? StepDefinitionPatternType.cucumberExpression
-          : StepDefinitionPatternType.fromValue(
-              json['type'] as String,
+      source: _requireJsonString(json, 'source'),
+      type: StepDefinitionPatternType.fromValue(
+              _requireJsonString(json, 'type'),
             ),
     );
   }

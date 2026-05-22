@@ -13,21 +13,23 @@ class ParameterType {
   final SourceReference? sourceReference;
 
   const ParameterType({
-    this.name = '',
-    this.regularExpressions = const [],
-    this.preferForRegularExpressionMatch = false,
-    this.useForSnippets = false,
-    this.id = '',
+    required this.name,
+    required this.regularExpressions,
+    required this.preferForRegularExpressionMatch,
+    required this.useForSnippets,
+    required this.id,
     this.sourceReference,
   });
 
   factory ParameterType.fromJson(Map<String, Object?> json) {
     return ParameterType(
-      name: json['name'] as String? ?? '',
-      regularExpressions: (json['regularExpressions'] as List<Object?>?)?.map((item) => item as String).toList() ?? const [],
-      preferForRegularExpressionMatch: json['preferForRegularExpressionMatch'] as bool? ?? false,
-      useForSnippets: json['useForSnippets'] as bool? ?? false,
-      id: json['id'] as String? ?? '',
+      name: _requireJsonString(json, 'name'),
+      regularExpressions: _requireJsonList(json, 'regularExpressions')
+              .map((item) => item as String)
+              .toList(),
+      preferForRegularExpressionMatch: _requireJsonBool(json, 'preferForRegularExpressionMatch'),
+      useForSnippets: _requireJsonBool(json, 'useForSnippets'),
+      id: _requireJsonString(json, 'id'),
       sourceReference: json['sourceReference'] == null
           ? null
           : SourceReference.fromJson(

@@ -11,24 +11,23 @@ class TestCase {
   final String? testRunStartedId;
 
   const TestCase({
-    this.id = '',
-    this.pickleId = '',
-    this.testSteps = const [],
+    required this.id,
+    required this.pickleId,
+    required this.testSteps,
     this.testRunStartedId,
   });
 
   factory TestCase.fromJson(Map<String, Object?> json) {
     return TestCase(
-      id: json['id'] as String? ?? '',
-      pickleId: json['pickleId'] as String? ?? '',
-      testSteps: (json['testSteps'] as List<Object?>?)
-              ?.map(
+      id: _requireJsonString(json, 'id'),
+      pickleId: _requireJsonString(json, 'pickleId'),
+      testSteps: _requireJsonList(json, 'testSteps')
+              .map(
                 (item) => TestStep.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
+              .toList(),
       testRunStartedId: json['testRunStartedId'] as String?,
     );
   }

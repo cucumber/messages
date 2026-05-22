@@ -6,6 +6,7 @@ Future<void> main() async {
   const original = Envelope(
     attachment: Attachment(
       body: 'hello',
+      contentEncoding: AttachmentContentEncoding.identity,
       mediaType: 'text/plain',
     ),
   );

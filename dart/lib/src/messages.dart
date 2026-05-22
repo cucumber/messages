@@ -4,6 +4,8 @@
 
 library;
 
+import 'package:cucumber_messages/src/schema_violation_exception.dart';
+
 part 'attachment.g.dart';
 part 'duration.g.dart';
 part 'envelope.g.dart';
@@ -64,3 +66,55 @@ part 'test_step_result.g.dart';
 part 'test_step_started.g.dart';
 part 'timestamp.g.dart';
 part 'undefined_parameter_type.g.dart';
+
+Never _missingRequiredProperty(String propertyName) {
+  throw SchemaViolationException(
+    "Property '$propertyName' is required but was not found",
+  );
+}
+
+Map<String, Object?> _requireJsonObject(
+  Map<String, Object?> json,
+  String propertyName,
+) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value as Map<String, Object?>;
+}
+
+List<Object?> _requireJsonList(
+  Map<String, Object?> json,
+  String propertyName,
+) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value as List<Object?>;
+}
+
+String _requireJsonString(Map<String, Object?> json, String propertyName) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value as String;
+}
+
+Object _requireJsonNumber(Map<String, Object?> json, String propertyName) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value;
+}
+
+bool _requireJsonBool(Map<String, Object?> json, String propertyName) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value as bool;
+}

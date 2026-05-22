@@ -11,16 +11,16 @@ class Git {
   final String? tag;
 
   const Git({
-    this.remote = '',
-    this.revision = '',
+    required this.remote,
+    required this.revision,
     this.branch,
     this.tag,
   });
 
   factory Git.fromJson(Map<String, Object?> json) {
     return Git(
-      remote: json['remote'] as String? ?? '',
-      revision: json['revision'] as String? ?? '',
+      remote: _requireJsonString(json, 'remote'),
+      revision: _requireJsonString(json, 'revision'),
       branch: json['branch'] as String?,
       tag: json['tag'] as String?,
     );

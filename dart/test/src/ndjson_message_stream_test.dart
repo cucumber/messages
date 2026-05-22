@@ -7,7 +7,11 @@ void main() {
   group('parseEnvelopeJson and envelopeToJsonString', () {
     test('round-trips a single envelope', () {
       const envelope = Envelope(
-        attachment: Attachment(body: 'Hello', mediaType: 'text/plain'),
+        attachment: Attachment(
+          body: 'Hello',
+          contentEncoding: AttachmentContentEncoding.identity,
+          mediaType: 'text/plain',
+        ),
       );
 
       final jsonLine = envelopeToJsonString(envelope);
@@ -61,12 +65,24 @@ void main() {
     test('parses every non-empty line', () async {
       final lines = <String>[
         envelopeToJsonString(
-          const Envelope(attachment: Attachment(body: 'A', mediaType: 'a/b')),
+          const Envelope(
+            attachment: Attachment(
+              body: 'A',
+              contentEncoding: AttachmentContentEncoding.identity,
+              mediaType: 'a/b',
+            ),
+          ),
         ),
         '',
         '   ',
         envelopeToJsonString(
-          const Envelope(attachment: Attachment(body: 'B', mediaType: 'c/d')),
+          const Envelope(
+            attachment: Attachment(
+              body: 'B',
+              contentEncoding: AttachmentContentEncoding.identity,
+              mediaType: 'c/d',
+            ),
+          ),
         ),
       ];
 
@@ -83,7 +99,13 @@ void main() {
     test('includes line number when stream line fails parsing', () async {
       final lines = <String>[
         envelopeToJsonString(
-          const Envelope(attachment: Attachment(body: 'A', mediaType: 'a/b')),
+          const Envelope(
+            attachment: Attachment(
+              body: 'A',
+              contentEncoding: AttachmentContentEncoding.identity,
+              mediaType: 'a/b',
+            ),
+          ),
         ),
         '{"attachment":',
       ];
@@ -154,8 +176,20 @@ void main() {
   group('encodeNdjsonEnvelopes', () {
     test('adds exactly one trailing newline to each envelope', () async {
       final envelopes = Stream<Envelope>.fromIterable([
-        const Envelope(attachment: Attachment(body: 'X', mediaType: 'x/y')),
-        const Envelope(attachment: Attachment(body: 'Y', mediaType: 'y/z')),
+        const Envelope(
+          attachment: Attachment(
+            body: 'X',
+            contentEncoding: AttachmentContentEncoding.identity,
+            mediaType: 'x/y',
+          ),
+        ),
+        const Envelope(
+          attachment: Attachment(
+            body: 'Y',
+            contentEncoding: AttachmentContentEncoding.identity,
+            mediaType: 'y/z',
+          ),
+        ),
       ]);
 
       final output = await encodeNdjsonEnvelopes(envelopes).toList();

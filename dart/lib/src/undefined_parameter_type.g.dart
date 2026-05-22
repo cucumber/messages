@@ -9,14 +9,14 @@ class UndefinedParameterType {
   final String name;
 
   const UndefinedParameterType({
-    this.expression = '',
-    this.name = '',
+    required this.expression,
+    required this.name,
   });
 
   factory UndefinedParameterType.fromJson(Map<String, Object?> json) {
     return UndefinedParameterType(
-      expression: json['expression'] as String? ?? '',
-      name: json['name'] as String? ?? '',
+      expression: _requireJsonString(json, 'expression'),
+      name: _requireJsonString(json, 'name'),
     );
   }
 

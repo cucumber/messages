@@ -12,7 +12,7 @@ class GherkinDocument {
   const GherkinDocument({
     this.uri,
     this.feature,
-    this.comments = const [],
+    required this.comments,
   });
 
   factory GherkinDocument.fromJson(Map<String, Object?> json) {
@@ -23,14 +23,13 @@ class GherkinDocument {
           : Feature.fromJson(
               json['feature'] as Map<String, Object?>,
             ),
-      comments: (json['comments'] as List<Object?>?)
-              ?.map(
+      comments: _requireJsonList(json, 'comments')
+              .map(
                 (item) => Comment.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
+              .toList(),
     );
   }
 

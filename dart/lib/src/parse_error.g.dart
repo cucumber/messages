@@ -9,18 +9,16 @@ class ParseError {
   final String message;
 
   const ParseError({
-    this.source = const SourceReference(),
-    this.message = '',
+    required this.source,
+    required this.message,
   });
 
   factory ParseError.fromJson(Map<String, Object?> json) {
     return ParseError(
-      source: json['source'] == null
-          ? const SourceReference()
-          : SourceReference.fromJson(
-              json['source'] as Map<String, Object?>,
+      source: SourceReference.fromJson(
+              _requireJsonObject(json, 'source'),
             ),
-      message: json['message'] as String? ?? '',
+      message: _requireJsonString(json, 'message'),
     );
   }
 

@@ -14,42 +14,38 @@ class Rule {
   final String id;
 
   const Rule({
-    this.location = const Location(),
-    this.tags = const [],
-    this.keyword = '',
-    this.name = '',
-    this.description = '',
-    this.children = const [],
-    this.id = '',
+    required this.location,
+    required this.tags,
+    required this.keyword,
+    required this.name,
+    required this.description,
+    required this.children,
+    required this.id,
   });
 
   factory Rule.fromJson(Map<String, Object?> json) {
     return Rule(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      tags: (json['tags'] as List<Object?>?)
-              ?.map(
+      tags: _requireJsonList(json, 'tags')
+              .map(
                 (item) => Tag.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      keyword: json['keyword'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      description: json['description'] as String? ?? '',
-      children: (json['children'] as List<Object?>?)
-              ?.map(
+              .toList(),
+      keyword: _requireJsonString(json, 'keyword'),
+      name: _requireJsonString(json, 'name'),
+      description: _requireJsonString(json, 'description'),
+      children: _requireJsonList(json, 'children')
+              .map(
                 (item) => RuleChild.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      id: json['id'] as String? ?? '',
+              .toList(),
+      id: _requireJsonString(json, 'id'),
     );
   }
 

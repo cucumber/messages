@@ -10,13 +10,13 @@ class PickleDocString {
 
   const PickleDocString({
     this.mediaType,
-    this.content = '',
+    required this.content,
   });
 
   factory PickleDocString.fromJson(Map<String, Object?> json) {
     return PickleDocString(
       mediaType: json['mediaType'] as String?,
-      content: json['content'] as String? ?? '',
+      content: _requireJsonString(json, 'content'),
     );
   }
 

@@ -9,14 +9,14 @@ class Snippet {
   final String code;
 
   const Snippet({
-    this.language = '',
-    this.code = '',
+    required this.language,
+    required this.code,
   });
 
   factory Snippet.fromJson(Map<String, Object?> json) {
     return Snippet(
-      language: json['language'] as String? ?? '',
-      code: json['code'] as String? ?? '',
+      language: _requireJsonString(json, 'language'),
+      code: _requireJsonString(json, 'code'),
     );
   }
 

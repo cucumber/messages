@@ -9,25 +9,22 @@ class DataTable {
   final List<TableRow> rows;
 
   const DataTable({
-    this.location = const Location(),
-    this.rows = const [],
+    required this.location,
+    required this.rows,
   });
 
   factory DataTable.fromJson(Map<String, Object?> json) {
     return DataTable(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      rows: (json['rows'] as List<Object?>?)
-              ?.map(
+      rows: _requireJsonList(json, 'rows')
+              .map(
                 (item) => TableRow.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
+              .toList(),
     );
   }
 

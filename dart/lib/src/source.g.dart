@@ -21,19 +21,17 @@ class Source {
   final SourceMediaType mediaType;
 
   const Source({
-    this.uri = '',
-    this.data = '',
-    this.mediaType = SourceMediaType.textXCucumberGherkinPlain,
+    required this.uri,
+    required this.data,
+    required this.mediaType,
   });
 
   factory Source.fromJson(Map<String, Object?> json) {
     return Source(
-      uri: json['uri'] as String? ?? '',
-      data: json['data'] as String? ?? '',
-      mediaType: json['mediaType'] == null
-          ? SourceMediaType.textXCucumberGherkinPlain
-          : SourceMediaType.fromValue(
-              json['mediaType'] as String,
+      uri: _requireJsonString(json, 'uri'),
+      data: _requireJsonString(json, 'data'),
+      mediaType: SourceMediaType.fromValue(
+              _requireJsonString(json, 'mediaType'),
             ),
     );
   }

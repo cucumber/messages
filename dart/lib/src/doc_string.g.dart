@@ -11,22 +11,20 @@ class DocString {
   final String delimiter;
 
   const DocString({
-    this.location = const Location(),
+    required this.location,
     this.mediaType,
-    this.content = '',
-    this.delimiter = '',
+    required this.content,
+    required this.delimiter,
   });
 
   factory DocString.fromJson(Map<String, Object?> json) {
     return DocString(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
       mediaType: json['mediaType'] as String?,
-      content: json['content'] as String? ?? '',
-      delimiter: json['delimiter'] as String? ?? '',
+      content: _requireJsonString(json, 'content'),
+      delimiter: _requireJsonString(json, 'delimiter'),
     );
   }
 

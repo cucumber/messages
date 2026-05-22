@@ -15,44 +15,44 @@ class Pickle {
   final List<String> astNodeIds;
 
   const Pickle({
-    this.id = '',
-    this.uri = '',
+    required this.id,
+    required this.uri,
     this.location,
-    this.name = '',
-    this.language = '',
-    this.steps = const [],
-    this.tags = const [],
-    this.astNodeIds = const [],
+    required this.name,
+    required this.language,
+    required this.steps,
+    required this.tags,
+    required this.astNodeIds,
   });
 
   factory Pickle.fromJson(Map<String, Object?> json) {
     return Pickle(
-      id: json['id'] as String? ?? '',
-      uri: json['uri'] as String? ?? '',
+      id: _requireJsonString(json, 'id'),
+      uri: _requireJsonString(json, 'uri'),
       location: json['location'] == null
           ? null
           : Location.fromJson(
               json['location'] as Map<String, Object?>,
             ),
-      name: json['name'] as String? ?? '',
-      language: json['language'] as String? ?? '',
-      steps: (json['steps'] as List<Object?>?)
-              ?.map(
+      name: _requireJsonString(json, 'name'),
+      language: _requireJsonString(json, 'language'),
+      steps: _requireJsonList(json, 'steps')
+              .map(
                 (item) => PickleStep.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      tags: (json['tags'] as List<Object?>?)
-              ?.map(
+              .toList(),
+      tags: _requireJsonList(json, 'tags')
+              .map(
                 (item) => PickleTag.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      astNodeIds: (json['astNodeIds'] as List<Object?>?)?.map((item) => item as String).toList() ?? const [],
+              .toList(),
+      astNodeIds: _requireJsonList(json, 'astNodeIds')
+              .map((item) => item as String)
+              .toList(),
     );
   }
 

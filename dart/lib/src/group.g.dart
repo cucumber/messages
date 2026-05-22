@@ -23,8 +23,7 @@ class Group {
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          null,
+              .toList(),
       start: (json['start'] as num?)?.toInt(),
       value: json['value'] as String?,
     );

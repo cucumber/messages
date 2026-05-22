@@ -13,36 +13,28 @@ class Meta {
   final Ci? ci;
 
   const Meta({
-    this.protocolVersion = '',
-    this.implementation = const Product(),
-    this.runtime = const Product(),
-    this.os = const Product(),
-    this.cpu = const Product(),
+    required this.protocolVersion,
+    required this.implementation,
+    required this.runtime,
+    required this.os,
+    required this.cpu,
     this.ci,
   });
 
   factory Meta.fromJson(Map<String, Object?> json) {
     return Meta(
-      protocolVersion: json['protocolVersion'] as String? ?? '',
-      implementation: json['implementation'] == null
-          ? const Product()
-          : Product.fromJson(
-              json['implementation'] as Map<String, Object?>,
+      protocolVersion: _requireJsonString(json, 'protocolVersion'),
+      implementation: Product.fromJson(
+              _requireJsonObject(json, 'implementation'),
             ),
-      runtime: json['runtime'] == null
-          ? const Product()
-          : Product.fromJson(
-              json['runtime'] as Map<String, Object?>,
+      runtime: Product.fromJson(
+              _requireJsonObject(json, 'runtime'),
             ),
-      os: json['os'] == null
-          ? const Product()
-          : Product.fromJson(
-              json['os'] as Map<String, Object?>,
+      os: Product.fromJson(
+              _requireJsonObject(json, 'os'),
             ),
-      cpu: json['cpu'] == null
-          ? const Product()
-          : Product.fromJson(
-              json['cpu'] as Map<String, Object?>,
+      cpu: Product.fromJson(
+              _requireJsonObject(json, 'cpu'),
             ),
       ci: json['ci'] == null
           ? null

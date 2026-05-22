@@ -10,16 +10,16 @@ class JavaStackTraceElement {
   final String methodName;
 
   const JavaStackTraceElement({
-    this.className = '',
-    this.fileName = '',
-    this.methodName = '',
+    required this.className,
+    required this.fileName,
+    required this.methodName,
   });
 
   factory JavaStackTraceElement.fromJson(Map<String, Object?> json) {
     return JavaStackTraceElement(
-      className: json['className'] as String? ?? '',
-      fileName: json['fileName'] as String? ?? '',
-      methodName: json['methodName'] as String? ?? '',
+      className: _requireJsonString(json, 'className'),
+      fileName: _requireJsonString(json, 'fileName'),
+      methodName: _requireJsonString(json, 'methodName'),
     );
   }
 

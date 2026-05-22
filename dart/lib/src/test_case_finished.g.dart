@@ -10,20 +10,18 @@ class TestCaseFinished {
   final bool willBeRetried;
 
   const TestCaseFinished({
-    this.testCaseStartedId = '',
-    this.timestamp = const Timestamp(),
-    this.willBeRetried = false,
+    required this.testCaseStartedId,
+    required this.timestamp,
+    required this.willBeRetried,
   });
 
   factory TestCaseFinished.fromJson(Map<String, Object?> json) {
     return TestCaseFinished(
-      testCaseStartedId: json['testCaseStartedId'] as String? ?? '',
-      timestamp: json['timestamp'] == null
-          ? const Timestamp()
-          : Timestamp.fromJson(
-              json['timestamp'] as Map<String, Object?>,
+      testCaseStartedId: _requireJsonString(json, 'testCaseStartedId'),
+      timestamp: Timestamp.fromJson(
+              _requireJsonObject(json, 'timestamp'),
             ),
-      willBeRetried: json['willBeRetried'] as bool? ?? false,
+      willBeRetried: _requireJsonBool(json, 'willBeRetried'),
     );
   }
 

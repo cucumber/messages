@@ -10,23 +10,19 @@ class StepDefinition {
   final SourceReference sourceReference;
 
   const StepDefinition({
-    this.id = '',
-    this.pattern = const StepDefinitionPattern(),
-    this.sourceReference = const SourceReference(),
+    required this.id,
+    required this.pattern,
+    required this.sourceReference,
   });
 
   factory StepDefinition.fromJson(Map<String, Object?> json) {
     return StepDefinition(
-      id: json['id'] as String? ?? '',
-      pattern: json['pattern'] == null
-          ? const StepDefinitionPattern()
-          : StepDefinitionPattern.fromJson(
-              json['pattern'] as Map<String, Object?>,
+      id: _requireJsonString(json, 'id'),
+      pattern: StepDefinitionPattern.fromJson(
+              _requireJsonObject(json, 'pattern'),
             ),
-      sourceReference: json['sourceReference'] == null
-          ? const SourceReference()
-          : SourceReference.fromJson(
-              json['sourceReference'] as Map<String, Object?>,
+      sourceReference: SourceReference.fromJson(
+              _requireJsonObject(json, 'sourceReference'),
             ),
     );
   }

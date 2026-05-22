@@ -15,51 +15,46 @@ class Scenario {
   final String id;
 
   const Scenario({
-    this.location = const Location(),
-    this.tags = const [],
-    this.keyword = '',
-    this.name = '',
-    this.description = '',
-    this.steps = const [],
-    this.examples = const [],
-    this.id = '',
+    required this.location,
+    required this.tags,
+    required this.keyword,
+    required this.name,
+    required this.description,
+    required this.steps,
+    required this.examples,
+    required this.id,
   });
 
   factory Scenario.fromJson(Map<String, Object?> json) {
     return Scenario(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      tags: (json['tags'] as List<Object?>?)
-              ?.map(
+      tags: _requireJsonList(json, 'tags')
+              .map(
                 (item) => Tag.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      keyword: json['keyword'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      description: json['description'] as String? ?? '',
-      steps: (json['steps'] as List<Object?>?)
-              ?.map(
+              .toList(),
+      keyword: _requireJsonString(json, 'keyword'),
+      name: _requireJsonString(json, 'name'),
+      description: _requireJsonString(json, 'description'),
+      steps: _requireJsonList(json, 'steps')
+              .map(
                 (item) => Step.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      examples: (json['examples'] as List<Object?>?)
-              ?.map(
+              .toList(),
+      examples: _requireJsonList(json, 'examples')
+              .map(
                 (item) => Examples.fromJson(
                   item as Map<String, Object?>,
                 ),
               )
-              .toList() ??
-          const [],
-      id: json['id'] as String? ?? '',
+              .toList(),
+      id: _requireJsonString(json, 'id'),
     );
   }
 

@@ -29,10 +29,10 @@ class Attachment {
   final Timestamp? timestamp;
 
   const Attachment({
-    this.body = '',
-    this.contentEncoding = AttachmentContentEncoding.identity,
+    required this.body,
+    required this.contentEncoding,
     this.fileName,
-    this.mediaType = '',
+    required this.mediaType,
     this.source,
     this.testCaseStartedId,
     this.testStepId,
@@ -44,14 +44,12 @@ class Attachment {
 
   factory Attachment.fromJson(Map<String, Object?> json) {
     return Attachment(
-      body: json['body'] as String? ?? '',
-      contentEncoding: json['contentEncoding'] == null
-          ? AttachmentContentEncoding.identity
-          : AttachmentContentEncoding.fromValue(
-              json['contentEncoding'] as String,
+      body: _requireJsonString(json, 'body'),
+      contentEncoding: AttachmentContentEncoding.fromValue(
+              _requireJsonString(json, 'contentEncoding'),
             ),
       fileName: json['fileName'] as String?,
-      mediaType: json['mediaType'] as String? ?? '',
+      mediaType: _requireJsonString(json, 'mediaType'),
       source: json['source'] == null
           ? null
           : Source.fromJson(

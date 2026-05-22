@@ -28,29 +28,27 @@ class Step {
   final String id;
 
   const Step({
-    this.location = const Location(),
-    this.keyword = '',
+    required this.location,
+    required this.keyword,
     this.keywordType,
-    this.text = '',
+    required this.text,
     this.docString,
     this.dataTable,
-    this.id = '',
+    required this.id,
   });
 
   factory Step.fromJson(Map<String, Object?> json) {
     return Step(
-      location: json['location'] == null
-          ? const Location()
-          : Location.fromJson(
-              json['location'] as Map<String, Object?>,
+      location: Location.fromJson(
+              _requireJsonObject(json, 'location'),
             ),
-      keyword: json['keyword'] as String? ?? '',
+      keyword: _requireJsonString(json, 'keyword'),
       keywordType: json['keywordType'] == null
           ? null
           : StepKeywordType.fromValue(
               json['keywordType'] as String,
             ),
-      text: json['text'] as String? ?? '',
+      text: _requireJsonString(json, 'text'),
       docString: json['docString'] == null
           ? null
           : DocString.fromJson(
@@ -61,7 +59,7 @@ class Step {
           : DataTable.fromJson(
               json['dataTable'] as Map<String, Object?>,
             ),
-      id: json['id'] as String? ?? '',
+      id: _requireJsonString(json, 'id'),
     );
   }
 

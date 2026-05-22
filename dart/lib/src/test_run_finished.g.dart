@@ -13,8 +13,8 @@ class TestRunFinished {
 
   const TestRunFinished({
     this.message,
-    this.success = false,
-    this.timestamp = const Timestamp(),
+    required this.success,
+    required this.timestamp,
     this.exception,
     this.testRunStartedId,
   });
@@ -22,11 +22,9 @@ class TestRunFinished {
   factory TestRunFinished.fromJson(Map<String, Object?> json) {
     return TestRunFinished(
       message: json['message'] as String?,
-      success: json['success'] as bool? ?? false,
-      timestamp: json['timestamp'] == null
-          ? const Timestamp()
-          : Timestamp.fromJson(
-              json['timestamp'] as Map<String, Object?>,
+      success: _requireJsonBool(json, 'success'),
+      timestamp: Timestamp.fromJson(
+              _requireJsonObject(json, 'timestamp'),
             ),
       exception: json['exception'] == null
           ? null
