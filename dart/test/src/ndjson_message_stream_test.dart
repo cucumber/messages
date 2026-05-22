@@ -4,14 +4,14 @@ import 'package:cucumber_messages/cucumber_messages.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('parseEnvelope and envelopeToJson', () {
+  group('parseEnvelopeJson and envelopeToJsonString', () {
     test('round-trips a single envelope', () {
       const envelope = Envelope(
         attachment: Attachment(body: 'Hello', mediaType: 'text/plain'),
       );
 
-      final jsonLine = envelopeToJson(envelope);
-      final decoded = parseEnvelope(jsonLine);
+      final jsonLine = envelopeToJsonString(envelope);
+      final decoded = parseEnvelopeJson(jsonLine);
 
       expect(decoded.attachment?.body, 'Hello');
       expect(decoded.attachment?.mediaType, 'text/plain');
@@ -19,7 +19,7 @@ void main() {
 
     test('throws helpful error for invalid JSON', () {
       expect(
-        () => parseEnvelope('{"attachment":'),
+        () => parseEnvelopeJson('{"attachment":'),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,
@@ -32,7 +32,7 @@ void main() {
 
     test('can omit line content from parse errors', () {
       expect(
-        () => parseEnvelope('{"attachment":', includeLineInErrors: false),
+        () => parseEnvelopeJson('{"attachment":', includeLineInErrors: false),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,
@@ -45,7 +45,7 @@ void main() {
 
     test('throws helpful error for non-object JSON', () {
       expect(
-        () => parseEnvelope('[1,2,3]'),
+        () => parseEnvelopeJson('[1,2,3]'),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,
@@ -57,21 +57,22 @@ void main() {
     });
   });
 
-  group('readNdjsonLines', () {
+  group('decodeNdjsonEnvelopes', () {
     test('parses every non-empty line', () async {
       final lines = <String>[
-        envelopeToJson(
+        envelopeToJsonString(
           const Envelope(attachment: Attachment(body: 'A', mediaType: 'a/b')),
         ),
         '',
         '   ',
-        envelopeToJson(
+        envelopeToJsonString(
           const Envelope(attachment: Attachment(body: 'B', mediaType: 'c/d')),
         ),
       ];
 
       final values =
-          await readNdjsonLines(Stream<String>.fromIterable(lines)).toList();
+          await decodeNdjsonEnvelopes(Stream<String>.fromIterable(lines))
+              .toList();
 
       expect(values.length, 2);
       expect(values.first.attachment?.body, 'A');
@@ -80,14 +81,14 @@ void main() {
 
     test('includes line number when stream line fails parsing', () async {
       final lines = <String>[
-        envelopeToJson(
+        envelopeToJsonString(
           const Envelope(attachment: Attachment(body: 'A', mediaType: 'a/b')),
         ),
         '{"attachment":',
       ];
 
       await expectLater(
-        readNdjsonLines(Stream<String>.fromIterable(lines)).drain<void>(),
+        decodeNdjsonEnvelopes(Stream<String>.fromIterable(lines)).drain<void>(),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,
@@ -102,7 +103,7 @@ void main() {
       final lines = <String>['{"attachment":'];
 
       await expectLater(
-        readNdjsonLines(
+        decodeNdjsonEnvelopes(
           Stream<String>.fromIterable(lines),
           includeLineInErrors: false,
         ).drain<void>(),
@@ -120,7 +121,7 @@ void main() {
       final longInvalidLine = '{"x":"${'a' * 200}';
 
       expect(
-        () => parseEnvelope(longInvalidLine),
+        () => parseEnvelopeJson(longInvalidLine),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,
@@ -142,21 +143,21 @@ void main() {
             .transform(const LineSplitter());
 
         await expectLater(
-          readNdjsonLines(lines).drain<void>(),
+          decodeNdjsonEnvelopes(lines).drain<void>(),
           throwsA(isA<FormatException>()),
         );
       },
     );
   });
 
-  group('writeNdjsonLines', () {
+  group('encodeNdjsonEnvelopes', () {
     test('adds exactly one trailing newline to each envelope', () async {
       final envelopes = Stream<Envelope>.fromIterable([
         const Envelope(attachment: Attachment(body: 'X', mediaType: 'x/y')),
         const Envelope(attachment: Attachment(body: 'Y', mediaType: 'y/z')),
       ]);
 
-      final output = await writeNdjsonLines(envelopes).toList();
+      final output = await encodeNdjsonEnvelopes(envelopes).toList();
 
       expect(output.length, 2);
       expect(output[0].endsWith('\n'), isTrue);

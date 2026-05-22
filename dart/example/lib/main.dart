@@ -10,15 +10,15 @@ Future<void> main() async {
     ),
   );
 
-  final line = envelopeToJson(original);
-  final parsed = parseEnvelope(line);
+  final line = envelopeToJsonString(original);
+  final parsed = parseEnvelopeJson(line);
 
   final lines = Stream<String>.value(line).transform(const LineSplitter());
-  await for (final envelope in readNdjsonLines(lines)) {
+  await for (final envelope in decodeNdjsonEnvelopes(lines)) {
     final ndjsonLine =
-        await writeNdjsonLines(Stream<Envelope>.value(envelope)).first;
+        await encodeNdjsonEnvelopes(Stream<Envelope>.value(envelope)).first;
     assert(
-      ndjsonLine.trimRight() == envelopeToJson(parsed),
+      ndjsonLine.trimRight() == envelopeToJsonString(parsed),
       'NDJSON line should serialize back to the same envelope JSON.',
     );
   }

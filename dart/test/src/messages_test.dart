@@ -36,7 +36,7 @@ void main() {
 }
 ''';
 
-    final envelope = parseEnvelope(json);
+    final envelope = parseEnvelopeJson(json);
     expect(envelope.gherkinDocument?.comments, isEmpty);
     expect(envelope.gherkinDocument?.feature?.description, '');
     expect(envelope.gherkinDocument?.feature?.tags, isEmpty);

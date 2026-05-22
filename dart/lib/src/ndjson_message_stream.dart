@@ -11,7 +11,7 @@ import 'package:cucumber_messages/src/messages.dart';
 ///
 /// When [includeLineInErrors] is false, parse errors do not include input
 /// line content.
-Envelope parseEnvelope(
+Envelope parseEnvelopeJson(
   String json, {
   int? lineNumber,
   bool includeLineInErrors = true,
@@ -39,7 +39,7 @@ Envelope parseEnvelope(
 }
 
 /// Serializes [envelope] to a JSON string without a trailing newline.
-String envelopeToJson(Envelope envelope) {
+String envelopeToJsonString(Envelope envelope) {
   return jsonEncode(envelope.toJson());
 }
 
@@ -52,7 +52,7 @@ String envelopeToJson(Envelope envelope) {
 ///
 /// When [includeLineInErrors] is false, parse errors do not include input
 /// line content.
-Stream<Envelope> readNdjsonLines(
+Stream<Envelope> decodeNdjsonEnvelopes(
   Stream<String> lines, {
   bool includeLineInErrors = true,
 }) async* {
@@ -62,7 +62,7 @@ Stream<Envelope> readNdjsonLines(
     if (line.trim().isEmpty) {
       continue;
     }
-    yield parseEnvelope(
+    yield parseEnvelopeJson(
       line,
       lineNumber: lineNumber,
       includeLineInErrors: includeLineInErrors,
@@ -75,9 +75,9 @@ Stream<Envelope> readNdjsonLines(
 /// Each yielded string is a JSON object followed by a newline character.
 ///
 /// The [envelopes] stream is serialized in order.
-Stream<String> writeNdjsonLines(Stream<Envelope> envelopes) async* {
+Stream<String> encodeNdjsonEnvelopes(Stream<Envelope> envelopes) async* {
   await for (final envelope in envelopes) {
-    yield '${envelopeToJson(envelope)}\n';
+    yield '${envelopeToJsonString(envelope)}\n';
   }
 }
 

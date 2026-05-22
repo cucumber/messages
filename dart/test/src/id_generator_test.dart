@@ -2,17 +2,17 @@ import 'package:cucumber_messages/cucumber_messages.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('incrementing', () {
+  group('incrementingIdGenerator', () {
     test('starts at zero and increments by one', () {
-      final generator = incrementing();
+      final generator = incrementingIdGenerator();
       expect(generator(), '0');
       expect(generator(), '1');
       expect(generator(), '2');
     });
 
     test('creates independent counters', () {
-      final first = incrementing();
-      final second = incrementing();
+      final first = incrementingIdGenerator();
+      final second = incrementingIdGenerator();
 
       expect(first(), '0');
       expect(first(), '1');
@@ -20,19 +20,19 @@ void main() {
     });
   });
 
-  group('uuid', () {
+  group('uuidV4IdGenerator', () {
     final uuidRegex = RegExp(
       r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
     );
 
     test('returns RFC 4122 v4 format', () {
-      final generator = uuid();
+      final generator = uuidV4IdGenerator();
       final id = generator();
       expect(id, matches(uuidRegex));
     });
 
     test('returns unique values across many calls', () {
-      final generator = uuid();
+      final generator = uuidV4IdGenerator();
       final ids = <String>{};
 
       for (var index = 0; index < 100; index++) {
@@ -40,6 +40,18 @@ void main() {
       }
 
       expect(ids.length, 100);
+    });
+  });
+
+  group('IdGenerators', () {
+    test('exposes incrementing generator factory', () {
+      final generator = IdGenerators.incrementing();
+      expect(generator(), '0');
+    });
+
+    test('exposes uuid v4 generator factory', () {
+      final generator = IdGenerators.uuidV4();
+      expect(generator(), isNotEmpty);
     });
   });
 }

@@ -15,29 +15,30 @@ Future<void> main() async {
 
   final jsonLines = List<String>.generate(
     messageCount,
-    (_) => envelopeToJson(sample),
+    (_) => envelopeToJsonString(sample),
     growable: false,
   );
 
   final parseSingleMicros = _measureSyncMicros(() {
-    jsonLines.forEach(parseEnvelope);
+    jsonLines.forEach(parseEnvelopeJson);
   });
 
   final readStreamMicros = await _measureAsyncMicros(() async {
-    await readNdjsonLines(Stream<String>.fromIterable(jsonLines)).drain<void>();
+    await decodeNdjsonEnvelopes(Stream<String>.fromIterable(jsonLines))
+        .drain<void>();
   });
 
   final writeStreamMicros = await _measureAsyncMicros(() async {
-    await writeNdjsonLines(
+    await encodeNdjsonEnvelopes(
       Stream<Envelope>.fromIterable(
         List<Envelope>.filled(messageCount, sample),
       ),
     ).drain<void>();
   });
 
-  _printResult('parseEnvelope', messageCount, parseSingleMicros);
-  _printResult('readNdjsonLines', messageCount, readStreamMicros);
-  _printResult('writeNdjsonLines', messageCount, writeStreamMicros);
+  _printResult('parseEnvelopeJson', messageCount, parseSingleMicros);
+  _printResult('decodeNdjsonEnvelopes', messageCount, readStreamMicros);
+  _printResult('encodeNdjsonEnvelopes', messageCount, writeStreamMicros);
 }
 
 int _measureSyncMicros(void Function() action) {

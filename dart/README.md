@@ -54,7 +54,7 @@ final lines = file
     .transform(utf8.decoder)
     .transform(const LineSplitter());
 
-await for (final envelope in readNdjsonLines(lines)) {
+await for (final envelope in decodeNdjsonEnvelopes(lines)) {
   // Do something with envelope
 }
 ```
@@ -62,7 +62,7 @@ await for (final envelope in readNdjsonLines(lines)) {
 You can also parse a single JSON string:
 
 ```dart
-final envelope = parseEnvelope(json);
+final envelope = parseEnvelopeJson(json);
 ```
 
 ## Writing
@@ -78,9 +78,9 @@ final envelope = Envelope(
   ),
 );
 
-final jsonLine = envelopeToJson(envelope);
+final jsonLine = envelopeToJsonString(envelope);
 
-await for (final line in writeNdjsonLines(Stream.value(envelope))) {
+await for (final line in encodeNdjsonEnvelopes(Stream.value(envelope))) {
   // Write line to a file or stdout
 }
 ```

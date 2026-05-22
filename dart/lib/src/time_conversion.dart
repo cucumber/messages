@@ -8,7 +8,7 @@ const _nanosPerSecond = 1000000000;
 /// microsecond-precision. Any sub-microsecond remainder is truncated.
 ///
 /// The [duration] value is interpreted as whole seconds plus nanoseconds.
-Duration durationToDartDuration(DurationMessage duration) {
+Duration durationMessageToDuration(DurationMessage duration) {
   _validateDurationNanos(duration.nanos);
   return Duration(
     seconds: duration.seconds,
@@ -19,7 +19,7 @@ Duration durationToDartDuration(DurationMessage duration) {
 /// Converts a Dart `Duration` to a Cucumber [DurationMessage].
 ///
 /// The [duration] value is exported as whole seconds plus nanoseconds.
-DurationMessage dartDurationToDuration(Duration duration) {
+DurationMessage durationToDurationMessage(Duration duration) {
   final micros = duration.inMicroseconds;
   final seconds = micros ~/ Duration.microsecondsPerSecond;
   final nanos = micros.remainder(Duration.microsecondsPerSecond) * 1000;
@@ -32,7 +32,7 @@ DurationMessage dartDurationToDuration(Duration duration) {
 /// microsecond-precision. Any sub-microsecond remainder is truncated.
 ///
 /// The [timestamp] is interpreted as seconds and nanoseconds since Unix epoch.
-DateTime timestampToDartTime(Timestamp timestamp) {
+DateTime timestampToDateTime(Timestamp timestamp) {
   _validateTimestampNanos(timestamp.nanos);
   final micros = (timestamp.seconds * Duration.microsecondsPerSecond) +
       (timestamp.nanos ~/ 1000);
@@ -42,7 +42,7 @@ DateTime timestampToDartTime(Timestamp timestamp) {
 /// Converts [dateTime] to a Cucumber [Timestamp] in UTC.
 ///
 /// The [dateTime] is normalized to UTC before conversion.
-Timestamp dartTimeToTimestamp(DateTime dateTime) {
+Timestamp dateTimeToTimestamp(DateTime dateTime) {
   final utc = dateTime.toUtc();
   final micros = utc.microsecondsSinceEpoch;
   final seconds = micros ~/ Duration.microsecondsPerSecond;

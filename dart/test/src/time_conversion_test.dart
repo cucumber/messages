@@ -9,8 +9,8 @@ void main() {
         isUtc: true,
       );
 
-      final timestamp = dartTimeToTimestamp(now);
-      final again = timestampToDartTime(timestamp);
+      final timestamp = dateTimeToTimestamp(now);
+      final again = timestampToDateTime(timestamp);
 
       expect(again, now);
     });
@@ -18,8 +18,8 @@ void main() {
     test('normalizes local DateTime values to UTC', () {
       final local = DateTime(2024, 3, 4, 5, 6, 7, 8, 9);
 
-      final timestamp = dartTimeToTimestamp(local);
-      final again = timestampToDartTime(timestamp);
+      final timestamp = dateTimeToTimestamp(local);
+      final again = timestampToDateTime(timestamp);
 
       expect(again.isUtc, isTrue);
       expect(
@@ -33,7 +33,7 @@ void main() {
       () {
         const timestamp = Timestamp(seconds: 1, nanos: 1234);
 
-        final converted = timestampToDartTime(timestamp);
+        final converted = timestampToDateTime(timestamp);
 
         expect(converted.microsecondsSinceEpoch, 1000001);
       },
@@ -43,7 +43,7 @@ void main() {
       const timestamp = Timestamp(seconds: 1, nanos: 1000000000);
 
       expect(
-        () => timestampToDartTime(timestamp),
+        () => timestampToDateTime(timestamp),
         throwsA(isA<RangeError>()),
       );
     });
@@ -52,7 +52,7 @@ void main() {
       const timestamp = Timestamp(seconds: -1, nanos: -1);
 
       expect(
-        () => timestampToDartTime(timestamp),
+        () => timestampToDateTime(timestamp),
         throwsA(isA<RangeError>()),
       );
     });
@@ -60,7 +60,7 @@ void main() {
     test('converts far negative epoch timestamps', () {
       const timestamp = Timestamp(seconds: -2208988800);
 
-      final converted = timestampToDartTime(timestamp);
+      final converted = timestampToDateTime(timestamp);
 
       expect(converted.isUtc, isTrue);
       expect(converted.year, 1900);
@@ -71,8 +71,8 @@ void main() {
     test('converts to and from duration', () {
       const duration = Duration(milliseconds: 1234);
 
-      final message = dartDurationToDuration(duration);
-      final again = durationToDartDuration(message);
+      final message = durationToDurationMessage(duration);
+      final again = durationMessageToDuration(message);
 
       expect(again, duration);
     });
@@ -80,7 +80,7 @@ void main() {
     test('converts negative duration messages to Dart Duration', () {
       const message = DurationMessage(seconds: -1, nanos: 500000000);
 
-      final duration = durationToDartDuration(message);
+      final duration = durationMessageToDuration(message);
 
       expect(duration, const Duration(milliseconds: -500));
     });
@@ -90,7 +90,7 @@ void main() {
       () {
         const message = DurationMessage(nanos: 1234);
 
-        final duration = durationToDartDuration(message);
+        final duration = durationMessageToDuration(message);
 
         expect(duration, const Duration(microseconds: 1));
       },
@@ -100,7 +100,7 @@ void main() {
       const message = DurationMessage(nanos: -1000000000);
 
       expect(
-        () => durationToDartDuration(message),
+        () => durationMessageToDuration(message),
         throwsA(isA<RangeError>()),
       );
     });
@@ -108,7 +108,7 @@ void main() {
     test('allows mixed-sign duration components', () {
       const message = DurationMessage(seconds: 1, nanos: -1);
 
-      final duration = durationToDartDuration(message);
+      final duration = durationMessageToDuration(message);
 
       expect(duration, const Duration(seconds: 1));
     });
@@ -116,8 +116,8 @@ void main() {
     test('round-trips large negative durations', () {
       const duration = Duration(days: -1000, microseconds: -999);
 
-      final message = dartDurationToDuration(duration);
-      final again = durationToDartDuration(message);
+      final message = durationToDurationMessage(duration);
+      final again = durationMessageToDuration(message);
 
       expect(again, duration);
     });
