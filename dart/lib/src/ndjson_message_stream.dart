@@ -3,6 +3,11 @@ import 'dart:convert';
 import 'package:cucumber_messages/src/messages.dart';
 
 /// Parses a single JSON object into an [Envelope].
+///
+/// The [json] argument must contain a JSON object that matches the Envelope
+/// schema.
+///
+/// The optional [lineNumber] is used only to improve parse error context.
 Envelope parseEnvelope(String json, {int? lineNumber}) {
   try {
     final decoded = jsonDecode(json);
@@ -34,6 +39,8 @@ String envelopeToJson(Envelope envelope) {
 /// non-empty line.
 ///
 /// Each line must contain a single JSON object representing an [Envelope].
+///
+/// The [lines] stream is consumed in order; whitespace-only lines are ignored.
 Stream<Envelope> readNdjsonLines(Stream<String> lines) async* {
   var lineNumber = 0;
   await for (final line in lines) {
@@ -48,6 +55,8 @@ Stream<Envelope> readNdjsonLines(Stream<String> lines) async* {
 /// Writes a stream of [Envelope]s as NDJSON lines.
 ///
 /// Each yielded string is a JSON object followed by a newline character.
+///
+/// The [envelopes] stream is serialized in order.
 Stream<String> writeNdjsonLines(Stream<Envelope> envelopes) async* {
   await for (final envelope in envelopes) {
     yield '${envelopeToJson(envelope)}\n';
