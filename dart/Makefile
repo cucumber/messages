@@ -13,12 +13,6 @@ require: ## Check requirements for code generation
 clean: ## Remove automatically generated files and artifacts
 	rm -f lib/src/messages.dart lib/src/*.g.dart
 
-benchmark: ## Run Dart throughput benchmarks
-	dart run benchmark/ndjson_benchmark.dart
-
-lib/src/messages.dart: $(schemas) ../codegen/codegen.rb ../codegen/templates/dart.index.dart.erb
-	ruby ../codegen/codegen.rb Generator::Dart dart.index.dart.erb > $@
-
 .generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/dart.dart.erb
 	ruby ../codegen/codegen.rb Generator::Dart dart.dart.erb > Generated.dart.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.dart.tmp --elide-empty-files Generated.dart.tmp /^[a-z0-9_]*\.g\.dart/ {*}
