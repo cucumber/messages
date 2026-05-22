@@ -3,10 +3,9 @@ import 'package:test/test.dart';
 
 void main() {
   test('reads and writes ndjson envelope', () async {
-    final envelope = Envelope(
+    const envelope = Envelope(
       attachment: Attachment(
         body: 'Hello',
-        contentEncoding: AttachmentContentEncoding.identity,
         mediaType: 'text/plain',
       ),
     );

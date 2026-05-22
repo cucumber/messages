@@ -1,12 +1,18 @@
 import 'dart:math';
 
+/// Generates a new unique identifier string.
 typedef NewId = String Function();
 
+/// Returns an [NewId] that produces incrementing decimal strings
+/// (`"0"`, `"1"`, …).
+///
+/// Intended for tests; not safe for production use across processes.
 NewId incrementing() {
   var next = 0;
   return () => '${next++}';
 }
 
+/// Returns an [NewId] that produces random RFC 4122 version 4 UUIDs.
 NewId uuid() {
   final random = Random.secure();
   return () {

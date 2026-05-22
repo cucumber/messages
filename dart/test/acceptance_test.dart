@@ -60,13 +60,12 @@ List<File> _ndjsonFiles(Directory testdataDir) {
     throw StateError('Missing testdata directory: ${testdataDir.path}');
   }
 
-  final files =
-      testdataDir
-          .listSync()
-          .whereType<File>()
-          .where((file) => file.path.endsWith('.ndjson'))
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+  final files = testdataDir
+      .listSync()
+      .whereType<File>()
+      .where((file) => file.path.endsWith('.ndjson'))
+      .toList()
+    ..sort((a, b) => a.path.compareTo(b.path));
 
   if (files.isEmpty) {
     throw StateError('No ndjson files found in ${testdataDir.path}');

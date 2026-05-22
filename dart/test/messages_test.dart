@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('defaults missing fields when deserializing from JSON', () {
-    final json = '''
+    const json = '''
 {
   "gherkinDocument": {
     "feature": {

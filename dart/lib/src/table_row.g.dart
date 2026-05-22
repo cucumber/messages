@@ -1,5 +1,7 @@
 // This code was generated using the code generator from cucumber-messages.
 // Manual changes will be lost if the code is regenerated.
+// ignore_for_file: cast_nullable_to_non_nullable, public_member_api_docs
+// ignore_for_file: sort_constructors_first
 // ignore_for_file: unnecessary_null_in_if_null_operators
 
 part of 'messages.dart';
@@ -20,8 +22,7 @@ class TableRow {
       location: json['location'] == null
           ? const Location()
           : Location.fromJson(json['location'] as Map<String, Object?>),
-      cells:
-          (json['cells'] as List<Object?>?)
+      cells: (json['cells'] as List<Object?>?)
               ?.map((item) => TableCell.fromJson(item as Map<String, Object?>))
               .toList() ??
           const [],

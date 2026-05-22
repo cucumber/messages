@@ -1,3 +1,4 @@
+/// JSON schema-based messages for Cucumber inter-process communication.
 library;
 
 export 'src/id_generator.dart';
