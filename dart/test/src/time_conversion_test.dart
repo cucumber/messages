@@ -27,6 +27,17 @@ void main() {
         local.toUtc().microsecondsSinceEpoch,
       );
     });
+
+    test(
+      'truncates sub-microsecond precision when converting from timestamp',
+      () {
+        const timestamp = Timestamp(seconds: 1, nanos: 1234);
+
+        final converted = timestampToDartTime(timestamp);
+
+        expect(converted.microsecondsSinceEpoch, 1000001);
+      },
+    );
   });
 
   group('duration conversion', () {
@@ -46,5 +57,16 @@ void main() {
 
       expect(duration, const Duration(milliseconds: -500));
     });
+
+    test(
+      'truncates sub-microsecond precision when converting from message',
+      () {
+        const message = DurationMessage(nanos: 1234);
+
+        final duration = durationToDartDuration(message);
+
+        expect(duration, const Duration(microseconds: 1));
+      },
+    );
   });
 }

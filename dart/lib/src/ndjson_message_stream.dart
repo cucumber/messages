@@ -3,8 +3,26 @@ import 'dart:convert';
 import 'package:cucumber_messages/src/messages.dart';
 
 /// Parses a single JSON object into an [Envelope].
-Envelope parseEnvelope(String json) {
-  return Envelope.fromJson(jsonDecode(json) as Map<String, Object?>);
+Envelope parseEnvelope(String json, {int? lineNumber}) {
+  try {
+    final decoded = jsonDecode(json);
+    if (decoded is! Map<String, Object?>) {
+      throw FormatException(
+        _errorMessage(
+          'Expected a JSON object for Envelope but got ${decoded.runtimeType}',
+          lineNumber,
+          json,
+        ),
+      );
+    }
+    return Envelope.fromJson(decoded);
+  } on FormatException catch (error) {
+    throw FormatException(
+      _errorMessage(error.message, lineNumber, json),
+      error.source,
+      error.offset,
+    );
+  }
 }
 
 /// Serializes [envelope] to a JSON string without a trailing newline.
@@ -17,11 +35,13 @@ String envelopeToJson(Envelope envelope) {
 ///
 /// Each line must contain a single JSON object representing an [Envelope].
 Stream<Envelope> readNdjsonLines(Stream<String> lines) async* {
+  var lineNumber = 0;
   await for (final line in lines) {
-    if (line.isEmpty) {
+    lineNumber++;
+    if (line.trim().isEmpty) {
       continue;
     }
-    yield parseEnvelope(line);
+    yield parseEnvelope(line, lineNumber: lineNumber);
   }
 }
 
@@ -32,4 +52,18 @@ Stream<String> writeNdjsonLines(Stream<Envelope> envelopes) async* {
   await for (final envelope in envelopes) {
     yield '${envelopeToJson(envelope)}\n';
   }
+}
+
+String _errorMessage(String message, int? lineNumber, String line) {
+  final lineSuffix = lineNumber == null ? '' : ' on line $lineNumber';
+  return 'Failed to parse Envelope$lineSuffix: $message. '
+      'Line content: "${_snippet(line)}"';
+}
+
+String _snippet(String line) {
+  const maxLength = 120;
+  if (line.length <= maxLength) {
+    return line;
+  }
+  return '${line.substring(0, maxLength)}...';
 }

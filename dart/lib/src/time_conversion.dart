@@ -1,6 +1,9 @@
 import 'package:cucumber_messages/src/messages.dart';
 
 /// Converts a Cucumber [DurationMessage] to a Dart `Duration`.
+///
+/// Cucumber durations are nanosecond-precision; Dart durations are
+/// microsecond-precision. Any sub-microsecond remainder is truncated.
 Duration durationToDartDuration(DurationMessage duration) {
   return Duration(
     seconds: duration.seconds,
@@ -17,6 +20,9 @@ DurationMessage dartDurationToDuration(Duration duration) {
 }
 
 /// Converts a Cucumber [Timestamp] to a UTC [DateTime].
+///
+/// Cucumber timestamps are nanosecond-precision; Dart `DateTime` is
+/// microsecond-precision. Any sub-microsecond remainder is truncated.
 DateTime timestampToDartTime(Timestamp timestamp) {
   final micros = (timestamp.seconds * Duration.microsecondsPerSecond) +
       (timestamp.nanos ~/ 1000);
