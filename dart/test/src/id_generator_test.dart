@@ -19,39 +19,4 @@ void main() {
       expect(second(), '0');
     });
   });
-
-  group('uuidV4IdGenerator', () {
-    final uuidRegex = RegExp(
-      r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
-    );
-
-    test('returns RFC 4122 v4 format', () {
-      final generator = uuidV4IdGenerator();
-      final id = generator();
-      expect(id, matches(uuidRegex));
-    });
-
-    test('returns unique values across many calls', () {
-      final generator = uuidV4IdGenerator();
-      final ids = <String>{};
-
-      for (var index = 0; index < 100; index++) {
-        ids.add(generator());
-      }
-
-      expect(ids.length, 100);
-    });
-  });
-
-  group('IdGenerators', () {
-    test('exposes incrementing generator factory', () {
-      final generator = IdGenerators.incrementing();
-      expect(generator(), '0');
-    });
-
-    test('exposes uuid v4 generator factory', () {
-      final generator = IdGenerators.uuidV4();
-      expect(generator(), isNotEmpty);
-    });
-  });
 }

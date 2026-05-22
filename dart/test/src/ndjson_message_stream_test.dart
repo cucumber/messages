@@ -32,7 +32,7 @@ void main() {
 
     test('can omit line content from parse errors', () {
       expect(
-        () => parseEnvelopeJson('{"attachment":', includeLineInErrors: false),
+        () => parseEnvelopeJson('{"attachment":'),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,
@@ -103,10 +103,7 @@ void main() {
       final lines = <String>['{"attachment":'];
 
       await expectLater(
-        decodeNdjsonEnvelopes(
-          Stream<String>.fromIterable(lines),
-          includeLineInErrors: false,
-        ).drain<void>(),
+        decodeNdjsonEnvelopes(Stream<String>.fromIterable(lines)).drain<void>(),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,
@@ -121,7 +118,10 @@ void main() {
       final longInvalidLine = '{"x":"${'a' * 200}';
 
       expect(
-        () => parseEnvelopeJson(longInvalidLine),
+        () => parseEnvelopeJson(
+          longInvalidLine,
+          includeLineInErrors: true,
+        ),
         throwsA(
           isA<FormatException>().having(
             (error) => error.message,

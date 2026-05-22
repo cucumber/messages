@@ -3,8 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('exports core public API from package root', () async {
-    final generateUuid = IdGenerators.uuidV4();
-    final generateIncrementing = IdGenerators.incrementing();
+    final generateIncrementing = incrementingIdGenerator();
     final timestamp = dateTimeToTimestamp(
       DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
     );
@@ -18,7 +17,6 @@ void main() {
       Stream.value(envelopeToJsonString(envelope)),
     ).toList();
 
-    expect(generateUuid(), isNotEmpty);
     expect(generateIncrementing(), '0');
     expect(timestampToDateTime(timestamp).isUtc, isTrue);
     expect(durationMessageToDuration(duration), const Duration(seconds: 1));
