@@ -9,8 +9,9 @@ void main() {
       DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
     );
     final duration = durationToDurationMessage(const Duration(seconds: 1));
-    final envelope =
-        parseEnvelopeJson('{"attachment":{"body":"x","mediaType":"text/plain"}}');
+    final envelope = parseEnvelopeJson(
+      '{"attachment":{"body":"x","mediaType":"text/plain"}}',
+    );
     final ndjsonLines =
         await encodeNdjsonEnvelopes(Stream.value(envelope)).toList();
     final parsed = await decodeNdjsonEnvelopes(
