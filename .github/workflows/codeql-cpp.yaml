@@ -43,15 +43,11 @@ jobs:
       - name: Configure
         working-directory: cpp
         run: |
-          cmake -S . -B ./build -G=Ninja -DCPM_SOURCE_CACHE=$HOME/.cache/CPM
-      - name: Build
+          cmake --preset host
+      - name: Build & install
         working-directory: cpp
         run: |
-          cmake --build ./build
-      - name: Install
-        working-directory: cpp
-        run: |
-          sudo cmake --install ./build
+          sudo cmake --build --preset install
       - uses: github/codeql-action/analyze@7211b7c8077ea37d8641b6271f6a365a22a5fbfa # v4.36.0
         with:
           category: "/language:cpp"
