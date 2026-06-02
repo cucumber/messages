@@ -118,19 +118,9 @@ dart format .
 dart analyze
 dart test
 dart pub publish --dry-run
-dart run benchmark/ndjson_benchmark.dart
 ```
 
-## Performance
-
-Run a quick local throughput benchmark for envelope parsing and NDJSON read/write:
-
-```sh
-dart run benchmark/ndjson_benchmark.dart
-```
-
-This benchmark is intended for regression checks across commits, not cross-machine
-comparisons.
+## Acceptance Test Suite
 
 Acceptance tests under `test/acceptance/` read fixtures from `../testdata/` in the
 monorepo and are excluded from the published package.
