@@ -17,7 +17,6 @@ void main() {
           Stream.value(envelopeToJsonString(envelope)),
         ).toList();
 
-    expect(IdGenerator, isA<Type>());
     expect(timestampToDateTime(timestamp).isUtc, isTrue);
     expect(durationMessageToDuration(duration), const Duration(seconds: 1));
     expect(envelopeToJsonString(envelope), contains('attachment'));
