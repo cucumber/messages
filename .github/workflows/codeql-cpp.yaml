@@ -44,10 +44,10 @@ jobs:
         working-directory: cpp
         run: |
           cmake --preset host
-      - name: Build & install
+      - name: Build
         working-directory: cpp
         run: |
-          sudo cmake --build --preset install
+          cmake --build --preset host
       - uses: github/codeql-action/analyze@87557b9c84dde89fdd9b10e88954ac2f4248e463 # v4.36.1
         with:
           category: "/language:cpp"
