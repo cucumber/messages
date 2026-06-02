@@ -107,22 +107,6 @@ await for (final line in encodeNdjsonEnvelopes(Stream.value(envelope))) {
 
 See [example/lib/main.dart](example/lib/main.dart) and the unit tests for more examples.
 
-## Versioning
-
-Package versions track the [messages protocol version](https://github.com/cucumber/messages/releases)
-used across language bindings in this repository (for example, Go module `v32` and Python
-`32.x`).
-
-Current policy:
-
-- While the Dart package is pre-`1.0.0`, releases may use bridge versions to keep
-  compatibility while release automation is being finalized.
-- Once the Dart package is included in the polyglot release process, the published
-  package version will align with the shared protocol major.
-- Any version bump must include a matching entry in the repository root [CHANGELOG.md](../CHANGELOG.md).
-
-See the repository root [CHANGELOG.md](../CHANGELOG.md) for release notes.
-
 ## Development
 
 From the `dart/` directory:
