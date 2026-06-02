@@ -16,14 +16,6 @@
         {
             "name": "host",
             "configurePreset": "host"
-        },
-        {
-            "name": "install",
-            "targets": [
-                "all",
-                "install"
-            ],
-            "configurePreset": "host"
         }
     ]
 }
