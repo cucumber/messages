@@ -52,4 +52,4 @@ jobs:
       - name: Install
         working-directory: cpp
         run: |
-          cmake --install ./build
+          sudo cmake --install ./build
