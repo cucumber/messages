@@ -40,15 +40,14 @@ jobs:
           languages: c-cpp
           build-mode: manual
           tools: linked
-      - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
-      - name: install dependencies
+      - name: Configure
         working-directory: cpp
         run: |
-          cmake -P cmake/cmate --cc=gcc install
-      - name: configure and build
+          cmake --preset host
+      - name: Build
         working-directory: cpp
         run: |
-          cmake -P cmake/cmate --cc=gcc build --release
+          cmake --build --preset host
       - uses: github/codeql-action/analyze@87557b9c84dde89fdd9b10e88954ac2f4248e463 # v4.36.1
         with:
           category: "/language:cpp"

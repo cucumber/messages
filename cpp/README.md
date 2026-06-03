@@ -10,7 +10,7 @@ This library requires:
 
 ```shell
 $ git clone https://github.com/cucumber/messages
-$ cd messages/cpp
+$ cd cpp
 $ cmake -S . -B build
 $ cmake --build build
 $ cmake --install build
