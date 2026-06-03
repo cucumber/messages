@@ -7,30 +7,40 @@
 part of 'messages.dart';
 
 <%- enums_for(key, schema).each do |enum| -%>
+<%= enum_doc_comment(enum) %>
 enum <%= enum[:name] %> {
 <%- enum[:values].each do |value| -%>
+<%= enum_value_doc_comment(value, indent_string: '  ') %>
   <%= enum_value_name(value) %>('<%= value %>'),
 <%- end -%>
   ;
 
+  /// Creates an instance of [<%= enum[:name] %>] from its wire [value].
   const <%= enum[:name] %>(this.value);
+
+  /// The wire value used in message JSON.
   final String value;
 
+  /// Returns the [<%= enum[:name] %>] matching [value].
   static <%= enum[:name] %> fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
 <%- end -%>
+<%= class_doc_comment(class_name(key), schema) %>
 class <%= class_name(key) %> {
 <%- schema['properties'].each do |property_name, property| -%>
+<%= property_doc_comment(property_name, property, indent_string: '  ') %>
   final <%= (schema['required'] || []).index(property_name) ? type_for(class_name(key), property_name, property) : "#{type_for(class_name(key), property_name, property)}?" %> <%= property_name(property_name) %>;
 <%- end -%>
 
+  /// Creates an instance of [<%= class_name(key) %>].
   const <%= class_name(key) %>({
 <%- schema['properties'].each do |property_name, property| -%>
     <%= (schema['required'] || []).index(property_name) ? 'required ' : '' %>this.<%= property_name(property_name) %>,
 <%- end -%>
   });
 
+  /// Creates an instance of [<%= class_name(key) %>] from a JSON object.
   factory <%= class_name(key) %>.fromJson(Map<String, Object?> json) {
     return <%= class_name(key) %>(
 <%- schema['properties'].each do |property_name, property| -%>
@@ -132,6 +142,7 @@ class <%= class_name(key) %> {
     );
   }
 
+  /// Converts this [<%= class_name(key) %>] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
 <%- schema['properties'].each do |property_name, property| -%>

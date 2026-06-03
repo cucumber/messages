@@ -4,15 +4,20 @@
 
 part of 'messages.dart';
 
+/// Represents the PickleDocString message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class PickleDocString {
+  /// The `mediaType` property.
   final String? mediaType;
+  /// The `content` property.
   final String content;
 
+  /// Creates an instance of [PickleDocString].
   const PickleDocString({
     this.mediaType,
     required this.content,
   });
 
+  /// Creates an instance of [PickleDocString] from a JSON object.
   factory PickleDocString.fromJson(Map<String, Object?> json) {
     return PickleDocString(
       mediaType: json['mediaType'] as String?,
@@ -20,6 +25,7 @@ class PickleDocString {
     );
   }
 
+  /// Converts this [PickleDocString] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     if (mediaType != null) {

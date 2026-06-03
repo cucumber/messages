@@ -4,15 +4,20 @@
 
 part of 'messages.dart';
 
+/// Represents the UndefinedParameterType message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class UndefinedParameterType {
+  /// The `expression` property.
   final String expression;
+  /// The `name` property.
   final String name;
 
+  /// Creates an instance of [UndefinedParameterType].
   const UndefinedParameterType({
     required this.expression,
     required this.name,
   });
 
+  /// Creates an instance of [UndefinedParameterType] from a JSON object.
   factory UndefinedParameterType.fromJson(Map<String, Object?> json) {
     return UndefinedParameterType(
       expression: _requireJsonString(json, 'expression'),
@@ -20,6 +25,7 @@ class UndefinedParameterType {
     );
   }
 
+  /// Converts this [UndefinedParameterType] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['expression'] = expression;

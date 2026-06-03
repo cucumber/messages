@@ -4,14 +4,22 @@
 
 part of 'messages.dart';
 
+/// Represents the Background message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class Background {
+  /// The location of the `Background` keyword
   final Location location;
+  /// The `keyword` property.
   final String keyword;
+  /// The `name` property.
   final String name;
+  /// The `description` property.
   final String description;
+  /// The `steps` property.
   final List<Step> steps;
+  /// The `id` property.
   final String id;
 
+  /// Creates an instance of [Background].
   const Background({
     required this.location,
     required this.keyword,
@@ -21,6 +29,7 @@ class Background {
     required this.id,
   });
 
+  /// Creates an instance of [Background] from a JSON object.
   factory Background.fromJson(Map<String, Object?> json) {
     return Background(
       location: Location.fromJson(
@@ -40,6 +49,7 @@ class Background {
     );
   }
 
+  /// Converts this [Background] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

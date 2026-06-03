@@ -4,16 +4,26 @@
 
 part of 'messages.dart';
 
+/// Represents the Scenario message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class Scenario {
+  /// The location of the `Scenario` keyword
   final Location location;
+  /// The `tags` property.
   final List<Tag> tags;
+  /// The `keyword` property.
   final String keyword;
+  /// The `name` property.
   final String name;
+  /// The `description` property.
   final String description;
+  /// The `steps` property.
   final List<Step> steps;
+  /// The `examples` property.
   final List<Examples> examples;
+  /// The `id` property.
   final String id;
 
+  /// Creates an instance of [Scenario].
   const Scenario({
     required this.location,
     required this.tags,
@@ -25,6 +35,7 @@ class Scenario {
     required this.id,
   });
 
+  /// Creates an instance of [Scenario] from a JSON object.
   factory Scenario.fromJson(Map<String, Object?> json) {
     return Scenario(
       location: Location.fromJson(
@@ -58,6 +69,7 @@ class Scenario {
     );
   }
 
+  /// Converts this [Scenario] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

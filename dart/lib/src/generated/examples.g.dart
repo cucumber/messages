@@ -4,16 +4,26 @@
 
 part of 'messages.dart';
 
+/// Represents the Examples message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class Examples {
+  /// The location of the `Examples` keyword
   final Location location;
+  /// The `tags` property.
   final List<Tag> tags;
+  /// The `keyword` property.
   final String keyword;
+  /// The `name` property.
   final String name;
+  /// The `description` property.
   final String description;
+  /// The `tableHeader` property.
   final TableRow? tableHeader;
+  /// The `tableBody` property.
   final List<TableRow> tableBody;
+  /// The `id` property.
   final String id;
 
+  /// Creates an instance of [Examples].
   const Examples({
     required this.location,
     required this.tags,
@@ -25,6 +35,7 @@ class Examples {
     required this.id,
   });
 
+  /// Creates an instance of [Examples] from a JSON object.
   factory Examples.fromJson(Map<String, Object?> json) {
     return Examples(
       location: Location.fromJson(
@@ -56,6 +67,7 @@ class Examples {
     );
   }
 
+  /// Converts this [Examples] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

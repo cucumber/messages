@@ -4,15 +4,22 @@
 
 part of 'messages.dart';
 
+/// Represents the Location message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// Points to a line and a column in a text file
 class Location {
+  /// The `line` property.
   final int line;
+  /// The `column` property.
   final int? column;
 
+  /// Creates an instance of [Location].
   const Location({
     required this.line,
     this.column,
   });
 
+  /// Creates an instance of [Location] from a JSON object.
   factory Location.fromJson(Map<String, Object?> json) {
     return Location(
       line: (_requireJsonNumber(json, 'line') as num).toInt(),
@@ -20,6 +27,7 @@ class Location {
     );
   }
 
+  /// Converts this [Location] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['line'] = line;

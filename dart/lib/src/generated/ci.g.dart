@@ -4,12 +4,20 @@
 
 part of 'messages.dart';
 
+/// Represents the Ci message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// CI environment
 class Ci {
+  /// Name of the CI product, e.g. "Jenkins", "CircleCI" etc.
   final String name;
+  /// Link to the build
   final String? url;
+  /// The build number. Some CI servers use non-numeric build numbers, which is why this is a string
   final String? buildNumber;
+  /// The `git` property.
   final Git? git;
 
+  /// Creates an instance of [Ci].
   const Ci({
     required this.name,
     this.url,
@@ -17,6 +25,7 @@ class Ci {
     this.git,
   });
 
+  /// Creates an instance of [Ci] from a JSON object.
   factory Ci.fromJson(Map<String, Object?> json) {
     return Ci(
       name: _requireJsonString(json, 'name'),
@@ -30,6 +39,7 @@ class Ci {
     );
   }
 
+  /// Converts this [Ci] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['name'] = name;

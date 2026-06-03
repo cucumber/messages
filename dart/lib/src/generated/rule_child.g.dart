@@ -4,15 +4,22 @@
 
 part of 'messages.dart';
 
+/// Represents the RuleChild message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// A child node of a `Rule` node
 class RuleChild {
+  /// The `background` property.
   final Background? background;
+  /// The `scenario` property.
   final Scenario? scenario;
 
+  /// Creates an instance of [RuleChild].
   const RuleChild({
     this.background,
     this.scenario,
   });
 
+  /// Creates an instance of [RuleChild] from a JSON object.
   factory RuleChild.fromJson(Map<String, Object?> json) {
     return RuleChild(
       background: json['background'] == null
@@ -28,6 +35,7 @@ class RuleChild {
     );
   }
 
+  /// Converts this [RuleChild] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     if (background != null) {

@@ -24,6 +24,42 @@ module Generator
       end
     end
 
+    def class_doc_comment(type_name, schema, indent_string: '')
+      description = [
+        "Represents the #{type_name} message in [Cucumber's message protocol](https://github.com/cucumber/messages).",
+        schema['description']
+      ].compact.join("\n\n")
+
+      doc_comment(description, indent_string: indent_string)
+    end
+
+    def enum_doc_comment(enum, indent_string: '')
+      description = enum[:description] || "Values for the `#{enum[:property_name]}` property."
+
+      doc_comment(description, indent_string: indent_string)
+    end
+
+    def enum_value_doc_comment(value, indent_string: '')
+      doc_comment("The `#{value}` value.", indent_string: indent_string)
+    end
+
+    def property_doc_comment(property_name, property, indent_string: '')
+      description = property['description'] || "The `#{property_name}` property."
+
+      doc_comment(description, indent_string: indent_string)
+    end
+
+    def doc_comment(raw_description, indent_string: '')
+      return '' if raw_description.nil? || raw_description.empty?
+
+      raw_description
+        .split("\n")
+        .map(&:rstrip)
+        .map { |line| line.empty? ? '///' : "/// #{line}" }
+        .map { |line| "#{indent_string}#{line}" }
+        .join("\n")
+    end
+
     private
 
     def each_schema
@@ -42,7 +78,9 @@ module Generator
 
         {
           name: enum_name(class_name(ref), property_name, property['enum']),
-          values: property['enum']
+          values: property['enum'],
+          property_name: property_name,
+          description: property['description']
         }
       end
     end

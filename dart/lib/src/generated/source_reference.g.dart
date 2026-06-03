@@ -4,12 +4,21 @@
 
 part of 'messages.dart';
 
+/// Represents the SourceReference message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
+/// [Location](#io.cucumber.messages.Location) within that file.
 class SourceReference {
+  /// The `uri` property.
   final String? uri;
+  /// The `javaMethod` property.
   final JavaMethod? javaMethod;
+  /// The `javaStackTraceElement` property.
   final JavaStackTraceElement? javaStackTraceElement;
+  /// The `location` property.
   final Location? location;
 
+  /// Creates an instance of [SourceReference].
   const SourceReference({
     this.uri,
     this.javaMethod,
@@ -17,6 +26,7 @@ class SourceReference {
     this.location,
   });
 
+  /// Creates an instance of [SourceReference] from a JSON object.
   factory SourceReference.fromJson(Map<String, Object?> json) {
     return SourceReference(
       uri: json['uri'] as String?,
@@ -38,6 +48,7 @@ class SourceReference {
     );
   }
 
+  /// Converts this [SourceReference] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     if (uri != null) {

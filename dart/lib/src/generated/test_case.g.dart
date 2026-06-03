@@ -4,12 +4,20 @@
 
 part of 'messages.dart';
 
+/// Represents the TestCase message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// A `TestCase` contains a sequence of `TestStep`s.
 class TestCase {
+  /// The `id` property.
   final String id;
+  /// The ID of the `Pickle` this `TestCase` is derived from.
   final String pickleId;
+  /// The `testSteps` property.
   final List<TestStep> testSteps;
+  /// Identifier for the test run that this test case belongs to
   final String? testRunStartedId;
 
+  /// Creates an instance of [TestCase].
   const TestCase({
     required this.id,
     required this.pickleId,
@@ -17,6 +25,7 @@ class TestCase {
     this.testRunStartedId,
   });
 
+  /// Creates an instance of [TestCase] from a JSON object.
   factory TestCase.fromJson(Map<String, Object?> json) {
     return TestCase(
       id: _requireJsonString(json, 'id'),
@@ -32,6 +41,7 @@ class TestCase {
     );
   }
 
+  /// Converts this [TestCase] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['id'] = id;

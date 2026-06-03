@@ -4,15 +4,22 @@
 
 part of 'messages.dart';
 
+/// Represents the TableCell message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// A cell in a `TableRow`
 class TableCell {
+  /// The location of the cell
   final Location location;
+  /// The value of the cell
   final String value;
 
+  /// Creates an instance of [TableCell].
   const TableCell({
     required this.location,
     required this.value,
   });
 
+  /// Creates an instance of [TableCell] from a JSON object.
   factory TableCell.fromJson(Map<String, Object?> json) {
     return TableCell(
       location: Location.fromJson(
@@ -22,6 +29,7 @@ class TableCell {
     );
   }
 
+  /// Converts this [TableCell] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

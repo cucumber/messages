@@ -4,29 +4,52 @@
 
 part of 'messages.dart';
 
+/// Represents the Envelope message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class Envelope {
+  /// The `attachment` property.
   final Attachment? attachment;
+  /// The `externalAttachment` property.
   final ExternalAttachment? externalAttachment;
+  /// The `gherkinDocument` property.
   final GherkinDocument? gherkinDocument;
+  /// The `hook` property.
   final Hook? hook;
+  /// The `meta` property.
   final Meta? meta;
+  /// The `parameterType` property.
   final ParameterType? parameterType;
+  /// The `parseError` property.
   final ParseError? parseError;
+  /// The `pickle` property.
   final Pickle? pickle;
+  /// The `suggestion` property.
   final Suggestion? suggestion;
+  /// The `source` property.
   final Source? source;
+  /// The `stepDefinition` property.
   final StepDefinition? stepDefinition;
+  /// The `testCase` property.
   final TestCase? testCase;
+  /// The `testCaseFinished` property.
   final TestCaseFinished? testCaseFinished;
+  /// The `testCaseStarted` property.
   final TestCaseStarted? testCaseStarted;
+  /// The `testRunFinished` property.
   final TestRunFinished? testRunFinished;
+  /// The `testRunStarted` property.
   final TestRunStarted? testRunStarted;
+  /// The `testStepFinished` property.
   final TestStepFinished? testStepFinished;
+  /// The `testStepStarted` property.
   final TestStepStarted? testStepStarted;
+  /// The `testRunHookStarted` property.
   final TestRunHookStarted? testRunHookStarted;
+  /// The `testRunHookFinished` property.
   final TestRunHookFinished? testRunHookFinished;
+  /// The `undefinedParameterType` property.
   final UndefinedParameterType? undefinedParameterType;
 
+  /// Creates an instance of [Envelope].
   const Envelope({
     this.attachment,
     this.externalAttachment,
@@ -51,6 +74,7 @@ class Envelope {
     this.undefinedParameterType,
   });
 
+  /// Creates an instance of [Envelope] from a JSON object.
   factory Envelope.fromJson(Map<String, Object?> json) {
     return Envelope(
       attachment: json['attachment'] == null
@@ -161,6 +185,7 @@ class Envelope {
     );
   }
 
+  /// Converts this [Envelope] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     if (attachment != null) {

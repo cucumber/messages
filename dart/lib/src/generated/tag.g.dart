@@ -4,17 +4,25 @@
 
 part of 'messages.dart';
 
+/// Represents the Tag message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// A tag
 class Tag {
+  /// Location of the tag
   final Location location;
+  /// The name of the tag (including the leading `@`)
   final String name;
+  /// Unique ID to be able to reference the Tag from PickleTag
   final String id;
 
+  /// Creates an instance of [Tag].
   const Tag({
     required this.location,
     required this.name,
     required this.id,
   });
 
+  /// Creates an instance of [Tag] from a JSON object.
   factory Tag.fromJson(Map<String, Object?> json) {
     return Tag(
       location: Location.fromJson(
@@ -25,6 +33,7 @@ class Tag {
     );
   }
 
+  /// Converts this [Tag] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

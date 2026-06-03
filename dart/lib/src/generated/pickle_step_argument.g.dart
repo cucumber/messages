@@ -4,15 +4,22 @@
 
 part of 'messages.dart';
 
+/// Represents the PickleStepArgument message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// An optional argument
 class PickleStepArgument {
+  /// The `docString` property.
   final PickleDocString? docString;
+  /// The `dataTable` property.
   final PickleTable? dataTable;
 
+  /// Creates an instance of [PickleStepArgument].
   const PickleStepArgument({
     this.docString,
     this.dataTable,
   });
 
+  /// Creates an instance of [PickleStepArgument] from a JSON object.
   factory PickleStepArgument.fromJson(Map<String, Object?> json) {
     return PickleStepArgument(
       docString: json['docString'] == null
@@ -28,6 +35,7 @@ class PickleStepArgument {
     );
   }
 
+  /// Converts this [PickleStepArgument] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     if (docString != null) {

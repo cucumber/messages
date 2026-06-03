@@ -4,17 +4,24 @@
 
 part of 'messages.dart';
 
+/// Represents the Group message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class Group {
+  /// The nested capture groups of an argument.
+  /// Absent if the group has no nested capture groups.
   final List<Group>? children;
+  /// The `start` property.
   final int? start;
+  /// The `value` property.
   final String? value;
 
+  /// Creates an instance of [Group].
   const Group({
     this.children,
     this.start,
     this.value,
   });
 
+  /// Creates an instance of [Group] from a JSON object.
   factory Group.fromJson(Map<String, Object?> json) {
     return Group(
       children: (json['children'] as List<Object?>?)
@@ -29,6 +36,7 @@ class Group {
     );
   }
 
+  /// Converts this [Group] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     if (children != null) {

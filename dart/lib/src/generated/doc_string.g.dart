@@ -4,12 +4,18 @@
 
 part of 'messages.dart';
 
+/// Represents the DocString message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class DocString {
+  /// The `location` property.
   final Location location;
+  /// The `mediaType` property.
   final String? mediaType;
+  /// The `content` property.
   final String content;
+  /// The `delimiter` property.
   final String delimiter;
 
+  /// Creates an instance of [DocString].
   const DocString({
     required this.location,
     this.mediaType,
@@ -17,6 +23,7 @@ class DocString {
     required this.delimiter,
   });
 
+  /// Creates an instance of [DocString] from a JSON object.
   factory DocString.fromJson(Map<String, Object?> json) {
     return DocString(
       location: Location.fromJson(
@@ -28,6 +35,7 @@ class DocString {
     );
   }
 
+  /// Converts this [DocString] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

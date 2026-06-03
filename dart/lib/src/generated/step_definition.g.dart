@@ -4,17 +4,23 @@
 
 part of 'messages.dart';
 
+/// Represents the StepDefinition message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class StepDefinition {
+  /// The `id` property.
   final String id;
+  /// The `pattern` property.
   final StepDefinitionPattern pattern;
+  /// The `sourceReference` property.
   final SourceReference sourceReference;
 
+  /// Creates an instance of [StepDefinition].
   const StepDefinition({
     required this.id,
     required this.pattern,
     required this.sourceReference,
   });
 
+  /// Creates an instance of [StepDefinition] from a JSON object.
   factory StepDefinition.fromJson(Map<String, Object?> json) {
     return StepDefinition(
       id: _requireJsonString(json, 'id'),
@@ -27,6 +33,7 @@ class StepDefinition {
     );
   }
 
+  /// Converts this [StepDefinition] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['id'] = id;

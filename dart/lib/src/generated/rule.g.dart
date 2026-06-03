@@ -4,15 +4,24 @@
 
 part of 'messages.dart';
 
+/// Represents the Rule message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class Rule {
+  /// The location of the `Rule` keyword
   final Location location;
+  /// All the tags placed above the `Rule` keyword
   final List<Tag> tags;
+  /// The `keyword` property.
   final String keyword;
+  /// The `name` property.
   final String name;
+  /// The `description` property.
   final String description;
+  /// The `children` property.
   final List<RuleChild> children;
+  /// The `id` property.
   final String id;
 
+  /// Creates an instance of [Rule].
   const Rule({
     required this.location,
     required this.tags,
@@ -23,6 +32,7 @@ class Rule {
     required this.id,
   });
 
+  /// Creates an instance of [Rule] from a JSON object.
   factory Rule.fromJson(Map<String, Object?> json) {
     return Rule(
       location: Location.fromJson(
@@ -49,6 +59,7 @@ class Rule {
     );
   }
 
+  /// Converts this [Rule] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

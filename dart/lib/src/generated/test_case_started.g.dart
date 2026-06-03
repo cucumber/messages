@@ -4,13 +4,22 @@
 
 part of 'messages.dart';
 
+/// Represents the TestCaseStarted message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class TestCaseStarted {
+  /// The first attempt should have value 0, and for each retry the value
+  /// should increase by 1.
   final int attempt;
+  /// Because a `TestCase` can be run multiple times (in case of a retry),
+  /// we use this field to group messages relating to the same attempt.
   final String id;
+  /// The `testCaseId` property.
   final String testCaseId;
+  /// An identifier for the worker process running this test case, if test cases are being run in parallel. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
   final String? workerId;
+  /// The `timestamp` property.
   final Timestamp timestamp;
 
+  /// Creates an instance of [TestCaseStarted].
   const TestCaseStarted({
     required this.attempt,
     required this.id,
@@ -19,6 +28,7 @@ class TestCaseStarted {
     required this.timestamp,
   });
 
+  /// Creates an instance of [TestCaseStarted] from a JSON object.
   factory TestCaseStarted.fromJson(Map<String, Object?> json) {
     return TestCaseStarted(
       attempt: (_requireJsonNumber(json, 'attempt') as num).toInt(),
@@ -31,6 +41,7 @@ class TestCaseStarted {
     );
   }
 
+  /// Converts this [TestCaseStarted] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['attempt'] = attempt;

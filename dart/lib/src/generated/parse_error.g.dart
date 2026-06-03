@@ -4,15 +4,20 @@
 
 part of 'messages.dart';
 
+/// Represents the ParseError message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class ParseError {
+  /// The `source` property.
   final SourceReference source;
+  /// The `message` property.
   final String message;
 
+  /// Creates an instance of [ParseError].
   const ParseError({
     required this.source,
     required this.message,
   });
 
+  /// Creates an instance of [ParseError] from a JSON object.
   factory ParseError.fromJson(Map<String, Object?> json) {
     return ParseError(
       source: SourceReference.fromJson(
@@ -22,6 +27,7 @@ class ParseError {
     );
   }
 
+  /// Converts this [ParseError] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['source'] = source.toJson();

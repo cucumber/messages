@@ -4,14 +4,22 @@
 
 part of 'messages.dart';
 
+/// Represents the ParameterType message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class ParameterType {
+  /// The name is unique, so we don't need an id.
   final String name;
+  /// The `regularExpressions` property.
   final List<String> regularExpressions;
+  /// The `preferForRegularExpressionMatch` property.
   final bool preferForRegularExpressionMatch;
+  /// The `useForSnippets` property.
   final bool useForSnippets;
+  /// The `id` property.
   final String id;
+  /// The `sourceReference` property.
   final SourceReference? sourceReference;
 
+  /// Creates an instance of [ParameterType].
   const ParameterType({
     required this.name,
     required this.regularExpressions,
@@ -21,6 +29,7 @@ class ParameterType {
     this.sourceReference,
   });
 
+  /// Creates an instance of [ParameterType] from a JSON object.
   factory ParameterType.fromJson(Map<String, Object?> json) {
     return ParameterType(
       name: _requireJsonString(json, 'name'),
@@ -38,6 +47,7 @@ class ParameterType {
     );
   }
 
+  /// Converts this [ParameterType] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['name'] = name;

@@ -4,15 +4,26 @@
 
 part of 'messages.dart';
 
+/// Represents the Duration message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// The structure is pretty close of the Timestamp one. For clarity, a second type
+/// of message is used.
 class Duration {
+  /// The `seconds` property.
   final int seconds;
+  /// Non-negative fractions of a second at nanosecond resolution. Negative
+  /// second values with fractions must still have non-negative nanos values
+  /// that count forward in time. Must be from 0 to 999,999,999
+  /// inclusive.
   final int nanos;
 
+  /// Creates an instance of [Duration].
   const Duration({
     required this.seconds,
     required this.nanos,
   });
 
+  /// Creates an instance of [Duration] from a JSON object.
   factory Duration.fromJson(Map<String, Object?> json) {
     return Duration(
       seconds: (_requireJsonNumber(json, 'seconds') as num).toInt(),
@@ -20,6 +31,7 @@ class Duration {
     );
   }
 
+  /// Converts this [Duration] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['seconds'] = seconds;

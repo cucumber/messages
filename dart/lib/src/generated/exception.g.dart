@@ -4,17 +4,25 @@
 
 part of 'messages.dart';
 
+/// Represents the Exception message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// A simplified representation of an exception
 class Exception {
+  /// The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
   final String type;
+  /// The message of exception that caused this result. E.g. expected: "a" but was: "b"
   final String? message;
+  /// The stringified stack trace of the exception that caused this result
   final String? stackTrace;
 
+  /// Creates an instance of [Exception].
   const Exception({
     required this.type,
     this.message,
     this.stackTrace,
   });
 
+  /// Creates an instance of [Exception] from a JSON object.
   factory Exception.fromJson(Map<String, Object?> json) {
     return Exception(
       type: _requireJsonString(json, 'type'),
@@ -23,6 +31,7 @@ class Exception {
     );
   }
 
+  /// Converts this [Exception] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['type'] = type;

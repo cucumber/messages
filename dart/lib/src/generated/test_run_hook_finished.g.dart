@@ -4,17 +4,23 @@
 
 part of 'messages.dart';
 
+/// Represents the TestRunHookFinished message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class TestRunHookFinished {
+  /// Identifier for the hook execution that has finished
   final String testRunHookStartedId;
+  /// The `result` property.
   final TestStepResult result;
+  /// The `timestamp` property.
   final Timestamp timestamp;
 
+  /// Creates an instance of [TestRunHookFinished].
   const TestRunHookFinished({
     required this.testRunHookStartedId,
     required this.result,
     required this.timestamp,
   });
 
+  /// Creates an instance of [TestRunHookFinished] from a JSON object.
   factory TestRunHookFinished.fromJson(Map<String, Object?> json) {
     return TestRunHookFinished(
       testRunHookStartedId: _requireJsonString(json, 'testRunHookStartedId'),
@@ -27,6 +33,7 @@ class TestRunHookFinished {
     );
   }
 
+  /// Converts this [TestRunHookFinished] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['testRunHookStartedId'] = testRunHookStartedId;

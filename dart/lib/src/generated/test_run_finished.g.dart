@@ -4,13 +4,20 @@
 
 part of 'messages.dart';
 
+/// Represents the TestRunFinished message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class TestRunFinished {
+  /// An informative message about the test run. Typically additional information about failure, but not necessarily.
   final String? message;
+  /// A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
   final bool success;
+  /// Timestamp when the TestRun is finished
   final Timestamp timestamp;
+  /// Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
   final Exception? exception;
+  /// The `testRunStartedId` property.
   final String? testRunStartedId;
 
+  /// Creates an instance of [TestRunFinished].
   const TestRunFinished({
     this.message,
     required this.success,
@@ -19,6 +26,7 @@ class TestRunFinished {
     this.testRunStartedId,
   });
 
+  /// Creates an instance of [TestRunFinished] from a JSON object.
   factory TestRunFinished.fromJson(Map<String, Object?> json) {
     return TestRunFinished(
       message: json['message'] as String?,
@@ -35,6 +43,7 @@ class TestRunFinished {
     );
   }
 
+  /// Converts this [TestRunFinished] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     if (message != null) {

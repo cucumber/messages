@@ -4,15 +4,20 @@
 
 part of 'messages.dart';
 
+/// Represents the DataTable message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class DataTable {
+  /// The `location` property.
   final Location location;
+  /// The `rows` property.
   final List<TableRow> rows;
 
+  /// Creates an instance of [DataTable].
   const DataTable({
     required this.location,
     required this.rows,
   });
 
+  /// Creates an instance of [DataTable] from a JSON object.
   factory DataTable.fromJson(Map<String, Object?> json) {
     return DataTable(
       location: Location.fromJson(
@@ -28,6 +33,7 @@ class DataTable {
     );
   }
 
+  /// Converts this [DataTable] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

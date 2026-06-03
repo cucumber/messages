@@ -4,14 +4,25 @@
 
 part of 'messages.dart';
 
+/// Represents the Meta message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// This message contains meta information about the environment. Consumers can use
+/// this for various purposes.
 class Meta {
+  /// The [SEMVER](https://semver.org/) version number of the protocol
   final String protocolVersion;
+  /// SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
   final Product implementation;
+  /// Java, Ruby, Node.js etc
   final Product runtime;
+  /// Windows, Linux, MacOS etc
   final Product os;
+  /// 386, arm, amd64 etc
   final Product cpu;
+  /// The `ci` property.
   final Ci? ci;
 
+  /// Creates an instance of [Meta].
   const Meta({
     required this.protocolVersion,
     required this.implementation,
@@ -21,6 +32,7 @@ class Meta {
     this.ci,
   });
 
+  /// Creates an instance of [Meta] from a JSON object.
   factory Meta.fromJson(Map<String, Object?> json) {
     return Meta(
       protocolVersion: _requireJsonString(json, 'protocolVersion'),
@@ -44,6 +56,7 @@ class Meta {
     );
   }
 
+  /// Converts this [Meta] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['protocolVersion'] = protocolVersion;

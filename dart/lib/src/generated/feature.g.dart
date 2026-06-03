@@ -4,15 +4,24 @@
 
 part of 'messages.dart';
 
+/// Represents the Feature message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class Feature {
+  /// The location of the `Feature` keyword
   final Location location;
+  /// All the tags placed above the `Feature` keyword
   final List<Tag> tags;
+  /// The [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code of the Gherkin document
   final String language;
+  /// The text of the `Feature` keyword (in the language specified by `language`)
   final String keyword;
+  /// The name of the feature (the text following the `keyword`)
   final String name;
+  /// The line(s) underneath the line with the `keyword` that are used as description
   final String description;
+  /// Zero or more children
   final List<FeatureChild> children;
 
+  /// Creates an instance of [Feature].
   const Feature({
     required this.location,
     required this.tags,
@@ -23,6 +32,7 @@ class Feature {
     required this.children,
   });
 
+  /// Creates an instance of [Feature] from a JSON object.
   factory Feature.fromJson(Map<String, Object?> json) {
     return Feature(
       location: Location.fromJson(
@@ -49,6 +59,7 @@ class Feature {
     );
   }
 
+  /// Converts this [Feature] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['location'] = location.toJson();

@@ -4,15 +4,20 @@
 
 part of 'messages.dart';
 
+/// Represents the TestRunStarted message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class TestRunStarted {
+  /// The `timestamp` property.
   final Timestamp timestamp;
+  /// The `id` property.
   final String? id;
 
+  /// Creates an instance of [TestRunStarted].
   const TestRunStarted({
     required this.timestamp,
     this.id,
   });
 
+  /// Creates an instance of [TestRunStarted] from a JSON object.
   factory TestRunStarted.fromJson(Map<String, Object?> json) {
     return TestRunStarted(
       timestamp: Timestamp.fromJson(
@@ -22,6 +27,7 @@ class TestRunStarted {
     );
   }
 
+  /// Converts this [TestRunStarted] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['timestamp'] = timestamp.toJson();

@@ -4,12 +4,18 @@
 
 part of 'messages.dart';
 
+/// Represents the TestStepFinished message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class TestStepFinished {
+  /// The `testCaseStartedId` property.
   final String testCaseStartedId;
+  /// The `testStepId` property.
   final String testStepId;
+  /// The `testStepResult` property.
   final TestStepResult testStepResult;
+  /// The `timestamp` property.
   final Timestamp timestamp;
 
+  /// Creates an instance of [TestStepFinished].
   const TestStepFinished({
     required this.testCaseStartedId,
     required this.testStepId,
@@ -17,6 +23,7 @@ class TestStepFinished {
     required this.timestamp,
   });
 
+  /// Creates an instance of [TestStepFinished] from a JSON object.
   factory TestStepFinished.fromJson(Map<String, Object?> json) {
     return TestStepFinished(
       testCaseStartedId: _requireJsonString(json, 'testCaseStartedId'),
@@ -30,6 +37,7 @@ class TestStepFinished {
     );
   }
 
+  /// Converts this [TestStepFinished] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['testCaseStartedId'] = testCaseStartedId;

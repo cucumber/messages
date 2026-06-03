@@ -4,17 +4,23 @@
 
 part of 'messages.dart';
 
+/// Represents the JavaMethod message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class JavaMethod {
+  /// The `className` property.
   final String className;
+  /// The `methodName` property.
   final String methodName;
+  /// The `methodParameterTypes` property.
   final List<String> methodParameterTypes;
 
+  /// Creates an instance of [JavaMethod].
   const JavaMethod({
     required this.className,
     required this.methodName,
     required this.methodParameterTypes,
   });
 
+  /// Creates an instance of [JavaMethod] from a JSON object.
   factory JavaMethod.fromJson(Map<String, Object?> json) {
     return JavaMethod(
       className: _requireJsonString(json, 'className'),
@@ -25,6 +31,7 @@ class JavaMethod {
     );
   }
 
+  /// Converts this [JavaMethod] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['className'] = className;

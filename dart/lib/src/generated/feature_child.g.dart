@@ -4,17 +4,25 @@
 
 part of 'messages.dart';
 
+/// Represents the FeatureChild message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+///
+/// A child node of a `Feature` node
 class FeatureChild {
+  /// The `rule` property.
   final Rule? rule;
+  /// The `background` property.
   final Background? background;
+  /// The `scenario` property.
   final Scenario? scenario;
 
+  /// Creates an instance of [FeatureChild].
   const FeatureChild({
     this.rule,
     this.background,
     this.scenario,
   });
 
+  /// Creates an instance of [FeatureChild] from a JSON object.
   factory FeatureChild.fromJson(Map<String, Object?> json) {
     return FeatureChild(
       rule: json['rule'] == null
@@ -35,6 +43,7 @@ class FeatureChild {
     );
   }
 
+  /// Converts this [FeatureChild] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     if (rule != null) {

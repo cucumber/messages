@@ -4,13 +4,17 @@
 
 part of 'messages.dart';
 
+/// Represents the StepMatchArgumentsList message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class StepMatchArgumentsList {
+  /// The `stepMatchArguments` property.
   final List<StepMatchArgument> stepMatchArguments;
 
+  /// Creates an instance of [StepMatchArgumentsList].
   const StepMatchArgumentsList({
     required this.stepMatchArguments,
   });
 
+  /// Creates an instance of [StepMatchArgumentsList] from a JSON object.
   factory StepMatchArgumentsList.fromJson(Map<String, Object?> json) {
     return StepMatchArgumentsList(
       stepMatchArguments: _requireJsonList(json, 'stepMatchArguments')
@@ -23,6 +27,7 @@ class StepMatchArgumentsList {
     );
   }
 
+  /// Converts this [StepMatchArgumentsList] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['stepMatchArguments'] = stepMatchArguments.map((item) => item.toJson()).toList();

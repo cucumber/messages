@@ -4,28 +4,46 @@
 
 part of 'messages.dart';
 
+/// Values for the `status` property.
 enum TestStepResultStatus {
+  /// The `UNKNOWN` value.
   unknown('UNKNOWN'),
+  /// The `PASSED` value.
   passed('PASSED'),
+  /// The `SKIPPED` value.
   skipped('SKIPPED'),
+  /// The `PENDING` value.
   pending('PENDING'),
+  /// The `UNDEFINED` value.
   undefined('UNDEFINED'),
+  /// The `AMBIGUOUS` value.
   ambiguous('AMBIGUOUS'),
+  /// The `FAILED` value.
   failed('FAILED'),
   ;
 
+  /// Creates an instance of [TestStepResultStatus] from its wire [value].
   const TestStepResultStatus(this.value);
+
+  /// The wire value used in message JSON.
   final String value;
 
+  /// Returns the [TestStepResultStatus] matching [value].
   static TestStepResultStatus fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
+/// Represents the TestStepResult message in [Cucumber's message protocol](https://github.com/cucumber/messages).
 class TestStepResult {
+  /// The `duration` property.
   final Duration duration;
+  /// An arbitrary bit of information that explains this result. If there was an exception, this should include a stringified representation of it including type, message and stack trace (the exact format will vary by platform).
   final String? message;
+  /// The `status` property.
   final TestStepResultStatus status;
+  /// Exception thrown while executing this step, if any.
   final Exception? exception;
 
+  /// Creates an instance of [TestStepResult].
   const TestStepResult({
     required this.duration,
     this.message,
@@ -33,6 +51,7 @@ class TestStepResult {
     this.exception,
   });
 
+  /// Creates an instance of [TestStepResult] from a JSON object.
   factory TestStepResult.fromJson(Map<String, Object?> json) {
     return TestStepResult(
       duration: Duration.fromJson(
@@ -50,6 +69,7 @@ class TestStepResult {
     );
   }
 
+  /// Converts this [TestStepResult] to a JSON object.
   Map<String, Object?> toJson() {
     final json = <String, Object?>{};
     json['duration'] = duration.toJson();
