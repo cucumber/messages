@@ -1,5 +1,5 @@
 import assert from 'node:assert'
-import { IdGenerator } from '../src/index.js'
+import { IdGenerator } from '../src/index'
 
 describe('IdGenerator', () => {
   it('generates uuids', () => {
