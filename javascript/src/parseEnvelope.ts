@@ -1,5 +1,5 @@
 import { plainToClass } from 'class-transformer'
-import { Envelope } from './messages.js'
+import { Envelope } from './messages'
 
 /**
  * Parses JSON into an Envelope object. The difference from JSON.parse
