@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the UndefinedParameterType message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [UndefinedParameterType message](https://github.com/cucumber/messages/blob/main/jsonschema/src/UndefinedParameterType.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class UndefinedParameterType {
   /// The `expression` property.
   final String expression;

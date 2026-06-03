@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the StepMatchArgumentsList message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [StepMatchArgumentsList message](https://github.com/cucumber/messages/blob/main/jsonschema/src/StepMatchArgumentsList.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class StepMatchArgumentsList {
   /// The `stepMatchArguments` property.
   final List<StepMatchArgument> stepMatchArguments;

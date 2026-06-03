@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the ParameterType message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [ParameterType message](https://github.com/cucumber/messages/blob/main/jsonschema/src/ParameterType.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class ParameterType {
   /// The name is unique, so we don't need an id.
   final String name;

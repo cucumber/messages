@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the TestStep message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [TestStep message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestStep.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
 ///

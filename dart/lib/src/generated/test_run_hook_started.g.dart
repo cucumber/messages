@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the TestRunHookStarted message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [TestRunHookStarted message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestRunHookStarted.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestRunHookStarted {
   /// Unique identifier for this hook execution
   final String id;

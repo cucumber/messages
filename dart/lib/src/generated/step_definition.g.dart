@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the StepDefinition message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [StepDefinition message](https://github.com/cucumber/messages/blob/main/jsonschema/src/StepDefinition.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class StepDefinition {
   /// The `id` property.
   final String id;

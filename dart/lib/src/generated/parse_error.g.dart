@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the ParseError message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [ParseError message](https://github.com/cucumber/messages/blob/main/jsonschema/src/ParseError.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class ParseError {
   /// The `source` property.
   final SourceReference source;

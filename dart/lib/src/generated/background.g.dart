@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Background message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Background message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Background.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Background {
   /// The location of the `Background` keyword
   final Location location;

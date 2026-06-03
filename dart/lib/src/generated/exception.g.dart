@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Exception message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Exception message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Exception.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A simplified representation of an exception
 class Exception {

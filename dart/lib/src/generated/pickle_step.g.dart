@@ -28,7 +28,7 @@ enum PickleStepType {
   static PickleStepType fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
-/// Represents the PickleStep message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [PickleStep message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleStep.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// An executable step
 class PickleStep {

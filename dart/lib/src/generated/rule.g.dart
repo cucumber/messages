@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Rule message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Rule message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Rule.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Rule {
   /// The location of the `Rule` keyword
   final Location location;

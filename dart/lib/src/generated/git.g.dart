@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Git message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Git message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Git.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// Information about Git, provided by the Build/CI server as environment
 /// variables.

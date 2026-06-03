@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the TestRunStarted message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [TestRunStarted message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestRunStarted.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestRunStarted {
   /// The `timestamp` property.
   final Timestamp timestamp;

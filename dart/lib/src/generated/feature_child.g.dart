@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the FeatureChild message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [FeatureChild message](https://github.com/cucumber/messages/blob/main/jsonschema/src/FeatureChild.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A child node of a `Feature` node
 class FeatureChild {

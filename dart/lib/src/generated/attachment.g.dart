@@ -29,7 +29,7 @@ enum AttachmentContentEncoding {
   static AttachmentContentEncoding fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
-/// Represents the Attachment message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Attachment message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Attachment.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// Attachments (parse errors, execution errors, screenshots, links...)
 ///

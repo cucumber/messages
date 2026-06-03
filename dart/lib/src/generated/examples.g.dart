@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Examples message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Examples message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Examples.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Examples {
   /// The location of the `Examples` keyword
   final Location location;

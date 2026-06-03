@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the StepMatchArgument message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [StepMatchArgument message](https://github.com/cucumber/messages/blob/main/jsonschema/src/StepMatchArgument.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// Represents a single argument extracted from a step match and passed to a step definition.
 /// This is used for the following purposes:

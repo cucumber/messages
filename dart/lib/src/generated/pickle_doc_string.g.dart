@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the PickleDocString message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [PickleDocString message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleDocString.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class PickleDocString {
   /// The `mediaType` property.
   final String? mediaType;

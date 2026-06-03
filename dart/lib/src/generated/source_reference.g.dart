@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the SourceReference message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [SourceReference message](https://github.com/cucumber/messages/blob/main/jsonschema/src/SourceReference.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
 /// [Location](#io.cucumber.messages.Location) within that file.

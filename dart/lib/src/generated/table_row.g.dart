@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the TableRow message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [TableRow message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TableRow.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A row in a table
 class TableRow {

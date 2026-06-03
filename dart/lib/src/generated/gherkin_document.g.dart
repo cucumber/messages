@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the GherkinDocument message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [GherkinDocument message](https://github.com/cucumber/messages/blob/main/jsonschema/src/GherkinDocument.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// The [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of a Gherkin document.
 /// Cucumber implementations should *not* depend on `GherkinDocument` or any of its

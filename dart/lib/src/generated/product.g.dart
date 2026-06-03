@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Product message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Product message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Product.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// Used to describe various properties of Meta
 class Product {

@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Snippet message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Snippet message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Snippet.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Snippet {
   /// The programming language of the code.
   ///

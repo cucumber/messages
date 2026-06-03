@@ -23,7 +23,7 @@ enum SourceMediaType {
   static SourceMediaType fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
-/// Represents the Source message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Source message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Source.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
 class Source {

@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the JavaMethod message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [JavaMethod message](https://github.com/cucumber/messages/blob/main/jsonschema/src/JavaMethod.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class JavaMethod {
   /// The `className` property.
   final String className;

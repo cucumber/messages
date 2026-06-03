@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Group message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Group message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Group.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Group {
   /// The nested capture groups of an argument.
   /// Absent if the group has no nested capture groups.

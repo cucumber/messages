@@ -26,7 +26,7 @@ module Generator
 
     def class_doc_comment(type_name, schema, indent_string: '')
       description = [
-        "Represents the #{type_name} message in [Cucumber's message protocol](https://github.com/cucumber/messages).",
+        "Generated Dart representation of the [#{type_name} message](#{schema_url(type_name)}) in Cucumber's [message protocol](https://github.com/cucumber/messages).",
         schema['description']
       ].compact.join("\n\n")
 
@@ -58,6 +58,10 @@ module Generator
         .map { |line| line.empty? ? '///' : "/// #{line}" }
         .map { |line| "#{indent_string}#{line}" }
         .join("\n")
+    end
+
+    def schema_url(type_name)
+      "https://github.com/cucumber/messages/blob/main/jsonschema/src/#{type_name}.schema.json"
     end
 
     private

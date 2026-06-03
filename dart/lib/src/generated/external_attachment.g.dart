@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the ExternalAttachment message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [ExternalAttachment message](https://github.com/cucumber/messages/blob/main/jsonschema/src/ExternalAttachment.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// Represents an attachment that is stored externally rather than embedded in the message stream.
 ///

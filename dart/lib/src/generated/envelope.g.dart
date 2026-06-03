@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Envelope message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Envelope message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Envelope.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Envelope {
   /// The `attachment` property.
   final Attachment? attachment;

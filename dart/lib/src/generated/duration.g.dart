@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Duration message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Duration message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Duration.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// The structure is pretty close of the Timestamp one. For clarity, a second type
 /// of message is used.

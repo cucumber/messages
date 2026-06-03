@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the TestCaseFinished message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [TestCaseFinished message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestCaseFinished.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestCaseFinished {
   /// The `testCaseStartedId` property.
   final String testCaseStartedId;

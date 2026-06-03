@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the RuleChild message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [RuleChild message](https://github.com/cucumber/messages/blob/main/jsonschema/src/RuleChild.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A child node of a `Rule` node
 class RuleChild {

@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Suggestion message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Suggestion message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Suggestion.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A suggested fragment of code to implement an undefined step
 class Suggestion {

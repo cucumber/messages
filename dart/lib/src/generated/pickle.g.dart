@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Pickle message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Pickle message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Pickle.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A `Pickle` represents a template for a `TestCase`. It is typically derived
 /// from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).

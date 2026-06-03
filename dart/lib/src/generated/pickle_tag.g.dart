@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the PickleTag message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [PickleTag message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleTag.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A tag
 class PickleTag {

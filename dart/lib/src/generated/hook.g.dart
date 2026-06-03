@@ -30,7 +30,7 @@ enum HookType {
   static HookType fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
-/// Represents the Hook message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Hook message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Hook.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Hook {
   /// The `id` property.
   final String id;

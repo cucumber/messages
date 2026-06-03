@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Meta message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Meta message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Meta.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// This message contains meta information about the environment. Consumers can use
 /// this for various purposes.

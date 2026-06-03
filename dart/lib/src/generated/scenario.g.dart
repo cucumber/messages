@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Scenario message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Scenario message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Scenario.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Scenario {
   /// The location of the `Scenario` keyword
   final Location location;

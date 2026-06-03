@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Location message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Location message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Location.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// Points to a line and a column in a text file
 class Location {

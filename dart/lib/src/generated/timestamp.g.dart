@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Timestamp message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Timestamp message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Timestamp.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Timestamp {
   /// Represents seconds of UTC time since Unix epoch
   /// 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to

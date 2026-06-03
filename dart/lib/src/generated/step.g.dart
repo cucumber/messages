@@ -28,7 +28,7 @@ enum StepKeywordType {
   static StepKeywordType fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
-/// Represents the Step message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Step message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Step.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A step
 class Step {

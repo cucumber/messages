@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the PickleTableCell message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [PickleTableCell message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleTableCell.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class PickleTableCell {
   /// The `value` property.
   final String value;

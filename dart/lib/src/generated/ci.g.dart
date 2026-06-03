@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Ci message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Ci message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Ci.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// CI environment
 class Ci {

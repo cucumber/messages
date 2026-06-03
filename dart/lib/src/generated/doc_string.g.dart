@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the DocString message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [DocString message](https://github.com/cucumber/messages/blob/main/jsonschema/src/DocString.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class DocString {
   /// The `location` property.
   final Location location;

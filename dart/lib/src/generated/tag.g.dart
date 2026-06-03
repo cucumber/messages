@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Tag message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Tag message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Tag.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// A tag
 class Tag {

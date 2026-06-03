@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the JavaStackTraceElement message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [JavaStackTraceElement message](https://github.com/cucumber/messages/blob/main/jsonschema/src/JavaStackTraceElement.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class JavaStackTraceElement {
   /// The `className` property.
   final String className;

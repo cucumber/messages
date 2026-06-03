@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the PickleStepArgument message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [PickleStepArgument message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleStepArgument.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
 /// An optional argument
 class PickleStepArgument {

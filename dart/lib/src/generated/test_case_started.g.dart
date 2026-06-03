@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the TestCaseStarted message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [TestCaseStarted message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestCaseStarted.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestCaseStarted {
   /// The first attempt should have value 0, and for each retry the value
   /// should increase by 1.

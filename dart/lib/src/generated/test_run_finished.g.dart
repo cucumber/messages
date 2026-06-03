@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the TestRunFinished message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [TestRunFinished message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestRunFinished.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestRunFinished {
   /// An informative message about the test run. Typically additional information about failure, but not necessarily.
   final String? message;

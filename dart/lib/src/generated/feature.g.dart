@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the Feature message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [Feature message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Feature.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Feature {
   /// The location of the `Feature` keyword
   final Location location;

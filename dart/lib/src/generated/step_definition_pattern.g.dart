@@ -22,7 +22,7 @@ enum StepDefinitionPatternType {
   static StepDefinitionPatternType fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
-/// Represents the StepDefinitionPattern message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [StepDefinitionPattern message](https://github.com/cucumber/messages/blob/main/jsonschema/src/StepDefinitionPattern.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class StepDefinitionPattern {
   /// The `source` property.
   final String source;

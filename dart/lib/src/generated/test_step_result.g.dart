@@ -32,7 +32,7 @@ enum TestStepResultStatus {
   static TestStepResultStatus fromValue(String value) => values.firstWhere((v) => v.value == value);
 }
 
-/// Represents the TestStepResult message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [TestStepResult message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestStepResult.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestStepResult {
   /// The `duration` property.
   final Duration duration;

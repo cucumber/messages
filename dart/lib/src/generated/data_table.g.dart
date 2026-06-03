@@ -4,7 +4,7 @@
 
 part of 'messages.dart';
 
-/// Represents the DataTable message in [Cucumber's message protocol](https://github.com/cucumber/messages).
+/// Generated Dart representation of the [DataTable message](https://github.com/cucumber/messages/blob/main/jsonschema/src/DataTable.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class DataTable {
   /// The `location` property.
   final Location location;
