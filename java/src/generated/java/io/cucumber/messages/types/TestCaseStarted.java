@@ -1,27 +1,32 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the TestCaseStarted message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestCaseStarted {
     private final Long attempt;
     private final String id;
     private final String testCaseId;
-    private final String workerId;
+    private final @Nullable String workerId;
     private final Timestamp timestamp;
 
     public TestCaseStarted(
-        Long attempt,
-        String id,
-        String testCaseId,
-        String workerId,
-        Timestamp timestamp
+        @Property("attempt") Long attempt,
+        @Property("id") String id,
+        @Property("testCaseId") String testCaseId,
+        @Nullable @Property("workerId") String workerId,
+        @Property("timestamp") Timestamp timestamp
     ) {
         this.attempt = requireNonNull(attempt, "TestCaseStarted.attempt cannot be null");
         this.id = requireNonNull(id, "TestCaseStarted.id cannot be null");
@@ -30,10 +35,18 @@ public final class TestCaseStarted {
         this.timestamp = requireNonNull(timestamp, "TestCaseStarted.timestamp cannot be null");
     }
 
+    /**
+     * The first attempt should have value 0, and for each retry the value
+     * should increase by 1.
+     */
     public Long getAttempt() {
         return attempt;
     }
 
+    /**
+     * Because a `TestCase` can be run multiple times (in case of a retry),
+     * we use this field to group messages relating to the same attempt.
+     */
     public String getId() {
         return id;
     }
@@ -42,6 +55,9 @@ public final class TestCaseStarted {
         return testCaseId;
     }
 
+    /**
+     * An identifier for the worker process running this test case, if test cases are being run in parallel. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+     */
     public Optional<String> getWorkerId() {
         return Optional.ofNullable(workerId);
     }

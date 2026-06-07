@@ -1,29 +1,37 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Meta message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
+ * This message contains meta information about the environment. Consumers can use
+ * this for various purposes.
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Meta {
     private final String protocolVersion;
     private final Product implementation;
     private final Product runtime;
     private final Product os;
     private final Product cpu;
-    private final Ci ci;
+    private final @Nullable Ci ci;
 
     public Meta(
-        String protocolVersion,
-        Product implementation,
-        Product runtime,
-        Product os,
-        Product cpu,
-        Ci ci
+        @Property("protocolVersion") String protocolVersion,
+        @Property("implementation") Product implementation,
+        @Property("runtime") Product runtime,
+        @Property("os") Product os,
+        @Property("cpu") Product cpu,
+        @Nullable @Property("ci") Ci ci
     ) {
         this.protocolVersion = requireNonNull(protocolVersion, "Meta.protocolVersion cannot be null");
         this.implementation = requireNonNull(implementation, "Meta.implementation cannot be null");
@@ -33,22 +41,37 @@ public final class Meta {
         this.ci = ci;
     }
 
+    /**
+     * The [SEMVER](https://semver.org/) version number of the protocol
+     */
     public String getProtocolVersion() {
         return protocolVersion;
     }
 
+    /**
+     * SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
+     */
     public Product getImplementation() {
         return implementation;
     }
 
+    /**
+     * Java, Ruby, Node.js etc
+     */
     public Product getRuntime() {
         return runtime;
     }
 
+    /**
+     * Windows, Linux, MacOS etc
+     */
     public Product getOs() {
         return os;
     }
 
+    /**
+     * 386, arm, amd64 etc
+     */
     public Product getCpu() {
         return cpu;
     }

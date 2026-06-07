@@ -1,30 +1,37 @@
 name: test-perl
 
+permissions: {}
+
 on:
   push:
     branches:
       - main
       - renovate/**
+    paths:
+      - perl/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
-  workflow_call:
+    paths:
+      - perl/**
+      - Makefile
+      - .github/**
 
 jobs:
   test-perl:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
 
       - name: install cpanm and multiple modules
-        uses: perl-actions/install-with-cpanm@v1
+        uses: perl-actions/install-with-cpanm@8ec40bce95c287169e8c13551e5e49d0185ce955 # v2.2
         with:
           cpanfile: "perl/cpanfile"
-
-      - name: install the CCK
-        run: npm ci
-        working-directory: perl/t/compatibility-kit
 
       - name: run tests
         run: |

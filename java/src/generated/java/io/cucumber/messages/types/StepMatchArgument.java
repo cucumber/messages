@@ -1,26 +1,42 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the StepMatchArgument message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
+ * Represents a single argument extracted from a step match and passed to a step definition.
+ * This is used for the following purposes:
+ * - Construct an argument to pass to a step definition (possibly through a parameter type transform)
+ * - Highlight the matched parameter in rich formatters such as the HTML formatter
+ * <p>
+ * This message closely matches the `Argument` class in the `cucumber-expressions` library.
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class StepMatchArgument {
     private final Group group;
-    private final String parameterTypeName;
+    private final @Nullable String parameterTypeName;
 
     public StepMatchArgument(
-        Group group,
-        String parameterTypeName
+        @Property("group") Group group,
+        @Nullable @Property("parameterTypeName") String parameterTypeName
     ) {
         this.group = requireNonNull(group, "StepMatchArgument.group cannot be null");
         this.parameterTypeName = parameterTypeName;
     }
 
+    /**
+     * Represents the outermost capture group of an argument. This message closely matches the
+     * `Group` class in the `cucumber-expressions` library.
+     */
     public Group getGroup() {
         return group;
     }

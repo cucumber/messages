@@ -1,28 +1,87 @@
 # Cucumber Messages
 
 *Cucumber Messages* is a message protocol for representing results and other information
-from Cucumber.
+from Cucumber. The protocol aims to decouple various components of the Cucumber platform, with the following advantages:
 
-Cucumber Messages are currently implemented in the following versions of Cucumber (using the `message` formatter):
+* Each component only needs to know about a subset of messages
+* Gherkin is decoupled from the Cucumber execution component
+* Enables the future support other formats such as Markdown and Excel
 
-* Cucumber-JVM 6.0.0 and greater
-* Cucumber-Ruby 4.0.0 and greater
-* Cucumber.js 7.0.0 and greater
+## Message Overview
 
-The `json` formatter is now in maintenance mode for these these implementations, and Messages is the preferred standard.
-See [utilities](#utilities) for a list of tools that may help with backward and forward compatibility
-with the `json` format.
+![messages.png](jsonschema/messages.png)
+
+Notes:
+ * The image sketches out the general concept, but is incomplete. See [relations.md](jsonschema/relations.md) for a complete visualisation of the relationships between messages. 
+ * Markdown and Excel formats are currently not supported and mentioned here as potential future alternative languages to express BDD scenarios.
+
+## JSON Schema
+
+The [jsonschema](jsonschema) directory contains [JSON Schema](https://json-schema.org/)
+definitions for each message type.
+
+See [messages.md](jsonschema/messages.md) for a detailed description of each message type.
+
+## Encoding
+
+When Cucumber Messages are stored in a file or sent over a network, they are
+encoded as NDJSON. We call this a *message stream*.
+
+Each message in a message stream is of type [Envelope](jsonschema/messages.md#envelope).
+
+## Language implementations
+
+Each subdirectory defines language-specific implementations of these messages,
+generated from the JSON schemas. The current implementations are:
+
+### Languages automatically released for every version
+
+The release process for the below languages uses [polyglot-release](./RELEASING.md)
+
+- .NET
+- Java
+- Javascript
+- Perl
+- PHP
+- Python
+- Ruby
+
+### Go
+
+The Go implementation is also cut for every version but is just maintained as a GitHub tag
+
+### C++
+
+This is currently tested but not automatically released. We are seeking help for this implementation
+
+### Elixir
+
+There is also a subdirectory for Elixir which contains the legacy implementation which was largely
+driven by protobuf. This has recently been re-integrated into our CI and will be ported over to
+the JSON schema protocol in due course, for now it remains written in protobuf
+
+## Message emitters
+
+Cucumber Messages are currently sent by the following versions of Cucumber (using the `message` formatter):
+
+* Cucumber-JVM `6.0.0` and later
+* Cucumber-Ruby `4.0.0` and later
+* Cucumber.js `7.0.0` and later
+
+Messages emitters for the other Cucumber languages (e.g. Perl) are not yet implemented. 
 
 ## Why Cucumber Messages
 
 Cucumber needs to produce results in a machine-readable format so that other tools can generate reports.
 
-    +----------+    messages     +-----------+
-    | Cucumber |---m-m-m-m-m-m-->| Formatter |
-    +----------+                 +-----------+
+![messages-stream.svg](jsonschema/messages-stream.svg)
 
-Historically, Cucumber has done this with the `json` and `junit` formatters.
-These formats have several shortcomings that are addressed by cucumber messages:
+Historically, Cucumber did this with the `json` and `junit` formatters.
+These formats however, have several shortcomings that are now addressed by using Cucumber Messages.
+
+The `json` formatter is now in maintenance mode for these implementations, and Messages is the preferred standard.
+See [utilities](#utilities) for a list of tools that may help with backward and forward compatibility
+with the `json` format.
 
 ### High memory footprint
 
@@ -34,20 +93,19 @@ This can cause out of memory errors, aborting Cucumber runs or reporting jobs. I
 consumed by downstream processors until the last scenario has finished.
 
 With Cucumber Messages, several messages containing smaller pieces of information are emitted
-continuously to a *stream*, avoiding high memory consumption and enabling real-time processing
+continuously to a *stream* (NDJSON, see above), avoiding high memory consumption and enabling real-time processing
 of results.
 
 ### Lack of a schema
 
-The JSON report does not have a formal schema. This has led to slightly inconsistent implementations
+The JSON reporter does not have a formal schema. This has led to slightly inconsistent implementations
 of the JSON formatter in various Cucumber implementations. Consumers of the JSON format have
 to anticipate and detect these inconsistencies and try to cope with them.
 
 ### Limited information
 
 The `junit` XML format can only contain very limited information such as test case name and status.
-While there isn't an official schema for JUnit XML, there are a few defacto ones around, and they
-are very limited.
+While there isn't an official schema for JUnit XML, there are a few defacto ones around which are very limited.
 
 The `json` format represents the following information:
 
@@ -64,36 +122,7 @@ However, it does not contain the following information (but Cucumber Messages do
 * Parameter types
 
 This kind of information is required to produce rich reports and analytics, and is
-used in [@cucumber/react](https://github.com/cucumber/cucumber-react) and [Cucumber Reports](https://reports.cucumber.io/).
-
-## Message Overview
-
-The protocol aims to decouple various components of the Cucumber platform so that:
-
-* Each component only needs to know about a subset of messages
-* Gherkin is decoupled from the Cucumber execution component
-  * This is part of a strategy to support other formats such as Markdown and Excel
-
-![messages.png](messages.png)
-
-## JSON Schema
-
-The [jsonschema](jsonschema) directory contains [JSON Schema](https://json-schema.org/)
-definitions for each message type.
-
-See [messages.md](messages.md) for a detailed description of each message type.
-
-## Encoding
-
-When Cucumber Messages are stored in a file or sent over a network, they are
-encoded as [NDJSON](http://ndjson.org/). We call this a *message stream*.
-
-Each message in a message stream is of type [Envelope](messages.md#envelope).
-
-## Language implementations
-
-Each subdirectory defines language-specific implementations of these messages,
-generated from the JSON schemas.
+used in [@cucumber/react-components](https://github.com/cucumber/react-components) and [Cucumber Reports](https://reports.cucumber.io/).
 
 ## Examples
 

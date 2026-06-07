@@ -7,9 +7,204 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [32.3.1] - 2026-04-13
+### Fixed
+- [Java] Fix broken Javadoc
+
+## [32.3.0] - 2026-04-13
+### Added
+- [Java] Annotate constructor arguments with property names ([#399](https://github.com/cucumber/messages/pull/399)
+
+## [32.2.0] - 2026-03-01
+### Added
+- [JavaScript] Add export path for bundled schema ([#383](https://github.com/cucumber/messages/pull/383))
+
+## [32.1.0] - 2026-02-27
+### Added
+- Generated bundled JSON schema ([#382](https://github.com/cucumber/messages/pull/382))
+
+## [32.0.1] - 2026-01-25
+### Fixed
+- Fix field order for ExternalAttachment ([#377](https://github.com/cucumber/messages/pull/377))
+
+## [32.0.0] - 2026-01-21
+### Added
+- Add `ExternalAttachment` for externalised attachments ([#372](https://github.com/cucumber/messages/pull/372))
+
+### Changed
+- Deprecate `Attachment.url` and `Attachment.source` ([#372](https://github.com/cucumber/messages/pull/372))
+- Make StepMatchArgument.Group.children optional ([#370](https://github.com/cucumber/messages/pull/370))
+- [Java] Set release version to 17 ([#352](https://github.com/cucumber/messages/pull/352))
+- [Java] Copy lists efficiently ([#282](https://github.com/cucumber/messages/issues/282), [#352](https://github.com/cucumber/messages/pull/352))
+- [Java] Use Integers in addition to Longs ([#310](https://github.com/cucumber/messages/issues/310), [#352](https://github.com/cucumber/messages/pull/352))
+
+## [31.2.0] - 2026-01-11
+### Added
+- [Java] Add `NdjsonToMessageReader` ([#344](https://github.com/cucumber/messages/pull/367))
+
+### Fixed
+- [Java] Don't flush `MessageToNdjsonWriter` on each write ([#344](https://github.com/cucumber/messages/pull/367))
+
+## [31.1.0] - 2025-12-22
+### Added
+- [Ruby] Add a way to analyse and compare the strength of `TestStepResult` messages (To be used in query) ([#365](https://github.com/cucumber/messages/pull/365))
+
+### Fixed
+- [Ruby] Fix the `TimeConversion` helper file generating a non-conformant `Timestamp` message
+- [Ruby] Improve the `TimeConversion` helper for translating back from a Timestamp by avoiding a rounding error
+
+### Removed
+- [Ruby] Removed the `TimeConversion` helpers that did not serve a purpose in message building
+
+## [31.0.1] - 2025-12-18
+### Fixed
+- Removed circular dependency between messages and compatibility-kit ([#362](https://github.com/cucumber/messages/pull/362))
+
+## [31.0.0] - 2025-11-18
+### Added
+- Add `location` to `Pickle` ([#308](https://github.com/cucumber/messages/pull/308))
+
+## [30.1.0] - 2025-10-08
+### Added
+- [Java] Add OSGi metadata ([#344](https://github.com/cucumber/messages/pull/344))
+
+## [30.0.0] - 2025-10-03
+### Changed
+- [Ruby] Updated minimum Ruby version to 3.2 ([#346](https://github.com/cucumber/messages/pull/346) [luke-hill](https://github.com/luke-hill))
+
+### Removed
+- [Python] Dropped legacy .egg-info metadata distribution artifacts ([#324](https://github.com/cucumber/messages/pull/324))
+
+## [29.0.1] - 2025-09-08
+### Fixed
+- [JavaScript] Include schemas in npm package ([#333](https://github.com/cucumber/messages/pull/333))
+
+## [29.0.0] - 2025-09-08
+### Added
+- Add `workerId` to `TestRunHookStarted` ([#332](https://github.com/cucumber/messages/pull/332))
+- Add Suggestion message ([#329](https://github.com/cucumber/messages/pull/329))
+
+### Changed
+- Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
+- Clarify documentation around `TestStep.stepMatchArgumentsLists` ([#330](https://github.com/cucumber/messages/pull/330))
+- [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
+
+## [28.1.0] - 2025-07-21
+### Added
+- [java] Add comparators for comparable objects ([#312](https://github.com/cucumber/messages/pull/312))
+
+## [28.0.0] - 2025-07-07
+### Changed
+- Add `Attachment.testRunHookStartedId` for traceability of attachments to test run hooks ([#301](https://github.com/cucumber/messages/pull/301))
+- Add `Attachment.timestamp` ([#305](https://github.com/cucumber/messages/pull/305))
+
+### Fixed
+- [python] Add a LICENSE file for Python ([#278](https://github.com/cucumber/messages/pull/278))
+- [.NET] Fix NuGet package generation
+
+### Removed
+- [JavaScript] BREAKING CHANGE: Remove Node.js 18 support ([#299](https://github.com/cucumber/messages/pull/299))
+
+## [27.2.0] - 2025-01-31
+### Added
+- [python] Added Python implementation ([#165](https://github.com/cucumber/messages/pull/165))
+
+## [27.1.0] - 2025-01-28
+### Added
+- [cpp] use VERSION file to version ABI and shared libraries [#268](https://github.com/cucumber/messages/pull/268)
+
+### Changed
+- [JavaScript] Expand tested Node.js versions ([#274](https://github.com/cucumber/messages/pull/274))
+
+## [27.0.2] - 2024-11-15
+### Fixed
+- [Elixir] Fix release process
+
+## [27.0.1] - 2024-11-15
+### Fixed
+- [Elixir] Restored test and release process
+
+## [27.0.0] - 2024-10-26
+### Added
+- Add new `TestRunHookStarted` and `TestRunHookFinished` messages ([#102](https://github.com/cucumber/messages/pull/102))
+
+### Changed
+- BREAKING CHANGE: Add `id` property to `TestRunStarted`, optionally reference in `TestCase`, `Attachment` and `TestRunFinished` ([#102](https://github.com/cucumber/messages/pull/102))
+- BREAKING CHANGE: Add `type` property to `Hook` ([#102](https://github.com/cucumber/messages/pull/102))
+
+## [26.0.1] - 2024-09-22
+### Changed
+- [Go] Switch to Google's UUID module ([#251](https://github.com/cucumber/messages/pull/251))
+
+### Fixed
+- [Dotnet] Fixed code generation for types that accept List as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi](https://github.com/clrudolphi)))
+- Moved contents of the description of the StepDefinitionIds field from the StepMatchArgumentsList field where it had been mistakenly placed. ([#252](https://github.com/cucumber/messages/pull/252) [clrudolphi](https://github.com/clrudolphi)))
+
+## [26.0.0] - 2024-08-15
+### Added
+- [Dotnet] Added support classes aligned with what is provided for the Java implementation ([#233](https://github.com/cucumber/messages/pull/233) [clrudolphi](https://github.com/clrudolphi))
+
+### Changed
+- **Internal breaking change** The code generation has undergone a large refactor (No visible changes expected). All new code
+generation logic is now contained in [/codegen](./codegen) ([#228](https://github.com/cucumber/messages/pull/228) [luke-hill](https://github.com/luke-hill))
+- [Dotnet] Rewritten to align with the code generation techniques used for the other languages (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
+- [Dotnet] Upgraded from .NET 5 to .NET 8. Dropped .NET Framework 4.x as a target while retaining .NET Standard 2.0 as the primary target framework (https://github.com/cucumber/messages/pull/233 [clrudolphi](https://github.com/clrudolphi))
+
+## [25.0.1] - 2024-06-13
+### Fixed
+- [Php] Fixed a workflow issue with publishing the package
+
+## [25.0.0] - 2024-06-13
+### Changed
+- [Ruby] Messages are now altered to be 1 message class per file ([#225](https://github.com/cucumber/messages/pull/225) [luke-hill](https://github.com/luke-hill))
+- [Ruby] Updated minimum Ruby version to 3.0 ([#216](https://github.com/cucumber/messages/pull/216) [luke-hill](https://github.com/luke-hill))
+- [Ruby] Use latest CCK conformance for signing off message releases ([#216](https://github.com/cucumber/messages/pull/216) [luke-hill](https://github.com/luke-hill))
+- [Ruby] Tidied up all remaining rubocop offenses (This included 2 minor alterations to the generator code) ([#217](https://github.com/cucumber/messages/pull/217) [#225](https://github.com/cucumber/messages/pull/225) [luke-hill](https://github.com/luke-hill))
+- [Php] Permit both PHPUnit 10 and PHPUnit 11 ([#200](https://github.com/cucumber/messages/pull/200) [ciaranmcnulty](https://github.com/ciaranmcnulty))
+
+### Fixed
+- [cpp] Don't rely on GitHub API for latest versions and implement a simple download retry loop
+
+## [24.1.0] - 2024-03-23
+### Added
+- [Java] Include stacktrace in Convertor.toMessage(Throwable) ([#213](https://github.com/cucumber/messages/pull/213))
+
+## [24.0.1] - 2023-12-21
+### Fixed
+- Update repo URLs ([#190](https://github.com/cucumber/messages/pull/190))
+
+## [24.0.0] - 2023-11-24
+### Added
+- Add `stackTrace` prop to `Exception` message ([#182](https://github.com/cucumber/messages/pull/182))
+
+## [23.0.0] - 2023-11-01
+### Added
+- Added C++ implementation ([#152](https://github.com/cucumber/messages/pull/152))
+
+### Changed
+- [Ruby] Updated minimum Ruby version to 2.5 ([#177](https://github.com/cucumber/messages/pull/177) [luke-hill](https://github.com/luke-hill))
+
+## [22.0.0] - 2023-04-06
+### Added
+- Added source reference to parameter type ([#45](https://github.com/cucumber/messages/pull/145))
+
+### Fixed
+- Corrected Java and PHP generators to allow running using Docker on Windows ([#146](https://github.com/cucumber/messages/issues/146))
+
+## [21.0.1] - 2022-12-17
+### Fixed
+- [Java] Suppress warnings for missing javadoc ([#128](https://github.com/cucumber/messages/pull/128))
+
+## [21.0.0] - 2022-12-17
+### Added
+- [Java] Add javadoc to messages ([#124](https://github.com/cucumber/messages/pull/124))
+
+### Changed
+- Add exception to TestStepFinished TestRunFinished ([#122](https://github.com/cucumber/messages/pull/122))
+
 ## [20.0.0] - 2022-11-14
 ### Changed
-- BREAKING CHANGE: Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
+- Add `workerId` field to TestCaseStarted message ([#34](https://github.com/cucumber/messages/pull/34))
 - [Java] Enabled reproducible builds
 
 ### Fixed
@@ -26,17 +221,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [19.1.2] - 2022-06-22
 ### Fixed
 - [Javascript] Schema was still missing in 19.1.1 due to how npm manages the files attribute in package.json
-([PR#2020](https://github.com/cucumber/common/pull/2020))
+([#2020](https://github.com/cucumber/common/pull/2020))
 
 ## [19.1.1] - 2022-06-22
 ### Fixed
 - [Javascript] Schema are actually missing from 19.1.0
-([PR#2016](https://github.com/cucumber/common/pull/2016))
+([#2016](https://github.com/cucumber/common/pull/2016))
 
 ## [19.1.0] - 2022-06-20
 ### Added
 - [Javascript] Adding the json schemas of the messages to the NPM package
-([PR#2010](https://github.com/cucumber/common/pull/2010))
+([#2010](https://github.com/cucumber/common/pull/2010))
 
 ## [19.0.0] - 2022-05-31
 ### Added
@@ -476,10 +671,42 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v20.0.0...main
-[20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...main
-[19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...main
-[19.1.3]: https://github.com/cucumber/messages/compare/v19.1.2...main
+[Unreleased]: https://github.com/cucumber/messages/compare/v32.3.1...HEAD
+[32.3.1]: https://github.com/cucumber/messages/compare/v32.3.0...v32.3.1
+[32.3.0]: https://github.com/cucumber/messages/compare/v32.2.0...v32.3.0
+[32.2.0]: https://github.com/cucumber/messages/compare/v32.1.0...v32.2.0
+[32.1.0]: https://github.com/cucumber/messages/compare/v32.0.1...v32.1.0
+[32.0.1]: https://github.com/cucumber/messages/compare/v32.0.0...v32.0.1
+[32.0.0]: https://github.com/cucumber/messages/compare/v31.2.0...v32.0.0
+[31.2.0]: https://github.com/cucumber/messages/compare/v31.1.0...v31.2.0
+[31.1.0]: https://github.com/cucumber/messages/compare/v31.0.1...v31.1.0
+[31.0.1]: https://github.com/cucumber/messages/compare/v31.0.0...v31.0.1
+[31.0.0]: https://github.com/cucumber/messages/compare/v30.1.0...v31.0.0
+[30.1.0]: https://github.com/cucumber/messages/compare/v30.0.0...v30.1.0
+[30.0.0]: https://github.com/cucumber/messages/compare/v29.0.1...v30.0.0
+[29.0.1]: https://github.com/cucumber/messages/compare/v29.0.0...v29.0.1
+[29.0.0]: https://github.com/cucumber/messages/compare/v28.1.0...v29.0.0
+[28.1.0]: https://github.com/cucumber/messages/compare/v28.0.0...v28.1.0
+[28.0.0]: https://github.com/cucumber/messages/compare/v27.2.0...v28.0.0
+[27.2.0]: https://github.com/cucumber/messages/compare/v27.1.0...v27.2.0
+[27.1.0]: https://github.com/cucumber/messages/compare/v27.0.2...v27.1.0
+[27.0.2]: https://github.com/cucumber/messages/compare/v27.0.1...v27.0.2
+[27.0.1]: https://github.com/cucumber/messages/compare/v27.0.0...v27.0.1
+[27.0.0]: https://github.com/cucumber/messages/compare/v26.0.1...v27.0.0
+[26.0.1]: https://github.com/cucumber/messages/compare/v26.0.0...v26.0.1
+[26.0.0]: https://github.com/cucumber/messages/compare/v25.0.1...v26.0.0
+[25.0.1]: https://github.com/cucumber/messages/compare/v25.0.0...v25.0.1
+[25.0.0]: https://github.com/cucumber/messages/compare/v24.1.0...v25.0.0
+[24.1.0]: https://github.com/cucumber/messages/compare/v24.0.1...v24.1.0
+[24.0.1]: https://github.com/cucumber/messages/compare/v24.0.0...v24.0.1
+[24.0.0]: https://github.com/cucumber/messages/compare/v23.0.0...v24.0.0
+[23.0.0]: https://github.com/cucumber/messages/compare/v22.0.0...v23.0.0
+[22.0.0]: https://github.com/cucumber/messages/compare/v21.0.1...v22.0.0
+[21.0.1]: https://github.com/cucumber/messages/compare/v21.0.0...v21.0.1
+[21.0.0]: https://github.com/cucumber/messages/compare/v20.0.0...v21.0.0
+[20.0.0]: https://github.com/cucumber/messages/compare/v19.1.4...v20.0.0
+[19.1.4]: https://github.com/cucumber/messages/compare/v19.1.3...v19.1.4
+[19.1.3]: https://github.com/cucumber/messages/compare/v19.1.2...v19.1.3
 [19.1.2]: https://github.com/cucumber/messages/compare/v19.1.1...v19.1.2
 [19.1.1]: https://github.com/cucumber/messages/compare/v19.1.0...v19.1.1
 [19.1.0]: https://github.com/cucumber/messages/compare/v19.0.0...v19.1.0

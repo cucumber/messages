@@ -42,6 +42,8 @@ trait JsonEncodingTrait
 
     /**
      * Serialise the message into a JSON string
+     *
+     * @psalm-return non-empty-string
      */
     public function asJson(): string
     {

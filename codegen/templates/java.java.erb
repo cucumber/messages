@@ -1,0 +1,132 @@
+<%- @schemas.each do |key, schema| -%>
+<%= class_name(key) %>.java
+package io.cucumber.messages.types;
+
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Represents the <%= class_name(key) %> message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ <%- unless (schema['description'] || []).empty? -%>
+ * <p>
+<%= format_description(schema['description'], indent_string: '') %>
+<%- end -%>
+ */
+// Generated code
+@SuppressWarnings({"unused", "JavaLangClash"})
+public final class <%= class_name(key) %> {
+  <%- schema['properties'].each do |property_name, property| 
+      nullable = !(schema['required'] || []).index(property_name)
+  -%>
+    private final <% if nullable -%>@Nullable <%- end -%><%= type_for(class_name(key), property_name, property) -%> <%= property_name %>;
+  <%- end -%>
+  <%- if (schema['required'] || []).empty? -%>
+  <%- schema['properties'].each do |(property_name, property)| -%>
+
+    public static <%= class_name(key) %> of(<%= type_for(class_name(key), property_name, property) -%> <%= property_name %>) {
+        return new <%= class_name(key) %>(
+        <%- schema['properties'].each_with_index do |(property_name_2, _property_2), index| -%>
+          <%- if property_name_2 == property_name -%>
+            <%- if property['items'] -%>
+            List.copyOf(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null"))<%= index < schema['properties'].length - 1 ? ',' : '' %>
+            <%- else -%>
+            requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")<%= index < schema['properties'].length - 1 ? ',' : '' %>
+            <%- end -%>
+          <%- else -%>
+            null<%= index < schema['properties'].length - 1 ? ',' : '' %>
+          <%- end -%>
+        <%- end -%>
+        );
+    }
+  <%- end -%>
+  <%- end -%>
+
+    public <%= class_name(key) %>(
+    <%- schema['properties'].each_with_index do |(property_name, property), index| 
+        nullable = !(schema['required'] || []).index(property_name)
+    -%>
+        <% if nullable -%>@Nullable <%- end -%>@Property("<%= property_name %>") <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['properties'].length-1 ? ',' : ''%>
+    <%- end -%>
+    ) {
+      <%- schema['properties'].each do |(property_name, property)|
+      required = (schema['required'] || []).index(property_name)
+      -%>
+      <%- if required -%>
+       <%- if property['items'] -%>
+        this.<%= property_name %> = List.copyOf(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null"));
+       <%- else -%>
+        this.<%= property_name %> = requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null");
+       <%- end -%>
+      <%- else -%>
+       <%- if property['items'] -%>
+        this.<%= property_name %> = <%= property_name %> == null ? null : List.copyOf(<%= property_name %>);
+       <%- else -%>
+        this.<%= property_name %> = <%= property_name %>;
+       <%- end -%>
+      <%- end -%>
+      <%- end -%>
+    }
+  <%- schema['properties'].each do |property_name, property| -%>
+    <%- if (schema['required'] || []).index(property_name) -%>
+
+    <%- unless (property['description'] || []).empty? -%>
+    /**
+    <%= format_description(property['description'], indent_string: '    ') %>
+     */
+    <%- end -%>
+    public <%= type_for(class_name(key), property_name, property) -%> get<%= capitalize(property_name) %>() {
+        return <%= property_name %>;
+    }
+    <%- else -%>
+
+    <%- unless (property['description'] || []).empty? -%>
+    /**
+    <%= format_description(property['description'], indent_string: '    ') %>
+     */
+    <%- end -%>
+    public Optional<<%= type_for(class_name(key), property_name, property) -%>> get<%= capitalize(property_name) %>() {
+        return Optional.ofNullable(<%= property_name %>);
+    }
+    <%- end -%>
+  <%- end -%>
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        <%= class_name(key) %> that = (<%= class_name(key) %>) o;
+        return <%- schema['properties'].each_with_index do |(property_name, _property), index| %>
+            <%- if (schema['required'] || []).index(property_name) -%>
+            <%= property_name -%>.equals(that.<%= property_name -%>)<%= index < schema['properties'].length - 1 ? ' && ' : ';' -%>
+            <%- else -%>
+            Objects.equals(<%= property_name -%>, that.<%= property_name -%>)<%= index < schema['properties'].length - 1 ? ' && ' : ';' -%>
+            <%- end -%>
+        <% end -%>
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+        <%- schema['properties'].each_with_index do |(property_name, _property), index| -%>
+            <%= property_name %><%= index < schema['properties'].length - 1 ? ',' : ''%>
+        <%- end -%>
+        );
+    }
+
+    @Override
+    public String toString() {
+        return "<%= class_name(key) %>{" +
+        <%- schema['properties'].each_with_index do |(property_name, _property), index| -%>
+            "<%= index.zero? ? '' : ', '%><%= property_name %>=" + <%= property_name %> +
+        <%- end -%>
+            '}';
+    }
+}
+<% end -%>

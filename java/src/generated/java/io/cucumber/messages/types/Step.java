@@ -1,31 +1,38 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Step message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
+ * A step
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Step {
     private final Location location;
     private final String keyword;
-    private final StepKeywordType keywordType;
+    private final @Nullable StepKeywordType keywordType;
     private final String text;
-    private final DocString docString;
-    private final DataTable dataTable;
+    private final @Nullable DocString docString;
+    private final @Nullable DataTable dataTable;
     private final String id;
 
     public Step(
-        Location location,
-        String keyword,
-        StepKeywordType keywordType,
-        String text,
-        DocString docString,
-        DataTable dataTable,
-        String id
+        @Property("location") Location location,
+        @Property("keyword") String keyword,
+        @Nullable @Property("keywordType") StepKeywordType keywordType,
+        @Property("text") String text,
+        @Nullable @Property("docString") DocString docString,
+        @Nullable @Property("dataTable") DataTable dataTable,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "Step.location cannot be null");
         this.keyword = requireNonNull(keyword, "Step.keyword cannot be null");
@@ -36,14 +43,23 @@ public final class Step {
         this.id = requireNonNull(id, "Step.id cannot be null");
     }
 
+    /**
+     * The location of the steps' `keyword`
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * The actual keyword as it appeared in the source.
+     */
     public String getKeyword() {
         return keyword;
     }
 
+    /**
+     * The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
+     */
     public Optional<StepKeywordType> getKeywordType() {
         return Optional.ofNullable(keywordType);
     }
@@ -60,6 +76,9 @@ public final class Step {
         return Optional.ofNullable(dataTable);
     }
 
+    /**
+     * Unique ID to be able to reference the Step from PickleStep
+     */
     public String getId() {
         return id;
     }

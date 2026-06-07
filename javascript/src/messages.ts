@@ -19,6 +19,13 @@ export class Attachment {
   testStepId?: string
 
   url?: string
+
+  testRunStartedId?: string
+
+  testRunHookStartedId?: string
+
+  @Type(() => Timestamp)
+  timestamp?: Timestamp
 }
 
 export class Duration {
@@ -32,6 +39,9 @@ export class Envelope {
 
   @Type(() => Attachment)
   attachment?: Attachment
+
+  @Type(() => ExternalAttachment)
+  externalAttachment?: ExternalAttachment
 
   @Type(() => GherkinDocument)
   gherkinDocument?: GherkinDocument
@@ -50,6 +60,9 @@ export class Envelope {
 
   @Type(() => Pickle)
   pickle?: Pickle
+
+  @Type(() => Suggestion)
+  suggestion?: Suggestion
 
   @Type(() => Source)
   source?: Source
@@ -78,8 +91,39 @@ export class Envelope {
   @Type(() => TestStepStarted)
   testStepStarted?: TestStepStarted
 
+  @Type(() => TestRunHookStarted)
+  testRunHookStarted?: TestRunHookStarted
+
+  @Type(() => TestRunHookFinished)
+  testRunHookFinished?: TestRunHookFinished
+
   @Type(() => UndefinedParameterType)
   undefinedParameterType?: UndefinedParameterType
+}
+
+export class Exception {
+
+  type: string = ''
+
+  message?: string
+
+  stackTrace?: string
+}
+
+export class ExternalAttachment {
+
+  url: string = ''
+
+  mediaType: string = ''
+
+  testCaseStartedId?: string
+
+  testStepId?: string
+
+  testRunHookStartedId?: string
+
+  @Type(() => Timestamp)
+  timestamp?: Timestamp
 }
 
 export class GherkinDocument {
@@ -305,6 +349,8 @@ export class Hook {
   sourceReference: SourceReference = new SourceReference()
 
   tagExpression?: string
+
+  type?: HookType
 }
 
 export class Location {
@@ -375,6 +421,9 @@ export class ParameterType {
   useForSnippets: boolean = false
 
   id: string = ''
+
+  @Type(() => SourceReference)
+  sourceReference?: SourceReference
 }
 
 export class ParseError {
@@ -390,6 +439,9 @@ export class Pickle {
   id: string = ''
 
   uri: string = ''
+
+  @Type(() => Location)
+  location?: Location
 
   name: string = ''
 
@@ -517,6 +569,23 @@ export class StepDefinitionPattern {
   type: StepDefinitionPatternType = StepDefinitionPatternType.CUCUMBER_EXPRESSION
 }
 
+export class Suggestion {
+
+  id: string = ''
+
+  pickleStepId: string = ''
+
+  @Type(() => Snippet)
+  snippets: readonly Snippet[] = []
+}
+
+export class Snippet {
+
+  language: string = ''
+
+  code: string = ''
+}
+
 export class TestCase {
 
   id: string = ''
@@ -525,12 +594,14 @@ export class TestCase {
 
   @Type(() => TestStep)
   testSteps: readonly TestStep[] = []
+
+  testRunStartedId?: string
 }
 
 export class Group {
 
   @Type(() => Group)
-  children: readonly Group[] = []
+  children?: readonly Group[]
 
   start?: number
 
@@ -597,12 +668,44 @@ export class TestRunFinished {
 
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
+
+  @Type(() => Exception)
+  exception?: Exception
+
+  testRunStartedId?: string
+}
+
+export class TestRunHookFinished {
+
+  testRunHookStartedId: string = ''
+
+  @Type(() => TestStepResult)
+  result: TestStepResult = new TestStepResult()
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
+}
+
+export class TestRunHookStarted {
+
+  id: string = ''
+
+  testRunStartedId: string = ''
+
+  hookId: string = ''
+
+  workerId?: string
+
+  @Type(() => Timestamp)
+  timestamp: Timestamp = new Timestamp()
 }
 
 export class TestRunStarted {
 
   @Type(() => Timestamp)
   timestamp: Timestamp = new Timestamp()
+
+  id?: string
 }
 
 export class TestStepFinished {
@@ -626,6 +729,9 @@ export class TestStepResult {
   message?: string
 
   status: TestStepResultStatus = TestStepResultStatus.UNKNOWN
+
+  @Type(() => Exception)
+  exception?: Exception
 }
 
 export class TestStepStarted {
@@ -655,6 +761,15 @@ export class UndefinedParameterType {
 export enum AttachmentContentEncoding {
   IDENTITY = 'IDENTITY',
   BASE64 = 'BASE64',
+}
+
+export enum HookType {
+  BEFORE_TEST_RUN = 'BEFORE_TEST_RUN',
+  AFTER_TEST_RUN = 'AFTER_TEST_RUN',
+  BEFORE_TEST_CASE = 'BEFORE_TEST_CASE',
+  AFTER_TEST_CASE = 'AFTER_TEST_CASE',
+  BEFORE_TEST_STEP = 'BEFORE_TEST_STEP',
+  AFTER_TEST_STEP = 'AFTER_TEST_STEP',
 }
 
 export enum PickleStepType {

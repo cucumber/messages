@@ -1,40 +1,51 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the ParameterType message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class ParameterType {
     private final String name;
-    private final java.util.List<String> regularExpressions;
+    private final List<String> regularExpressions;
     private final Boolean preferForRegularExpressionMatch;
     private final Boolean useForSnippets;
     private final String id;
+    private final @Nullable SourceReference sourceReference;
 
     public ParameterType(
-        String name,
-        java.util.List<String> regularExpressions,
-        Boolean preferForRegularExpressionMatch,
-        Boolean useForSnippets,
-        String id
+        @Property("name") String name,
+        @Property("regularExpressions") List<String> regularExpressions,
+        @Property("preferForRegularExpressionMatch") Boolean preferForRegularExpressionMatch,
+        @Property("useForSnippets") Boolean useForSnippets,
+        @Property("id") String id,
+        @Nullable @Property("sourceReference") SourceReference sourceReference
     ) {
         this.name = requireNonNull(name, "ParameterType.name cannot be null");
-        this.regularExpressions = unmodifiableList(new ArrayList<>(requireNonNull(regularExpressions, "ParameterType.regularExpressions cannot be null")));
+        this.regularExpressions = List.copyOf(requireNonNull(regularExpressions, "ParameterType.regularExpressions cannot be null"));
         this.preferForRegularExpressionMatch = requireNonNull(preferForRegularExpressionMatch, "ParameterType.preferForRegularExpressionMatch cannot be null");
         this.useForSnippets = requireNonNull(useForSnippets, "ParameterType.useForSnippets cannot be null");
         this.id = requireNonNull(id, "ParameterType.id cannot be null");
+        this.sourceReference = sourceReference;
     }
 
+    /**
+     * The name is unique, so we don't need an id.
+     */
     public String getName() {
         return name;
     }
 
-    public java.util.List<String> getRegularExpressions() {
+    public List<String> getRegularExpressions() {
         return regularExpressions;
     }
 
@@ -50,6 +61,10 @@ public final class ParameterType {
         return id;
     }
 
+    public Optional<SourceReference> getSourceReference() {
+        return Optional.ofNullable(sourceReference);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,7 +75,8 @@ public final class ParameterType {
             regularExpressions.equals(that.regularExpressions) &&         
             preferForRegularExpressionMatch.equals(that.preferForRegularExpressionMatch) &&         
             useForSnippets.equals(that.useForSnippets) &&         
-            id.equals(that.id);        
+            id.equals(that.id) &&         
+            Objects.equals(sourceReference, that.sourceReference);        
     }
 
     @Override
@@ -70,7 +86,8 @@ public final class ParameterType {
             regularExpressions,
             preferForRegularExpressionMatch,
             useForSnippets,
-            id
+            id,
+            sourceReference
         );
     }
 
@@ -82,6 +99,7 @@ public final class ParameterType {
             ", preferForRegularExpressionMatch=" + preferForRegularExpressionMatch +
             ", useForSnippets=" + useForSnippets +
             ", id=" + id +
+            ", sourceReference=" + sourceReference +
             '}';
     }
 }

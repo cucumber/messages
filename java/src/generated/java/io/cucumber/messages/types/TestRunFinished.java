@@ -1,39 +1,70 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the TestRunFinished message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestRunFinished {
-    private final String message;
+    private final @Nullable String message;
     private final Boolean success;
     private final Timestamp timestamp;
+    private final @Nullable Exception exception;
+    private final @Nullable String testRunStartedId;
 
     public TestRunFinished(
-        String message,
-        Boolean success,
-        Timestamp timestamp
+        @Nullable @Property("message") String message,
+        @Property("success") Boolean success,
+        @Property("timestamp") Timestamp timestamp,
+        @Nullable @Property("exception") Exception exception,
+        @Nullable @Property("testRunStartedId") String testRunStartedId
     ) {
         this.message = message;
         this.success = requireNonNull(success, "TestRunFinished.success cannot be null");
         this.timestamp = requireNonNull(timestamp, "TestRunFinished.timestamp cannot be null");
+        this.exception = exception;
+        this.testRunStartedId = testRunStartedId;
     }
 
+    /**
+     * An informative message about the test run. Typically additional information about failure, but not necessarily.
+     */
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
     }
 
+    /**
+     * A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
+     */
     public Boolean getSuccess() {
         return success;
     }
 
+    /**
+     * Timestamp when the TestRun is finished
+     */
     public Timestamp getTimestamp() {
         return timestamp;
+    }
+
+    /**
+     * Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
+     */
+    public Optional<Exception> getException() {
+        return Optional.ofNullable(exception);
+    }
+
+    public Optional<String> getTestRunStartedId() {
+        return Optional.ofNullable(testRunStartedId);
     }
 
     @Override
@@ -44,7 +75,9 @@ public final class TestRunFinished {
         return 
             Objects.equals(message, that.message) &&         
             success.equals(that.success) &&         
-            timestamp.equals(that.timestamp);        
+            timestamp.equals(that.timestamp) &&         
+            Objects.equals(exception, that.exception) &&         
+            Objects.equals(testRunStartedId, that.testRunStartedId);        
     }
 
     @Override
@@ -52,7 +85,9 @@ public final class TestRunFinished {
         return Objects.hash(
             message,
             success,
-            timestamp
+            timestamp,
+            exception,
+            testRunStartedId
         );
     }
 
@@ -62,6 +97,8 @@ public final class TestRunFinished {
             "message=" + message +
             ", success=" + success +
             ", timestamp=" + timestamp +
+            ", exception=" + exception +
+            ", testRunStartedId=" + testRunStartedId +
             '}';
     }
 }

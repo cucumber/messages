@@ -1,25 +1,33 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Git message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
+ * Information about Git, provided by the Build/CI server as environment
+ * variables.
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Git {
     private final String remote;
     private final String revision;
-    private final String branch;
-    private final String tag;
+    private final @Nullable String branch;
+    private final @Nullable String tag;
 
     public Git(
-        String remote,
-        String revision,
-        String branch,
-        String tag
+        @Property("remote") String remote,
+        @Property("revision") String revision,
+        @Nullable @Property("branch") String branch,
+        @Nullable @Property("tag") String tag
     ) {
         this.remote = requireNonNull(remote, "Git.remote cannot be null");
         this.revision = requireNonNull(revision, "Git.revision cannot be null");

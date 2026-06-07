@@ -1,19 +1,27 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the SourceReference message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
+ * Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
+ * [Location](#io.cucumber.messages.Location) within that file.
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class SourceReference {
-    private final String uri;
-    private final JavaMethod javaMethod;
-    private final JavaStackTraceElement javaStackTraceElement;
-    private final Location location;
+    private final @Nullable String uri;
+    private final @Nullable JavaMethod javaMethod;
+    private final @Nullable JavaStackTraceElement javaStackTraceElement;
+    private final @Nullable Location location;
 
     public static SourceReference of(String uri) {
         return new SourceReference(
@@ -52,10 +60,10 @@ public final class SourceReference {
     }
 
     public SourceReference(
-        String uri,
-        JavaMethod javaMethod,
-        JavaStackTraceElement javaStackTraceElement,
-        Location location
+        @Nullable @Property("uri") String uri,
+        @Nullable @Property("javaMethod") JavaMethod javaMethod,
+        @Nullable @Property("javaStackTraceElement") JavaStackTraceElement javaStackTraceElement,
+        @Nullable @Property("location") Location location
     ) {
         this.uri = uri;
         this.javaMethod = javaMethod;

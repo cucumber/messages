@@ -1,30 +1,38 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Hook message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Hook {
     private final String id;
-    private final String name;
+    private final @Nullable String name;
     private final SourceReference sourceReference;
-    private final String tagExpression;
+    private final @Nullable String tagExpression;
+    private final @Nullable HookType type;
 
     public Hook(
-        String id,
-        String name,
-        SourceReference sourceReference,
-        String tagExpression
+        @Property("id") String id,
+        @Nullable @Property("name") String name,
+        @Property("sourceReference") SourceReference sourceReference,
+        @Nullable @Property("tagExpression") String tagExpression,
+        @Nullable @Property("type") HookType type
     ) {
         this.id = requireNonNull(id, "Hook.id cannot be null");
         this.name = name;
         this.sourceReference = requireNonNull(sourceReference, "Hook.sourceReference cannot be null");
         this.tagExpression = tagExpression;
+        this.type = type;
     }
 
     public String getId() {
@@ -43,6 +51,10 @@ public final class Hook {
         return Optional.ofNullable(tagExpression);
     }
 
+    public Optional<HookType> getType() {
+        return Optional.ofNullable(type);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,7 +64,8 @@ public final class Hook {
             id.equals(that.id) &&         
             Objects.equals(name, that.name) &&         
             sourceReference.equals(that.sourceReference) &&         
-            Objects.equals(tagExpression, that.tagExpression);        
+            Objects.equals(tagExpression, that.tagExpression) &&         
+            Objects.equals(type, that.type);        
     }
 
     @Override
@@ -61,7 +74,8 @@ public final class Hook {
             id,
             name,
             sourceReference,
-            tagExpression
+            tagExpression,
+            type
         );
     }
 
@@ -72,6 +86,7 @@ public final class Hook {
             ", name=" + name +
             ", sourceReference=" + sourceReference +
             ", tagExpression=" + tagExpression +
+            ", type=" + type +
             '}';
     }
 }

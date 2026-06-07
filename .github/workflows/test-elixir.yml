@@ -1,28 +1,43 @@
 name: test-elixir
 
+permissions: {}
+
 on:
   push:
     branches:
       - main
       - renovate/**
+    paths:
+      - elixir/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
-  workflow_call:
+    paths:
+      - elixir/**
+      - Makefile
+      - .github/**
 
 jobs:
   test-elixir:
+    name: Test Elixir
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: erlef/setup-beam@v1
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          otp-version: '25.1'
-          elixir-version: '1.14.x'
+          persist-credentials: false
+      - name: Setup Beam
+        uses: erlef/setup-beam@fc68ffb90438ef2936bbb3251622353b3dcb2f93 # v1.24.0
+        with:
+          otp-version: '27.1'
+          elixir-version: '1.17'
 
+      # Can be removed?
       - name: Install Protoc
-        uses: arduino/setup-protoc@v1
+        uses: arduino/setup-protoc@c65c819552d16ad3c9b72d9dfd5ba5237b9c906b # v3.0.0
 
       - run: |
           mix local.hex --force

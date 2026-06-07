@@ -1,8 +1,8 @@
-module github.com/cucumber/messages/go/v19
+module github.com/cucumber/messages/go/v32
 
 require (
-	github.com/gofrs/uuid v4.2.0+incompatible
-	github.com/stretchr/testify v1.8.1
+	github.com/google/uuid v1.6.0
+	github.com/stretchr/testify v1.11.1
 )
 
 require (

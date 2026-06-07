@@ -1,36 +1,75 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the Envelope message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Envelope {
-    private final Attachment attachment;
-    private final GherkinDocument gherkinDocument;
-    private final Hook hook;
-    private final Meta meta;
-    private final ParameterType parameterType;
-    private final ParseError parseError;
-    private final Pickle pickle;
-    private final Source source;
-    private final StepDefinition stepDefinition;
-    private final TestCase testCase;
-    private final TestCaseFinished testCaseFinished;
-    private final TestCaseStarted testCaseStarted;
-    private final TestRunFinished testRunFinished;
-    private final TestRunStarted testRunStarted;
-    private final TestStepFinished testStepFinished;
-    private final TestStepStarted testStepStarted;
-    private final UndefinedParameterType undefinedParameterType;
+    private final @Nullable Attachment attachment;
+    private final @Nullable ExternalAttachment externalAttachment;
+    private final @Nullable GherkinDocument gherkinDocument;
+    private final @Nullable Hook hook;
+    private final @Nullable Meta meta;
+    private final @Nullable ParameterType parameterType;
+    private final @Nullable ParseError parseError;
+    private final @Nullable Pickle pickle;
+    private final @Nullable Suggestion suggestion;
+    private final @Nullable Source source;
+    private final @Nullable StepDefinition stepDefinition;
+    private final @Nullable TestCase testCase;
+    private final @Nullable TestCaseFinished testCaseFinished;
+    private final @Nullable TestCaseStarted testCaseStarted;
+    private final @Nullable TestRunFinished testRunFinished;
+    private final @Nullable TestRunStarted testRunStarted;
+    private final @Nullable TestStepFinished testStepFinished;
+    private final @Nullable TestStepStarted testStepStarted;
+    private final @Nullable TestRunHookStarted testRunHookStarted;
+    private final @Nullable TestRunHookFinished testRunHookFinished;
+    private final @Nullable UndefinedParameterType undefinedParameterType;
 
     public static Envelope of(Attachment attachment) {
         return new Envelope(
             requireNonNull(attachment, "Envelope.attachment cannot be null"),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        );
+    }
+
+    public static Envelope of(ExternalAttachment externalAttachment) {
+        return new Envelope(
+            null,
+            requireNonNull(externalAttachment, "Envelope.externalAttachment cannot be null"),
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -53,7 +92,11 @@ public final class Envelope {
     public static Envelope of(GherkinDocument gherkinDocument) {
         return new Envelope(
             null,
+            null,
             requireNonNull(gherkinDocument, "Envelope.gherkinDocument cannot be null"),
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -76,7 +119,11 @@ public final class Envelope {
         return new Envelope(
             null,
             null,
+            null,
             requireNonNull(hook, "Envelope.hook cannot be null"),
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -99,7 +146,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(meta, "Envelope.meta cannot be null"),
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -122,7 +173,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(parameterType, "Envelope.parameterType cannot be null"),
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -145,7 +200,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(parseError, "Envelope.parseError cannot be null"),
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -168,7 +227,37 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
             requireNonNull(pickle, "Envelope.pickle cannot be null"),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        );
+    }
+
+    public static Envelope of(Suggestion suggestion) {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            requireNonNull(suggestion, "Envelope.suggestion cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -191,7 +280,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(source, "Envelope.source cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -214,7 +307,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(stepDefinition, "Envelope.stepDefinition cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -237,7 +334,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(testCase, "Envelope.testCase cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -260,7 +361,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(testCaseFinished, "Envelope.testCaseFinished cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -283,7 +388,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(testCaseStarted, "Envelope.testCaseStarted cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -306,7 +415,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(testRunFinished, "Envelope.testRunFinished cannot be null"),
+            null,
+            null,
             null,
             null,
             null,
@@ -329,7 +442,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(testRunStarted, "Envelope.testRunStarted cannot be null"),
+            null,
+            null,
             null,
             null,
             null
@@ -352,7 +469,11 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(testStepFinished, "Envelope.testStepFinished cannot be null"),
+            null,
+            null,
             null,
             null
         );
@@ -375,7 +496,63 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
             requireNonNull(testStepStarted, "Envelope.testStepStarted cannot be null"),
+            null,
+            null,
+            null
+        );
+    }
+
+    public static Envelope of(TestRunHookStarted testRunHookStarted) {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            requireNonNull(testRunHookStarted, "Envelope.testRunHookStarted cannot be null"),
+            null,
+            null
+        );
+    }
+
+    public static Envelope of(TestRunHookFinished testRunHookFinished) {
+        return new Envelope(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            requireNonNull(testRunHookFinished, "Envelope.testRunHookFinished cannot be null"),
             null
         );
     }
@@ -398,36 +575,46 @@ public final class Envelope {
             null,
             null,
             null,
+            null,
+            null,
+            null,
+            null,
             requireNonNull(undefinedParameterType, "Envelope.undefinedParameterType cannot be null")
         );
     }
 
     public Envelope(
-        Attachment attachment,
-        GherkinDocument gherkinDocument,
-        Hook hook,
-        Meta meta,
-        ParameterType parameterType,
-        ParseError parseError,
-        Pickle pickle,
-        Source source,
-        StepDefinition stepDefinition,
-        TestCase testCase,
-        TestCaseFinished testCaseFinished,
-        TestCaseStarted testCaseStarted,
-        TestRunFinished testRunFinished,
-        TestRunStarted testRunStarted,
-        TestStepFinished testStepFinished,
-        TestStepStarted testStepStarted,
-        UndefinedParameterType undefinedParameterType
+        @Nullable @Property("attachment") Attachment attachment,
+        @Nullable @Property("externalAttachment") ExternalAttachment externalAttachment,
+        @Nullable @Property("gherkinDocument") GherkinDocument gherkinDocument,
+        @Nullable @Property("hook") Hook hook,
+        @Nullable @Property("meta") Meta meta,
+        @Nullable @Property("parameterType") ParameterType parameterType,
+        @Nullable @Property("parseError") ParseError parseError,
+        @Nullable @Property("pickle") Pickle pickle,
+        @Nullable @Property("suggestion") Suggestion suggestion,
+        @Nullable @Property("source") Source source,
+        @Nullable @Property("stepDefinition") StepDefinition stepDefinition,
+        @Nullable @Property("testCase") TestCase testCase,
+        @Nullable @Property("testCaseFinished") TestCaseFinished testCaseFinished,
+        @Nullable @Property("testCaseStarted") TestCaseStarted testCaseStarted,
+        @Nullable @Property("testRunFinished") TestRunFinished testRunFinished,
+        @Nullable @Property("testRunStarted") TestRunStarted testRunStarted,
+        @Nullable @Property("testStepFinished") TestStepFinished testStepFinished,
+        @Nullable @Property("testStepStarted") TestStepStarted testStepStarted,
+        @Nullable @Property("testRunHookStarted") TestRunHookStarted testRunHookStarted,
+        @Nullable @Property("testRunHookFinished") TestRunHookFinished testRunHookFinished,
+        @Nullable @Property("undefinedParameterType") UndefinedParameterType undefinedParameterType
     ) {
         this.attachment = attachment;
+        this.externalAttachment = externalAttachment;
         this.gherkinDocument = gherkinDocument;
         this.hook = hook;
         this.meta = meta;
         this.parameterType = parameterType;
         this.parseError = parseError;
         this.pickle = pickle;
+        this.suggestion = suggestion;
         this.source = source;
         this.stepDefinition = stepDefinition;
         this.testCase = testCase;
@@ -437,11 +624,17 @@ public final class Envelope {
         this.testRunStarted = testRunStarted;
         this.testStepFinished = testStepFinished;
         this.testStepStarted = testStepStarted;
+        this.testRunHookStarted = testRunHookStarted;
+        this.testRunHookFinished = testRunHookFinished;
         this.undefinedParameterType = undefinedParameterType;
     }
 
     public Optional<Attachment> getAttachment() {
         return Optional.ofNullable(attachment);
+    }
+
+    public Optional<ExternalAttachment> getExternalAttachment() {
+        return Optional.ofNullable(externalAttachment);
     }
 
     public Optional<GherkinDocument> getGherkinDocument() {
@@ -466,6 +659,10 @@ public final class Envelope {
 
     public Optional<Pickle> getPickle() {
         return Optional.ofNullable(pickle);
+    }
+
+    public Optional<Suggestion> getSuggestion() {
+        return Optional.ofNullable(suggestion);
     }
 
     public Optional<Source> getSource() {
@@ -504,6 +701,14 @@ public final class Envelope {
         return Optional.ofNullable(testStepStarted);
     }
 
+    public Optional<TestRunHookStarted> getTestRunHookStarted() {
+        return Optional.ofNullable(testRunHookStarted);
+    }
+
+    public Optional<TestRunHookFinished> getTestRunHookFinished() {
+        return Optional.ofNullable(testRunHookFinished);
+    }
+
     public Optional<UndefinedParameterType> getUndefinedParameterType() {
         return Optional.ofNullable(undefinedParameterType);
     }
@@ -515,12 +720,14 @@ public final class Envelope {
         Envelope that = (Envelope) o;
         return 
             Objects.equals(attachment, that.attachment) &&         
+            Objects.equals(externalAttachment, that.externalAttachment) &&         
             Objects.equals(gherkinDocument, that.gherkinDocument) &&         
             Objects.equals(hook, that.hook) &&         
             Objects.equals(meta, that.meta) &&         
             Objects.equals(parameterType, that.parameterType) &&         
             Objects.equals(parseError, that.parseError) &&         
             Objects.equals(pickle, that.pickle) &&         
+            Objects.equals(suggestion, that.suggestion) &&         
             Objects.equals(source, that.source) &&         
             Objects.equals(stepDefinition, that.stepDefinition) &&         
             Objects.equals(testCase, that.testCase) &&         
@@ -530,6 +737,8 @@ public final class Envelope {
             Objects.equals(testRunStarted, that.testRunStarted) &&         
             Objects.equals(testStepFinished, that.testStepFinished) &&         
             Objects.equals(testStepStarted, that.testStepStarted) &&         
+            Objects.equals(testRunHookStarted, that.testRunHookStarted) &&         
+            Objects.equals(testRunHookFinished, that.testRunHookFinished) &&         
             Objects.equals(undefinedParameterType, that.undefinedParameterType);        
     }
 
@@ -537,12 +746,14 @@ public final class Envelope {
     public int hashCode() {
         return Objects.hash(
             attachment,
+            externalAttachment,
             gherkinDocument,
             hook,
             meta,
             parameterType,
             parseError,
             pickle,
+            suggestion,
             source,
             stepDefinition,
             testCase,
@@ -552,6 +763,8 @@ public final class Envelope {
             testRunStarted,
             testStepFinished,
             testStepStarted,
+            testRunHookStarted,
+            testRunHookFinished,
             undefinedParameterType
         );
     }
@@ -560,12 +773,14 @@ public final class Envelope {
     public String toString() {
         return "Envelope{" +
             "attachment=" + attachment +
+            ", externalAttachment=" + externalAttachment +
             ", gherkinDocument=" + gherkinDocument +
             ", hook=" + hook +
             ", meta=" + meta +
             ", parameterType=" + parameterType +
             ", parseError=" + parseError +
             ", pickle=" + pickle +
+            ", suggestion=" + suggestion +
             ", source=" + source +
             ", stepDefinition=" + stepDefinition +
             ", testCase=" + testCase +
@@ -575,6 +790,8 @@ public final class Envelope {
             ", testRunStarted=" + testRunStarted +
             ", testStepFinished=" + testStepFinished +
             ", testStepStarted=" + testStepStarted +
+            ", testRunHookStarted=" + testRunHookStarted +
+            ", testRunHookFinished=" + testRunHookFinished +
             ", undefinedParameterType=" + undefinedParameterType +
             '}';
     }

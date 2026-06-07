@@ -1,4 +1,4 @@
-schemas = $(shell find ../jsonschema -name "*.json")
+schemas = $(shell find ../jsonschema/src -name "*.schema.json")
 
 .DEFAULT_GOAL = help
 
@@ -15,11 +15,11 @@ require: ## Check requirements for the code generation (ruby, csplit and tail ar
 clean: ## Remove automatically generated files and related artifacts
 	rm -rf src/generated/java/io/cucumber/messages/types
 
-.generate-messages: $(schemas) ../jsonschema/scripts/codegen.rb ../jsonschema/scripts/templates/java.java.erb ../jsonschema/scripts/templates/java.enum.java.erb
-	ruby ../jsonschema/scripts/codegen.rb Java ../jsonschema java.java.erb > Generated.java.tmp
-	ruby ../jsonschema/scripts/codegen.rb Java ../jsonschema java.enum.java.erb >> Generated.java.tmp
-	csplit --quiet --prefix=Generated --suffix-format=%02d.java.tmp --elide-empty-files Generated.java.tmp /^.*[.]java$$/ {*}
+.generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/java.java.erb ../codegen/templates/java.enum.java.erb
+	ruby ../codegen/codegen.rb Generator::Java java.java.erb > Generated.java.tmp
+	ruby ../codegen/codegen.rb Generator::Java java.enum.java.erb >> Generated.java.tmp
+	csplit --quiet --prefix=Generated --suffix-format=%02d.java.tmp --elide-empty-files Generated.java.tmp /^[A-Za-z.]*[.]java/ {*}
 	rm Generated.java.tmp
 	rm -rf src/generated/java/io/cucumber/messages/types
 	mkdir --parents src/generated/java/io/cucumber/messages/types
-	for file in Generated**; do tail -n +2 $$file > src/generated/java/io/cucumber/messages/types/$$(head -n 1 $$file); rm $$file; done
+	for file in Generated**; do tail -n +2 $$file > src/generated/java/io/cucumber/messages/types/$$(head -n 1 $$file | tr -d '\r\n'); rm $$file; done

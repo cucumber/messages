@@ -1,14 +1,23 @@
 name: test-php
 
+permissions: {}
+
 on:
   push:
     branches:
       - main
       - renovate/**
+    paths:
+      - php/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
-  workflow_call:
+    paths:
+      - php/**
+      - Makefile
+      - .github/**
 
 jobs:
   test-php:
@@ -17,22 +26,27 @@ jobs:
       matrix:
         php: ['8.1']
         composer-mode: ['low-deps', 'high-deps']
-
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # 2.37.1
         with:
           php-version: "${{ matrix.php }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Discover composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-dir)"
+        run: echo "dir=$(composer config cache-dir)" >> $GITHUB_OUTPUT
         working-directory: php
 
       - name: Cache composer
-        uses: actions/cache@v3
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: "${{ steps.composer-cache.outputs.dir }}"
           key: composer

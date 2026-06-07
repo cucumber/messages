@@ -118,8 +118,8 @@ $writer = new NdJsonStreamWriter($fh)
 
 // write a fixed array of envelopes
 $envArray = [
-    new Envelope('gherkinDocument': new GherkinDocument()),
-    new Envelope('gherkinDocument': new GherkinDocument()),
+    new Envelope(gherkinDocument: new GherkinDocument()),
+    new Envelope(gherkinDocument: new GherkinDocument()),
 ];
 $writer->write($envArray);
 

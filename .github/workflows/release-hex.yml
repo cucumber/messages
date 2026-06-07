@@ -1,0 +1,35 @@
+name: Release Elixir
+
+permissions: {}
+
+on:
+  push:
+    branches: [release/*]
+
+jobs:
+  publish-hex:
+    name: Publish to hex.pm
+    runs-on: ubuntu-latest
+    environment: Release
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - name: Setup Beam
+        uses: erlef/setup-beam@fc68ffb90438ef2936bbb3251622353b3dcb2f93 # v1.24.0
+        with:
+          otp-version: '27.1'
+          elixir-version: '1.17'
+      - name: Install Protoc
+        uses: arduino/setup-protoc@c65c819552d16ad3c9b72d9dfd5ba5237b9c906b # v3.0.0
+      - name: Run Tests
+        run: make
+        working-directory: elixir
+      - name: Publish to hex.pm
+        uses: cucumber/action-publish-hex@ea3883bd0b3d07d9144cbd26274d7e2a0c619780 # v1.0.0
+        with:
+          hex-api-key: ${{ secrets.HEX_API_KEY }}
+          working-directory: 'elixir'

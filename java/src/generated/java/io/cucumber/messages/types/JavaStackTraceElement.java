@@ -1,23 +1,28 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents the JavaStackTraceElement message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class JavaStackTraceElement {
     private final String className;
     private final String fileName;
     private final String methodName;
 
     public JavaStackTraceElement(
-        String className,
-        String fileName,
-        String methodName
+        @Property("className") String className,
+        @Property("fileName") String fileName,
+        @Property("methodName") String methodName
     ) {
         this.className = requireNonNull(className, "JavaStackTraceElement.className cannot be null");
         this.fileName = requireNonNull(fileName, "JavaStackTraceElement.fileName cannot be null");
