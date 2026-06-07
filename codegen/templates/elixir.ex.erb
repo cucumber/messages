@@ -22,17 +22,14 @@ defmodule CucumberMessages.<%= class_name(key) %> do
       items_ref = property.dig('items', '$ref') -%>
       <%= "#{underscore(property_name)}: " -%>
     <%- if items_ref -%>
-    <%- if (schema['required'] || []).include? property_name -%>
-    Enum.map(normal_map["<%= property_name -%>"] || [], fn item -> CucumberMessages.<%= class_name(items_ref) %>.decode(item) end),
-    <%- else -%>
-    case normal_map["<%= property_name -%>"] do
+      <%- if (schema['required'] || []).include? property_name -%>Enum.map(normal_map["<%= property_name -%>"] || [], fn item -> CucumberMessages.<%= class_name(items_ref) %>.decode(item) end),
+      <%- else -%>case normal_map["<%= property_name -%>"] do
         nil -> nil
         data -> Enum.map(data, fn item -> CucumberMessages.<%= class_name(items_ref) %>.decode(item) end)
-    end
-    <%- end -%>
+    end,
+      <%- end -%>
     <%- elsif ref -%>CucumberMessages.<%= class_name(ref) %>.decode(normal_map["<%= property_name -%>"]),
-    <%- else -%>
-      normal_map["<%= property_name %>"],
+    <%- else -%>normal_map["<%= property_name %>"],
     <%- end -%>
   <%- end -%>
     }
