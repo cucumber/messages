@@ -1,7 +1,7 @@
 defmodule CucumberMessagesTest do
   use ExUnit.Case
 
-  @files [".", "test", "testdata", "*.ndjson"]
+  @files ["..", "testdata", "src", "*.ndjson"]
          |> Path.join()
          |> Path.wildcard()
          #  temporarily don't look at this test because Elixir/ Jason automatically uppercases some characters?
