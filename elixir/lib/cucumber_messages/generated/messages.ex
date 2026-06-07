@@ -6,7 +6,10 @@ defmodule CucumberMessages.Attachment do
             source: nil,
             test_case_started_id: nil,
             test_step_id: nil,
-            url: nil
+            url: nil,
+            test_run_started_id: nil,
+            test_run_hook_started_id: nil,
+            timestamp: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.Attachment do
     def encode(value, opts) do
@@ -30,7 +33,10 @@ defmodule CucumberMessages.Attachment do
       source: CucumberMessages.Source.decode(normal_map["source"]),
       test_case_started_id: normal_map["testCaseStartedId"],
       test_step_id: normal_map["testStepId"],
-      url: normal_map["url"]
+      url: normal_map["url"],
+      test_run_started_id: normal_map["testRunStartedId"],
+      test_run_hook_started_id: normal_map["testRunHookStartedId"],
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
     }
   end
 end
@@ -61,12 +67,14 @@ end
 
 defmodule CucumberMessages.Envelope do
   defstruct attachment: nil,
+            external_attachment: nil,
             gherkin_document: nil,
             hook: nil,
             meta: nil,
             parameter_type: nil,
             parse_error: nil,
             pickle: nil,
+            suggestion: nil,
             source: nil,
             step_definition: nil,
             test_case: nil,
@@ -76,6 +84,8 @@ defmodule CucumberMessages.Envelope do
             test_run_started: nil,
             test_step_finished: nil,
             test_step_started: nil,
+            test_run_hook_started: nil,
+            test_run_hook_finished: nil,
             undefined_parameter_type: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.Envelope do
@@ -94,12 +104,15 @@ defmodule CucumberMessages.Envelope do
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       attachment: CucumberMessages.Attachment.decode(normal_map["attachment"]),
+      external_attachment:
+        CucumberMessages.ExternalAttachment.decode(normal_map["externalAttachment"]),
       gherkin_document: CucumberMessages.GherkinDocument.decode(normal_map["gherkinDocument"]),
       hook: CucumberMessages.Hook.decode(normal_map["hook"]),
       meta: CucumberMessages.Meta.decode(normal_map["meta"]),
       parameter_type: CucumberMessages.ParameterType.decode(normal_map["parameterType"]),
       parse_error: CucumberMessages.ParseError.decode(normal_map["parseError"]),
       pickle: CucumberMessages.Pickle.decode(normal_map["pickle"]),
+      suggestion: CucumberMessages.Suggestion.decode(normal_map["suggestion"]),
       source: CucumberMessages.Source.decode(normal_map["source"]),
       step_definition: CucumberMessages.StepDefinition.decode(normal_map["stepDefinition"]),
       test_case: CucumberMessages.TestCase.decode(normal_map["testCase"]),
@@ -111,8 +124,70 @@ defmodule CucumberMessages.Envelope do
       test_step_finished:
         CucumberMessages.TestStepFinished.decode(normal_map["testStepFinished"]),
       test_step_started: CucumberMessages.TestStepStarted.decode(normal_map["testStepStarted"]),
+      test_run_hook_started:
+        CucumberMessages.TestRunHookStarted.decode(normal_map["testRunHookStarted"]),
+      test_run_hook_finished:
+        CucumberMessages.TestRunHookFinished.decode(normal_map["testRunHookFinished"]),
       undefined_parameter_type:
         CucumberMessages.UndefinedParameterType.decode(normal_map["undefinedParameterType"])
+    }
+  end
+end
+
+defmodule CucumberMessages.Exception do
+  defstruct type: nil, message: nil, stack_trace: nil
+
+  defimpl Jason.Encoder, for: CucumberMessages.Exception do
+    def encode(value, opts) do
+      value
+      |> Map.filter(fn {k, v} -> v != nil && k != :__struct__ end)
+      |> Enum.map(fn {k, v} -> {CucumberMessages.Helper.lower_camelize(k), v} end)
+      |> Enum.into(%{})
+      |> Jason.Encode.map(opts)
+    end
+  end
+
+  def decode(nil), do: nil
+  def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
+
+  def decode(normal_map) when is_map(normal_map) do
+    %__MODULE__{
+      type: normal_map["type"],
+      message: normal_map["message"],
+      stack_trace: normal_map["stackTrace"]
+    }
+  end
+end
+
+defmodule CucumberMessages.ExternalAttachment do
+  defstruct url: nil,
+            media_type: nil,
+            test_case_started_id: nil,
+            test_step_id: nil,
+            test_run_hook_started_id: nil,
+            timestamp: nil
+
+  defimpl Jason.Encoder, for: CucumberMessages.ExternalAttachment do
+    def encode(value, opts) do
+      value
+      |> Map.filter(fn {k, v} -> v != nil && k != :__struct__ end)
+      |> Enum.map(fn {k, v} -> {CucumberMessages.Helper.lower_camelize(k), v} end)
+      |> Enum.into(%{})
+      |> Jason.Encode.map(opts)
+    end
+  end
+
+  def decode(nil), do: nil
+  def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
+
+  def decode(normal_map) when is_map(normal_map) do
+    %__MODULE__{
+      url: normal_map["url"],
+      media_type: normal_map["mediaType"],
+      test_case_started_id: normal_map["testCaseStartedId"],
+      test_step_id: normal_map["testStepId"],
+      test_run_hook_started_id: normal_map["testRunHookStartedId"],
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
     }
   end
 end
@@ -566,7 +641,7 @@ defmodule CucumberMessages.Tag do
 end
 
 defmodule CucumberMessages.Hook do
-  defstruct id: nil, name: nil, source_reference: nil, tag_expression: nil
+  defstruct id: nil, name: nil, source_reference: nil, tag_expression: nil, type: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.Hook do
     def encode(value, opts) do
@@ -586,7 +661,8 @@ defmodule CucumberMessages.Hook do
       id: normal_map["id"],
       name: normal_map["name"],
       source_reference: CucumberMessages.SourceReference.decode(normal_map["sourceReference"]),
-      tag_expression: normal_map["tagExpression"]
+      tag_expression: normal_map["tagExpression"],
+      type: normal_map["type"]
     }
   end
 end
@@ -724,7 +800,8 @@ defmodule CucumberMessages.ParameterType do
             regular_expressions: nil,
             prefer_for_regular_expression_match: nil,
             use_for_snippets: nil,
-            id: nil
+            id: nil,
+            source_reference: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.ParameterType do
     def encode(value, opts) do
@@ -745,7 +822,8 @@ defmodule CucumberMessages.ParameterType do
       regular_expressions: normal_map["regularExpressions"],
       prefer_for_regular_expression_match: normal_map["preferForRegularExpressionMatch"],
       use_for_snippets: normal_map["useForSnippets"],
-      id: normal_map["id"]
+      id: normal_map["id"],
+      source_reference: CucumberMessages.SourceReference.decode(normal_map["sourceReference"])
     }
   end
 end
@@ -775,7 +853,14 @@ defmodule CucumberMessages.ParseError do
 end
 
 defmodule CucumberMessages.Pickle do
-  defstruct id: nil, uri: nil, name: nil, language: nil, steps: nil, tags: nil, ast_node_ids: nil
+  defstruct id: nil,
+            uri: nil,
+            location: nil,
+            name: nil,
+            language: nil,
+            steps: nil,
+            tags: nil,
+            ast_node_ids: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.Pickle do
     def encode(value, opts) do
@@ -794,6 +879,7 @@ defmodule CucumberMessages.Pickle do
     %__MODULE__{
       id: normal_map["id"],
       uri: normal_map["uri"],
+      location: CucumberMessages.Location.decode(normal_map["location"]),
       name: normal_map["name"],
       language: normal_map["language"],
       steps:
@@ -1132,8 +1218,60 @@ defmodule CucumberMessages.StepDefinitionPattern do
   end
 end
 
+defmodule CucumberMessages.Suggestion do
+  defstruct id: nil, pickle_step_id: nil, snippets: nil
+
+  defimpl Jason.Encoder, for: CucumberMessages.Suggestion do
+    def encode(value, opts) do
+      value
+      |> Map.filter(fn {k, v} -> v != nil && k != :__struct__ end)
+      |> Enum.map(fn {k, v} -> {CucumberMessages.Helper.lower_camelize(k), v} end)
+      |> Enum.into(%{})
+      |> Jason.Encode.map(opts)
+    end
+  end
+
+  def decode(nil), do: nil
+  def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
+
+  def decode(normal_map) when is_map(normal_map) do
+    %__MODULE__{
+      id: normal_map["id"],
+      pickle_step_id: normal_map["pickleStepId"],
+      snippets:
+        Enum.map(normal_map["snippets"] || [], fn item ->
+          CucumberMessages.Snippet.decode(item)
+        end)
+    }
+  end
+end
+
+defmodule CucumberMessages.Snippet do
+  defstruct language: nil, code: nil
+
+  defimpl Jason.Encoder, for: CucumberMessages.Snippet do
+    def encode(value, opts) do
+      value
+      |> Map.filter(fn {k, v} -> v != nil && k != :__struct__ end)
+      |> Enum.map(fn {k, v} -> {CucumberMessages.Helper.lower_camelize(k), v} end)
+      |> Enum.into(%{})
+      |> Jason.Encode.map(opts)
+    end
+  end
+
+  def decode(nil), do: nil
+  def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
+
+  def decode(normal_map) when is_map(normal_map) do
+    %__MODULE__{
+      language: normal_map["language"],
+      code: normal_map["code"]
+    }
+  end
+end
+
 defmodule CucumberMessages.TestCase do
-  defstruct id: nil, pickle_id: nil, test_steps: nil
+  defstruct id: nil, pickle_id: nil, test_steps: nil, test_run_started_id: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.TestCase do
     def encode(value, opts) do
@@ -1155,7 +1293,8 @@ defmodule CucumberMessages.TestCase do
       test_steps:
         Enum.map(normal_map["testSteps"] || [], fn item ->
           CucumberMessages.TestStep.decode(item)
-        end)
+        end),
+      test_run_started_id: normal_map["testRunStartedId"]
     }
   end
 end
@@ -1327,7 +1466,7 @@ defmodule CucumberMessages.TestCaseStarted do
 end
 
 defmodule CucumberMessages.TestRunFinished do
-  defstruct message: nil, success: nil, timestamp: nil
+  defstruct message: nil, success: nil, timestamp: nil, exception: nil, test_run_started_id: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.TestRunFinished do
     def encode(value, opts) do
@@ -1346,13 +1485,67 @@ defmodule CucumberMessages.TestRunFinished do
     %__MODULE__{
       message: normal_map["message"],
       success: normal_map["success"],
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"]),
+      exception: CucumberMessages.Exception.decode(normal_map["exception"]),
+      test_run_started_id: normal_map["testRunStartedId"]
+    }
+  end
+end
+
+defmodule CucumberMessages.TestRunHookFinished do
+  defstruct test_run_hook_started_id: nil, result: nil, timestamp: nil
+
+  defimpl Jason.Encoder, for: CucumberMessages.TestRunHookFinished do
+    def encode(value, opts) do
+      value
+      |> Map.filter(fn {k, v} -> v != nil && k != :__struct__ end)
+      |> Enum.map(fn {k, v} -> {CucumberMessages.Helper.lower_camelize(k), v} end)
+      |> Enum.into(%{})
+      |> Jason.Encode.map(opts)
+    end
+  end
+
+  def decode(nil), do: nil
+  def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
+
+  def decode(normal_map) when is_map(normal_map) do
+    %__MODULE__{
+      test_run_hook_started_id: normal_map["testRunHookStartedId"],
+      result: CucumberMessages.TestStepResult.decode(normal_map["result"]),
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
+    }
+  end
+end
+
+defmodule CucumberMessages.TestRunHookStarted do
+  defstruct id: nil, test_run_started_id: nil, hook_id: nil, worker_id: nil, timestamp: nil
+
+  defimpl Jason.Encoder, for: CucumberMessages.TestRunHookStarted do
+    def encode(value, opts) do
+      value
+      |> Map.filter(fn {k, v} -> v != nil && k != :__struct__ end)
+      |> Enum.map(fn {k, v} -> {CucumberMessages.Helper.lower_camelize(k), v} end)
+      |> Enum.into(%{})
+      |> Jason.Encode.map(opts)
+    end
+  end
+
+  def decode(nil), do: nil
+  def decode(bin) when is_binary(bin), do: bin |> Jason.decode!() |> decode()
+
+  def decode(normal_map) when is_map(normal_map) do
+    %__MODULE__{
+      id: normal_map["id"],
+      test_run_started_id: normal_map["testRunStartedId"],
+      hook_id: normal_map["hookId"],
+      worker_id: normal_map["workerId"],
       timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
     }
   end
 end
 
 defmodule CucumberMessages.TestRunStarted do
-  defstruct timestamp: nil
+  defstruct timestamp: nil, id: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.TestRunStarted do
     def encode(value, opts) do
@@ -1369,7 +1562,8 @@ defmodule CucumberMessages.TestRunStarted do
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
-      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"])
+      timestamp: CucumberMessages.Timestamp.decode(normal_map["timestamp"]),
+      id: normal_map["id"]
     }
   end
 end
@@ -1401,7 +1595,7 @@ defmodule CucumberMessages.TestStepFinished do
 end
 
 defmodule CucumberMessages.TestStepResult do
-  defstruct duration: nil, message: nil, status: nil
+  defstruct duration: nil, message: nil, status: nil, exception: nil
 
   defimpl Jason.Encoder, for: CucumberMessages.TestStepResult do
     def encode(value, opts) do
@@ -1420,7 +1614,8 @@ defmodule CucumberMessages.TestStepResult do
     %__MODULE__{
       duration: CucumberMessages.Duration.decode(normal_map["duration"]),
       message: normal_map["message"],
-      status: normal_map["status"]
+      status: normal_map["status"],
+      exception: CucumberMessages.Exception.decode(normal_map["exception"])
     }
   end
 end

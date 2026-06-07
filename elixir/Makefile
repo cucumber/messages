@@ -1,4 +1,4 @@
-schemas = $(shell find ../jsonschema -name "*.json")
+schemas = $(shell find ../jsonschema/src -name "*.schema.json")
 
 .DEFAULT_GOAL = help
 
@@ -8,13 +8,13 @@ help: ## Show this help
 generate: require lib/cucumber_messages/generated/messages.ex ## Generate elixir code based on the schemas found in ../jsonschema and using `mix generate_json_structs` for the generation
 
 require: ## Check requirements for the code generation (elixir/mix is required)
-	@mix --version >/dev/null 2>&1 || (echo "ERROR: elixir/mix is required."; exit 1)
+    @ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
 
 clean: ## Remove automatically generated files and related artifacts
 	rm -rf lib/cucumber_messages/generated/messages.ex
 
-lib/cucumber_messages/generated/messages.ex: $(schemas) ../jsonschema/scripts/templates/elixir.erb
-	ruby ../jsonschema/scripts/codegen.rb Ruby ../jsonschema elixir.erb > $@
+lib/cucumber_messages/generated/messages.ex: $(schemas) ../codegen/codegen.rb ../codegen/templates/elixir.ex.erb ../codegen/templates/typescript.enum.ts.erb
+	ruby ../codegen/codegen.rb Generator::Elixir elixir.ex.erb > $@
 	mix local.hex --force
 	mix deps.get
 	mix compile
