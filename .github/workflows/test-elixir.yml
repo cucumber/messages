@@ -35,10 +35,6 @@ jobs:
           otp-version: '27.1'
           elixir-version: '1.17'
 
-      # Can be removed?
-      - name: Install Protoc
-        uses: arduino/setup-protoc@c65c819552d16ad3c9b72d9dfd5ba5237b9c906b # v3.0.0
-
       - run: |
           mix local.hex --force
           mix deps.get

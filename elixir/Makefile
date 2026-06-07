@@ -15,7 +15,3 @@ clean: ## Remove automatically generated files and related artifacts
 
 lib/cucumber_messages/generated/messages.ex: $(schemas) ../codegen/codegen.rb ../codegen/templates/elixir.ex.erb ../codegen/templates/typescript.enum.ts.erb
 	ruby ../codegen/codegen.rb Generator::Elixir elixir.ex.erb > $@
-	mix local.hex --force
-	mix deps.get
-	mix compile
-	mix format
