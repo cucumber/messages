@@ -35,10 +35,7 @@ jobs:
           otp-version: '27.1'
           elixir-version: '1.17'
 
-      - run: |
-          mix local.hex --force
-          mix deps.get
+      - run: mix deps.get
         working-directory: elixir
-
       - run: mix test
         working-directory: elixir
