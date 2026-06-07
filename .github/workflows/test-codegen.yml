@@ -52,17 +52,6 @@ jobs:
         with:
           ruby-version: '4.0.5'
 
-
-      - name: Set up Elixir
-        uses: erlef/setup-beam@v1
-        with:
-          otp-version: '25.1'
-          elixir-version: '1.14.x'
-
-      - name: Install Protoc
-        uses: arduino/setup-protoc@v1
-
-
       - name: generate code for all languages
         run: |
           make clean
