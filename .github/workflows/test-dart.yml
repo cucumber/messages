@@ -50,7 +50,7 @@ jobs:
           sdk: ${{ matrix.dart }}
 
       - name: Install dependencies
-        run: dart pub get
+        run: dart pub get --enforce-lockfile
 
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
