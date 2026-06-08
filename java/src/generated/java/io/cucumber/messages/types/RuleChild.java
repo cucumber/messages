@@ -3,7 +3,6 @@ package io.cucumber.messages.types;
 import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -17,48 +16,56 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class RuleChild {
-    private final @Nullable Background background;
-    private final @Nullable Scenario scenario;
+
+    private final OneOf oneOf;
+
+    public static RuleChild of(Background background) {
+        return new RuleChild(
+            requireNonNull(background, "RuleChild.background cannot be null"),
+            null
+        );
+    }
+
+    public static RuleChild of(Scenario scenario) {
+        return new RuleChild(
+            null,
+            requireNonNull(scenario, "RuleChild.scenario cannot be null")
+        );
+    }
 
     public RuleChild(
         @Nullable @Property("background") Background background,
         @Nullable @Property("scenario") Scenario scenario
     ) {
-        this.background = background;
-        this.scenario = scenario;
+        this.oneOf = OneOf.of(
+            "RuleChild",
+            "background", background,
+            "scenario", scenario
+        );
     }
 
     public Optional<Background> getBackground() {
-        return Optional.ofNullable(background);
+        return oneOf.get("background");
     }
 
     public Optional<Scenario> getScenario() {
-        return Optional.ofNullable(scenario);
+        return oneOf.get("scenario");
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RuleChild that = (RuleChild) o;
-        return 
-            Objects.equals(background, that.background) &&         
-            Objects.equals(scenario, that.scenario);        
+        return Objects.equals(oneOf, that.oneOf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-            background,
-            scenario
-        );
+        return Objects.hashCode(oneOf);
     }
 
     @Override
     public String toString() {
-        return "RuleChild{" +
-            "background=" + background +
-            ", scenario=" + scenario +
-            '}';
+        return "RuleChild{" + oneOf + "}";
     }
 }

@@ -699,8 +699,8 @@ public final class Envelope {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Envelope envelope = (Envelope) o;
-        return Objects.equals(oneOf, envelope.oneOf);
+        Envelope that = (Envelope) o;
+        return Objects.equals(oneOf, that.oneOf);
     }
 
     @Override

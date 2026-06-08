@@ -3,7 +3,6 @@ package io.cucumber.messages.types;
 import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -17,58 +16,72 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class FeatureChild {
-    private final @Nullable Rule rule;
-    private final @Nullable Background background;
-    private final @Nullable Scenario scenario;
+
+    private final OneOf oneOf;
+
+    public static FeatureChild of(Rule rule) {
+        return new FeatureChild(
+            requireNonNull(rule, "FeatureChild.rule cannot be null"),
+            null,
+            null
+        );
+    }
+
+    public static FeatureChild of(Background background) {
+        return new FeatureChild(
+            null,
+            requireNonNull(background, "FeatureChild.background cannot be null"),
+            null
+        );
+    }
+
+    public static FeatureChild of(Scenario scenario) {
+        return new FeatureChild(
+            null,
+            null,
+            requireNonNull(scenario, "FeatureChild.scenario cannot be null")
+        );
+    }
 
     public FeatureChild(
         @Nullable @Property("rule") Rule rule,
         @Nullable @Property("background") Background background,
         @Nullable @Property("scenario") Scenario scenario
     ) {
-        this.rule = rule;
-        this.background = background;
-        this.scenario = scenario;
+        this.oneOf = OneOf.of(
+            "FeatureChild",
+            "rule", rule,
+            "background", background,
+            "scenario", scenario
+        );
     }
 
     public Optional<Rule> getRule() {
-        return Optional.ofNullable(rule);
+        return oneOf.get("rule");
     }
 
     public Optional<Background> getBackground() {
-        return Optional.ofNullable(background);
+        return oneOf.get("background");
     }
 
     public Optional<Scenario> getScenario() {
-        return Optional.ofNullable(scenario);
+        return oneOf.get("scenario");
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FeatureChild that = (FeatureChild) o;
-        return 
-            Objects.equals(rule, that.rule) &&         
-            Objects.equals(background, that.background) &&         
-            Objects.equals(scenario, that.scenario);        
+        return Objects.equals(oneOf, that.oneOf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-            rule,
-            background,
-            scenario
-        );
+        return Objects.hashCode(oneOf);
     }
 
     @Override
     public String toString() {
-        return "FeatureChild{" +
-            "rule=" + rule +
-            ", background=" + background +
-            ", scenario=" + scenario +
-            '}';
+        return "FeatureChild{" + oneOf + "}";
     }
 }

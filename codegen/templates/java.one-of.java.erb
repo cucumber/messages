@@ -75,8 +75,8 @@ public final class <%= class_name(key) %> {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Envelope envelope = (Envelope) o;
-        return Objects.equals(oneOf, envelope.oneOf);
+        <%= class_name(key) %> that = (<%= class_name(key) %>) o;
+        return Objects.equals(oneOf, that.oneOf);
     }
 
     @Override
