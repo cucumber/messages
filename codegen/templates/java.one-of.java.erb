@@ -1,0 +1,93 @@
+<%- @schemas.each do |key, schema| -%>
+<%- if schema['oneOf'] -%>
+<%= class_name(key) %>.java
+package io.cucumber.messages.types;
+
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.Objects;
+import java.util.Optional;
+
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Represents the <%= class_name(key) %> message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ <%- unless (schema['description'] || []).empty? -%>
+ * <p>
+<%= format_description(schema['description'], indent_string: '') %>
+<%- end -%>
+ */
+// Generated code
+@SuppressWarnings({"unused", "JavaLangClash"})
+public final class <%= class_name(key) %> {
+
+    private final OneOf oneOf;
+    <%- (schema['oneOf']).each do | element | -%>
+    <%- (element['properties'] || []).each do |(property_name, property) | -%>
+
+    public static <%= class_name(key) %> of(<%= type_for(class_name(key), property_name, property) -%> <%= property_name %>) {
+        return new <%= class_name(key) %>(
+            <%- (schema['oneOf']).each_with_index do | element2, index | -%>
+            <%- (element2['properties'] || []).each do |(property_name2, property2) | -%>
+            <%- if property_name2 == property_name -%>
+            requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")<%= index < schema['oneOf'].length - 1 ? ',' : '' %>
+            <%- else -%>
+            null<%= index < schema['oneOf'].length - 1 ? ',' : '' %>
+            <%- end -%>
+        <%- end -%>
+        <%- end -%>
+        );
+    }
+  <%- end -%>
+  <%- end -%>
+
+    public <%= class_name(key) %>(
+    <%- (schema['oneOf']).each_with_index do | element, index | -%>
+    <%- (element['properties'] || []).each do |(property_name, property) | -%>
+        @Nullable @Property("<%= property_name %>") <%= type_for(class_name(key), property_name, property) -%> <%= property_name %><%= index < schema['oneOf'].length-1 ? ',' : ''%>
+    <%- end -%>
+    <%- end -%>
+    ) {
+        this.oneOf = OneOf.of(
+            "<%= class_name(key) %>",
+        <%- (schema['oneOf']).each_with_index do | element, index | -%>
+        <%- (element['properties'] || []).each do |(property_name, property) | -%>
+            "<%= property_name %>", <%= property_name %><%= index < schema['oneOf'].length-1 ? ',' : ''%>
+        <%- end -%>
+        <%- end -%>
+        );
+    }
+
+<%- (schema['oneOf']).each do | element | -%>
+<%- (element['properties'] || {}).each do |property_name, property| -%>
+    <%- unless (property['description'] || []).empty? -%>
+    /**
+    <%= format_description(property['description'], indent_string: '    ') %>
+    */
+    <%- end -%>
+    public Optional<<%= type_for(class_name(key), property_name, property) -%>> get<%= capitalize(property_name) %>() {
+        return oneOf.get("<%= property_name %>");
+    }
+
+<%- end -%>
+<%- end -%>
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Envelope envelope = (Envelope) o;
+        return Objects.equals(oneOf, envelope.oneOf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(oneOf);
+    }
+
+    @Override
+    public String toString() {
+        return "<%= class_name(key) %>{" + oneOf + "}";
+    }
+}
+<%- end -%>
+<%- end -%>

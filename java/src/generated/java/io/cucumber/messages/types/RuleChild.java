@@ -20,20 +20,6 @@ public final class RuleChild {
     private final @Nullable Background background;
     private final @Nullable Scenario scenario;
 
-    public static RuleChild of(Background background) {
-        return new RuleChild(
-            requireNonNull(background, "RuleChild.background cannot be null"),
-            null
-        );
-    }
-
-    public static RuleChild of(Scenario scenario) {
-        return new RuleChild(
-            null,
-            requireNonNull(scenario, "RuleChild.scenario cannot be null")
-        );
-    }
-
     public RuleChild(
         @Nullable @Property("background") Background background,
         @Nullable @Property("scenario") Scenario scenario

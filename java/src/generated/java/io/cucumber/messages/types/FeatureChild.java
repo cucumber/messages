@@ -21,30 +21,6 @@ public final class FeatureChild {
     private final @Nullable Background background;
     private final @Nullable Scenario scenario;
 
-    public static FeatureChild of(Rule rule) {
-        return new FeatureChild(
-            requireNonNull(rule, "FeatureChild.rule cannot be null"),
-            null,
-            null
-        );
-    }
-
-    public static FeatureChild of(Background background) {
-        return new FeatureChild(
-            null,
-            requireNonNull(background, "FeatureChild.background cannot be null"),
-            null
-        );
-    }
-
-    public static FeatureChild of(Scenario scenario) {
-        return new FeatureChild(
-            null,
-            null,
-            requireNonNull(scenario, "FeatureChild.scenario cannot be null")
-        );
-    }
-
     public FeatureChild(
         @Nullable @Property("rule") Rule rule,
         @Nullable @Property("background") Background background,
