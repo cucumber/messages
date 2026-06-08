@@ -1,5 +1,5 @@
 import assert from 'node:assert'
-import { type Envelope, parseEnvelope, StepKeywordType } from '../src/index.js'
+import { type Envelope, parseEnvelope, StepKeywordType } from '../src/index'
 
 describe('messages', () => {
   it('defaults missing fields when deserialising from JSON', () => {

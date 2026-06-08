@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- [Elixir] Generate messages from json schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
 
 ### Added
 - [Dart] Add initial `cucumber_messages` package with generated message types, NDJSON read/write support, time conversion helpers, and schema validation ([#431](https://github.com/cucumber/messages/pull/431/))

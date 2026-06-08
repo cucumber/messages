@@ -43,11 +43,11 @@ jobs:
           persist-credentials: false
 
       - name: Install uv and set the python version
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
           enable-cache: true
           python-version: ${{ matrix.python-version }}
-          version: "0.11.18"
+          version: "0.11.19"
 
       - name: Linting and testing
         run: |
@@ -55,7 +55,7 @@ jobs:
           tox -e ${{ matrix.toxenv }}
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354 # v6.0.1
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
           files: python/coverage.xml
 
