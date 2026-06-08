@@ -105,7 +105,7 @@ await for (final line in encodeNdjsonEnvelopes(Stream.value(envelope))) {
 }
 ```
 
-See [example/lib/main.dart](example/lib/main.dart) and the unit tests for more examples.
+See the unit tests under [test/](test/) for more examples.
 
 ## Development
 
