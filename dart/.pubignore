@@ -2,3 +2,4 @@ Makefile
 build/
 test/acceptance/
 benchmark/
+pubspec.lock
