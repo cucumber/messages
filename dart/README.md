@@ -125,4 +125,4 @@ dart pub publish --dry-run
 Acceptance tests under `test/acceptance/` read fixtures from `../testdata/` in the
 monorepo and are excluded from the published package.
 
-For the full multi-language workflow, see the repository root [README](../README.md).
+For general information about Cucumber Messages and the other language implementations, see the repository root [README](../README.md).
