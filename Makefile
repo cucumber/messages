@@ -1,4 +1,4 @@
-languages = jsonschema cpp dotnet go java javascript perl php python ruby
+languages = jsonschema cpp dotnet elixir go java javascript perl php python ruby
 
 .DEFAULT_GOAL = help
 

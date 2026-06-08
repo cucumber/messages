@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- [Elixir] Generate messages from json schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
 
 ## [32.3.1] - 2026-04-13
 ### Fixed
