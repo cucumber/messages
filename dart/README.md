@@ -28,7 +28,7 @@ When published to [pub.dev](https://pub.dev/packages/cucumber_messages), add:
 
 ```yaml
 dependencies:
-  cucumber_messages: ^0.0.1
+  cucumber_messages: ^<published-version>
 ```
 
 Import the public API from the package root:
