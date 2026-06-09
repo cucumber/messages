@@ -2,6 +2,7 @@
   "name": "@cucumber/messages",
   "version": "32.3.1",
   "description": "JSON schema-based messages for Cucumber's inter-process communication",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

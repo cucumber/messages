@@ -1,4 +1,4 @@
-import type * as messages from './messages'
+import type * as messages from './messages.js'
 
 const MILLISECONDS_PER_SECOND = 1e3
 const NANOSECONDS_PER_MILLISECOND = 1e6

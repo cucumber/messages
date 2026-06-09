@@ -1,5 +1,5 @@
-import { type TestStepResult, TestStepResultStatus } from './messages'
-import { millisecondsToDuration } from './TimeConversion'
+import { type TestStepResult, TestStepResultStatus } from './messages.js'
+import { millisecondsToDuration } from './TimeConversion.js'
 
 /**
  * Gets the worst result
