@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - [Elixir] Generate messages from json schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
+- [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287))
 
 ## [32.3.1] - 2026-04-13
 ### Fixed
@@ -99,9 +100,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Add `Attachment.testRunHookStartedId` for traceability of attachments to test run hooks ([#301](https://github.com/cucumber/messages/pull/301))
 - Add `Attachment.timestamp` ([#305](https://github.com/cucumber/messages/pull/305))
-
-### Changed
-- [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287))
 
 ### Fixed
 - [python] Add a LICENSE file for Python ([#278](https://github.com/cucumber/messages/pull/278))
