@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - [Elixir] Generate messages from json schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
 - [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287))
+- [JavaScript] BREAKING CHANGE: Switch to ESM ([#438](https://github.com/cucumber/messages/pull/438))
 
 ## [32.3.1] - 2026-04-13
 ### Fixed
