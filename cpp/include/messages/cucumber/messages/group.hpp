@@ -20,7 +20,7 @@ using json = nlohmann::json;
 
 struct group
 {
-    std::vector<cucumber::messages::group> children;
+    std::optional<std::vector<cucumber::messages::group>> children;
     std::optional<std::size_t> start;
     std::optional<std::string> value;
 

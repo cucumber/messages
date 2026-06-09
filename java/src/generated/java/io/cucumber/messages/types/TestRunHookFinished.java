@@ -1,27 +1,28 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the TestRunHookFinished message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * Represents the TestRunHookFinished message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestRunHookFinished {
     private final String testRunHookStartedId;
     private final TestStepResult result;
     private final Timestamp timestamp;
 
     public TestRunHookFinished(
-        String testRunHookStartedId,
-        TestStepResult result,
-        Timestamp timestamp
+        @Property("testRunHookStartedId") String testRunHookStartedId,
+        @Property("result") TestStepResult result,
+        @Property("timestamp") Timestamp timestamp
     ) {
         this.testRunHookStartedId = requireNonNull(testRunHookStartedId, "TestRunHookFinished.testRunHookStartedId cannot be null");
         this.result = requireNonNull(result, "TestRunHookFinished.result cannot be null");

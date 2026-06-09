@@ -1,23 +1,24 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the RuleChild message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
+ * Represents the RuleChild message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * A child node of a `Rule` node
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class RuleChild {
-    private final Background background;
-    private final Scenario scenario;
+    private final @Nullable Background background;
+    private final @Nullable Scenario scenario;
 
     public static RuleChild of(Background background) {
         return new RuleChild(
@@ -34,8 +35,8 @@ public final class RuleChild {
     }
 
     public RuleChild(
-        Background background,
-        Scenario scenario
+        @Nullable @Property("background") Background background,
+        @Nullable @Property("scenario") Scenario scenario
     ) {
         this.background = background;
         this.scenario = scenario;

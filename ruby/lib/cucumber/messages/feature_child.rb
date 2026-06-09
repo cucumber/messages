@@ -7,8 +7,7 @@ module Cucumber
     # Represents the FeatureChild message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  A child node of a `Feature` node
+    # A child node of a `Feature` node
     ##
     class FeatureChild < Message
       attr_reader :rule

@@ -28,6 +28,7 @@ pip-log.txt
 
 # Unit test / coverage reports
 .coverage
+coverage.xml
 .tox
 nosetests.xml
 
@@ -53,3 +54,7 @@ nosetests.xml
 /include
 /share
 /local
+.venv/
+
+.mypy_cache/
+.ruff_cache/

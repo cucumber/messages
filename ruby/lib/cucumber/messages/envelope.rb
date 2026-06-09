@@ -6,17 +6,11 @@ module Cucumber
     ##
     # Represents the Envelope message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
-    #
-    # When removing a field, replace it with reserved, rather than deleting the line.
-    #  When adding a field, add it to the end and increment the number by one.
-    #  See https://developers.google.com/protocol-buffers/docs/proto#updating for details
-    #
-    # *
-    #  All the messages that are passed between different components/processes are Envelope
-    #  messages.
     ##
     class Envelope < Message
       attr_reader :attachment
+
+      attr_reader :external_attachment
 
       attr_reader :gherkin_document
 
@@ -29,6 +23,8 @@ module Cucumber
       attr_reader :parse_error
 
       attr_reader :pickle
+
+      attr_reader :suggestion
 
       attr_reader :source
 
@@ -56,12 +52,14 @@ module Cucumber
 
       def initialize(
         attachment: nil,
+        external_attachment: nil,
         gherkin_document: nil,
         hook: nil,
         meta: nil,
         parameter_type: nil,
         parse_error: nil,
         pickle: nil,
+        suggestion: nil,
         source: nil,
         step_definition: nil,
         test_case: nil,
@@ -76,12 +74,14 @@ module Cucumber
         undefined_parameter_type: nil
       )
         @attachment = attachment
+        @external_attachment = external_attachment
         @gherkin_document = gherkin_document
         @hook = hook
         @meta = meta
         @parameter_type = parameter_type
         @parse_error = parse_error
         @pickle = pickle
+        @suggestion = suggestion
         @source = source
         @step_definition = step_definition
         @test_case = test_case
@@ -109,12 +109,14 @@ module Cucumber
 
         new(
           attachment: Attachment.from_h(hash[:attachment]),
+          external_attachment: ExternalAttachment.from_h(hash[:externalAttachment]),
           gherkin_document: GherkinDocument.from_h(hash[:gherkinDocument]),
           hook: Hook.from_h(hash[:hook]),
           meta: Meta.from_h(hash[:meta]),
           parameter_type: ParameterType.from_h(hash[:parameterType]),
           parse_error: ParseError.from_h(hash[:parseError]),
           pickle: Pickle.from_h(hash[:pickle]),
+          suggestion: Suggestion.from_h(hash[:suggestion]),
           source: Source.from_h(hash[:source]),
           step_definition: StepDefinition.from_h(hash[:stepDefinition]),
           test_case: TestCase.from_h(hash[:testCase]),

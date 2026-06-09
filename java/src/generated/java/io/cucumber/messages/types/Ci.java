@@ -1,31 +1,32 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Ci message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
+ * Represents the Ci message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * CI environment
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Ci {
     private final String name;
-    private final String url;
-    private final String buildNumber;
-    private final Git git;
+    private final @Nullable String url;
+    private final @Nullable String buildNumber;
+    private final @Nullable Git git;
 
     public Ci(
-        String name,
-        String url,
-        String buildNumber,
-        Git git
+        @Property("name") String name,
+        @Nullable @Property("url") String url,
+        @Nullable @Property("buildNumber") String buildNumber,
+        @Nullable @Property("git") Git git
     ) {
         this.name = requireNonNull(name, "Ci.name cannot be null");
         this.url = url;
@@ -41,14 +42,14 @@ public final class Ci {
     }
 
     /**
-      * Link to the build
+     * Link to the build
      */
     public Optional<String> getUrl() {
         return Optional.ofNullable(url);
     }
 
     /**
-      * The build number. Some CI servers use non-numeric build numbers, which is why this is a string
+     * The build number. Some CI servers use non-numeric build numbers, which is why this is a string
      */
     public Optional<String> getBuildNumber() {
         return Optional.ofNullable(buildNumber);

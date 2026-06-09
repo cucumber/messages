@@ -1,56 +1,58 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Pickle message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
- * //// Pickles
- *
+ * Represents the Pickle message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * A `Pickle` represents a template for a `TestCase`. It is typically derived
  * from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
  * In the future a `Pickle` may be derived from other formats such as Markdown or
  * Excel files.
- *
+ * <p>
  * By making `Pickle` the main data structure Cucumber uses for execution, the
  * implementation of Cucumber itself becomes simpler, as it doesn't have to deal
  * with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
- *
+ * <p>
  * Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Pickle {
     private final String id;
     private final String uri;
+    private final @Nullable Location location;
     private final String name;
     private final String language;
-    private final java.util.List<PickleStep> steps;
-    private final java.util.List<PickleTag> tags;
-    private final java.util.List<String> astNodeIds;
+    private final List<PickleStep> steps;
+    private final List<PickleTag> tags;
+    private final List<String> astNodeIds;
 
     public Pickle(
-        String id,
-        String uri,
-        String name,
-        String language,
-        java.util.List<PickleStep> steps,
-        java.util.List<PickleTag> tags,
-        java.util.List<String> astNodeIds
+        @Property("id") String id,
+        @Property("uri") String uri,
+        @Nullable @Property("location") Location location,
+        @Property("name") String name,
+        @Property("language") String language,
+        @Property("steps") List<PickleStep> steps,
+        @Property("tags") List<PickleTag> tags,
+        @Property("astNodeIds") List<String> astNodeIds
     ) {
         this.id = requireNonNull(id, "Pickle.id cannot be null");
         this.uri = requireNonNull(uri, "Pickle.uri cannot be null");
+        this.location = location;
         this.name = requireNonNull(name, "Pickle.name cannot be null");
         this.language = requireNonNull(language, "Pickle.language cannot be null");
-        this.steps = unmodifiableList(new ArrayList<>(requireNonNull(steps, "Pickle.steps cannot be null")));
-        this.tags = unmodifiableList(new ArrayList<>(requireNonNull(tags, "Pickle.tags cannot be null")));
-        this.astNodeIds = unmodifiableList(new ArrayList<>(requireNonNull(astNodeIds, "Pickle.astNodeIds cannot be null")));
+        this.steps = List.copyOf(requireNonNull(steps, "Pickle.steps cannot be null"));
+        this.tags = List.copyOf(requireNonNull(tags, "Pickle.tags cannot be null"));
+        this.astNodeIds = List.copyOf(requireNonNull(astNodeIds, "Pickle.astNodeIds cannot be null"));
     }
 
     /**
@@ -65,6 +67,13 @@ public final class Pickle {
      */
     public String getUri() {
         return uri;
+    }
+
+    /**
+     * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+     */
+    public Optional<Location> getLocation() {
+        return Optional.ofNullable(location);
     }
 
     /**
@@ -84,7 +93,7 @@ public final class Pickle {
     /**
      * One or more steps
      */
-    public java.util.List<PickleStep> getSteps() {
+    public List<PickleStep> getSteps() {
         return steps;
     }
 
@@ -92,7 +101,7 @@ public final class Pickle {
      * One or more tags. If this pickle is constructed from a Gherkin document,
      * It includes inherited tags from the `Feature` as well.
      */
-    public java.util.List<PickleTag> getTags() {
+    public List<PickleTag> getTags() {
         return tags;
     }
 
@@ -101,7 +110,7 @@ public final class Pickle {
      * id of the pickle. A pickle constructed from `Examples` will have the first
      * id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
      */
-    public java.util.List<String> getAstNodeIds() {
+    public List<String> getAstNodeIds() {
         return astNodeIds;
     }
 
@@ -113,6 +122,7 @@ public final class Pickle {
         return 
             id.equals(that.id) &&         
             uri.equals(that.uri) &&         
+            Objects.equals(location, that.location) &&         
             name.equals(that.name) &&         
             language.equals(that.language) &&         
             steps.equals(that.steps) &&         
@@ -125,6 +135,7 @@ public final class Pickle {
         return Objects.hash(
             id,
             uri,
+            location,
             name,
             language,
             steps,
@@ -138,6 +149,7 @@ public final class Pickle {
         return "Pickle{" +
             "id=" + id +
             ", uri=" + uri +
+            ", location=" + location +
             ", name=" + name +
             ", language=" + language +
             ", steps=" + steps +

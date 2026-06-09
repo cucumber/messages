@@ -23,6 +23,7 @@ struct test_run_hook_started
     std::string id;
     std::string test_run_started_id;
     std::string hook_id;
+    std::optional<std::string> worker_id;
     cucumber::messages::timestamp timestamp;
 
     std::string to_string() const;

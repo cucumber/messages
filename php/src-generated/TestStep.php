@@ -15,8 +15,11 @@ use Cucumber\Messages\DecodingException\SchemaViolationException;
  * Represents the TestStep message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
- * A `TestStep` is derived from either a `PickleStep`
- * combined with a `StepDefinition`, or from a `Hook`. */
+ * A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+ *
+ * When derived from a PickleStep:
+ * * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+ * * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc */
 final class TestStep implements JsonSerializable
 {
     use JsonEncodingTrait;
@@ -41,14 +44,16 @@ final class TestStep implements JsonSerializable
         public readonly ?string $pickleStepId = null,
 
         /**
-         * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`)
-         * Each element represents a matching step definition. A size of 0 means `UNDEFINED`,
-         * and a size of 2+ means `AMBIGUOUS`
+         * Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
+         *
+         * Each element represents a matching step definition.
          */
         public readonly ?array $stepDefinitionIds = null,
 
         /**
          * A list of list of StepMatchArgument (if derived from a `PickleStep`).
+         *
+         * Each element represents the arguments for a matching step definition.
          */
         public readonly ?array $stepMatchArgumentsLists = null,
     ) {

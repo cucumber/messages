@@ -15,7 +15,7 @@ use Cucumber\Messages\DecodingException\SchemaViolationException;
  * Represents the Attachment message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
- * //// Attachments (parse errors, execution errors, screenshots, links...)
+ * Attachments (parse errors, execution errors, screenshots, links...)
  *
  * An attachment represents any kind of data associated with a line in a
  * [Source](#io.cucumber.messages.Source) file. It can be used for:
@@ -91,6 +91,8 @@ final class Attachment implements JsonSerializable
          * This will result in a smaller message stream, which can improve performance and
          * reduce bandwidth of message consumers. It also makes it easier to process and download attachments
          * separately from reports.
+         *
+         * Deprecated; use ExternalAttachment instead.
          */
         public readonly ?string $url = null,
 
@@ -103,6 +105,11 @@ final class Attachment implements JsonSerializable
          * The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
          */
         public readonly ?string $testRunHookStartedId = null,
+
+        /**
+         * When the attachment was created
+         */
+        public readonly ?Timestamp $timestamp = null,
     ) {
     }
 
@@ -123,6 +130,7 @@ final class Attachment implements JsonSerializable
         self::ensureUrl($arr);
         self::ensureTestRunStartedId($arr);
         self::ensureTestRunHookStartedId($arr);
+        self::ensureTimestamp($arr);
 
         return new self(
             (string) $arr['body'],
@@ -135,6 +143,7 @@ final class Attachment implements JsonSerializable
             isset($arr['url']) ? (string) $arr['url'] : null,
             isset($arr['testRunStartedId']) ? (string) $arr['testRunStartedId'] : null,
             isset($arr['testRunHookStartedId']) ? (string) $arr['testRunHookStartedId'] : null,
+            isset($arr['timestamp']) ? Timestamp::fromArray($arr['timestamp']) : null,
         );
     }
 
@@ -244,6 +253,16 @@ final class Attachment implements JsonSerializable
     {
         if (array_key_exists('testRunHookStartedId', $arr) && is_array($arr['testRunHookStartedId'])) {
             throw new SchemaViolationException('Property \'testRunHookStartedId\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{timestamp?: array} $arr
+     */
+    private static function ensureTimestamp(array $arr): void
+    {
+        if (array_key_exists('timestamp', $arr) && !is_array($arr['timestamp'])) {
+            throw new SchemaViolationException('Property \'timestamp\' was not array');
         }
     }
 }

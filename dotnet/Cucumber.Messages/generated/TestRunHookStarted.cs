@@ -28,6 +28,10 @@ public sealed class TestRunHookStarted
      * Identifier for the hook that will be executed
      */
     public string HookId { get; private set; }
+    /**
+     * An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+     */
+    public string WorkerId { get; private set; }
     public Timestamp Timestamp { get; private set; }
 
 
@@ -35,6 +39,7 @@ public sealed class TestRunHookStarted
         string id,
         string testRunStartedId,
         string hookId,
+        string workerId,
         Timestamp timestamp
     ) 
     {
@@ -44,6 +49,7 @@ public sealed class TestRunHookStarted
         this.TestRunStartedId = testRunStartedId;
         RequireNonNull<string>(hookId, "HookId", "TestRunHookStarted.HookId cannot be null");
         this.HookId = hookId;
+        this.WorkerId = workerId;
         RequireNonNull<Timestamp>(timestamp, "Timestamp", "TestRunHookStarted.Timestamp cannot be null");
         this.Timestamp = timestamp;
     }
@@ -57,6 +63,7 @@ public sealed class TestRunHookStarted
             Id.Equals(that.Id) &&         
             TestRunStartedId.Equals(that.TestRunStartedId) &&         
             HookId.Equals(that.HookId) &&         
+            Object.Equals(WorkerId, that.WorkerId) &&         
             Timestamp.Equals(that.Timestamp);        
     }
 
@@ -69,6 +76,8 @@ public sealed class TestRunHookStarted
           hash = hash * 31 + TestRunStartedId.GetHashCode();
         if (HookId != null)
           hash = hash * 31 + HookId.GetHashCode();
+        if (WorkerId != null)
+          hash = hash * 31 + WorkerId.GetHashCode();
         if (Timestamp != null)
           hash = hash * 31 + Timestamp.GetHashCode();
         return hash;
@@ -80,6 +89,7 @@ public sealed class TestRunHookStarted
             "id=" + Id +
             ", testRunStartedId=" + TestRunStartedId +
             ", hookId=" + HookId +
+            ", workerId=" + WorkerId +
             ", timestamp=" + Timestamp +
             '}';
     }

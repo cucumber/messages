@@ -1,26 +1,35 @@
 name: test-dotnet
 
+permissions: {}
+
 on:
   push:
     branches:
       - main
       - renovate/**
+    paths:
+      - dotnet/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
-  workflow_call:
+    paths:
+      - dotnet/**
+      - Makefile
+      - .github/**
 
 jobs:
   test-dotnet:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
         with:
           dotnet-version: '8.0.x'
-
       - name: run tests
-        run: |
-         dotnet test
+        run: dotnet test
         working-directory: dotnet

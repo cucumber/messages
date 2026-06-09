@@ -1,40 +1,61 @@
 name: test-codegen
 
+permissions: {}
+
 on:
   push:
     branches:
       - main
       - renovate/**
+    paths:
+      - jsonschema/**
+      - codegen/**
+      - Makefile
+      - .github/**
   pull_request:
     branches:
       - main
-  workflow_call:
+    paths:
+      - Makefile
+      - .github/**
+      - jsonschema/**
+      - codegen/**
+      - cpp/**
+      - dotnet/**
+      - elixir/**
+      - go/**
+      - java/**
+      - javascript/**
+      - perl/**
+      - php/**
+      - python/**
+      - ruby/**
 
 jobs:
   test-codegen:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: 18
+          node-version: 22
           cache: "npm"
-
-      - name: validate the json schemas
-        run: make validate
+          cache-dependency-path: jsonschema/package-lock.json
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
         with:
-          ruby-version: '3.1'
+          ruby-version: '4.0.5'
 
       - name: generate code for all languages
         run: |
-          make clean-all
-          make generate-all
+          make clean
+          make generate
 
       - name: check the repo is still clean after generation
         run: |

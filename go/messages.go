@@ -11,6 +11,7 @@ type Attachment struct {
 	Url                  string                    `json:"url,omitempty"`
 	TestRunStartedId     string                    `json:"testRunStartedId,omitempty"`
 	TestRunHookStartedId string                    `json:"testRunHookStartedId,omitempty"`
+	Timestamp            *Timestamp                `json:"timestamp,omitempty"`
 }
 
 type Duration struct {
@@ -20,12 +21,14 @@ type Duration struct {
 
 type Envelope struct {
 	Attachment             *Attachment             `json:"attachment,omitempty"`
+	ExternalAttachment     *ExternalAttachment     `json:"externalAttachment,omitempty"`
 	GherkinDocument        *GherkinDocument        `json:"gherkinDocument,omitempty"`
 	Hook                   *Hook                   `json:"hook,omitempty"`
 	Meta                   *Meta                   `json:"meta,omitempty"`
 	ParameterType          *ParameterType          `json:"parameterType,omitempty"`
 	ParseError             *ParseError             `json:"parseError,omitempty"`
 	Pickle                 *Pickle                 `json:"pickle,omitempty"`
+	Suggestion             *Suggestion             `json:"suggestion,omitempty"`
 	Source                 *Source                 `json:"source,omitempty"`
 	StepDefinition         *StepDefinition         `json:"stepDefinition,omitempty"`
 	TestCase               *TestCase               `json:"testCase,omitempty"`
@@ -44,6 +47,15 @@ type Exception struct {
 	Type       string `json:"type"`
 	Message    string `json:"message,omitempty"`
 	StackTrace string `json:"stackTrace,omitempty"`
+}
+
+type ExternalAttachment struct {
+	Url                  string     `json:"url"`
+	MediaType            string     `json:"mediaType"`
+	TestCaseStartedId    string     `json:"testCaseStartedId,omitempty"`
+	TestStepId           string     `json:"testStepId,omitempty"`
+	TestRunHookStartedId string     `json:"testRunHookStartedId,omitempty"`
+	Timestamp            *Timestamp `json:"timestamp,omitempty"`
 }
 
 type GherkinDocument struct {
@@ -216,6 +228,7 @@ type ParseError struct {
 type Pickle struct {
 	Id         string        `json:"id"`
 	Uri        string        `json:"uri"`
+	Location   *Location     `json:"location,omitempty"`
 	Name       string        `json:"name"`
 	Language   string        `json:"language"`
 	Steps      []*PickleStep `json:"steps"`
@@ -294,6 +307,17 @@ type StepDefinitionPattern struct {
 	Type   StepDefinitionPatternType `json:"type"`
 }
 
+type Suggestion struct {
+	Id           string     `json:"id"`
+	PickleStepId string     `json:"pickleStepId"`
+	Snippets     []*Snippet `json:"snippets"`
+}
+
+type Snippet struct {
+	Language string `json:"language"`
+	Code     string `json:"code"`
+}
+
 type TestCase struct {
 	Id               string      `json:"id"`
 	PickleId         string      `json:"pickleId"`
@@ -302,7 +326,7 @@ type TestCase struct {
 }
 
 type Group struct {
-	Children []*Group `json:"children"`
+	Children []*Group `json:"children,omitempty"`
 	Start    int64    `json:"start,omitempty"`
 	Value    string   `json:"value,omitempty"`
 }
@@ -356,6 +380,7 @@ type TestRunHookStarted struct {
 	Id               string     `json:"id"`
 	TestRunStartedId string     `json:"testRunStartedId"`
 	HookId           string     `json:"hookId"`
+	WorkerId         string     `json:"workerId,omitempty"`
 	Timestamp        *Timestamp `json:"timestamp"`
 }
 

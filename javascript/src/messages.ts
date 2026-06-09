@@ -9,6 +9,7 @@ export type Attachment = {
   url?: string
   testRunStartedId?: string
   testRunHookStartedId?: string
+  timestamp?: Timestamp
 }
 
 export type Duration = {
@@ -18,12 +19,14 @@ export type Duration = {
 
 export type Envelope = {
   attachment?: Attachment
+  externalAttachment?: ExternalAttachment
   gherkinDocument?: GherkinDocument
   hook?: Hook
   meta?: Meta
   parameterType?: ParameterType
   parseError?: ParseError
   pickle?: Pickle
+  suggestion?: Suggestion
   source?: Source
   stepDefinition?: StepDefinition
   testCase?: TestCase
@@ -42,6 +45,15 @@ export type Exception = {
   type: string
   message?: string
   stackTrace?: string
+}
+
+export type ExternalAttachment = {
+  url: string
+  mediaType: string
+  testCaseStartedId?: string
+  testStepId?: string
+  testRunHookStartedId?: string
+  timestamp?: Timestamp
 }
 
 export type GherkinDocument = {
@@ -214,6 +226,7 @@ export type ParseError = {
 export type Pickle = {
   id: string
   uri: string
+  location?: Location
   name: string
   language: string
   steps: readonly PickleStep[]
@@ -292,6 +305,17 @@ export type StepDefinitionPattern = {
   type: StepDefinitionPatternType
 }
 
+export type Suggestion = {
+  id: string
+  pickleStepId: string
+  snippets: readonly Snippet[]
+}
+
+export type Snippet = {
+  language: string
+  code: string
+}
+
 export type TestCase = {
   id: string
   pickleId: string
@@ -300,7 +324,7 @@ export type TestCase = {
 }
 
 export type Group = {
-  children: readonly Group[]
+  children?: readonly Group[]
   start?: number
   value?: string
 }
@@ -354,6 +378,7 @@ export type TestRunHookStarted = {
   id: string
   testRunStartedId: string
   hookId: string
+  workerId?: string
   timestamp: Timestamp
 }
 

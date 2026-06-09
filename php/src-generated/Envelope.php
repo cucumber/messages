@@ -15,12 +15,7 @@ use Cucumber\Messages\DecodingException\SchemaViolationException;
  * Represents the Envelope message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
- * When removing a field, replace it with reserved, rather than deleting the line.
- * When adding a field, add it to the end and increment the number by one.
- * See https://developers.google.com/protocol-buffers/docs/proto#updating for details
- *
- * All the messages that are passed between different components/processes are Envelope
- * messages. */
+ */
 final class Envelope implements JsonSerializable
 {
     use JsonEncodingTrait;
@@ -31,12 +26,14 @@ final class Envelope implements JsonSerializable
      */
     public function __construct(
         public readonly ?Attachment $attachment = null,
+        public readonly ?ExternalAttachment $externalAttachment = null,
         public readonly ?GherkinDocument $gherkinDocument = null,
         public readonly ?Hook $hook = null,
         public readonly ?Meta $meta = null,
         public readonly ?ParameterType $parameterType = null,
         public readonly ?ParseError $parseError = null,
         public readonly ?Pickle $pickle = null,
+        public readonly ?Suggestion $suggestion = null,
         public readonly ?Source $source = null,
         public readonly ?StepDefinition $stepDefinition = null,
         public readonly ?TestCase $testCase = null,
@@ -60,12 +57,14 @@ final class Envelope implements JsonSerializable
     public static function fromArray(array $arr): self
     {
         self::ensureAttachment($arr);
+        self::ensureExternalAttachment($arr);
         self::ensureGherkinDocument($arr);
         self::ensureHook($arr);
         self::ensureMeta($arr);
         self::ensureParameterType($arr);
         self::ensureParseError($arr);
         self::ensurePickle($arr);
+        self::ensureSuggestion($arr);
         self::ensureSource($arr);
         self::ensureStepDefinition($arr);
         self::ensureTestCase($arr);
@@ -81,12 +80,14 @@ final class Envelope implements JsonSerializable
 
         return new self(
             isset($arr['attachment']) ? Attachment::fromArray($arr['attachment']) : null,
+            isset($arr['externalAttachment']) ? ExternalAttachment::fromArray($arr['externalAttachment']) : null,
             isset($arr['gherkinDocument']) ? GherkinDocument::fromArray($arr['gherkinDocument']) : null,
             isset($arr['hook']) ? Hook::fromArray($arr['hook']) : null,
             isset($arr['meta']) ? Meta::fromArray($arr['meta']) : null,
             isset($arr['parameterType']) ? ParameterType::fromArray($arr['parameterType']) : null,
             isset($arr['parseError']) ? ParseError::fromArray($arr['parseError']) : null,
             isset($arr['pickle']) ? Pickle::fromArray($arr['pickle']) : null,
+            isset($arr['suggestion']) ? Suggestion::fromArray($arr['suggestion']) : null,
             isset($arr['source']) ? Source::fromArray($arr['source']) : null,
             isset($arr['stepDefinition']) ? StepDefinition::fromArray($arr['stepDefinition']) : null,
             isset($arr['testCase']) ? TestCase::fromArray($arr['testCase']) : null,
@@ -109,6 +110,16 @@ final class Envelope implements JsonSerializable
     {
         if (array_key_exists('attachment', $arr) && !is_array($arr['attachment'])) {
             throw new SchemaViolationException('Property \'attachment\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{externalAttachment?: array} $arr
+     */
+    private static function ensureExternalAttachment(array $arr): void
+    {
+        if (array_key_exists('externalAttachment', $arr) && !is_array($arr['externalAttachment'])) {
+            throw new SchemaViolationException('Property \'externalAttachment\' was not array');
         }
     }
 
@@ -169,6 +180,16 @@ final class Envelope implements JsonSerializable
     {
         if (array_key_exists('pickle', $arr) && !is_array($arr['pickle'])) {
             throw new SchemaViolationException('Property \'pickle\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{suggestion?: array} $arr
+     */
+    private static function ensureSuggestion(array $arr): void
+    {
+        if (array_key_exists('suggestion', $arr) && !is_array($arr['suggestion'])) {
+            throw new SchemaViolationException('Property \'suggestion\' was not array');
         }
     }
 

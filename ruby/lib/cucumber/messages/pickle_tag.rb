@@ -7,8 +7,7 @@ module Cucumber
     # Represents the PickleTag message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  A tag
+    # A tag
     ##
     class PickleTag < Message
       attr_reader :name

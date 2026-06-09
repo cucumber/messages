@@ -53,11 +53,11 @@ module Generator
     end
 
     def scalar?(property)
-      property.key?('type') && language_translations_for_data_types.key?(property['type'])
+      property.key?('type') && select_language_translations_for_data_types(property['type'], property)
     end
 
     def scalar_type_for(property)
-      language_translations_for_data_types[property['type']]
+      select_language_translations_for_data_types(property['type'], property)
     end
 
     private
@@ -68,12 +68,12 @@ module Generator
       super(class_name, property_name, property)
     end
 
-    def language_translations_for_data_types
+    def select_language_translations_for_data_types(type, property)
       {
         'string' => 'string',
         'integer' => 'int',
         'boolean' => 'bool'
-      }
+      }[type]
     end
 
     def non_nullable_non_scalar_constructor(parent_type, property, property_name, schema, source)

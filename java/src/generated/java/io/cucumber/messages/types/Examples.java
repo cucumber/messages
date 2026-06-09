@@ -1,45 +1,46 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Examples message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * Represents the Examples message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Examples {
     private final Location location;
-    private final java.util.List<Tag> tags;
+    private final List<Tag> tags;
     private final String keyword;
     private final String name;
     private final String description;
-    private final TableRow tableHeader;
-    private final java.util.List<TableRow> tableBody;
+    private final @Nullable TableRow tableHeader;
+    private final List<TableRow> tableBody;
     private final String id;
 
     public Examples(
-        Location location,
-        java.util.List<Tag> tags,
-        String keyword,
-        String name,
-        String description,
-        TableRow tableHeader,
-        java.util.List<TableRow> tableBody,
-        String id
+        @Property("location") Location location,
+        @Property("tags") List<Tag> tags,
+        @Property("keyword") String keyword,
+        @Property("name") String name,
+        @Property("description") String description,
+        @Nullable @Property("tableHeader") TableRow tableHeader,
+        @Property("tableBody") List<TableRow> tableBody,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "Examples.location cannot be null");
-        this.tags = unmodifiableList(new ArrayList<>(requireNonNull(tags, "Examples.tags cannot be null")));
+        this.tags = List.copyOf(requireNonNull(tags, "Examples.tags cannot be null"));
         this.keyword = requireNonNull(keyword, "Examples.keyword cannot be null");
         this.name = requireNonNull(name, "Examples.name cannot be null");
         this.description = requireNonNull(description, "Examples.description cannot be null");
         this.tableHeader = tableHeader;
-        this.tableBody = unmodifiableList(new ArrayList<>(requireNonNull(tableBody, "Examples.tableBody cannot be null")));
+        this.tableBody = List.copyOf(requireNonNull(tableBody, "Examples.tableBody cannot be null"));
         this.id = requireNonNull(id, "Examples.id cannot be null");
     }
 
@@ -50,7 +51,7 @@ public final class Examples {
         return location;
     }
 
-    public java.util.List<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
@@ -70,7 +71,7 @@ public final class Examples {
         return Optional.ofNullable(tableHeader);
     }
 
-    public java.util.List<TableRow> getTableBody() {
+    public List<TableRow> getTableBody() {
         return tableBody;
     }
 

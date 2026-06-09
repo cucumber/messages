@@ -1,29 +1,30 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Exception message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
+ * Represents the Exception message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * A simplified representation of an exception
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Exception {
     private final String type;
-    private final String message;
-    private final String stackTrace;
+    private final @Nullable String message;
+    private final @Nullable String stackTrace;
 
     public Exception(
-        String type,
-        String message,
-        String stackTrace
+        @Property("type") String type,
+        @Nullable @Property("message") String message,
+        @Nullable @Property("stackTrace") String stackTrace
     ) {
         this.type = requireNonNull(type, "Exception.type cannot be null");
         this.message = message;
@@ -38,14 +39,14 @@ public final class Exception {
     }
 
     /**
-      * The message of exception that caused this result. E.g. expected: "a" but was: "b"
+     * The message of exception that caused this result. E.g. expected: "a" but was: "b"
      */
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
     }
 
     /**
-      * The stringified stack trace of the exception that caused this result
+     * The stringified stack trace of the exception that caused this result
      */
     public Optional<String> getStackTrace() {
         return Optional.ofNullable(stackTrace);

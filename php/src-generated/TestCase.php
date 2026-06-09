@@ -15,8 +15,6 @@ use Cucumber\Messages\DecodingException\SchemaViolationException;
  * Represents the TestCase message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
- * //// TestCases
- *
  * A `TestCase` contains a sequence of `TestStep`s. */
 final class TestCase implements JsonSerializable
 {

@@ -1,33 +1,37 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the TestRunHookStarted message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * Represents the TestRunHookStarted message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestRunHookStarted {
     private final String id;
     private final String testRunStartedId;
     private final String hookId;
+    private final @Nullable String workerId;
     private final Timestamp timestamp;
 
     public TestRunHookStarted(
-        String id,
-        String testRunStartedId,
-        String hookId,
-        Timestamp timestamp
+        @Property("id") String id,
+        @Property("testRunStartedId") String testRunStartedId,
+        @Property("hookId") String hookId,
+        @Nullable @Property("workerId") String workerId,
+        @Property("timestamp") Timestamp timestamp
     ) {
         this.id = requireNonNull(id, "TestRunHookStarted.id cannot be null");
         this.testRunStartedId = requireNonNull(testRunStartedId, "TestRunHookStarted.testRunStartedId cannot be null");
         this.hookId = requireNonNull(hookId, "TestRunHookStarted.hookId cannot be null");
+        this.workerId = workerId;
         this.timestamp = requireNonNull(timestamp, "TestRunHookStarted.timestamp cannot be null");
     }
 
@@ -52,6 +56,13 @@ public final class TestRunHookStarted {
         return hookId;
     }
 
+    /**
+     * An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+     */
+    public Optional<String> getWorkerId() {
+        return Optional.ofNullable(workerId);
+    }
+
     public Timestamp getTimestamp() {
         return timestamp;
     }
@@ -65,6 +76,7 @@ public final class TestRunHookStarted {
             id.equals(that.id) &&         
             testRunStartedId.equals(that.testRunStartedId) &&         
             hookId.equals(that.hookId) &&         
+            Objects.equals(workerId, that.workerId) &&         
             timestamp.equals(that.timestamp);        
     }
 
@@ -74,6 +86,7 @@ public final class TestRunHookStarted {
             id,
             testRunStartedId,
             hookId,
+            workerId,
             timestamp
         );
     }
@@ -84,6 +97,7 @@ public final class TestRunHookStarted {
             "id=" + id +
             ", testRunStartedId=" + testRunStartedId +
             ", hookId=" + hookId +
+            ", workerId=" + workerId +
             ", timestamp=" + timestamp +
             '}';
     }

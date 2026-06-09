@@ -6,6 +6,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include <cucumber/messages/location.hpp>
 #include <cucumber/messages/pickle_step.hpp>
 #include <cucumber/messages/pickle_tag.hpp>
 
@@ -16,8 +17,6 @@ using json = nlohmann::json;
 //
 // Represents the Pickle message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
-//
-// //// Pickles
 //
 // A `Pickle` represents a template for a `TestCase`. It is typically derived
 // from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
@@ -36,6 +35,7 @@ struct pickle
 {
     std::string id;
     std::string uri;
+    std::optional<cucumber::messages::location> location;
     std::string name;
     std::string language;
     std::vector<cucumber::messages::pickle_step> steps;

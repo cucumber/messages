@@ -7,12 +7,14 @@
 #include <nlohmann/json.hpp>
 
 #include <cucumber/messages/attachment.hpp>
+#include <cucumber/messages/external_attachment.hpp>
 #include <cucumber/messages/gherkin_document.hpp>
 #include <cucumber/messages/hook.hpp>
 #include <cucumber/messages/meta.hpp>
 #include <cucumber/messages/parameter_type.hpp>
 #include <cucumber/messages/parse_error.hpp>
 #include <cucumber/messages/pickle.hpp>
+#include <cucumber/messages/suggestion.hpp>
 #include <cucumber/messages/source.hpp>
 #include <cucumber/messages/step_definition.hpp>
 #include <cucumber/messages/test_case.hpp>
@@ -34,24 +36,19 @@ using json = nlohmann::json;
 // Represents the Envelope message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
 //
-// When removing a field, replace it with reserved, rather than deleting the line.
-// When adding a field, add it to the end and increment the number by one.
-// See https://developers.google.com/protocol-buffers/docs/proto#updating for details
-//
-// All the messages that are passed between different components/processes are Envelope
-// messages.
-//
 // Generated code
 
 struct envelope
 {
     std::optional<cucumber::messages::attachment> attachment;
+    std::optional<cucumber::messages::external_attachment> external_attachment;
     std::optional<cucumber::messages::gherkin_document> gherkin_document;
     std::optional<cucumber::messages::hook> hook;
     std::optional<cucumber::messages::meta> meta;
     std::optional<cucumber::messages::parameter_type> parameter_type;
     std::optional<cucumber::messages::parse_error> parse_error;
     std::optional<cucumber::messages::pickle> pickle;
+    std::optional<cucumber::messages::suggestion> suggestion;
     std::optional<cucumber::messages::source> source;
     std::optional<cucumber::messages::step_definition> step_definition;
     std::optional<cucumber::messages::test_case> test_case;

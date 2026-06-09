@@ -1,25 +1,26 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the ParseError message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * Represents the ParseError message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class ParseError {
     private final SourceReference source;
     private final String message;
 
     public ParseError(
-        SourceReference source,
-        String message
+        @Property("source") SourceReference source,
+        @Property("message") String message
     ) {
         this.source = requireNonNull(source, "ParseError.source cannot be null");
         this.message = requireNonNull(message, "ParseError.message cannot be null");

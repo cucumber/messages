@@ -20,6 +20,7 @@ attachment::to_string() const
     cucumber::messages::to_string(oss, ", url=", url);
     cucumber::messages::to_string(oss, ", test_run_started_id=", test_run_started_id);
     cucumber::messages::to_string(oss, ", test_run_hook_started_id=", test_run_hook_started_id);
+    cucumber::messages::to_string(oss, ", timestamp=", timestamp);
 
     return oss.str();
 }
@@ -37,6 +38,7 @@ attachment::to_json(json& j) const
     cucumber::messages::to_json(j, camelize("url"), url);
     cucumber::messages::to_json(j, camelize("test_run_started_id"), test_run_started_id);
     cucumber::messages::to_json(j, camelize("test_run_hook_started_id"), test_run_hook_started_id);
+    cucumber::messages::to_json(j, camelize("timestamp"), timestamp);
 }
 
 std::string

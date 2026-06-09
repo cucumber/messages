@@ -7,8 +7,7 @@ module Cucumber
     # Represents the Location message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  Points to a line and a column in a text file
+    # Points to a line and a column in a text file
     ##
     class Location < Message
       attr_reader :line

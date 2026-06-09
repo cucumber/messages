@@ -6,8 +6,99 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- [Elixir] Generate messages from json schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
+
+## [32.3.1] - 2026-04-13
+### Fixed
+- [Java] Fix broken Javadoc
+
+## [32.3.0] - 2026-04-13
 ### Added
+- [Java] Annotate constructor arguments with property names ([#399](https://github.com/cucumber/messages/pull/399)
+
+## [32.2.0] - 2026-03-01
+### Added
+- [JavaScript] Add export path for bundled schema ([#383](https://github.com/cucumber/messages/pull/383))
+
+## [32.1.0] - 2026-02-27
+### Added
+- Generated bundled JSON schema ([#382](https://github.com/cucumber/messages/pull/382))
+
+## [32.0.1] - 2026-01-25
+### Fixed
+- Fix field order for ExternalAttachment ([#377](https://github.com/cucumber/messages/pull/377))
+
+## [32.0.0] - 2026-01-21
+### Added
+- Add `ExternalAttachment` for externalised attachments ([#372](https://github.com/cucumber/messages/pull/372))
+
+### Changed
+- Deprecate `Attachment.url` and `Attachment.source` ([#372](https://github.com/cucumber/messages/pull/372))
+- Make StepMatchArgument.Group.children optional ([#370](https://github.com/cucumber/messages/pull/370))
+- [Java] Set release version to 17 ([#352](https://github.com/cucumber/messages/pull/352))
+- [Java] Copy lists efficiently ([#282](https://github.com/cucumber/messages/issues/282), [#352](https://github.com/cucumber/messages/pull/352))
+- [Java] Use Integers in addition to Longs ([#310](https://github.com/cucumber/messages/issues/310), [#352](https://github.com/cucumber/messages/pull/352))
+
+## [31.2.0] - 2026-01-11
+### Added
+- [Java] Add `NdjsonToMessageReader` ([#344](https://github.com/cucumber/messages/pull/367))
+
+### Fixed
+- [Java] Don't flush `MessageToNdjsonWriter` on each write ([#344](https://github.com/cucumber/messages/pull/367))
+
+## [31.1.0] - 2025-12-22
+### Added
+- [Ruby] Add a way to analyse and compare the strength of `TestStepResult` messages (To be used in query) ([#365](https://github.com/cucumber/messages/pull/365))
+
+### Fixed
+- [Ruby] Fix the `TimeConversion` helper file generating a non-conformant `Timestamp` message
+- [Ruby] Improve the `TimeConversion` helper for translating back from a Timestamp by avoiding a rounding error
+
+### Removed
+- [Ruby] Removed the `TimeConversion` helpers that did not serve a purpose in message building
+
+## [31.0.1] - 2025-12-18
+### Fixed
+- Removed circular dependency between messages and compatibility-kit ([#362](https://github.com/cucumber/messages/pull/362))
+
+## [31.0.0] - 2025-11-18
+### Added
+- Add `location` to `Pickle` ([#308](https://github.com/cucumber/messages/pull/308))
+
+## [30.1.0] - 2025-10-08
+### Added
+- [Java] Add OSGi metadata ([#344](https://github.com/cucumber/messages/pull/344))
+
+## [30.0.0] - 2025-10-03
+### Changed
+- [Ruby] Updated minimum Ruby version to 3.2 ([#346](https://github.com/cucumber/messages/pull/346) [luke-hill](https://github.com/luke-hill))
+
+### Removed
+- [Python] Dropped legacy .egg-info metadata distribution artifacts ([#324](https://github.com/cucumber/messages/pull/324))
+
+## [29.0.1] - 2025-09-08
+### Fixed
+- [JavaScript] Include schemas in npm package ([#333](https://github.com/cucumber/messages/pull/333))
+
+## [29.0.0] - 2025-09-08
+### Added
+- Add `workerId` to `TestRunHookStarted` ([#332](https://github.com/cucumber/messages/pull/332))
+- Add Suggestion message ([#329](https://github.com/cucumber/messages/pull/329))
+
+### Changed
+- Update documentation for `TestStepResult.message` ([#315](https://github.com/cucumber/messages/pull/315))
+- Clarify documentation around `TestStep.stepMatchArgumentsLists` ([#330](https://github.com/cucumber/messages/pull/330))
+- [JavaScript] Drop dependency on `uuid` package ([#289](https://github.com/cucumber/messages/pull/289)
+
+## [28.1.0] - 2025-07-21
+### Added
+- [java] Add comparators for comparable objects ([#312](https://github.com/cucumber/messages/pull/312))
+
+## [28.0.0] - 2025-07-07
+### Changed
 - Add `Attachment.testRunHookStartedId` for traceability of attachments to test run hooks ([#301](https://github.com/cucumber/messages/pull/301))
+- Add `Attachment.timestamp` ([#305](https://github.com/cucumber/messages/pull/305))
 
 ### Changed
 - [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287))
@@ -15,6 +106,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - [python] Add a LICENSE file for Python ([#278](https://github.com/cucumber/messages/pull/278))
 - [.NET] Fix NuGet package generation
+
+### Removed
+- [JavaScript] BREAKING CHANGE: Remove Node.js 18 support ([#299](https://github.com/cucumber/messages/pull/299))
 
 ## [27.2.0] - 2025-01-31
 ### Added
@@ -582,7 +676,23 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v27.2.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v32.3.1...HEAD
+[32.3.1]: https://github.com/cucumber/messages/compare/v32.3.0...v32.3.1
+[32.3.0]: https://github.com/cucumber/messages/compare/v32.2.0...v32.3.0
+[32.2.0]: https://github.com/cucumber/messages/compare/v32.1.0...v32.2.0
+[32.1.0]: https://github.com/cucumber/messages/compare/v32.0.1...v32.1.0
+[32.0.1]: https://github.com/cucumber/messages/compare/v32.0.0...v32.0.1
+[32.0.0]: https://github.com/cucumber/messages/compare/v31.2.0...v32.0.0
+[31.2.0]: https://github.com/cucumber/messages/compare/v31.1.0...v31.2.0
+[31.1.0]: https://github.com/cucumber/messages/compare/v31.0.1...v31.1.0
+[31.0.1]: https://github.com/cucumber/messages/compare/v31.0.0...v31.0.1
+[31.0.0]: https://github.com/cucumber/messages/compare/v30.1.0...v31.0.0
+[30.1.0]: https://github.com/cucumber/messages/compare/v30.0.0...v30.1.0
+[30.0.0]: https://github.com/cucumber/messages/compare/v29.0.1...v30.0.0
+[29.0.1]: https://github.com/cucumber/messages/compare/v29.0.0...v29.0.1
+[29.0.0]: https://github.com/cucumber/messages/compare/v28.1.0...v29.0.0
+[28.1.0]: https://github.com/cucumber/messages/compare/v28.0.0...v28.1.0
+[28.0.0]: https://github.com/cucumber/messages/compare/v27.2.0...v28.0.0
 [27.2.0]: https://github.com/cucumber/messages/compare/v27.1.0...v27.2.0
 [27.1.0]: https://github.com/cucumber/messages/compare/v27.0.2...v27.1.0
 [27.0.2]: https://github.com/cucumber/messages/compare/v27.0.1...v27.0.2

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cucumber.io/schema/TestRunHookFinished.schema.json",
+  "additionalProperties": false,
+  "required": [
+    "testRunHookStartedId",
+    "result",
+    "timestamp"
+  ],
+  "properties": {
+    "testRunHookStartedId": {
+      "description": "Identifier for the hook execution that has finished",
+      "type": "string"
+    },
+    "result": {
+      "$ref": "./TestStepResult.schema.json"
+    },
+    "timestamp": {
+      "$ref": "./Timestamp.schema.json"
+    }
+  },
+  "type": "object"
+}

@@ -13,8 +13,6 @@ namespace Io.Cucumber.Messages.Types;
  * Represents the Pickle message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
- * //// Pickles
- *
  * A `Pickle` represents a template for a `TestCase`. It is typically derived
  * from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
  * In the future a `Pickle` may be derived from other formats such as Markdown or
@@ -37,6 +35,10 @@ public sealed class Pickle
      * The uri of the source file
      */
     public string Uri { get; private set; }
+    /**
+     * The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+     */
+    public Location Location { get; private set; }
     /**
      * The name of the pickle
      */
@@ -65,6 +67,7 @@ public sealed class Pickle
     public Pickle(
         string id,
         string uri,
+        Location location,
         string name,
         string language,
         List<PickleStep> steps,
@@ -76,6 +79,7 @@ public sealed class Pickle
         this.Id = id;
         RequireNonNull<string>(uri, "Uri", "Pickle.Uri cannot be null");
         this.Uri = uri;
+        this.Location = location;
         RequireNonNull<string>(name, "Name", "Pickle.Name cannot be null");
         this.Name = name;
         RequireNonNull<string>(language, "Language", "Pickle.Language cannot be null");
@@ -96,6 +100,7 @@ public sealed class Pickle
         return 
             Id.Equals(that.Id) &&         
             Uri.Equals(that.Uri) &&         
+            Object.Equals(Location, that.Location) &&         
             Name.Equals(that.Name) &&         
             Language.Equals(that.Language) &&         
             Steps.Equals(that.Steps) &&         
@@ -110,6 +115,8 @@ public sealed class Pickle
           hash = hash * 31 + Id.GetHashCode();
         if (Uri != null)
           hash = hash * 31 + Uri.GetHashCode();
+        if (Location != null)
+          hash = hash * 31 + Location.GetHashCode();
         if (Name != null)
           hash = hash * 31 + Name.GetHashCode();
         if (Language != null)
@@ -128,6 +135,7 @@ public sealed class Pickle
         return "Pickle{" +
             "id=" + Id +
             ", uri=" + Uri +
+            ", location=" + Location +
             ", name=" + Name +
             ", language=" + Language +
             ", steps=" + Steps +

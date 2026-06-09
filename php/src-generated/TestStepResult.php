@@ -28,7 +28,7 @@ final class TestStepResult implements JsonSerializable
         public readonly Duration $duration = new Duration(),
 
         /**
-         * An arbitrary bit of information that explains this result. This can be a stack trace of anything else.
+         * An arbitrary bit of information that explains this result. If there was an exception, this should include a stringified representation of it including type, message and stack trace (the exact format will vary by platform).
          */
         public readonly ?string $message = null,
         public readonly TestStepResult\Status $status = TestStepResult\Status::UNKNOWN,

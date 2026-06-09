@@ -2,6 +2,7 @@
 #include <cucumber/messages/duration.hpp>
 #include <cucumber/messages/envelope.hpp>
 #include <cucumber/messages/exception.hpp>
+#include <cucumber/messages/external_attachment.hpp>
 #include <cucumber/messages/gherkin_document.hpp>
 #include <cucumber/messages/background.hpp>
 #include <cucumber/messages/comment.hpp>
@@ -39,6 +40,8 @@
 #include <cucumber/messages/java_stack_trace_element.hpp>
 #include <cucumber/messages/step_definition.hpp>
 #include <cucumber/messages/step_definition_pattern.hpp>
+#include <cucumber/messages/suggestion.hpp>
+#include <cucumber/messages/snippet.hpp>
 #include <cucumber/messages/test_case.hpp>
 #include <cucumber/messages/group.hpp>
 #include <cucumber/messages/step_match_argument.hpp>

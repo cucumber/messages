@@ -40,6 +40,11 @@ final class TestRunHookStarted implements JsonSerializable
          * Identifier for the hook that will be executed
          */
         public readonly string $hookId = '',
+
+        /**
+         * An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+         */
+        public readonly ?string $workerId = null,
         public readonly Timestamp $timestamp = new Timestamp(),
     ) {
     }
@@ -54,12 +59,14 @@ final class TestRunHookStarted implements JsonSerializable
         self::ensureId($arr);
         self::ensureTestRunStartedId($arr);
         self::ensureHookId($arr);
+        self::ensureWorkerId($arr);
         self::ensureTimestamp($arr);
 
         return new self(
             (string) $arr['id'],
             (string) $arr['testRunStartedId'],
             (string) $arr['hookId'],
+            isset($arr['workerId']) ? (string) $arr['workerId'] : null,
             Timestamp::fromArray($arr['timestamp']),
         );
     }
@@ -100,6 +107,16 @@ final class TestRunHookStarted implements JsonSerializable
         }
         if (array_key_exists('hookId', $arr) && is_array($arr['hookId'])) {
             throw new SchemaViolationException('Property \'hookId\' was array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{workerId?: string|int|bool} $arr
+     */
+    private static function ensureWorkerId(array $arr): void
+    {
+        if (array_key_exists('workerId', $arr) && is_array($arr['workerId'])) {
+            throw new SchemaViolationException('Property \'workerId\' was array');
         }
     }
 

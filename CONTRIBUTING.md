@@ -17,7 +17,7 @@ If you need some advice, drop into the `#committers` channel on the [Cucumber Di
 The code for various languages is generated from the JSON files. You can clean and regenerate the code with:
 
 ```shell
-make clean-all generate-all
+make clean generate
 ```
 
 Or you can alternative clean and generate code for just one language by cd'ing into that languages directory

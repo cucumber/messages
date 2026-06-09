@@ -42,7 +42,7 @@ all.hpp
     if incs.length.positive?
 -%>
 
-    <%- incs.each do |type| -%>
+    <%- incs.uniq.each do |type| -%>
 #include <cucumber/messages/<%= type %>.hpp>
     <%- end -%>
 <%- end -%>

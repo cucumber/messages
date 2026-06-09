@@ -23,17 +23,24 @@ module Cucumber
       ##
       attr_reader :hook_id
 
+      ##
+      # An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
+      ##
+      attr_reader :worker_id
+
       attr_reader :timestamp
 
       def initialize(
         id: '',
         test_run_started_id: '',
         hook_id: '',
+        worker_id: nil,
         timestamp: Timestamp.new
       )
         @id = id
         @test_run_started_id = test_run_started_id
         @hook_id = hook_id
+        @worker_id = worker_id
         @timestamp = timestamp
         super()
       end
@@ -52,6 +59,7 @@ module Cucumber
           id: hash[:id],
           test_run_started_id: hash[:testRunStartedId],
           hook_id: hash[:hookId],
+          worker_id: hash[:workerId],
           timestamp: Timestamp.from_h(hash[:timestamp])
         )
       end
