@@ -23,42 +23,6 @@ public final class SourceReference {
     private final @Nullable JavaStackTraceElement javaStackTraceElement;
     private final @Nullable Location location;
 
-    public static SourceReference of(String uri) {
-        return new SourceReference(
-            requireNonNull(uri, "SourceReference.uri cannot be null"),
-            null,
-            null,
-            null
-        );
-    }
-
-    public static SourceReference of(JavaMethod javaMethod) {
-        return new SourceReference(
-            null,
-            requireNonNull(javaMethod, "SourceReference.javaMethod cannot be null"),
-            null,
-            null
-        );
-    }
-
-    public static SourceReference of(JavaStackTraceElement javaStackTraceElement) {
-        return new SourceReference(
-            null,
-            null,
-            requireNonNull(javaStackTraceElement, "SourceReference.javaStackTraceElement cannot be null"),
-            null
-        );
-    }
-
-    public static SourceReference of(Location location) {
-        return new SourceReference(
-            null,
-            null,
-            null,
-            requireNonNull(location, "SourceReference.location cannot be null")
-        );
-    }
-
     public SourceReference(
         @Nullable @Property("uri") String uri,
         @Nullable @Property("javaMethod") JavaMethod javaMethod,

@@ -20,20 +20,6 @@ public final class PickleStepArgument {
     private final @Nullable PickleDocString docString;
     private final @Nullable PickleTable dataTable;
 
-    public static PickleStepArgument of(PickleDocString docString) {
-        return new PickleStepArgument(
-            requireNonNull(docString, "PickleStepArgument.docString cannot be null"),
-            null
-        );
-    }
-
-    public static PickleStepArgument of(PickleTable dataTable) {
-        return new PickleStepArgument(
-            null,
-            requireNonNull(dataTable, "PickleStepArgument.dataTable cannot be null")
-        );
-    }
-
     public PickleStepArgument(
         @Nullable @Property("docString") PickleDocString docString,
         @Nullable @Property("dataTable") PickleTable dataTable

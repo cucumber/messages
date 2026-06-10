@@ -3,6 +3,7 @@
 Each message is an instance of [Envelope](#envelope). The `Envelope` message
 will only have one of its fields set, which indicates the payload of the message.
 
+
 ## Attachment
 
 Attachments (parse errors, execution errors, screenshots, links...)
@@ -17,19 +18,19 @@ An attachment represents any kind of data associated with a line in a
 It is not to be used for runtime errors raised/thrown during execution. This
 is captured in `TestResult`.
 
-#### Attachment.body 
+#### Attachment.body
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The body of the attachment. If `contentEncoding` is `IDENTITY`, the attachment
 is simply the string. If it's `BASE64`, the string should be Base64 decoded to
 obtain the attachment.
 
-#### Attachment.contentEncoding 
+#### Attachment.contentEncoding
 
 * Type: [AttachmentContentEncoding](#attachmentcontentencoding) 
-* Required: yes 
+* Required: yes
 
 Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
 
@@ -40,48 +41,48 @@ of the object being attached:
 - byte array: BASE64
 - stream: BASE64
 
-#### Attachment.fileName 
+#### Attachment.fileName
 
 * Type: string 
-* Required: no 
+* Required: no
 
 Suggested file name of the attachment. (Provided by the user as an argument to `attach`)
 
-#### Attachment.mediaType 
+#### Attachment.mediaType
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The media type of the data. This can be any valid
 [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
 as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
 and `text/x.cucumber.stacktrace+plain`
 
-#### Attachment.source 
+#### Attachment.source
 
 * Type: [Source](#source) 
-* Required: no 
+* Required: no
 
 
 
-#### Attachment.testCaseStartedId 
+#### Attachment.testCaseStartedId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The identifier of the test case attempt if the attachment was created during the execution of a test step
 
-#### Attachment.testStepId 
+#### Attachment.testStepId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The identifier of the test step if the attachment was created during the execution of a test step
 
-#### Attachment.url 
+#### Attachment.url
 
 * Type: string 
-* Required: no 
+* Required: no
 
 A URL where the attachment can be retrieved. This field should not be set by Cucumber.
 It should be set by a program that reads a message stream and does the following for
@@ -97,24 +98,24 @@ separately from reports.
 
 Deprecated; use ExternalAttachment instead.
 
-#### Attachment.testRunStartedId 
+#### Attachment.testRunStartedId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 Not used; implementers should instead populate `testRunHookStartedId` if an attachment was created during the execution of a test run hook
 
-#### Attachment.testRunHookStartedId 
+#### Attachment.testRunHookStartedId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
 
-#### Attachment.timestamp 
+#### Attachment.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: no 
+* Required: no
 
 When the attachment was created
 
@@ -123,17 +124,17 @@ When the attachment was created
 The structure is pretty close of the Timestamp one. For clarity, a second type
 of message is used.
 
-#### Duration.seconds 
+#### Duration.seconds
 
 * Type: integer 
-* Required: yes 
+* Required: yes
 
 
 
-#### Duration.nanos 
+#### Duration.nanos
 
 * Type: integer 
-* Required: yes 
+* Required: yes
 
 Non-negative fractions of a second at nanosecond resolution. Negative
 second values with fractions must still have non-negative nanos values
@@ -142,177 +143,51 @@ inclusive.
 
 ## Envelope
 
-
-
-#### Envelope.attachment 
-
-* Type: [Attachment](#attachment) 
-* Required: no 
-
-
-
-#### Envelope.externalAttachment 
-
-* Type: [ExternalAttachment](#externalattachment) 
-* Required: no 
-
-
-
-#### Envelope.gherkinDocument 
-
-* Type: [GherkinDocument](#gherkindocument) 
-* Required: no 
-
-
-
-#### Envelope.hook 
-
-* Type: [Hook](#hook) 
-* Required: no 
-
-
-
-#### Envelope.meta 
-
-* Type: [Meta](#meta) 
-* Required: no 
-
-
-
-#### Envelope.parameterType 
-
-* Type: [ParameterType](#parametertype) 
-* Required: no 
-
-
-
-#### Envelope.parseError 
-
-* Type: [ParseError](#parseerror) 
-* Required: no 
-
-
-
-#### Envelope.pickle 
-
-* Type: [Pickle](#pickle) 
-* Required: no 
-
-
-
-#### Envelope.suggestion 
-
-* Type: [Suggestion](#suggestion) 
-* Required: no 
-
-
-
-#### Envelope.source 
-
-* Type: [Source](#source) 
-* Required: no 
-
-
-
-#### Envelope.stepDefinition 
-
-* Type: [StepDefinition](#stepdefinition) 
-* Required: no 
-
-
-
-#### Envelope.testCase 
-
-* Type: [TestCase](#testcase) 
-* Required: no 
-
-
-
-#### Envelope.testCaseFinished 
-
-* Type: [TestCaseFinished](#testcasefinished) 
-* Required: no 
-
-
-
-#### Envelope.testCaseStarted 
-
-* Type: [TestCaseStarted](#testcasestarted) 
-* Required: no 
-
-
-
-#### Envelope.testRunFinished 
-
-* Type: [TestRunFinished](#testrunfinished) 
-* Required: no 
-
-
-
-#### Envelope.testRunStarted 
-
-* Type: [TestRunStarted](#testrunstarted) 
-* Required: no 
-
-
-
-#### Envelope.testStepFinished 
-
-* Type: [TestStepFinished](#teststepfinished) 
-* Required: no 
-
-
-
-#### Envelope.testStepStarted 
-
-* Type: [TestStepStarted](#teststepstarted) 
-* Required: no 
-
-
-
-#### Envelope.testRunHookStarted 
-
-* Type: [TestRunHookStarted](#testrunhookstarted) 
-* Required: no 
-
-
-
-#### Envelope.testRunHookFinished 
-
-* Type: [TestRunHookFinished](#testrunhookfinished) 
-* Required: no 
-
-
-
-#### Envelope.undefinedParameterType 
-
-* Type: [UndefinedParameterType](#undefinedparametertype) 
-* Required: no 
-
-
+One of:
+* `attachment`: [Attachment](#attachment)
+* `externalAttachment`: [ExternalAttachment](#externalattachment)
+* `gherkinDocument`: [GherkinDocument](#gherkindocument)
+* `hook`: [Hook](#hook)
+* `meta`: [Meta](#meta)
+* `parameterType`: [ParameterType](#parametertype)
+* `parseError`: [ParseError](#parseerror)
+* `pickle`: [Pickle](#pickle)
+* `suggestion`: [Suggestion](#suggestion)
+* `source`: [Source](#source)
+* `stepDefinition`: [StepDefinition](#stepdefinition)
+* `testCase`: [TestCase](#testcase)
+* `testCaseFinished`: [TestCaseFinished](#testcasefinished)
+* `testCaseStarted`: [TestCaseStarted](#testcasestarted)
+* `testRunFinished`: [TestRunFinished](#testrunfinished)
+* `testRunStarted`: [TestRunStarted](#testrunstarted)
+* `testStepFinished`: [TestStepFinished](#teststepfinished)
+* `testStepStarted`: [TestStepStarted](#teststepstarted)
+* `testRunHookStarted`: [TestRunHookStarted](#testrunhookstarted)
+* `testRunHookFinished`: [TestRunHookFinished](#testrunhookfinished)
+* `undefinedParameterType`: [UndefinedParameterType](#undefinedparametertype)
 
 ## Exception
 
 A simplified representation of an exception
 
-#### Exception.type 
+#### Exception.type
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The type of the exception that caused this result. E.g. "Error" or "org.opentest4j.AssertionFailedError"
 
-#### Exception.message 
+#### Exception.message
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The message of exception that caused this result. E.g. expected: "a" but was: "b"
 
-#### Exception.stackTrace 
+#### Exception.stackTrace
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The stringified stack trace of the exception that caused this result
 
@@ -326,49 +201,49 @@ only a URL reference is stored.
 
 A formatter or other consumer of messages may replace an Attachment with an ExternalAttachment if it makes sense to do so.
 
-#### ExternalAttachment.url 
+#### ExternalAttachment.url
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 A URL where the attachment can be retrieved. This could be a file:// URL for
 local filesystem paths, or an http(s):// URL for remote resources.
 
-#### ExternalAttachment.mediaType 
+#### ExternalAttachment.mediaType
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The media type of the data. This can be any valid
 [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
 as well as Cucumber-specific media types such as `text/x.cucumber.gherkin+plain`
 and `text/x.cucumber.stacktrace+plain`
 
-#### ExternalAttachment.testCaseStartedId 
+#### ExternalAttachment.testCaseStartedId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The identifier of the test case attempt if the attachment was created during the execution of a test step
 
-#### ExternalAttachment.testStepId 
+#### ExternalAttachment.testStepId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The identifier of the test step if the attachment was created during the execution of a test step
 
-#### ExternalAttachment.testRunHookStartedId 
+#### ExternalAttachment.testRunHookStartedId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The identifier of the test run hook execution if the attachment was created during the execution of a test run hook
 
-#### ExternalAttachment.timestamp 
+#### ExternalAttachment.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: no 
+* Required: no
 
 When the attachment was created
 
@@ -381,71 +256,69 @@ children for execution - use [Pickle](#io.cucumber.messages.Pickle) instead.
 The only consumers of `GherkinDocument` should only be formatters that produce
 "rich" output, resembling the original Gherkin document.
 
-#### GherkinDocument.uri 
+#### GherkinDocument.uri
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
 of the source, typically a file path relative to the root directory
 
-#### GherkinDocument.feature 
+#### GherkinDocument.feature
 
 * Type: [Feature](#feature) 
-* Required: no 
+* Required: no
 
 
 
-#### GherkinDocument.comments 
+#### GherkinDocument.comments
 
 * Type: [Comment](#comment)[] 
-* Required: yes 
+* Required: yes
 
 All the comments in the Gherkin document
 
 ## Background
 
-
-
-#### Background.location 
+#### Background.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the `Background` keyword
 
-#### Background.keyword 
+#### Background.keyword
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Background.name 
-
-* Type: string 
-* Required: yes 
-
-
-
-#### Background.description 
+#### Background.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Background.steps 
+#### Background.description
+
+* Type: string 
+* Required: yes
+
+
+
+#### Background.steps
 
 * Type: [Step](#step)[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### Background.id 
+#### Background.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
@@ -453,180 +326,172 @@ The location of the `Background` keyword
 
 A comment in a Gherkin document
 
-#### Comment.location 
+#### Comment.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the comment
 
-#### Comment.text 
+#### Comment.text
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The text of the comment
 
 ## DataTable
 
-
-
-#### DataTable.location 
+#### DataTable.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 
 
-#### DataTable.rows 
+#### DataTable.rows
 
 * Type: [TableRow](#tablerow)[] 
-* Required: yes 
+* Required: yes
 
 
 
 ## DocString
 
-
-
-#### DocString.location 
+#### DocString.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 
 
-#### DocString.mediaType 
-
-* Type: string 
-* Required: no 
-
-
-
-#### DocString.content 
+#### DocString.mediaType
 
 * Type: string 
-* Required: yes 
+* Required: no
 
 
 
-#### DocString.delimiter 
+#### DocString.content
 
 * Type: string 
-* Required: yes 
+* Required: yes
+
+
+
+#### DocString.delimiter
+
+* Type: string 
+* Required: yes
 
 
 
 ## Examples
 
-
-
-#### Examples.location 
+#### Examples.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the `Examples` keyword
 
-#### Examples.tags 
+#### Examples.tags
 
 * Type: [Tag](#tag)[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### Examples.keyword 
-
-* Type: string 
-* Required: yes 
-
-
-
-#### Examples.name 
+#### Examples.keyword
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Examples.description 
+#### Examples.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Examples.tableHeader 
+#### Examples.description
+
+* Type: string 
+* Required: yes
+
+
+
+#### Examples.tableHeader
 
 * Type: [TableRow](#tablerow) 
-* Required: no 
+* Required: no
 
 
 
-#### Examples.tableBody 
+#### Examples.tableBody
 
 * Type: [TableRow](#tablerow)[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### Examples.id 
+#### Examples.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
 ## Feature
 
-
-
-#### Feature.location 
+#### Feature.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the `Feature` keyword
 
-#### Feature.tags 
+#### Feature.tags
 
 * Type: [Tag](#tag)[] 
-* Required: yes 
+* Required: yes
 
 All the tags placed above the `Feature` keyword
 
-#### Feature.language 
+#### Feature.language
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code of the Gherkin document
 
-#### Feature.keyword 
+#### Feature.keyword
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The text of the `Feature` keyword (in the language specified by `language`)
 
-#### Feature.name 
+#### Feature.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The name of the feature (the text following the `keyword`)
 
-#### Feature.description 
+#### Feature.description
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The line(s) underneath the line with the `keyword` that are used as description
 
-#### Feature.children 
+#### Feature.children
 
 * Type: [FeatureChild](#featurechild)[] 
-* Required: yes 
+* Required: yes
 
 Zero or more children
 
@@ -634,77 +499,75 @@ Zero or more children
 
 A child node of a `Feature` node
 
-#### FeatureChild.rule 
+#### FeatureChild.rule
 
 * Type: [Rule](#rule) 
-* Required: no 
+* Required: no
 
 
 
-#### FeatureChild.background 
+#### FeatureChild.background
 
 * Type: [Background](#background) 
-* Required: no 
+* Required: no
 
 
 
-#### FeatureChild.scenario 
+#### FeatureChild.scenario
 
 * Type: [Scenario](#scenario) 
-* Required: no 
+* Required: no
 
 
 
 ## Rule
 
-
-
-#### Rule.location 
+#### Rule.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the `Rule` keyword
 
-#### Rule.tags 
+#### Rule.tags
 
 * Type: [Tag](#tag)[] 
-* Required: yes 
+* Required: yes
 
 All the tags placed above the `Rule` keyword
 
-#### Rule.keyword 
+#### Rule.keyword
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Rule.name 
-
-* Type: string 
-* Required: yes 
-
-
-
-#### Rule.description 
+#### Rule.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Rule.children 
+#### Rule.description
+
+* Type: string 
+* Required: yes
+
+
+
+#### Rule.children
 
 * Type: [RuleChild](#rulechild)[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### Rule.id 
+#### Rule.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
@@ -712,77 +575,75 @@ All the tags placed above the `Rule` keyword
 
 A child node of a `Rule` node
 
-#### RuleChild.background 
+#### RuleChild.background
 
 * Type: [Background](#background) 
-* Required: no 
+* Required: no
 
 
 
-#### RuleChild.scenario 
+#### RuleChild.scenario
 
 * Type: [Scenario](#scenario) 
-* Required: no 
+* Required: no
 
 
 
 ## Scenario
 
-
-
-#### Scenario.location 
+#### Scenario.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the `Scenario` keyword
 
-#### Scenario.tags 
+#### Scenario.tags
 
 * Type: [Tag](#tag)[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### Scenario.keyword 
-
-* Type: string 
-* Required: yes 
-
-
-
-#### Scenario.name 
+#### Scenario.keyword
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Scenario.description 
+#### Scenario.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Scenario.steps 
+#### Scenario.description
+
+* Type: string 
+* Required: yes
+
+
+
+#### Scenario.steps
 
 * Type: [Step](#step)[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### Scenario.examples 
+#### Scenario.examples
 
 * Type: [Examples](#examples)[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### Scenario.id 
+#### Scenario.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
@@ -790,52 +651,52 @@ The location of the `Scenario` keyword
 
 A step
 
-#### Step.location 
+#### Step.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the steps' `keyword`
 
-#### Step.keyword 
+#### Step.keyword
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The actual keyword as it appeared in the source.
 
-#### Step.keywordType 
+#### Step.keywordType
 
 * Type: [StepKeywordType](#stepkeywordtype) 
-* Required: no 
+* Required: no
 
 The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
 
-#### Step.text 
+#### Step.text
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Step.docString 
+#### Step.docString
 
 * Type: [DocString](#docstring) 
-* Required: no 
+* Required: no
 
 
 
-#### Step.dataTable 
+#### Step.dataTable
 
 * Type: [DataTable](#datatable) 
-* Required: no 
+* Required: no
 
 
 
-#### Step.id 
+#### Step.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Unique ID to be able to reference the Step from PickleStep
 
@@ -843,17 +704,17 @@ Unique ID to be able to reference the Step from PickleStep
 
 A cell in a `TableRow`
 
-#### TableCell.location 
+#### TableCell.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the cell
 
-#### TableCell.value 
+#### TableCell.value
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The value of the cell
 
@@ -861,24 +722,24 @@ The value of the cell
 
 A row in a table
 
-#### TableRow.location 
+#### TableRow.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 The location of the first cell in the row
 
-#### TableRow.cells 
+#### TableRow.cells
 
 * Type: [TableCell](#tablecell)[] 
-* Required: yes 
+* Required: yes
 
 Cells in the row
 
-#### TableRow.id 
+#### TableRow.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
@@ -886,63 +747,61 @@ Cells in the row
 
 A tag
 
-#### Tag.location 
+#### Tag.location
 
 * Type: [Location](#location) 
-* Required: yes 
+* Required: yes
 
 Location of the tag
 
-#### Tag.name 
+#### Tag.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The name of the tag (including the leading `@`)
 
-#### Tag.id 
+#### Tag.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Unique ID to be able to reference the Tag from PickleTag
 
 ## Hook
 
-
-
-#### Hook.id 
+#### Hook.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Hook.name 
+#### Hook.name
 
 * Type: string 
-* Required: no 
+* Required: no
 
 
 
-#### Hook.sourceReference 
+#### Hook.sourceReference
 
 * Type: [SourceReference](#sourcereference) 
-* Required: yes 
+* Required: yes
 
 
 
-#### Hook.tagExpression 
+#### Hook.tagExpression
 
 * Type: string 
-* Required: no 
+* Required: no
 
 
 
-#### Hook.type 
+#### Hook.type
 
 * Type: [HookType](#hooktype) 
-* Required: no 
+* Required: no
 
 
 
@@ -950,17 +809,17 @@ Unique ID to be able to reference the Tag from PickleTag
 
 Points to a line and a column in a text file
 
-#### Location.line 
+#### Location.line
 
 * Type: integer 
-* Required: yes 
+* Required: yes
 
 
 
-#### Location.column 
+#### Location.column
 
 * Type: integer 
-* Required: no 
+* Required: no
 
 
 
@@ -969,45 +828,45 @@ Points to a line and a column in a text file
 This message contains meta information about the environment. Consumers can use
 this for various purposes.
 
-#### Meta.protocolVersion 
+#### Meta.protocolVersion
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The [SEMVER](https://semver.org/) version number of the protocol
 
-#### Meta.implementation 
+#### Meta.implementation
 
 * Type: [Product](#product) 
-* Required: yes 
+* Required: yes
 
 SpecFlow, Cucumber-JVM, Cucumber.js, Cucumber-Ruby, Behat etc.
 
-#### Meta.runtime 
+#### Meta.runtime
 
 * Type: [Product](#product) 
-* Required: yes 
+* Required: yes
 
 Java, Ruby, Node.js etc
 
-#### Meta.os 
+#### Meta.os
 
 * Type: [Product](#product) 
-* Required: yes 
+* Required: yes
 
 Windows, Linux, MacOS etc
 
-#### Meta.cpu 
+#### Meta.cpu
 
 * Type: [Product](#product) 
-* Required: yes 
+* Required: yes
 
 386, arm, amd64 etc
 
-#### Meta.ci 
+#### Meta.ci
 
 * Type: [Ci](#ci) 
-* Required: no 
+* Required: no
 
 
 
@@ -1015,31 +874,31 @@ Windows, Linux, MacOS etc
 
 CI environment
 
-#### Ci.name 
+#### Ci.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Name of the CI product, e.g. "Jenkins", "CircleCI" etc.
 
-#### Ci.url 
+#### Ci.url
 
 * Type: string 
-* Required: no 
+* Required: no
 
 Link to the build
 
-#### Ci.buildNumber 
+#### Ci.buildNumber
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The build number. Some CI servers use non-numeric build numbers, which is why this is a string
 
-#### Ci.git 
+#### Ci.git
 
 * Type: [Git](#git) 
-* Required: no 
+* Required: no
 
 
 
@@ -1048,31 +907,31 @@ The build number. Some CI servers use non-numeric build numbers, which is why th
 Information about Git, provided by the Build/CI server as environment
 variables.
 
-#### Git.remote 
+#### Git.remote
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### Git.revision 
-
-* Type: string 
-* Required: yes 
-
-
-
-#### Git.branch 
+#### Git.revision
 
 * Type: string 
-* Required: no 
+* Required: yes
 
 
 
-#### Git.tag 
+#### Git.branch
 
 * Type: string 
-* Required: no 
+* Required: no
+
+
+
+#### Git.tag
+
+* Type: string 
+* Required: no
 
 
 
@@ -1080,81 +939,77 @@ variables.
 
 Used to describe various properties of Meta
 
-#### Product.name 
+#### Product.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The product name
 
-#### Product.version 
+#### Product.version
 
 * Type: string 
-* Required: no 
+* Required: no
 
 The product version
 
 ## ParameterType
 
-
-
-#### ParameterType.name 
+#### ParameterType.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The name is unique, so we don't need an id.
 
-#### ParameterType.regularExpressions 
+#### ParameterType.regularExpressions
 
 * Type: string[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### ParameterType.preferForRegularExpressionMatch 
-
-* Type: boolean 
-* Required: yes 
-
-
-
-#### ParameterType.useForSnippets 
+#### ParameterType.preferForRegularExpressionMatch
 
 * Type: boolean 
-* Required: yes 
+* Required: yes
 
 
 
-#### ParameterType.id 
+#### ParameterType.useForSnippets
+
+* Type: boolean 
+* Required: yes
+
+
+
+#### ParameterType.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### ParameterType.sourceReference 
+#### ParameterType.sourceReference
 
 * Type: [SourceReference](#sourcereference) 
-* Required: no 
+* Required: no
 
 
 
 ## ParseError
 
-
-
-#### ParseError.source 
+#### ParseError.source
 
 * Type: [SourceReference](#sourcereference) 
-* Required: yes 
+* Required: yes
 
 
 
-#### ParseError.message 
+#### ParseError.message
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
@@ -1171,60 +1026,60 @@ with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinD
 
 Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
 
-#### Pickle.id 
+#### Pickle.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 A unique id for the pickle
 
-#### Pickle.uri 
+#### Pickle.uri
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The uri of the source file
 
-#### Pickle.location 
+#### Pickle.location
 
 * Type: [Location](#location) 
-* Required: no 
+* Required: no
 
 The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
 
-#### Pickle.name 
+#### Pickle.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The name of the pickle
 
-#### Pickle.language 
+#### Pickle.language
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The language of the pickle
 
-#### Pickle.steps 
+#### Pickle.steps
 
 * Type: [PickleStep](#picklestep)[] 
-* Required: yes 
+* Required: yes
 
 One or more steps
 
-#### Pickle.tags 
+#### Pickle.tags
 
 * Type: [PickleTag](#pickletag)[] 
-* Required: yes 
+* Required: yes
 
 One or more tags. If this pickle is constructed from a Gherkin document,
 It includes inherited tags from the `Feature` as well.
 
-#### Pickle.astNodeIds 
+#### Pickle.astNodeIds
 
 * Type: string[] 
-* Required: yes 
+* Required: yes
 
 Points to the AST node locations of the pickle. The last one represents the unique
 id of the pickle. A pickle constructed from `Examples` will have the first
@@ -1232,19 +1087,17 @@ id originating from the `Scenario` AST node, and the second from the `TableRow` 
 
 ## PickleDocString
 
-
-
-#### PickleDocString.mediaType 
+#### PickleDocString.mediaType
 
 * Type: string 
-* Required: no 
+* Required: no
 
 
 
-#### PickleDocString.content 
+#### PickleDocString.content
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
@@ -1252,41 +1105,41 @@ id originating from the `Scenario` AST node, and the second from the `TableRow` 
 
 An executable step
 
-#### PickleStep.argument 
+#### PickleStep.argument
 
 * Type: [PickleStepArgument](#picklestepargument) 
-* Required: no 
+* Required: no
 
 
 
-#### PickleStep.astNodeIds 
+#### PickleStep.astNodeIds
 
 * Type: string[] 
-* Required: yes 
+* Required: yes
 
 References the IDs of the source of the step. For Gherkin, this can be
 the ID of a Step, and possibly also the ID of a TableRow
 
-#### PickleStep.id 
+#### PickleStep.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 A unique ID for the PickleStep
 
-#### PickleStep.type 
+#### PickleStep.type
 
 * Type: [PickleStepType](#picklesteptype) 
-* Required: no 
+* Required: no
 
 The context in which the step was specified: context (Given), action (When) or outcome (Then).
 
 Note that the keywords `But` and `And` inherit their meaning from prior steps and the `*` 'keyword' doesn't have specific meaning (hence Unknown)
 
-#### PickleStep.text 
+#### PickleStep.text
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
@@ -1294,50 +1147,44 @@ Note that the keywords `But` and `And` inherit their meaning from prior steps an
 
 An optional argument
 
-#### PickleStepArgument.docString 
+#### PickleStepArgument.docString
 
 * Type: [PickleDocString](#pickledocstring) 
-* Required: no 
+* Required: no
 
 
 
-#### PickleStepArgument.dataTable 
+#### PickleStepArgument.dataTable
 
 * Type: [PickleTable](#pickletable) 
-* Required: no 
+* Required: no
 
 
 
 ## PickleTable
 
-
-
-#### PickleTable.rows 
+#### PickleTable.rows
 
 * Type: [PickleTableRow](#pickletablerow)[] 
-* Required: yes 
+* Required: yes
 
 
 
 ## PickleTableCell
 
-
-
-#### PickleTableCell.value 
+#### PickleTableCell.value
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
 ## PickleTableRow
 
-
-
-#### PickleTableRow.cells 
+#### PickleTableRow.cells
 
 * Type: [PickleTableCell](#pickletablecell)[] 
-* Required: yes 
+* Required: yes
 
 
 
@@ -1345,17 +1192,17 @@ An optional argument
 
 A tag
 
-#### PickleTag.name 
+#### PickleTag.name
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### PickleTag.astNodeId 
+#### PickleTag.astNodeId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Points to the AST node this was created from
 
@@ -1363,25 +1210,25 @@ Points to the AST node this was created from
 
 A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
 
-#### Source.uri 
+#### Source.uri
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
 of the source, typically a file path relative to the root directory
 
-#### Source.data 
+#### Source.data
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The contents of the file
 
-#### Source.mediaType 
+#### Source.mediaType
 
 * Type: [SourceMediaType](#sourcemediatype) 
-* Required: yes 
+* Required: yes
 
 The media type of the file. Can be used to specify custom types, such as
 text/x.cucumber.gherkin+plain
@@ -1391,124 +1238,116 @@ text/x.cucumber.gherkin+plain
 Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
 [Location](#io.cucumber.messages.Location) within that file.
 
-#### SourceReference.uri 
+#### SourceReference.uri
 
 * Type: string 
-* Required: no 
+* Required: no
 
 
 
-#### SourceReference.javaMethod 
+#### SourceReference.javaMethod
 
 * Type: [JavaMethod](#javamethod) 
-* Required: no 
+* Required: no
 
 
 
-#### SourceReference.javaStackTraceElement 
+#### SourceReference.javaStackTraceElement
 
 * Type: [JavaStackTraceElement](#javastacktraceelement) 
-* Required: no 
+* Required: no
 
 
 
-#### SourceReference.location 
+#### SourceReference.location
 
 * Type: [Location](#location) 
-* Required: no 
+* Required: no
 
 
 
 ## JavaMethod
 
-
-
-#### JavaMethod.className 
+#### JavaMethod.className
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### JavaMethod.methodName 
+#### JavaMethod.methodName
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### JavaMethod.methodParameterTypes 
+#### JavaMethod.methodParameterTypes
 
 * Type: string[] 
-* Required: yes 
+* Required: yes
 
 
 
 ## JavaStackTraceElement
 
-
-
-#### JavaStackTraceElement.className 
+#### JavaStackTraceElement.className
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### JavaStackTraceElement.fileName 
-
-* Type: string 
-* Required: yes 
-
-
-
-#### JavaStackTraceElement.methodName 
+#### JavaStackTraceElement.fileName
 
 * Type: string 
-* Required: yes 
+* Required: yes
+
+
+
+#### JavaStackTraceElement.methodName
+
+* Type: string 
+* Required: yes
 
 
 
 ## StepDefinition
 
-
-
-#### StepDefinition.id 
+#### StepDefinition.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### StepDefinition.pattern 
+#### StepDefinition.pattern
 
 * Type: [StepDefinitionPattern](#stepdefinitionpattern) 
-* Required: yes 
+* Required: yes
 
 
 
-#### StepDefinition.sourceReference 
+#### StepDefinition.sourceReference
 
 * Type: [SourceReference](#sourcereference) 
-* Required: yes 
+* Required: yes
 
 
 
 ## StepDefinitionPattern
 
-
-
-#### StepDefinitionPattern.source 
+#### StepDefinitionPattern.source
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### StepDefinitionPattern.type 
+#### StepDefinitionPattern.type
 
 * Type: [StepDefinitionPatternType](#stepdefinitionpatterntype) 
-* Required: yes 
+* Required: yes
 
 
 
@@ -1516,45 +1355,43 @@ Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
 
 A suggested fragment of code to implement an undefined step
 
-#### Suggestion.id 
+#### Suggestion.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 A unique id for this suggestion
 
-#### Suggestion.pickleStepId 
+#### Suggestion.pickleStepId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The ID of the `PickleStep` this `Suggestion` was created for.
 
-#### Suggestion.snippets 
+#### Suggestion.snippets
 
 * Type: [Snippet](#snippet)[] 
-* Required: yes 
+* Required: yes
 
 A collection of code snippets that could implement the undefined step
 
 ## Snippet
 
-
-
-#### Snippet.language 
+#### Snippet.language
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The programming language of the code.
 
 This must be formatted as an all lowercase identifier such that syntax highlighters like [Prism](https://prismjs.com/#supported-languages) or [Highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md) can recognize it.
 For example: `cpp`, `cs`, `go`, `java`, `javascript`, `php`, `python`, `ruby`, `scala`.
 
-#### Snippet.code 
+#### Snippet.code
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 A snippet of code
 
@@ -1562,57 +1399,55 @@ A snippet of code
 
 A `TestCase` contains a sequence of `TestStep`s.
 
-#### TestCase.id 
+#### TestCase.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestCase.pickleId 
+#### TestCase.pickleId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 The ID of the `Pickle` this `TestCase` is derived from.
 
-#### TestCase.testSteps 
+#### TestCase.testSteps
 
 * Type: [TestStep](#teststep)[] 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestCase.testRunStartedId 
+#### TestCase.testRunStartedId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 Identifier for the test run that this test case belongs to
 
 ## Group
 
-
-
-#### Group.children 
+#### Group.children
 
 * Type: [Group](#group)[] 
-* Required: no 
+* Required: no
 
 The nested capture groups of an argument.
 Absent if the group has no nested capture groups.
 
-#### Group.start 
+#### Group.start
 
 * Type: integer 
-* Required: no 
+* Required: no
 
 
 
-#### Group.value 
+#### Group.value
 
 * Type: string 
-* Required: no 
+* Required: no
 
 
 
@@ -1625,29 +1460,27 @@ This is used for the following purposes:
 
 This message closely matches the `Argument` class in the `cucumber-expressions` library.
 
-#### StepMatchArgument.group 
+#### StepMatchArgument.group
 
 * Type: [Group](#group) 
-* Required: yes 
+* Required: yes
 
 Represents the outermost capture group of an argument. This message closely matches the
 `Group` class in the `cucumber-expressions` library.
 
-#### StepMatchArgument.parameterTypeName 
+#### StepMatchArgument.parameterTypeName
 
 * Type: string 
-* Required: no 
+* Required: no
 
 
 
 ## StepMatchArgumentsList
 
-
-
-#### StepMatchArgumentsList.stepMatchArguments 
+#### StepMatchArgumentsList.stepMatchArguments
 
 * Type: [StepMatchArgument](#stepmatchargument)[] 
-* Required: yes 
+* Required: yes
 
 
 
@@ -1659,40 +1492,40 @@ When derived from a PickleStep:
  * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
  * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
 
-#### TestStep.hookId 
+#### TestStep.hookId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 Pointer to the `Hook` (if derived from a Hook)
 
-#### TestStep.id 
+#### TestStep.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestStep.pickleStepId 
+#### TestStep.pickleStepId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 Pointer to the `PickleStep` (if derived from a `PickleStep`)
 
-#### TestStep.stepDefinitionIds 
+#### TestStep.stepDefinitionIds
 
 * Type: string[] 
-* Required: no 
+* Required: no
 
 Pointer to all the matching `StepDefinition`s (if derived from a `PickleStep`).
 
 Each element represents a matching step definition.
 
-#### TestStep.stepMatchArgumentsLists 
+#### TestStep.stepMatchArgumentsLists
 
 * Type: [StepMatchArgumentsList](#stepmatchargumentslist)[] 
-* Required: no 
+* Required: no
 
 A list of list of StepMatchArgument (if derived from a `PickleStep`).
 
@@ -1700,297 +1533,277 @@ Each element represents the arguments for a matching step definition.
 
 ## TestCaseFinished
 
-
-
-#### TestCaseFinished.testCaseStartedId 
+#### TestCaseFinished.testCaseStartedId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestCaseFinished.timestamp 
+#### TestCaseFinished.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestCaseFinished.willBeRetried 
+#### TestCaseFinished.willBeRetried
 
 * Type: boolean 
-* Required: yes 
+* Required: yes
 
 
 
 ## TestCaseStarted
 
-
-
-#### TestCaseStarted.attempt 
+#### TestCaseStarted.attempt
 
 * Type: integer 
-* Required: yes 
+* Required: yes
 
 The first attempt should have value 0, and for each retry the value
 should increase by 1.
 
-#### TestCaseStarted.id 
+#### TestCaseStarted.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Because a `TestCase` can be run multiple times (in case of a retry),
 we use this field to group messages relating to the same attempt.
 
-#### TestCaseStarted.testCaseId 
+#### TestCaseStarted.testCaseId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestCaseStarted.workerId 
+#### TestCaseStarted.workerId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 An identifier for the worker process running this test case, if test cases are being run in parallel. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
 
-#### TestCaseStarted.timestamp 
+#### TestCaseStarted.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: yes 
+* Required: yes
 
 
 
 ## TestRunFinished
 
-
-
-#### TestRunFinished.message 
+#### TestRunFinished.message
 
 * Type: string 
-* Required: no 
+* Required: no
 
 An informative message about the test run. Typically additional information about failure, but not necessarily.
 
-#### TestRunFinished.success 
+#### TestRunFinished.success
 
 * Type: boolean 
-* Required: yes 
+* Required: yes
 
 A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
 
-#### TestRunFinished.timestamp 
+#### TestRunFinished.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: yes 
+* Required: yes
 
 Timestamp when the TestRun is finished
 
-#### TestRunFinished.exception 
+#### TestRunFinished.exception
 
 * Type: [Exception](#exception) 
-* Required: no 
+* Required: no
 
 Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
 
-#### TestRunFinished.testRunStartedId 
+#### TestRunFinished.testRunStartedId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 
 
 ## TestRunHookFinished
 
-
-
-#### TestRunHookFinished.testRunHookStartedId 
+#### TestRunHookFinished.testRunHookStartedId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Identifier for the hook execution that has finished
 
-#### TestRunHookFinished.result 
+#### TestRunHookFinished.result
 
 * Type: [TestStepResult](#teststepresult) 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestRunHookFinished.timestamp 
+#### TestRunHookFinished.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: yes 
+* Required: yes
 
 
 
 ## TestRunHookStarted
 
-
-
-#### TestRunHookStarted.id 
+#### TestRunHookStarted.id
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Unique identifier for this hook execution
 
-#### TestRunHookStarted.testRunStartedId 
+#### TestRunHookStarted.testRunStartedId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Identifier for the test run that this hook execution belongs to
 
-#### TestRunHookStarted.hookId 
+#### TestRunHookStarted.hookId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 Identifier for the hook that will be executed
 
-#### TestRunHookStarted.workerId 
+#### TestRunHookStarted.workerId
 
 * Type: string 
-* Required: no 
+* Required: no
 
 An identifier for the worker process running this hook, if parallel workers are in use. The identifier will be unique per worker, but no particular format is defined - it could be an index, uuid, machine name etc - and as such should be assumed that it's not human readable.
 
-#### TestRunHookStarted.timestamp 
+#### TestRunHookStarted.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: yes 
+* Required: yes
 
 
 
 ## TestRunStarted
 
-
-
-#### TestRunStarted.timestamp 
+#### TestRunStarted.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestRunStarted.id 
+#### TestRunStarted.id
 
 * Type: string 
-* Required: no 
+* Required: no
 
 
 
 ## TestStepFinished
 
-
-
-#### TestStepFinished.testCaseStartedId 
+#### TestStepFinished.testCaseStartedId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestStepFinished.testStepId 
+#### TestStepFinished.testStepId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestStepFinished.testStepResult 
+#### TestStepFinished.testStepResult
 
 * Type: [TestStepResult](#teststepresult) 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestStepFinished.timestamp 
+#### TestStepFinished.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: yes 
+* Required: yes
 
 
 
 ## TestStepResult
 
-
-
-#### TestStepResult.duration 
+#### TestStepResult.duration
 
 * Type: [Duration](#duration) 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestStepResult.message 
+#### TestStepResult.message
 
 * Type: string 
-* Required: no 
+* Required: no
 
 An arbitrary bit of information that explains this result. If there was an exception, this should include a stringified representation of it including type, message and stack trace (the exact format will vary by platform).
 
-#### TestStepResult.status 
+#### TestStepResult.status
 
 * Type: [TestStepResultStatus](#teststepresultstatus) 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestStepResult.exception 
+#### TestStepResult.exception
 
 * Type: [Exception](#exception) 
-* Required: no 
+* Required: no
 
 Exception thrown while executing this step, if any.
 
 ## TestStepStarted
 
-
-
-#### TestStepStarted.testCaseStartedId 
+#### TestStepStarted.testCaseStartedId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestStepStarted.testStepId 
+#### TestStepStarted.testStepId
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### TestStepStarted.timestamp 
+#### TestStepStarted.timestamp
 
 * Type: [Timestamp](#timestamp) 
-* Required: yes 
+* Required: yes
 
 
 
 ## Timestamp
 
-
-
-#### Timestamp.seconds 
+#### Timestamp.seconds
 
 * Type: integer 
-* Required: yes 
+* Required: yes
 
 Represents seconds of UTC time since Unix epoch
 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
 9999-12-31T23:59:59Z inclusive.
 
-#### Timestamp.nanos 
+#### Timestamp.nanos
 
 * Type: integer 
-* Required: yes 
+* Required: yes
 
 Non-negative fractions of a second at nanosecond resolution. Negative
 second values with fractions must still have non-negative nanos values
@@ -1999,20 +1812,17 @@ inclusive.
 
 ## UndefinedParameterType
 
-
-
-#### UndefinedParameterType.expression 
+#### UndefinedParameterType.expression
 
 * Type: string 
-* Required: yes 
+* Required: yes
 
 
 
-#### UndefinedParameterType.name 
+#### UndefinedParameterType.name
 
 * Type: string 
-* Required: yes 
-
+* Required: yes
 
 
 ## AttachmentContentEncoding

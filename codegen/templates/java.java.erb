@@ -1,4 +1,5 @@
 <%- @schemas.each do |key, schema| -%>
+<%- unless schema['oneOf'] -%>
 <%= class_name(key) %>.java
 package io.cucumber.messages.types;
 
@@ -25,26 +26,6 @@ public final class <%= class_name(key) %> {
       nullable = !(schema['required'] || []).index(property_name)
   -%>
     private final <% if nullable -%>@Nullable <%- end -%><%= type_for(class_name(key), property_name, property) -%> <%= property_name %>;
-  <%- end -%>
-  <%- if (schema['required'] || []).empty? -%>
-  <%- schema['properties'].each do |(property_name, property)| -%>
-
-    public static <%= class_name(key) %> of(<%= type_for(class_name(key), property_name, property) -%> <%= property_name %>) {
-        return new <%= class_name(key) %>(
-        <%- schema['properties'].each_with_index do |(property_name_2, _property_2), index| -%>
-          <%- if property_name_2 == property_name -%>
-            <%- if property['items'] -%>
-            List.copyOf(requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null"))<%= index < schema['properties'].length - 1 ? ',' : '' %>
-            <%- else -%>
-            requireNonNull(<%= property_name %>, "<%= class_name(key) %>.<%= property_name %> cannot be null")<%= index < schema['properties'].length - 1 ? ',' : '' %>
-            <%- end -%>
-          <%- else -%>
-            null<%= index < schema['properties'].length - 1 ? ',' : '' %>
-          <%- end -%>
-        <%- end -%>
-        );
-    }
-  <%- end -%>
   <%- end -%>
 
     public <%= class_name(key) %>(
@@ -129,4 +110,5 @@ public final class <%= class_name(key) %> {
             '}';
     }
 }
+<% end -%>
 <% end -%>

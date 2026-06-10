@@ -3,24 +3,42 @@
 Each message is an instance of [Envelope](#envelope). The `Envelope` message
 will only have one of its fields set, which indicates the payload of the message.
 
-<% @schemas.each do |key, schema| -%>
+<%- @schemas.each do |key, schema| -%>
+
 ## <%= class_name(key) %>
+<%- if schema['description'] -%>
 
 <%= schema['description'] %>
-<%- schema['properties'].each do |property_name, property| -%>
-  <%-
-  type_name = type_for(class_name(key), property_name, property)
-  required = (schema['required'] || []).index(property_name)
-  description = ( property['description'] || '')
-  -%>
+<%- end -%>
+<%- if schema['oneOf'] -%>
 
-#### <%= class_name(key) %>.<%= property_name %> 
+One of:
+<%- (schema['oneOf']).each do | element | -%>
+  <%- (element['properties'] || {}).each do |property_name, property| -%>
+    <%-
+    type_name = type_for(class_name(key), property_name, property)
+    -%>
+* `<%= property_name %>`: <%= type_name %>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>
+<%- if schema['properties'] -%>
+  <%- (schema['properties']).each do |property_name, property| -%>
+    <%-
+    type_name = type_for(class_name(key), property_name, property)
+    required = (schema['required'] || []).index(property_name)
+    description = ( property['description'] || '')
+    -%>
+
+#### <%= class_name(key) %>.<%= property_name %>
 
 * Type: <%= type_name %> 
-* Required: <%= required ? 'yes' : 'no' %> 
+* Required: <%= required ? 'yes' : 'no' %>
+      <%- if description -%>
 
 <%= description -%>
 
-<%- end -%>
-
+      <%- end -%>
+    <%- end -%>
+  <%- end -%>
 <%- end -%>
