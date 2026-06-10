@@ -27,6 +27,7 @@
     "copy-schemas": "shx cp ../jsonschema/messages.schema.json ./messages.schema.json",
     "fix": "biome check --fix --error-on-warnings",
     "lint": "biome check --error-on-warnings",
+    "postbuild": "node -e \"require('.')\"",
     "prepare": "make generate",
     "test": "mocha",
     "prepublishOnly": "npm run build && npm run copy-schemas"
