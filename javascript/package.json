@@ -38,7 +38,7 @@
     "@cucumber/biome-config": "github:cucumber/biome-config#v0.2.1",
     "@tsconfig/recommended": "^1.0.13",
     "@types/mocha": "10.0.10",
-    "@types/node": "^22.19.19",
+    "@types/node": "^24.0.0",
     "copyfiles": "2.4.1",
     "mocha": "11.7.6",
     "shx": "^0.4.0",
