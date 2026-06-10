@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [33.0.2] - 2026-06-10
 ### Fixed
 - [.Net] Fix release workflow filename ([#443](https://github.com/cucumber/messages/pull/443))
 
@@ -684,7 +686,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v33.0.1...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v33.0.2...HEAD
+[33.0.2]: https://github.com/cucumber/messages/compare/v33.0.1...v33.0.2
 [33.0.1]: https://github.com/cucumber/messages/compare/v33.0.0...v33.0.1
 [33.0.0]: https://github.com/cucumber/messages/compare/v32.3.1...v33.0.0
 [32.3.1]: https://github.com/cucumber/messages/compare/v32.3.0...v32.3.1
