@@ -1,4 +1,4 @@
-import type { Envelope } from './messages'
+import type { Envelope } from './messages.js'
 
 /**
  * Parses JSON into an Envelope object.

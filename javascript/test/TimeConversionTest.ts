@@ -1,6 +1,6 @@
 import assert from 'node:assert'
-import { type Duration, TimeConversion } from '../src/index'
-import { addDurations } from '../src/TimeConversion'
+import { type Duration, TimeConversion } from '../src/index.js'
+import { addDurations } from '../src/TimeConversion.js'
 
 const {
   durationToMilliseconds,

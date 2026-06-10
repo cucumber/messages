@@ -1,6 +1,6 @@
 import assert from 'node:assert'
-import { getWorstTestStepResult } from '../src/getWorstTestStepResult'
-import { TestStepResultStatus } from '../src/messages'
+import { getWorstTestStepResult } from '../src/getWorstTestStepResult.js'
+import { TestStepResultStatus } from '../src/messages.js'
 
 describe('getWorstTestStepResult', () => {
   it('returns a FAILED result for PASSED,FAILED,PASSED', () => {
