@@ -1,18 +1,15 @@
 <?php
 
 
-use Cucumber\Messages\DecodingException;
 use Cucumber\Messages\Envelope;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamReader;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamWriter;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class AcceptanceTest extends TestCase
 {
-    /** @dataProvider provideJsonLines
-     * @throws DecodingException
-     * @throws JsonException
-     */
+    #[DataProvider('provideJsonLines')]
     public function testAllNdJsonSurvivesDecodingThenEncoding(string $json): void
     {
         self::assertNotEmpty($json);
@@ -23,7 +20,7 @@ final class AcceptanceTest extends TestCase
         self::assertJsonStringEqualsJsonString($json, $newJson);
     }
 
-    /** @dataProvider provideNdJsonFilenames */
+    #[DataProvider('provideNdJsonFilenames')]
     public function testAllFileStreamsSurviveDecodingThenEncoding(string $filename): void
     {
         $sourceHandle = fopen($filename, 'r');
