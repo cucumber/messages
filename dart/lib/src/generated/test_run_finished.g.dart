@@ -1,0 +1,63 @@
+// This code was generated using the code generator from cucumber-messages.
+// Manual changes will be lost if the code is regenerated.
+// dart format off
+
+part of 'messages.dart';
+
+/// Generated Dart representation of the [TestRunFinished message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestRunFinished.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
+class TestRunFinished {
+  /// An informative message about the test run. Typically additional information about failure, but not necessarily.
+  final String? message;
+  /// A test run is successful if all steps are either passed or skipped, all before/after hooks passed and no other exceptions where thrown.
+  final bool success;
+  /// Timestamp when the TestRun is finished
+  final Timestamp timestamp;
+  /// Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
+  final Exception? exception;
+  /// The `testRunStartedId` property.
+  final String? testRunStartedId;
+
+  /// Creates an instance of [TestRunFinished].
+  const TestRunFinished({
+    this.message,
+    required this.success,
+    required this.timestamp,
+    this.exception,
+    this.testRunStartedId,
+  });
+
+  /// Creates an instance of [TestRunFinished] from a JSON object.
+  factory TestRunFinished.fromJson(Map<String, Object?> json) {
+    return TestRunFinished(
+      message: json['message'] as String?,
+      success: _requireJsonBool(json, 'success'),
+      timestamp: Timestamp.fromJson(
+              _requireJsonObject(json, 'timestamp'),
+            ),
+      exception: json['exception'] == null
+          ? null
+          : Exception.fromJson(
+              json['exception'] as Map<String, Object?>,
+            ),
+      testRunStartedId: json['testRunStartedId'] as String?,
+    );
+  }
+
+  /// Converts this [TestRunFinished] to a JSON object.
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+    if (message != null) {
+      json['message'] = message;
+    }
+    json['success'] = success;
+    json['timestamp'] = timestamp.toJson();
+    if (exception != null) {
+      json['exception'] = exception!.toJson();
+    }
+    if (testRunStartedId != null) {
+      json['testRunStartedId'] = testRunStartedId;
+    }
+    return json;
+  }
+}
+

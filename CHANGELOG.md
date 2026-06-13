@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [JavaScript] BREAKING CHANGE: `parseEnvelope` no longer defaults missing values ([#287](https://github.com/cucumber/messages/pull/287))
 - [JavaScript] BREAKING CHANGE: Switch to ESM ([#438](https://github.com/cucumber/messages/pull/438))
 
+### Added
+- [Dart] Add initial `cucumber_messages` package with generated message types, NDJSON read/write support, time conversion helpers, and schema validation ([#431](https://github.com/cucumber/messages/pull/431/))
+
 ## [32.3.1] - 2026-04-13
 ### Fixed
 - [Java] Fix broken Javadoc
