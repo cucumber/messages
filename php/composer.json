@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "library",
     "require": {
-        "php": "^8.1",
+        "php": "^8.5",
         "ext-json": "*"
     },
     "require-dev": {
