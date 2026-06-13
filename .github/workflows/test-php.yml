@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.1']
-        composer-mode: ['low-deps', 'high-deps']
+        php:
+          - '8.4'
     permissions:
       contents: read
     steps:
@@ -53,13 +53,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: php
-        run: |
-          if [[ "${{ matrix.composer-mode }}" = "low-deps" ]]; then
-            composer update --prefer-lowest
-          else
-            composer update
-          fi
-
+        run: composer install
       - name: Run tests
         working-directory: php
         run: |

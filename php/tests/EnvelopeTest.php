@@ -6,7 +6,7 @@ use Cucumber\Messages\GherkinDocument;
 use Cucumber\Messages\Location;
 use PHPUnit\Framework\TestCase;
 
-class EnvelopeTest extends TestCase
+final class EnvelopeTest extends TestCase
 {
     public function testItCanBeConstructedWithDefaultProperties(): void
     {

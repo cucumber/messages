@@ -16,6 +16,7 @@ final class NdJsonStreamReader implements StreamReader
     /**
      * @return Generator<Envelope>
      */
+    #[\Override]
     public function envelopes(): Generator
     {
         while (!feof($this->fileHandle) && ($line = fgets($this->fileHandle))) {

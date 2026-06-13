@@ -5,15 +5,15 @@
     "license": "MIT",
     "type": "library",
     "require": {
-        "php": "^8.1",
+        "php": "^8.4",
         "ext-json": "*"
     },
     "require-dev": {
-        "vimeo/psalm": "^5.5",
-        "phpunit/phpunit": "^10.3||^11.0",
-        "psalm/plugin-phpunit": "^0.19.0",
-        "friendsofphp/php-cs-fixer": "^3.5",
-        "ramsey/uuid": "^4.5.0"
+        "vimeo/psalm": "^6",
+        "phpunit/phpunit": "^13",
+        "psalm/plugin-phpunit": "^0.19",
+        "friendsofphp/php-cs-fixer": "^3",
+        "ramsey/uuid": "^4"
     },
     "autoload": {
         "psr-4": {
