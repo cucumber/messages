@@ -9,9 +9,9 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "vimeo/psalm": "^6.0",
-        "phpunit/phpunit": "^13.2.0",
-        "psalm/plugin-phpunit": "^0.20.0",
+        "vimeo/psalm": "^6.10",
+        "phpunit/phpunit": "^13.2",
+        "psalm/plugin-phpunit": "^0.20",
         "friendsofphp/php-cs-fixer": "^3.5",
         "ramsey/uuid": "^4.5.0"
     },
