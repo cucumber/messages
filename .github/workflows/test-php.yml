@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.5 ']
+        php: ['8.4 ']
         composer-mode: ['low-deps', 'high-deps']
     permissions:
       contents: read
