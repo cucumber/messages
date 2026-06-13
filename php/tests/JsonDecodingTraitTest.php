@@ -6,7 +6,7 @@ use Cucumber\Messages\DecodingException\SchemaViolationException;
 use Cucumber\Messages\DecodingException\UnexpectedDecodingException;
 use PHPUnit\Framework\TestCase;
 
-class JsonDecodingTraitTest extends TestCase
+final class JsonDecodingTraitTest extends TestCase
 {
     public function testItCanDecodeSomeJsonToAnObject(): void
     {
@@ -40,7 +40,7 @@ class JsonDecodingTraitTest extends TestCase
     }
 }
 
-class JsonDecodingTraitTestImpl implements JsonSerializable
+final class JsonDecodingTraitTestImpl implements JsonSerializable
 {
     use JsonEncodingTrait;
 
@@ -50,7 +50,7 @@ class JsonDecodingTraitTestImpl implements JsonSerializable
     }
 }
 
-class BrokenJsonDecodingTraitTestImpl implements JsonSerializable
+final class BrokenJsonDecodingTraitTestImpl implements JsonSerializable
 {
     use JsonEncodingTrait;
 

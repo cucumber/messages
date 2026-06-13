@@ -9,11 +9,11 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "vimeo/psalm": "^6.10",
-        "phpunit/phpunit": "^13.2",
+        "vimeo/psalm": "^6",
+        "phpunit/phpunit": "^13",
         "psalm/plugin-phpunit": "^0.19",
-        "friendsofphp/php-cs-fixer": "^3.5",
-        "ramsey/uuid": "^4.5.0"
+        "friendsofphp/php-cs-fixer": "^3",
+        "ramsey/uuid": "^4"
     },
     "autoload": {
         "psr-4": {

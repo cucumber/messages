@@ -7,7 +7,7 @@ use Cucumber\Messages\Streams\NdJson\NdJsonStreamReader;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamWriter;
 use PHPUnit\Framework\TestCase;
 
-class AcceptanceTest extends TestCase
+final class AcceptanceTest extends TestCase
 {
     /** @dataProvider provideJsonLines
      * @throws DecodingException
@@ -27,7 +27,13 @@ class AcceptanceTest extends TestCase
     public function testAllFileStreamsSurviveDecodingThenEncoding(string $filename): void
     {
         $sourceHandle = fopen($filename, 'r');
+        if ($sourceHandle === false) {
+            throw new RuntimeException("Could not open $filename");
+        }
         $destHandle = fopen('php://memory', 'w');
+        if ($destHandle === false) {
+            throw new RuntimeException("Could not open php://memory");
+        }
 
         $reader = NdJsonStreamReader::fromFileHandle($sourceHandle);
         $writer = NdJsonStreamWriter::fromFileHandle($destHandle);
@@ -64,7 +70,11 @@ class AcceptanceTest extends TestCase
             }
             foreach ($file as $lineNumber => $line) {
                 // key is provided for better error messages
-                $key = realpath($filename) . ':' . $lineNumber;
+                $realpath = realpath($filename);
+                if ($realpath === false) {
+                    throw new RuntimeException("Could get realpath for $filename");
+                }
+                $key = $realpath . ':' . $lineNumber;
                 yield $key => [$line];
             }
         }

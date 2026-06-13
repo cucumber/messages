@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- [PHP] Require PHP 8.4
 
 ## [33.0.2] - 2026-06-10
 ### Fixed
