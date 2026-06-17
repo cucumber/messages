@@ -83,11 +83,29 @@ module Cucumber
         to_h(camelize: true, reject_nil_values: true).to_json
       end
 
+      ##
+      # Returns the type of the message as a hash with snake_cased symbols.
+      #   For example, the type of a `Cucumber::Messages::Duration` will be `:duration`.
+      #
+      #   Cucumber::Messages::Duration.new(seconds: 1, nanos: 42).type
+      #     # => '{ type: :duration }'
+      #   Cucumber::Messages::PickleTag.new(name: 'foo', ast_node_id: 'abc-def').type
+      #     # => '{ type: :pickle_tag }'
+      #
+      # For Envelopes, the hash will return the type as `:envelope` but it will also indicate the nested envelope message
+      #
+      #   location = Cucumber::Messages::Location.new(line: 2)
+      #   Cucumber::Messages::Envelope.new(location: location).type
+      #     # => '{ type: :envelope, contained_message: :location }'
+      ##
       def type
         if is_a?(Cucumber::Messages::Envelope)
-          "Envelope -> containing #{unwrapped_envelope_type}"
+          {
+            type: :envelope,
+            contained_message: unwrapped_envelope_type
+          }
         else
-          self.class.to_s.split('::').last
+          { type: underscore(self.class.to_s.split('::').last).to_sym }
         end
       end
 
@@ -103,9 +121,19 @@ module Cucumber
         end
       end
 
+      # Simplified form of `TextHelpers` generator module
+      def underscore(klazz_name)
+        klazz_name.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+                  .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+                  .downcase
+      end
+
       # This will scan each iVar and return the first one (Should only ever be one), that is not nil
       def unwrapped_envelope_type
         instance_variables.detect { |var| !send(var[1..]).nil? }
+                          .to_s
+                          .delete_prefix('@')
+                          .to_sym
       end
     end
   end
