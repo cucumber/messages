@@ -83,6 +83,14 @@ module Cucumber
         to_h(camelize: true, reject_nil_values: true).to_json
       end
 
+      def type
+        if is_a?(Cucumber::Messages::Envelope)
+          "Envelope -> containing #{unwrapped_envelope_type}"
+        else
+          self.class.to_s.split('::').last
+        end
+      end
+
       private
 
       def prepare_value(value, camelize:, reject_nil_values:)
@@ -93,6 +101,11 @@ module Cucumber
         else
           value
         end
+      end
+
+      # This will scan each iVar and return the first one (Should only ever be one), that is not nil
+      def unwrapped_envelope_type
+        instance_variables.detect { |var| !send(var[1..]).nil? }
       end
     end
   end
