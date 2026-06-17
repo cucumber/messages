@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [Ruby] Added `#type` classification (Returning hashified response), for all messages (Including envelopes) ([#447](https://github.com/cucumber/messages/pull/447))
+
 ### Changed
 - [PHP] Require PHP 8.4
 
@@ -19,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [33.0.0] - 2026-06-10
 ### Changed
-- [Elixir] Generate messages from json schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
+- [Elixir] Generate messages from JSON schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
 - [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287))
 - [JavaScript] BREAKING CHANGE: `parseEnvelope` no longer defaults missing values ([#287](https://github.com/cucumber/messages/pull/287))
 - [JavaScript] BREAKING CHANGE: Switch to ESM ([#438](https://github.com/cucumber/messages/pull/438))
