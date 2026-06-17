@@ -1,10 +1,12 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -13,14 +15,14 @@ import static java.util.Objects.requireNonNull;
  * A cell in a `TableRow`
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TableCell {
     private final Location location;
     private final String value;
 
     public TableCell(
-        Location location,
-        String value
+        @Property("location") Location location,
+        @Property("value") String value
     ) {
         this.location = requireNonNull(location, "TableCell.location cannot be null");
         this.value = requireNonNull(value, "TableCell.value cannot be null");

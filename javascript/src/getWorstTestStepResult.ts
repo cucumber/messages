@@ -1,4 +1,4 @@
-import { TestStepResult, TestStepResultStatus } from './messages.js'
+import { type TestStepResult, TestStepResultStatus } from './messages.js'
 import { millisecondsToDuration } from './TimeConversion.js'
 
 /**

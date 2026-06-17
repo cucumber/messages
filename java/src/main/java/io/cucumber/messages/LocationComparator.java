@@ -17,8 +17,8 @@ public final class LocationComparator implements Comparator<Location> {
         if (c != 0) {
             return c;
         }
-        Long aColumn = a.getColumn().orElse(null);
-        Long bColumn = b.getColumn().orElse(null);
+        Integer aColumn = a.getColumn().orElse(null);
+        Integer bColumn = b.getColumn().orElse(null);
         // null first.
         return aColumn == null ? bColumn == null ? 0 : -1 : bColumn == null ? 1 : aColumn.compareTo(bColumn);
     }

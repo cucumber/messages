@@ -1,4 +1,4 @@
-schemas = $(shell find ../jsonschema/src -name "*.json")
+schemas = $(shell find ../jsonschema/src -name "*.schema.json")
 
 .DEFAULT_GOAL = help
 

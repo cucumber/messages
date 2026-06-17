@@ -1,38 +1,40 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the Background message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Background {
     private final Location location;
     private final String keyword;
     private final String name;
     private final String description;
-    private final java.util.List<Step> steps;
+    private final List<Step> steps;
     private final String id;
 
     public Background(
-        Location location,
-        String keyword,
-        String name,
-        String description,
-        java.util.List<Step> steps,
-        String id
+        @Property("location") Location location,
+        @Property("keyword") String keyword,
+        @Property("name") String name,
+        @Property("description") String description,
+        @Property("steps") List<Step> steps,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "Background.location cannot be null");
         this.keyword = requireNonNull(keyword, "Background.keyword cannot be null");
         this.name = requireNonNull(name, "Background.name cannot be null");
         this.description = requireNonNull(description, "Background.description cannot be null");
-        this.steps = unmodifiableList(new ArrayList<>(requireNonNull(steps, "Background.steps cannot be null")));
+        this.steps = List.copyOf(requireNonNull(steps, "Background.steps cannot be null"));
         this.id = requireNonNull(id, "Background.id cannot be null");
     }
 
@@ -55,7 +57,7 @@ public final class Background {
         return description;
     }
 
-    public java.util.List<Step> getSteps() {
+    public List<Step> getSteps() {
         return steps;
     }
 

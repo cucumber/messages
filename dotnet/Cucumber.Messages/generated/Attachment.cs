@@ -77,6 +77,8 @@ public sealed class Attachment
      * This will result in a smaller message stream, which can improve performance and
      * reduce bandwidth of message consumers. It also makes it easier to process and download attachments
      * separately from reports.
+     *
+     * Deprecated; use ExternalAttachment instead.
      */
     public string Url { get; private set; }
     /**

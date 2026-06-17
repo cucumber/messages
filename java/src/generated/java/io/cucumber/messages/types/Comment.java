@@ -1,10 +1,12 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -13,14 +15,14 @@ import static java.util.Objects.requireNonNull;
  * A comment in a Gherkin document
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Comment {
     private final Location location;
     private final String text;
 
     public Comment(
-        Location location,
-        String text
+        @Property("location") Location location,
+        @Property("text") String text
     ) {
         this.location = requireNonNull(location, "Comment.location cannot be null");
         this.text = requireNonNull(text, "Comment.text cannot be null");

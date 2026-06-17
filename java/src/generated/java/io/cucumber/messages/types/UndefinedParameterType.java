@@ -1,24 +1,26 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the UndefinedParameterType message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class UndefinedParameterType {
     private final String expression;
     private final String name;
 
     public UndefinedParameterType(
-        String expression,
-        String name
+        @Property("expression") String expression,
+        @Property("name") String name
     ) {
         this.expression = requireNonNull(expression, "UndefinedParameterType.expression cannot be null");
         this.name = requireNonNull(name, "UndefinedParameterType.name cannot be null");

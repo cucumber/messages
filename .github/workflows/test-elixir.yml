@@ -1,5 +1,7 @@
 name: test-elixir
 
+permissions: {}
+
 on:
   push:
     branches:
@@ -16,7 +18,6 @@ on:
       - elixir/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-elixir:
@@ -25,17 +26,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup Beam
-        uses: erlef/setup-beam@v1
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          otp-version: '27.1'
+          persist-credentials: false
+      - name: Setup Beam
+        uses: erlef/setup-beam@fc68ffb90438ef2936bbb3251622353b3dcb2f93 # v1.24.0
+        with:
+          otp-version: '27.3'
           elixir-version: '1.17'
 
-      - name: Install Protoc
-        uses: arduino/setup-protoc@v1
-
-      - name: Run Tests
-        run: make
+      - run: mix deps.get
         working-directory: elixir
-
+      - run: mix test
+        working-directory: elixir

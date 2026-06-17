@@ -1,5 +1,7 @@
 name: test-ruby
 
+permissions: {}
+
 on:
   push:
     branches:
@@ -16,7 +18,6 @@ on:
       - ruby/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-ruby:
@@ -32,8 +33,10 @@ jobs:
             ruby: '3.4'
 
     steps:
-      - uses: actions/checkout@v6
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@89f90524b88a01fe6e0b732220432cc6142926af # v1.313.0
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true

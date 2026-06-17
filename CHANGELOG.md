@@ -6,6 +6,54 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- [PHP] Require PHP 8.4
+
+## [33.0.2] - 2026-06-10
+### Fixed
+- [.Net] Fix release workflow filename ([#443](https://github.com/cucumber/messages/pull/443))
+
+## [33.0.1] - 2026-06-10
+### Fixed
+- [JavaScript] Fix release process
+
+## [33.0.0] - 2026-06-10
+### Changed
+- [Elixir] Generate messages from json schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
+- [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287))
+- [JavaScript] BREAKING CHANGE: `parseEnvelope` no longer defaults missing values ([#287](https://github.com/cucumber/messages/pull/287))
+- [JavaScript] BREAKING CHANGE: Switch to ESM ([#438](https://github.com/cucumber/messages/pull/438))
+
+## [32.3.1] - 2026-04-13
+### Fixed
+- [Java] Fix broken Javadoc
+
+## [32.3.0] - 2026-04-13
+### Added
+- [Java] Annotate constructor arguments with property names ([#399](https://github.com/cucumber/messages/pull/399)
+
+## [32.2.0] - 2026-03-01
+### Added
+- [JavaScript] Add export path for bundled schema ([#383](https://github.com/cucumber/messages/pull/383))
+
+## [32.1.0] - 2026-02-27
+### Added
+- Generated bundled JSON schema ([#382](https://github.com/cucumber/messages/pull/382))
+
+## [32.0.1] - 2026-01-25
+### Fixed
+- Fix field order for ExternalAttachment ([#377](https://github.com/cucumber/messages/pull/377))
+
+## [32.0.0] - 2026-01-21
+### Added
+- Add `ExternalAttachment` for externalised attachments ([#372](https://github.com/cucumber/messages/pull/372))
+
+### Changed
+- Deprecate `Attachment.url` and `Attachment.source` ([#372](https://github.com/cucumber/messages/pull/372))
+- Make StepMatchArgument.Group.children optional ([#370](https://github.com/cucumber/messages/pull/370))
+- [Java] Set release version to 17 ([#352](https://github.com/cucumber/messages/pull/352))
+- [Java] Copy lists efficiently ([#282](https://github.com/cucumber/messages/issues/282), [#352](https://github.com/cucumber/messages/pull/352))
+- [Java] Use Integers in addition to Longs ([#310](https://github.com/cucumber/messages/issues/310), [#352](https://github.com/cucumber/messages/pull/352))
 
 ## [31.2.0] - 2026-01-11
 ### Added
@@ -640,7 +688,16 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v31.2.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v33.0.2...HEAD
+[33.0.2]: https://github.com/cucumber/messages/compare/v33.0.1...v33.0.2
+[33.0.1]: https://github.com/cucumber/messages/compare/v33.0.0...v33.0.1
+[33.0.0]: https://github.com/cucumber/messages/compare/v32.3.1...v33.0.0
+[32.3.1]: https://github.com/cucumber/messages/compare/v32.3.0...v32.3.1
+[32.3.0]: https://github.com/cucumber/messages/compare/v32.2.0...v32.3.0
+[32.2.0]: https://github.com/cucumber/messages/compare/v32.1.0...v32.2.0
+[32.1.0]: https://github.com/cucumber/messages/compare/v32.0.1...v32.1.0
+[32.0.1]: https://github.com/cucumber/messages/compare/v32.0.0...v32.0.1
+[32.0.0]: https://github.com/cucumber/messages/compare/v31.2.0...v32.0.0
 [31.2.0]: https://github.com/cucumber/messages/compare/v31.1.0...v31.2.0
 [31.1.0]: https://github.com/cucumber/messages/compare/v31.0.1...v31.1.0
 [31.0.1]: https://github.com/cucumber/messages/compare/v31.0.0...v31.0.1

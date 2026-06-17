@@ -12,6 +12,7 @@ final class UuidIdGeneratorTest extends TestCase
 {
     use IdGeneratorTestTrait;
 
+    #[\Override]
     public function setUp(): void
     {
         $this->idGenerator = new UuidIdGenerator();

@@ -9,7 +9,6 @@
 #include <cucumber/messages/location.hpp>
 #include <cucumber/messages/tag.hpp>
 #include <cucumber/messages/table_row.hpp>
-#include <cucumber/messages/table_row.hpp>
 
 namespace cucumber::messages {
 

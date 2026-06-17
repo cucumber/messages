@@ -1,5 +1,7 @@
 name: test-php
 
+permissions: {}
+
 on:
   push:
     branches:
@@ -16,23 +18,27 @@ on:
       - php/**
       - Makefile
       - .github/**
-  workflow_call:
 
 jobs:
   test-php:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.1']
-        composer-mode: ['low-deps', 'high-deps']
-
+        php:
+          - '8.4'
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: "${{ matrix.php }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Discover composer cache directory
         id: composer-cache
@@ -40,20 +46,14 @@ jobs:
         working-directory: php
 
       - name: Cache composer
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: "${{ steps.composer-cache.outputs.dir }}"
           key: composer
 
       - name: Install dependencies
         working-directory: php
-        run: |
-          if [[ "${{ matrix.composer-mode }}" = "low-deps" ]]; then
-            composer update --prefer-lowest
-          else
-            composer update
-          fi
-
+        run: composer install
       - name: Run tests
         working-directory: php
         run: |

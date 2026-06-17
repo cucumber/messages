@@ -1,24 +1,26 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the Snippet message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Snippet {
     private final String language;
     private final String code;
 
     public Snippet(
-        String language,
-        String code
+        @Property("language") String language,
+        @Property("code") String code
     ) {
         this.language = requireNonNull(language, "Snippet.language cannot be null");
         this.code = requireNonNull(code, "Snippet.code cannot be null");

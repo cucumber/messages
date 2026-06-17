@@ -2,6 +2,7 @@ dist/
 .idea/
 .nyc_output/
 coverage/
+messages.schema.json
 node_modules/
 yarn.lock
 *.log

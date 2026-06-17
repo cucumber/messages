@@ -1,10 +1,12 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -13,16 +15,16 @@ import static java.util.Objects.requireNonNull;
  * A tag
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Tag {
     private final Location location;
     private final String name;
     private final String id;
 
     public Tag(
-        Location location,
-        String name,
-        String id
+        @Property("location") Location location,
+        @Property("name") String name,
+        @Property("id") String id
     ) {
         this.location = requireNonNull(location, "Tag.location cannot be null");
         this.name = requireNonNull(name, "Tag.name cannot be null");

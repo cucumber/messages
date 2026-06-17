@@ -1,17 +1,19 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the TestStepFinished message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestStepFinished {
     private final String testCaseStartedId;
     private final String testStepId;
@@ -19,10 +21,10 @@ public final class TestStepFinished {
     private final Timestamp timestamp;
 
     public TestStepFinished(
-        String testCaseStartedId,
-        String testStepId,
-        TestStepResult testStepResult,
-        Timestamp timestamp
+        @Property("testCaseStartedId") String testCaseStartedId,
+        @Property("testStepId") String testStepId,
+        @Property("testStepResult") TestStepResult testStepResult,
+        @Property("timestamp") Timestamp timestamp
     ) {
         this.testCaseStartedId = requireNonNull(testCaseStartedId, "TestStepFinished.testCaseStartedId cannot be null");
         this.testStepId = requireNonNull(testStepId, "TestStepFinished.testStepId cannot be null");

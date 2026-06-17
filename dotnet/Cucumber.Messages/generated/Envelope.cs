@@ -17,6 +17,7 @@ namespace Io.Cucumber.Messages.Types;
 public sealed class Envelope 
 {
     public Attachment Attachment { get; private set; }
+    public ExternalAttachment ExternalAttachment { get; private set; }
     public GherkinDocument GherkinDocument { get; private set; }
     public Hook Hook { get; private set; }
     public Meta Meta { get; private set; }
@@ -60,6 +61,34 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
+            null
+        );
+    }
+
+    public static Envelope Create(ExternalAttachment externalAttachment) 
+    {
+        return new Envelope(
+            null,
+            Require<ExternalAttachment>(externalAttachment, "ExternalAttachment", "Envelope.ExternalAttachment cannot be null"),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null
         );
     }
@@ -67,6 +96,7 @@ public sealed class Envelope
     public static Envelope Create(GherkinDocument gherkinDocument) 
     {
         return new Envelope(
+            null,
             null,
             Require<GherkinDocument>(gherkinDocument, "GherkinDocument", "Envelope.GherkinDocument cannot be null"),
             null,
@@ -93,6 +123,7 @@ public sealed class Envelope
     public static Envelope Create(Hook hook) 
     {
         return new Envelope(
+            null,
             null,
             null,
             Require<Hook>(hook, "Hook", "Envelope.Hook cannot be null"),
@@ -122,6 +153,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<Meta>(meta, "Meta", "Envelope.Meta cannot be null"),
             null,
             null,
@@ -145,6 +177,7 @@ public sealed class Envelope
     public static Envelope Create(ParameterType parameterType) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -176,6 +209,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<ParseError>(parseError, "ParseError", "Envelope.ParseError cannot be null"),
             null,
             null,
@@ -197,6 +231,7 @@ public sealed class Envelope
     public static Envelope Create(Pickle pickle) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -230,6 +265,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<Suggestion>(suggestion, "Suggestion", "Envelope.Suggestion cannot be null"),
             null,
             null,
@@ -249,6 +285,7 @@ public sealed class Envelope
     public static Envelope Create(Source source) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -284,6 +321,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<StepDefinition>(stepDefinition, "StepDefinition", "Envelope.StepDefinition cannot be null"),
             null,
             null,
@@ -301,6 +339,7 @@ public sealed class Envelope
     public static Envelope Create(TestCase testCase) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -338,6 +377,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<TestCaseFinished>(testCaseFinished, "TestCaseFinished", "Envelope.TestCaseFinished cannot be null"),
             null,
             null,
@@ -353,6 +393,7 @@ public sealed class Envelope
     public static Envelope Create(TestCaseStarted testCaseStarted) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -392,6 +433,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<TestRunFinished>(testRunFinished, "TestRunFinished", "Envelope.TestRunFinished cannot be null"),
             null,
             null,
@@ -405,6 +447,7 @@ public sealed class Envelope
     public static Envelope Create(TestRunStarted testRunStarted) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -446,6 +489,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<TestStepFinished>(testStepFinished, "TestStepFinished", "Envelope.TestStepFinished cannot be null"),
             null,
             null,
@@ -457,6 +501,7 @@ public sealed class Envelope
     public static Envelope Create(TestStepStarted testStepStarted) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -500,6 +545,7 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<TestRunHookStarted>(testRunHookStarted, "TestRunHookStarted", "Envelope.TestRunHookStarted cannot be null"),
             null,
             null
@@ -509,6 +555,7 @@ public sealed class Envelope
     public static Envelope Create(TestRunHookFinished testRunHookFinished) 
     {
         return new Envelope(
+            null,
             null,
             null,
             null,
@@ -554,12 +601,14 @@ public sealed class Envelope
             null,
             null,
             null,
+            null,
             Require<UndefinedParameterType>(undefinedParameterType, "UndefinedParameterType", "Envelope.UndefinedParameterType cannot be null")
         );
     }
 
     public Envelope(
         Attachment attachment,
+        ExternalAttachment externalAttachment,
         GherkinDocument gherkinDocument,
         Hook hook,
         Meta meta,
@@ -582,6 +631,7 @@ public sealed class Envelope
     ) 
     {
         this.Attachment = attachment;
+        this.ExternalAttachment = externalAttachment;
         this.GherkinDocument = gherkinDocument;
         this.Hook = hook;
         this.Meta = meta;
@@ -610,6 +660,7 @@ public sealed class Envelope
         Envelope that = (Envelope) o;
         return 
             Object.Equals(Attachment, that.Attachment) &&         
+            Object.Equals(ExternalAttachment, that.ExternalAttachment) &&         
             Object.Equals(GherkinDocument, that.GherkinDocument) &&         
             Object.Equals(Hook, that.Hook) &&         
             Object.Equals(Meta, that.Meta) &&         
@@ -636,6 +687,8 @@ public sealed class Envelope
         int hash = 17;
         if (Attachment != null)
           hash = hash * 31 + Attachment.GetHashCode();
+        if (ExternalAttachment != null)
+          hash = hash * 31 + ExternalAttachment.GetHashCode();
         if (GherkinDocument != null)
           hash = hash * 31 + GherkinDocument.GetHashCode();
         if (Hook != null)
@@ -681,6 +734,7 @@ public sealed class Envelope
     {
         return "Envelope{" +
             "attachment=" + Attachment +
+            ", externalAttachment=" + ExternalAttachment +
             ", gherkinDocument=" + GherkinDocument +
             ", hook=" + Hook +
             ", meta=" + Meta +

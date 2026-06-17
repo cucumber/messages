@@ -1,5 +1,7 @@
 name: Release Python
 
+permissions: {}
+
 on:
   push:
     branches: [release/*]
@@ -15,14 +17,16 @@ jobs:
       run:
         working-directory: python
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
 
       - name: Install uv and set the python version
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
-          enable-cache: true
+          enable-cache: false
           python-version: "3.13"
-          version: "0.9.25"
+          version: "0.11.21"
 
       - name: Build package
         run: uv build
