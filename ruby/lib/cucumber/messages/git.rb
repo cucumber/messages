@@ -8,7 +8,7 @@ module Cucumber
     ##
     #
     # Information about Git, provided by the Build/CI server as environment
-    #  variables.
+    # variables.
     ##
     class Git < Message
       attr_reader :remote

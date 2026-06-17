@@ -1,0 +1,108 @@
+[build-system]
+build-backend = "uv_build"
+requires = ["uv_build>=0.11.0,<0.12.0"]
+
+[dependency-groups]
+dev = [
+  "coverage>=7.2",
+  "pytest>=6.1",
+  "GitPython",
+  "packaging",
+  "tox>=4.22"
+]
+
+[project]
+authors = [
+  {name = "Cucumber Limited", email = "cukes@googlegroups.com"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: MacOS :: MacOS X",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Utilities",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13"
+]
+dependencies = []
+description = "Cucumber Messages is a message protocol for representing results and other information from Cucumber. "
+keywords = ["gherkin", "cucumber", "bdd"]
+license = "MIT"
+license-files = [
+  "LICENSE"
+]
+maintainers = [
+  {name = "Konstantin Goloveshko", email = "kostya.goloveshko@gmail.com"}
+]
+name = "cucumber-messages"
+readme = "README.md"
+requires-python = ">=3.9"
+version = "33.0.2"
+
+[project.urls]
+Changelog = "https://github.com/cucumber/messages/releases"
+Download = "https://pypi.org/project/cucumber-messages"
+Homepage = "https://github.com/cucumber/messages"
+Issues = "https://github.com/cucumber/messages/issues"
+Repository = "https://github.com/cucumber/messages.git"
+
+[tool.mypy]
+files = "src/**/*.py"
+install_types = true
+non_interactive = true
+plugins = []
+show_error_codes = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+# Ignore generated module
+exclude = ["src/cucumber_messages/_messages.py"]
+
+[tool.ruff.lint]
+extend-select = [
+  "B",
+  "C4",
+  "COM",
+  "FURB",
+  "I",
+  "ISC",
+  "N",
+  "PERF",
+  "PIE",
+  "RET",
+  "TID",
+  "UP"
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+# TODO: Evaluate whether to use wildcard (removing need for updates) or explicit imports
+"src/cucumber_messages/__init__.py" = ["F403"]
+
+[tool.tox]
+env_list = ["lint", "3.13", "3.12", "3.11", "3.10", "3.9", "pypy311", "pypy310"]
+requires = ["tox>=4.22"]
+
+[tool.tox.env.lint]
+commands = [["pre-commit", "run", "--all-files", "--show-diff-on-failure"]]
+deps = ["pre-commit-uv>=4.1.1"]
+description = "Run linting and formatting checks (and auto-fixes)"
+
+[tool.tox.env_run_base]
+commands = [
+  ["coverage", "run", "--append", "-m", "pytest", "-vvl"],
+  ["coverage", "xml"]
+]
+dependency_groups = [
+  "dev"
+]

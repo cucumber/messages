@@ -16,8 +16,11 @@ using json = nlohmann::json;
 // Represents the TestStep message in Cucumber's message protocol
 // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
 //
-// A `TestStep` is derived from either a `PickleStep`
-// combined with a `StepDefinition`, or from a `Hook`.
+// A `TestStep` is derived from either a `PickleStep` combined with a `StepDefinition`, or from a `Hook`.
+//
+// When derived from a PickleStep:
+// * For `UNDEFINED` steps `stepDefinitionIds` and `stepMatchArgumentsLists` will be empty.
+// * For `AMBIGUOUS` steps, there will be multiple entries in `stepDefinitionIds` and `stepMatchArgumentsLists`. The first entry in the stepMatchArgumentsLists holds the list of arguments for the first matching step definition, the second entry for the second, etc
 //
 // Generated code
 

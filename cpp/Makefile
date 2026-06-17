@@ -1,4 +1,4 @@
-schemas = $(shell find ../jsonschema -name "*.json")
+schemas = $(shell find ../jsonschema/src -name "*.schema.json")
 
 .DEFAULT_GOAL = help
 
@@ -46,10 +46,10 @@ clean-build:
 	./cmake/cmate clean
 
 clean-deps:
-	./cmake/cmade clean --purge
+	./cmake/cmate clean --purge
 
 install-deps:
-	./cmake/cmade install
+	./cmake/cmate install
 
 .configured:
 	./cmake/cmate configure

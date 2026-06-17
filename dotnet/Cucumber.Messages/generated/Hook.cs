@@ -20,13 +20,15 @@ public sealed class Hook
     public string Name { get; private set; }
     public SourceReference SourceReference { get; private set; }
     public string TagExpression { get; private set; }
+    public HookType Type { get; private set; }
 
 
     public Hook(
         string id,
         string name,
         SourceReference sourceReference,
-        string tagExpression
+        string tagExpression,
+        HookType type
     ) 
     {
         RequireNonNull<string>(id, "Id", "Hook.Id cannot be null");
@@ -35,6 +37,7 @@ public sealed class Hook
         RequireNonNull<SourceReference>(sourceReference, "SourceReference", "Hook.SourceReference cannot be null");
         this.SourceReference = sourceReference;
         this.TagExpression = tagExpression;
+        this.Type = type;
     }
 
     public override bool Equals(Object o) 
@@ -46,7 +49,8 @@ public sealed class Hook
             Id.Equals(that.Id) &&         
             Object.Equals(Name, that.Name) &&         
             SourceReference.Equals(that.SourceReference) &&         
-            Object.Equals(TagExpression, that.TagExpression);        
+            Object.Equals(TagExpression, that.TagExpression) &&         
+            Object.Equals(Type, that.Type);        
     }
 
     public override int GetHashCode() 
@@ -60,6 +64,7 @@ public sealed class Hook
           hash = hash * 31 + SourceReference.GetHashCode();
         if (TagExpression != null)
           hash = hash * 31 + TagExpression.GetHashCode();
+          hash = hash * 31 + Type.GetHashCode();  
         return hash;
     }
 
@@ -70,6 +75,7 @@ public sealed class Hook
             ", name=" + Name +
             ", sourceReference=" + SourceReference +
             ", tagExpression=" + TagExpression +
+            ", type=" + Type +
             '}';
     }
 

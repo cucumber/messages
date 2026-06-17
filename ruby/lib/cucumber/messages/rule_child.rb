@@ -7,8 +7,7 @@ module Cucumber
     # Represents the RuleChild message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  A child node of a `Rule` node
+    # A child node of a `Rule` node
     ##
     class RuleChild < Message
       attr_reader :background

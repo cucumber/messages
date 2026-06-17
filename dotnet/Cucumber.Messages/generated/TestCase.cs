@@ -13,8 +13,6 @@ namespace Io.Cucumber.Messages.Types;
  * Represents the TestCase message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
- * //// TestCases
- *
  * A `TestCase` contains a sequence of `TestStep`s.
  */
 
@@ -26,12 +24,17 @@ public sealed class TestCase
      */
     public string PickleId { get; private set; }
     public List<TestStep> TestSteps { get; private set; }
+    /**
+     * Identifier for the test run that this test case belongs to
+     */
+    public string TestRunStartedId { get; private set; }
 
 
     public TestCase(
         string id,
         string pickleId,
-        List<TestStep> testSteps
+        List<TestStep> testSteps,
+        string testRunStartedId
     ) 
     {
         RequireNonNull<string>(id, "Id", "TestCase.Id cannot be null");
@@ -40,6 +43,7 @@ public sealed class TestCase
         this.PickleId = pickleId;
         RequireNonNull<List<TestStep>>(testSteps, "TestSteps", "TestCase.TestSteps cannot be null");
         this.TestSteps = new List<TestStep>(testSteps);        
+        this.TestRunStartedId = testRunStartedId;
     }
 
     public override bool Equals(Object o) 
@@ -50,7 +54,8 @@ public sealed class TestCase
         return 
             Id.Equals(that.Id) &&         
             PickleId.Equals(that.PickleId) &&         
-            TestSteps.Equals(that.TestSteps);        
+            TestSteps.Equals(that.TestSteps) &&         
+            Object.Equals(TestRunStartedId, that.TestRunStartedId);        
     }
 
     public override int GetHashCode() 
@@ -62,6 +67,8 @@ public sealed class TestCase
           hash = hash * 31 + PickleId.GetHashCode();
         if (TestSteps != null)
           hash = hash * 31 + TestSteps.GetHashCode();
+        if (TestRunStartedId != null)
+          hash = hash * 31 + TestRunStartedId.GetHashCode();
         return hash;
     }
 
@@ -71,6 +78,7 @@ public sealed class TestCase
             "id=" + Id +
             ", pickleId=" + PickleId +
             ", testSteps=" + TestSteps +
+            ", testRunStartedId=" + TestRunStartedId +
             '}';
     }
 

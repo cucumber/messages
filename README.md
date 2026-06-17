@@ -9,44 +9,59 @@ from Cucumber. The protocol aims to decouple various components of the Cucumber 
 
 ## Message Overview
 
-![messages.png](messages.png)
+![messages.png](jsonschema/messages.png)
 
-Note: Markdown and Excel formats are currently not supported and mentioned here as potential future alternative languages to express BDD scenarios.
+Notes:
+ * The image sketches out the general concept, but is incomplete. See [relations.md](jsonschema/relations.md) for a complete visualisation of the relationships between messages. 
+ * Markdown and Excel formats are currently not supported and mentioned here as potential future alternative languages to express BDD scenarios.
 
 ## JSON Schema
 
 The [jsonschema](jsonschema) directory contains [JSON Schema](https://json-schema.org/)
 definitions for each message type.
 
-See [messages.md](messages.md) for a detailed description of each message type.
+See [messages.md](jsonschema/messages.md) for a detailed description of each message type.
 
 ## Encoding
 
 When Cucumber Messages are stored in a file or sent over a network, they are
-encoded as [NDJSON](http://ndjson.org/). We call this a *message stream*.
+encoded as NDJSON. We call this a *message stream*.
 
-Each message in a message stream is of type [Envelope](messages.md#envelope).
+Each message in a message stream is of type [Envelope](jsonschema/messages.md#envelope).
 
 ## Language implementations
 
 Each subdirectory defines language-specific implementations of these messages,
 generated from the JSON schemas. The current implementations are:
-- C++
+
+### Languages automatically released for every version
+
+The release process for the below languages uses [polyglot-release](./RELEASING.md)
+
 - .NET
-- Go
 - Java
 - Javascript
 - Perl
 - PHP
+- Python
 - Ruby
 
-There is also 1 subdirectory for Elixir which contains the legacy implementation which was largely
-driven by protobuf. This is currently not implemented or tested / integrated into our CI and will
-require the process of porting over to the JSON schema protocol.
+### Go
 
-- Elixir
+The Go implementation is also cut for every version but is just maintained as a GitHub tag
+
+### C++
+
+This is currently tested but not automatically released. We are seeking help for this implementation
+
+### Elixir
+
+There is also a subdirectory for Elixir which contains the legacy implementation which was largely
+driven by protobuf. This has recently been re-integrated into our CI and will be ported over to
+the JSON schema protocol in due course, for now it remains written in protobuf
 
 ## Message emitters
+
 Cucumber Messages are currently sent by the following versions of Cucumber (using the `message` formatter):
 
 * Cucumber-JVM `6.0.0` and later
@@ -59,7 +74,7 @@ Messages emitters for the other Cucumber languages (e.g. Perl) are not yet imple
 
 Cucumber needs to produce results in a machine-readable format so that other tools can generate reports.
 
-![messages-stream.svg](messages-stream.svg)
+![messages-stream.svg](jsonschema/messages-stream.svg)
 
 Historically, Cucumber did this with the `json` and `junit` formatters.
 These formats however, have several shortcomings that are now addressed by using Cucumber Messages.

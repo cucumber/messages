@@ -1,28 +1,29 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Duration message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
+ * Represents the Duration message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * The structure is pretty close of the Timestamp one. For clarity, a second type
  * of message is used.
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Duration {
     private final Long seconds;
-    private final Long nanos;
+    private final Integer nanos;
 
     public Duration(
-        Long seconds,
-        Long nanos
+        @Property("seconds") Long seconds,
+        @Property("nanos") Integer nanos
     ) {
         this.seconds = requireNonNull(seconds, "Duration.seconds cannot be null");
         this.nanos = requireNonNull(nanos, "Duration.nanos cannot be null");
@@ -38,7 +39,7 @@ public final class Duration {
      * that count forward in time. Must be from 0 to 999,999,999
      * inclusive.
      */
-    public Long getNanos() {
+    public Integer getNanos() {
         return nanos;
     }
 

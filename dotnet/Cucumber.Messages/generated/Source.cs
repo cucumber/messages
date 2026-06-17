@@ -13,8 +13,6 @@ namespace Io.Cucumber.Messages.Types;
  * Represents the Source message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
- * //// Source
- *
  * A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
  */
 

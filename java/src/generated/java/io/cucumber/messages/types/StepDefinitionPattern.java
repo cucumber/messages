@@ -1,25 +1,26 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the StepDefinitionPattern message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * Represents the StepDefinitionPattern message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class StepDefinitionPattern {
     private final String source;
     private final StepDefinitionPatternType type;
 
     public StepDefinitionPattern(
-        String source,
-        StepDefinitionPatternType type
+        @Property("source") String source,
+        @Property("type") StepDefinitionPatternType type
     ) {
         this.source = requireNonNull(source, "StepDefinitionPattern.source cannot be null");
         this.type = requireNonNull(type, "StepDefinitionPattern.type cannot be null");

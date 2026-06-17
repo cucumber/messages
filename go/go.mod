@@ -1,8 +1,8 @@
-module github.com/cucumber/messages/go/v26
+module github.com/cucumber/messages/go/v33
 
 require (
 	github.com/google/uuid v1.6.0
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.11.1
 )
 
 require (

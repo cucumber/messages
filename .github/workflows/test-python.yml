@@ -1,0 +1,63 @@
+name: test-python
+
+permissions: {}
+
+on:
+  push:
+    branches:
+      - main
+      - renovate/**
+    paths:
+      - .pre-commit-config.yaml
+      - python/**
+      - Makefile
+      - .github/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .pre-commit-config.yaml
+      - python/**
+      - Makefile
+      - .github/**
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - { os: 'windows-latest', python-version: '3.13', toxenv: 'py' }
+          - { os: 'macos-latest', python-version: '3.13', toxenv: 'py' }
+          # Running linting through latest Python
+          - { os: 'ubuntu-latest', python-version: '3.13', toxenv: 'lint,py' }
+        os: ['ubuntu-latest']
+        python-version: ['3.9', '3.10', '3.11', '3.12', 'pypy3.10', 'pypy3.11']
+        toxenv: ['py']
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
+        with:
+          enable-cache: true
+          python-version: ${{ matrix.python-version }}
+          version: "0.11.21"
+
+      - name: Linting and testing
+        run: |
+          uv tool install tox --with tox-uv
+          tox -e ${{ matrix.toxenv }}
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        with:
+          files: python/coverage.xml
+
+      - name: Build package
+        run: uv build

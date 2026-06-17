@@ -28,16 +28,20 @@ module Cucumber
       ##
       attr_reader :exception
 
+      attr_reader :test_run_started_id
+
       def initialize(
         message: nil,
         success: false,
         timestamp: Timestamp.new,
-        exception: nil
+        exception: nil,
+        test_run_started_id: nil
       )
         @message = message
         @success = success
         @timestamp = timestamp
         @exception = exception
+        @test_run_started_id = test_run_started_id
         super()
       end
 
@@ -55,7 +59,8 @@ module Cucumber
           message: hash[:message],
           success: hash[:success],
           timestamp: Timestamp.from_h(hash[:timestamp]),
-          exception: Exception.from_h(hash[:exception])
+          exception: Exception.from_h(hash[:exception]),
+          test_run_started_id: hash[:testRunStartedId]
         )
       end
     end

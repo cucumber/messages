@@ -1,25 +1,26 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the PickleDocString message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * Represents the PickleDocString message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleDocString {
-    private final String mediaType;
+    private final @Nullable String mediaType;
     private final String content;
 
     public PickleDocString(
-        String mediaType,
-        String content
+        @Nullable @Property("mediaType") String mediaType,
+        @Property("content") String content
     ) {
         this.mediaType = mediaType;
         this.content = requireNonNull(content, "PickleDocString.content cannot be null");

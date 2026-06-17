@@ -7,24 +7,20 @@ module Cucumber
     # Represents the Pickle message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # //// Pickles
+    # A `Pickle` represents a template for a `TestCase`. It is typically derived
+    # from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
+    # In the future a `Pickle` may be derived from other formats such as Markdown or
+    # Excel files.
     #
-    # *
-    #  A `Pickle` represents a template for a `TestCase`. It is typically derived
-    #  from another format, such as [GherkinDocument](#io.cucumber.messages.GherkinDocument).
-    #  In the future a `Pickle` may be derived from other formats such as Markdown or
-    #  Excel files.
+    # By making `Pickle` the main data structure Cucumber uses for execution, the
+    # implementation of Cucumber itself becomes simpler, as it doesn't have to deal
+    # with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
     #
-    #  By making `Pickle` the main data structure Cucumber uses for execution, the
-    #  implementation of Cucumber itself becomes simpler, as it doesn't have to deal
-    #  with the complex structure of a [GherkinDocument](#io.cucumber.messages.GherkinDocument).
-    #
-    #  Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
+    # Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
     ##
     class Pickle < Message
       ##
-      # *
-      #  A unique id for the pickle
+      # A unique id for the pickle
       ##
       attr_reader :id
 
@@ -32,6 +28,11 @@ module Cucumber
       # The uri of the source file
       ##
       attr_reader :uri
+
+      ##
+      # The location of this pickle in source file. A pickle constructed from `Examples` will point to the example row.
+      ##
+      attr_reader :location
 
       ##
       # The name of the pickle
@@ -49,23 +50,22 @@ module Cucumber
       attr_reader :steps
 
       ##
-      # *
-      #  One or more tags. If this pickle is constructed from a Gherkin document,
-      #  It includes inherited tags from the `Feature` as well.
+      # One or more tags. If this pickle is constructed from a Gherkin document,
+      # It includes inherited tags from the `Feature` as well.
       ##
       attr_reader :tags
 
       ##
-      # *
-      #  Points to the AST node locations of the pickle. The last one represents the unique
-      #  id of the pickle. A pickle constructed from `Examples` will have the first
-      #  id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
+      # Points to the AST node locations of the pickle. The last one represents the unique
+      # id of the pickle. A pickle constructed from `Examples` will have the first
+      # id originating from the `Scenario` AST node, and the second from the `TableRow` AST node.
       ##
       attr_reader :ast_node_ids
 
       def initialize(
         id: '',
         uri: '',
+        location: nil,
         name: '',
         language: '',
         steps: [],
@@ -74,6 +74,7 @@ module Cucumber
       )
         @id = id
         @uri = uri
+        @location = location
         @name = name
         @language = language
         @steps = steps
@@ -95,6 +96,7 @@ module Cucumber
         new(
           id: hash[:id],
           uri: hash[:uri],
+          location: Location.from_h(hash[:location]),
           name: hash[:name],
           language: hash[:language],
           steps: hash[:steps]&.map { |item| PickleStep.from_h(item) },

@@ -10,6 +10,7 @@ final class IncrementingIdGeneratorTest extends TestCase
 {
     use IdGeneratorTestTrait;
 
+    #[\Override]
     public function setUp(): void
     {
         $this->idGenerator = new IncrementingIdGenerator();

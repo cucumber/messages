@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cucumber.io/schema/Envelope.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "attachment": {
+      "$ref": "./Attachment.schema.json"
+    },
+    "externalAttachment": {
+      "$ref": "./ExternalAttachment.schema.json"
+    },
+    "gherkinDocument": {
+      "$ref": "./GherkinDocument.schema.json"
+    },
+    "hook": {
+      "$ref": "./Hook.schema.json"
+    },
+    "meta": {
+      "$ref": "./Meta.schema.json"
+    },
+    "parameterType": {
+      "$ref": "./ParameterType.schema.json"
+    },
+    "parseError": {
+      "$ref": "./ParseError.schema.json"
+    },
+    "pickle": {
+      "$ref": "./Pickle.schema.json"
+    },
+    "suggestion": {
+      "$ref": "./Suggestion.schema.json"
+    },
+    "source": {
+      "$ref": "./Source.schema.json"
+    },
+    "stepDefinition": {
+      "$ref": "./StepDefinition.schema.json"
+    },
+    "testCase": {
+      "$ref": "./TestCase.schema.json"
+    },
+    "testCaseFinished": {
+      "$ref": "./TestCaseFinished.schema.json"
+    },
+    "testCaseStarted": {
+      "$ref": "./TestCaseStarted.schema.json"
+    },
+    "testRunFinished": {
+      "$ref": "./TestRunFinished.schema.json"
+    },
+    "testRunStarted": {
+      "$ref": "./TestRunStarted.schema.json"
+    },
+    "testStepFinished": {
+      "$ref": "./TestStepFinished.schema.json"
+    },
+    "testStepStarted": {
+      "$ref": "./TestStepStarted.schema.json"
+    },
+    "testRunHookStarted": {
+      "$ref": "TestRunHookStarted.schema.json"
+    },
+    "testRunHookFinished": {
+      "$ref": "TestRunHookFinished.schema.json"
+    },
+    "undefinedParameterType": {
+      "$ref": "./UndefinedParameterType.schema.json"
+    }
+  },
+  "type": "object"
+}

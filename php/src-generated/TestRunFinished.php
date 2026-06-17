@@ -45,6 +45,7 @@ final class TestRunFinished implements JsonSerializable
          * Any exception thrown during the test run, if any. Does not include exceptions thrown while executing steps.
          */
         public readonly ?Exception $exception = null,
+        public readonly ?string $testRunStartedId = null,
     ) {
     }
 
@@ -59,12 +60,14 @@ final class TestRunFinished implements JsonSerializable
         self::ensureSuccess($arr);
         self::ensureTimestamp($arr);
         self::ensureException($arr);
+        self::ensureTestRunStartedId($arr);
 
         return new self(
             isset($arr['message']) ? (string) $arr['message'] : null,
             (bool) $arr['success'],
             Timestamp::fromArray($arr['timestamp']),
             isset($arr['exception']) ? Exception::fromArray($arr['exception']) : null,
+            isset($arr['testRunStartedId']) ? (string) $arr['testRunStartedId'] : null,
         );
     }
 
@@ -111,6 +114,16 @@ final class TestRunFinished implements JsonSerializable
     {
         if (array_key_exists('exception', $arr) && !is_array($arr['exception'])) {
             throw new SchemaViolationException('Property \'exception\' was not array');
+        }
+    }
+
+    /**
+     * @psalm-assert array{testRunStartedId?: string|int|bool} $arr
+     */
+    private static function ensureTestRunStartedId(array $arr): void
+    {
+        if (array_key_exists('testRunStartedId', $arr) && is_array($arr['testRunStartedId'])) {
+            throw new SchemaViolationException('Property \'testRunStartedId\' was array');
         }
     }
 }

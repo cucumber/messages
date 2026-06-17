@@ -7,10 +7,7 @@ module Cucumber
     # Represents the TestCase message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # //// TestCases
-    #
-    # *
-    #  A `TestCase` contains a sequence of `TestStep`s.
+    # A `TestCase` contains a sequence of `TestStep`s.
     ##
     class TestCase < Message
       attr_reader :id
@@ -22,14 +19,21 @@ module Cucumber
 
       attr_reader :test_steps
 
+      ##
+      # Identifier for the test run that this test case belongs to
+      ##
+      attr_reader :test_run_started_id
+
       def initialize(
         id: '',
         pickle_id: '',
-        test_steps: []
+        test_steps: [],
+        test_run_started_id: nil
       )
         @id = id
         @pickle_id = pickle_id
         @test_steps = test_steps
+        @test_run_started_id = test_run_started_id
         super()
       end
 
@@ -46,7 +50,8 @@ module Cucumber
         new(
           id: hash[:id],
           pickle_id: hash[:pickleId],
-          test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) }
+          test_steps: hash[:testSteps]&.map { |item| TestStep.from_h(item) },
+          test_run_started_id: hash[:testRunStartedId]
         )
       end
     end

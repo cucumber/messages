@@ -7,8 +7,7 @@ module Cucumber
     # Represents the Comment message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # *
-    #  A comment in a Gherkin document
+    # A comment in a Gherkin document
     ##
     class Comment < Message
       ##

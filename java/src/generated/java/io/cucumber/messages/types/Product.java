@@ -1,27 +1,28 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the Product message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
- *
+ * Represents the Product message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
+ * <p>
  * Used to describe various properties of Meta
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class Product {
     private final String name;
-    private final String version;
+    private final @Nullable String version;
 
     public Product(
-        String name,
-        String version
+        @Property("name") String name,
+        @Nullable @Property("version") String version
     ) {
         this.name = requireNonNull(name, "Product.name cannot be null");
         this.version = version;
@@ -35,7 +36,7 @@ public final class Product {
     }
 
     /**
-      * The product version
+     * The product version
      */
     public Optional<String> getVersion() {
         return Optional.ofNullable(version);

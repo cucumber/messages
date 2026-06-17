@@ -6,17 +6,11 @@ module Cucumber
     ##
     # Represents the Envelope message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
-    #
-    # When removing a field, replace it with reserved, rather than deleting the line.
-    #  When adding a field, add it to the end and increment the number by one.
-    #  See https://developers.google.com/protocol-buffers/docs/proto#updating for details
-    #
-    # *
-    #  All the messages that are passed between different components/processes are Envelope
-    #  messages.
     ##
     class Envelope < Message
       attr_reader :attachment
+
+      attr_reader :external_attachment
 
       attr_reader :gherkin_document
 
@@ -29,6 +23,8 @@ module Cucumber
       attr_reader :parse_error
 
       attr_reader :pickle
+
+      attr_reader :suggestion
 
       attr_reader :source
 
@@ -48,16 +44,22 @@ module Cucumber
 
       attr_reader :test_step_started
 
+      attr_reader :test_run_hook_started
+
+      attr_reader :test_run_hook_finished
+
       attr_reader :undefined_parameter_type
 
       def initialize(
         attachment: nil,
+        external_attachment: nil,
         gherkin_document: nil,
         hook: nil,
         meta: nil,
         parameter_type: nil,
         parse_error: nil,
         pickle: nil,
+        suggestion: nil,
         source: nil,
         step_definition: nil,
         test_case: nil,
@@ -67,15 +69,19 @@ module Cucumber
         test_run_started: nil,
         test_step_finished: nil,
         test_step_started: nil,
+        test_run_hook_started: nil,
+        test_run_hook_finished: nil,
         undefined_parameter_type: nil
       )
         @attachment = attachment
+        @external_attachment = external_attachment
         @gherkin_document = gherkin_document
         @hook = hook
         @meta = meta
         @parameter_type = parameter_type
         @parse_error = parse_error
         @pickle = pickle
+        @suggestion = suggestion
         @source = source
         @step_definition = step_definition
         @test_case = test_case
@@ -85,6 +91,8 @@ module Cucumber
         @test_run_started = test_run_started
         @test_step_finished = test_step_finished
         @test_step_started = test_step_started
+        @test_run_hook_started = test_run_hook_started
+        @test_run_hook_finished = test_run_hook_finished
         @undefined_parameter_type = undefined_parameter_type
         super()
       end
@@ -101,12 +109,14 @@ module Cucumber
 
         new(
           attachment: Attachment.from_h(hash[:attachment]),
+          external_attachment: ExternalAttachment.from_h(hash[:externalAttachment]),
           gherkin_document: GherkinDocument.from_h(hash[:gherkinDocument]),
           hook: Hook.from_h(hash[:hook]),
           meta: Meta.from_h(hash[:meta]),
           parameter_type: ParameterType.from_h(hash[:parameterType]),
           parse_error: ParseError.from_h(hash[:parseError]),
           pickle: Pickle.from_h(hash[:pickle]),
+          suggestion: Suggestion.from_h(hash[:suggestion]),
           source: Source.from_h(hash[:source]),
           step_definition: StepDefinition.from_h(hash[:stepDefinition]),
           test_case: TestCase.from_h(hash[:testCase]),
@@ -116,6 +126,8 @@ module Cucumber
           test_run_started: TestRunStarted.from_h(hash[:testRunStarted]),
           test_step_finished: TestStepFinished.from_h(hash[:testStepFinished]),
           test_step_started: TestStepStarted.from_h(hash[:testStepStarted]),
+          test_run_hook_started: TestRunHookStarted.from_h(hash[:testRunHookStarted]),
+          test_run_hook_finished: TestRunHookFinished.from_h(hash[:testRunHookFinished]),
           undefined_parameter_type: UndefinedParameterType.from_h(hash[:undefinedParameterType])
         )
       end

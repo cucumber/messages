@@ -1,29 +1,37 @@
 package io.cucumber.messages.types;
 
-import java.util.ArrayList;
+import io.cucumber.messages.Property;
+import org.jspecify.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the TestRunStarted message in Cucumber's message protocol
- * @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+ * Represents the TestRunStarted message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  */
 // Generated code
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaLangClash"})
 public final class TestRunStarted {
     private final Timestamp timestamp;
+    private final @Nullable String id;
 
     public TestRunStarted(
-        Timestamp timestamp
+        @Property("timestamp") Timestamp timestamp,
+        @Nullable @Property("id") String id
     ) {
         this.timestamp = requireNonNull(timestamp, "TestRunStarted.timestamp cannot be null");
+        this.id = id;
     }
 
     public Timestamp getTimestamp() {
         return timestamp;
+    }
+
+    public Optional<String> getId() {
+        return Optional.ofNullable(id);
     }
 
     @Override
@@ -32,13 +40,15 @@ public final class TestRunStarted {
         if (o == null || getClass() != o.getClass()) return false;
         TestRunStarted that = (TestRunStarted) o;
         return 
-            timestamp.equals(that.timestamp);        
+            timestamp.equals(that.timestamp) &&         
+            Objects.equals(id, that.id);        
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-            timestamp
+            timestamp,
+            id
         );
     }
 
@@ -46,6 +56,7 @@ public final class TestRunStarted {
     public String toString() {
         return "TestRunStarted{" +
             "timestamp=" + timestamp +
+            ", id=" + id +
             '}';
     }
 }

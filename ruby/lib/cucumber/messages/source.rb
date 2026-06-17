@@ -7,16 +7,12 @@ module Cucumber
     # Represents the Source message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # //// Source
-    #
-    # *
-    #  A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
+    # A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
     ##
     class Source < Message
       ##
-      # *
-      #  The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
-      #  of the source, typically a file path relative to the root directory
+      # The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+      # of the source, typically a file path relative to the root directory
       ##
       attr_reader :uri
 
@@ -27,7 +23,7 @@ module Cucumber
 
       ##
       # The media type of the file. Can be used to specify custom types, such as
-      #  text/x.cucumber.gherkin+plain
+      # text/x.cucumber.gherkin+plain
       ##
       attr_reader :media_type
 
