@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/gherkin_document.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string gherkin_document::to_string() const

@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/exception.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string exception::to_string() const

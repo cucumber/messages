@@ -3,6 +3,8 @@
 
 #include <cucumber/messages/step_definition_pattern_type.hpp>
 
+// Generated code
+
 namespace cucumber::messages {
 
 std::string_view

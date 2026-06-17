@@ -2,6 +2,8 @@
 
 #include <string_view>
 
+// Generated code
+
 namespace cucumber::messages {
 
 enum class step_definition_pattern_type

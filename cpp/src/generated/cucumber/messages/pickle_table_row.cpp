@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/pickle_table_row.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string pickle_table_row::to_string() const

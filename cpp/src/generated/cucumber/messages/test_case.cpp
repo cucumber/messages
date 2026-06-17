@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/test_case.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string test_case::to_string() const

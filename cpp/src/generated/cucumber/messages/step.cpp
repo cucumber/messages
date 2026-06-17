@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/step.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string step::to_string() const

@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/parse_error.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string parse_error::to_string() const

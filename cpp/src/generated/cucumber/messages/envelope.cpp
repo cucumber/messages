@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/envelope.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string envelope::to_string() const

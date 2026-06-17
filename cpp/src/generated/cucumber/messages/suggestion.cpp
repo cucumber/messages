@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/suggestion.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string suggestion::to_string() const

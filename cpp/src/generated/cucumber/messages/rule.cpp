@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/rule.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string rule::to_string() const

@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/data_table.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string data_table::to_string() const

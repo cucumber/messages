@@ -2,6 +2,8 @@
 
 #include <string_view>
 
+// Generated code
+
 namespace cucumber::messages {
 
 enum class test_step_result_status

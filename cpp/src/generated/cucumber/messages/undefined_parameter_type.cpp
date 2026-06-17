@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/undefined_parameter_type.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string undefined_parameter_type::to_string() const

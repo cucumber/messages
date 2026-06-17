@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/test_run_hook_started.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string test_run_hook_started::to_string() const

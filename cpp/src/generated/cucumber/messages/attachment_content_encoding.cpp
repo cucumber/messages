@@ -3,6 +3,8 @@
 
 #include <cucumber/messages/attachment_content_encoding.hpp>
 
+// Generated code
+
 namespace cucumber::messages {
 
 std::string_view

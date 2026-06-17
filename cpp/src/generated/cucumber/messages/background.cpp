@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/background.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string background::to_string() const

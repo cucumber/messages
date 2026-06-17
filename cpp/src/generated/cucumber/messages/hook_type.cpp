@@ -3,6 +3,8 @@
 
 #include <cucumber/messages/hook_type.hpp>
 
+// Generated code
+
 namespace cucumber::messages {
 
 std::string_view

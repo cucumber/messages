@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/group.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string group::to_string() const

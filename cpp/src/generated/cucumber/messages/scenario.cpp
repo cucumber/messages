@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/scenario.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string scenario::to_string() const

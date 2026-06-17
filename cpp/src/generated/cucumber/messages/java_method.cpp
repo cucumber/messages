@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/java_method.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string java_method::to_string() const

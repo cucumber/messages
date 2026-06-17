@@ -3,6 +3,8 @@
 
 #include <cucumber/messages/test_step_result_status.hpp>
 
+// Generated code
+
 namespace cucumber::messages {
 
 std::string_view

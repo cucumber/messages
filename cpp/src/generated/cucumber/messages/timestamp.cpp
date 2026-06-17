@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/timestamp.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string timestamp::to_string() const

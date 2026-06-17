@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/pickle_step_argument.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string pickle_step_argument::to_string() const

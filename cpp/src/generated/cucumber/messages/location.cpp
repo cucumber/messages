@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/location.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string location::to_string() const

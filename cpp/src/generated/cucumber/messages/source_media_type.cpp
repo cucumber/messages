@@ -3,6 +3,8 @@
 
 #include <cucumber/messages/source_media_type.hpp>
 
+// Generated code
+
 namespace cucumber::messages {
 
 std::string_view

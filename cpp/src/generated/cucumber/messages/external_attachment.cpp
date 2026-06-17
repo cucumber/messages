@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/external_attachment.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string external_attachment::to_string() const

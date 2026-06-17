@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/step_definition_pattern.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string step_definition_pattern::to_string() const

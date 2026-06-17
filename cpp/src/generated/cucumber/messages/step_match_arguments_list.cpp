@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/step_match_arguments_list.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string step_match_arguments_list::to_string() const

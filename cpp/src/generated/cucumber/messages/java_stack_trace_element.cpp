@@ -3,6 +3,8 @@
 #include <cucumber/messages/utils.hpp>
 #include <cucumber/messages/java_stack_trace_element.hpp>
 
+// Generated code
+
 namespace cucumber::messages
 {
     std::string java_stack_trace_element::to_string() const
