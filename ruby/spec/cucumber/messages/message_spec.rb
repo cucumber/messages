@@ -103,7 +103,7 @@ describe Cucumber::Messages::Message do
     end
 
     describe '#type' do
-      let(:envelope_message) { Cucumber::Messages::Envelope.new(attachment: :foo) }
+      let(:envelope_message) { Cucumber::Messages::Envelope.new(attachment: Cucumber::Messages::Attachment.new) }
       let(:standard_message) { Cucumber::Messages::SimpleMessage.new }
 
       it 'returns the class name as the type for a consumed message' do
