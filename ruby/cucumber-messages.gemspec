@@ -25,10 +25,10 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rake', '~> 13.2'
   s.add_development_dependency 'rspec', '~> 3.13'
-  s.add_development_dependency 'rubocop', '~> 1.80.0'
+  s.add_development_dependency 'rubocop', '~> 1.87.0'
   s.add_development_dependency 'rubocop-performance', '~> 1.24.0'
   s.add_development_dependency 'rubocop-rake', '~> 0.6.0'
-  s.add_development_dependency 'rubocop-rspec', '~> 3.7.0'
+  s.add_development_dependency 'rubocop-rspec', '~> 3.10.2'
 
   s.files            = Dir['README.md', 'LICENSE', 'VERSION', 'lib/**/*']
   s.rdoc_options     = ['--charset=UTF-8']
