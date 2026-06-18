@@ -70,7 +70,6 @@ target_include_directories(
     cucumber_messages_lib
     PUBLIC
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/generated>
-        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/messages>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
     PRIVATE
         ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
