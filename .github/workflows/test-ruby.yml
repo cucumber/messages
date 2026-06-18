@@ -30,6 +30,7 @@ jobs:
           bundler-cache: true
           working-directory: ruby
       - run: bundle exec rubocop
+        working-directory: ruby
 
   test-ruby:
     runs-on: ${{ matrix.os }}
