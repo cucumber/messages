@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - [PHP] Require PHP 8.4
 
+### Fixed
+- [JavaScript] Mark package as side-effect free ([#449](https://github.com/cucumber/messages/pull/449))
+
 ## [33.0.2] - 2026-06-10
 ### Fixed
 - [.Net] Fix release workflow filename ([#443](https://github.com/cucumber/messages/pull/443))
