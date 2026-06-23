@@ -36,9 +36,9 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson</groupId>
+                <groupId>tools.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
-                <version>2.22.0</version>
+                <version>3.1.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -58,16 +58,10 @@
             <artifactId>jspecify</artifactId>
             <version>1.0.0</version>
         </dependency>
-        
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
             <scope>test</scope>
         </dependency>
 
