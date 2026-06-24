@@ -99,7 +99,7 @@ final class AcceptanceTest extends TestCase
         // However there are currently no known problems (because these
         // tests originally tested against the CCK but that caused
         // circular dependencies).
-        $files = glob(__DIR__ . '/Samples/*.ndjson');
+        $files = glob(__DIR__ . '/../../testdata/src/*.ndjson');
         return $files === false ? [] : $files;
     }
 }
