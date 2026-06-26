@@ -1,10 +1,15 @@
 all.hpp
-<%- @schemas.each do |key, _schema| -%>
+#ifndef CUCUMBER_MESSAGES_ALL_HPP
+#define CUCUMBER_MESSAGES_ALL_HPP
+
+<%- @schemas.sort_by { |key, _| class_name(key) }.each do |key, _schema| -%>
 <%-
     myclass = underscore(class_name(key))
 -%>
 #include <cucumber/messages/<%= myclass %>.hpp>
 <%- end -%>
+
+#endif
 <%- @schemas.each do |key, schema| -%>
 <%-
     myclass = underscore(class_name(key))
