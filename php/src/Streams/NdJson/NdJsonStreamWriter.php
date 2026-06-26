@@ -15,6 +15,7 @@ final class NdJsonStreamWriter implements StreamWriter
     /**
      * @param iterable<Envelope> $envelopes
      */
+    #[\Override]
     public function writeEnvelopes(iterable $envelopes): void
     {
         foreach ($envelopes as $envelope) {

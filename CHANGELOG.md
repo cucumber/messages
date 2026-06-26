@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [33.0.3] - 2026-06-20
+### Added
+- [Ruby] Added `#type` classification (Returning hashified response), for all messages (Including envelopes) ([#447](https://github.com/cucumber/messages/pull/447))
+
+### Changed
+- [PHP] Require PHP 8.4
+
+### Fixed
+- [JavaScript] Mark package as side-effect free ([#449](https://github.com/cucumber/messages/pull/449))
+
+## [33.0.2] - 2026-06-10
+### Fixed
+- [.Net] Fix release workflow filename ([#443](https://github.com/cucumber/messages/pull/443))
+
+## [33.0.1] - 2026-06-10
+### Fixed
+- [JavaScript] Fix release process
+
+## [33.0.0] - 2026-06-10
+### Changed
+- [Elixir] Generate messages from JSON schema instead of protobuf ([#29](https://github.com/cucumber/messages/pull/29)
+- [JavaScript] BREAKING CHANGE: Emit types instead of classes ([#287](https://github.com/cucumber/messages/pull/287))
+- [JavaScript] BREAKING CHANGE: `parseEnvelope` no longer defaults missing values ([#287](https://github.com/cucumber/messages/pull/287))
+- [JavaScript] BREAKING CHANGE: Switch to ESM ([#438](https://github.com/cucumber/messages/pull/438))
+
 ## [32.3.1] - 2026-04-13
 ### Fixed
 - [Java] Fix broken Javadoc
@@ -671,7 +696,11 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v32.3.1...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v33.0.3...HEAD
+[33.0.3]: https://github.com/cucumber/messages/compare/v33.0.2...v33.0.3
+[33.0.2]: https://github.com/cucumber/messages/compare/v33.0.1...v33.0.2
+[33.0.1]: https://github.com/cucumber/messages/compare/v33.0.0...v33.0.1
+[33.0.0]: https://github.com/cucumber/messages/compare/v32.3.1...v33.0.0
 [32.3.1]: https://github.com/cucumber/messages/compare/v32.3.0...v32.3.1
 [32.3.0]: https://github.com/cucumber/messages/compare/v32.2.0...v32.3.0
 [32.2.0]: https://github.com/cucumber/messages/compare/v32.1.0...v32.2.0

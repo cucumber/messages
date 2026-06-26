@@ -8,6 +8,7 @@ final class IncrementingIdGenerator implements IdGenerator
 {
     private int $next = 0;
 
+    #[\Override]
     public function newId(): string
     {
         return (string) $this->next++;

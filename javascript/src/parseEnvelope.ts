@@ -1,12 +1,8 @@
-import { plainToClass } from 'class-transformer'
-import { Envelope } from './messages.js'
+import type { Envelope } from './messages.js'
 
 /**
- * Parses JSON into an Envelope object. The difference from JSON.parse
- * is that the resulting objects will have default values (defined in the JSON Schema)
- * for properties that are absent from the JSON.
+ * Parses JSON into an Envelope object.
  */
 export function parseEnvelope(json: string): Envelope {
-  const plain = JSON.parse(json)
-  return plainToClass(Envelope, plain)
+  return JSON.parse(json) as Envelope
 }

@@ -101,5 +101,18 @@ describe Cucumber::Messages::Message do
         expect(message.to_json).to include('"isEnum":"an enum"')
       end
     end
+
+    describe '#type' do
+      let(:envelope_message) { Cucumber::Messages::Envelope.new(attachment: Cucumber::Messages::Attachment.new) }
+      let(:standard_message) { Cucumber::Messages::SimpleMessage.new }
+
+      it 'returns the class name as the type for a consumed message' do
+        expect(standard_message.type).to eq({ type: :simple_message })
+      end
+
+      it 'unwraps an `Envelope` message and shows what is contained inside it' do
+        expect(envelope_message.type).to eq({ type: :envelope, contained_message: :attachment })
+      end
+    end
   end
 end

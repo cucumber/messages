@@ -11,6 +11,7 @@ final class UuidIdGenerator implements IdGenerator
      *
      * @see https://datatracker.ietf.org/doc/html/rfc4122
      */
+    #[\Override]
     public function newId(): string
     {
         $bytes = random_bytes(16);
@@ -35,10 +36,14 @@ final class UuidIdGenerator implements IdGenerator
             | "\x40" // raise 2nd bit to 1
         ;
 
-        return preg_replace(
-            '/^(.{8})(.{4})(.{4})(.{4})(.{12})$/',
-            '\\1-\\2-\\3-\\4-\\5',
-            bin2hex($bytes),
+        $hex = bin2hex($bytes);
+        return sprintf(
+            '%s-%s-%s-%s-%s',
+            substr($hex, 0, 8),
+            substr($hex, 8, 4),
+            substr($hex, 12, 4),
+            substr($hex, 16, 4),
+            substr($hex, 20, 12),
         );
     }
 }

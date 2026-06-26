@@ -24,17 +24,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.1']
-        composer-mode: ['low-deps', 'high-deps']
+        php:
+          - '8.4'
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # 2.37.1
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: "${{ matrix.php }}"
         env:
@@ -46,20 +46,14 @@ jobs:
         working-directory: php
 
       - name: Cache composer
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
         with:
           path: "${{ steps.composer-cache.outputs.dir }}"
           key: composer
 
       - name: Install dependencies
         working-directory: php
-        run: |
-          if [[ "${{ matrix.composer-mode }}" = "low-deps" ]]; then
-            composer update --prefer-lowest
-          else
-            composer update
-          fi
-
+        run: composer install
       - name: Run tests
         working-directory: php
         run: |
