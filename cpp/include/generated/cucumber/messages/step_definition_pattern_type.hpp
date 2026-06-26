@@ -1,6 +1,7 @@
 #ifndef CUCUMBER_MESSAGES_STEP_DEFINITION_PATTERN_TYPE_HPP
 #define CUCUMBER_MESSAGES_STEP_DEFINITION_PATTERN_TYPE_HPP
 
+#include "nlohmann/json_fwd.hpp"
 #include <cstdint>
 #include <ostream>
 #include <string_view>
@@ -18,6 +19,8 @@ namespace cucumber::messages
     [[nodiscard]] std::string_view to_string(step_definition_pattern_type value);
 
     std::ostream& operator<<(std::ostream& stream, step_definition_pattern_type value);
+
+    void to_json(nlohmann::json& json, const step_definition_pattern_type& msg);
 }
 
 #endif

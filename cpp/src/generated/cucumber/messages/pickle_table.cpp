@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/pickle_table.hpp>
+#include "cucumber/messages/pickle_table.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -16,33 +19,45 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void pickle_table::to_json(json& j) const
+    void pickle_table::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("rows"), rows);
+        json[camelize("rows")] = rows;
+    }
+
+    void pickle_table::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("rows")).get_to(rows);
     }
 
     std::string pickle_table::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const pickle_table& msg)
+    std::ostream& operator<<(std::ostream& ostream, const pickle_table& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const pickle_table& m)
+    void to_json(nlohmann::json& json, const pickle_table& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, pickle_table& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_table>& msg)
+    {
+        msg = std::make_shared<pickle_table>();
+        msg->from_json(json);
+    }
 }

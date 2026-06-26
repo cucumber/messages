@@ -1,15 +1,14 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_EXCEPTION_HPP
+#define CUCUMBER_MESSAGES_EXCEPTION_HPP
 
-#include <vector>
-#include <string>
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Exception message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -20,18 +19,26 @@ namespace cucumber::messages
 
     struct exception
     {
+        using shared_ptr = exception;//std::shared_ptr<exception>;
+
         std::string type;
         std::optional<std::string> message;
         std::optional<std::string> stack_trace;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const exception& msg);
+    std::ostream& operator<<(std::ostream& ostream, const exception& msg);
 
-    void to_json(json& j, const exception& m);
+    void to_json(nlohmann::json& json, const exception& msg);
+    void from_json(const nlohmann::json& json, exception& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<exception>& msg);
 
 }
+
+#endif

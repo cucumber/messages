@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/gherkin_document.hpp>
+#include "cucumber/messages/gherkin_document.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -18,35 +21,61 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void gherkin_document::to_json(json& j) const
+    void gherkin_document::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("uri"), uri);
-        cucumber::messages::to_json(j, camelize("feature"), feature);
-        cucumber::messages::to_json(j, camelize("comments"), comments);
+        if (uri.has_value())
+        {
+            json[camelize("uri")] = uri;
+        }
+        if (feature.has_value())
+        {
+            json[camelize("feature")] = feature;
+        }
+        json[camelize("comments")] = comments;
+    }
+
+    void gherkin_document::from_json(const nlohmann::json& json)
+    {
+        if (uri.has_value())
+        {
+            json.at(camelize("uri")).get_to(uri.emplace());
+        }
+        if (feature.has_value())
+        {
+            json.at(camelize("feature")).get_to(feature.emplace());
+        }
+        json.at(camelize("comments")).get_to(comments);
     }
 
     std::string gherkin_document::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const gherkin_document& msg)
+    std::ostream& operator<<(std::ostream& ostream, const gherkin_document& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const gherkin_document& m)
+    void to_json(nlohmann::json& json, const gherkin_document& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, gherkin_document& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<gherkin_document>& msg)
+    {
+        msg = std::make_shared<gherkin_document>();
+        msg->from_json(json);
+    }
 }

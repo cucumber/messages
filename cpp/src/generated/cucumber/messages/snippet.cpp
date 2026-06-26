@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/snippet.hpp>
+#include "cucumber/messages/snippet.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +20,47 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void snippet::to_json(json& j) const
+    void snippet::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("language"), language);
-        cucumber::messages::to_json(j, camelize("code"), code);
+        json[camelize("language")] = language;
+        json[camelize("code")] = code;
+    }
+
+    void snippet::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("language")).get_to(language);
+        json.at(camelize("code")).get_to(code);
     }
 
     std::string snippet::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const snippet& msg)
+    std::ostream& operator<<(std::ostream& ostream, const snippet& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const snippet& m)
+    void to_json(nlohmann::json& json, const snippet& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, snippet& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<snippet>& msg)
+    {
+        msg = std::make_shared<snippet>();
+        msg->from_json(json);
+    }
 }

@@ -1,20 +1,18 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_STEP_HPP
+#define CUCUMBER_MESSAGES_STEP_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/data_table.hpp"
+#include "cucumber/messages/doc_string.hpp"
+#include "cucumber/messages/step_keyword_type.hpp"
+#include "cucumber/messages/location.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/location.hpp>
-#include <cucumber/messages/step_keyword_type.hpp>
-#include <cucumber/messages/doc_string.hpp>
-#include <cucumber/messages/data_table.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Step message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -25,22 +23,30 @@ namespace cucumber::messages
 
     struct step
     {
-        cucumber::messages::location location;
+        using shared_ptr = step;//std::shared_ptr<step>;
+
+        cucumber::messages::location::shared_ptr location;
         std::string keyword;
         std::optional<cucumber::messages::step_keyword_type> keyword_type;
         std::string text;
-        std::optional<cucumber::messages::doc_string> doc_string;
-        std::optional<cucumber::messages::data_table> data_table;
+        std::optional<cucumber::messages::doc_string::shared_ptr> doc_string;
+        std::optional<cucumber::messages::data_table::shared_ptr> data_table;
         std::string id;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const step& msg);
+    std::ostream& operator<<(std::ostream& ostream, const step& msg);
 
-    void to_json(json& j, const step& m);
+    void to_json(nlohmann::json& json, const step& msg);
+    void from_json(const nlohmann::json& json, step& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<step>& msg);
 
 }
+
+#endif

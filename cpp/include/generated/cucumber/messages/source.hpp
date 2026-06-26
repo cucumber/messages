@@ -1,17 +1,15 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_SOURCE_HPP
+#define CUCUMBER_MESSAGES_SOURCE_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/source_media_type.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/source_media_type.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Source message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -22,18 +20,26 @@ namespace cucumber::messages
 
     struct source
     {
+        using shared_ptr = source;//std::shared_ptr<source>;
+
         std::string uri;
         std::string data;
         cucumber::messages::source_media_type media_type;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const source& msg);
+    std::ostream& operator<<(std::ostream& ostream, const source& msg);
 
-    void to_json(json& j, const source& m);
+    void to_json(nlohmann::json& json, const source& msg);
+    void from_json(const nlohmann::json& json, source& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<source>& msg);
 
 }
+
+#endif

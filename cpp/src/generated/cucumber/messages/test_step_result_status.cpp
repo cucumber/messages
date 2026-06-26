@@ -1,4 +1,5 @@
 #include "cucumber/messages/test_step_result_status.hpp"
+#include "nlohmann/json.hpp"
 #include <iostream>
 #include <string_view>
 #include <unordered_map>
@@ -29,5 +30,10 @@ namespace cucumber::messages
         stream << to_string(value);
 
         return stream;
+    }
+
+    void to_json(nlohmann::json& json, const test_step_result_status& msg)
+    {
+        json = to_string(msg);
     }
 }

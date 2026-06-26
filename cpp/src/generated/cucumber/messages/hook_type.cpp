@@ -1,4 +1,5 @@
 #include "cucumber/messages/hook_type.hpp"
+#include "nlohmann/json.hpp"
 #include <iostream>
 #include <string_view>
 #include <unordered_map>
@@ -28,5 +29,10 @@ namespace cucumber::messages
         stream << to_string(value);
 
         return stream;
+    }
+
+    void to_json(nlohmann::json& json, const hook_type& msg)
+    {
+        json = to_string(msg);
     }
 }

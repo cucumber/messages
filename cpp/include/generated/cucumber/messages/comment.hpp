@@ -1,17 +1,15 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_COMMENT_HPP
+#define CUCUMBER_MESSAGES_COMMENT_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/location.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/location.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Comment message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -22,17 +20,25 @@ namespace cucumber::messages
 
     struct comment
     {
-        cucumber::messages::location location;
+        using shared_ptr = comment;//std::shared_ptr<comment>;
+
+        cucumber::messages::location::shared_ptr location;
         std::string text;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const comment& msg);
+    std::ostream& operator<<(std::ostream& ostream, const comment& msg);
 
-    void to_json(json& j, const comment& m);
+    void to_json(nlohmann::json& json, const comment& msg);
+    void from_json(const nlohmann::json& json, comment& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<comment>& msg);
 
 }
+
+#endif

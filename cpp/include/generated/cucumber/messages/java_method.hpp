@@ -1,15 +1,15 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_JAVA_METHOD_HPP
+#define CUCUMBER_MESSAGES_JAVA_METHOD_HPP
 
-#include <vector>
-#include <string>
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
+#include <ostream>
+#include <string>
+#include <vector>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the JavaMethod message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -18,18 +18,26 @@ namespace cucumber::messages
 
     struct java_method
     {
+        using shared_ptr = java_method;//std::shared_ptr<java_method>;
+
         std::string class_name;
         std::string method_name;
         std::vector<std::string> method_parameter_types;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const java_method& msg);
+    std::ostream& operator<<(std::ostream& ostream, const java_method& msg);
 
-    void to_json(json& j, const java_method& m);
+    void to_json(nlohmann::json& json, const java_method& msg);
+    void from_json(const nlohmann::json& json, java_method& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<java_method>& msg);
 
 }
+
+#endif

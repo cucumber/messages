@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/examples.hpp>
+#include "cucumber/messages/examples.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -23,40 +26,65 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void examples::to_json(json& j) const
+    void examples::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("location"), location);
-        cucumber::messages::to_json(j, camelize("tags"), tags);
-        cucumber::messages::to_json(j, camelize("keyword"), keyword);
-        cucumber::messages::to_json(j, camelize("name"), name);
-        cucumber::messages::to_json(j, camelize("description"), description);
-        cucumber::messages::to_json(j, camelize("table_header"), table_header);
-        cucumber::messages::to_json(j, camelize("table_body"), table_body);
-        cucumber::messages::to_json(j, camelize("id"), id);
+        json[camelize("location")] = location;
+        json[camelize("tags")] = tags;
+        json[camelize("keyword")] = keyword;
+        json[camelize("name")] = name;
+        json[camelize("description")] = description;
+        if (table_header.has_value())
+        {
+            json[camelize("table_header")] = table_header;
+        }
+        json[camelize("table_body")] = table_body;
+        json[camelize("id")] = id;
+    }
+
+    void examples::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("location")).get_to(location);
+        json.at(camelize("tags")).get_to(tags);
+        json.at(camelize("keyword")).get_to(keyword);
+        json.at(camelize("name")).get_to(name);
+        json.at(camelize("description")).get_to(description);
+        if (table_header.has_value())
+        {
+            json.at(camelize("table_header")).get_to(table_header.emplace());
+        }
+        json.at(camelize("table_body")).get_to(table_body);
+        json.at(camelize("id")).get_to(id);
     }
 
     std::string examples::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const examples& msg)
+    std::ostream& operator<<(std::ostream& ostream, const examples& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const examples& m)
+    void to_json(nlohmann::json& json, const examples& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, examples& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<examples>& msg)
+    {
+        msg = std::make_shared<examples>();
+        msg->from_json(json);
+    }
 }

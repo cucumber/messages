@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/pickle.hpp>
+#include "cucumber/messages/pickle.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -23,40 +26,65 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void pickle::to_json(json& j) const
+    void pickle::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("id"), id);
-        cucumber::messages::to_json(j, camelize("uri"), uri);
-        cucumber::messages::to_json(j, camelize("location"), location);
-        cucumber::messages::to_json(j, camelize("name"), name);
-        cucumber::messages::to_json(j, camelize("language"), language);
-        cucumber::messages::to_json(j, camelize("steps"), steps);
-        cucumber::messages::to_json(j, camelize("tags"), tags);
-        cucumber::messages::to_json(j, camelize("ast_node_ids"), ast_node_ids);
+        json[camelize("id")] = id;
+        json[camelize("uri")] = uri;
+        if (location.has_value())
+        {
+            json[camelize("location")] = location;
+        }
+        json[camelize("name")] = name;
+        json[camelize("language")] = language;
+        json[camelize("steps")] = steps;
+        json[camelize("tags")] = tags;
+        json[camelize("ast_node_ids")] = ast_node_ids;
+    }
+
+    void pickle::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("id")).get_to(id);
+        json.at(camelize("uri")).get_to(uri);
+        if (location.has_value())
+        {
+            json.at(camelize("location")).get_to(location.emplace());
+        }
+        json.at(camelize("name")).get_to(name);
+        json.at(camelize("language")).get_to(language);
+        json.at(camelize("steps")).get_to(steps);
+        json.at(camelize("tags")).get_to(tags);
+        json.at(camelize("ast_node_ids")).get_to(ast_node_ids);
     }
 
     std::string pickle::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const pickle& msg)
+    std::ostream& operator<<(std::ostream& ostream, const pickle& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const pickle& m)
+    void to_json(nlohmann::json& json, const pickle& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, pickle& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<pickle>& msg)
+    {
+        msg = std::make_shared<pickle>();
+        msg->from_json(json);
+    }
 }

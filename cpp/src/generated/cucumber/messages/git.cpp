@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/git.hpp>
+#include "cucumber/messages/git.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -19,36 +22,63 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void git::to_json(json& j) const
+    void git::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("remote"), remote);
-        cucumber::messages::to_json(j, camelize("revision"), revision);
-        cucumber::messages::to_json(j, camelize("branch"), branch);
-        cucumber::messages::to_json(j, camelize("tag"), tag);
+        json[camelize("remote")] = remote;
+        json[camelize("revision")] = revision;
+        if (branch.has_value())
+        {
+            json[camelize("branch")] = branch;
+        }
+        if (tag.has_value())
+        {
+            json[camelize("tag")] = tag;
+        }
+    }
+
+    void git::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("remote")).get_to(remote);
+        json.at(camelize("revision")).get_to(revision);
+        if (branch.has_value())
+        {
+            json.at(camelize("branch")).get_to(branch.emplace());
+        }
+        if (tag.has_value())
+        {
+            json.at(camelize("tag")).get_to(tag.emplace());
+        }
     }
 
     std::string git::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const git& msg)
+    std::ostream& operator<<(std::ostream& ostream, const git& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const git& m)
+    void to_json(nlohmann::json& json, const git& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, git& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<git>& msg)
+    {
+        msg = std::make_shared<git>();
+        msg->from_json(json);
+    }
 }

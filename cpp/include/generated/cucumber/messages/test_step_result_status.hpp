@@ -1,6 +1,7 @@
 #ifndef CUCUMBER_MESSAGES_TEST_STEP_RESULT_STATUS_HPP
 #define CUCUMBER_MESSAGES_TEST_STEP_RESULT_STATUS_HPP
 
+#include "nlohmann/json_fwd.hpp"
 #include <cstdint>
 #include <ostream>
 #include <string_view>
@@ -23,6 +24,8 @@ namespace cucumber::messages
     [[nodiscard]] std::string_view to_string(test_step_result_status value);
 
     std::ostream& operator<<(std::ostream& stream, test_step_result_status value);
+
+    void to_json(nlohmann::json& json, const test_step_result_status& msg);
 }
 
 #endif

@@ -1,17 +1,15 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_PARSE_ERROR_HPP
+#define CUCUMBER_MESSAGES_PARSE_ERROR_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/source_reference.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/source_reference.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the ParseError message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -20,17 +18,25 @@ namespace cucumber::messages
 
     struct parse_error
     {
-        cucumber::messages::source_reference source;
+        using shared_ptr = parse_error;//std::shared_ptr<parse_error>;
+
+        cucumber::messages::source_reference::shared_ptr source;
         std::string message;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const parse_error& msg);
+    std::ostream& operator<<(std::ostream& ostream, const parse_error& msg);
 
-    void to_json(json& j, const parse_error& m);
+    void to_json(nlohmann::json& json, const parse_error& msg);
+    void from_json(const nlohmann::json& json, parse_error& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<parse_error>& msg);
 
 }
+
+#endif

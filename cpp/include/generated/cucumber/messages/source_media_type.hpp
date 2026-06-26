@@ -1,6 +1,7 @@
 #ifndef CUCUMBER_MESSAGES_SOURCE_MEDIA_TYPE_HPP
 #define CUCUMBER_MESSAGES_SOURCE_MEDIA_TYPE_HPP
 
+#include "nlohmann/json_fwd.hpp"
 #include <cstdint>
 #include <ostream>
 #include <string_view>
@@ -18,6 +19,8 @@ namespace cucumber::messages
     [[nodiscard]] std::string_view to_string(source_media_type value);
 
     std::ostream& operator<<(std::ostream& stream, source_media_type value);
+
+    void to_json(nlohmann::json& json, const source_media_type& msg);
 }
 
 #endif

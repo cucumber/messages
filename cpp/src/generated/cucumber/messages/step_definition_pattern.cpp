@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/step_definition_pattern.hpp>
+#include "cucumber/messages/step_definition_pattern.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +20,47 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void step_definition_pattern::to_json(json& j) const
+    void step_definition_pattern::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("source"), source);
-        cucumber::messages::to_json(j, camelize("type"), type);
+        json[camelize("source")] = source;
+        json[camelize("type")] = type;
+    }
+
+    void step_definition_pattern::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("source")).get_to(source);
+        json.at(camelize("type")).get_to(type);
     }
 
     std::string step_definition_pattern::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const step_definition_pattern& msg)
+    std::ostream& operator<<(std::ostream& ostream, const step_definition_pattern& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const step_definition_pattern& m)
+    void to_json(nlohmann::json& json, const step_definition_pattern& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, step_definition_pattern& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<step_definition_pattern>& msg)
+    {
+        msg = std::make_shared<step_definition_pattern>();
+        msg->from_json(json);
+    }
 }

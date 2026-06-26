@@ -1,15 +1,14 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_TIMESTAMP_HPP
+#define CUCUMBER_MESSAGES_TIMESTAMP_HPP
 
-#include <vector>
-#include <string>
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Timestamp message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -18,17 +17,25 @@ namespace cucumber::messages
 
     struct timestamp
     {
+        using shared_ptr = timestamp;//std::shared_ptr<timestamp>;
+
         std::size_t seconds;
         std::size_t nanos;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const timestamp& msg);
+    std::ostream& operator<<(std::ostream& ostream, const timestamp& msg);
 
-    void to_json(json& j, const timestamp& m);
+    void to_json(nlohmann::json& json, const timestamp& msg);
+    void from_json(const nlohmann::json& json, timestamp& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<timestamp>& msg);
 
 }
+
+#endif

@@ -1,5 +1,5 @@
 #pragma once
-
+// clang-format off
 #include <ostream>
 #include <sstream>
 #include <string_view>
@@ -101,4 +101,11 @@ to_json(json& j, K&& key, T&& opt)
     );
 }
 
+    // clang-format on
+
+    template<class T>
+    inline void to_json(nlohmann::json& json, const std::shared_ptr<T>& duration)
+    {
+        to_json(json, *duration);
+    }
 }

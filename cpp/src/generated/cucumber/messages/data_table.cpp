@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/data_table.hpp>
+#include "cucumber/messages/data_table.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +20,47 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void data_table::to_json(json& j) const
+    void data_table::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("location"), location);
-        cucumber::messages::to_json(j, camelize("rows"), rows);
+        json[camelize("location")] = location;
+        json[camelize("rows")] = rows;
+    }
+
+    void data_table::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("location")).get_to(location);
+        json.at(camelize("rows")).get_to(rows);
     }
 
     std::string data_table::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const data_table& msg)
+    std::ostream& operator<<(std::ostream& ostream, const data_table& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const data_table& m)
+    void to_json(nlohmann::json& json, const data_table& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, data_table& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<data_table>& msg)
+    {
+        msg = std::make_shared<data_table>();
+        msg->from_json(json);
+    }
 }

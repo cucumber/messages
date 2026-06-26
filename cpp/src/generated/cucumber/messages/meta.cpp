@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/meta.hpp>
+#include "cucumber/messages/meta.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -21,38 +24,61 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void meta::to_json(json& j) const
+    void meta::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("protocol_version"), protocol_version);
-        cucumber::messages::to_json(j, camelize("implementation"), implementation);
-        cucumber::messages::to_json(j, camelize("runtime"), runtime);
-        cucumber::messages::to_json(j, camelize("os"), os);
-        cucumber::messages::to_json(j, camelize("cpu"), cpu);
-        cucumber::messages::to_json(j, camelize("ci"), ci);
+        json[camelize("protocol_version")] = protocol_version;
+        json[camelize("implementation")] = implementation;
+        json[camelize("runtime")] = runtime;
+        json[camelize("os")] = os;
+        json[camelize("cpu")] = cpu;
+        if (ci.has_value())
+        {
+            json[camelize("ci")] = ci;
+        }
+    }
+
+    void meta::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("protocol_version")).get_to(protocol_version);
+        json.at(camelize("implementation")).get_to(implementation);
+        json.at(camelize("runtime")).get_to(runtime);
+        json.at(camelize("os")).get_to(os);
+        json.at(camelize("cpu")).get_to(cpu);
+        if (ci.has_value())
+        {
+            json.at(camelize("ci")).get_to(ci.emplace());
+        }
     }
 
     std::string meta::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const meta& msg)
+    std::ostream& operator<<(std::ostream& ostream, const meta& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const meta& m)
+    void to_json(nlohmann::json& json, const meta& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, meta& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<meta>& msg)
+    {
+        msg = std::make_shared<meta>();
+        msg->from_json(json);
+    }
 }

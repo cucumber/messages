@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/ci.hpp>
+#include "cucumber/messages/ci.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -19,36 +22,69 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void ci::to_json(json& j) const
+    void ci::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("name"), name);
-        cucumber::messages::to_json(j, camelize("url"), url);
-        cucumber::messages::to_json(j, camelize("build_number"), build_number);
-        cucumber::messages::to_json(j, camelize("git"), git);
+        json[camelize("name")] = name;
+        if (url.has_value())
+        {
+            json[camelize("url")] = url;
+        }
+        if (build_number.has_value())
+        {
+            json[camelize("build_number")] = build_number;
+        }
+        if (git.has_value())
+        {
+            json[camelize("git")] = git;
+        }
+    }
+
+    void ci::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("name")).get_to(name);
+        if (url.has_value())
+        {
+            json.at(camelize("url")).get_to(url.emplace());
+        }
+        if (build_number.has_value())
+        {
+            json.at(camelize("build_number")).get_to(build_number.emplace());
+        }
+        if (git.has_value())
+        {
+            json.at(camelize("git")).get_to(git.emplace());
+        }
     }
 
     std::string ci::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const ci& msg)
+    std::ostream& operator<<(std::ostream& ostream, const ci& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const ci& m)
+    void to_json(nlohmann::json& json, const ci& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, ci& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<ci>& msg)
+    {
+        msg = std::make_shared<ci>();
+        msg->from_json(json);
+    }
 }

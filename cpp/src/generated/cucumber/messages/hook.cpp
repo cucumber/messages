@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/hook.hpp>
+#include "cucumber/messages/hook.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -20,37 +23,71 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void hook::to_json(json& j) const
+    void hook::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("id"), id);
-        cucumber::messages::to_json(j, camelize("name"), name);
-        cucumber::messages::to_json(j, camelize("source_reference"), source_reference);
-        cucumber::messages::to_json(j, camelize("tag_expression"), tag_expression);
-        cucumber::messages::to_json(j, camelize("type"), type);
+        json[camelize("id")] = id;
+        if (name.has_value())
+        {
+            json[camelize("name")] = name;
+        }
+        json[camelize("source_reference")] = source_reference;
+        if (tag_expression.has_value())
+        {
+            json[camelize("tag_expression")] = tag_expression;
+        }
+        if (type.has_value())
+        {
+            json[camelize("type")] = type;
+        }
+    }
+
+    void hook::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("id")).get_to(id);
+        if (name.has_value())
+        {
+            json.at(camelize("name")).get_to(name.emplace());
+        }
+        json.at(camelize("source_reference")).get_to(source_reference);
+        if (tag_expression.has_value())
+        {
+            json.at(camelize("tag_expression")).get_to(tag_expression.emplace());
+        }
+        if (type.has_value())
+        {
+            json.at(camelize("type")).get_to(type.emplace());
+        }
     }
 
     std::string hook::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const hook& msg)
+    std::ostream& operator<<(std::ostream& ostream, const hook& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const hook& m)
+    void to_json(nlohmann::json& json, const hook& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, hook& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<hook>& msg)
+    {
+        msg = std::make_shared<hook>();
+        msg->from_json(json);
+    }
 }

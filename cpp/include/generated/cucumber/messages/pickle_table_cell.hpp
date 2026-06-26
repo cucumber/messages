@@ -1,15 +1,14 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_PICKLE_TABLE_CELL_HPP
+#define CUCUMBER_MESSAGES_PICKLE_TABLE_CELL_HPP
 
-#include <vector>
-#include <string>
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the PickleTableCell message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -18,16 +17,24 @@ namespace cucumber::messages
 
     struct pickle_table_cell
     {
+        using shared_ptr = pickle_table_cell;//std::shared_ptr<pickle_table_cell>;
+
         std::string value;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const pickle_table_cell& msg);
+    std::ostream& operator<<(std::ostream& ostream, const pickle_table_cell& msg);
 
-    void to_json(json& j, const pickle_table_cell& m);
+    void to_json(nlohmann::json& json, const pickle_table_cell& msg);
+    void from_json(const nlohmann::json& json, pickle_table_cell& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_table_cell>& msg);
 
 }
+
+#endif

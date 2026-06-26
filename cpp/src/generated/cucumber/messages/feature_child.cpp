@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/feature_child.hpp>
+#include "cucumber/messages/feature_child.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -18,35 +21,67 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void feature_child::to_json(json& j) const
+    void feature_child::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("rule"), rule);
-        cucumber::messages::to_json(j, camelize("background"), background);
-        cucumber::messages::to_json(j, camelize("scenario"), scenario);
+        if (rule.has_value())
+        {
+            json[camelize("rule")] = rule;
+        }
+        if (background.has_value())
+        {
+            json[camelize("background")] = background;
+        }
+        if (scenario.has_value())
+        {
+            json[camelize("scenario")] = scenario;
+        }
+    }
+
+    void feature_child::from_json(const nlohmann::json& json)
+    {
+        if (rule.has_value())
+        {
+            json.at(camelize("rule")).get_to(rule.emplace());
+        }
+        if (background.has_value())
+        {
+            json.at(camelize("background")).get_to(background.emplace());
+        }
+        if (scenario.has_value())
+        {
+            json.at(camelize("scenario")).get_to(scenario.emplace());
+        }
     }
 
     std::string feature_child::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const feature_child& msg)
+    std::ostream& operator<<(std::ostream& ostream, const feature_child& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const feature_child& m)
+    void to_json(nlohmann::json& json, const feature_child& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, feature_child& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<feature_child>& msg)
+    {
+        msg = std::make_shared<feature_child>();
+        msg->from_json(json);
+    }
 }

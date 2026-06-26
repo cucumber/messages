@@ -4,6 +4,7 @@
 #ifndef CUCUMBER_MESSAGES_<%= ename.upcase %>_HPP
 #define CUCUMBER_MESSAGES_<%= ename.upcase %>_HPP
 
+#include "nlohmann/json_fwd.hpp"
 #include <cstdint>
 #include <ostream>
 #include <string_view>
@@ -23,11 +24,14 @@ namespace cucumber::messages
     [[nodiscard]] std::string_view to_string(<%= ename %> value);
 
     std::ostream& operator<<(std::ostream& stream, <%= ename %> value);
+
+    void to_json(nlohmann::json& json, const <%= ename %>& msg);
 }
 
 #endif
 <%= ename %>.cpp
 #include "cucumber/messages/<%= ename %>.hpp"
+#include "nlohmann/json.hpp"
 #include <iostream>
 #include <string_view>
 #include <unordered_map>
@@ -54,5 +58,10 @@ namespace cucumber::messages
         stream << to_string(value);
 
         return stream;
+    }
+
+    void to_json(nlohmann::json& json, const <%= ename %>& msg)
+    {
+        json = to_string(msg);
     }
 }<%- end -%>

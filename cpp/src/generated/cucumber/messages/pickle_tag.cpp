@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/pickle_tag.hpp>
+#include "cucumber/messages/pickle_tag.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +20,47 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void pickle_tag::to_json(json& j) const
+    void pickle_tag::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("name"), name);
-        cucumber::messages::to_json(j, camelize("ast_node_id"), ast_node_id);
+        json[camelize("name")] = name;
+        json[camelize("ast_node_id")] = ast_node_id;
+    }
+
+    void pickle_tag::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("name")).get_to(name);
+        json.at(camelize("ast_node_id")).get_to(ast_node_id);
     }
 
     std::string pickle_tag::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const pickle_tag& msg)
+    std::ostream& operator<<(std::ostream& ostream, const pickle_tag& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const pickle_tag& m)
+    void to_json(nlohmann::json& json, const pickle_tag& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, pickle_tag& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_tag>& msg)
+    {
+        msg = std::make_shared<pickle_tag>();
+        msg->from_json(json);
+    }
 }

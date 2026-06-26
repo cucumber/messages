@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/suggestion.hpp>
+#include "cucumber/messages/suggestion.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -18,35 +21,49 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void suggestion::to_json(json& j) const
+    void suggestion::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("id"), id);
-        cucumber::messages::to_json(j, camelize("pickle_step_id"), pickle_step_id);
-        cucumber::messages::to_json(j, camelize("snippets"), snippets);
+        json[camelize("id")] = id;
+        json[camelize("pickle_step_id")] = pickle_step_id;
+        json[camelize("snippets")] = snippets;
+    }
+
+    void suggestion::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("id")).get_to(id);
+        json.at(camelize("pickle_step_id")).get_to(pickle_step_id);
+        json.at(camelize("snippets")).get_to(snippets);
     }
 
     std::string suggestion::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const suggestion& msg)
+    std::ostream& operator<<(std::ostream& ostream, const suggestion& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const suggestion& m)
+    void to_json(nlohmann::json& json, const suggestion& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, suggestion& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<suggestion>& msg)
+    {
+        msg = std::make_shared<suggestion>();
+        msg->from_json(json);
+    }
 }

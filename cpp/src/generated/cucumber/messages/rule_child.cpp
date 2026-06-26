@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/rule_child.hpp>
+#include "cucumber/messages/rule_child.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +20,59 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void rule_child::to_json(json& j) const
+    void rule_child::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("background"), background);
-        cucumber::messages::to_json(j, camelize("scenario"), scenario);
+        if (background.has_value())
+        {
+            json[camelize("background")] = background;
+        }
+        if (scenario.has_value())
+        {
+            json[camelize("scenario")] = scenario;
+        }
+    }
+
+    void rule_child::from_json(const nlohmann::json& json)
+    {
+        if (background.has_value())
+        {
+            json.at(camelize("background")).get_to(background.emplace());
+        }
+        if (scenario.has_value())
+        {
+            json.at(camelize("scenario")).get_to(scenario.emplace());
+        }
     }
 
     std::string rule_child::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const rule_child& msg)
+    std::ostream& operator<<(std::ostream& ostream, const rule_child& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const rule_child& m)
+    void to_json(nlohmann::json& json, const rule_child& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, rule_child& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<rule_child>& msg)
+    {
+        msg = std::make_shared<rule_child>();
+        msg->from_json(json);
+    }
 }

@@ -1,4 +1,5 @@
 #include "cucumber/messages/attachment_content_encoding.hpp"
+#include "nlohmann/json.hpp"
 #include <iostream>
 #include <string_view>
 #include <unordered_map>
@@ -24,5 +25,10 @@ namespace cucumber::messages
         stream << to_string(value);
 
         return stream;
+    }
+
+    void to_json(nlohmann::json& json, const attachment_content_encoding& msg)
+    {
+        json = to_string(msg);
     }
 }

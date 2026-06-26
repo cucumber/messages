@@ -150,3 +150,12 @@ install(
     DIRECTORY "${PROJECT_SOURCE_DIR}/include/generated/"
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
 )
+
+
+add_executable(cucumber_messages_codegen
+    lib/main.cpp
+)
+
+target_link_libraries(cucumber_messages_codegen PRIVATE
+    cucumber_messages_lib
+)

@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/source.hpp>
+#include "cucumber/messages/source.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -18,35 +21,49 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void source::to_json(json& j) const
+    void source::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("uri"), uri);
-        cucumber::messages::to_json(j, camelize("data"), data);
-        cucumber::messages::to_json(j, camelize("media_type"), media_type);
+        json[camelize("uri")] = uri;
+        json[camelize("data")] = data;
+        json[camelize("media_type")] = media_type;
+    }
+
+    void source::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("uri")).get_to(uri);
+        json.at(camelize("data")).get_to(data);
+        json.at(camelize("media_type")).get_to(media_type);
     }
 
     std::string source::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const source& msg)
+    std::ostream& operator<<(std::ostream& ostream, const source& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const source& m)
+    void to_json(nlohmann::json& json, const source& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, source& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<source>& msg)
+    {
+        msg = std::make_shared<source>();
+        msg->from_json(json);
+    }
 }

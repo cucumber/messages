@@ -1,7 +1,10 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/parameter_type.hpp>
+#include "cucumber/messages/parameter_type.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -21,38 +24,61 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void parameter_type::to_json(json& j) const
+    void parameter_type::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("name"), name);
-        cucumber::messages::to_json(j, camelize("regular_expressions"), regular_expressions);
-        cucumber::messages::to_json(j, camelize("prefer_for_regular_expression_match"), prefer_for_regular_expression_match);
-        cucumber::messages::to_json(j, camelize("use_for_snippets"), use_for_snippets);
-        cucumber::messages::to_json(j, camelize("id"), id);
-        cucumber::messages::to_json(j, camelize("source_reference"), source_reference);
+        json[camelize("name")] = name;
+        json[camelize("regular_expressions")] = regular_expressions;
+        json[camelize("prefer_for_regular_expression_match")] = prefer_for_regular_expression_match;
+        json[camelize("use_for_snippets")] = use_for_snippets;
+        json[camelize("id")] = id;
+        if (source_reference.has_value())
+        {
+            json[camelize("source_reference")] = source_reference;
+        }
+    }
+
+    void parameter_type::from_json(const nlohmann::json& json)
+    {
+        json.at(camelize("name")).get_to(name);
+        json.at(camelize("regular_expressions")).get_to(regular_expressions);
+        json.at(camelize("prefer_for_regular_expression_match")).get_to(prefer_for_regular_expression_match);
+        json.at(camelize("use_for_snippets")).get_to(use_for_snippets);
+        json.at(camelize("id")).get_to(id);
+        if (source_reference.has_value())
+        {
+            json.at(camelize("source_reference")).get_to(source_reference.emplace());
+        }
     }
 
     std::string parameter_type::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const parameter_type& msg)
+    std::ostream& operator<<(std::ostream& ostream, const parameter_type& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const parameter_type& m)
+    void to_json(nlohmann::json& json, const parameter_type& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, parameter_type& msg)
+    {
+        msg.from_json(json);
+    }
+
+    void from_json(const nlohmann::json& json, std::shared_ptr<parameter_type>& msg)
+    {
+        msg = std::make_shared<parameter_type>();
+        msg->from_json(json);
+    }
 }

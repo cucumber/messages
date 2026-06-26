@@ -1,18 +1,17 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_BACKGROUND_HPP
+#define CUCUMBER_MESSAGES_BACKGROUND_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/location.hpp"
+#include "cucumber/messages/step.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/location.hpp>
-#include <cucumber/messages/step.hpp>
+#include <ostream>
+#include <string>
+#include <vector>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Background message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -21,21 +20,29 @@ namespace cucumber::messages
 
     struct background
     {
-        cucumber::messages::location location;
+        using shared_ptr = background;//std::shared_ptr<background>;
+
+        cucumber::messages::location::shared_ptr location;
         std::string keyword;
         std::string name;
         std::string description;
-        std::vector<cucumber::messages::step> steps;
+        std::vector<cucumber::messages::step::shared_ptr> steps;
         std::string id;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const background& msg);
+    std::ostream& operator<<(std::ostream& ostream, const background& msg);
 
-    void to_json(json& j, const background& m);
+    void to_json(nlohmann::json& json, const background& msg);
+    void from_json(const nlohmann::json& json, background& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<background>& msg);
 
 }
+
+#endif

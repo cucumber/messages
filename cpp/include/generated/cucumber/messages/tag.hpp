@@ -1,17 +1,15 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_TAG_HPP
+#define CUCUMBER_MESSAGES_TAG_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/location.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/location.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Tag message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -22,18 +20,26 @@ namespace cucumber::messages
 
     struct tag
     {
-        cucumber::messages::location location;
+        using shared_ptr = tag;//std::shared_ptr<tag>;
+
+        cucumber::messages::location::shared_ptr location;
         std::string name;
         std::string id;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const tag& msg);
+    std::ostream& operator<<(std::ostream& ostream, const tag& msg);
 
-    void to_json(json& j, const tag& m);
+    void to_json(nlohmann::json& json, const tag& msg);
+    void from_json(const nlohmann::json& json, tag& msg);
+    void from_json(const nlohmann::json& json, std::shared_ptr<tag>& msg);
 
 }
+
+#endif

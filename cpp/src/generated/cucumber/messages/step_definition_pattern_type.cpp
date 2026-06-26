@@ -1,4 +1,5 @@
 #include "cucumber/messages/step_definition_pattern_type.hpp"
+#include "nlohmann/json.hpp"
 #include <iostream>
 #include <string_view>
 #include <unordered_map>
@@ -24,5 +25,10 @@ namespace cucumber::messages
         stream << to_string(value);
 
         return stream;
+    }
+
+    void to_json(nlohmann::json& json, const step_definition_pattern_type& msg)
+    {
+        json = to_string(msg);
     }
 }
