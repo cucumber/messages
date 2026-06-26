@@ -1,0 +1,18 @@
+---
+Checks:          '
+    bugprone-*,
+    clang-analyzer-*,
+    cppcoreguidelines*,
+    misc-*,
+    modernize*,
+    -modernize-use-trailing-return-type,
+    performance*,
+    readability*,
+    '
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+FormatStyle: file
+CheckOptions:
+    AllowSoleDefaultDtor: true
+...
