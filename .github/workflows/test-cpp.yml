@@ -52,9 +52,9 @@ jobs:
         if: ${{ matrix.config.os != 'windows-latest' }}
         working-directory: cpp
         run: |
-          sudo cmake --build --preset host --target install
+          sudo cmake --install build/host
       - name: Build & Install (Windows)
         if: ${{ matrix.config.os == 'windows-latest' }}
         working-directory: cpp
         run: |
-          cmake --build --preset host --target install
+          cmake --install build/host
