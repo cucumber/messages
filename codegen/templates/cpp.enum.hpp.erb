@@ -1,59 +1,58 @@
 <% @enums.each do |enum| -%>
 <% ename = underscore(enum[:name]) %>
 <%= ename %>.hpp
-#pragma once
+#ifndef CUCUMBER_MESSAGES_<%= ename.upcase %>_HPP
+#define CUCUMBER_MESSAGES_<%= ename.upcase %>_HPP
 
+#include <cstdint>
+#include <ostream>
 #include <string_view>
 
-// Generated code
+// Generated code by cpp.enum.hpp.erb
 
-namespace cucumber::messages {
-
-enum class <%= ename %>
+namespace cucumber::messages
 {
-<%-
-  values = enum[:values].map { |value| enum_constant(value) }
--%>
-    <%= values.join(",\n    ") %>
-};
-
-std::string_view
-to_string(<%= ename %> v);
-
-std::ostream&
-operator<<(std::ostream& os, <%= ename %> v);
-
-}
-<%= ename %>.cpp
-#include <iostream>
-#include <unordered_map>
-
-#include <cucumber/messages/<%= ename %>.hpp>
-
-// Generated code
-
-namespace cucumber::messages {
-
-std::string_view
-to_string(<%= ename %> v)
-{
-    using map_type = std::unordered_map<<%= ename %>, std::string_view>;
-
-    static const map_type m = {
-<%- enum[:values].each_with_index do |value, index| -%>
-        { <%= ename %>::<%= enum_constant(value) %>, "<%= value %>" }<%= index < enum[:values].length - 1 ? ',' : '' %>
-<% end -%>
+    enum class <%= ename %> : std::uint_fast8_t
+    {
+    <%-
+    values = enum[:values].map { |value| enum_constant(value) }
+    -%>
+        <%= values.join(",\n        ") %>,
     };
 
-    return m.at(v);
+    [[nodiscard]] std::string_view to_string(<%= ename %> value);
+
+    std::ostream& operator<<(std::ostream& stream, <%= ename %> value);
 }
 
-std::ostream&
-operator<<(std::ostream& os, <%= ename %> v)
+#endif
+<%= ename %>.cpp
+#include "cucumber/messages/<%= ename %>.hpp"
+#include <iostream>
+#include <string_view>
+#include <unordered_map>
+
+// Generated code by cpp.enum.hpp.erb
+
+namespace cucumber::messages
 {
-    os << to_string(v);
+    std::string_view to_string(<%= ename %> value)
+    {
+        using map_type = std::unordered_map<<%= ename %>, std::string_view>;
 
-    return os;
-}
+        static const map_type lut = {
+<%- enum[:values].each_with_index do |value, index| -%>
+            { <%= ename %>::<%= enum_constant(value) %>, "<%= value %>" },
+<% end -%>
+        };
 
+        return lut.at(value);
+    }
+
+    std::ostream& operator<<(std::ostream& stream, <%= ename %> value)
+    {
+        stream << to_string(value);
+
+        return stream;
+    }
 }<%- end -%>

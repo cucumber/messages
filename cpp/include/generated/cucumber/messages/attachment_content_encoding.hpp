@@ -1,21 +1,23 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_ATTACHMENT_CONTENT_ENCODING_HPP
+#define CUCUMBER_MESSAGES_ATTACHMENT_CONTENT_ENCODING_HPP
 
+#include <cstdint>
+#include <ostream>
 #include <string_view>
 
-// Generated code
+// Generated code by cpp.enum.hpp.erb
 
-namespace cucumber::messages {
-
-enum class attachment_content_encoding
+namespace cucumber::messages
 {
-    IDENTITY,
-    BASE64
-};
+    enum class attachment_content_encoding : std::uint_fast8_t
+    {
+        IDENTITY,
+        BASE64,
+    };
 
-std::string_view
-to_string(attachment_content_encoding v);
+    [[nodiscard]] std::string_view to_string(attachment_content_encoding value);
 
-std::ostream&
-operator<<(std::ostream& os, attachment_content_encoding v);
-
+    std::ostream& operator<<(std::ostream& stream, attachment_content_encoding value);
 }
+
+#endif

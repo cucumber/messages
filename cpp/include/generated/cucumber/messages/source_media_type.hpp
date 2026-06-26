@@ -1,21 +1,23 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_SOURCE_MEDIA_TYPE_HPP
+#define CUCUMBER_MESSAGES_SOURCE_MEDIA_TYPE_HPP
 
+#include <cstdint>
+#include <ostream>
 #include <string_view>
 
-// Generated code
+// Generated code by cpp.enum.hpp.erb
 
-namespace cucumber::messages {
-
-enum class source_media_type
+namespace cucumber::messages
 {
-    TEXT_X_CUCUMBER_GHERKIN_PLAIN,
-    TEXT_X_CUCUMBER_GHERKIN_MARKDOWN
-};
+    enum class source_media_type : std::uint_fast8_t
+    {
+        TEXT_X_CUCUMBER_GHERKIN_PLAIN,
+        TEXT_X_CUCUMBER_GHERKIN_MARKDOWN,
+    };
 
-std::string_view
-to_string(source_media_type v);
+    [[nodiscard]] std::string_view to_string(source_media_type value);
 
-std::ostream&
-operator<<(std::ostream& os, source_media_type v);
-
+    std::ostream& operator<<(std::ostream& stream, source_media_type value);
 }
+
+#endif

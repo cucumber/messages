@@ -1,36 +1,33 @@
+#include "cucumber/messages/test_step_result_status.hpp"
 #include <iostream>
+#include <string_view>
 #include <unordered_map>
 
-#include <cucumber/messages/test_step_result_status.hpp>
+// Generated code by cpp.enum.hpp.erb
 
-// Generated code
-
-namespace cucumber::messages {
-
-std::string_view
-to_string(test_step_result_status v)
+namespace cucumber::messages
 {
-    using map_type = std::unordered_map<test_step_result_status, std::string_view>;
+    std::string_view to_string(test_step_result_status value)
+    {
+        using map_type = std::unordered_map<test_step_result_status, std::string_view>;
 
-    static const map_type m = {
-        { test_step_result_status::UNKNOWN, "UNKNOWN" },
-        { test_step_result_status::PASSED, "PASSED" },
-        { test_step_result_status::SKIPPED, "SKIPPED" },
-        { test_step_result_status::PENDING, "PENDING" },
-        { test_step_result_status::UNDEFINED, "UNDEFINED" },
-        { test_step_result_status::AMBIGUOUS, "AMBIGUOUS" },
-        { test_step_result_status::FAILED, "FAILED" }
-    };
+        static const map_type lut = {
+            { test_step_result_status::UNKNOWN, "UNKNOWN" },
+            { test_step_result_status::PASSED, "PASSED" },
+            { test_step_result_status::SKIPPED, "SKIPPED" },
+            { test_step_result_status::PENDING, "PENDING" },
+            { test_step_result_status::UNDEFINED, "UNDEFINED" },
+            { test_step_result_status::AMBIGUOUS, "AMBIGUOUS" },
+            { test_step_result_status::FAILED, "FAILED" },
+        };
 
-    return m.at(v);
-}
+        return lut.at(value);
+    }
 
-std::ostream&
-operator<<(std::ostream& os, test_step_result_status v)
-{
-    os << to_string(v);
+    std::ostream& operator<<(std::ostream& stream, test_step_result_status value)
+    {
+        stream << to_string(value);
 
-    return os;
-}
-
+        return stream;
+    }
 }

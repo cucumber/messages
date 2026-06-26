@@ -1,26 +1,28 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_TEST_STEP_RESULT_STATUS_HPP
+#define CUCUMBER_MESSAGES_TEST_STEP_RESULT_STATUS_HPP
 
+#include <cstdint>
+#include <ostream>
 #include <string_view>
 
-// Generated code
+// Generated code by cpp.enum.hpp.erb
 
-namespace cucumber::messages {
-
-enum class test_step_result_status
+namespace cucumber::messages
 {
-    UNKNOWN,
-    PASSED,
-    SKIPPED,
-    PENDING,
-    UNDEFINED,
-    AMBIGUOUS,
-    FAILED
-};
+    enum class test_step_result_status : std::uint_fast8_t
+    {
+        UNKNOWN,
+        PASSED,
+        SKIPPED,
+        PENDING,
+        UNDEFINED,
+        AMBIGUOUS,
+        FAILED,
+    };
 
-std::string_view
-to_string(test_step_result_status v);
+    [[nodiscard]] std::string_view to_string(test_step_result_status value);
 
-std::ostream&
-operator<<(std::ostream& os, test_step_result_status v);
-
+    std::ostream& operator<<(std::ostream& stream, test_step_result_status value);
 }
+
+#endif

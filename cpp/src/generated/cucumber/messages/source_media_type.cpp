@@ -1,31 +1,28 @@
+#include "cucumber/messages/source_media_type.hpp"
 #include <iostream>
+#include <string_view>
 #include <unordered_map>
 
-#include <cucumber/messages/source_media_type.hpp>
+// Generated code by cpp.enum.hpp.erb
 
-// Generated code
-
-namespace cucumber::messages {
-
-std::string_view
-to_string(source_media_type v)
+namespace cucumber::messages
 {
-    using map_type = std::unordered_map<source_media_type, std::string_view>;
+    std::string_view to_string(source_media_type value)
+    {
+        using map_type = std::unordered_map<source_media_type, std::string_view>;
 
-    static const map_type m = {
-        { source_media_type::TEXT_X_CUCUMBER_GHERKIN_PLAIN, "text/x.cucumber.gherkin+plain" },
-        { source_media_type::TEXT_X_CUCUMBER_GHERKIN_MARKDOWN, "text/x.cucumber.gherkin+markdown" }
-    };
+        static const map_type lut = {
+            { source_media_type::TEXT_X_CUCUMBER_GHERKIN_PLAIN, "text/x.cucumber.gherkin+plain" },
+            { source_media_type::TEXT_X_CUCUMBER_GHERKIN_MARKDOWN, "text/x.cucumber.gherkin+markdown" },
+        };
 
-    return m.at(v);
-}
+        return lut.at(value);
+    }
 
-std::ostream&
-operator<<(std::ostream& os, source_media_type v)
-{
-    os << to_string(v);
+    std::ostream& operator<<(std::ostream& stream, source_media_type value)
+    {
+        stream << to_string(value);
 
-    return os;
-}
-
+        return stream;
+    }
 }
