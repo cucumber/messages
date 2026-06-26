@@ -1,3 +1,1 @@
-import { createRequire } from 'node:module'
-
-export const version: string = createRequire(import.meta.url)('../package.json').version
+export const version = '33.0.3' as string
