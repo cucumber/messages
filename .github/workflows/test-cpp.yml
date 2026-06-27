@@ -111,6 +111,12 @@ jobs:
           cmake -S . -B build
           cmake --build build
 
-      - name: Test Install
-        working-directory: cpp/test_install
-        run: ./build/cucumber_messages_test_install
+      - name: Test Install (Unix)
+        if: ${{ matrix.config.os != 'windows-latest' }}
+        working-directory: cpp/test_install/build
+        run: ./cucumber_messages_test_install
+
+      - name: Test Install (Windows)
+        if: ${{ matrix.config.os == 'windows-latest' }}
+        working-directory: cpp/test_install/build
+        run: .\cucumber_messages_test_install.exe
