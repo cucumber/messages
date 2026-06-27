@@ -113,10 +113,10 @@ jobs:
 
       - name: Test Install (Unix)
         if: ${{ matrix.config.os != 'windows-latest' }}
-        working-directory: cpp/test_install/build
-        run: ./cucumber_messages_test_install
+        working-directory: cpp/test_install
+        run: ./build/cucumber_messages_test_install
 
       - name: Test Install (Windows)
         if: ${{ matrix.config.os == 'windows-latest' }}
-        working-directory: cpp/test_install/build
-        run: .\cucumber_messages_test_install.exe
+        working-directory: cpp/test_install
+        run: .\build\Debug\cucumber_messages_test_install.exe
