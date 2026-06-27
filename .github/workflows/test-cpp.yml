@@ -98,11 +98,19 @@ jobs:
       - name: Build & Install (Unix)
         if: ${{ matrix.config.os != 'windows-latest' }}
         working-directory: cpp
-        run: |
-          sudo cmake --install build/host
+        run: sudo cmake --install build/host
 
       - name: Build & Install (Windows)
         if: ${{ matrix.config.os == 'windows-latest' }}
         working-directory: cpp
+        run: cmake --install build/host
+
+      - name: Build Test Install
+        working-directory: cpp/test_install
         run: |
-          cmake --install build/host
+          cmake -S . -B build
+          cmake --build build
+
+      - name: Test Install
+        working-directory: cpp/test_install
+        run: ./build/cucumber_messages_test_install
