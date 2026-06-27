@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- [JavaScript] Update static version file at release time ([#459](https://github.com/cucumber/messages/pull/459))
 
 ## [33.0.3] - 2026-06-20
 ### Added
