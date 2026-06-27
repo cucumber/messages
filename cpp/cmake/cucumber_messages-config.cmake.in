@@ -1,6 +1,13 @@
 @PACKAGE_INIT@
 
 include(CMakeFindDependencyMacro)
+
+# Ensure dependencies installed in the same prefix are discoverable
+# (e.g. <prefix>/share/cmake/nlohmann_json).
+if(PACKAGE_PREFIX_DIR)
+	list(PREPEND CMAKE_PREFIX_PATH "${PACKAGE_PREFIX_DIR}")
+endif()
+
 find_dependency(nlohmann_json)
 
 include("${CMAKE_CURRENT_LIST_DIR}/cucumber_messages-targets.cmake")
