@@ -22,14 +22,14 @@ namespace cucumber::messages
 
     void snippet::to_json(nlohmann::json& json) const
     {
-        json[camelize("language")] = language;
-        json[camelize("code")] = code;
+        cucumber::messages::to_json(json, camelize("language"), language);
+        cucumber::messages::to_json(json, camelize("code"), code);
     }
 
     void snippet::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("language")).get_to(language);
-        json.at(camelize("code")).get_to(code);
+        cucumber::messages::from_json(json, camelize("language"), language);
+        cucumber::messages::from_json(json, camelize("code"), code);
     }
 
     std::string snippet::to_json() const

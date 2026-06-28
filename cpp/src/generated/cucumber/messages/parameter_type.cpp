@@ -26,28 +26,22 @@ namespace cucumber::messages
 
     void parameter_type::to_json(nlohmann::json& json) const
     {
-        json[camelize("name")] = name;
-        json[camelize("regular_expressions")] = regular_expressions;
-        json[camelize("prefer_for_regular_expression_match")] = prefer_for_regular_expression_match;
-        json[camelize("use_for_snippets")] = use_for_snippets;
-        json[camelize("id")] = id;
-        if (source_reference.has_value())
-        {
-            json[camelize("source_reference")] = source_reference;
-        }
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("regular_expressions"), regular_expressions);
+        cucumber::messages::to_json(json, camelize("prefer_for_regular_expression_match"), prefer_for_regular_expression_match);
+        cucumber::messages::to_json(json, camelize("use_for_snippets"), use_for_snippets);
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("source_reference"), source_reference);
     }
 
     void parameter_type::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("name")).get_to(name);
-        json.at(camelize("regular_expressions")).get_to(regular_expressions);
-        json.at(camelize("prefer_for_regular_expression_match")).get_to(prefer_for_regular_expression_match);
-        json.at(camelize("use_for_snippets")).get_to(use_for_snippets);
-        json.at(camelize("id")).get_to(id);
-        if (source_reference.has_value())
-        {
-            json.at(camelize("source_reference")).get_to(source_reference.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("regular_expressions"), regular_expressions);
+        cucumber::messages::from_json(json, camelize("prefer_for_regular_expression_match"), prefer_for_regular_expression_match);
+        cucumber::messages::from_json(json, camelize("use_for_snippets"), use_for_snippets);
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("source_reference"), source_reference);
     }
 
     std::string parameter_type::to_json() const

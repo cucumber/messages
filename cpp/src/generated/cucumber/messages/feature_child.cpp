@@ -23,34 +23,16 @@ namespace cucumber::messages
 
     void feature_child::to_json(nlohmann::json& json) const
     {
-        if (rule.has_value())
-        {
-            json[camelize("rule")] = rule;
-        }
-        if (background.has_value())
-        {
-            json[camelize("background")] = background;
-        }
-        if (scenario.has_value())
-        {
-            json[camelize("scenario")] = scenario;
-        }
+        cucumber::messages::to_json(json, camelize("rule"), rule);
+        cucumber::messages::to_json(json, camelize("background"), background);
+        cucumber::messages::to_json(json, camelize("scenario"), scenario);
     }
 
     void feature_child::from_json(const nlohmann::json& json)
     {
-        if (rule.has_value())
-        {
-            json.at(camelize("rule")).get_to(rule.emplace());
-        }
-        if (background.has_value())
-        {
-            json.at(camelize("background")).get_to(background.emplace());
-        }
-        if (scenario.has_value())
-        {
-            json.at(camelize("scenario")).get_to(scenario.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("rule"), rule);
+        cucumber::messages::from_json(json, camelize("background"), background);
+        cucumber::messages::from_json(json, camelize("scenario"), scenario);
     }
 
     std::string feature_child::to_json() const

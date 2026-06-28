@@ -26,28 +26,22 @@ namespace cucumber::messages
 
     void meta::to_json(nlohmann::json& json) const
     {
-        json[camelize("protocol_version")] = protocol_version;
-        json[camelize("implementation")] = implementation;
-        json[camelize("runtime")] = runtime;
-        json[camelize("os")] = os;
-        json[camelize("cpu")] = cpu;
-        if (ci.has_value())
-        {
-            json[camelize("ci")] = ci;
-        }
+        cucumber::messages::to_json(json, camelize("protocol_version"), protocol_version);
+        cucumber::messages::to_json(json, camelize("implementation"), implementation);
+        cucumber::messages::to_json(json, camelize("runtime"), runtime);
+        cucumber::messages::to_json(json, camelize("os"), os);
+        cucumber::messages::to_json(json, camelize("cpu"), cpu);
+        cucumber::messages::to_json(json, camelize("ci"), ci);
     }
 
     void meta::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("protocol_version")).get_to(protocol_version);
-        json.at(camelize("implementation")).get_to(implementation);
-        json.at(camelize("runtime")).get_to(runtime);
-        json.at(camelize("os")).get_to(os);
-        json.at(camelize("cpu")).get_to(cpu);
-        if (ci.has_value())
-        {
-            json.at(camelize("ci")).get_to(ci.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("protocol_version"), protocol_version);
+        cucumber::messages::from_json(json, camelize("implementation"), implementation);
+        cucumber::messages::from_json(json, camelize("runtime"), runtime);
+        cucumber::messages::from_json(json, camelize("os"), os);
+        cucumber::messages::from_json(json, camelize("cpu"), cpu);
+        cucumber::messages::from_json(json, camelize("ci"), ci);
     }
 
     std::string meta::to_json() const

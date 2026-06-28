@@ -22,20 +22,14 @@ namespace cucumber::messages
 
     void location::to_json(nlohmann::json& json) const
     {
-        json[camelize("line")] = line;
-        if (column.has_value())
-        {
-            json[camelize("column")] = column;
-        }
+        cucumber::messages::to_json(json, camelize("line"), line);
+        cucumber::messages::to_json(json, camelize("column"), column);
     }
 
     void location::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("line")).get_to(line);
-        if (column.has_value())
-        {
-            json.at(camelize("column")).get_to(column.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("line"), line);
+        cucumber::messages::from_json(json, camelize("column"), column);
     }
 
     std::string location::to_json() const

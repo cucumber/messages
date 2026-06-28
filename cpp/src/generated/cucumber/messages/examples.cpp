@@ -28,32 +28,26 @@ namespace cucumber::messages
 
     void examples::to_json(nlohmann::json& json) const
     {
-        json[camelize("location")] = location;
-        json[camelize("tags")] = tags;
-        json[camelize("keyword")] = keyword;
-        json[camelize("name")] = name;
-        json[camelize("description")] = description;
-        if (table_header.has_value())
-        {
-            json[camelize("table_header")] = table_header;
-        }
-        json[camelize("table_body")] = table_body;
-        json[camelize("id")] = id;
+        cucumber::messages::to_json(json, camelize("location"), location);
+        cucumber::messages::to_json(json, camelize("tags"), tags);
+        cucumber::messages::to_json(json, camelize("keyword"), keyword);
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("description"), description);
+        cucumber::messages::to_json(json, camelize("table_header"), table_header);
+        cucumber::messages::to_json(json, camelize("table_body"), table_body);
+        cucumber::messages::to_json(json, camelize("id"), id);
     }
 
     void examples::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("location")).get_to(location);
-        json.at(camelize("tags")).get_to(tags);
-        json.at(camelize("keyword")).get_to(keyword);
-        json.at(camelize("name")).get_to(name);
-        json.at(camelize("description")).get_to(description);
-        if (table_header.has_value())
-        {
-            json.at(camelize("table_header")).get_to(table_header.emplace());
-        }
-        json.at(camelize("table_body")).get_to(table_body);
-        json.at(camelize("id")).get_to(id);
+        cucumber::messages::from_json(json, camelize("location"), location);
+        cucumber::messages::from_json(json, camelize("tags"), tags);
+        cucumber::messages::from_json(json, camelize("keyword"), keyword);
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("description"), description);
+        cucumber::messages::from_json(json, camelize("table_header"), table_header);
+        cucumber::messages::from_json(json, camelize("table_body"), table_body);
+        cucumber::messages::from_json(json, camelize("id"), id);
     }
 
     std::string examples::to_json() const

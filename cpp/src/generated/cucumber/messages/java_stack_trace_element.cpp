@@ -23,16 +23,16 @@ namespace cucumber::messages
 
     void java_stack_trace_element::to_json(nlohmann::json& json) const
     {
-        json[camelize("class_name")] = class_name;
-        json[camelize("file_name")] = file_name;
-        json[camelize("method_name")] = method_name;
+        cucumber::messages::to_json(json, camelize("class_name"), class_name);
+        cucumber::messages::to_json(json, camelize("file_name"), file_name);
+        cucumber::messages::to_json(json, camelize("method_name"), method_name);
     }
 
     void java_stack_trace_element::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("class_name")).get_to(class_name);
-        json.at(camelize("file_name")).get_to(file_name);
-        json.at(camelize("method_name")).get_to(method_name);
+        cucumber::messages::from_json(json, camelize("class_name"), class_name);
+        cucumber::messages::from_json(json, camelize("file_name"), file_name);
+        cucumber::messages::from_json(json, camelize("method_name"), method_name);
     }
 
     std::string java_stack_trace_element::to_json() const

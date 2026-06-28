@@ -25,44 +25,20 @@ namespace cucumber::messages
 
     void test_step::to_json(nlohmann::json& json) const
     {
-        if (hook_id.has_value())
-        {
-            json[camelize("hook_id")] = hook_id;
-        }
-        json[camelize("id")] = id;
-        if (pickle_step_id.has_value())
-        {
-            json[camelize("pickle_step_id")] = pickle_step_id;
-        }
-        if (step_definition_ids.has_value())
-        {
-            json[camelize("step_definition_ids")] = step_definition_ids;
-        }
-        if (step_match_arguments_lists.has_value())
-        {
-            json[camelize("step_match_arguments_lists")] = step_match_arguments_lists;
-        }
+        cucumber::messages::to_json(json, camelize("hook_id"), hook_id);
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("pickle_step_id"), pickle_step_id);
+        cucumber::messages::to_json(json, camelize("step_definition_ids"), step_definition_ids);
+        cucumber::messages::to_json(json, camelize("step_match_arguments_lists"), step_match_arguments_lists);
     }
 
     void test_step::from_json(const nlohmann::json& json)
     {
-        if (hook_id.has_value())
-        {
-            json.at(camelize("hook_id")).get_to(hook_id.emplace());
-        }
-        json.at(camelize("id")).get_to(id);
-        if (pickle_step_id.has_value())
-        {
-            json.at(camelize("pickle_step_id")).get_to(pickle_step_id.emplace());
-        }
-        if (step_definition_ids.has_value())
-        {
-            json.at(camelize("step_definition_ids")).get_to(step_definition_ids.emplace());
-        }
-        if (step_match_arguments_lists.has_value())
-        {
-            json.at(camelize("step_match_arguments_lists")).get_to(step_match_arguments_lists.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("hook_id"), hook_id);
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("pickle_step_id"), pickle_step_id);
+        cucumber::messages::from_json(json, camelize("step_definition_ids"), step_definition_ids);
+        cucumber::messages::from_json(json, camelize("step_match_arguments_lists"), step_match_arguments_lists);
     }
 
     std::string test_step::to_json() const

@@ -21,12 +21,12 @@ namespace cucumber::messages
 
     void pickle_table_cell::to_json(nlohmann::json& json) const
     {
-        json[camelize("value")] = value;
+        cucumber::messages::to_json(json, camelize("value"), value);
     }
 
     void pickle_table_cell::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("value")).get_to(value);
+        cucumber::messages::from_json(json, camelize("value"), value);
     }
 
     std::string pickle_table_cell::to_json() const

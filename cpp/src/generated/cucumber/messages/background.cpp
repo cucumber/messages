@@ -26,22 +26,22 @@ namespace cucumber::messages
 
     void background::to_json(nlohmann::json& json) const
     {
-        json[camelize("location")] = location;
-        json[camelize("keyword")] = keyword;
-        json[camelize("name")] = name;
-        json[camelize("description")] = description;
-        json[camelize("steps")] = steps;
-        json[camelize("id")] = id;
+        cucumber::messages::to_json(json, camelize("location"), location);
+        cucumber::messages::to_json(json, camelize("keyword"), keyword);
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("description"), description);
+        cucumber::messages::to_json(json, camelize("steps"), steps);
+        cucumber::messages::to_json(json, camelize("id"), id);
     }
 
     void background::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("location")).get_to(location);
-        json.at(camelize("keyword")).get_to(keyword);
-        json.at(camelize("name")).get_to(name);
-        json.at(camelize("description")).get_to(description);
-        json.at(camelize("steps")).get_to(steps);
-        json.at(camelize("id")).get_to(id);
+        cucumber::messages::from_json(json, camelize("location"), location);
+        cucumber::messages::from_json(json, camelize("keyword"), keyword);
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("description"), description);
+        cucumber::messages::from_json(json, camelize("steps"), steps);
+        cucumber::messages::from_json(json, camelize("id"), id);
     }
 
     std::string background::to_json() const

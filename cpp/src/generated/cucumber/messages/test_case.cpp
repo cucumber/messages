@@ -24,24 +24,18 @@ namespace cucumber::messages
 
     void test_case::to_json(nlohmann::json& json) const
     {
-        json[camelize("id")] = id;
-        json[camelize("pickle_id")] = pickle_id;
-        json[camelize("test_steps")] = test_steps;
-        if (test_run_started_id.has_value())
-        {
-            json[camelize("test_run_started_id")] = test_run_started_id;
-        }
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("pickle_id"), pickle_id);
+        cucumber::messages::to_json(json, camelize("test_steps"), test_steps);
+        cucumber::messages::to_json(json, camelize("test_run_started_id"), test_run_started_id);
     }
 
     void test_case::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("id")).get_to(id);
-        json.at(camelize("pickle_id")).get_to(pickle_id);
-        json.at(camelize("test_steps")).get_to(test_steps);
-        if (test_run_started_id.has_value())
-        {
-            json.at(camelize("test_run_started_id")).get_to(test_run_started_id.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("pickle_id"), pickle_id);
+        cucumber::messages::from_json(json, camelize("test_steps"), test_steps);
+        cucumber::messages::from_json(json, camelize("test_run_started_id"), test_run_started_id);
     }
 
     std::string test_case::to_json() const

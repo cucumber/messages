@@ -24,30 +24,18 @@ namespace cucumber::messages
 
     void git::to_json(nlohmann::json& json) const
     {
-        json[camelize("remote")] = remote;
-        json[camelize("revision")] = revision;
-        if (branch.has_value())
-        {
-            json[camelize("branch")] = branch;
-        }
-        if (tag.has_value())
-        {
-            json[camelize("tag")] = tag;
-        }
+        cucumber::messages::to_json(json, camelize("remote"), remote);
+        cucumber::messages::to_json(json, camelize("revision"), revision);
+        cucumber::messages::to_json(json, camelize("branch"), branch);
+        cucumber::messages::to_json(json, camelize("tag"), tag);
     }
 
     void git::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("remote")).get_to(remote);
-        json.at(camelize("revision")).get_to(revision);
-        if (branch.has_value())
-        {
-            json.at(camelize("branch")).get_to(branch.emplace());
-        }
-        if (tag.has_value())
-        {
-            json.at(camelize("tag")).get_to(tag.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("remote"), remote);
+        cucumber::messages::from_json(json, camelize("revision"), revision);
+        cucumber::messages::from_json(json, camelize("branch"), branch);
+        cucumber::messages::from_json(json, camelize("tag"), tag);
     }
 
     std::string git::to_json() const

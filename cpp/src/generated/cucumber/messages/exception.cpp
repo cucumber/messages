@@ -23,28 +23,16 @@ namespace cucumber::messages
 
     void exception::to_json(nlohmann::json& json) const
     {
-        json[camelize("type")] = type;
-        if (message.has_value())
-        {
-            json[camelize("message")] = message;
-        }
-        if (stack_trace.has_value())
-        {
-            json[camelize("stack_trace")] = stack_trace;
-        }
+        cucumber::messages::to_json(json, camelize("type"), type);
+        cucumber::messages::to_json(json, camelize("message"), message);
+        cucumber::messages::to_json(json, camelize("stack_trace"), stack_trace);
     }
 
     void exception::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("type")).get_to(type);
-        if (message.has_value())
-        {
-            json.at(camelize("message")).get_to(message.emplace());
-        }
-        if (stack_trace.has_value())
-        {
-            json.at(camelize("stack_trace")).get_to(stack_trace.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("type"), type);
+        cucumber::messages::from_json(json, camelize("message"), message);
+        cucumber::messages::from_json(json, camelize("stack_trace"), stack_trace);
     }
 
     std::string exception::to_json() const

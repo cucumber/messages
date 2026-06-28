@@ -24,30 +24,18 @@ namespace cucumber::messages
 
     void test_step_result::to_json(nlohmann::json& json) const
     {
-        json[camelize("duration")] = duration;
-        if (message.has_value())
-        {
-            json[camelize("message")] = message;
-        }
-        json[camelize("status")] = status;
-        if (exception.has_value())
-        {
-            json[camelize("exception")] = exception;
-        }
+        cucumber::messages::to_json(json, camelize("duration"), duration);
+        cucumber::messages::to_json(json, camelize("message"), message);
+        cucumber::messages::to_json(json, camelize("status"), status);
+        cucumber::messages::to_json(json, camelize("exception"), exception);
     }
 
     void test_step_result::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("duration")).get_to(duration);
-        if (message.has_value())
-        {
-            json.at(camelize("message")).get_to(message.emplace());
-        }
-        json.at(camelize("status")).get_to(status);
-        if (exception.has_value())
-        {
-            json.at(camelize("exception")).get_to(exception.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("duration"), duration);
+        cucumber::messages::from_json(json, camelize("message"), message);
+        cucumber::messages::from_json(json, camelize("status"), status);
+        cucumber::messages::from_json(json, camelize("exception"), exception);
     }
 
     std::string test_step_result::to_json() const

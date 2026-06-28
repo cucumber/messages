@@ -22,20 +22,14 @@ namespace cucumber::messages
 
     void product::to_json(nlohmann::json& json) const
     {
-        json[camelize("name")] = name;
-        if (version.has_value())
-        {
-            json[camelize("version")] = version;
-        }
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("version"), version);
     }
 
     void product::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("name")).get_to(name);
-        if (version.has_value())
-        {
-            json.at(camelize("version")).get_to(version.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("version"), version);
     }
 
     std::string product::to_json() const

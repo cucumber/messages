@@ -22,20 +22,14 @@ namespace cucumber::messages
 
     void step_match_argument::to_json(nlohmann::json& json) const
     {
-        json[camelize("group")] = group;
-        if (parameter_type_name.has_value())
-        {
-            json[camelize("parameter_type_name")] = parameter_type_name;
-        }
+        cucumber::messages::to_json(json, camelize("group"), group);
+        cucumber::messages::to_json(json, camelize("parameter_type_name"), parameter_type_name);
     }
 
     void step_match_argument::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("group")).get_to(group);
-        if (parameter_type_name.has_value())
-        {
-            json.at(camelize("parameter_type_name")).get_to(parameter_type_name.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("group"), group);
+        cucumber::messages::from_json(json, camelize("parameter_type_name"), parameter_type_name);
     }
 
     std::string step_match_argument::to_json() const

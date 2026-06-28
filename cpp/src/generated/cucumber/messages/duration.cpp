@@ -22,14 +22,14 @@ namespace cucumber::messages
 
     void duration::to_json(nlohmann::json& json) const
     {
-        json[camelize("seconds")] = seconds;
-        json[camelize("nanos")] = nanos;
+        cucumber::messages::to_json(json, camelize("seconds"), seconds);
+        cucumber::messages::to_json(json, camelize("nanos"), nanos);
     }
 
     void duration::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("seconds")).get_to(seconds);
-        json.at(camelize("nanos")).get_to(nanos);
+        cucumber::messages::from_json(json, camelize("seconds"), seconds);
+        cucumber::messages::from_json(json, camelize("nanos"), nanos);
     }
 
     std::string duration::to_json() const

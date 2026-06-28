@@ -89,8 +89,10 @@ target_include_directories(
     PUBLIC
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/generated>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
-    PRIVATE
-        ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
+    # PUBLIC
+    # PRIVATE
+        # ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
+        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages>
 )
 
 target_link_libraries(
@@ -152,7 +154,7 @@ install(
 )
 
 
-add_executable(cucumber_messages_codegen
+add_executable(cucumber_messages_codegen EXCLUDE_FROM_ALL
     lib/main.cpp
 )
 

@@ -23,16 +23,16 @@ namespace cucumber::messages
 
     void table_row::to_json(nlohmann::json& json) const
     {
-        json[camelize("location")] = location;
-        json[camelize("cells")] = cells;
-        json[camelize("id")] = id;
+        cucumber::messages::to_json(json, camelize("location"), location);
+        cucumber::messages::to_json(json, camelize("cells"), cells);
+        cucumber::messages::to_json(json, camelize("id"), id);
     }
 
     void table_row::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("location")).get_to(location);
-        json.at(camelize("cells")).get_to(cells);
-        json.at(camelize("id")).get_to(id);
+        cucumber::messages::from_json(json, camelize("location"), location);
+        cucumber::messages::from_json(json, camelize("cells"), cells);
+        cucumber::messages::from_json(json, camelize("id"), id);
     }
 
     std::string table_row::to_json() const

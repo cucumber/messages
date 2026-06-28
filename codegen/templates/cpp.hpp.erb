@@ -33,6 +33,7 @@ all.hpp
     if incs.length.positive?
 -%>
     <%- incs.uniq.each do |type| -%>
+    <%- next if type == myclass -%>
 #include "cucumber/messages/<%= type %>.hpp"
     <%- end -%>
 <%- end -%>
@@ -151,16 +152,8 @@ namespace cucumber::messages
         <%-
         schema['properties'].each do |(property_name, _property)|
             pname = underscore(property_name)
-            prequired = (schema['required'] || []).index(property_name)
         -%>
-        <%- if prequired -%>
-        json[camelize("<%= pname %>")] = <%= pname %>;
-        <%- else -%>
-        if (<%= pname %>.has_value())
-        {
-            json[camelize("<%= pname %>")] = <%= pname %>;
-        }
-        <%- end -%>
+        cucumber::messages::to_json(json, camelize("<%= pname %>"), <%= pname %>);
         <%- end -%>
     }
 
@@ -169,16 +162,8 @@ namespace cucumber::messages
         <%-
         schema['properties'].each do |(property_name, _property)|
             pname = underscore(property_name)
-            prequired = (schema['required'] || []).index(property_name)
         -%>
-        <%- if prequired -%>
-        json.at(camelize("<%= pname %>")).get_to(<%= pname %>);
-        <%- else -%>
-        if (<%= pname %>.has_value())
-        {
-            json.at(camelize("<%= pname %>")).get_to(<%= pname %>.emplace());
-        }
-        <%- end -%>
+        cucumber::messages::from_json(json, camelize("<%= pname %>"), <%= pname %>);
         <%- end -%>
     }
 

@@ -22,20 +22,14 @@ namespace cucumber::messages
 
     void test_run_started::to_json(nlohmann::json& json) const
     {
-        json[camelize("timestamp")] = timestamp;
-        if (id.has_value())
-        {
-            json[camelize("id")] = id;
-        }
+        cucumber::messages::to_json(json, camelize("timestamp"), timestamp);
+        cucumber::messages::to_json(json, camelize("id"), id);
     }
 
     void test_run_started::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("timestamp")).get_to(timestamp);
-        if (id.has_value())
-        {
-            json.at(camelize("id")).get_to(id.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("timestamp"), timestamp);
+        cucumber::messages::from_json(json, camelize("id"), id);
     }
 
     std::string test_run_started::to_json() const

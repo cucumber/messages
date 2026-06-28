@@ -23,16 +23,16 @@ namespace cucumber::messages
 
     void suggestion::to_json(nlohmann::json& json) const
     {
-        json[camelize("id")] = id;
-        json[camelize("pickle_step_id")] = pickle_step_id;
-        json[camelize("snippets")] = snippets;
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("pickle_step_id"), pickle_step_id);
+        cucumber::messages::to_json(json, camelize("snippets"), snippets);
     }
 
     void suggestion::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("id")).get_to(id);
-        json.at(camelize("pickle_step_id")).get_to(pickle_step_id);
-        json.at(camelize("snippets")).get_to(snippets);
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("pickle_step_id"), pickle_step_id);
+        cucumber::messages::from_json(json, camelize("snippets"), snippets);
     }
 
     std::string suggestion::to_json() const

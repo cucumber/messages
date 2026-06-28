@@ -22,14 +22,14 @@ namespace cucumber::messages
 
     void undefined_parameter_type::to_json(nlohmann::json& json) const
     {
-        json[camelize("expression")] = expression;
-        json[camelize("name")] = name;
+        cucumber::messages::to_json(json, camelize("expression"), expression);
+        cucumber::messages::to_json(json, camelize("name"), name);
     }
 
     void undefined_parameter_type::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("expression")).get_to(expression);
-        json.at(camelize("name")).get_to(name);
+        cucumber::messages::from_json(json, camelize("expression"), expression);
+        cucumber::messages::from_json(json, camelize("name"), name);
     }
 
     std::string undefined_parameter_type::to_json() const

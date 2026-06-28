@@ -1,13 +1,17 @@
 #pragma once
 // clang-format off
+#include "nlohmann/json_fwd.hpp"
+#include "nlohmann/json.hpp"
+#include <memory>
 #include <ostream>
 #include <sstream>
+#include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
 #include <optional>
 #include <type_traits>
 
-#include <nlohmann/json.hpp>
 
 namespace cucumber::messages {
 
@@ -83,29 +87,36 @@ to_string(std::ostream& os, P&& prefix, T&& opt)
     );
 }
 
-template <typename K, typename T>
-void
-to_json(json& j, K&& key, T&& opt)
-{
-    apply_if(
-        opt,
-        [&](const auto& v) {
-            using vtype = std::decay_t<decltype(v)>;
-
-            if constexpr (std::is_enum_v<vtype>) {
-                j[key] = to_string(v);
-            } else {
-                j[key] = v;
-            }
-        }
-    );
-}
-
     // clang-format on
 
-    template<class T>
-    inline void to_json(nlohmann::json& json, const std::shared_ptr<T>& duration)
+    template<typename T>
+    void to_json(nlohmann::json& json, std::string_view key, const T& opt)
     {
-        to_json(json, *duration);
+        json[key] = opt;
+    }
+
+    template<typename T>
+    void to_json(nlohmann::json& json, std::string_view key, const std::optional<T>& opt)
+    {
+        if (opt.has_value())
+        {
+            to_json(json, key, *opt);
+        }
+    }
+
+    template<typename T>
+    void from_json(const nlohmann::json& json, std::string_view key, T& opt)
+    {
+
+        json.at(key).get_to(opt);
+    }
+
+    template<typename T>
+    void from_json(const nlohmann::json& json, std::string_view key, std::optional<T>& opt)
+    {
+        if (json.contains(key))
+        {
+            from_json(json, key, *opt);
+        }
     }
 }

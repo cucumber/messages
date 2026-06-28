@@ -23,16 +23,16 @@ namespace cucumber::messages
 
     void test_step_started::to_json(nlohmann::json& json) const
     {
-        json[camelize("test_case_started_id")] = test_case_started_id;
-        json[camelize("test_step_id")] = test_step_id;
-        json[camelize("timestamp")] = timestamp;
+        cucumber::messages::to_json(json, camelize("test_case_started_id"), test_case_started_id);
+        cucumber::messages::to_json(json, camelize("test_step_id"), test_step_id);
+        cucumber::messages::to_json(json, camelize("timestamp"), timestamp);
     }
 
     void test_step_started::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("test_case_started_id")).get_to(test_case_started_id);
-        json.at(camelize("test_step_id")).get_to(test_step_id);
-        json.at(camelize("timestamp")).get_to(timestamp);
+        cucumber::messages::from_json(json, camelize("test_case_started_id"), test_case_started_id);
+        cucumber::messages::from_json(json, camelize("test_step_id"), test_step_id);
+        cucumber::messages::from_json(json, camelize("timestamp"), timestamp);
     }
 
     std::string test_step_started::to_json() const

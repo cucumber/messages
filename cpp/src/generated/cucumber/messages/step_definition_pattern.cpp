@@ -22,14 +22,14 @@ namespace cucumber::messages
 
     void step_definition_pattern::to_json(nlohmann::json& json) const
     {
-        json[camelize("source")] = source;
-        json[camelize("type")] = type;
+        cucumber::messages::to_json(json, camelize("source"), source);
+        cucumber::messages::to_json(json, camelize("type"), type);
     }
 
     void step_definition_pattern::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("source")).get_to(source);
-        json.at(camelize("type")).get_to(type);
+        cucumber::messages::from_json(json, camelize("source"), source);
+        cucumber::messages::from_json(json, camelize("type"), type);
     }
 
     std::string step_definition_pattern::to_json() const

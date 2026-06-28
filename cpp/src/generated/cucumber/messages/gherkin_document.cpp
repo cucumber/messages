@@ -23,28 +23,16 @@ namespace cucumber::messages
 
     void gherkin_document::to_json(nlohmann::json& json) const
     {
-        if (uri.has_value())
-        {
-            json[camelize("uri")] = uri;
-        }
-        if (feature.has_value())
-        {
-            json[camelize("feature")] = feature;
-        }
-        json[camelize("comments")] = comments;
+        cucumber::messages::to_json(json, camelize("uri"), uri);
+        cucumber::messages::to_json(json, camelize("feature"), feature);
+        cucumber::messages::to_json(json, camelize("comments"), comments);
     }
 
     void gherkin_document::from_json(const nlohmann::json& json)
     {
-        if (uri.has_value())
-        {
-            json.at(camelize("uri")).get_to(uri.emplace());
-        }
-        if (feature.has_value())
-        {
-            json.at(camelize("feature")).get_to(feature.emplace());
-        }
-        json.at(camelize("comments")).get_to(comments);
+        cucumber::messages::from_json(json, camelize("uri"), uri);
+        cucumber::messages::from_json(json, camelize("feature"), feature);
+        cucumber::messages::from_json(json, camelize("comments"), comments);
     }
 
     std::string gherkin_document::to_json() const

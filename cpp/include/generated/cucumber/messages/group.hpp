@@ -1,7 +1,6 @@
 #ifndef CUCUMBER_MESSAGES_GROUP_HPP
 #define CUCUMBER_MESSAGES_GROUP_HPP
 
-#include "cucumber/messages/group.hpp"
 #include "nlohmann/json_fwd.hpp"
 #include <memory>
 #include <optional>

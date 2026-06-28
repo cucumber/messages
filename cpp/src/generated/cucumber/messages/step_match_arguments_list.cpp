@@ -21,12 +21,12 @@ namespace cucumber::messages
 
     void step_match_arguments_list::to_json(nlohmann::json& json) const
     {
-        json[camelize("step_match_arguments")] = step_match_arguments;
+        cucumber::messages::to_json(json, camelize("step_match_arguments"), step_match_arguments);
     }
 
     void step_match_arguments_list::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("step_match_arguments")).get_to(step_match_arguments);
+        cucumber::messages::from_json(json, camelize("step_match_arguments"), step_match_arguments);
     }
 
     std::string step_match_arguments_list::to_json() const

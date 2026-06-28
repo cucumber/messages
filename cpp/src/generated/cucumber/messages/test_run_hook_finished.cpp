@@ -23,16 +23,16 @@ namespace cucumber::messages
 
     void test_run_hook_finished::to_json(nlohmann::json& json) const
     {
-        json[camelize("test_run_hook_started_id")] = test_run_hook_started_id;
-        json[camelize("result")] = result;
-        json[camelize("timestamp")] = timestamp;
+        cucumber::messages::to_json(json, camelize("test_run_hook_started_id"), test_run_hook_started_id);
+        cucumber::messages::to_json(json, camelize("result"), result);
+        cucumber::messages::to_json(json, camelize("timestamp"), timestamp);
     }
 
     void test_run_hook_finished::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("test_run_hook_started_id")).get_to(test_run_hook_started_id);
-        json.at(camelize("result")).get_to(result);
-        json.at(camelize("timestamp")).get_to(timestamp);
+        cucumber::messages::from_json(json, camelize("test_run_hook_started_id"), test_run_hook_started_id);
+        cucumber::messages::from_json(json, camelize("result"), result);
+        cucumber::messages::from_json(json, camelize("timestamp"), timestamp);
     }
 
     std::string test_run_hook_finished::to_json() const

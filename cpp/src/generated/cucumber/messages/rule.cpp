@@ -27,24 +27,24 @@ namespace cucumber::messages
 
     void rule::to_json(nlohmann::json& json) const
     {
-        json[camelize("location")] = location;
-        json[camelize("tags")] = tags;
-        json[camelize("keyword")] = keyword;
-        json[camelize("name")] = name;
-        json[camelize("description")] = description;
-        json[camelize("children")] = children;
-        json[camelize("id")] = id;
+        cucumber::messages::to_json(json, camelize("location"), location);
+        cucumber::messages::to_json(json, camelize("tags"), tags);
+        cucumber::messages::to_json(json, camelize("keyword"), keyword);
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("description"), description);
+        cucumber::messages::to_json(json, camelize("children"), children);
+        cucumber::messages::to_json(json, camelize("id"), id);
     }
 
     void rule::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("location")).get_to(location);
-        json.at(camelize("tags")).get_to(tags);
-        json.at(camelize("keyword")).get_to(keyword);
-        json.at(camelize("name")).get_to(name);
-        json.at(camelize("description")).get_to(description);
-        json.at(camelize("children")).get_to(children);
-        json.at(camelize("id")).get_to(id);
+        cucumber::messages::from_json(json, camelize("location"), location);
+        cucumber::messages::from_json(json, camelize("tags"), tags);
+        cucumber::messages::from_json(json, camelize("keyword"), keyword);
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("description"), description);
+        cucumber::messages::from_json(json, camelize("children"), children);
+        cucumber::messages::from_json(json, camelize("id"), id);
     }
 
     std::string rule::to_json() const

@@ -22,20 +22,14 @@ namespace cucumber::messages
 
     void pickle_doc_string::to_json(nlohmann::json& json) const
     {
-        if (media_type.has_value())
-        {
-            json[camelize("media_type")] = media_type;
-        }
-        json[camelize("content")] = content;
+        cucumber::messages::to_json(json, camelize("media_type"), media_type);
+        cucumber::messages::to_json(json, camelize("content"), content);
     }
 
     void pickle_doc_string::from_json(const nlohmann::json& json)
     {
-        if (media_type.has_value())
-        {
-            json.at(camelize("media_type")).get_to(media_type.emplace());
-        }
-        json.at(camelize("content")).get_to(content);
+        cucumber::messages::from_json(json, camelize("media_type"), media_type);
+        cucumber::messages::from_json(json, camelize("content"), content);
     }
 
     std::string pickle_doc_string::to_json() const

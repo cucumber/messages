@@ -24,36 +24,18 @@ namespace cucumber::messages
 
     void ci::to_json(nlohmann::json& json) const
     {
-        json[camelize("name")] = name;
-        if (url.has_value())
-        {
-            json[camelize("url")] = url;
-        }
-        if (build_number.has_value())
-        {
-            json[camelize("build_number")] = build_number;
-        }
-        if (git.has_value())
-        {
-            json[camelize("git")] = git;
-        }
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("url"), url);
+        cucumber::messages::to_json(json, camelize("build_number"), build_number);
+        cucumber::messages::to_json(json, camelize("git"), git);
     }
 
     void ci::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("name")).get_to(name);
-        if (url.has_value())
-        {
-            json.at(camelize("url")).get_to(url.emplace());
-        }
-        if (build_number.has_value())
-        {
-            json.at(camelize("build_number")).get_to(build_number.emplace());
-        }
-        if (git.has_value())
-        {
-            json.at(camelize("git")).get_to(git.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("url"), url);
+        cucumber::messages::from_json(json, camelize("build_number"), build_number);
+        cucumber::messages::from_json(json, camelize("git"), git);
     }
 
     std::string ci::to_json() const

@@ -25,38 +25,20 @@ namespace cucumber::messages
 
     void test_run_finished::to_json(nlohmann::json& json) const
     {
-        if (message.has_value())
-        {
-            json[camelize("message")] = message;
-        }
-        json[camelize("success")] = success;
-        json[camelize("timestamp")] = timestamp;
-        if (exception.has_value())
-        {
-            json[camelize("exception")] = exception;
-        }
-        if (test_run_started_id.has_value())
-        {
-            json[camelize("test_run_started_id")] = test_run_started_id;
-        }
+        cucumber::messages::to_json(json, camelize("message"), message);
+        cucumber::messages::to_json(json, camelize("success"), success);
+        cucumber::messages::to_json(json, camelize("timestamp"), timestamp);
+        cucumber::messages::to_json(json, camelize("exception"), exception);
+        cucumber::messages::to_json(json, camelize("test_run_started_id"), test_run_started_id);
     }
 
     void test_run_finished::from_json(const nlohmann::json& json)
     {
-        if (message.has_value())
-        {
-            json.at(camelize("message")).get_to(message.emplace());
-        }
-        json.at(camelize("success")).get_to(success);
-        json.at(camelize("timestamp")).get_to(timestamp);
-        if (exception.has_value())
-        {
-            json.at(camelize("exception")).get_to(exception.emplace());
-        }
-        if (test_run_started_id.has_value())
-        {
-            json.at(camelize("test_run_started_id")).get_to(test_run_started_id.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("message"), message);
+        cucumber::messages::from_json(json, camelize("success"), success);
+        cucumber::messages::from_json(json, camelize("timestamp"), timestamp);
+        cucumber::messages::from_json(json, camelize("exception"), exception);
+        cucumber::messages::from_json(json, camelize("test_run_started_id"), test_run_started_id);
     }
 
     std::string test_run_finished::to_json() const

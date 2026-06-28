@@ -25,38 +25,20 @@ namespace cucumber::messages
 
     void hook::to_json(nlohmann::json& json) const
     {
-        json[camelize("id")] = id;
-        if (name.has_value())
-        {
-            json[camelize("name")] = name;
-        }
-        json[camelize("source_reference")] = source_reference;
-        if (tag_expression.has_value())
-        {
-            json[camelize("tag_expression")] = tag_expression;
-        }
-        if (type.has_value())
-        {
-            json[camelize("type")] = type;
-        }
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("source_reference"), source_reference);
+        cucumber::messages::to_json(json, camelize("tag_expression"), tag_expression);
+        cucumber::messages::to_json(json, camelize("type"), type);
     }
 
     void hook::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("id")).get_to(id);
-        if (name.has_value())
-        {
-            json.at(camelize("name")).get_to(name.emplace());
-        }
-        json.at(camelize("source_reference")).get_to(source_reference);
-        if (tag_expression.has_value())
-        {
-            json.at(camelize("tag_expression")).get_to(tag_expression.emplace());
-        }
-        if (type.has_value())
-        {
-            json.at(camelize("type")).get_to(type.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("source_reference"), source_reference);
+        cucumber::messages::from_json(json, camelize("tag_expression"), tag_expression);
+        cucumber::messages::from_json(json, camelize("type"), type);
     }
 
     std::string hook::to_json() const

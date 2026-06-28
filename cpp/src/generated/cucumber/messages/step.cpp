@@ -27,42 +27,24 @@ namespace cucumber::messages
 
     void step::to_json(nlohmann::json& json) const
     {
-        json[camelize("location")] = location;
-        json[camelize("keyword")] = keyword;
-        if (keyword_type.has_value())
-        {
-            json[camelize("keyword_type")] = keyword_type;
-        }
-        json[camelize("text")] = text;
-        if (doc_string.has_value())
-        {
-            json[camelize("doc_string")] = doc_string;
-        }
-        if (data_table.has_value())
-        {
-            json[camelize("data_table")] = data_table;
-        }
-        json[camelize("id")] = id;
+        cucumber::messages::to_json(json, camelize("location"), location);
+        cucumber::messages::to_json(json, camelize("keyword"), keyword);
+        cucumber::messages::to_json(json, camelize("keyword_type"), keyword_type);
+        cucumber::messages::to_json(json, camelize("text"), text);
+        cucumber::messages::to_json(json, camelize("doc_string"), doc_string);
+        cucumber::messages::to_json(json, camelize("data_table"), data_table);
+        cucumber::messages::to_json(json, camelize("id"), id);
     }
 
     void step::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("location")).get_to(location);
-        json.at(camelize("keyword")).get_to(keyword);
-        if (keyword_type.has_value())
-        {
-            json.at(camelize("keyword_type")).get_to(keyword_type.emplace());
-        }
-        json.at(camelize("text")).get_to(text);
-        if (doc_string.has_value())
-        {
-            json.at(camelize("doc_string")).get_to(doc_string.emplace());
-        }
-        if (data_table.has_value())
-        {
-            json.at(camelize("data_table")).get_to(data_table.emplace());
-        }
-        json.at(camelize("id")).get_to(id);
+        cucumber::messages::from_json(json, camelize("location"), location);
+        cucumber::messages::from_json(json, camelize("keyword"), keyword);
+        cucumber::messages::from_json(json, camelize("keyword_type"), keyword_type);
+        cucumber::messages::from_json(json, camelize("text"), text);
+        cucumber::messages::from_json(json, camelize("doc_string"), doc_string);
+        cucumber::messages::from_json(json, camelize("data_table"), data_table);
+        cucumber::messages::from_json(json, camelize("id"), id);
     }
 
     std::string step::to_json() const

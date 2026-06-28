@@ -24,42 +24,18 @@ namespace cucumber::messages
 
     void source_reference::to_json(nlohmann::json& json) const
     {
-        if (uri.has_value())
-        {
-            json[camelize("uri")] = uri;
-        }
-        if (java_method.has_value())
-        {
-            json[camelize("java_method")] = java_method;
-        }
-        if (java_stack_trace_element.has_value())
-        {
-            json[camelize("java_stack_trace_element")] = java_stack_trace_element;
-        }
-        if (location.has_value())
-        {
-            json[camelize("location")] = location;
-        }
+        cucumber::messages::to_json(json, camelize("uri"), uri);
+        cucumber::messages::to_json(json, camelize("java_method"), java_method);
+        cucumber::messages::to_json(json, camelize("java_stack_trace_element"), java_stack_trace_element);
+        cucumber::messages::to_json(json, camelize("location"), location);
     }
 
     void source_reference::from_json(const nlohmann::json& json)
     {
-        if (uri.has_value())
-        {
-            json.at(camelize("uri")).get_to(uri.emplace());
-        }
-        if (java_method.has_value())
-        {
-            json.at(camelize("java_method")).get_to(java_method.emplace());
-        }
-        if (java_stack_trace_element.has_value())
-        {
-            json.at(camelize("java_stack_trace_element")).get_to(java_stack_trace_element.emplace());
-        }
-        if (location.has_value())
-        {
-            json.at(camelize("location")).get_to(location.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("uri"), uri);
+        cucumber::messages::from_json(json, camelize("java_method"), java_method);
+        cucumber::messages::from_json(json, camelize("java_stack_trace_element"), java_stack_trace_element);
+        cucumber::messages::from_json(json, camelize("location"), location);
     }
 
     std::string source_reference::to_json() const

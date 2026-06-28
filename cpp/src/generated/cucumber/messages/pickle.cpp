@@ -28,32 +28,26 @@ namespace cucumber::messages
 
     void pickle::to_json(nlohmann::json& json) const
     {
-        json[camelize("id")] = id;
-        json[camelize("uri")] = uri;
-        if (location.has_value())
-        {
-            json[camelize("location")] = location;
-        }
-        json[camelize("name")] = name;
-        json[camelize("language")] = language;
-        json[camelize("steps")] = steps;
-        json[camelize("tags")] = tags;
-        json[camelize("ast_node_ids")] = ast_node_ids;
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("uri"), uri);
+        cucumber::messages::to_json(json, camelize("location"), location);
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("language"), language);
+        cucumber::messages::to_json(json, camelize("steps"), steps);
+        cucumber::messages::to_json(json, camelize("tags"), tags);
+        cucumber::messages::to_json(json, camelize("ast_node_ids"), ast_node_ids);
     }
 
     void pickle::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("id")).get_to(id);
-        json.at(camelize("uri")).get_to(uri);
-        if (location.has_value())
-        {
-            json.at(camelize("location")).get_to(location.emplace());
-        }
-        json.at(camelize("name")).get_to(name);
-        json.at(camelize("language")).get_to(language);
-        json.at(camelize("steps")).get_to(steps);
-        json.at(camelize("tags")).get_to(tags);
-        json.at(camelize("ast_node_ids")).get_to(ast_node_ids);
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("uri"), uri);
+        cucumber::messages::from_json(json, camelize("location"), location);
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("language"), language);
+        cucumber::messages::from_json(json, camelize("steps"), steps);
+        cucumber::messages::from_json(json, camelize("tags"), tags);
+        cucumber::messages::from_json(json, camelize("ast_node_ids"), ast_node_ids);
     }
 
     std::string pickle::to_json() const

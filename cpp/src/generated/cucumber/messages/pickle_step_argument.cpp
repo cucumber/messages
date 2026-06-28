@@ -22,26 +22,14 @@ namespace cucumber::messages
 
     void pickle_step_argument::to_json(nlohmann::json& json) const
     {
-        if (doc_string.has_value())
-        {
-            json[camelize("doc_string")] = doc_string;
-        }
-        if (data_table.has_value())
-        {
-            json[camelize("data_table")] = data_table;
-        }
+        cucumber::messages::to_json(json, camelize("doc_string"), doc_string);
+        cucumber::messages::to_json(json, camelize("data_table"), data_table);
     }
 
     void pickle_step_argument::from_json(const nlohmann::json& json)
     {
-        if (doc_string.has_value())
-        {
-            json.at(camelize("doc_string")).get_to(doc_string.emplace());
-        }
-        if (data_table.has_value())
-        {
-            json.at(camelize("data_table")).get_to(data_table.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("doc_string"), doc_string);
+        cucumber::messages::from_json(json, camelize("data_table"), data_table);
     }
 
     std::string pickle_step_argument::to_json() const

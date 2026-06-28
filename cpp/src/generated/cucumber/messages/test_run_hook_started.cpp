@@ -25,26 +25,20 @@ namespace cucumber::messages
 
     void test_run_hook_started::to_json(nlohmann::json& json) const
     {
-        json[camelize("id")] = id;
-        json[camelize("test_run_started_id")] = test_run_started_id;
-        json[camelize("hook_id")] = hook_id;
-        if (worker_id.has_value())
-        {
-            json[camelize("worker_id")] = worker_id;
-        }
-        json[camelize("timestamp")] = timestamp;
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("test_run_started_id"), test_run_started_id);
+        cucumber::messages::to_json(json, camelize("hook_id"), hook_id);
+        cucumber::messages::to_json(json, camelize("worker_id"), worker_id);
+        cucumber::messages::to_json(json, camelize("timestamp"), timestamp);
     }
 
     void test_run_hook_started::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("id")).get_to(id);
-        json.at(camelize("test_run_started_id")).get_to(test_run_started_id);
-        json.at(camelize("hook_id")).get_to(hook_id);
-        if (worker_id.has_value())
-        {
-            json.at(camelize("worker_id")).get_to(worker_id.emplace());
-        }
-        json.at(camelize("timestamp")).get_to(timestamp);
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("test_run_started_id"), test_run_started_id);
+        cucumber::messages::from_json(json, camelize("hook_id"), hook_id);
+        cucumber::messages::from_json(json, camelize("worker_id"), worker_id);
+        cucumber::messages::from_json(json, camelize("timestamp"), timestamp);
     }
 
     std::string test_run_hook_started::to_json() const

@@ -24,24 +24,18 @@ namespace cucumber::messages
 
     void doc_string::to_json(nlohmann::json& json) const
     {
-        json[camelize("location")] = location;
-        if (media_type.has_value())
-        {
-            json[camelize("media_type")] = media_type;
-        }
-        json[camelize("content")] = content;
-        json[camelize("delimiter")] = delimiter;
+        cucumber::messages::to_json(json, camelize("location"), location);
+        cucumber::messages::to_json(json, camelize("media_type"), media_type);
+        cucumber::messages::to_json(json, camelize("content"), content);
+        cucumber::messages::to_json(json, camelize("delimiter"), delimiter);
     }
 
     void doc_string::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("location")).get_to(location);
-        if (media_type.has_value())
-        {
-            json.at(camelize("media_type")).get_to(media_type.emplace());
-        }
-        json.at(camelize("content")).get_to(content);
-        json.at(camelize("delimiter")).get_to(delimiter);
+        cucumber::messages::from_json(json, camelize("location"), location);
+        cucumber::messages::from_json(json, camelize("media_type"), media_type);
+        cucumber::messages::from_json(json, camelize("content"), content);
+        cucumber::messages::from_json(json, camelize("delimiter"), delimiter);
     }
 
     std::string doc_string::to_json() const

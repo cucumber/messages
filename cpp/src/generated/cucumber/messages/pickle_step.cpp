@@ -25,32 +25,20 @@ namespace cucumber::messages
 
     void pickle_step::to_json(nlohmann::json& json) const
     {
-        if (argument.has_value())
-        {
-            json[camelize("argument")] = argument;
-        }
-        json[camelize("ast_node_ids")] = ast_node_ids;
-        json[camelize("id")] = id;
-        if (type.has_value())
-        {
-            json[camelize("type")] = type;
-        }
-        json[camelize("text")] = text;
+        cucumber::messages::to_json(json, camelize("argument"), argument);
+        cucumber::messages::to_json(json, camelize("ast_node_ids"), ast_node_ids);
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("type"), type);
+        cucumber::messages::to_json(json, camelize("text"), text);
     }
 
     void pickle_step::from_json(const nlohmann::json& json)
     {
-        if (argument.has_value())
-        {
-            json.at(camelize("argument")).get_to(argument.emplace());
-        }
-        json.at(camelize("ast_node_ids")).get_to(ast_node_ids);
-        json.at(camelize("id")).get_to(id);
-        if (type.has_value())
-        {
-            json.at(camelize("type")).get_to(type.emplace());
-        }
-        json.at(camelize("text")).get_to(text);
+        cucumber::messages::from_json(json, camelize("argument"), argument);
+        cucumber::messages::from_json(json, camelize("ast_node_ids"), ast_node_ids);
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("type"), type);
+        cucumber::messages::from_json(json, camelize("text"), text);
     }
 
     std::string pickle_step::to_json() const

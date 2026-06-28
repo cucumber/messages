@@ -23,34 +23,16 @@ namespace cucumber::messages
 
     void group::to_json(nlohmann::json& json) const
     {
-        if (children.has_value())
-        {
-            json[camelize("children")] = children;
-        }
-        if (start.has_value())
-        {
-            json[camelize("start")] = start;
-        }
-        if (value.has_value())
-        {
-            json[camelize("value")] = value;
-        }
+        cucumber::messages::to_json(json, camelize("children"), children);
+        cucumber::messages::to_json(json, camelize("start"), start);
+        cucumber::messages::to_json(json, camelize("value"), value);
     }
 
     void group::from_json(const nlohmann::json& json)
     {
-        if (children.has_value())
-        {
-            json.at(camelize("children")).get_to(children.emplace());
-        }
-        if (start.has_value())
-        {
-            json.at(camelize("start")).get_to(start.emplace());
-        }
-        if (value.has_value())
-        {
-            json.at(camelize("value")).get_to(value.emplace());
-        }
+        cucumber::messages::from_json(json, camelize("children"), children);
+        cucumber::messages::from_json(json, camelize("start"), start);
+        cucumber::messages::from_json(json, camelize("value"), value);
     }
 
     std::string group::to_json() const

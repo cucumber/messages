@@ -23,16 +23,16 @@ namespace cucumber::messages
 
     void java_method::to_json(nlohmann::json& json) const
     {
-        json[camelize("class_name")] = class_name;
-        json[camelize("method_name")] = method_name;
-        json[camelize("method_parameter_types")] = method_parameter_types;
+        cucumber::messages::to_json(json, camelize("class_name"), class_name);
+        cucumber::messages::to_json(json, camelize("method_name"), method_name);
+        cucumber::messages::to_json(json, camelize("method_parameter_types"), method_parameter_types);
     }
 
     void java_method::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("class_name")).get_to(class_name);
-        json.at(camelize("method_name")).get_to(method_name);
-        json.at(camelize("method_parameter_types")).get_to(method_parameter_types);
+        cucumber::messages::from_json(json, camelize("class_name"), class_name);
+        cucumber::messages::from_json(json, camelize("method_name"), method_name);
+        cucumber::messages::from_json(json, camelize("method_parameter_types"), method_parameter_types);
     }
 
     std::string java_method::to_json() const

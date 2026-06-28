@@ -22,14 +22,14 @@ namespace cucumber::messages
 
     void pickle_tag::to_json(nlohmann::json& json) const
     {
-        json[camelize("name")] = name;
-        json[camelize("ast_node_id")] = ast_node_id;
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("ast_node_id"), ast_node_id);
     }
 
     void pickle_tag::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("name")).get_to(name);
-        json.at(camelize("ast_node_id")).get_to(ast_node_id);
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("ast_node_id"), ast_node_id);
     }
 
     std::string pickle_tag::to_json() const

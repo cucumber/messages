@@ -23,16 +23,16 @@ namespace cucumber::messages
 
     void source::to_json(nlohmann::json& json) const
     {
-        json[camelize("uri")] = uri;
-        json[camelize("data")] = data;
-        json[camelize("media_type")] = media_type;
+        cucumber::messages::to_json(json, camelize("uri"), uri);
+        cucumber::messages::to_json(json, camelize("data"), data);
+        cucumber::messages::to_json(json, camelize("media_type"), media_type);
     }
 
     void source::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("uri")).get_to(uri);
-        json.at(camelize("data")).get_to(data);
-        json.at(camelize("media_type")).get_to(media_type);
+        cucumber::messages::from_json(json, camelize("uri"), uri);
+        cucumber::messages::from_json(json, camelize("data"), data);
+        cucumber::messages::from_json(json, camelize("media_type"), media_type);
     }
 
     std::string source::to_json() const

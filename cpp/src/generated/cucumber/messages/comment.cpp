@@ -22,14 +22,14 @@ namespace cucumber::messages
 
     void comment::to_json(nlohmann::json& json) const
     {
-        json[camelize("location")] = location;
-        json[camelize("text")] = text;
+        cucumber::messages::to_json(json, camelize("location"), location);
+        cucumber::messages::to_json(json, camelize("text"), text);
     }
 
     void comment::from_json(const nlohmann::json& json)
     {
-        json.at(camelize("location")).get_to(location);
-        json.at(camelize("text")).get_to(text);
+        cucumber::messages::from_json(json, camelize("location"), location);
+        cucumber::messages::from_json(json, camelize("text"), text);
     }
 
     std::string comment::to_json() const
