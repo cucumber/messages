@@ -29,6 +29,11 @@ else()
 endif()
 
 # Options
+if (POLICY CMP0077)
+    # Allow CMake 3.13+ to override options when using FetchContent / add_subdirectory.
+    cmake_policy(SET CMP0077 NEW)
+endif ()
+
 option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." ${cucumber_messages_MAIN_PROJECT})
 option(CUCUMBER_MESSAGES_FETCH_DEPS "Fetch dependencies via FetchContent." ${cucumber_messages_MAIN_PROJECT})
 
