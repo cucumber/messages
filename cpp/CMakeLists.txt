@@ -34,7 +34,9 @@ if (POLICY CMP0077)
     cmake_policy(SET CMP0077 NEW)
 endif ()
 
-option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." ${cucumber_messages_MAIN_PROJECT})
+option(CUCUMBER_MESSAGES_ENABLE_COVERAGE "Enable test coverage instrumentation" OFF)
+option(CUCUMBER_MESSAGES_ENABLE_MUTATION "Enable mutation testing instrumentation with Mull" OFF)
+option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." Off)
 option(CUCUMBER_MESSAGES_FETCH_DEPS "Fetch dependencies via FetchContent." ${cucumber_messages_MAIN_PROJECT})
 
 set(CMAKE_CXX_STANDARD 17)
@@ -153,11 +155,31 @@ install(
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
 )
 
+# Optional: Coverage
+if(CUCUMBER_MESSAGES_ENABLE_COVERAGE)
+    if(NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        message(FATAL_ERROR "Coverage instrumentation is only supported with GCC or Clang")
+    endif()
+    target_compile_options(cucumber_messages_lib PUBLIC --coverage)
+    target_link_options(cucumber_messages_lib PUBLIC --coverage)
 
-add_executable(cucumber_messages_codegen EXCLUDE_FROM_ALL
-    lib/main.cpp
-)
+    find_program(GCOVR_PATH gcovr)
 
-target_link_libraries(cucumber_messages_codegen PRIVATE
-    cucumber_messages_lib
-)
+    if (NOT GCOVR_PATH)
+        message(FATAL_ERROR "Could not find gcovr, which is required for code coverage IDE integration")
+    endif()
+
+    add_custom_target(
+        generate-coverage-report
+        COMMAND ${GCOVR_PATH} --delete --lcov ${CMAKE_CURRENT_BINARY_DIR}/lcov.info
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Generating code coverage report in LCOV format"
+    )
+endif()
+
+# Optional: tests
+if(CUCUMBER_MESSAGES_BUILD_TESTS)
+    include(CTest)
+    enable_testing()
+    add_subdirectory(test)
+endif()

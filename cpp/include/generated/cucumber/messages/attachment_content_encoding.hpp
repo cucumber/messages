@@ -21,6 +21,7 @@ namespace cucumber::messages
     std::ostream& operator<<(std::ostream& stream, attachment_content_encoding value);
 
     void to_json(nlohmann::json& json, const attachment_content_encoding& msg);
+    void from_json(const nlohmann::json& json, attachment_content_encoding& msg);
 }
 
 #endif

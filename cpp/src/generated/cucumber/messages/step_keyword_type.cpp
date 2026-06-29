@@ -34,4 +34,17 @@ namespace cucumber::messages
     {
         json = to_string(msg);
     }
+
+    void from_json(const nlohmann::json& json, step_keyword_type& msg)
+    {
+        static const std::unordered_map<std::string_view, step_keyword_type> lut = {
+            { "Unknown", step_keyword_type::UNKNOWN },
+            { "Context", step_keyword_type::CONTEXT },
+            { "Action", step_keyword_type::ACTION },
+            { "Outcome", step_keyword_type::OUTCOME },
+            { "Conjunction", step_keyword_type::CONJUNCTION },
+        };
+
+        msg = lut.at(json.get<std::string_view>());
+    }
 }

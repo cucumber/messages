@@ -36,4 +36,19 @@ namespace cucumber::messages
     {
         json = to_string(msg);
     }
+
+    void from_json(const nlohmann::json& json, test_step_result_status& msg)
+    {
+        static const std::unordered_map<std::string_view, test_step_result_status> lut = {
+            { "UNKNOWN", test_step_result_status::UNKNOWN },
+            { "PASSED", test_step_result_status::PASSED },
+            { "SKIPPED", test_step_result_status::SKIPPED },
+            { "PENDING", test_step_result_status::PENDING },
+            { "UNDEFINED", test_step_result_status::UNDEFINED },
+            { "AMBIGUOUS", test_step_result_status::AMBIGUOUS },
+            { "FAILED", test_step_result_status::FAILED },
+        };
+
+        msg = lut.at(json.get<std::string_view>());
+    }
 }

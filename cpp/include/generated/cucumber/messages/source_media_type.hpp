@@ -21,6 +21,7 @@ namespace cucumber::messages
     std::ostream& operator<<(std::ostream& stream, source_media_type value);
 
     void to_json(nlohmann::json& json, const source_media_type& msg);
+    void from_json(const nlohmann::json& json, source_media_type& msg);
 }
 
 #endif

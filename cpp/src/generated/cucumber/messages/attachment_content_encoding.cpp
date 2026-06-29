@@ -31,4 +31,14 @@ namespace cucumber::messages
     {
         json = to_string(msg);
     }
+
+    void from_json(const nlohmann::json& json, attachment_content_encoding& msg)
+    {
+        static const std::unordered_map<std::string_view, attachment_content_encoding> lut = {
+            { "IDENTITY", attachment_content_encoding::IDENTITY },
+            { "BASE64", attachment_content_encoding::BASE64 },
+        };
+
+        msg = lut.at(json.get<std::string_view>());
+    }
 }

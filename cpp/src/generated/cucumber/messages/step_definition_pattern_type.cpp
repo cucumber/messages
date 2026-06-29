@@ -31,4 +31,14 @@ namespace cucumber::messages
     {
         json = to_string(msg);
     }
+
+    void from_json(const nlohmann::json& json, step_definition_pattern_type& msg)
+    {
+        static const std::unordered_map<std::string_view, step_definition_pattern_type> lut = {
+            { "CUCUMBER_EXPRESSION", step_definition_pattern_type::CUCUMBER_EXPRESSION },
+            { "REGULAR_EXPRESSION", step_definition_pattern_type::REGULAR_EXPRESSION },
+        };
+
+        msg = lut.at(json.get<std::string_view>());
+    }
 }

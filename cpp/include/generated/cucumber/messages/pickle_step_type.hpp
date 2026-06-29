@@ -23,6 +23,7 @@ namespace cucumber::messages
     std::ostream& operator<<(std::ostream& stream, pickle_step_type value);
 
     void to_json(nlohmann::json& json, const pickle_step_type& msg);
+    void from_json(const nlohmann::json& json, pickle_step_type& msg);
 }
 
 #endif

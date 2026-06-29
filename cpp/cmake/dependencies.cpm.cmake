@@ -36,4 +36,13 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
             set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}" PARENT_SCOPE)
         endif()
     endif()
+
+    CPMAddPackage(
+        NAME googletest
+        GITHUB_REPOSITORY google/googletest
+        GIT_TAG 52eb8108c5bdec04579160ae17225d66034bd723 # v1.17.0
+        OPTIONS "INSTALL_GTEST OFF" "gtest_force_shared_crt ON"
+        SYSTEM
+    )
+    set_target_properties(gtest gtest_main gmock gmock_main PROPERTIES FOLDER External/GoogleTest)
 endif()

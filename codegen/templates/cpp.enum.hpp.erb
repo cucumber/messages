@@ -26,6 +26,7 @@ namespace cucumber::messages
     std::ostream& operator<<(std::ostream& stream, <%= ename %> value);
 
     void to_json(nlohmann::json& json, const <%= ename %>& msg);
+    void from_json(const nlohmann::json& json, <%= ename %>& msg);
 }
 
 #endif
@@ -63,5 +64,16 @@ namespace cucumber::messages
     void to_json(nlohmann::json& json, const <%= ename %>& msg)
     {
         json = to_string(msg);
+    }
+
+    void from_json(const nlohmann::json& json, <%= ename %>& msg)
+    {
+        static const std::unordered_map<std::string_view, <%= ename %>> lut = {
+<%- enum[:values].each_with_index do |value, index| -%>
+            { "<%= value %>", <%= ename %>::<%= enum_constant(value) %> },
+<% end -%>
+        };
+
+        msg = lut.at(json.get<std::string_view>());
     }
 }<%- end -%>

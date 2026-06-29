@@ -31,4 +31,14 @@ namespace cucumber::messages
     {
         json = to_string(msg);
     }
+
+    void from_json(const nlohmann::json& json, source_media_type& msg)
+    {
+        static const std::unordered_map<std::string_view, source_media_type> lut = {
+            { "text/x.cucumber.gherkin+plain", source_media_type::TEXT_X_CUCUMBER_GHERKIN_PLAIN },
+            { "text/x.cucumber.gherkin+markdown", source_media_type::TEXT_X_CUCUMBER_GHERKIN_MARKDOWN },
+        };
+
+        msg = lut.at(json.get<std::string_view>());
+    }
 }

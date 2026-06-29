@@ -116,7 +116,7 @@ to_string(std::ostream& os, P&& prefix, T&& opt)
     {
         if (json.contains(key))
         {
-            from_json(json, key, *opt);
+            from_json(json, key, opt.emplace());
         }
     }
 }

@@ -33,4 +33,16 @@ namespace cucumber::messages
     {
         json = to_string(msg);
     }
+
+    void from_json(const nlohmann::json& json, pickle_step_type& msg)
+    {
+        static const std::unordered_map<std::string_view, pickle_step_type> lut = {
+            { "Unknown", pickle_step_type::UNKNOWN },
+            { "Context", pickle_step_type::CONTEXT },
+            { "Action", pickle_step_type::ACTION },
+            { "Outcome", pickle_step_type::OUTCOME },
+        };
+
+        msg = lut.at(json.get<std::string_view>());
+    }
 }

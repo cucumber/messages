@@ -26,6 +26,7 @@ namespace cucumber::messages
     std::ostream& operator<<(std::ostream& stream, test_step_result_status value);
 
     void to_json(nlohmann::json& json, const test_step_result_status& msg);
+    void from_json(const nlohmann::json& json, test_step_result_status& msg);
 }
 
 #endif

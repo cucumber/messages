@@ -15,7 +15,8 @@
 				"cmake.copyCompileCommands": "${userHome}/.cpp/compile_commands.json",
 				"cmake.ignoreCMakeListsMissing": true,
 				"cmake.sourceDirectory": "${workspaceFolder}/cpp",
-				"cmake.useCMakePresets": "auto"
+				"cmake.useCMakePresets": "auto",
+				"cmake.postRunCoverageTarget": "generate-coverage-report"
 			},
 			"extensions": [
 				"llvm-vs-code-extensions.vscode-clangd",

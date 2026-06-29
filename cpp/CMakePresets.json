@@ -9,12 +9,24 @@
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "On",
                 "CMAKE_BUILD_TYPE": "Debug"
             }
+        },
+        {
+            "name": "coverage",
+            "inherits": "host",
+            "cacheVariables": {
+                "CUCUMBER_MESSAGES_ENABLE_COVERAGE": "ON",
+                "CUCUMBER_MESSAGES_BUILD_TESTS": "ON"
+            }
         }
     ],
     "buildPresets": [
         {
             "name": "host",
             "configurePreset": "host"
+        },
+        {
+            "name": "coverage",
+            "configurePreset": "coverage"
         }
     ]
 }

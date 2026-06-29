@@ -25,6 +25,7 @@ namespace cucumber::messages
     std::ostream& operator<<(std::ostream& stream, hook_type value);
 
     void to_json(nlohmann::json& json, const hook_type& msg);
+    void from_json(const nlohmann::json& json, hook_type& msg);
 }
 
 #endif

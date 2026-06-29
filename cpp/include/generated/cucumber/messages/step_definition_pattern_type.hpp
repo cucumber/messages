@@ -21,6 +21,7 @@ namespace cucumber::messages
     std::ostream& operator<<(std::ostream& stream, step_definition_pattern_type value);
 
     void to_json(nlohmann::json& json, const step_definition_pattern_type& msg);
+    void from_json(const nlohmann::json& json, step_definition_pattern_type& msg);
 }
 
 #endif
