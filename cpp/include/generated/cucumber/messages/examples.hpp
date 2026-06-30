@@ -21,15 +21,13 @@ namespace cucumber::messages
 
     struct examples
     {
-        using shared_ptr = examples;//std::shared_ptr<examples>;
-
-        cucumber::messages::location::shared_ptr location;
-        std::vector<cucumber::messages::tag::shared_ptr> tags;
+        cucumber::messages::location location;
+        std::vector<cucumber::messages::tag> tags;
         std::string keyword;
         std::string name;
         std::string description;
-        std::optional<cucumber::messages::table_row::shared_ptr> table_header;
-        std::vector<cucumber::messages::table_row::shared_ptr> table_body;
+        std::optional<cucumber::messages::table_row> table_header;
+        std::vector<cucumber::messages::table_row> table_body;
         std::string id;
 
         [[nodiscard]] std::string to_string() const;
@@ -44,8 +42,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const examples& msg);
     void from_json(const nlohmann::json& json, examples& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<examples>& msg);
-
 }
 
 #endif

@@ -60,10 +60,4 @@ namespace cucumber::messages
     {
         msg.from_json(json);
     }
-
-    void from_json(const nlohmann::json& json, std::shared_ptr<java_stack_trace_element>& msg)
-    {
-        msg = std::make_shared<java_stack_trace_element>();
-        msg->from_json(json);
-    }
 }

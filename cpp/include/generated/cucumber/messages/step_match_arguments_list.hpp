@@ -19,9 +19,7 @@ namespace cucumber::messages
 
     struct step_match_arguments_list
     {
-        using shared_ptr = step_match_arguments_list;//std::shared_ptr<step_match_arguments_list>;
-
-        std::vector<cucumber::messages::step_match_argument::shared_ptr> step_match_arguments;
+        std::vector<cucumber::messages::step_match_argument> step_match_arguments;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -35,8 +33,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const step_match_arguments_list& msg);
     void from_json(const nlohmann::json& json, step_match_arguments_list& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<step_match_arguments_list>& msg);
-
 }
 
 #endif

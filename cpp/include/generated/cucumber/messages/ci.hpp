@@ -20,12 +20,10 @@ namespace cucumber::messages
 
     struct ci
     {
-        using shared_ptr = ci;//std::shared_ptr<ci>;
-
         std::string name;
         std::optional<std::string> url;
         std::optional<std::string> build_number;
-        std::optional<cucumber::messages::git::shared_ptr> git;
+        std::optional<cucumber::messages::git> git;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -39,8 +37,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const ci& msg);
     void from_json(const nlohmann::json& json, ci& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<ci>& msg);
-
 }
 
 #endif

@@ -19,12 +19,10 @@ namespace cucumber::messages
 
     struct test_run_finished
     {
-        using shared_ptr = test_run_finished;//std::shared_ptr<test_run_finished>;
-
         std::optional<std::string> message;
         bool success;
-        cucumber::messages::timestamp::shared_ptr timestamp;
-        std::optional<cucumber::messages::exception::shared_ptr> exception;
+        cucumber::messages::timestamp timestamp;
+        std::optional<cucumber::messages::exception> exception;
         std::optional<std::string> test_run_started_id;
 
         [[nodiscard]] std::string to_string() const;
@@ -39,8 +37,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const test_run_finished& msg);
     void from_json(const nlohmann::json& json, test_run_finished& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<test_run_finished>& msg);
-
 }
 
 #endif

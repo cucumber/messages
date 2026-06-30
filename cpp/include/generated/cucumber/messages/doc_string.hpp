@@ -18,9 +18,7 @@ namespace cucumber::messages
 
     struct doc_string
     {
-        using shared_ptr = doc_string;//std::shared_ptr<doc_string>;
-
-        cucumber::messages::location::shared_ptr location;
+        cucumber::messages::location location;
         std::optional<std::string> media_type;
         std::string content;
         std::string delimiter;
@@ -37,8 +35,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const doc_string& msg);
     void from_json(const nlohmann::json& json, doc_string& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<doc_string>& msg);
-
 }
 
 #endif

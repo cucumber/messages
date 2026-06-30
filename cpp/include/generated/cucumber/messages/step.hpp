@@ -23,14 +23,12 @@ namespace cucumber::messages
 
     struct step
     {
-        using shared_ptr = step;//std::shared_ptr<step>;
-
-        cucumber::messages::location::shared_ptr location;
+        cucumber::messages::location location;
         std::string keyword;
         std::optional<cucumber::messages::step_keyword_type> keyword_type;
         std::string text;
-        std::optional<cucumber::messages::doc_string::shared_ptr> doc_string;
-        std::optional<cucumber::messages::data_table::shared_ptr> data_table;
+        std::optional<cucumber::messages::doc_string> doc_string;
+        std::optional<cucumber::messages::data_table> data_table;
         std::string id;
 
         [[nodiscard]] std::string to_string() const;
@@ -45,8 +43,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const step& msg);
     void from_json(const nlohmann::json& json, step& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<step>& msg);
-
 }
 
 #endif

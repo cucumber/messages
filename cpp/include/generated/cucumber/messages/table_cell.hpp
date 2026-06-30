@@ -20,9 +20,7 @@ namespace cucumber::messages
 
     struct table_cell
     {
-        using shared_ptr = table_cell;//std::shared_ptr<table_cell>;
-
-        cucumber::messages::location::shared_ptr location;
+        cucumber::messages::location location;
         std::string value;
 
         [[nodiscard]] std::string to_string() const;
@@ -37,8 +35,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const table_cell& msg);
     void from_json(const nlohmann::json& json, table_cell& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<table_cell>& msg);
-
 }
 
 #endif

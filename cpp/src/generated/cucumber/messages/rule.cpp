@@ -72,10 +72,4 @@ namespace cucumber::messages
     {
         msg.from_json(json);
     }
-
-    void from_json(const nlohmann::json& json, std::shared_ptr<rule>& msg)
-    {
-        msg = std::make_shared<rule>();
-        msg->from_json(json);
-    }
 }

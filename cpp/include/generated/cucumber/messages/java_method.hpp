@@ -18,8 +18,6 @@ namespace cucumber::messages
 
     struct java_method
     {
-        using shared_ptr = java_method;//std::shared_ptr<java_method>;
-
         std::string class_name;
         std::string method_name;
         std::vector<std::string> method_parameter_types;
@@ -36,8 +34,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const java_method& msg);
     void from_json(const nlohmann::json& json, java_method& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<java_method>& msg);
-
 }
 
 #endif

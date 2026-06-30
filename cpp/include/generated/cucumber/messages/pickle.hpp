@@ -32,15 +32,13 @@ namespace cucumber::messages
 
     struct pickle
     {
-        using shared_ptr = pickle;//std::shared_ptr<pickle>;
-
         std::string id;
         std::string uri;
-        std::optional<cucumber::messages::location::shared_ptr> location;
+        std::optional<cucumber::messages::location> location;
         std::string name;
         std::string language;
-        std::vector<cucumber::messages::pickle_step::shared_ptr> steps;
-        std::vector<cucumber::messages::pickle_tag::shared_ptr> tags;
+        std::vector<cucumber::messages::pickle_step> steps;
+        std::vector<cucumber::messages::pickle_tag> tags;
         std::vector<std::string> ast_node_ids;
 
         [[nodiscard]] std::string to_string() const;
@@ -55,8 +53,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const pickle& msg);
     void from_json(const nlohmann::json& json, pickle& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<pickle>& msg);
-
 }
 
 #endif

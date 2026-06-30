@@ -20,13 +20,11 @@ namespace cucumber::messages
 
     struct background
     {
-        using shared_ptr = background;//std::shared_ptr<background>;
-
-        cucumber::messages::location::shared_ptr location;
+        cucumber::messages::location location;
         std::string keyword;
         std::string name;
         std::string description;
-        std::vector<cucumber::messages::step::shared_ptr> steps;
+        std::vector<cucumber::messages::step> steps;
         std::string id;
 
         [[nodiscard]] std::string to_string() const;
@@ -41,8 +39,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const background& msg);
     void from_json(const nlohmann::json& json, background& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<background>& msg);
-
 }
 
 #endif

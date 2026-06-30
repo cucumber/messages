@@ -20,8 +20,6 @@ namespace cucumber::messages
 
     struct source
     {
-        using shared_ptr = source;//std::shared_ptr<source>;
-
         std::string uri;
         std::string data;
         cucumber::messages::source_media_type media_type;
@@ -38,8 +36,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const source& msg);
     void from_json(const nlohmann::json& json, source& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<source>& msg);
-
 }
 
 #endif

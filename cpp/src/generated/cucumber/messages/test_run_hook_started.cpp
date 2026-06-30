@@ -66,10 +66,4 @@ namespace cucumber::messages
     {
         msg.from_json(json);
     }
-
-    void from_json(const nlohmann::json& json, std::shared_ptr<test_run_hook_started>& msg)
-    {
-        msg = std::make_shared<test_run_hook_started>();
-        msg->from_json(json);
-    }
 }

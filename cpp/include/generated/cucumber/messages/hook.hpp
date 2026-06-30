@@ -19,11 +19,9 @@ namespace cucumber::messages
 
     struct hook
     {
-        using shared_ptr = hook;//std::shared_ptr<hook>;
-
         std::string id;
         std::optional<std::string> name;
-        cucumber::messages::source_reference::shared_ptr source_reference;
+        cucumber::messages::source_reference source_reference;
         std::optional<std::string> tag_expression;
         std::optional<cucumber::messages::hook_type> type;
 
@@ -39,8 +37,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const hook& msg);
     void from_json(const nlohmann::json& json, hook& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<hook>& msg);
-
 }
 
 #endif

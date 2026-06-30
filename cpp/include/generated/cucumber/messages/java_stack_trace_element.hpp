@@ -17,8 +17,6 @@ namespace cucumber::messages
 
     struct java_stack_trace_element
     {
-        using shared_ptr = java_stack_trace_element;//std::shared_ptr<java_stack_trace_element>;
-
         std::string class_name;
         std::string file_name;
         std::string method_name;
@@ -35,8 +33,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const java_stack_trace_element& msg);
     void from_json(const nlohmann::json& json, java_stack_trace_element& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<java_stack_trace_element>& msg);
-
 }
 
 #endif

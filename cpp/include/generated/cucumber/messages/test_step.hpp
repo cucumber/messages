@@ -25,13 +25,11 @@ namespace cucumber::messages
 
     struct test_step
     {
-        using shared_ptr = test_step;//std::shared_ptr<test_step>;
-
         std::optional<std::string> hook_id;
         std::string id;
         std::optional<std::string> pickle_step_id;
         std::optional<std::vector<std::string>> step_definition_ids;
-        std::optional<std::vector<cucumber::messages::step_match_arguments_list::shared_ptr>> step_match_arguments_lists;
+        std::optional<std::vector<cucumber::messages::step_match_arguments_list>> step_match_arguments_lists;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -45,8 +43,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const test_step& msg);
     void from_json(const nlohmann::json& json, test_step& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<test_step>& msg);
-
 }
 
 #endif

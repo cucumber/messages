@@ -20,9 +20,7 @@ namespace cucumber::messages
 
     struct comment
     {
-        using shared_ptr = comment;//std::shared_ptr<comment>;
-
-        cucumber::messages::location::shared_ptr location;
+        cucumber::messages::location location;
         std::string text;
 
         [[nodiscard]] std::string to_string() const;
@@ -37,8 +35,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const comment& msg);
     void from_json(const nlohmann::json& json, comment& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<comment>& msg);
-
 }
 
 #endif

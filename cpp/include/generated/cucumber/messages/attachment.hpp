@@ -32,19 +32,17 @@ namespace cucumber::messages
 
     struct attachment
     {
-        using shared_ptr = attachment;//std::shared_ptr<attachment>;
-
         std::string body;
         cucumber::messages::attachment_content_encoding content_encoding;
         std::optional<std::string> file_name;
         std::string media_type;
-        std::optional<cucumber::messages::source::shared_ptr> source;
+        std::optional<cucumber::messages::source> source;
         std::optional<std::string> test_case_started_id;
         std::optional<std::string> test_step_id;
         std::optional<std::string> url;
         std::optional<std::string> test_run_started_id;
         std::optional<std::string> test_run_hook_started_id;
-        std::optional<cucumber::messages::timestamp::shared_ptr> timestamp;
+        std::optional<cucumber::messages::timestamp> timestamp;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -58,8 +56,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const attachment& msg);
     void from_json(const nlohmann::json& json, attachment& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<attachment>& msg);
-
 }
 
 #endif

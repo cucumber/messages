@@ -21,15 +21,13 @@ namespace cucumber::messages
 
     struct feature
     {
-        using shared_ptr = feature;//std::shared_ptr<feature>;
-
-        cucumber::messages::location::shared_ptr location;
-        std::vector<cucumber::messages::tag::shared_ptr> tags;
+        cucumber::messages::location location;
+        std::vector<cucumber::messages::tag> tags;
         std::string language;
         std::string keyword;
         std::string name;
         std::string description;
-        std::vector<cucumber::messages::feature_child::shared_ptr> children;
+        std::vector<cucumber::messages::feature_child> children;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -43,8 +41,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const feature& msg);
     void from_json(const nlohmann::json& json, feature& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<feature>& msg);
-
 }
 
 #endif

@@ -19,14 +19,12 @@ namespace cucumber::messages
 
     struct parameter_type
     {
-        using shared_ptr = parameter_type;//std::shared_ptr<parameter_type>;
-
         std::string name;
         std::vector<std::string> regular_expressions;
         bool prefer_for_regular_expression_match;
         bool use_for_snippets;
         std::string id;
-        std::optional<cucumber::messages::source_reference::shared_ptr> source_reference;
+        std::optional<cucumber::messages::source_reference> source_reference;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -40,8 +38,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const parameter_type& msg);
     void from_json(const nlohmann::json& json, parameter_type& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<parameter_type>& msg);
-
 }
 
 #endif

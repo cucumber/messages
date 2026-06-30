@@ -22,9 +22,7 @@ namespace cucumber::messages
 
     struct pickle_step
     {
-        using shared_ptr = pickle_step;//std::shared_ptr<pickle_step>;
-
-        std::optional<cucumber::messages::pickle_step_argument::shared_ptr> argument;
+        std::optional<cucumber::messages::pickle_step_argument> argument;
         std::vector<std::string> ast_node_ids;
         std::string id;
         std::optional<cucumber::messages::pickle_step_type> type;
@@ -42,8 +40,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const pickle_step& msg);
     void from_json(const nlohmann::json& json, pickle_step& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_step>& msg);
-
 }
 
 #endif

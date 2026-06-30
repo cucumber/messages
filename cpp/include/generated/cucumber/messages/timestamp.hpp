@@ -17,8 +17,6 @@ namespace cucumber::messages
 
     struct timestamp
     {
-        using shared_ptr = timestamp;//std::shared_ptr<timestamp>;
-
         std::size_t seconds;
         std::size_t nanos;
 
@@ -34,8 +32,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const timestamp& msg);
     void from_json(const nlohmann::json& json, timestamp& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<timestamp>& msg);
-
 }
 
 #endif

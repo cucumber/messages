@@ -19,8 +19,6 @@ namespace cucumber::messages
 
     struct exception
     {
-        using shared_ptr = exception;//std::shared_ptr<exception>;
-
         std::string type;
         std::optional<std::string> message;
         std::optional<std::string> stack_trace;
@@ -37,8 +35,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const exception& msg);
     void from_json(const nlohmann::json& json, exception& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<exception>& msg);
-
 }
 
 #endif

@@ -21,11 +21,9 @@ namespace cucumber::messages
 
     struct suggestion
     {
-        using shared_ptr = suggestion;//std::shared_ptr<suggestion>;
-
         std::string id;
         std::string pickle_step_id;
-        std::vector<cucumber::messages::snippet::shared_ptr> snippets;
+        std::vector<cucumber::messages::snippet> snippets;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -39,8 +37,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const suggestion& msg);
     void from_json(const nlohmann::json& json, suggestion& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<suggestion>& msg);
-
 }
 
 #endif

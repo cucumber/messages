@@ -18,10 +18,8 @@ namespace cucumber::messages
 
     struct test_case_finished
     {
-        using shared_ptr = test_case_finished;//std::shared_ptr<test_case_finished>;
-
         std::string test_case_started_id;
-        cucumber::messages::timestamp::shared_ptr timestamp;
+        cucumber::messages::timestamp timestamp;
         bool will_be_retried;
 
         [[nodiscard]] std::string to_string() const;
@@ -36,8 +34,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const test_case_finished& msg);
     void from_json(const nlohmann::json& json, test_case_finished& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<test_case_finished>& msg);
-
 }
 
 #endif

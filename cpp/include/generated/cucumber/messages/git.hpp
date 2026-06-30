@@ -20,8 +20,6 @@ namespace cucumber::messages
 
     struct git
     {
-        using shared_ptr = git;//std::shared_ptr<git>;
-
         std::string remote;
         std::string revision;
         std::optional<std::string> branch;
@@ -39,8 +37,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const git& msg);
     void from_json(const nlohmann::json& json, git& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<git>& msg);
-
 }
 
 #endif

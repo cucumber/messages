@@ -19,8 +19,6 @@ namespace cucumber::messages
 
     struct product
     {
-        using shared_ptr = product;//std::shared_ptr<product>;
-
         std::string name;
         std::optional<std::string> version;
 
@@ -36,8 +34,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const product& msg);
     void from_json(const nlohmann::json& json, product& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<product>& msg);
-
 }
 
 #endif

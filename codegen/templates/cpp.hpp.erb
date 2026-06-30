@@ -77,8 +77,6 @@ namespace cucumber::messages
 
     struct <%= myclass %>
     {
-        using shared_ptr = <%= myclass %>;//std::shared_ptr<<%= myclass %>>;
-
         <%-
         schema['properties'].each do |property_name, property|
             type = underscore(type_for(class_name(key), property_name, property))
@@ -88,12 +86,12 @@ namespace cucumber::messages
             if m = /std::vector<(?<vtype>.+)>/.match(type)
                 unless m['vtype'].start_with?("std::")
                     vtype_is_enum = @enums.any? { |e| underscore(e[:name]) == m['vtype'] }
-                    inner = "cucumber::messages::" + m['vtype'] + (vtype_is_enum ? "" : "::shared_ptr")
+                    inner = "cucumber::messages::" + m['vtype']
                     ptype = "std::vector<" + inner + ">"
                 end
             elsif !type.start_with?("std::") && type != "bool"
                 is_enum = @enums.any? { |e| underscore(e[:name]) == type }
-                ptype = "cucumber::messages::" + type + (is_enum ? "" : "::shared_ptr")
+                ptype = "cucumber::messages::" + type
             end
             unless prequired
                 ptype = "std::optional<" + ptype + ">"
@@ -114,8 +112,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const <%= myclass %>& msg);
     void from_json(const nlohmann::json& json, <%= myclass %>& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<<%= myclass %>>& msg);
-
 }
 
 #endif
@@ -191,11 +187,5 @@ namespace cucumber::messages
     void from_json(const nlohmann::json& json, <%= myclass %>& msg)
     {
         msg.from_json(json);
-    }
-
-    void from_json(const nlohmann::json& json, std::shared_ptr<<%= myclass %>>& msg)
-    {
-        msg = std::make_shared<<%= myclass %>>();
-        msg->from_json(json);
     }
 }<%- end -%>

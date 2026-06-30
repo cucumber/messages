@@ -25,9 +25,7 @@ namespace cucumber::messages
 
     struct step_match_argument
     {
-        using shared_ptr = step_match_argument;//std::shared_ptr<step_match_argument>;
-
-        cucumber::messages::group::shared_ptr group;
+        cucumber::messages::group group;
         std::optional<std::string> parameter_type_name;
 
         [[nodiscard]] std::string to_string() const;
@@ -42,8 +40,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const step_match_argument& msg);
     void from_json(const nlohmann::json& json, step_match_argument& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<step_match_argument>& msg);
-
 }
 
 #endif

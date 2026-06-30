@@ -21,10 +21,8 @@ namespace cucumber::messages
 
     struct rule_child
     {
-        using shared_ptr = rule_child;//std::shared_ptr<rule_child>;
-
-        std::optional<cucumber::messages::background::shared_ptr> background;
-        std::optional<cucumber::messages::scenario::shared_ptr> scenario;
+        std::optional<cucumber::messages::background> background;
+        std::optional<cucumber::messages::scenario> scenario;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -38,8 +36,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const rule_child& msg);
     void from_json(const nlohmann::json& json, rule_child& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<rule_child>& msg);
-
 }
 
 #endif

@@ -17,8 +17,6 @@ namespace cucumber::messages
 
     struct snippet
     {
-        using shared_ptr = snippet;//std::shared_ptr<snippet>;
-
         std::string language;
         std::string code;
 
@@ -34,8 +32,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const snippet& msg);
     void from_json(const nlohmann::json& json, snippet& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<snippet>& msg);
-
 }
 
 #endif

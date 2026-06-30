@@ -22,15 +22,13 @@ namespace cucumber::messages
 
     struct scenario
     {
-        using shared_ptr = scenario;//std::shared_ptr<scenario>;
-
-        cucumber::messages::location::shared_ptr location;
-        std::vector<cucumber::messages::tag::shared_ptr> tags;
+        cucumber::messages::location location;
+        std::vector<cucumber::messages::tag> tags;
         std::string keyword;
         std::string name;
         std::string description;
-        std::vector<cucumber::messages::step::shared_ptr> steps;
-        std::vector<cucumber::messages::examples::shared_ptr> examples;
+        std::vector<cucumber::messages::step> steps;
+        std::vector<cucumber::messages::examples> examples;
         std::string id;
 
         [[nodiscard]] std::string to_string() const;
@@ -45,8 +43,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const scenario& msg);
     void from_json(const nlohmann::json& json, scenario& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<scenario>& msg);
-
 }
 
 #endif

@@ -19,8 +19,6 @@ namespace cucumber::messages
 
     struct location
     {
-        using shared_ptr = location;//std::shared_ptr<location>;
-
         std::size_t line;
         std::optional<std::size_t> column;
 
@@ -36,8 +34,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const location& msg);
     void from_json(const nlohmann::json& json, location& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<location>& msg);
-
 }
 
 #endif

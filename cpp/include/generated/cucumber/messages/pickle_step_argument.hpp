@@ -21,10 +21,8 @@ namespace cucumber::messages
 
     struct pickle_step_argument
     {
-        using shared_ptr = pickle_step_argument;//std::shared_ptr<pickle_step_argument>;
-
-        std::optional<cucumber::messages::pickle_doc_string::shared_ptr> doc_string;
-        std::optional<cucumber::messages::pickle_table::shared_ptr> data_table;
+        std::optional<cucumber::messages::pickle_doc_string> doc_string;
+        std::optional<cucumber::messages::pickle_table> data_table;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -38,8 +36,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const pickle_step_argument& msg);
     void from_json(const nlohmann::json& json, pickle_step_argument& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_step_argument>& msg);
-
 }
 
 #endif

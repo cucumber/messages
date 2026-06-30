@@ -18,13 +18,11 @@ namespace cucumber::messages
 
     struct test_run_hook_started
     {
-        using shared_ptr = test_run_hook_started;//std::shared_ptr<test_run_hook_started>;
-
         std::string id;
         std::string test_run_started_id;
         std::string hook_id;
         std::optional<std::string> worker_id;
-        cucumber::messages::timestamp::shared_ptr timestamp;
+        cucumber::messages::timestamp timestamp;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -38,8 +36,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const test_run_hook_started& msg);
     void from_json(const nlohmann::json& json, test_run_hook_started& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<test_run_hook_started>& msg);
-
 }
 
 #endif

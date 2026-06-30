@@ -57,10 +57,4 @@ namespace cucumber::messages
     {
         msg.from_json(json);
     }
-
-    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_tag>& msg)
-    {
-        msg = std::make_shared<pickle_tag>();
-        msg->from_json(json);
-    }
 }

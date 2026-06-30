@@ -19,11 +19,9 @@ namespace cucumber::messages
 
     struct step_definition
     {
-        using shared_ptr = step_definition;//std::shared_ptr<step_definition>;
-
         std::string id;
-        cucumber::messages::step_definition_pattern::shared_ptr pattern;
-        cucumber::messages::source_reference::shared_ptr source_reference;
+        cucumber::messages::step_definition_pattern pattern;
+        cucumber::messages::source_reference source_reference;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -37,8 +35,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const step_definition& msg);
     void from_json(const nlohmann::json& json, step_definition& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<step_definition>& msg);
-
 }
 
 #endif

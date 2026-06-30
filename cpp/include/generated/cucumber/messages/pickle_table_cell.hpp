@@ -17,8 +17,6 @@ namespace cucumber::messages
 
     struct pickle_table_cell
     {
-        using shared_ptr = pickle_table_cell;//std::shared_ptr<pickle_table_cell>;
-
         std::string value;
 
         [[nodiscard]] std::string to_string() const;
@@ -33,8 +31,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const pickle_table_cell& msg);
     void from_json(const nlohmann::json& json, pickle_table_cell& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_table_cell>& msg);
-
 }
 
 #endif

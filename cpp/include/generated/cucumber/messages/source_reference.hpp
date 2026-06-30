@@ -23,12 +23,10 @@ namespace cucumber::messages
 
     struct source_reference
     {
-        using shared_ptr = source_reference;//std::shared_ptr<source_reference>;
-
         std::optional<std::string> uri;
-        std::optional<cucumber::messages::java_method::shared_ptr> java_method;
-        std::optional<cucumber::messages::java_stack_trace_element::shared_ptr> java_stack_trace_element;
-        std::optional<cucumber::messages::location::shared_ptr> location;
+        std::optional<cucumber::messages::java_method> java_method;
+        std::optional<cucumber::messages::java_stack_trace_element> java_stack_trace_element;
+        std::optional<cucumber::messages::location> location;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -42,8 +40,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const source_reference& msg);
     void from_json(const nlohmann::json& json, source_reference& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<source_reference>& msg);
-
 }
 
 #endif

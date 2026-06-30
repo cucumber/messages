@@ -27,11 +27,9 @@ namespace cucumber::messages
 
     struct gherkin_document
     {
-        using shared_ptr = gherkin_document;//std::shared_ptr<gherkin_document>;
-
         std::optional<std::string> uri;
-        std::optional<cucumber::messages::feature::shared_ptr> feature;
-        std::vector<cucumber::messages::comment::shared_ptr> comments;
+        std::optional<cucumber::messages::feature> feature;
+        std::vector<cucumber::messages::comment> comments;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -45,8 +43,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const gherkin_document& msg);
     void from_json(const nlohmann::json& json, gherkin_document& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<gherkin_document>& msg);
-
 }
 
 #endif

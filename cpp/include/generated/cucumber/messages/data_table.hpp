@@ -20,10 +20,8 @@ namespace cucumber::messages
 
     struct data_table
     {
-        using shared_ptr = data_table;//std::shared_ptr<data_table>;
-
-        cucumber::messages::location::shared_ptr location;
-        std::vector<cucumber::messages::table_row::shared_ptr> rows;
+        cucumber::messages::location location;
+        std::vector<cucumber::messages::table_row> rows;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -37,8 +35,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const data_table& msg);
     void from_json(const nlohmann::json& json, data_table& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<data_table>& msg);
-
 }
 
 #endif

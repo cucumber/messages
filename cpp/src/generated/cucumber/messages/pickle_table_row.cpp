@@ -54,10 +54,4 @@ namespace cucumber::messages
     {
         msg.from_json(json);
     }
-
-    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_table_row>& msg)
-    {
-        msg = std::make_shared<pickle_table_row>();
-        msg->from_json(json);
-    }
 }

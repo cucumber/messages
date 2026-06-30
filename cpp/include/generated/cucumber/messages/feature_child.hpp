@@ -22,11 +22,9 @@ namespace cucumber::messages
 
     struct feature_child
     {
-        using shared_ptr = feature_child;//std::shared_ptr<feature_child>;
-
-        std::optional<cucumber::messages::rule::shared_ptr> rule;
-        std::optional<cucumber::messages::background::shared_ptr> background;
-        std::optional<cucumber::messages::scenario::shared_ptr> scenario;
+        std::optional<cucumber::messages::rule> rule;
+        std::optional<cucumber::messages::background> background;
+        std::optional<cucumber::messages::scenario> scenario;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -40,8 +38,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const feature_child& msg);
     void from_json(const nlohmann::json& json, feature_child& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<feature_child>& msg);
-
 }
 
 #endif

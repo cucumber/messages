@@ -17,8 +17,6 @@ namespace cucumber::messages
 
     struct pickle_doc_string
     {
-        using shared_ptr = pickle_doc_string;//std::shared_ptr<pickle_doc_string>;
-
         std::optional<std::string> media_type;
         std::string content;
 
@@ -34,8 +32,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const pickle_doc_string& msg);
     void from_json(const nlohmann::json& json, pickle_doc_string& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_doc_string>& msg);
-
 }
 
 #endif

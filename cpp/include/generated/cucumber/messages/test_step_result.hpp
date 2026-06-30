@@ -20,12 +20,10 @@ namespace cucumber::messages
 
     struct test_step_result
     {
-        using shared_ptr = test_step_result;//std::shared_ptr<test_step_result>;
-
-        cucumber::messages::duration::shared_ptr duration;
+        cucumber::messages::duration duration;
         std::optional<std::string> message;
         cucumber::messages::test_step_result_status status;
-        std::optional<cucumber::messages::exception::shared_ptr> exception;
+        std::optional<cucumber::messages::exception> exception;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -39,8 +37,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const test_step_result& msg);
     void from_json(const nlohmann::json& json, test_step_result& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<test_step_result>& msg);
-
 }
 
 #endif

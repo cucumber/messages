@@ -21,11 +21,9 @@ namespace cucumber::messages
 
     struct test_case
     {
-        using shared_ptr = test_case;//std::shared_ptr<test_case>;
-
         std::string id;
         std::string pickle_id;
-        std::vector<cucumber::messages::test_step::shared_ptr> test_steps;
+        std::vector<cucumber::messages::test_step> test_steps;
         std::optional<std::string> test_run_started_id;
 
         [[nodiscard]] std::string to_string() const;
@@ -40,8 +38,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const test_case& msg);
     void from_json(const nlohmann::json& json, test_case& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<test_case>& msg);
-
 }
 
 #endif

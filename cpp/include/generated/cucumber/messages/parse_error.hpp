@@ -18,9 +18,7 @@ namespace cucumber::messages
 
     struct parse_error
     {
-        using shared_ptr = parse_error;//std::shared_ptr<parse_error>;
-
-        cucumber::messages::source_reference::shared_ptr source;
+        cucumber::messages::source_reference source;
         std::string message;
 
         [[nodiscard]] std::string to_string() const;
@@ -35,8 +33,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const parse_error& msg);
     void from_json(const nlohmann::json& json, parse_error& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<parse_error>& msg);
-
 }
 
 #endif

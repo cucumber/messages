@@ -20,9 +20,7 @@ namespace cucumber::messages
 
     struct tag
     {
-        using shared_ptr = tag;//std::shared_ptr<tag>;
-
-        cucumber::messages::location::shared_ptr location;
+        cucumber::messages::location location;
         std::string name;
         std::string id;
 
@@ -38,8 +36,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const tag& msg);
     void from_json(const nlohmann::json& json, tag& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<tag>& msg);
-
 }
 
 #endif

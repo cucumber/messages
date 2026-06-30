@@ -20,8 +20,6 @@ namespace cucumber::messages
 
     struct duration
     {
-        using shared_ptr = duration;//std::shared_ptr<duration>;
-
         std::size_t seconds;
         std::size_t nanos;
 
@@ -37,8 +35,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const duration& msg);
     void from_json(const nlohmann::json& json, duration& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<duration>& msg);
-
 }
 
 #endif

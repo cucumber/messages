@@ -18,9 +18,7 @@ namespace cucumber::messages
 
     struct group
     {
-        using shared_ptr = group;//std::shared_ptr<group>;
-
-        std::optional<std::vector<cucumber::messages::group::shared_ptr>> children;
+        std::optional<std::vector<cucumber::messages::group>> children;
         std::optional<std::size_t> start;
         std::optional<std::string> value;
 
@@ -36,8 +34,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const group& msg);
     void from_json(const nlohmann::json& json, group& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<group>& msg);
-
 }
 
 #endif

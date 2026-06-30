@@ -22,14 +22,12 @@ namespace cucumber::messages
 
     struct meta
     {
-        using shared_ptr = meta;//std::shared_ptr<meta>;
-
         std::string protocol_version;
-        cucumber::messages::product::shared_ptr implementation;
-        cucumber::messages::product::shared_ptr runtime;
-        cucumber::messages::product::shared_ptr os;
-        cucumber::messages::product::shared_ptr cpu;
-        std::optional<cucumber::messages::ci::shared_ptr> ci;
+        cucumber::messages::product implementation;
+        cucumber::messages::product runtime;
+        cucumber::messages::product os;
+        cucumber::messages::product cpu;
+        std::optional<cucumber::messages::ci> ci;
 
         [[nodiscard]] std::string to_string() const;
 
@@ -43,8 +41,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const meta& msg);
     void from_json(const nlohmann::json& json, meta& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<meta>& msg);
-
 }
 
 #endif

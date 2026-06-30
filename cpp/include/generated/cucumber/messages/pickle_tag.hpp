@@ -19,8 +19,6 @@ namespace cucumber::messages
 
     struct pickle_tag
     {
-        using shared_ptr = pickle_tag;//std::shared_ptr<pickle_tag>;
-
         std::string name;
         std::string ast_node_id;
 
@@ -36,8 +34,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const pickle_tag& msg);
     void from_json(const nlohmann::json& json, pickle_tag& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<pickle_tag>& msg);
-
 }
 
 #endif

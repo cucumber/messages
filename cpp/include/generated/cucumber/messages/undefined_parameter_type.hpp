@@ -17,8 +17,6 @@ namespace cucumber::messages
 
     struct undefined_parameter_type
     {
-        using shared_ptr = undefined_parameter_type;//std::shared_ptr<undefined_parameter_type>;
-
         std::string expression;
         std::string name;
 
@@ -34,8 +32,6 @@ namespace cucumber::messages
 
     void to_json(nlohmann::json& json, const undefined_parameter_type& msg);
     void from_json(const nlohmann::json& json, undefined_parameter_type& msg);
-    void from_json(const nlohmann::json& json, std::shared_ptr<undefined_parameter_type>& msg);
-
 }
 
 #endif
