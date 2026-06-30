@@ -1,5 +1,5 @@
 {
-    "version": 3,
+    "version": 6,
     "configurePresets": [
         {
             "name": "host",
@@ -27,6 +27,44 @@
         {
             "name": "coverage",
             "configurePreset": "coverage"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "coverage",
+            "configurePreset": "coverage"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "host",
+            "steps": [
+                {
+                    "name": "host",
+                    "type": "configure"
+                },
+                {
+                    "name": "host",
+                    "type": "build"
+                }
+            ]
+        },
+        {
+            "name": "coverage",
+            "steps": [
+                {
+                    "name": "coverage",
+                    "type": "configure"
+                },
+                {
+                    "name": "coverage",
+                    "type": "build"
+                },
+                {
+                    "name": "coverage",
+                    "type": "test"
+                }
+            ]
         }
     ]
 }
