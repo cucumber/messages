@@ -1,0 +1,185 @@
+<%- each_schema do |key, schema| -%>
+<%= part_file_name(key) %>
+// This code was generated using the code generator from cucumber-messages.
+// Manual changes will be lost if the code is regenerated.
+// dart format off
+
+part of 'messages.dart';
+
+<%- enums_for(key, schema).each do |enum| -%>
+<%= enum_doc_comment(enum) %>
+enum <%= enum[:name] %> {
+<%- enum[:values].each do |value| -%>
+<%= enum_value_doc_comment(value, indent_string: '  ') %>
+  <%= enum_value_name(value) %>('<%= value %>'),
+<%- end -%>
+  ;
+
+  /// Creates an instance of [<%= enum[:name] %>] from its wire [value].
+  const <%= enum[:name] %>(this.value);
+
+  /// The wire value used in message JSON.
+  final String value;
+
+  /// Returns the [<%= enum[:name] %>] matching [value].
+  static <%= enum[:name] %> fromValue(String value) => values.firstWhere((v) => v.value == value);
+}
+
+<%- end -%>
+<%= class_doc_comment(class_name(key), schema) %>
+class <%= class_name(key) %> {
+<%- schema['properties'].each do |property_name, property| -%>
+<%= property_doc_comment(property_name, property, indent_string: '  ') %>
+  final <%= (schema['required'] || []).index(property_name) ? type_for(class_name(key), property_name, property) : "#{type_for(class_name(key), property_name, property)}?" %> <%= property_name(property_name) %>;
+<%- end -%>
+
+  /// Creates an instance of [<%= class_name(key) %>].
+  const <%= class_name(key) %>({
+<%- schema['properties'].each do |property_name, property| -%>
+    <%= (schema['required'] || []).index(property_name) ? 'required ' : '' %>this.<%= property_name(property_name) %>,
+<%- end -%>
+  });
+
+  /// Creates an instance of [<%= class_name(key) %>] from a JSON object.
+  factory <%= class_name(key) %>.fromJson(Map<String, Object?> json) {
+    return <%= class_name(key) %>(
+<%- schema['properties'].each do |property_name, property| -%>
+<%- pname = property_name(property_name) -%>
+<%- required = (schema['required'] || []).index(property_name) -%>
+<%- if property['$ref'] -%>
+<%- if required -%>
+      <%= pname %>: <%= type_for(class_name(key), property_name, property) %>.fromJson(
+              _requireJsonObject(json, '<%= property_name %>'),
+            ),
+<%- else -%>
+      <%= pname %>: json['<%= property_name %>'] == null
+          ? null
+          : <%= type_for(class_name(key), property_name, property) %>.fromJson(
+              json['<%= property_name %>'] as Map<String, Object?>,
+            ),
+<%- end -%>
+<%- elsif property['items'] -%>
+<%- item = property['items'] -%>
+<%- if item['$ref'] -%>
+<%- if required -%>
+      <%= pname %>: _requireJsonList(json, '<%= property_name %>')
+              .map(
+                (item) => <%= type_for(class_name(key), nil, item) %>.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
+              .toList(),
+<%- else -%>
+      <%= pname %>: (json['<%= property_name %>'] as List<Object?>?)
+              ?.map(
+                (item) => <%= type_for(class_name(key), nil, item) %>.fromJson(
+                  item as Map<String, Object?>,
+                ),
+              )
+              .toList(),
+<%- end -%>
+<%- elsif item['enum'] -%>
+<%- if required -%>
+      <%= pname %>: _requireJsonList(json, '<%= property_name %>')
+              .map(
+                (item) => <%= type_for(class_name(key), property_name, item) %>.fromValue(
+                  item as String,
+                ),
+              )
+              .toList(),
+<%- else -%>
+      <%= pname %>: (json['<%= property_name %>'] as List<Object?>?)
+              ?.map(
+                (item) => <%= type_for(class_name(key), property_name, item) %>.fromValue(
+                  item as String,
+                ),
+              )
+              .toList(),
+<%- end -%>
+<%- else -%>
+<%- if required -%>
+      <%= pname %>: _requireJsonList(json, '<%= property_name %>')
+              .map((item) => item as <%= type_for(class_name(key), nil, item) %>)
+              .toList(),
+<%- else -%>
+      <%= pname %>: (json['<%= property_name %>'] as List<Object?>?)
+              ?.map((item) => item as <%= type_for(class_name(key), nil, item) %>)
+              .toList(),
+<%- end -%>
+<%- end -%>
+<%- elsif property['enum'] -%>
+<%- if required -%>
+      <%= pname %>: <%= type_for(class_name(key), property_name, property) %>.fromValue(
+              _requireJsonString(json, '<%= property_name %>'),
+            ),
+<%- else -%>
+      <%= pname %>: json['<%= property_name %>'] == null
+          ? null
+          : <%= type_for(class_name(key), property_name, property) %>.fromValue(
+              json['<%= property_name %>'] as String,
+            ),
+<%- end -%>
+<%- elsif property['type'] == 'integer' -%>
+<%- if required -%>
+      <%= pname %>: (_requireJsonNumber(json, '<%= property_name %>') as num).toInt(),
+<%- else -%>
+      <%= pname %>: (json['<%= property_name %>'] as num?)?.toInt(),
+<%- end -%>
+<%- elsif property['type'] == 'boolean' -%>
+<%- if required -%>
+      <%= pname %>: _requireJsonBool(json, '<%= property_name %>'),
+<%- else -%>
+      <%= pname %>: json['<%= property_name %>'] as bool?,
+<%- end -%>
+<%- else -%>
+<%- if required -%>
+      <%= pname %>: _requireJsonString(json, '<%= property_name %>'),
+<%- else -%>
+      <%= pname %>: json['<%= property_name %>'] as String?,
+<%- end -%>
+<%- end -%>
+<%- end -%>
+    );
+  }
+
+  /// Converts this [<%= class_name(key) %>] to a JSON object.
+  Map<String, Object?> toJson() {
+    final json = <String, Object?>{};
+<%- schema['properties'].each do |property_name, property| -%>
+<%- pname = property_name(property_name) -%>
+<%- required = (schema['required'] || []).index(property_name) -%>
+<%- if required -%>
+<%- if property['$ref'] -%>
+    json['<%= property_name %>'] = <%= pname %>.toJson();
+<%- elsif property['items'] && property['items']['$ref'] -%>
+    json['<%= property_name %>'] = <%= pname %>.map((item) => item.toJson()).toList();
+<%- elsif property['items'] && property['items']['enum'] -%>
+    json['<%= property_name %>'] = <%= pname %>.map((item) => item.value).toList();
+<%- elsif property['items'] -%>
+    json['<%= property_name %>'] = <%= pname %>;
+<%- elsif property['enum'] -%>
+    json['<%= property_name %>'] = <%= pname %>.value;
+<%- else -%>
+    json['<%= property_name %>'] = <%= pname %>;
+<%- end -%>
+<%- else -%>
+    if (<%= pname %> != null) {
+<%- if property['$ref'] -%>
+      json['<%= property_name %>'] = <%= pname %>!.toJson();
+<%- elsif property['items'] && property['items']['$ref'] -%>
+      json['<%= property_name %>'] = <%= pname %>!.map((item) => item.toJson()).toList();
+<%- elsif property['items'] && property['items']['enum'] -%>
+      json['<%= property_name %>'] = <%= pname %>!.map((item) => item.value).toList();
+<%- elsif property['enum'] -%>
+      json['<%= property_name %>'] = <%= pname %>!.value;
+<%- else -%>
+      json['<%= property_name %>'] = <%= pname %>;
+<%- end -%>
+    }
+<%- end -%>
+<%- end -%>
+    return json;
+  }
+}
+
+<%- end -%>

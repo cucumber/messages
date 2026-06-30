@@ -1,0 +1,65 @@
+name: test-dart
+
+permissions: {}
+
+on:
+  push:
+    branches:
+      - main
+      - renovate/**
+    paths:
+      - dart/**
+      - testdata/**
+      - Makefile
+      - .github/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - dart/**
+      - testdata/**
+      - Makefile
+      - .github/**
+
+jobs:
+  test-dart:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        dart: ["3.7.0", "3.12.0"]
+        include:
+          - os: windows-latest
+            dart: "3.12.0"
+          - os: macos-latest
+            dart: "3.12.0"
+
+    defaults:
+      run:
+        working-directory: dart
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: dart-lang/setup-dart@e51d8e571e22473a2ddebf0ef8a2123f0ab2c02c # v1.7.1
+        with:
+          sdk: ${{ matrix.dart }}
+
+      - name: Install dependencies
+        run: dart pub get --enforce-lockfile
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: dart analyze
+
+      - name: Test
+        run: dart test
+
+      - name: Verify publishable package
+        run: dart pub publish --dry-run
