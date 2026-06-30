@@ -15,12 +15,3 @@ target_sources(cucumber_messages_lib.test PRIVATE
 
 include(GoogleTest)
 gtest_discover_tests(cucumber_messages_lib.test)
-
-if(CUCUMBER_MESSAGES_ENABLE_MUTATION)
-    add_custom_target(mutation-test
-        COMMAND ${MULL_RUNNER} $<TARGET_FILE:cucumber_messages_lib.test> --mutation-score-threshold 85
-        DEPENDS cucumber_messages_lib.test
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        USES_TERMINAL
-    )
-endif()

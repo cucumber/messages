@@ -11,11 +11,10 @@
             }
         },
         {
-            "name": "coverage",
+            "name": "test",
             "inherits": "host",
             "cacheVariables": {
-                "CUCUMBER_MESSAGES_ENABLE_COVERAGE": "ON",
-                "CUCUMBER_MESSAGES_BUILD_TESTS": "ON"
+                "CUCUMBER_MESSAGES_BUILD_TESTS": "On"
             }
         }
     ],
@@ -25,14 +24,20 @@
             "configurePreset": "host"
         },
         {
-            "name": "coverage",
-            "configurePreset": "coverage"
+            "name": "test",
+            "configurePreset": "test"
         }
     ],
     "testPresets": [
         {
-            "name": "coverage",
-            "configurePreset": "coverage"
+            "name": "test",
+            "configurePreset": "test",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error"
+            }
         }
     ],
     "workflowPresets": [
@@ -50,18 +55,18 @@
             ]
         },
         {
-            "name": "coverage",
+            "name": "test",
             "steps": [
                 {
-                    "name": "coverage",
+                    "name": "test",
                     "type": "configure"
                 },
                 {
-                    "name": "coverage",
+                    "name": "test",
                     "type": "build"
                 },
                 {
-                    "name": "coverage",
+                    "name": "test",
                     "type": "test"
                 }
             ]

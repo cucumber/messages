@@ -87,9 +87,9 @@ jobs:
         if: startsWith(matrix.config.os, 'macos')
         run: echo "CXX=$(brew --prefix llvm@${{ matrix.config.version }})/bin/clang++" >> $GITHUB_ENV
 
-      - name: Coverage
+      - name: Test
         working-directory: cpp
-        run: cmake --workflow coverage
+        run: cmake --workflow test
 
       - name: Build
         working-directory: cpp
@@ -105,6 +105,7 @@ jobs:
         working-directory: cpp
         run: cmake --install build/host
 
+      # The following steps are to test the installation process.
       - name: Build Test Install
         working-directory: cpp/test_install
         run: |
