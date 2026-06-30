@@ -89,10 +89,8 @@ target_include_directories(
     PUBLIC
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/generated>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
-    # PUBLIC
-    # PRIVATE
-        # ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
-        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages>
+    PRIVATE
+        ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
 )
 
 target_link_libraries(
