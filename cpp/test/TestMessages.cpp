@@ -1,11 +1,11 @@
 #include "cucumber/messages/envelope.hpp"
 #include "nlohmann/json.hpp"
 #include "nlohmann/json_fwd.hpp"
+#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 #include <cstddef>
 #include <filesystem>
 #include <fstream>
-#include <gmock/gmock.h>
-#include <gtest/gtest.h>
 #include <string>
 #include <tuple>
 #include <unordered_map>
