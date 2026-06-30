@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Dart] Add initial `cucumber_messages` package with generated message types, NDJSON read/write support, time conversion helpers, and schema validation ([#431](https://github.com/cucumber/messages/pull/431/))
 
 ### Changed
+- [cpp] Add deserialization using `from_json`. ([#462](https://github.com/cucumber/messages/pull/462))
+- [cpp] Add unit tests against testdata. ([#462](https://github.com/cucumber/messages/pull/462))
+- [cpp] Changed code style to adhere to included clang-format and clang-tidy settings. ([#462](https://github.com/cucumber/messages/pull/462))
 - [cpp] Replaced custom cmate script with native cmake and CPM. ([#432](https://github.com/cucumber/messages/pull/432))
 - [cpp] Moved all generated files to their own folder, does not change includes paths for dependent projects. ([#432](https://github.com/cucumber/messages/pull/432))
 - [cpp] Added additional CI tests against different compiler versions. ([#432](https://github.com/cucumber/messages/pull/432))
