@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.0.1
+## 33.0.4
 
 See the repository root [CHANGELOG.md](https://github.com/cucumber/messages/blob/main/CHANGELOG.md).
 
