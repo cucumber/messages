@@ -18,7 +18,14 @@ namespace Io.Cucumber.Messages.Types;
 
 public sealed class PickleStep 
 {
+    /**
+     * The first argument for this step, if any
+     */
     public PickleStepArgument Argument { get; private set; }
+    /**
+     * The second argument for this step, if any
+     */
+    public PickleStepArgument Argument2 { get; private set; }
     /**
      * References the IDs of the source of the step. For Gherkin, this can be
      * the ID of a Step, and possibly also the ID of a TableRow
@@ -39,6 +46,7 @@ public sealed class PickleStep
 
     public PickleStep(
         PickleStepArgument argument,
+        PickleStepArgument argument2,
         List<string> astNodeIds,
         string id,
         PickleStepType type,
@@ -46,6 +54,7 @@ public sealed class PickleStep
     ) 
     {
         this.Argument = argument;
+        this.Argument2 = argument2;
         RequireNonNull<List<string>>(astNodeIds, "AstNodeIds", "PickleStep.AstNodeIds cannot be null");
         this.AstNodeIds = new List<string>(astNodeIds);        
         RequireNonNull<string>(id, "Id", "PickleStep.Id cannot be null");
@@ -62,6 +71,7 @@ public sealed class PickleStep
         PickleStep that = (PickleStep) o;
         return 
             Object.Equals(Argument, that.Argument) &&         
+            Object.Equals(Argument2, that.Argument2) &&         
             AstNodeIds.Equals(that.AstNodeIds) &&         
             Id.Equals(that.Id) &&         
             Object.Equals(Type, that.Type) &&         
@@ -73,6 +83,8 @@ public sealed class PickleStep
         int hash = 17;
         if (Argument != null)
           hash = hash * 31 + Argument.GetHashCode();
+        if (Argument2 != null)
+          hash = hash * 31 + Argument2.GetHashCode();
         if (AstNodeIds != null)
           hash = hash * 31 + AstNodeIds.GetHashCode();
         if (Id != null)
@@ -87,6 +99,7 @@ public sealed class PickleStep
     {
         return "PickleStep{" +
             "argument=" + Argument +
+            ", argument2=" + Argument2 +
             ", astNodeIds=" + AstNodeIds +
             ", id=" + Id +
             ", type=" + Type +

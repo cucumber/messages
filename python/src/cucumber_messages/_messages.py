@@ -454,7 +454,8 @@ class PickleStep:
 
     id: str  # A unique ID for the PickleStep
     text: str
-    argument: Optional[PickleStepArgument] = None
+    argument: Optional[PickleStepArgument] = None  # The first argument for this step, if any
+    argument2: Optional[PickleStepArgument] = None  # The second argument for this step, if any
     type: Optional[PickleStepType] = None
     """
     The context in which the step was specified: context (Given), action (When) or outcome (Then).

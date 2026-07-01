@@ -1015,6 +1015,11 @@
           ],
           "properties": {
             "argument": {
+              "description": "The first argument for this step, if any",
+              "$ref": "#/definitions/PickleStepArgument"
+            },
+            "argument2": {
+              "description": "The second argument for this step, if any",
               "$ref": "#/definitions/PickleStepArgument"
             },
             "astNodeIds": {

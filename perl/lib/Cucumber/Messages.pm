@@ -3039,6 +3039,7 @@ use Scalar::Util qw( blessed );
 
 my %types = (
    argument => 'Cucumber::Messages::PickleStepArgument',
+   argument2 => 'Cucumber::Messages::PickleStepArgument',
    ast_node_ids => '[]string',
    id => 'string',
    type => '',
@@ -3055,10 +3056,20 @@ sub _types {
 
 =head4 argument
 
-
+The first argument for this step, if any
 =cut
 
 has argument =>
+    (is => 'ro',
+    );
+
+
+=head4 argument2
+
+The second argument for this step, if any
+=cut
+
+has argument2 =>
     (is => 'ro',
     );
 

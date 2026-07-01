@@ -10,7 +10,15 @@ module Cucumber
     # An executable step
     ##
     class PickleStep < Message
+      ##
+      # The first argument for this step, if any
+      ##
       attr_reader :argument
+
+      ##
+      # The second argument for this step, if any
+      ##
+      attr_reader :argument2
 
       ##
       # References the IDs of the source of the step. For Gherkin, this can be
@@ -34,12 +42,14 @@ module Cucumber
 
       def initialize(
         argument: nil,
+        argument2: nil,
         ast_node_ids: [],
         id: '',
         type: nil,
         text: ''
       )
         @argument = argument
+        @argument2 = argument2
         @ast_node_ids = ast_node_ids
         @id = id
         @type = type
@@ -59,6 +69,7 @@ module Cucumber
 
         new(
           argument: PickleStepArgument.from_h(hash[:argument]),
+          argument2: PickleStepArgument.from_h(hash[:argument2]),
           ast_node_ids: hash[:astNodeIds],
           id: hash[:id],
           type: hash[:type],

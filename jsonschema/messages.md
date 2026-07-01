@@ -1257,7 +1257,14 @@ An executable step
 * Type: [PickleStepArgument](#picklestepargument) 
 * Required: no 
 
+The first argument for this step, if any
 
+#### PickleStep.argument2 
+
+* Type: [PickleStepArgument](#picklestepargument) 
+* Required: no 
+
+The second argument for this step, if any
 
 #### PickleStep.astNodeIds 
 

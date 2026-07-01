@@ -243,6 +243,7 @@ type PickleDocString struct {
 
 type PickleStep struct {
 	Argument   *PickleStepArgument `json:"argument,omitempty"`
+	Argument2  *PickleStepArgument `json:"argument2,omitempty"`
 	AstNodeIds []string            `json:"astNodeIds"`
 	Id         string              `json:"id"`
 	Type       PickleStepType      `json:"type,omitempty"`

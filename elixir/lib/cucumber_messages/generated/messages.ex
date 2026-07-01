@@ -812,7 +812,7 @@ defmodule CucumberMessages.PickleDocString do
 end
 
 defmodule CucumberMessages.PickleStep do
-  defstruct [ argument: nil , ast_node_ids: nil , id: nil , type: nil , text: nil ]
+  defstruct [ argument: nil , argument2: nil , ast_node_ids: nil , id: nil , type: nil , text: nil ]
 
   defimpl Jason.Encoder, for: CucumberMessages.PickleStep do
     def encode(value, opts) do
@@ -830,6 +830,7 @@ defmodule CucumberMessages.PickleStep do
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       argument: CucumberMessages.PickleStepArgument.decode(normal_map["argument"]),
+      argument2: CucumberMessages.PickleStepArgument.decode(normal_map["argument2"]),
       ast_node_ids: normal_map["astNodeIds"],
       id: normal_map["id"],
       type: normal_map["type"],

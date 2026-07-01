@@ -24,6 +24,7 @@ namespace cucumber::messages
     struct pickle_step
     {
         std::optional<cucumber::messages::pickle_step_argument> argument;
+        std::optional<cucumber::messages::pickle_step_argument> argument2;
         std::vector<std::string> ast_node_ids;
         std::string id;
         std::optional<cucumber::messages::pickle_step_type> type;

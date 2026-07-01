@@ -241,6 +241,7 @@ export type PickleDocString = {
 
 export type PickleStep = {
   argument?: PickleStepArgument
+  argument2?: PickleStepArgument
   astNodeIds: readonly string[]
   id: string
   type?: PickleStepType

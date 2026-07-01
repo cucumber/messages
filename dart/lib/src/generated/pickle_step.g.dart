@@ -32,8 +32,10 @@ enum PickleStepType {
 ///
 /// An executable step
 class PickleStep {
-  /// The `argument` property.
+  /// The first argument for this step, if any
   final PickleStepArgument? argument;
+  /// The second argument for this step, if any
+  final PickleStepArgument? argument2;
   /// References the IDs of the source of the step. For Gherkin, this can be
   /// the ID of a Step, and possibly also the ID of a TableRow
   final List<String> astNodeIds;
@@ -49,6 +51,7 @@ class PickleStep {
   /// Creates an instance of [PickleStep].
   const PickleStep({
     this.argument,
+    this.argument2,
     required this.astNodeIds,
     required this.id,
     this.type,
@@ -62,6 +65,11 @@ class PickleStep {
           ? null
           : PickleStepArgument.fromJson(
               json['argument'] as Map<String, Object?>,
+            ),
+      argument2: json['argument2'] == null
+          ? null
+          : PickleStepArgument.fromJson(
+              json['argument2'] as Map<String, Object?>,
             ),
       astNodeIds: _requireJsonList(json, 'astNodeIds')
               .map((item) => item as String)
@@ -81,6 +89,9 @@ class PickleStep {
     final json = <String, Object?>{};
     if (argument != null) {
       json['argument'] = argument!.toJson();
+    }
+    if (argument2 != null) {
+      json['argument2'] = argument2!.toJson();
     }
     json['astNodeIds'] = astNodeIds;
     json['id'] = id;
