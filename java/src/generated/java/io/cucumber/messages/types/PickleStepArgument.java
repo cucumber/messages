@@ -3,6 +3,7 @@ package io.cucumber.messages.types;
 import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -16,56 +17,48 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleStepArgument {
-
-    private final OneOf oneOf;
-
-    public static PickleStepArgument of(PickleDocString docString) {
-        return new PickleStepArgument(
-            requireNonNull(docString, "PickleStepArgument.docString cannot be null"),
-            null
-        );
-    }
-
-    public static PickleStepArgument of(PickleTable dataTable) {
-        return new PickleStepArgument(
-            null,
-            requireNonNull(dataTable, "PickleStepArgument.dataTable cannot be null")
-        );
-    }
+    private final @Nullable PickleDocString docString;
+    private final @Nullable PickleTable dataTable;
 
     public PickleStepArgument(
         @Nullable @Property("docString") PickleDocString docString,
         @Nullable @Property("dataTable") PickleTable dataTable
     ) {
-        this.oneOf = OneOf.of(
-            "PickleStepArgument",
-            "docString", docString,
-            "dataTable", dataTable
-        );
+        this.docString = docString;
+        this.dataTable = dataTable;
     }
 
     public Optional<PickleDocString> getDocString() {
-        return oneOf.get("docString");
+        return Optional.ofNullable(docString);
     }
 
     public Optional<PickleTable> getDataTable() {
-        return oneOf.get("dataTable");
+        return Optional.ofNullable(dataTable);
     }
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PickleStepArgument that = (PickleStepArgument) o;
-        return Objects.equals(oneOf, that.oneOf);
+        return 
+            Objects.equals(docString, that.docString) &&         
+            Objects.equals(dataTable, that.dataTable);        
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(oneOf);
+        return Objects.hash(
+            docString,
+            dataTable
+        );
     }
 
     @Override
     public String toString() {
-        return "PickleStepArgument{" + oneOf + "}";
+        return "PickleStepArgument{" +
+            "docString=" + docString +
+            ", dataTable=" + dataTable +
+            '}';
     }
 }

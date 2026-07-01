@@ -1151,25 +1151,15 @@
           "type": "object"
         },
         "PickleStepArgument": {
+          "additionalProperties": false,
           "description": "An optional argument",
-          "oneOf": [
-              {
-                "type": "object",
-                "properties": {
-                  "docString": {
-                    "$ref": "#/definitions/PickleDocString"
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "dataTable": {
-                    "$ref": "#/definitions/PickleTable"
-                  }
-                }
-              }
-            ]
+          "properties": {
+            "docString": {
+              "$ref": "#/definitions/PickleDocString"
+            },
+            "dataTable": {
+              "$ref": "#/definitions/PickleTable"
+            }
           },
           "type": "object"
         },
