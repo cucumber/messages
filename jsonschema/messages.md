@@ -499,26 +499,10 @@ Zero or more children
 
 A child node of a `Feature` node
 
-#### FeatureChild.rule
-
-* Type: [Rule](#rule) 
-* Required: no
-
-
-
-#### FeatureChild.background
-
-* Type: [Background](#background) 
-* Required: no
-
-
-
-#### FeatureChild.scenario
-
-* Type: [Scenario](#scenario) 
-* Required: no
-
-
+One of:
+* `rule`: [Rule](#rule)
+* `background`: [Background](#background)
+* `scenario`: [Scenario](#scenario)
 
 ## Rule
 
@@ -575,19 +559,9 @@ All the tags placed above the `Rule` keyword
 
 A child node of a `Rule` node
 
-#### RuleChild.background
-
-* Type: [Background](#background) 
-* Required: no
-
-
-
-#### RuleChild.scenario
-
-* Type: [Scenario](#scenario) 
-* Required: no
-
-
+One of:
+* `background`: [Background](#background)
+* `scenario`: [Scenario](#scenario)
 
 ## Scenario
 
