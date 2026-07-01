@@ -28,7 +28,7 @@ jobs:
           persist-credentials: false
       - uses: ruby/setup-ruby@0dafeac902942906541bc140009cdbf32665b601 # v1.315.0
         with:
-          ruby-version: '3.2'
+          ruby-version: '4.0.5'
           bundler-cache: true
           working-directory: ruby
       - run: bundle exec rubocop
