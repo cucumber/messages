@@ -205,17 +205,32 @@
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
       "description": "A child node of a `Feature` node",
-      "properties": {
-        "rule": {
-          "$ref": "#/definitions/Rule"
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "rule": {
+              "$ref": "#/definitions/Rule"
+            }
+          }
         },
-        "background": {
-          "$ref": "#/definitions/Background"
+        {
+          "type": "object",
+          "properties": {
+            "background": {
+              "$ref": "#/definitions/Background"
+            }
+          }
         },
-        "scenario": {
-          "$ref": "#/definitions/Scenario"
+        {
+          "type": "object",
+          "properties": {
+            "scenario": {
+              "$ref": "#/definitions/Scenario"
+            }
+          }
         }
-      },
+      ],
       "type": "object"
     },
     "Rule": {
@@ -267,14 +282,24 @@
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
       "description": "A child node of a `Rule` node",
-      "properties": {
-        "background": {
-          "$ref": "#/definitions/Background"
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "background": {
+              "$ref": "#/definitions/Background"
+            }
+          }
         },
-        "scenario": {
-          "$ref": "#/definitions/Scenario"
+        {
+          "type": "object",
+          "properties": {
+            "scenario": {
+              "$ref": "#/definitions/Scenario"
+            }
+          }
         }
-      },
+      ],
       "type": "object"
     },
     "Scenario": {

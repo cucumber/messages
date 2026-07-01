@@ -46,7 +46,14 @@ module Generator
         add_individual_schema(subkey, subschema)
       end
 
-      schema['properties'].each do |property_name, property|
+      (schema['oneOf'] || {}).each do | element |
+        (element['properties'] || {}).each do |property_name, property|
+          enum = property['enum']
+          enum_name(class_name(key), property_name, enum) if enum
+        end
+      end
+
+      (schema['properties'] || {}).each do |property_name, property|
         enum = property['enum']
         enum_name(class_name(key), property_name, enum) if enum
       end

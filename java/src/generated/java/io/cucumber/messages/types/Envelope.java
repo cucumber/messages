@@ -3,7 +3,6 @@ package io.cucumber.messages.types;
 import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -15,27 +14,8 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class Envelope {
-    private final @Nullable Attachment attachment;
-    private final @Nullable ExternalAttachment externalAttachment;
-    private final @Nullable GherkinDocument gherkinDocument;
-    private final @Nullable Hook hook;
-    private final @Nullable Meta meta;
-    private final @Nullable ParameterType parameterType;
-    private final @Nullable ParseError parseError;
-    private final @Nullable Pickle pickle;
-    private final @Nullable Suggestion suggestion;
-    private final @Nullable Source source;
-    private final @Nullable StepDefinition stepDefinition;
-    private final @Nullable TestCase testCase;
-    private final @Nullable TestCaseFinished testCaseFinished;
-    private final @Nullable TestCaseStarted testCaseStarted;
-    private final @Nullable TestRunFinished testRunFinished;
-    private final @Nullable TestRunStarted testRunStarted;
-    private final @Nullable TestStepFinished testStepFinished;
-    private final @Nullable TestStepStarted testStepStarted;
-    private final @Nullable TestRunHookStarted testRunHookStarted;
-    private final @Nullable TestRunHookFinished testRunHookFinished;
-    private final @Nullable UndefinedParameterType undefinedParameterType;
+
+    private final OneOf oneOf;
 
     public static Envelope of(Attachment attachment) {
         return new Envelope(
@@ -606,193 +586,130 @@ public final class Envelope {
         @Nullable @Property("testRunHookFinished") TestRunHookFinished testRunHookFinished,
         @Nullable @Property("undefinedParameterType") UndefinedParameterType undefinedParameterType
     ) {
-        this.attachment = attachment;
-        this.externalAttachment = externalAttachment;
-        this.gherkinDocument = gherkinDocument;
-        this.hook = hook;
-        this.meta = meta;
-        this.parameterType = parameterType;
-        this.parseError = parseError;
-        this.pickle = pickle;
-        this.suggestion = suggestion;
-        this.source = source;
-        this.stepDefinition = stepDefinition;
-        this.testCase = testCase;
-        this.testCaseFinished = testCaseFinished;
-        this.testCaseStarted = testCaseStarted;
-        this.testRunFinished = testRunFinished;
-        this.testRunStarted = testRunStarted;
-        this.testStepFinished = testStepFinished;
-        this.testStepStarted = testStepStarted;
-        this.testRunHookStarted = testRunHookStarted;
-        this.testRunHookFinished = testRunHookFinished;
-        this.undefinedParameterType = undefinedParameterType;
+        this.oneOf = OneOf.of(
+            "Envelope",
+            "attachment", attachment,
+            "externalAttachment", externalAttachment,
+            "gherkinDocument", gherkinDocument,
+            "hook", hook,
+            "meta", meta,
+            "parameterType", parameterType,
+            "parseError", parseError,
+            "pickle", pickle,
+            "suggestion", suggestion,
+            "source", source,
+            "stepDefinition", stepDefinition,
+            "testCase", testCase,
+            "testCaseFinished", testCaseFinished,
+            "testCaseStarted", testCaseStarted,
+            "testRunFinished", testRunFinished,
+            "testRunStarted", testRunStarted,
+            "testStepFinished", testStepFinished,
+            "testStepStarted", testStepStarted,
+            "testRunHookStarted", testRunHookStarted,
+            "testRunHookFinished", testRunHookFinished,
+            "undefinedParameterType", undefinedParameterType
+        );
     }
 
     public Optional<Attachment> getAttachment() {
-        return Optional.ofNullable(attachment);
+        return oneOf.get("attachment");
     }
 
     public Optional<ExternalAttachment> getExternalAttachment() {
-        return Optional.ofNullable(externalAttachment);
+        return oneOf.get("externalAttachment");
     }
 
     public Optional<GherkinDocument> getGherkinDocument() {
-        return Optional.ofNullable(gherkinDocument);
+        return oneOf.get("gherkinDocument");
     }
 
     public Optional<Hook> getHook() {
-        return Optional.ofNullable(hook);
+        return oneOf.get("hook");
     }
 
     public Optional<Meta> getMeta() {
-        return Optional.ofNullable(meta);
+        return oneOf.get("meta");
     }
 
     public Optional<ParameterType> getParameterType() {
-        return Optional.ofNullable(parameterType);
+        return oneOf.get("parameterType");
     }
 
     public Optional<ParseError> getParseError() {
-        return Optional.ofNullable(parseError);
+        return oneOf.get("parseError");
     }
 
     public Optional<Pickle> getPickle() {
-        return Optional.ofNullable(pickle);
+        return oneOf.get("pickle");
     }
 
     public Optional<Suggestion> getSuggestion() {
-        return Optional.ofNullable(suggestion);
+        return oneOf.get("suggestion");
     }
 
     public Optional<Source> getSource() {
-        return Optional.ofNullable(source);
+        return oneOf.get("source");
     }
 
     public Optional<StepDefinition> getStepDefinition() {
-        return Optional.ofNullable(stepDefinition);
+        return oneOf.get("stepDefinition");
     }
 
     public Optional<TestCase> getTestCase() {
-        return Optional.ofNullable(testCase);
+        return oneOf.get("testCase");
     }
 
     public Optional<TestCaseFinished> getTestCaseFinished() {
-        return Optional.ofNullable(testCaseFinished);
+        return oneOf.get("testCaseFinished");
     }
 
     public Optional<TestCaseStarted> getTestCaseStarted() {
-        return Optional.ofNullable(testCaseStarted);
+        return oneOf.get("testCaseStarted");
     }
 
     public Optional<TestRunFinished> getTestRunFinished() {
-        return Optional.ofNullable(testRunFinished);
+        return oneOf.get("testRunFinished");
     }
 
     public Optional<TestRunStarted> getTestRunStarted() {
-        return Optional.ofNullable(testRunStarted);
+        return oneOf.get("testRunStarted");
     }
 
     public Optional<TestStepFinished> getTestStepFinished() {
-        return Optional.ofNullable(testStepFinished);
+        return oneOf.get("testStepFinished");
     }
 
     public Optional<TestStepStarted> getTestStepStarted() {
-        return Optional.ofNullable(testStepStarted);
+        return oneOf.get("testStepStarted");
     }
 
     public Optional<TestRunHookStarted> getTestRunHookStarted() {
-        return Optional.ofNullable(testRunHookStarted);
+        return oneOf.get("testRunHookStarted");
     }
 
     public Optional<TestRunHookFinished> getTestRunHookFinished() {
-        return Optional.ofNullable(testRunHookFinished);
+        return oneOf.get("testRunHookFinished");
     }
 
     public Optional<UndefinedParameterType> getUndefinedParameterType() {
-        return Optional.ofNullable(undefinedParameterType);
+        return oneOf.get("undefinedParameterType");
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Envelope that = (Envelope) o;
-        return 
-            Objects.equals(attachment, that.attachment) &&         
-            Objects.equals(externalAttachment, that.externalAttachment) &&         
-            Objects.equals(gherkinDocument, that.gherkinDocument) &&         
-            Objects.equals(hook, that.hook) &&         
-            Objects.equals(meta, that.meta) &&         
-            Objects.equals(parameterType, that.parameterType) &&         
-            Objects.equals(parseError, that.parseError) &&         
-            Objects.equals(pickle, that.pickle) &&         
-            Objects.equals(suggestion, that.suggestion) &&         
-            Objects.equals(source, that.source) &&         
-            Objects.equals(stepDefinition, that.stepDefinition) &&         
-            Objects.equals(testCase, that.testCase) &&         
-            Objects.equals(testCaseFinished, that.testCaseFinished) &&         
-            Objects.equals(testCaseStarted, that.testCaseStarted) &&         
-            Objects.equals(testRunFinished, that.testRunFinished) &&         
-            Objects.equals(testRunStarted, that.testRunStarted) &&         
-            Objects.equals(testStepFinished, that.testStepFinished) &&         
-            Objects.equals(testStepStarted, that.testStepStarted) &&         
-            Objects.equals(testRunHookStarted, that.testRunHookStarted) &&         
-            Objects.equals(testRunHookFinished, that.testRunHookFinished) &&         
-            Objects.equals(undefinedParameterType, that.undefinedParameterType);        
+        return Objects.equals(oneOf, that.oneOf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-            attachment,
-            externalAttachment,
-            gherkinDocument,
-            hook,
-            meta,
-            parameterType,
-            parseError,
-            pickle,
-            suggestion,
-            source,
-            stepDefinition,
-            testCase,
-            testCaseFinished,
-            testCaseStarted,
-            testRunFinished,
-            testRunStarted,
-            testStepFinished,
-            testStepStarted,
-            testRunHookStarted,
-            testRunHookFinished,
-            undefinedParameterType
-        );
+        return Objects.hashCode(oneOf);
     }
 
     @Override
     public String toString() {
-        return "Envelope{" +
-            "attachment=" + attachment +
-            ", externalAttachment=" + externalAttachment +
-            ", gherkinDocument=" + gherkinDocument +
-            ", hook=" + hook +
-            ", meta=" + meta +
-            ", parameterType=" + parameterType +
-            ", parseError=" + parseError +
-            ", pickle=" + pickle +
-            ", suggestion=" + suggestion +
-            ", source=" + source +
-            ", stepDefinition=" + stepDefinition +
-            ", testCase=" + testCase +
-            ", testCaseFinished=" + testCaseFinished +
-            ", testCaseStarted=" + testCaseStarted +
-            ", testRunFinished=" + testRunFinished +
-            ", testRunStarted=" + testRunStarted +
-            ", testStepFinished=" + testStepFinished +
-            ", testStepStarted=" + testStepStarted +
-            ", testRunHookStarted=" + testRunHookStarted +
-            ", testRunHookFinished=" + testRunHookFinished +
-            ", undefinedParameterType=" + undefinedParameterType +
-            '}';
+        return "Envelope{" + oneOf + "}";
     }
 }

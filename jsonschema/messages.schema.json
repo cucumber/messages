@@ -2,71 +2,176 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://cucumber.io/schema/Envelope.schema.json",
   "additionalProperties": false,
-  "properties": {
-    "attachment": {
-      "$ref": "./Attachment.schema.json"
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "attachment": {
+          "$ref": "./Attachment.schema.json"
+        }
+      }
     },
-    "externalAttachment": {
-      "$ref": "./ExternalAttachment.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "externalAttachment": {
+          "$ref": "./ExternalAttachment.schema.json"
+        }
+      }
     },
-    "gherkinDocument": {
-      "$ref": "./GherkinDocument.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "gherkinDocument": {
+          "$ref": "./GherkinDocument.schema.json"
+        }
+      }
     },
-    "hook": {
-      "$ref": "./Hook.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "hook": {
+          "$ref": "./Hook.schema.json"
+        }
+      }
     },
-    "meta": {
-      "$ref": "./Meta.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "./Meta.schema.json"
+        }
+      }
     },
-    "parameterType": {
-      "$ref": "./ParameterType.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "parameterType": {
+          "$ref": "./ParameterType.schema.json"
+        }
+      }
     },
-    "parseError": {
-      "$ref": "./ParseError.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "parseError": {
+          "$ref": "./ParseError.schema.json"
+        }
+      }
     },
-    "pickle": {
-      "$ref": "./Pickle.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "pickle": {
+          "$ref": "./Pickle.schema.json"
+        }
+      }
     },
-    "suggestion": {
-      "$ref": "./Suggestion.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "suggestion": {
+          "$ref": "./Suggestion.schema.json"
+        }
+      }
     },
-    "source": {
-      "$ref": "./Source.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "source": {
+          "$ref": "./Source.schema.json"
+        }
+      }
     },
-    "stepDefinition": {
-      "$ref": "./StepDefinition.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "stepDefinition": {
+          "$ref": "./StepDefinition.schema.json"
+        }
+      }
     },
-    "testCase": {
-      "$ref": "./TestCase.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testCase": {
+          "$ref": "./TestCase.schema.json"
+        }
+      }
     },
-    "testCaseFinished": {
-      "$ref": "./TestCaseFinished.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testCaseFinished": {
+          "$ref": "./TestCaseFinished.schema.json"
+        }
+      }
     },
-    "testCaseStarted": {
-      "$ref": "./TestCaseStarted.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testCaseStarted": {
+          "$ref": "./TestCaseStarted.schema.json"
+        }
+      }
     },
-    "testRunFinished": {
-      "$ref": "./TestRunFinished.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testRunFinished": {
+          "$ref": "./TestRunFinished.schema.json"
+        }
+      }
     },
-    "testRunStarted": {
-      "$ref": "./TestRunStarted.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testRunStarted": {
+          "$ref": "./TestRunStarted.schema.json"
+        }
+      }
     },
-    "testStepFinished": {
-      "$ref": "./TestStepFinished.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testStepFinished": {
+          "$ref": "./TestStepFinished.schema.json"
+        }
+      }
     },
-    "testStepStarted": {
-      "$ref": "./TestStepStarted.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testStepStarted": {
+          "$ref": "./TestStepStarted.schema.json"
+        }
+      }
     },
-    "testRunHookStarted": {
-      "$ref": "TestRunHookStarted.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testRunHookStarted": {
+          "$ref": "TestRunHookStarted.schema.json"
+        }
+      }
     },
-    "testRunHookFinished": {
-      "$ref": "TestRunHookFinished.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "testRunHookFinished": {
+          "$ref": "TestRunHookFinished.schema.json"
+        }
+      }
     },
-    "undefinedParameterType": {
-      "$ref": "./UndefinedParameterType.schema.json"
+    {
+      "type": "object",
+      "properties": {
+        "undefinedParameterType": {
+          "$ref": "./UndefinedParameterType.schema.json"
+        }
+      }
     }
-  },
+  ],
   "type": "object",
   "$defs": {
     "https://cucumber.io/schema/Attachment.schema.json": {
@@ -429,17 +534,32 @@
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
           "description": "A child node of a `Feature` node",
-          "properties": {
-            "rule": {
-              "$ref": "#/definitions/Rule"
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "rule": {
+                  "$ref": "#/definitions/Rule"
+                }
+              }
             },
-            "background": {
-              "$ref": "#/definitions/Background"
+            {
+              "type": "object",
+              "properties": {
+                "background": {
+                  "$ref": "#/definitions/Background"
+                }
+              }
             },
-            "scenario": {
-              "$ref": "#/definitions/Scenario"
+            {
+              "type": "object",
+              "properties": {
+                "scenario": {
+                  "$ref": "#/definitions/Scenario"
+                }
+              }
             }
-          },
+          ],
           "type": "object"
         },
         "Rule": {
@@ -491,14 +611,24 @@
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "additionalProperties": false,
           "description": "A child node of a `Rule` node",
-          "properties": {
-            "background": {
-              "$ref": "#/definitions/Background"
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "background": {
+                  "$ref": "#/definitions/Background"
+                }
+              }
             },
-            "scenario": {
-              "$ref": "#/definitions/Scenario"
+            {
+              "type": "object",
+              "properties": {
+                "scenario": {
+                  "$ref": "#/definitions/Scenario"
+                }
+              }
             }
-          },
+          ],
           "type": "object"
         },
         "Scenario": {

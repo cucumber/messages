@@ -19,30 +19,6 @@ public final class Group {
     private final @Nullable Integer start;
     private final @Nullable String value;
 
-    public static Group of(List<Group> children) {
-        return new Group(
-            List.copyOf(requireNonNull(children, "Group.children cannot be null")),
-            null,
-            null
-        );
-    }
-
-    public static Group of(Integer start) {
-        return new Group(
-            null,
-            requireNonNull(start, "Group.start cannot be null"),
-            null
-        );
-    }
-
-    public static Group of(String value) {
-        return new Group(
-            null,
-            null,
-            requireNonNull(value, "Group.value cannot be null")
-        );
-    }
-
     public Group(
         @Nullable @Property("children") List<Group> children,
         @Nullable @Property("start") Integer start,

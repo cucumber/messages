@@ -16,7 +16,7 @@ config:
 ---
 erDiagram
 <%- @schemas.each do |key, schema| -%>
-<%- schema['properties'].each do |property_name, property| -%>
+<%- (schema['properties'] || []).each do |property_name, property| -%>
 <%- if property_name.end_with?("Id")
       referent = property_name.delete_suffix("Id")
       referent[0] = referent[0].upcase
@@ -46,7 +46,7 @@ config:
 ---
 erDiagram
 <% @schemas.each do |key, schema| -%>
-<%- schema['properties'].each do |property_name, property| -%>
+<%- (schema['properties'] || []).each do |property_name, property| -%>
 <%-
   next unless class_name(key) != "Envelope"
   required = (schema['required'] || []).index(property_name)
