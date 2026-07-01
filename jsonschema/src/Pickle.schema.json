@@ -60,16 +60,25 @@
       "type": "object"
     },
     "PickleStepArgument": {
-      "additionalProperties": false,
       "description": "An optional argument",
-      "properties": {
-        "docString": {
-          "$ref": "#/definitions/PickleDocString"
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "docString": {
+              "$ref": "#/definitions/PickleDocString"
+            }
+          }
         },
-        "dataTable": {
-          "$ref": "#/definitions/PickleTable"
+        {
+          "type": "object",
+          "properties": {
+            "dataTable": {
+              "$ref": "#/definitions/PickleTable"
+            }
+          }
         }
-      },
+      ],
       "type": "object"
     },
     "PickleTable": {
