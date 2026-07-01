@@ -438,6 +438,7 @@ class Pickle:
 @dataclass
 class PickleDocString:
     content: str
+    argument_index: Optional[int] = None
     media_type: Optional[str] = None
 
 
@@ -454,7 +455,7 @@ class PickleStep:
 
     id: str  # A unique ID for the PickleStep
     text: str
-    argument: Optional[PickleStepArgument] = None
+    argument: Optional[PickleStepArgument] = None  # The first argument for this step, if any
     type: Optional[PickleStepType] = None
     """
     The context in which the step was specified: context (Given), action (When) or outcome (Then).
@@ -467,7 +468,7 @@ class PickleStep:
 @dataclass
 class PickleStepArgument:
     """
-    An optional argument
+    Optional arguments. Either a PickleDocString, PickleTable or both
     """
     data_table: Optional[PickleTable] = None
     doc_string: Optional[PickleDocString] = None
@@ -476,6 +477,7 @@ class PickleStepArgument:
 @dataclass
 class PickleTable:
     rows: list[PickleTableRow]
+    argument_index: Optional[int] = None
 
 
 @dataclass

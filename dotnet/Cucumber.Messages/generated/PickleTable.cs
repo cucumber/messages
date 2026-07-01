@@ -16,13 +16,16 @@ namespace Io.Cucumber.Messages.Types;
 
 public sealed class PickleTable 
 {
+    public Nullable<long> ArgumentIndex { get; private set; }
     public List<PickleTableRow> Rows { get; private set; }
 
 
     public PickleTable(
+        Nullable<long> argumentIndex,
         List<PickleTableRow> rows
     ) 
     {
+        this.ArgumentIndex = argumentIndex;
         RequireNonNull<List<PickleTableRow>>(rows, "Rows", "PickleTable.Rows cannot be null");
         this.Rows = new List<PickleTableRow>(rows);        
     }
@@ -33,12 +36,15 @@ public sealed class PickleTable
         if (o == null || this.GetType() != o.GetType()) return false;
         PickleTable that = (PickleTable) o;
         return 
+            Object.Equals(ArgumentIndex, that.ArgumentIndex) &&         
             Rows.Equals(that.Rows);        
     }
 
     public override int GetHashCode() 
     {
         int hash = 17;
+        if (ArgumentIndex.HasValue)
+          hash = hash * 31 + ArgumentIndex.Value.GetHashCode();
         if (Rows != null)
           hash = hash * 31 + Rows.GetHashCode();
         return hash;
@@ -47,7 +53,8 @@ public sealed class PickleTable
     public override string ToString() 
     {
         return "PickleTable{" +
-            "rows=" + Rows +
+            (ArgumentIndex.HasValue ? "argumentIndex=" + ArgumentIndex.Value : "") +
+            ", rows=" + Rows +
             '}';
     }
 

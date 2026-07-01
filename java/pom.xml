@@ -5,10 +5,10 @@
     <parent>
         <groupId>io.cucumber</groupId>
         <artifactId>cucumber-parent</artifactId>
-        <version>5.4.1</version>
+        <version>5.6.0</version>
     </parent>
     <artifactId>messages</artifactId>
-    <version>33.0.3-SNAPSHOT</version>
+    <version>33.0.5-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Cucumber Messages</name>
     <description>JSON schema-based messages for Cucumber's inter-process communication</description>
@@ -16,7 +16,7 @@
 
     <properties>
         <osgi.bundle-symbolic-name>io.cucumber.messages</osgi.bundle-symbolic-name>
-        <project.build.outputTimestamp>1781101426</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1782551057</project.build.outputTimestamp>
     </properties>
 
     <scm>
@@ -31,14 +31,14 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>6.1.0</version>
+                <version>6.1.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson</groupId>
+                <groupId>tools.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
-                <version>2.22.0</version>
+                <version>3.2.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -58,16 +58,10 @@
             <artifactId>jspecify</artifactId>
             <version>1.0.0</version>
         </dependency>
-        
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
             <scope>test</scope>
         </dependency>
 

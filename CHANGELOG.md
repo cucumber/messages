@@ -7,11 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- [Dart] Add initial `cucumber_messages` package with generated message types, NDJSON read/write support, time conversion helpers, and schema validation ([#431](https://github.com/cucumber/messages/pull/431/))
+- [Dart] Add `example/README.md` pointing to the package README usage sections ([#470](https://github.com/cucumber/messages/pull/470))
+
+### Changed
+- [cpp] Replaced custom cmate script with native cmake and CPM. ([#432](https://github.com/cucumber/messages/pull/432))
+- [cpp] Moved all generated files to their own folder, does not change includes paths for dependent projects. ([#432](https://github.com/cucumber/messages/pull/432))
+- [cpp] Added additional CI tests against different compiler versions. ([#432](https://github.com/cucumber/messages/pull/432))
+- [Schema] Allow steps to contain both DataTable and DocString. ([#468](https://github.com/cucumber/messages/pull/468))
+
+## [33.0.4] - 2026-06-27
+### Fixed
+- [JavaScript] Update static version file at release time ([#459](https://github.com/cucumber/messages/pull/459))
+
+## [33.0.3] - 2026-06-20
+### Added
 - [Ruby] Added `#type` classification (Returning hashified response), for all messages (Including envelopes) ([#447](https://github.com/cucumber/messages/pull/447))
 
 ### Changed
 - [PHP] Require PHP 8.4
 - [Ruby] Updated the rubocop dependencies to use latest cops & run rubocop in pipeline
+
+### Fixed
+- [JavaScript] Mark package as side-effect free ([#449](https://github.com/cucumber/messages/pull/449))
 
 ## [33.0.2] - 2026-06-10
 ### Fixed
@@ -692,7 +710,9 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v33.0.2...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v33.0.4...HEAD
+[33.0.4]: https://github.com/cucumber/messages/compare/v33.0.3...v33.0.4
+[33.0.3]: https://github.com/cucumber/messages/compare/v33.0.2...v33.0.3
 [33.0.2]: https://github.com/cucumber/messages/compare/v33.0.1...v33.0.2
 [33.0.1]: https://github.com/cucumber/messages/compare/v33.0.0...v33.0.1
 [33.0.0]: https://github.com/cucumber/messages/compare/v32.3.1...v33.0.0

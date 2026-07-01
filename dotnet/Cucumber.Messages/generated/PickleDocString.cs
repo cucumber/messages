@@ -16,15 +16,18 @@ namespace Io.Cucumber.Messages.Types;
 
 public sealed class PickleDocString 
 {
+    public Nullable<long> ArgumentIndex { get; private set; }
     public string MediaType { get; private set; }
     public string Content { get; private set; }
 
 
     public PickleDocString(
+        Nullable<long> argumentIndex,
         string mediaType,
         string content
     ) 
     {
+        this.ArgumentIndex = argumentIndex;
         this.MediaType = mediaType;
         RequireNonNull<string>(content, "Content", "PickleDocString.Content cannot be null");
         this.Content = content;
@@ -36,6 +39,7 @@ public sealed class PickleDocString
         if (o == null || this.GetType() != o.GetType()) return false;
         PickleDocString that = (PickleDocString) o;
         return 
+            Object.Equals(ArgumentIndex, that.ArgumentIndex) &&         
             Object.Equals(MediaType, that.MediaType) &&         
             Content.Equals(that.Content);        
     }
@@ -43,6 +47,8 @@ public sealed class PickleDocString
     public override int GetHashCode() 
     {
         int hash = 17;
+        if (ArgumentIndex.HasValue)
+          hash = hash * 31 + ArgumentIndex.Value.GetHashCode();
         if (MediaType != null)
           hash = hash * 31 + MediaType.GetHashCode();
         if (Content != null)
@@ -53,7 +59,8 @@ public sealed class PickleDocString
     public override string ToString() 
     {
         return "PickleDocString{" +
-            "mediaType=" + MediaType +
+            (ArgumentIndex.HasValue ? "argumentIndex=" + ArgumentIndex.Value : "") +
+            ", mediaType=" + MediaType +
             ", content=" + Content +
             '}';
     }

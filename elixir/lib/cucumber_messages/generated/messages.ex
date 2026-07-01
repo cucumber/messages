@@ -788,7 +788,7 @@ defmodule CucumberMessages.Pickle do
 end
 
 defmodule CucumberMessages.PickleDocString do
-  defstruct [ media_type: nil , content: nil ]
+  defstruct [ argument_index: nil , media_type: nil , content: nil ]
 
   defimpl Jason.Encoder, for: CucumberMessages.PickleDocString do
     def encode(value, opts) do
@@ -805,6 +805,7 @@ defmodule CucumberMessages.PickleDocString do
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
+      argument_index: normal_map["argumentIndex"],
       media_type: normal_map["mediaType"],
       content: normal_map["content"],
     }
@@ -863,7 +864,7 @@ defmodule CucumberMessages.PickleStepArgument do
 end
 
 defmodule CucumberMessages.PickleTable do
-  defstruct [ rows: nil ]
+  defstruct [ argument_index: nil , rows: nil ]
 
   defimpl Jason.Encoder, for: CucumberMessages.PickleTable do
     def encode(value, opts) do
@@ -880,6 +881,7 @@ defmodule CucumberMessages.PickleTable do
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
+      argument_index: normal_map["argumentIndex"],
       rows: Enum.map(normal_map["rows"] || [], fn item -> CucumberMessages.PickleTableRow.decode(item) end),
     }
   end

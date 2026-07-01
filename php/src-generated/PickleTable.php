@@ -26,6 +26,7 @@ final class PickleTable implements JsonSerializable
      * @param list<PickleTableRow> $rows
      */
     public function __construct(
+        public readonly ?int $argumentIndex = null,
         public readonly array $rows = [],
     ) {
     }
@@ -37,11 +38,23 @@ final class PickleTable implements JsonSerializable
      */
     public static function fromArray(array $arr): self
     {
+        self::ensureArgumentIndex($arr);
         self::ensureRows($arr);
 
         return new self(
+            isset($arr['argumentIndex']) ? (int) $arr['argumentIndex'] : null,
             array_values(array_map(fn (array $member) => PickleTableRow::fromArray($member), $arr['rows'])),
         );
+    }
+
+    /**
+     * @psalm-assert array{argumentIndex?: string|int|bool} $arr
+     */
+    private static function ensureArgumentIndex(array $arr): void
+    {
+        if (array_key_exists('argumentIndex', $arr) && is_array($arr['argumentIndex'])) {
+            throw new SchemaViolationException('Property \'argumentIndex\' was array');
+        }
     }
 
     /**

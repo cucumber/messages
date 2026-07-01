@@ -235,6 +235,7 @@ export type Pickle = {
 }
 
 export type PickleDocString = {
+  argumentIndex?: number
   mediaType?: string
   content: string
 }
@@ -253,6 +254,7 @@ export type PickleStepArgument = {
 }
 
 export type PickleTable = {
+  argumentIndex?: number
   rows: readonly PickleTableRow[]
 }
 

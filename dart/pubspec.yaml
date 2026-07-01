@@ -1,0 +1,26 @@
+name: cucumber_messages
+description: JSON schema-based messages for Cucumber inter-process communication.
+version: 33.0.4
+homepage: https://github.com/cucumber/messages
+repository: https://github.com/cucumber/messages
+issue_tracker: https://github.com/cucumber/messages/issues
+documentation: https://github.com/cucumber/messages/tree/main/dart
+
+funding:
+  - https://opencollective.com/cucumber
+  - https://github.com/sponsors/cucumber
+
+environment:
+  sdk: ^3.7.0
+
+topics:
+  - cucumber
+  - testing
+  - json
+  - ndjson
+
+dependencies:
+
+dev_dependencies:
+  lints: ^5.1.1
+  test: ^1.31.0

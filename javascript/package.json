@@ -1,10 +1,11 @@
 {
   "name": "@cucumber/messages",
-  "version": "33.0.2",
+  "version": "33.0.4",
   "description": "JSON schema-based messages for Cucumber's inter-process communication",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist",
     "messages.schema.json"
@@ -30,12 +31,13 @@
     "postbuild": "node -e \"require('.')\"",
     "prepare": "make generate",
     "test": "mocha",
-    "prepublishOnly": "npm run build && npm run copy-schemas"
+    "prepublishOnly": "npm run build && npm run copy-schemas",
+    "version": "printf \"export const version = '%s' as string\\n\" \"$npm_package_version\" > src/version.ts"
   },
   "dependencies": {},
   "devDependencies": {
     "@biomejs/biome": "^2.4.13",
-    "@cucumber/biome-config": "github:cucumber/biome-config#v0.2.1",
+    "@cucumber/biome-config": "github:cucumber/biome-config#v0.6.0",
     "@tsconfig/recommended": "^1.0.13",
     "@types/mocha": "10.0.10",
     "@types/node": "^24.0.0",

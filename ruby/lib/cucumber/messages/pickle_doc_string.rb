@@ -8,14 +8,18 @@ module Cucumber
     ##
     ##
     class PickleDocString < Message
+      attr_reader :argument_index
+
       attr_reader :media_type
 
       attr_reader :content
 
       def initialize(
+        argument_index: nil,
         media_type: nil,
         content: ''
       )
+        @argument_index = argument_index
         @media_type = media_type
         @content = content
         super()
@@ -32,6 +36,7 @@ module Cucumber
         return nil if hash.nil?
 
         new(
+          argument_index: hash[:argumentIndex],
           media_type: hash[:mediaType],
           content: hash[:content]
         )

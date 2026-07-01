@@ -13,7 +13,7 @@ namespace Io.Cucumber.Messages.Types;
  * Represents the PickleStepArgument message in Cucumber's message protocol
  * @see <a href="https://github.com/cucumber/messages" >Github - Cucumber - Messages</a>
  *
- * An optional argument
+ * Optional arguments. Either a PickleDocString, PickleTable or both
  */
 
 public sealed class PickleStepArgument 

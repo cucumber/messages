@@ -1,0 +1,120 @@
+// This code was generated using the code generator from cucumber-messages.
+// Manual changes will be lost if the code is regenerated.
+// dart format off
+
+library;
+
+import 'package:cucumber_messages/src/schema_violation_exception.dart';
+
+part 'attachment.g.dart';
+part 'duration.g.dart';
+part 'envelope.g.dart';
+part 'exception.g.dart';
+part 'external_attachment.g.dart';
+part 'gherkin_document.g.dart';
+part 'background.g.dart';
+part 'comment.g.dart';
+part 'data_table.g.dart';
+part 'doc_string.g.dart';
+part 'examples.g.dart';
+part 'feature.g.dart';
+part 'feature_child.g.dart';
+part 'rule.g.dart';
+part 'rule_child.g.dart';
+part 'scenario.g.dart';
+part 'step.g.dart';
+part 'table_cell.g.dart';
+part 'table_row.g.dart';
+part 'tag.g.dart';
+part 'hook.g.dart';
+part 'location.g.dart';
+part 'meta.g.dart';
+part 'ci.g.dart';
+part 'git.g.dart';
+part 'product.g.dart';
+part 'parameter_type.g.dart';
+part 'parse_error.g.dart';
+part 'pickle.g.dart';
+part 'pickle_doc_string.g.dart';
+part 'pickle_step.g.dart';
+part 'pickle_step_argument.g.dart';
+part 'pickle_table.g.dart';
+part 'pickle_table_cell.g.dart';
+part 'pickle_table_row.g.dart';
+part 'pickle_tag.g.dart';
+part 'source.g.dart';
+part 'source_reference.g.dart';
+part 'java_method.g.dart';
+part 'java_stack_trace_element.g.dart';
+part 'step_definition.g.dart';
+part 'step_definition_pattern.g.dart';
+part 'suggestion.g.dart';
+part 'snippet.g.dart';
+part 'test_case.g.dart';
+part 'group.g.dart';
+part 'step_match_argument.g.dart';
+part 'step_match_arguments_list.g.dart';
+part 'test_step.g.dart';
+part 'test_case_finished.g.dart';
+part 'test_case_started.g.dart';
+part 'test_run_finished.g.dart';
+part 'test_run_hook_finished.g.dart';
+part 'test_run_hook_started.g.dart';
+part 'test_run_started.g.dart';
+part 'test_step_finished.g.dart';
+part 'test_step_result.g.dart';
+part 'test_step_started.g.dart';
+part 'timestamp.g.dart';
+part 'undefined_parameter_type.g.dart';
+
+Never _missingRequiredProperty(String propertyName) {
+  throw SchemaViolationException(
+    "Property '$propertyName' is required but was not found",
+  );
+}
+
+Map<String, Object?> _requireJsonObject(
+  Map<String, Object?> json,
+  String propertyName,
+) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value as Map<String, Object?>;
+}
+
+List<Object?> _requireJsonList(
+  Map<String, Object?> json,
+  String propertyName,
+) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value as List<Object?>;
+}
+
+String _requireJsonString(Map<String, Object?> json, String propertyName) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value as String;
+}
+
+Object _requireJsonNumber(Map<String, Object?> json, String propertyName) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value;
+}
+
+bool _requireJsonBool(Map<String, Object?> json, String propertyName) {
+  final value = json[propertyName];
+  if (value == null) {
+    _missingRequiredProperty(propertyName);
+  }
+  return value as bool;
+}

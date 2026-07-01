@@ -10,6 +10,9 @@ module Cucumber
     # An executable step
     ##
     class PickleStep < Message
+      ##
+      # The first argument for this step, if any
+      ##
       attr_reader :argument
 
       ##

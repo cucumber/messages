@@ -10,7 +10,7 @@ This library requires:
 
 ```shell
 $ git clone https://github.com/cucumber/messages
-$ cd messages/cpp
+$ cd cpp
 $ cmake -S . -B build
 $ cmake --build build
 $ cmake --install build
@@ -19,7 +19,7 @@ $ cmake --install build
 ## CMake integration
 
 ```cmake
-find_package(cucumber-messages CONFIG REQUIRED)
+find_package(cucumber_messages CONFIG REQUIRED)
 
 target_link_libraries(mylib PRIVATE cucumber::messages)
 ```
