@@ -15,7 +15,7 @@ use Cucumber\Messages\DecodingException\SchemaViolationException;
  * Represents the PickleStepArgument message in Cucumber's message protocol
  * @see https://github.com/cucumber/messages
  *
- * An optional argument */
+ * Optional arguments. Either a PickleDocString, PickleTable or both */
 final class PickleStepArgument implements JsonSerializable
 {
     use JsonEncodingTrait;

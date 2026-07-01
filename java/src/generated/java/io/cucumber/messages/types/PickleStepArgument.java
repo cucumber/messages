@@ -12,7 +12,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents the PickleStepArgument message in <a href=https://github.com/cucumber/messages>Cucumber's message protocol</a>
  * <p>
- * An optional argument
+ * Optional arguments. Either a PickleDocString, PickleTable or both
  */
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})

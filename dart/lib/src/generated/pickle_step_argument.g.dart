@@ -6,7 +6,7 @@ part of 'messages.dart';
 
 /// Generated Dart representation of the [PickleStepArgument message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleStepArgument.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
-/// An optional argument
+/// Optional arguments. Either a PickleDocString, PickleTable or both
 class PickleStepArgument {
   /// The `docString` property.
   final PickleDocString? docString;

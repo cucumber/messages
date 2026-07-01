@@ -20,6 +20,7 @@ namespace cucumber::messages
 
     struct pickle_table
     {
+        std::optional<std::size_t> argument_index;
         std::vector<cucumber::messages::pickle_table_row> rows;
 
         std::string to_string() const;

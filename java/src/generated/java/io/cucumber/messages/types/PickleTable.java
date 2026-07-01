@@ -15,12 +15,19 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleTable {
+    private final @Nullable Long argumentIndex;
     private final List<PickleTableRow> rows;
 
     public PickleTable(
+        @Nullable @Property("argumentIndex") Long argumentIndex,
         @Property("rows") List<PickleTableRow> rows
     ) {
+        this.argumentIndex = argumentIndex;
         this.rows = List.copyOf(requireNonNull(rows, "PickleTable.rows cannot be null"));
+    }
+
+    public Optional<Long> getArgumentIndex() {
+        return Optional.ofNullable(argumentIndex);
     }
 
     public List<PickleTableRow> getRows() {
@@ -33,12 +40,14 @@ public final class PickleTable {
         if (o == null || getClass() != o.getClass()) return false;
         PickleTable that = (PickleTable) o;
         return 
+            Objects.equals(argumentIndex, that.argumentIndex) &&         
             rows.equals(that.rows);        
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
+            argumentIndex,
             rows
         );
     }
@@ -46,7 +55,8 @@ public final class PickleTable {
     @Override
     public String toString() {
         return "PickleTable{" +
-            "rows=" + rows +
+            "argumentIndex=" + argumentIndex +
+            ", rows=" + rows +
             '}';
     }
 }
