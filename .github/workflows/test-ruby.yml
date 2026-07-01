@@ -20,6 +20,20 @@ on:
       - .github/**
 
 jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@0dafeac902942906541bc140009cdbf32665b601 # v1.315.0
+        with:
+          ruby-version: '4.0.5'
+          bundler-cache: true
+          working-directory: ruby
+      - run: bundle exec rubocop
+        working-directory: ruby
+
   test-ruby:
     runs-on: ${{ matrix.os }}
     strategy:

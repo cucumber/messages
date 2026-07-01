@@ -5,7 +5,7 @@ version = File.read(File.expand_path('VERSION', __dir__)).strip
 Gem::Specification.new do |s|
   s.name        = 'cucumber-messages'
   s.version     = version
-  s.authors     = ['Aslak Hellesøy']
+  s.authors     = ['Aslak Hellesøy', 'Luke Hill']
   s.description = "JSON schema-based messages for Cucumber's inter-process communication"
   s.summary     = "cucumber-messages-#{s.version}"
   s.email       = 'cukes@googlegroups.com'
