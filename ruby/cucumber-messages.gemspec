@@ -5,7 +5,7 @@ version = File.read(File.expand_path('VERSION', __dir__)).strip
 Gem::Specification.new do |s|
   s.name        = 'cucumber-messages'
   s.version     = version
-  s.authors     = ['Aslak Hellesøy']
+  s.authors     = ['Aslak Hellesøy', 'Luke Hill']
   s.description = "JSON schema-based messages for Cucumber's inter-process communication"
   s.summary     = "cucumber-messages-#{s.version}"
   s.email       = 'cukes@googlegroups.com'
@@ -23,12 +23,12 @@ Gem::Specification.new do |s|
     'source_code_uri' => 'https://github.com/cucumber/messages'
   }
 
-  s.add_development_dependency 'rake', '~> 13.1'
+  s.add_development_dependency 'rake', '~> 13.2'
   s.add_development_dependency 'rspec', '~> 3.13'
-  s.add_development_dependency 'rubocop', '~> 1.80.0'
+  s.add_development_dependency 'rubocop', '~> 1.87.0'
   s.add_development_dependency 'rubocop-performance', '~> 1.24.0'
   s.add_development_dependency 'rubocop-rake', '~> 0.6.0'
-  s.add_development_dependency 'rubocop-rspec', '~> 3.7.0'
+  s.add_development_dependency 'rubocop-rspec', '~> 3.10.2'
 
   s.files            = Dir['README.md', 'LICENSE', 'VERSION', 'lib/**/*']
   s.rdoc_options     = ['--charset=UTF-8']
