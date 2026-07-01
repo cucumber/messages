@@ -26,7 +26,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - [PHP] Require PHP 8.4
-- [Ruby] Updated the rubocop dependencies to use latest cops & run rubocop in pipeline
 
 ### Fixed
 - [JavaScript] Mark package as side-effect free ([#449](https://github.com/cucumber/messages/pull/449))
