@@ -237,13 +237,13 @@ type Pickle struct {
 }
 
 type PickleDocString struct {
-	MediaType string `json:"mediaType,omitempty"`
-	Content   string `json:"content"`
+	ArgumentIndex int64  `json:"argumentIndex,omitempty"`
+	MediaType     string `json:"mediaType,omitempty"`
+	Content       string `json:"content"`
 }
 
 type PickleStep struct {
 	Argument   *PickleStepArgument `json:"argument,omitempty"`
-	Argument2  *PickleStepArgument `json:"argument2,omitempty"`
 	AstNodeIds []string            `json:"astNodeIds"`
 	Id         string              `json:"id"`
 	Type       PickleStepType      `json:"type,omitempty"`
@@ -256,7 +256,8 @@ type PickleStepArgument struct {
 }
 
 type PickleTable struct {
-	Rows []*PickleTableRow `json:"rows"`
+	ArgumentIndex int64             `json:"argumentIndex,omitempty"`
+	Rows          []*PickleTableRow `json:"rows"`
 }
 
 type PickleTableCell struct {

@@ -1234,6 +1234,13 @@ id originating from the `Scenario` AST node, and the second from the `TableRow` 
 
 
 
+#### PickleDocString.argumentIndex 
+
+* Type: integer 
+* Required: no 
+
+
+
 #### PickleDocString.mediaType 
 
 * Type: string 
@@ -1258,13 +1265,6 @@ An executable step
 * Required: no 
 
 The first argument for this step, if any
-
-#### PickleStep.argument2 
-
-* Type: [PickleStepArgument](#picklestepargument) 
-* Required: no 
-
-The second argument for this step, if any
 
 #### PickleStep.astNodeIds 
 
@@ -1299,7 +1299,7 @@ Note that the keywords `But` and `And` inherit their meaning from prior steps an
 
 ## PickleStepArgument
 
-An optional argument
+Optional arguments. Either a PickleDocString, PickleTable or both
 
 #### PickleStepArgument.docString 
 
@@ -1316,6 +1316,13 @@ An optional argument
 
 
 ## PickleTable
+
+
+
+#### PickleTable.argumentIndex 
+
+* Type: integer 
+* Required: no 
 
 
 

@@ -18,6 +18,7 @@ namespace cucumber::messages
 
     struct pickle_doc_string
     {
+        std::optional<std::size_t> argument_index;
         std::optional<std::string> media_type;
         std::string content;
 

@@ -2981,6 +2981,7 @@ extends 'Cucumber::Messages::Message';
 use Scalar::Util qw( blessed );
 
 my %types = (
+   argument_index => 'number',
    media_type => 'string',
    content => 'string',
 );
@@ -2991,6 +2992,16 @@ sub _types {
     return \%types;
 }
 
+
+
+=head4 argument_index
+
+
+=cut
+
+has argument_index =>
+    (is => 'ro',
+    );
 
 
 =head4 media_type
@@ -3039,7 +3050,6 @@ use Scalar::Util qw( blessed );
 
 my %types = (
    argument => 'Cucumber::Messages::PickleStepArgument',
-   argument2 => 'Cucumber::Messages::PickleStepArgument',
    ast_node_ids => '[]string',
    id => 'string',
    type => '',
@@ -3060,16 +3070,6 @@ The first argument for this step, if any
 =cut
 
 has argument =>
-    (is => 'ro',
-    );
-
-
-=head4 argument2
-
-The second argument for this step, if any
-=cut
-
-has argument2 =>
     (is => 'ro',
     );
 
@@ -3157,7 +3157,7 @@ package Cucumber::Messages::PickleStepArgument {
 Represents the PickleStepArgument message in Cucumber's
 L<message protocol|https://github.com/cucumber/messages>.
 
-An optional argument
+Optional arguments. Either a PickleDocString, PickleTable or both
 
 =head3 ATTRIBUTES
 
@@ -3224,6 +3224,7 @@ extends 'Cucumber::Messages::Message';
 use Scalar::Util qw( blessed );
 
 my %types = (
+   argument_index => 'number',
    rows => '[]Cucumber::Messages::PickleTableRow',
 );
 
@@ -3233,6 +3234,16 @@ sub _types {
     return \%types;
 }
 
+
+
+=head4 argument_index
+
+
+=cut
+
+has argument_index =>
+    (is => 'ro',
+    );
 
 
 =head4 rows

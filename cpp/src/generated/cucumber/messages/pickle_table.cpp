@@ -11,13 +11,15 @@ namespace cucumber::messages
     {
         std::ostringstream oss;
 
-        cucumber::messages::to_string(oss, "rows=", rows);
+        cucumber::messages::to_string(oss, "argument_index=", argument_index);
+        cucumber::messages::to_string(oss, ", rows=", rows);
 
         return oss.str();
     }
 
     void pickle_table::to_json(json& j) const
     {
+        cucumber::messages::to_json(j, camelize("argument_index"), argument_index);
         cucumber::messages::to_json(j, camelize("rows"), rows);
     }
 

@@ -11,7 +11,8 @@ namespace cucumber::messages
     {
         std::ostringstream oss;
 
-        cucumber::messages::to_string(oss, "media_type=", media_type);
+        cucumber::messages::to_string(oss, "argument_index=", argument_index);
+        cucumber::messages::to_string(oss, ", media_type=", media_type);
         cucumber::messages::to_string(oss, ", content=", content);
 
         return oss.str();
@@ -19,6 +20,7 @@ namespace cucumber::messages
 
     void pickle_doc_string::to_json(json& j) const
     {
+        cucumber::messages::to_json(j, camelize("argument_index"), argument_index);
         cucumber::messages::to_json(j, camelize("media_type"), media_type);
         cucumber::messages::to_json(j, camelize("content"), content);
     }

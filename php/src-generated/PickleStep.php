@@ -33,11 +33,6 @@ final class PickleStep implements JsonSerializable
         public readonly ?PickleStepArgument $argument = null,
 
         /**
-         * The second argument for this step, if any
-         */
-        public readonly ?PickleStepArgument $argument2 = null,
-
-        /**
          * References the IDs of the source of the step. For Gherkin, this can be
          * the ID of a Step, and possibly also the ID of a TableRow
          */
@@ -66,7 +61,6 @@ final class PickleStep implements JsonSerializable
     public static function fromArray(array $arr): self
     {
         self::ensureArgument($arr);
-        self::ensureArgument2($arr);
         self::ensureAstNodeIds($arr);
         self::ensureId($arr);
         self::ensureType($arr);
@@ -74,7 +68,6 @@ final class PickleStep implements JsonSerializable
 
         return new self(
             isset($arr['argument']) ? PickleStepArgument::fromArray($arr['argument']) : null,
-            isset($arr['argument2']) ? PickleStepArgument::fromArray($arr['argument2']) : null,
             array_values(array_map(fn (mixed $member) => (string) $member, $arr['astNodeIds'])),
             (string) $arr['id'],
             isset($arr['type']) ? PickleStep\Type::from((string) $arr['type']) : null,
@@ -89,16 +82,6 @@ final class PickleStep implements JsonSerializable
     {
         if (array_key_exists('argument', $arr) && !is_array($arr['argument'])) {
             throw new SchemaViolationException('Property \'argument\' was not array');
-        }
-    }
-
-    /**
-     * @psalm-assert array{argument2?: array} $arr
-     */
-    private static function ensureArgument2(array $arr): void
-    {
-        if (array_key_exists('argument2', $arr) && !is_array($arr['argument2'])) {
-            throw new SchemaViolationException('Property \'argument2\' was not array');
         }
     }
 

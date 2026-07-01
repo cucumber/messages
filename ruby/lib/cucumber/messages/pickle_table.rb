@@ -8,11 +8,15 @@ module Cucumber
     ##
     ##
     class PickleTable < Message
+      attr_reader :argument_index
+
       attr_reader :rows
 
       def initialize(
+        argument_index: nil,
         rows: []
       )
+        @argument_index = argument_index
         @rows = rows
         super()
       end
@@ -28,6 +32,7 @@ module Cucumber
         return nil if hash.nil?
 
         new(
+          argument_index: hash[:argumentIndex],
           rows: hash[:rows]&.map { |item| PickleTableRow.from_h(item) }
         )
       end

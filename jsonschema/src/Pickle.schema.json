@@ -9,6 +9,9 @@
         "content"
       ],
       "properties": {
+        "argumentIndex":{
+          "type": "integer"
+        },
         "mediaType": {
           "type": "string"
         },
@@ -30,10 +33,6 @@
       "properties": {
         "argument": {
           "description": "The first argument for this step, if any",
-          "$ref": "#/definitions/PickleStepArgument"
-        },
-        "argument2": {
-          "description": "The second argument for this step, if any",
           "$ref": "#/definitions/PickleStepArgument"
         },
         "astNodeIds": {
@@ -66,7 +65,7 @@
     },
     "PickleStepArgument": {
       "additionalProperties": false,
-      "description": "An optional argument",
+      "description": "Optional arguments. Either a PickleDocString, PickleTable or both",
       "properties": {
         "docString": {
           "$ref": "#/definitions/PickleDocString"
@@ -83,6 +82,9 @@
         "rows"
       ],
       "properties": {
+        "argumentIndex":{
+          "type": "integer"
+        },
         "rows": {
           "items": {
             "$ref": "#/definitions/PickleTableRow"

@@ -15,15 +15,22 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleDocString {
+    private final @Nullable Long argumentIndex;
     private final @Nullable String mediaType;
     private final String content;
 
     public PickleDocString(
+        @Nullable @Property("argumentIndex") Long argumentIndex,
         @Nullable @Property("mediaType") String mediaType,
         @Property("content") String content
     ) {
+        this.argumentIndex = argumentIndex;
         this.mediaType = mediaType;
         this.content = requireNonNull(content, "PickleDocString.content cannot be null");
+    }
+
+    public Optional<Long> getArgumentIndex() {
+        return Optional.ofNullable(argumentIndex);
     }
 
     public Optional<String> getMediaType() {
@@ -40,6 +47,7 @@ public final class PickleDocString {
         if (o == null || getClass() != o.getClass()) return false;
         PickleDocString that = (PickleDocString) o;
         return 
+            Objects.equals(argumentIndex, that.argumentIndex) &&         
             Objects.equals(mediaType, that.mediaType) &&         
             content.equals(that.content);        
     }
@@ -47,6 +55,7 @@ public final class PickleDocString {
     @Override
     public int hashCode() {
         return Objects.hash(
+            argumentIndex,
             mediaType,
             content
         );
@@ -55,7 +64,8 @@ public final class PickleDocString {
     @Override
     public String toString() {
         return "PickleDocString{" +
-            "mediaType=" + mediaType +
+            "argumentIndex=" + argumentIndex +
+            ", mediaType=" + mediaType +
             ", content=" + content +
             '}';
     }

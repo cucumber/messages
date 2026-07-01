@@ -18,7 +18,6 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleStep {
     private final @Nullable PickleStepArgument argument;
-    private final @Nullable PickleStepArgument argument2;
     private final List<String> astNodeIds;
     private final String id;
     private final @Nullable PickleStepType type;
@@ -26,14 +25,12 @@ public final class PickleStep {
 
     public PickleStep(
         @Nullable @Property("argument") PickleStepArgument argument,
-        @Nullable @Property("argument2") PickleStepArgument argument2,
         @Property("astNodeIds") List<String> astNodeIds,
         @Property("id") String id,
         @Nullable @Property("type") PickleStepType type,
         @Property("text") String text
     ) {
         this.argument = argument;
-        this.argument2 = argument2;
         this.astNodeIds = List.copyOf(requireNonNull(astNodeIds, "PickleStep.astNodeIds cannot be null"));
         this.id = requireNonNull(id, "PickleStep.id cannot be null");
         this.type = type;
@@ -45,13 +42,6 @@ public final class PickleStep {
      */
     public Optional<PickleStepArgument> getArgument() {
         return Optional.ofNullable(argument);
-    }
-
-    /**
-     * The second argument for this step, if any
-     */
-    public Optional<PickleStepArgument> getArgument2() {
-        return Optional.ofNullable(argument2);
     }
 
     /**
@@ -89,7 +79,6 @@ public final class PickleStep {
         PickleStep that = (PickleStep) o;
         return 
             Objects.equals(argument, that.argument) &&         
-            Objects.equals(argument2, that.argument2) &&         
             astNodeIds.equals(that.astNodeIds) &&         
             id.equals(that.id) &&         
             Objects.equals(type, that.type) &&         
@@ -100,7 +89,6 @@ public final class PickleStep {
     public int hashCode() {
         return Objects.hash(
             argument,
-            argument2,
             astNodeIds,
             id,
             type,
@@ -112,7 +100,6 @@ public final class PickleStep {
     public String toString() {
         return "PickleStep{" +
             "argument=" + argument +
-            ", argument2=" + argument2 +
             ", astNodeIds=" + astNodeIds +
             ", id=" + id +
             ", type=" + type +

@@ -788,7 +788,7 @@ defmodule CucumberMessages.Pickle do
 end
 
 defmodule CucumberMessages.PickleDocString do
-  defstruct [ media_type: nil , content: nil ]
+  defstruct [ argument_index: nil , media_type: nil , content: nil ]
 
   defimpl Jason.Encoder, for: CucumberMessages.PickleDocString do
     def encode(value, opts) do
@@ -805,6 +805,7 @@ defmodule CucumberMessages.PickleDocString do
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
+      argument_index: normal_map["argumentIndex"],
       media_type: normal_map["mediaType"],
       content: normal_map["content"],
     }
@@ -812,7 +813,7 @@ defmodule CucumberMessages.PickleDocString do
 end
 
 defmodule CucumberMessages.PickleStep do
-  defstruct [ argument: nil , argument2: nil , ast_node_ids: nil , id: nil , type: nil , text: nil ]
+  defstruct [ argument: nil , ast_node_ids: nil , id: nil , type: nil , text: nil ]
 
   defimpl Jason.Encoder, for: CucumberMessages.PickleStep do
     def encode(value, opts) do
@@ -830,7 +831,6 @@ defmodule CucumberMessages.PickleStep do
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
       argument: CucumberMessages.PickleStepArgument.decode(normal_map["argument"]),
-      argument2: CucumberMessages.PickleStepArgument.decode(normal_map["argument2"]),
       ast_node_ids: normal_map["astNodeIds"],
       id: normal_map["id"],
       type: normal_map["type"],
@@ -864,7 +864,7 @@ defmodule CucumberMessages.PickleStepArgument do
 end
 
 defmodule CucumberMessages.PickleTable do
-  defstruct [ rows: nil ]
+  defstruct [ argument_index: nil , rows: nil ]
 
   defimpl Jason.Encoder, for: CucumberMessages.PickleTable do
     def encode(value, opts) do
@@ -881,6 +881,7 @@ defmodule CucumberMessages.PickleTable do
 
   def decode(normal_map) when is_map(normal_map) do
     %__MODULE__{
+      argument_index: normal_map["argumentIndex"],
       rows: Enum.map(normal_map["rows"] || [], fn item -> CucumberMessages.PickleTableRow.decode(item) end),
     }
   end
