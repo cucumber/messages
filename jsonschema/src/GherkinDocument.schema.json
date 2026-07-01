@@ -230,7 +230,8 @@
             }
           }
         }
-      ]
+      ],
+      "type": "object"
     },
     "Rule": {
       "additionalProperties": false,
