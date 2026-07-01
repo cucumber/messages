@@ -18,6 +18,9 @@ namespace Io.Cucumber.Messages.Types;
 
 public sealed class PickleStep 
 {
+    /**
+     * The first argument for this step, if any
+     */
     public PickleStepArgument Argument { get; private set; }
     /**
      * References the IDs of the source of the step. For Gherkin, this can be

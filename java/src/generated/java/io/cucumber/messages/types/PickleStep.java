@@ -37,6 +37,9 @@ public final class PickleStep {
         this.text = requireNonNull(text, "PickleStep.text cannot be null");
     }
 
+    /**
+     * The first argument for this step, if any
+     */
     public Optional<PickleStepArgument> getArgument() {
         return Optional.ofNullable(argument);
     }

@@ -26,6 +26,10 @@ final class PickleStep implements JsonSerializable
      * @param list<string> $astNodeIds
      */
     public function __construct(
+
+        /**
+         * The first argument for this step, if any
+         */
         public readonly ?PickleStepArgument $argument = null,
 
         /**

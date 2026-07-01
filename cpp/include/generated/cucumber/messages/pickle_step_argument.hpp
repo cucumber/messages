@@ -15,7 +15,7 @@ namespace cucumber::messages
     // Represents the PickleStepArgument message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
     //
-    // An optional argument
+    // Optional arguments. Either a PickleDocString, PickleTable or both
     //
     // Generated code
 

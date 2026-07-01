@@ -7,7 +7,7 @@ module Cucumber
     # Represents the PickleStepArgument message in Cucumber's {message protocol}[https://github.com/cucumber/messages].
     ##
     #
-    # An optional argument
+    # Optional arguments. Either a PickleDocString, PickleTable or both
     ##
     class PickleStepArgument < Message
       attr_reader :doc_string

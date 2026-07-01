@@ -14,18 +14,21 @@ namespace cucumber::messages
     {
         std::ostringstream oss;
 
-        cucumber::messages::to_string(oss, "rows=", rows);
+        cucumber::messages::to_string(oss, "argument_index=", argument_index);
+        cucumber::messages::to_string(oss, ", rows=", rows);
 
         return oss.str();
     }
 
     void pickle_table::to_json(nlohmann::json& json) const
     {
+        cucumber::messages::to_json(json, camelize("argument_index"), argument_index);
         cucumber::messages::to_json(json, camelize("rows"), rows);
     }
 
     void pickle_table::from_json(const nlohmann::json& json)
     {
+        cucumber::messages::from_json(json, camelize("argument_index"), argument_index);
         cucumber::messages::from_json(json, camelize("rows"), rows);
     }
 

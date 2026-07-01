@@ -32,7 +32,7 @@ enum PickleStepType {
 ///
 /// An executable step
 class PickleStep {
-  /// The `argument` property.
+  /// The first argument for this step, if any
   final PickleStepArgument? argument;
   /// References the IDs of the source of the step. For Gherkin, this can be
   /// the ID of a Step, and possibly also the ID of a TableRow

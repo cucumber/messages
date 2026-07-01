@@ -25,6 +25,7 @@ final class PickleDocString implements JsonSerializable
      *
      */
     public function __construct(
+        public readonly ?int $argumentIndex = null,
         public readonly ?string $mediaType = null,
         public readonly string $content = '',
     ) {
@@ -37,13 +38,25 @@ final class PickleDocString implements JsonSerializable
      */
     public static function fromArray(array $arr): self
     {
+        self::ensureArgumentIndex($arr);
         self::ensureMediaType($arr);
         self::ensureContent($arr);
 
         return new self(
+            isset($arr['argumentIndex']) ? (int) $arr['argumentIndex'] : null,
             isset($arr['mediaType']) ? (string) $arr['mediaType'] : null,
             (string) $arr['content'],
         );
+    }
+
+    /**
+     * @psalm-assert array{argumentIndex?: string|int|bool} $arr
+     */
+    private static function ensureArgumentIndex(array $arr): void
+    {
+        if (array_key_exists('argumentIndex', $arr) && is_array($arr['argumentIndex'])) {
+            throw new SchemaViolationException('Property \'argumentIndex\' was array');
+        }
     }
 
     /**
