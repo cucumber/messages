@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Dart] Add `example/README.md` pointing to the package README usage sections ([#470](https://github.com/cucumber/messages/pull/470))
 
 ### Changed
+- [Ruby] Updated minimum Ruby version to 3.3 ([#472](https://github.com/cucumber/messages/pull/472) [luke-hill](https://github.com/luke-hill))
 - [cpp] Replaced custom cmate script with native cmake and CPM. ([#432](https://github.com/cucumber/messages/pull/432))
 - [cpp] Moved all generated files to their own folder, does not change includes paths for dependent projects. ([#432](https://github.com/cucumber/messages/pull/432))
 - [cpp] Added additional CI tests against different compiler versions. ([#432](https://github.com/cucumber/messages/pull/432))
