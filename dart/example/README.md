@@ -1,3 +1,3 @@
 # Example
 
-See [Reading](../README.md#reading) and [Writing](../README.md#writing).
+See [Reading](https://github.com/cucumber/messages/tree/main/dart#reading) and [Writing](https://github.com/cucumber/messages/tree/main/dart#writing).
