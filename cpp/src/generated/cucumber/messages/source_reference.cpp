@@ -2,6 +2,7 @@
 #include "cucumber/messages/source_reference.hpp"
 #include "cucumber/messages/utils.hpp"
 #include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
 #include <ostream>
 #include <sstream>
 #include <string>

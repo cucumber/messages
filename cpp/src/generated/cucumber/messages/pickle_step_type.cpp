@@ -1,5 +1,6 @@
 #include "cucumber/messages/pickle_step_type.hpp"
 #include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
 #include <iostream>
 #include <string_view>
 #include <unordered_map>
