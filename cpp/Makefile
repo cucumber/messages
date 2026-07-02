@@ -16,13 +16,17 @@ require: ## Check requirements for the code generation (ruby, csplit and tail ar
 	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
 
 clean: ## Remove automatically generated files and related artifacts
-	rm -rf build .configured
+	rm -rf $(INC_DIR)
+	rm -rf $(LIB_DIR)
 
 .generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/cpp.hpp.erb ../codegen/templates/cpp.enum.hpp.erb
 	ruby ../codegen/codegen.rb Generator::Cpp cpp.hpp.erb > Generated.hpp.tmp
 	ruby ../codegen/codegen.rb Generator::Cpp cpp.enum.hpp.erb >> Generated.hpp.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.hpp.tmp --elide-empty-files Generated.hpp.tmp /^[A-Za-z_.]*[.][ch]pp/ {*}
 	rm Generated.hpp.tmp
+
+	mkdir -p $(INC_DIR)
+	mkdir -p $(LIB_DIR)
 
 	for file in Generated**; do \
 		F=$$(head -n 1 $$file | tr -d '\r\n'); \
