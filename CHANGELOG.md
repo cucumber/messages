@@ -8,15 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - [Dart] Add initial `cucumber_messages` package with generated message types, NDJSON read/write support, time conversion helpers, and schema validation ([#431](https://github.com/cucumber/messages/pull/431/))
+- [Dart] Add `example/README.md` pointing to the package README usage sections ([#470](https://github.com/cucumber/messages/pull/470))
 - [cpp] Add deserialization using `from_json`. ([#462](https://github.com/cucumber/messages/pull/462))
 - [cpp] Add unit tests against testdata. ([#462](https://github.com/cucumber/messages/pull/462))
 - [cpp] Add additional CI tests against different compiler versions. ([#432](https://github.com/cucumber/messages/pull/432))
 
 ### Changed
+- [Ruby] Updated minimum Ruby version to 3.3 ([#472](https://github.com/cucumber/messages/pull/472) [luke-hill](https://github.com/luke-hill))
 - [cpp] Changed code style to adhere to included clang-format and clang-tidy settings. ([#462](https://github.com/cucumber/messages/pull/462))
 - [cpp] Replaced custom cmate script with native cmake and CPM. ([#432](https://github.com/cucumber/messages/pull/432))
 - [cpp] Moved all generated files to their own folder, does not change includes paths for dependent projects. ([#432](https://github.com/cucumber/messages/pull/432))
-- [Schema] Allow steps to contain both DataTable and DocString. ([#468](https://github.com/cucumber/messages/pull/468))
+- [jsonschema] Allow steps to contain both DataTable and DocString. ([#468](https://github.com/cucumber/messages/pull/468))
 
 ## [33.0.4] - 2026-06-27
 ### Fixed
@@ -177,7 +179,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Go] Switch to Google's UUID module ([#251](https://github.com/cucumber/messages/pull/251))
 
 ### Fixed
-- [Dotnet] Fixed code generation for types that accept List as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi](https://github.com/clrudolphi)))
+- [Dotnet] Fixed code generation for types that accept List<T> as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi](https://github.com/clrudolphi))
 - Moved contents of the description of the StepDefinitionIds field from the StepMatchArgumentsList field where it had been mistakenly placed. ([#252](https://github.com/cucumber/messages/pull/252) [clrudolphi](https://github.com/clrudolphi)))
 
 ## [26.0.0] - 2024-08-15
