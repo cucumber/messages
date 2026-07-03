@@ -1,4 +1,11 @@
+#include "cucumber/messages/Envelope.hpp"
+#include "cucumber/messages/all.hpp" // test legacy includes work
 #include "cucumber/messages/envelope.hpp"
+
+#ifdef INCLUDE_NLOHMANN_JSON_HPP_
+#error "json.hpp" should not be included in any messages. Use "json_fwd.hpp" instead.
+#endif
+
 #include "nlohmann/json.hpp"
 #include "nlohmann/json_fwd.hpp"
 #include "gmock/gmock.h"
@@ -8,12 +15,15 @@
 #include <fstream>
 #include <string>
 #include <tuple>
+#include <type_traits>
 #include <unordered_map>
 #include <utility>
 #include <vector>
 
 namespace
 {
+    static_assert(std::is_same_v<cucumber::messages::envelope, cucumber::messages::Envelope>);
+
     std::vector<std::tuple<std::string, std::size_t, nlohmann::json>> GetTestData()
     {
         std::vector<std::tuple<std::string, std::size_t, nlohmann::json>> jsonMessages;

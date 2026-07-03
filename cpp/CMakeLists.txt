@@ -88,7 +88,9 @@ target_include_directories(
     cucumber_messages_lib
     PUBLIC
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/generated>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
+        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/legacy>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>/cucumber/legacy
     PRIVATE
         ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
 )
@@ -148,7 +150,12 @@ install(
 
 install(
     DIRECTORY "${PROJECT_SOURCE_DIR}/include/generated/"
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(
+    DIRECTORY "${PROJECT_SOURCE_DIR}/include/legacy/"
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber/legacy
 )
 
 # Optional: tests
