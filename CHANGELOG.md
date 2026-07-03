@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - [cpp] Add deserialization using `from_json`. ([#462](https://github.com/cucumber/messages/pull/462))
 - [cpp] Add unit tests against testdata. ([#462](https://github.com/cucumber/messages/pull/462))
+- [cpp] BREAKING CHANGE: updated codegen (shared_ptr's, renamed files and classes). ([#473](https://github.com/cucumber/messages/pull/473))
 
 ## [34.0.1] - 2026-07-05
 ### Fixed
@@ -24,7 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Dart] Add initial `cucumber_messages` package. ([#431](https://github.com/cucumber/messages/pull/431/), [#470](https://github.com/cucumber/messages/pull/470))
 
 ### Changed
-- [Ruby] Updated minimum Ruby version to 3.3 ([#472](https://github.com/cucumber/messages/pull/472))
+- [Ruby] Updated minimum Ruby version to 3.3 ([#472](https://github.com/cucumber/messages/pull/472) [luke-hill](https://github.com/luke-hill))
 - [cpp] Replaced custom cmate script with native cmake and CPM. ([#432](https://github.com/cucumber/messages/pull/432))
 - [cpp] Moved all generated files to their own folder, does not change includes paths for dependent projects. ([#432](https://github.com/cucumber/messages/pull/432))
 - [jsonschema] Allow steps to contain both `DataTable` and `DocString`. ([#468](https://github.com/cucumber/messages/pull/468))
