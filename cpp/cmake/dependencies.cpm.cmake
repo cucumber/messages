@@ -41,7 +41,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         endif()
     endif()
 
-    if (CUCUMBER_MESSAGES_BUILD_TESTS)
+    if(CUCUMBER_MESSAGES_BUILD_TESTS)
         CPMAddPackage(
             NAME googletest
             GITHUB_REPOSITORY google/googletest
