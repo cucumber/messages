@@ -41,5 +41,40 @@ class PickleDocString {
     json['content'] = content;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleDocString &&
+          runtimeType == other.runtimeType &&
+          argumentIndex == other.argumentIndex &&
+          mediaType == other.mediaType &&
+          content == other.content;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        argumentIndex,
+        mediaType,
+        content,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleDocString{argumentIndex: ${argumentIndex}, mediaType: ${mediaType}, content: ${content}}';
+
+  /// Creates a copy of this [PickleDocString] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  PickleDocString copyWith({
+    int? argumentIndex,
+    String? mediaType,
+    String? content,
+  }) {
+    return PickleDocString(
+      argumentIndex: argumentIndex ?? this.argumentIndex,
+      mediaType: mediaType ?? this.mediaType,
+      content: content ?? this.content,
+    );
+  }
 }
 

@@ -85,5 +85,48 @@ class Hook {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Hook &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          sourceReference == other.sourceReference &&
+          tagExpression == other.tagExpression &&
+          type == other.type;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        name,
+        sourceReference,
+        tagExpression,
+        type,
+      ]);
+
+  @override
+  String toString() =>
+      'Hook{id: ${id}, name: ${name}, sourceReference: ${sourceReference}, tagExpression: ${tagExpression}, type: ${type}}';
+
+  /// Creates a copy of this [Hook] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Hook copyWith({
+    String? id,
+    String? name,
+    SourceReference? sourceReference,
+    String? tagExpression,
+    HookType? type,
+  }) {
+    return Hook(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      sourceReference: sourceReference ?? this.sourceReference,
+      tagExpression: tagExpression ?? this.tagExpression,
+      type: type ?? this.type,
+    );
+  }
 }
 

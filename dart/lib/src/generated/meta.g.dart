@@ -69,5 +69,52 @@ class Meta {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Meta &&
+          runtimeType == other.runtimeType &&
+          protocolVersion == other.protocolVersion &&
+          implementation == other.implementation &&
+          runtime == other.runtime &&
+          os == other.os &&
+          cpu == other.cpu &&
+          ci == other.ci;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        protocolVersion,
+        implementation,
+        runtime,
+        os,
+        cpu,
+        ci,
+      ]);
+
+  @override
+  String toString() =>
+      'Meta{protocolVersion: ${protocolVersion}, implementation: ${implementation}, runtime: ${runtime}, os: ${os}, cpu: ${cpu}, ci: ${ci}}';
+
+  /// Creates a copy of this [Meta] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Meta copyWith({
+    String? protocolVersion,
+    Product? implementation,
+    Product? runtime,
+    Product? os,
+    Product? cpu,
+    Ci? ci,
+  }) {
+    return Meta(
+      protocolVersion: protocolVersion ?? this.protocolVersion,
+      implementation: implementation ?? this.implementation,
+      runtime: runtime ?? this.runtime,
+      os: os ?? this.os,
+      cpu: cpu ?? this.cpu,
+      ci: ci ?? this.ci,
+    );
+  }
 }
 

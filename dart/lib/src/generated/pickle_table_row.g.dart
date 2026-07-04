@@ -33,5 +33,32 @@ class PickleTableRow {
     json['cells'] = cells.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTableRow &&
+          runtimeType == other.runtimeType &&
+          _listEquals(cells, other.cells);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        (cells == null ? null : Object.hashAll(cells!)),
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTableRow{cells: ${cells}}';
+
+  /// Creates a copy of this [PickleTableRow] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  PickleTableRow copyWith({
+    List<PickleTableCell>? cells,
+  }) {
+    return PickleTableRow(
+      cells: cells ?? this.cells,
+    );
+  }
 }
 

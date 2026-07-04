@@ -50,5 +50,40 @@ class Group {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Group &&
+          runtimeType == other.runtimeType &&
+          _listEquals(children, other.children) &&
+          start == other.start &&
+          value == other.value;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        (children == null ? null : Object.hashAll(children!)),
+        start,
+        value,
+      ]);
+
+  @override
+  String toString() =>
+      'Group{children: ${children}, start: ${start}, value: ${value}}';
+
+  /// Creates a copy of this [Group] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Group copyWith({
+    List<Group>? children,
+    int? start,
+    String? value,
+  }) {
+    return Group(
+      children: children ?? this.children,
+      start: start ?? this.start,
+      value: value ?? this.value,
+    );
+  }
 }
 

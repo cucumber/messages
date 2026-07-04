@@ -35,5 +35,36 @@ class Snippet {
     json['code'] = code;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Snippet &&
+          runtimeType == other.runtimeType &&
+          language == other.language &&
+          code == other.code;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        language,
+        code,
+      ]);
+
+  @override
+  String toString() =>
+      'Snippet{language: ${language}, code: ${code}}';
+
+  /// Creates a copy of this [Snippet] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Snippet copyWith({
+    String? language,
+    String? code,
+  }) {
+    return Snippet(
+      language: language ?? this.language,
+      code: code ?? this.code,
+    );
+  }
 }
 

@@ -45,5 +45,40 @@ class Suggestion {
     json['snippets'] = snippets.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Suggestion &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          pickleStepId == other.pickleStepId &&
+          _listEquals(snippets, other.snippets);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        pickleStepId,
+        (snippets == null ? null : Object.hashAll(snippets!)),
+      ]);
+
+  @override
+  String toString() =>
+      'Suggestion{id: ${id}, pickleStepId: ${pickleStepId}, snippets: ${snippets}}';
+
+  /// Creates a copy of this [Suggestion] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Suggestion copyWith({
+    String? id,
+    String? pickleStepId,
+    List<Snippet>? snippets,
+  }) {
+    return Suggestion(
+      id: id ?? this.id,
+      pickleStepId: pickleStepId ?? this.pickleStepId,
+      snippets: snippets ?? this.snippets,
+    );
+  }
 }
 

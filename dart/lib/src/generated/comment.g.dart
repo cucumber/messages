@@ -36,5 +36,36 @@ class Comment {
     json['text'] = text;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Comment &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          text == other.text;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        text,
+      ]);
+
+  @override
+  String toString() =>
+      'Comment{location: ${location}, text: ${text}}';
+
+  /// Creates a copy of this [Comment] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Comment copyWith({
+    Location? location,
+    String? text,
+  }) {
+    return Comment(
+      location: location ?? this.location,
+      text: text ?? this.text,
+    );
+  }
 }
 

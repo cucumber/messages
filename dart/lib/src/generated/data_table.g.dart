@@ -40,5 +40,36 @@ class DataTable {
     json['rows'] = rows.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DataTable &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(rows, other.rows);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        (rows == null ? null : Object.hashAll(rows!)),
+      ]);
+
+  @override
+  String toString() =>
+      'DataTable{location: ${location}, rows: ${rows}}';
+
+  /// Creates a copy of this [DataTable] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  DataTable copyWith({
+    Location? location,
+    List<TableRow>? rows,
+  }) {
+    return DataTable(
+      location: location ?? this.location,
+      rows: rows ?? this.rows,
+    );
+  }
 }
 

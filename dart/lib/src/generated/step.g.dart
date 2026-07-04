@@ -103,5 +103,56 @@ class Step {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Step &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          keyword == other.keyword &&
+          keywordType == other.keywordType &&
+          text == other.text &&
+          docString == other.docString &&
+          dataTable == other.dataTable &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        keyword,
+        keywordType,
+        text,
+        docString,
+        dataTable,
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Step{location: ${location}, keyword: ${keyword}, keywordType: ${keywordType}, text: ${text}, docString: ${docString}, dataTable: ${dataTable}, id: ${id}}';
+
+  /// Creates a copy of this [Step] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Step copyWith({
+    Location? location,
+    String? keyword,
+    StepKeywordType? keywordType,
+    String? text,
+    DocString? docString,
+    DataTable? dataTable,
+    String? id,
+  }) {
+    return Step(
+      location: location ?? this.location,
+      keyword: keyword ?? this.keyword,
+      keywordType: keywordType ?? this.keywordType,
+      text: text ?? this.text,
+      docString: docString ?? this.docString,
+      dataTable: dataTable ?? this.dataTable,
+      id: id ?? this.id,
+    );
+  }
 }
 

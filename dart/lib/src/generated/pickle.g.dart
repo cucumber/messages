@@ -96,5 +96,60 @@ class Pickle {
     json['astNodeIds'] = astNodeIds;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Pickle &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          uri == other.uri &&
+          location == other.location &&
+          name == other.name &&
+          language == other.language &&
+          _listEquals(steps, other.steps) &&
+          _listEquals(tags, other.tags) &&
+          _listEquals(astNodeIds, other.astNodeIds);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        uri,
+        location,
+        name,
+        language,
+        (steps == null ? null : Object.hashAll(steps!)),
+        (tags == null ? null : Object.hashAll(tags!)),
+        (astNodeIds == null ? null : Object.hashAll(astNodeIds!)),
+      ]);
+
+  @override
+  String toString() =>
+      'Pickle{id: ${id}, uri: ${uri}, location: ${location}, name: ${name}, language: ${language}, steps: ${steps}, tags: ${tags}, astNodeIds: ${astNodeIds}}';
+
+  /// Creates a copy of this [Pickle] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Pickle copyWith({
+    String? id,
+    String? uri,
+    Location? location,
+    String? name,
+    String? language,
+    List<PickleStep>? steps,
+    List<PickleTag>? tags,
+    List<String>? astNodeIds,
+  }) {
+    return Pickle(
+      id: id ?? this.id,
+      uri: uri ?? this.uri,
+      location: location ?? this.location,
+      name: name ?? this.name,
+      language: language ?? this.language,
+      steps: steps ?? this.steps,
+      tags: tags ?? this.tags,
+      astNodeIds: astNodeIds ?? this.astNodeIds,
+    );
+  }
 }
 

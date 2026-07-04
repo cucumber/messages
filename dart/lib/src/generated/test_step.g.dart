@@ -73,5 +73,48 @@ class TestStep {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestStep &&
+          runtimeType == other.runtimeType &&
+          hookId == other.hookId &&
+          id == other.id &&
+          pickleStepId == other.pickleStepId &&
+          _listEquals(stepDefinitionIds, other.stepDefinitionIds) &&
+          _listEquals(stepMatchArgumentsLists, other.stepMatchArgumentsLists);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        hookId,
+        id,
+        pickleStepId,
+        (stepDefinitionIds == null ? null : Object.hashAll(stepDefinitionIds!)),
+        (stepMatchArgumentsLists == null ? null : Object.hashAll(stepMatchArgumentsLists!)),
+      ]);
+
+  @override
+  String toString() =>
+      'TestStep{hookId: ${hookId}, id: ${id}, pickleStepId: ${pickleStepId}, stepDefinitionIds: ${stepDefinitionIds}, stepMatchArgumentsLists: ${stepMatchArgumentsLists}}';
+
+  /// Creates a copy of this [TestStep] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  TestStep copyWith({
+    String? hookId,
+    String? id,
+    String? pickleStepId,
+    List<String>? stepDefinitionIds,
+    List<StepMatchArgumentsList>? stepMatchArgumentsLists,
+  }) {
+    return TestStep(
+      hookId: hookId ?? this.hookId,
+      id: id ?? this.id,
+      pickleStepId: pickleStepId ?? this.pickleStepId,
+      stepDefinitionIds: stepDefinitionIds ?? this.stepDefinitionIds,
+      stepMatchArgumentsLists: stepMatchArgumentsLists ?? this.stepMatchArgumentsLists,
+    );
+  }
 }
 

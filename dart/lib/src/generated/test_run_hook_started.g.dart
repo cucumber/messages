@@ -51,5 +51,48 @@ class TestRunHookStarted {
     json['timestamp'] = timestamp.toJson();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestRunHookStarted &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          testRunStartedId == other.testRunStartedId &&
+          hookId == other.hookId &&
+          workerId == other.workerId &&
+          timestamp == other.timestamp;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        testRunStartedId,
+        hookId,
+        workerId,
+        timestamp,
+      ]);
+
+  @override
+  String toString() =>
+      'TestRunHookStarted{id: ${id}, testRunStartedId: ${testRunStartedId}, hookId: ${hookId}, workerId: ${workerId}, timestamp: ${timestamp}}';
+
+  /// Creates a copy of this [TestRunHookStarted] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  TestRunHookStarted copyWith({
+    String? id,
+    String? testRunStartedId,
+    String? hookId,
+    String? workerId,
+    Timestamp? timestamp,
+  }) {
+    return TestRunHookStarted(
+      id: id ?? this.id,
+      testRunStartedId: testRunStartedId ?? this.testRunStartedId,
+      hookId: hookId ?? this.hookId,
+      workerId: workerId ?? this.workerId,
+      timestamp: timestamp ?? this.timestamp,
+    );
+  }
 }
 

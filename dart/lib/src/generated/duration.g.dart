@@ -38,5 +38,36 @@ class Duration {
     json['nanos'] = nanos;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Duration &&
+          runtimeType == other.runtimeType &&
+          seconds == other.seconds &&
+          nanos == other.nanos;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        seconds,
+        nanos,
+      ]);
+
+  @override
+  String toString() =>
+      'Duration{seconds: ${seconds}, nanos: ${nanos}}';
+
+  /// Creates a copy of this [Duration] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Duration copyWith({
+    int? seconds,
+    int? nanos,
+  }) {
+    return Duration(
+      seconds: seconds ?? this.seconds,
+      nanos: nanos ?? this.nanos,
+    );
+  }
 }
 

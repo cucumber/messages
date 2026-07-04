@@ -164,5 +164,72 @@ class Attachment {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Attachment &&
+          runtimeType == other.runtimeType &&
+          body == other.body &&
+          contentEncoding == other.contentEncoding &&
+          fileName == other.fileName &&
+          mediaType == other.mediaType &&
+          source == other.source &&
+          testCaseStartedId == other.testCaseStartedId &&
+          testStepId == other.testStepId &&
+          url == other.url &&
+          testRunStartedId == other.testRunStartedId &&
+          testRunHookStartedId == other.testRunHookStartedId &&
+          timestamp == other.timestamp;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        body,
+        contentEncoding,
+        fileName,
+        mediaType,
+        source,
+        testCaseStartedId,
+        testStepId,
+        url,
+        testRunStartedId,
+        testRunHookStartedId,
+        timestamp,
+      ]);
+
+  @override
+  String toString() =>
+      'Attachment{body: ${body}, contentEncoding: ${contentEncoding}, fileName: ${fileName}, mediaType: ${mediaType}, source: ${source}, testCaseStartedId: ${testCaseStartedId}, testStepId: ${testStepId}, url: ${url}, testRunStartedId: ${testRunStartedId}, testRunHookStartedId: ${testRunHookStartedId}, timestamp: ${timestamp}}';
+
+  /// Creates a copy of this [Attachment] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Attachment copyWith({
+    String? body,
+    AttachmentContentEncoding? contentEncoding,
+    String? fileName,
+    String? mediaType,
+    Source? source,
+    String? testCaseStartedId,
+    String? testStepId,
+    String? url,
+    String? testRunStartedId,
+    String? testRunHookStartedId,
+    Timestamp? timestamp,
+  }) {
+    return Attachment(
+      body: body ?? this.body,
+      contentEncoding: contentEncoding ?? this.contentEncoding,
+      fileName: fileName ?? this.fileName,
+      mediaType: mediaType ?? this.mediaType,
+      source: source ?? this.source,
+      testCaseStartedId: testCaseStartedId ?? this.testCaseStartedId,
+      testStepId: testStepId ?? this.testStepId,
+      url: url ?? this.url,
+      testRunStartedId: testRunStartedId ?? this.testRunStartedId,
+      testRunHookStartedId: testRunHookStartedId ?? this.testRunHookStartedId,
+      timestamp: timestamp ?? this.timestamp,
+    );
+  }
 }
 

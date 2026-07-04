@@ -43,5 +43,40 @@ class Exception {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Exception &&
+          runtimeType == other.runtimeType &&
+          type == other.type &&
+          message == other.message &&
+          stackTrace == other.stackTrace;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        type,
+        message,
+        stackTrace,
+      ]);
+
+  @override
+  String toString() =>
+      'Exception{type: ${type}, message: ${message}, stackTrace: ${stackTrace}}';
+
+  /// Creates a copy of this [Exception] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Exception copyWith({
+    String? type,
+    String? message,
+    String? stackTrace,
+  }) {
+    return Exception(
+      type: type ?? this.type,
+      message: message ?? this.message,
+      stackTrace: stackTrace ?? this.stackTrace,
+    );
+  }
 }
 

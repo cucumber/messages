@@ -39,5 +39,40 @@ class TestCaseFinished {
     json['willBeRetried'] = willBeRetried;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestCaseFinished &&
+          runtimeType == other.runtimeType &&
+          testCaseStartedId == other.testCaseStartedId &&
+          timestamp == other.timestamp &&
+          willBeRetried == other.willBeRetried;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        testCaseStartedId,
+        timestamp,
+        willBeRetried,
+      ]);
+
+  @override
+  String toString() =>
+      'TestCaseFinished{testCaseStartedId: ${testCaseStartedId}, timestamp: ${timestamp}, willBeRetried: ${willBeRetried}}';
+
+  /// Creates a copy of this [TestCaseFinished] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  TestCaseFinished copyWith({
+    String? testCaseStartedId,
+    Timestamp? timestamp,
+    bool? willBeRetried,
+  }) {
+    return TestCaseFinished(
+      testCaseStartedId: testCaseStartedId ?? this.testCaseStartedId,
+      timestamp: timestamp ?? this.timestamp,
+      willBeRetried: willBeRetried ?? this.willBeRetried,
+    );
+  }
 }
 

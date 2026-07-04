@@ -57,5 +57,40 @@ class FeatureChild {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FeatureChild &&
+          runtimeType == other.runtimeType &&
+          rule == other.rule &&
+          background == other.background &&
+          scenario == other.scenario;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        rule,
+        background,
+        scenario,
+      ]);
+
+  @override
+  String toString() =>
+      'FeatureChild{rule: ${rule}, background: ${background}, scenario: ${scenario}}';
+
+  /// Creates a copy of this [FeatureChild] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  FeatureChild copyWith({
+    Rule? rule,
+    Background? background,
+    Scenario? scenario,
+  }) {
+    return FeatureChild(
+      rule: rule ?? this.rule,
+      background: background ?? this.background,
+      scenario: scenario ?? this.scenario,
+    );
+  }
 }
 

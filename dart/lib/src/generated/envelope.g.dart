@@ -253,5 +253,112 @@ class Envelope {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Envelope &&
+          runtimeType == other.runtimeType &&
+          attachment == other.attachment &&
+          externalAttachment == other.externalAttachment &&
+          gherkinDocument == other.gherkinDocument &&
+          hook == other.hook &&
+          meta == other.meta &&
+          parameterType == other.parameterType &&
+          parseError == other.parseError &&
+          pickle == other.pickle &&
+          suggestion == other.suggestion &&
+          source == other.source &&
+          stepDefinition == other.stepDefinition &&
+          testCase == other.testCase &&
+          testCaseFinished == other.testCaseFinished &&
+          testCaseStarted == other.testCaseStarted &&
+          testRunFinished == other.testRunFinished &&
+          testRunStarted == other.testRunStarted &&
+          testStepFinished == other.testStepFinished &&
+          testStepStarted == other.testStepStarted &&
+          testRunHookStarted == other.testRunHookStarted &&
+          testRunHookFinished == other.testRunHookFinished &&
+          undefinedParameterType == other.undefinedParameterType;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        attachment,
+        externalAttachment,
+        gherkinDocument,
+        hook,
+        meta,
+        parameterType,
+        parseError,
+        pickle,
+        suggestion,
+        source,
+        stepDefinition,
+        testCase,
+        testCaseFinished,
+        testCaseStarted,
+        testRunFinished,
+        testRunStarted,
+        testStepFinished,
+        testStepStarted,
+        testRunHookStarted,
+        testRunHookFinished,
+        undefinedParameterType,
+      ]);
+
+  @override
+  String toString() =>
+      'Envelope{attachment: ${attachment}, externalAttachment: ${externalAttachment}, gherkinDocument: ${gherkinDocument}, hook: ${hook}, meta: ${meta}, parameterType: ${parameterType}, parseError: ${parseError}, pickle: ${pickle}, suggestion: ${suggestion}, source: ${source}, stepDefinition: ${stepDefinition}, testCase: ${testCase}, testCaseFinished: ${testCaseFinished}, testCaseStarted: ${testCaseStarted}, testRunFinished: ${testRunFinished}, testRunStarted: ${testRunStarted}, testStepFinished: ${testStepFinished}, testStepStarted: ${testStepStarted}, testRunHookStarted: ${testRunHookStarted}, testRunHookFinished: ${testRunHookFinished}, undefinedParameterType: ${undefinedParameterType}}';
+
+  /// Creates a copy of this [Envelope] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Envelope copyWith({
+    Attachment? attachment,
+    ExternalAttachment? externalAttachment,
+    GherkinDocument? gherkinDocument,
+    Hook? hook,
+    Meta? meta,
+    ParameterType? parameterType,
+    ParseError? parseError,
+    Pickle? pickle,
+    Suggestion? suggestion,
+    Source? source,
+    StepDefinition? stepDefinition,
+    TestCase? testCase,
+    TestCaseFinished? testCaseFinished,
+    TestCaseStarted? testCaseStarted,
+    TestRunFinished? testRunFinished,
+    TestRunStarted? testRunStarted,
+    TestStepFinished? testStepFinished,
+    TestStepStarted? testStepStarted,
+    TestRunHookStarted? testRunHookStarted,
+    TestRunHookFinished? testRunHookFinished,
+    UndefinedParameterType? undefinedParameterType,
+  }) {
+    return Envelope(
+      attachment: attachment ?? this.attachment,
+      externalAttachment: externalAttachment ?? this.externalAttachment,
+      gherkinDocument: gherkinDocument ?? this.gherkinDocument,
+      hook: hook ?? this.hook,
+      meta: meta ?? this.meta,
+      parameterType: parameterType ?? this.parameterType,
+      parseError: parseError ?? this.parseError,
+      pickle: pickle ?? this.pickle,
+      suggestion: suggestion ?? this.suggestion,
+      source: source ?? this.source,
+      stepDefinition: stepDefinition ?? this.stepDefinition,
+      testCase: testCase ?? this.testCase,
+      testCaseFinished: testCaseFinished ?? this.testCaseFinished,
+      testCaseStarted: testCaseStarted ?? this.testCaseStarted,
+      testRunFinished: testRunFinished ?? this.testRunFinished,
+      testRunStarted: testRunStarted ?? this.testRunStarted,
+      testStepFinished: testStepFinished ?? this.testStepFinished,
+      testStepStarted: testStepStarted ?? this.testStepStarted,
+      testRunHookStarted: testRunHookStarted ?? this.testRunHookStarted,
+      testRunHookFinished: testRunHookFinished ?? this.testRunHookFinished,
+      undefinedParameterType: undefinedParameterType ?? this.undefinedParameterType,
+    );
+  }
 }
 

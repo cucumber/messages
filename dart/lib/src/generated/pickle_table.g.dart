@@ -40,5 +40,36 @@ class PickleTable {
     json['rows'] = rows.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTable &&
+          runtimeType == other.runtimeType &&
+          argumentIndex == other.argumentIndex &&
+          _listEquals(rows, other.rows);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        argumentIndex,
+        (rows == null ? null : Object.hashAll(rows!)),
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTable{argumentIndex: ${argumentIndex}, rows: ${rows}}';
+
+  /// Creates a copy of this [PickleTable] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  PickleTable copyWith({
+    int? argumentIndex,
+    List<PickleTableRow>? rows,
+  }) {
+    return PickleTable(
+      argumentIndex: argumentIndex ?? this.argumentIndex,
+      rows: rows ?? this.rows,
+    );
+  }
 }
 

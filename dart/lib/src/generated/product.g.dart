@@ -36,5 +36,36 @@ class Product {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Product &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          version == other.version;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        version,
+      ]);
+
+  @override
+  String toString() =>
+      'Product{name: ${name}, version: ${version}}';
+
+  /// Creates a copy of this [Product] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Product copyWith({
+    String? name,
+    String? version,
+  }) {
+    return Product(
+      name: name ?? this.name,
+      version: version ?? this.version,
+    );
+  }
 }
 

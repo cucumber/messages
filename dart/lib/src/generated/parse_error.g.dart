@@ -34,5 +34,36 @@ class ParseError {
     json['message'] = message;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ParseError &&
+          runtimeType == other.runtimeType &&
+          source == other.source &&
+          message == other.message;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        source,
+        message,
+      ]);
+
+  @override
+  String toString() =>
+      'ParseError{source: ${source}, message: ${message}}';
+
+  /// Creates a copy of this [ParseError] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  ParseError copyWith({
+    SourceReference? source,
+    String? message,
+  }) {
+    return ParseError(
+      source: source ?? this.source,
+      message: message ?? this.message,
+    );
+  }
 }
 

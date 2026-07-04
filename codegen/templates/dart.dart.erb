@@ -180,6 +180,53 @@ class <%= class_name(key) %> {
 <%- end -%>
     return json;
   }
+
+<%-
+  props = schema['properties']
+  eq_parts = props.map do |pn, prop|
+    pname = property_name(pn)
+    prop['items'] ? "_listEquals(#{pname}, other.#{pname})" : "#{pname} == other.#{pname}"
+  end
+  hash_parts = props.map do |pn, prop|
+    pname = property_name(pn)
+    prop['items'] ? "(#{pname} == null ? null : Object.hashAll(#{pname}!))" : pname
+  end
+  ts_parts = props.map do |pn, _prop|
+    pname = property_name(pn)
+    "#{pname}: ${#{pname}}"
+  end
+-%>
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is <%= class_name(key) %> &&
+          runtimeType == other.runtimeType<%= eq_parts.map { |c| " &&\n          #{c}" }.join %>;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[<%= hash_parts.map { |h| "\n        #{h}," }.join %>
+      ]);
+
+  @override
+  String toString() =>
+      '<%= class_name(key) %>{<%= ts_parts.join(', ') %>}';
+<%- unless props.empty? -%>
+
+  /// Creates a copy of this [<%= class_name(key) %>] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  <%= class_name(key) %> copyWith({
+<%- props.each do |property_name, property| -%>
+    <%= type_for(class_name(key), property_name, property) %>? <%= property_name(property_name) %>,
+<%- end -%>
+  }) {
+    return <%= class_name(key) %>(
+<%- props.each do |property_name, property| -%>
+<%- pname = property_name(property_name) -%>
+      <%= pname %>: <%= pname %> ?? this.<%= pname %>,
+<%- end -%>
+    );
+  }
+<%- end -%>
 }
 
 <%- end -%>

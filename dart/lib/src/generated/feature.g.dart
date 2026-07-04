@@ -71,5 +71,56 @@ class Feature {
     json['children'] = children.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Feature &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(tags, other.tags) &&
+          language == other.language &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          _listEquals(children, other.children);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        (tags == null ? null : Object.hashAll(tags!)),
+        language,
+        keyword,
+        name,
+        description,
+        (children == null ? null : Object.hashAll(children!)),
+      ]);
+
+  @override
+  String toString() =>
+      'Feature{location: ${location}, tags: ${tags}, language: ${language}, keyword: ${keyword}, name: ${name}, description: ${description}, children: ${children}}';
+
+  /// Creates a copy of this [Feature] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Feature copyWith({
+    Location? location,
+    List<Tag>? tags,
+    String? language,
+    String? keyword,
+    String? name,
+    String? description,
+    List<FeatureChild>? children,
+  }) {
+    return Feature(
+      location: location ?? this.location,
+      tags: tags ?? this.tags,
+      language: language ?? this.language,
+      keyword: keyword ?? this.keyword,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      children: children ?? this.children,
+    );
+  }
 }
 

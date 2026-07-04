@@ -32,5 +32,36 @@ class UndefinedParameterType {
     json['name'] = name;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UndefinedParameterType &&
+          runtimeType == other.runtimeType &&
+          expression == other.expression &&
+          name == other.name;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        expression,
+        name,
+      ]);
+
+  @override
+  String toString() =>
+      'UndefinedParameterType{expression: ${expression}, name: ${name}}';
+
+  /// Creates a copy of this [UndefinedParameterType] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  UndefinedParameterType copyWith({
+    String? expression,
+    String? name,
+  }) {
+    return UndefinedParameterType(
+      expression: expression ?? this.expression,
+      name: name ?? this.name,
+    );
+  }
 }
 

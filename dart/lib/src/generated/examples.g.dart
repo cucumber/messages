@@ -82,5 +82,60 @@ class Examples {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Examples &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(tags, other.tags) &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          tableHeader == other.tableHeader &&
+          _listEquals(tableBody, other.tableBody) &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        (tags == null ? null : Object.hashAll(tags!)),
+        keyword,
+        name,
+        description,
+        tableHeader,
+        (tableBody == null ? null : Object.hashAll(tableBody!)),
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Examples{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, tableHeader: ${tableHeader}, tableBody: ${tableBody}, id: ${id}}';
+
+  /// Creates a copy of this [Examples] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Examples copyWith({
+    Location? location,
+    List<Tag>? tags,
+    String? keyword,
+    String? name,
+    String? description,
+    TableRow? tableHeader,
+    List<TableRow>? tableBody,
+    String? id,
+  }) {
+    return Examples(
+      location: location ?? this.location,
+      tags: tags ?? this.tags,
+      keyword: keyword ?? this.keyword,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      tableHeader: tableHeader ?? this.tableHeader,
+      tableBody: tableBody ?? this.tableBody,
+      id: id ?? this.id,
+    );
+  }
 }
 

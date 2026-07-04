@@ -59,5 +59,48 @@ class TestRunFinished {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestRunFinished &&
+          runtimeType == other.runtimeType &&
+          message == other.message &&
+          success == other.success &&
+          timestamp == other.timestamp &&
+          exception == other.exception &&
+          testRunStartedId == other.testRunStartedId;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        message,
+        success,
+        timestamp,
+        exception,
+        testRunStartedId,
+      ]);
+
+  @override
+  String toString() =>
+      'TestRunFinished{message: ${message}, success: ${success}, timestamp: ${timestamp}, exception: ${exception}, testRunStartedId: ${testRunStartedId}}';
+
+  /// Creates a copy of this [TestRunFinished] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  TestRunFinished copyWith({
+    String? message,
+    bool? success,
+    Timestamp? timestamp,
+    Exception? exception,
+    String? testRunStartedId,
+  }) {
+    return TestRunFinished(
+      message: message ?? this.message,
+      success: success ?? this.success,
+      timestamp: timestamp ?? this.timestamp,
+      exception: exception ?? this.exception,
+      testRunStartedId: testRunStartedId ?? this.testRunStartedId,
+    );
+  }
 }
 

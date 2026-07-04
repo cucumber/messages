@@ -37,5 +37,36 @@ class Timestamp {
     json['nanos'] = nanos;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Timestamp &&
+          runtimeType == other.runtimeType &&
+          seconds == other.seconds &&
+          nanos == other.nanos;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        seconds,
+        nanos,
+      ]);
+
+  @override
+  String toString() =>
+      'Timestamp{seconds: ${seconds}, nanos: ${nanos}}';
+
+  /// Creates a copy of this [Timestamp] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Timestamp copyWith({
+    int? seconds,
+    int? nanos,
+  }) {
+    return Timestamp(
+      seconds: seconds ?? this.seconds,
+      nanos: nanos ?? this.nanos,
+    );
+  }
 }
 

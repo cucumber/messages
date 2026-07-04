@@ -76,5 +76,52 @@ class ExternalAttachment {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ExternalAttachment &&
+          runtimeType == other.runtimeType &&
+          url == other.url &&
+          mediaType == other.mediaType &&
+          testCaseStartedId == other.testCaseStartedId &&
+          testStepId == other.testStepId &&
+          testRunHookStartedId == other.testRunHookStartedId &&
+          timestamp == other.timestamp;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        url,
+        mediaType,
+        testCaseStartedId,
+        testStepId,
+        testRunHookStartedId,
+        timestamp,
+      ]);
+
+  @override
+  String toString() =>
+      'ExternalAttachment{url: ${url}, mediaType: ${mediaType}, testCaseStartedId: ${testCaseStartedId}, testStepId: ${testStepId}, testRunHookStartedId: ${testRunHookStartedId}, timestamp: ${timestamp}}';
+
+  /// Creates a copy of this [ExternalAttachment] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  ExternalAttachment copyWith({
+    String? url,
+    String? mediaType,
+    String? testCaseStartedId,
+    String? testStepId,
+    String? testRunHookStartedId,
+    Timestamp? timestamp,
+  }) {
+    return ExternalAttachment(
+      url: url ?? this.url,
+      mediaType: mediaType ?? this.mediaType,
+      testCaseStartedId: testCaseStartedId ?? this.testCaseStartedId,
+      testStepId: testStepId ?? this.testStepId,
+      testRunHookStartedId: testRunHookStartedId ?? this.testRunHookStartedId,
+      timestamp: timestamp ?? this.timestamp,
+    );
+  }
 }
 

@@ -36,5 +36,36 @@ class TestRunStarted {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestRunStarted &&
+          runtimeType == other.runtimeType &&
+          timestamp == other.timestamp &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        timestamp,
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'TestRunStarted{timestamp: ${timestamp}, id: ${id}}';
+
+  /// Creates a copy of this [TestRunStarted] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  TestRunStarted copyWith({
+    Timestamp? timestamp,
+    String? id,
+  }) {
+    return TestRunStarted(
+      timestamp: timestamp ?? this.timestamp,
+      id: id ?? this.id,
+    );
+  }
 }
 

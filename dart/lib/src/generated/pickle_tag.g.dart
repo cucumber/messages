@@ -34,5 +34,36 @@ class PickleTag {
     json['astNodeId'] = astNodeId;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTag &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          astNodeId == other.astNodeId;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        astNodeId,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTag{name: ${name}, astNodeId: ${astNodeId}}';
+
+  /// Creates a copy of this [PickleTag] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  PickleTag copyWith({
+    String? name,
+    String? astNodeId,
+  }) {
+    return PickleTag(
+      name: name ?? this.name,
+      astNodeId: astNodeId ?? this.astNodeId,
+    );
+  }
 }
 

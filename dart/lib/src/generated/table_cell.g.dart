@@ -36,5 +36,36 @@ class TableCell {
     json['value'] = value;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TableCell &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          value == other.value;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        value,
+      ]);
+
+  @override
+  String toString() =>
+      'TableCell{location: ${location}, value: ${value}}';
+
+  /// Creates a copy of this [TableCell] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  TableCell copyWith({
+    Location? location,
+    String? value,
+  }) {
+    return TableCell(
+      location: location ?? this.location,
+      value: value ?? this.value,
+    );
+  }
 }
 

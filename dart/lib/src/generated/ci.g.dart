@@ -54,5 +54,44 @@ class Ci {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Ci &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          url == other.url &&
+          buildNumber == other.buildNumber &&
+          git == other.git;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        url,
+        buildNumber,
+        git,
+      ]);
+
+  @override
+  String toString() =>
+      'Ci{name: ${name}, url: ${url}, buildNumber: ${buildNumber}, git: ${git}}';
+
+  /// Creates a copy of this [Ci] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Ci copyWith({
+    String? name,
+    String? url,
+    String? buildNumber,
+    Git? git,
+  }) {
+    return Ci(
+      name: name ?? this.name,
+      url: url ?? this.url,
+      buildNumber: buildNumber ?? this.buildNumber,
+      git: git ?? this.git,
+    );
+  }
 }
 

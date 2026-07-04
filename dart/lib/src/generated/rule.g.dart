@@ -71,5 +71,56 @@ class Rule {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Rule &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(tags, other.tags) &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          _listEquals(children, other.children) &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        (tags == null ? null : Object.hashAll(tags!)),
+        keyword,
+        name,
+        description,
+        (children == null ? null : Object.hashAll(children!)),
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Rule{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, children: ${children}, id: ${id}}';
+
+  /// Creates a copy of this [Rule] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Rule copyWith({
+    Location? location,
+    List<Tag>? tags,
+    String? keyword,
+    String? name,
+    String? description,
+    List<RuleChild>? children,
+    String? id,
+  }) {
+    return Rule(
+      location: location ?? this.location,
+      tags: tags ?? this.tags,
+      keyword: keyword ?? this.keyword,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      children: children ?? this.children,
+      id: id ?? this.id,
+    );
+  }
 }
 

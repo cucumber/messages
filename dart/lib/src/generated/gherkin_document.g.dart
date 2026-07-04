@@ -59,5 +59,40 @@ class GherkinDocument {
     json['comments'] = comments.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GherkinDocument &&
+          runtimeType == other.runtimeType &&
+          uri == other.uri &&
+          feature == other.feature &&
+          _listEquals(comments, other.comments);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        uri,
+        feature,
+        (comments == null ? null : Object.hashAll(comments!)),
+      ]);
+
+  @override
+  String toString() =>
+      'GherkinDocument{uri: ${uri}, feature: ${feature}, comments: ${comments}}';
+
+  /// Creates a copy of this [GherkinDocument] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  GherkinDocument copyWith({
+    String? uri,
+    Feature? feature,
+    List<Comment>? comments,
+  }) {
+    return GherkinDocument(
+      uri: uri ?? this.uri,
+      feature: feature ?? this.feature,
+      comments: comments ?? this.comments,
+    );
+  }
 }
 

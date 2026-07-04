@@ -62,5 +62,40 @@ class Source {
     json['mediaType'] = mediaType.value;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Source &&
+          runtimeType == other.runtimeType &&
+          uri == other.uri &&
+          data == other.data &&
+          mediaType == other.mediaType;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        uri,
+        data,
+        mediaType,
+      ]);
+
+  @override
+  String toString() =>
+      'Source{uri: ${uri}, data: ${data}, mediaType: ${mediaType}}';
+
+  /// Creates a copy of this [Source] with the given fields
+  /// replaced by the given values. Fields left unspecified keep their current
+  /// value.
+  Source copyWith({
+    String? uri,
+    String? data,
+    SourceMediaType? mediaType,
+  }) {
+    return Source(
+      uri: uri ?? this.uri,
+      data: data ?? this.data,
+      mediaType: mediaType ?? this.mediaType,
+    );
+  }
 }
 
