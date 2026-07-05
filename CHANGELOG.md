@@ -6,8 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [34.0.1] - 2026-07-05
 ### Fixed
-- [Dart] Fix automated release process? 
+- [Dart] Fix automated release process?
 
 ## [34.0.0] - 2026-07-05
 ### Added
@@ -712,7 +714,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v34.0.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v34.0.1...HEAD
+[34.0.1]: https://github.com/cucumber/messages/compare/v34.0.0...v34.0.1
 [34.0.0]: https://github.com/cucumber/messages/compare/v33.0.4...v34.0.0
 [33.0.4]: https://github.com/cucumber/messages/compare/v33.0.3...v33.0.4
 [33.0.3]: https://github.com/cucumber/messages/compare/v33.0.2...v33.0.3
