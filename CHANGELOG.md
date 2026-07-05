@@ -7,15 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- [Dart] Add initial `cucumber_messages` package with generated message types, NDJSON read/write support, time conversion helpers, and schema validation ([#431](https://github.com/cucumber/messages/pull/431/))
-- [Dart] Add `example/README.md` pointing to the package README usage sections ([#470](https://github.com/cucumber/messages/pull/470))
+- [Dart] Add initial `cucumber_messages` package. ([#431](https://github.com/cucumber/messages/pull/431/), [#470](https://github.com/cucumber/messages/pull/470))
 
 ### Changed
-- [Ruby] Updated minimum Ruby version to 3.3 ([#472](https://github.com/cucumber/messages/pull/472) [luke-hill](https://github.com/luke-hill))
+- [Ruby] Updated minimum Ruby version to 3.3 ([#472](https://github.com/cucumber/messages/pull/472)
 - [cpp] Replaced custom cmate script with native cmake and CPM. ([#432](https://github.com/cucumber/messages/pull/432))
 - [cpp] Moved all generated files to their own folder, does not change includes paths for dependent projects. ([#432](https://github.com/cucumber/messages/pull/432))
-- [cpp] Added additional CI tests against different compiler versions. ([#432](https://github.com/cucumber/messages/pull/432))
-- [jsonschema] Allow steps to contain both DataTable and DocString. ([#468](https://github.com/cucumber/messages/pull/468))
+- [jsonschema] Allow steps to contain both `DataTable` and `DocString`. ([#468](https://github.com/cucumber/messages/pull/468))
 
 ## [33.0.4] - 2026-06-27
 ### Fixed
