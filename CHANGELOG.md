@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [34.0.0] - 2026-07-05
 ### Added
 - [Dart] Add initial `cucumber_messages` package. ([#431](https://github.com/cucumber/messages/pull/431/), [#470](https://github.com/cucumber/messages/pull/470))
 
@@ -174,7 +176,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Go] Switch to Google's UUID module ([#251](https://github.com/cucumber/messages/pull/251))
 
 ### Fixed
-- [Dotnet] Fixed code generation for types that accept List<T> as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi](https://github.com/clrudolphi))
+- [Dotnet] Fixed code generation for types that accept List as parameters. Constructors were not properly handling null input. ([#249](https://github.com/cucumber/messages/pull/249) [clrudolphi](https://github.com/clrudolphi))
 - Moved contents of the description of the StepDefinitionIds field from the StepMatchArgumentsList field where it had been mistakenly placed. ([#252](https://github.com/cucumber/messages/pull/252) [clrudolphi](https://github.com/clrudolphi)))
 
 ## [26.0.0] - 2024-08-15
@@ -708,7 +710,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v33.0.4...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v34.0.0...HEAD
+[34.0.0]: https://github.com/cucumber/messages/compare/v33.0.4...v34.0.0
 [33.0.4]: https://github.com/cucumber/messages/compare/v33.0.3...v33.0.4
 [33.0.3]: https://github.com/cucumber/messages/compare/v33.0.2...v33.0.3
 [33.0.2]: https://github.com/cucumber/messages/compare/v33.0.1...v33.0.2
