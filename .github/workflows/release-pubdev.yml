@@ -1,4 +1,4 @@
-name: Publish to pub.dev
+name: Release pub.dev
 
 permissions: {}
 
@@ -9,34 +9,9 @@ on:
 
 jobs:
   publish:
-    name: 'Publish to pub.dev'
-    environment: Release
     permissions:
-      id-token: write # This is required for requesting the JWT
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout repository
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
-      # Set up the Dart SDK and provision the OIDC token used for publishing.
-      # The `dart` command from this step will be shadowed by the one from the
-      # Flutter SDK below.
-      - uses: dart-lang/setup-dart@e51d8e571e22473a2ddebf0ef8a2123f0ab2c02c # v1.7.1
-      # Download flutter SDK - needed for publishing Flutter packages. Can also
-      # publish pure Dart packages.
-      #
-      # The dart binary from a Flutter SDK facilitates publishing both Flutter
-      # and pure-dart packages.
-      - uses: flutter-actions/setup-flutter@480ffd9d3a24db4ce099d7ceb62c3d6959661eb8 # v4.2
-      # Minimal package setup and dry run checks.
-      - name: Install dependencies
-        run: dart pub get
-        working-directory: dart
-      - name: Publish - dry run
-        run: dart pub publish --dry-run
-        working-directory: dart
-      # Publishing...
-      - name: Publish to pub.dev
-        run: dart pub publish -f
-        working-directory: dart
+      id-token: write # Required for authentication using OIDC
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@65eb853c7ba17dde3be364c3d2858773e7144260 # v1.7.2
+    with:
+      environment: 'Release'
+      working-directory: dart
