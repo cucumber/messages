@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- [cpp] When fetching them is disabled, still try to find them. ([#478](https://github.com/cucumber/messages/pull/478))
 
 ## [34.0.1] - 2026-07-05
 ### Fixed
