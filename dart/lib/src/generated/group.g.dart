@@ -70,20 +70,5 @@ class Group {
   @override
   String toString() =>
       'Group{children: ${children}, start: ${start}, value: ${value}}';
-
-  /// Creates a copy of this [Group] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Group copyWith({
-    List<Group>? children,
-    int? start,
-    String? value,
-  }) {
-    return Group(
-      children: children ?? this.children,
-      start: start ?? this.start,
-      value: value ?? this.value,
-    );
-  }
 }
 

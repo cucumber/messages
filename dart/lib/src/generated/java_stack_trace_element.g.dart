@@ -57,20 +57,5 @@ class JavaStackTraceElement {
   @override
   String toString() =>
       'JavaStackTraceElement{className: ${className}, fileName: ${fileName}, methodName: ${methodName}}';
-
-  /// Creates a copy of this [JavaStackTraceElement] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  JavaStackTraceElement copyWith({
-    String? className,
-    String? fileName,
-    String? methodName,
-  }) {
-    return JavaStackTraceElement(
-      className: className ?? this.className,
-      fileName: fileName ?? this.fileName,
-      methodName: methodName ?? this.methodName,
-    );
-  }
 }
 

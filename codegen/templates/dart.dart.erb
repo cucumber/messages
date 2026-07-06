@@ -209,24 +209,6 @@ class <%= class_name(key) %> {
   @override
   String toString() =>
       '<%= class_name(key) %>{<%= ts_parts.join(', ') %>}';
-<%- unless props.empty? -%>
-
-  /// Creates a copy of this [<%= class_name(key) %>] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  <%= class_name(key) %> copyWith({
-<%- props.each do |property_name, property| -%>
-    <%= type_for(class_name(key), property_name, property) %>? <%= property_name(property_name) %>,
-<%- end -%>
-  }) {
-    return <%= class_name(key) %>(
-<%- props.each do |property_name, property| -%>
-<%- pname = property_name(property_name) -%>
-      <%= pname %>: <%= pname %> ?? this.<%= pname %>,
-<%- end -%>
-    );
-  }
-<%- end -%>
 }
 
 <%- end -%>

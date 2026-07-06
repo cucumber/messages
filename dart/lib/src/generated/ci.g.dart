@@ -76,22 +76,5 @@ class Ci {
   @override
   String toString() =>
       'Ci{name: ${name}, url: ${url}, buildNumber: ${buildNumber}, git: ${git}}';
-
-  /// Creates a copy of this [Ci] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Ci copyWith({
-    String? name,
-    String? url,
-    String? buildNumber,
-    Git? git,
-  }) {
-    return Ci(
-      name: name ?? this.name,
-      url: url ?? this.url,
-      buildNumber: buildNumber ?? this.buildNumber,
-      git: git ?? this.git,
-    );
-  }
 }
 

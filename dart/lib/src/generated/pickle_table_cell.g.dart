@@ -43,16 +43,5 @@ class PickleTableCell {
   @override
   String toString() =>
       'PickleTableCell{value: ${value}}';
-
-  /// Creates a copy of this [PickleTableCell] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  PickleTableCell copyWith({
-    String? value,
-  }) {
-    return PickleTableCell(
-      value: value ?? this.value,
-    );
-  }
 }
 

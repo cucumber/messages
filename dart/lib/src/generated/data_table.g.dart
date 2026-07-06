@@ -58,18 +58,5 @@ class DataTable {
   @override
   String toString() =>
       'DataTable{location: ${location}, rows: ${rows}}';
-
-  /// Creates a copy of this [DataTable] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  DataTable copyWith({
-    Location? location,
-    List<TableRow>? rows,
-  }) {
-    return DataTable(
-      location: location ?? this.location,
-      rows: rows ?? this.rows,
-    );
-  }
 }
 

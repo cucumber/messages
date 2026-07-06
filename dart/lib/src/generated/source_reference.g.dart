@@ -87,22 +87,5 @@ class SourceReference {
   @override
   String toString() =>
       'SourceReference{uri: ${uri}, javaMethod: ${javaMethod}, javaStackTraceElement: ${javaStackTraceElement}, location: ${location}}';
-
-  /// Creates a copy of this [SourceReference] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  SourceReference copyWith({
-    String? uri,
-    JavaMethod? javaMethod,
-    JavaStackTraceElement? javaStackTraceElement,
-    Location? location,
-  }) {
-    return SourceReference(
-      uri: uri ?? this.uri,
-      javaMethod: javaMethod ?? this.javaMethod,
-      javaStackTraceElement: javaStackTraceElement ?? this.javaStackTraceElement,
-      location: location ?? this.location,
-    );
-  }
 }
 

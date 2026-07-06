@@ -86,26 +86,5 @@ class Background {
   @override
   String toString() =>
       'Background{location: ${location}, keyword: ${keyword}, name: ${name}, description: ${description}, steps: ${steps}, id: ${id}}';
-
-  /// Creates a copy of this [Background] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Background copyWith({
-    Location? location,
-    String? keyword,
-    String? name,
-    String? description,
-    List<Step>? steps,
-    String? id,
-  }) {
-    return Background(
-      location: location ?? this.location,
-      keyword: keyword ?? this.keyword,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      steps: steps ?? this.steps,
-      id: id ?? this.id,
-    );
-  }
 }
 

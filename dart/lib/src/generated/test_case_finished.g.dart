@@ -59,20 +59,5 @@ class TestCaseFinished {
   @override
   String toString() =>
       'TestCaseFinished{testCaseStartedId: ${testCaseStartedId}, timestamp: ${timestamp}, willBeRetried: ${willBeRetried}}';
-
-  /// Creates a copy of this [TestCaseFinished] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  TestCaseFinished copyWith({
-    String? testCaseStartedId,
-    Timestamp? timestamp,
-    bool? willBeRetried,
-  }) {
-    return TestCaseFinished(
-      testCaseStartedId: testCaseStartedId ?? this.testCaseStartedId,
-      timestamp: timestamp ?? this.timestamp,
-      willBeRetried: willBeRetried ?? this.willBeRetried,
-    );
-  }
 }
 

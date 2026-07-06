@@ -58,18 +58,5 @@ class PickleTable {
   @override
   String toString() =>
       'PickleTable{argumentIndex: ${argumentIndex}, rows: ${rows}}';
-
-  /// Creates a copy of this [PickleTable] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  PickleTable copyWith({
-    int? argumentIndex,
-    List<PickleTableRow>? rows,
-  }) {
-    return PickleTable(
-      argumentIndex: argumentIndex ?? this.argumentIndex,
-      rows: rows ?? this.rows,
-    );
-  }
 }
 

@@ -74,22 +74,5 @@ class TestCase {
   @override
   String toString() =>
       'TestCase{id: ${id}, pickleId: ${pickleId}, testSteps: ${testSteps}, testRunStartedId: ${testRunStartedId}}';
-
-  /// Creates a copy of this [TestCase] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  TestCase copyWith({
-    String? id,
-    String? pickleId,
-    List<TestStep>? testSteps,
-    String? testRunStartedId,
-  }) {
-    return TestCase(
-      id: id ?? this.id,
-      pickleId: pickleId ?? this.pickleId,
-      testSteps: testSteps ?? this.testSteps,
-      testRunStartedId: testRunStartedId ?? this.testRunStartedId,
-    );
-  }
 }
 

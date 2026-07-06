@@ -55,18 +55,5 @@ class Timestamp {
   @override
   String toString() =>
       'Timestamp{seconds: ${seconds}, nanos: ${nanos}}';
-
-  /// Creates a copy of this [Timestamp] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Timestamp copyWith({
-    int? seconds,
-    int? nanos,
-  }) {
-    return Timestamp(
-      seconds: seconds ?? this.seconds,
-      nanos: nanos ?? this.nanos,
-    );
-  }
 }
 

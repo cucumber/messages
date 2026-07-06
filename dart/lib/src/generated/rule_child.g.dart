@@ -64,18 +64,5 @@ class RuleChild {
   @override
   String toString() =>
       'RuleChild{background: ${background}, scenario: ${scenario}}';
-
-  /// Creates a copy of this [RuleChild] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  RuleChild copyWith({
-    Background? background,
-    Scenario? scenario,
-  }) {
-    return RuleChild(
-      background: background ?? this.background,
-      scenario: scenario ?? this.scenario,
-    );
-  }
 }
 

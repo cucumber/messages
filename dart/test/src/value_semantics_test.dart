@@ -35,22 +35,6 @@ void main() {
       expect(duration.toString(), 'Duration{seconds: 1, nanos: 2}');
     });
 
-    test('copyWith replaces only the given fields', () {
-      const original = Duration(seconds: 1, nanos: 2);
-      final copy = original.copyWith(nanos: 42);
-
-      expect(copy.seconds, 1);
-      expect(copy.nanos, 42);
-      expect(copy, equals(const Duration(seconds: 1, nanos: 42)));
-      // Original is untouched.
-      expect(original, equals(const Duration(seconds: 1, nanos: 2)));
-    });
-
-    test('copyWith with no arguments returns an equal value', () {
-      const original = Duration(seconds: 5, nanos: 6);
-      expect(original.copyWith(), equals(original));
-    });
-
     test('== performs deep comparison of list properties', () {
       final a = PickleTableRow(
         cells: [

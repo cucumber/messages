@@ -54,18 +54,5 @@ class TestRunStarted {
   @override
   String toString() =>
       'TestRunStarted{timestamp: ${timestamp}, id: ${id}}';
-
-  /// Creates a copy of this [TestRunStarted] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  TestRunStarted copyWith({
-    Timestamp? timestamp,
-    String? id,
-  }) {
-    return TestRunStarted(
-      timestamp: timestamp ?? this.timestamp,
-      id: id ?? this.id,
-    );
-  }
 }
 

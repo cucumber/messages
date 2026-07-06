@@ -59,20 +59,5 @@ class JavaMethod {
   @override
   String toString() =>
       'JavaMethod{className: ${className}, methodName: ${methodName}, methodParameterTypes: ${methodParameterTypes}}';
-
-  /// Creates a copy of this [JavaMethod] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  JavaMethod copyWith({
-    String? className,
-    String? methodName,
-    List<String>? methodParameterTypes,
-  }) {
-    return JavaMethod(
-      className: className ?? this.className,
-      methodName: methodName ?? this.methodName,
-      methodParameterTypes: methodParameterTypes ?? this.methodParameterTypes,
-    );
-  }
 }
 

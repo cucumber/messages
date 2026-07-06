@@ -54,18 +54,5 @@ class Product {
   @override
   String toString() =>
       'Product{name: ${name}, version: ${version}}';
-
-  /// Creates a copy of this [Product] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Product copyWith({
-    String? name,
-    String? version,
-  }) {
-    return Product(
-      name: name ?? this.name,
-      version: version ?? this.version,
-    );
-  }
 }
 

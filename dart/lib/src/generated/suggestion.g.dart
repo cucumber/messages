@@ -65,20 +65,5 @@ class Suggestion {
   @override
   String toString() =>
       'Suggestion{id: ${id}, pickleStepId: ${pickleStepId}, snippets: ${snippets}}';
-
-  /// Creates a copy of this [Suggestion] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Suggestion copyWith({
-    String? id,
-    String? pickleStepId,
-    List<Snippet>? snippets,
-  }) {
-    return Suggestion(
-      id: id ?? this.id,
-      pickleStepId: pickleStepId ?? this.pickleStepId,
-      snippets: snippets ?? this.snippets,
-    );
-  }
 }
 

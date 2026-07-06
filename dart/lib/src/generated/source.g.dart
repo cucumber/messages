@@ -82,20 +82,5 @@ class Source {
   @override
   String toString() =>
       'Source{uri: ${uri}, data: ${data}, mediaType: ${mediaType}}';
-
-  /// Creates a copy of this [Source] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Source copyWith({
-    String? uri,
-    String? data,
-    SourceMediaType? mediaType,
-  }) {
-    return Source(
-      uri: uri ?? this.uri,
-      data: data ?? this.data,
-      mediaType: mediaType ?? this.mediaType,
-    );
-  }
 }
 

@@ -52,18 +52,5 @@ class ParseError {
   @override
   String toString() =>
       'ParseError{source: ${source}, message: ${message}}';
-
-  /// Creates a copy of this [ParseError] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  ParseError copyWith({
-    SourceReference? source,
-    String? message,
-  }) {
-    return ParseError(
-      source: source ?? this.source,
-      message: message ?? this.message,
-    );
-  }
 }
 

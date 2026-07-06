@@ -59,20 +59,5 @@ class TestStepStarted {
   @override
   String toString() =>
       'TestStepStarted{testCaseStartedId: ${testCaseStartedId}, testStepId: ${testStepId}, timestamp: ${timestamp}}';
-
-  /// Creates a copy of this [TestStepStarted] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  TestStepStarted copyWith({
-    String? testCaseStartedId,
-    String? testStepId,
-    Timestamp? timestamp,
-  }) {
-    return TestStepStarted(
-      testCaseStartedId: testCaseStartedId ?? this.testCaseStartedId,
-      testStepId: testStepId ?? this.testStepId,
-      timestamp: timestamp ?? this.timestamp,
-    );
-  }
 }
 

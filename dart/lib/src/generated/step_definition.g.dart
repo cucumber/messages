@@ -61,20 +61,5 @@ class StepDefinition {
   @override
   String toString() =>
       'StepDefinition{id: ${id}, pattern: ${pattern}, sourceReference: ${sourceReference}}';
-
-  /// Creates a copy of this [StepDefinition] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  StepDefinition copyWith({
-    String? id,
-    StepDefinitionPattern? pattern,
-    SourceReference? sourceReference,
-  }) {
-    return StepDefinition(
-      id: id ?? this.id,
-      pattern: pattern ?? this.pattern,
-      sourceReference: sourceReference ?? this.sourceReference,
-    );
-  }
 }
 

@@ -131,28 +131,5 @@ class Step {
   @override
   String toString() =>
       'Step{location: ${location}, keyword: ${keyword}, keywordType: ${keywordType}, text: ${text}, docString: ${docString}, dataTable: ${dataTable}, id: ${id}}';
-
-  /// Creates a copy of this [Step] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Step copyWith({
-    Location? location,
-    String? keyword,
-    StepKeywordType? keywordType,
-    String? text,
-    DocString? docString,
-    DataTable? dataTable,
-    String? id,
-  }) {
-    return Step(
-      location: location ?? this.location,
-      keyword: keyword ?? this.keyword,
-      keywordType: keywordType ?? this.keywordType,
-      text: text ?? this.text,
-      docString: docString ?? this.docString,
-      dataTable: dataTable ?? this.dataTable,
-      id: id ?? this.id,
-    );
-  }
 }
 

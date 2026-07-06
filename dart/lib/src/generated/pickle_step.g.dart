@@ -114,24 +114,5 @@ class PickleStep {
   @override
   String toString() =>
       'PickleStep{argument: ${argument}, astNodeIds: ${astNodeIds}, id: ${id}, type: ${type}, text: ${text}}';
-
-  /// Creates a copy of this [PickleStep] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  PickleStep copyWith({
-    PickleStepArgument? argument,
-    List<String>? astNodeIds,
-    String? id,
-    PickleStepType? type,
-    String? text,
-  }) {
-    return PickleStep(
-      argument: argument ?? this.argument,
-      astNodeIds: astNodeIds ?? this.astNodeIds,
-      id: id ?? this.id,
-      type: type ?? this.type,
-      text: text ?? this.text,
-    );
-  }
 }
 

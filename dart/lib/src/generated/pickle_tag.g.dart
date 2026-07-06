@@ -52,18 +52,5 @@ class PickleTag {
   @override
   String toString() =>
       'PickleTag{name: ${name}, astNodeId: ${astNodeId}}';
-
-  /// Creates a copy of this [PickleTag] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  PickleTag copyWith({
-    String? name,
-    String? astNodeId,
-  }) {
-    return PickleTag(
-      name: name ?? this.name,
-      astNodeId: astNodeId ?? this.astNodeId,
-    );
-  }
 }
 

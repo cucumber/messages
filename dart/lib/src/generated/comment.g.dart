@@ -54,18 +54,5 @@ class Comment {
   @override
   String toString() =>
       'Comment{location: ${location}, text: ${text}}';
-
-  /// Creates a copy of this [Comment] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Comment copyWith({
-    Location? location,
-    String? text,
-  }) {
-    return Comment(
-      location: location ?? this.location,
-      text: text ?? this.text,
-    );
-  }
 }
 

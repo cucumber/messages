@@ -61,20 +61,5 @@ class Tag {
   @override
   String toString() =>
       'Tag{location: ${location}, name: ${name}, id: ${id}}';
-
-  /// Creates a copy of this [Tag] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Tag copyWith({
-    Location? location,
-    String? name,
-    String? id,
-  }) {
-    return Tag(
-      location: location ?? this.location,
-      name: name ?? this.name,
-      id: id ?? this.id,
-    );
-  }
 }
 

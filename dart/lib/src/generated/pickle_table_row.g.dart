@@ -49,16 +49,5 @@ class PickleTableRow {
   @override
   String toString() =>
       'PickleTableRow{cells: ${cells}}';
-
-  /// Creates a copy of this [PickleTableRow] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  PickleTableRow copyWith({
-    List<PickleTableCell>? cells,
-  }) {
-    return PickleTableRow(
-      cells: cells ?? this.cells,
-    );
-  }
 }
 

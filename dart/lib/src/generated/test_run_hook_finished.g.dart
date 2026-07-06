@@ -61,20 +61,5 @@ class TestRunHookFinished {
   @override
   String toString() =>
       'TestRunHookFinished{testRunHookStartedId: ${testRunHookStartedId}, result: ${result}, timestamp: ${timestamp}}';
-
-  /// Creates a copy of this [TestRunHookFinished] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  TestRunHookFinished copyWith({
-    String? testRunHookStartedId,
-    TestStepResult? result,
-    Timestamp? timestamp,
-  }) {
-    return TestRunHookFinished(
-      testRunHookStartedId: testRunHookStartedId ?? this.testRunHookStartedId,
-      result: result ?? this.result,
-      timestamp: timestamp ?? this.timestamp,
-    );
-  }
 }
 

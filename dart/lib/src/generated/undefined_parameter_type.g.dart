@@ -50,18 +50,5 @@ class UndefinedParameterType {
   @override
   String toString() =>
       'UndefinedParameterType{expression: ${expression}, name: ${name}}';
-
-  /// Creates a copy of this [UndefinedParameterType] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  UndefinedParameterType copyWith({
-    String? expression,
-    String? name,
-  }) {
-    return UndefinedParameterType(
-      expression: expression ?? this.expression,
-      name: name ?? this.name,
-    );
-  }
 }
 

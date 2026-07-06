@@ -126,30 +126,5 @@ class Pickle {
   @override
   String toString() =>
       'Pickle{id: ${id}, uri: ${uri}, location: ${location}, name: ${name}, language: ${language}, steps: ${steps}, tags: ${tags}, astNodeIds: ${astNodeIds}}';
-
-  /// Creates a copy of this [Pickle] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Pickle copyWith({
-    String? id,
-    String? uri,
-    Location? location,
-    String? name,
-    String? language,
-    List<PickleStep>? steps,
-    List<PickleTag>? tags,
-    List<String>? astNodeIds,
-  }) {
-    return Pickle(
-      id: id ?? this.id,
-      uri: uri ?? this.uri,
-      location: location ?? this.location,
-      name: name ?? this.name,
-      language: language ?? this.language,
-      steps: steps ?? this.steps,
-      tags: tags ?? this.tags,
-      astNodeIds: astNodeIds ?? this.astNodeIds,
-    );
-  }
 }
 

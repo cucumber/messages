@@ -109,24 +109,5 @@ class Hook {
   @override
   String toString() =>
       'Hook{id: ${id}, name: ${name}, sourceReference: ${sourceReference}, tagExpression: ${tagExpression}, type: ${type}}';
-
-  /// Creates a copy of this [Hook] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Hook copyWith({
-    String? id,
-    String? name,
-    SourceReference? sourceReference,
-    String? tagExpression,
-    HookType? type,
-  }) {
-    return Hook(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      sourceReference: sourceReference ?? this.sourceReference,
-      tagExpression: tagExpression ?? this.tagExpression,
-      type: type ?? this.type,
-    );
-  }
 }
 

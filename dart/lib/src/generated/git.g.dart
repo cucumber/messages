@@ -71,22 +71,5 @@ class Git {
   @override
   String toString() =>
       'Git{remote: ${remote}, revision: ${revision}, branch: ${branch}, tag: ${tag}}';
-
-  /// Creates a copy of this [Git] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Git copyWith({
-    String? remote,
-    String? revision,
-    String? branch,
-    String? tag,
-  }) {
-    return Git(
-      remote: remote ?? this.remote,
-      revision: revision ?? this.revision,
-      branch: branch ?? this.branch,
-      tag: tag ?? this.tag,
-    );
-  }
 }
 

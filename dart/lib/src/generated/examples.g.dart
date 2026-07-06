@@ -112,30 +112,5 @@ class Examples {
   @override
   String toString() =>
       'Examples{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, tableHeader: ${tableHeader}, tableBody: ${tableBody}, id: ${id}}';
-
-  /// Creates a copy of this [Examples] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Examples copyWith({
-    Location? location,
-    List<Tag>? tags,
-    String? keyword,
-    String? name,
-    String? description,
-    TableRow? tableHeader,
-    List<TableRow>? tableBody,
-    String? id,
-  }) {
-    return Examples(
-      location: location ?? this.location,
-      tags: tags ?? this.tags,
-      keyword: keyword ?? this.keyword,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      tableHeader: tableHeader ?? this.tableHeader,
-      tableBody: tableBody ?? this.tableBody,
-      id: id ?? this.id,
-    );
-  }
 }
 

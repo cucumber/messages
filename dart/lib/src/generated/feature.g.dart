@@ -99,28 +99,5 @@ class Feature {
   @override
   String toString() =>
       'Feature{location: ${location}, tags: ${tags}, language: ${language}, keyword: ${keyword}, name: ${name}, description: ${description}, children: ${children}}';
-
-  /// Creates a copy of this [Feature] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Feature copyWith({
-    Location? location,
-    List<Tag>? tags,
-    String? language,
-    String? keyword,
-    String? name,
-    String? description,
-    List<FeatureChild>? children,
-  }) {
-    return Feature(
-      location: location ?? this.location,
-      tags: tags ?? this.tags,
-      language: language ?? this.language,
-      keyword: keyword ?? this.keyword,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      children: children ?? this.children,
-    );
-  }
 }
 

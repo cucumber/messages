@@ -68,22 +68,5 @@ class DocString {
   @override
   String toString() =>
       'DocString{location: ${location}, mediaType: ${mediaType}, content: ${content}, delimiter: ${delimiter}}';
-
-  /// Creates a copy of this [DocString] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  DocString copyWith({
-    Location? location,
-    String? mediaType,
-    String? content,
-    String? delimiter,
-  }) {
-    return DocString(
-      location: location ?? this.location,
-      mediaType: mediaType ?? this.mediaType,
-      content: content ?? this.content,
-      delimiter: delimiter ?? this.delimiter,
-    );
-  }
 }
 

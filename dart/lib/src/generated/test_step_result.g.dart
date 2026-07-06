@@ -104,22 +104,5 @@ class TestStepResult {
   @override
   String toString() =>
       'TestStepResult{duration: ${duration}, message: ${message}, status: ${status}, exception: ${exception}}';
-
-  /// Creates a copy of this [TestStepResult] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  TestStepResult copyWith({
-    Duration? duration,
-    String? message,
-    TestStepResultStatus? status,
-    Exception? exception,
-  }) {
-    return TestStepResult(
-      duration: duration ?? this.duration,
-      message: message ?? this.message,
-      status: status ?? this.status,
-      exception: exception ?? this.exception,
-    );
-  }
 }
 

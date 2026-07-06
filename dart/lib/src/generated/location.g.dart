@@ -54,18 +54,5 @@ class Location {
   @override
   String toString() =>
       'Location{line: ${line}, column: ${column}}';
-
-  /// Creates a copy of this [Location] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Location copyWith({
-    int? line,
-    int? column,
-  }) {
-    return Location(
-      line: line ?? this.line,
-      column: column ?? this.column,
-    );
-  }
 }
 

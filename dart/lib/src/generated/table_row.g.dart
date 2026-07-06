@@ -67,20 +67,5 @@ class TableRow {
   @override
   String toString() =>
       'TableRow{location: ${location}, cells: ${cells}, id: ${id}}';
-
-  /// Creates a copy of this [TableRow] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  TableRow copyWith({
-    Location? location,
-    List<TableCell>? cells,
-    String? id,
-  }) {
-    return TableRow(
-      location: location ?? this.location,
-      cells: cells ?? this.cells,
-      id: id ?? this.id,
-    );
-  }
 }
 

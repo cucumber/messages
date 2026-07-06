@@ -79,20 +79,5 @@ class GherkinDocument {
   @override
   String toString() =>
       'GherkinDocument{uri: ${uri}, feature: ${feature}, comments: ${comments}}';
-
-  /// Creates a copy of this [GherkinDocument] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  GherkinDocument copyWith({
-    String? uri,
-    Feature? feature,
-    List<Comment>? comments,
-  }) {
-    return GherkinDocument(
-      uri: uri ?? this.uri,
-      feature: feature ?? this.feature,
-      comments: comments ?? this.comments,
-    );
-  }
 }
 

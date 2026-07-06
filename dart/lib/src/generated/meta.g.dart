@@ -95,26 +95,5 @@ class Meta {
   @override
   String toString() =>
       'Meta{protocolVersion: ${protocolVersion}, implementation: ${implementation}, runtime: ${runtime}, os: ${os}, cpu: ${cpu}, ci: ${ci}}';
-
-  /// Creates a copy of this [Meta] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Meta copyWith({
-    String? protocolVersion,
-    Product? implementation,
-    Product? runtime,
-    Product? os,
-    Product? cpu,
-    Ci? ci,
-  }) {
-    return Meta(
-      protocolVersion: protocolVersion ?? this.protocolVersion,
-      implementation: implementation ?? this.implementation,
-      runtime: runtime ?? this.runtime,
-      os: os ?? this.os,
-      cpu: cpu ?? this.cpu,
-      ci: ci ?? this.ci,
-    );
-  }
 }
 

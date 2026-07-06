@@ -49,16 +49,5 @@ class StepMatchArgumentsList {
   @override
   String toString() =>
       'StepMatchArgumentsList{stepMatchArguments: ${stepMatchArguments}}';
-
-  /// Creates a copy of this [StepMatchArgumentsList] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  StepMatchArgumentsList copyWith({
-    List<StepMatchArgument>? stepMatchArguments,
-  }) {
-    return StepMatchArgumentsList(
-      stepMatchArguments: stepMatchArguments ?? this.stepMatchArguments,
-    );
-  }
 }
 

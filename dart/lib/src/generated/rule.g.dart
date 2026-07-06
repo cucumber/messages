@@ -99,28 +99,5 @@ class Rule {
   @override
   String toString() =>
       'Rule{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, children: ${children}, id: ${id}}';
-
-  /// Creates a copy of this [Rule] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Rule copyWith({
-    Location? location,
-    List<Tag>? tags,
-    String? keyword,
-    String? name,
-    String? description,
-    List<RuleChild>? children,
-    String? id,
-  }) {
-    return Rule(
-      location: location ?? this.location,
-      tags: tags ?? this.tags,
-      keyword: keyword ?? this.keyword,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      children: children ?? this.children,
-      id: id ?? this.id,
-    );
-  }
 }
 

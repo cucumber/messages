@@ -62,18 +62,5 @@ class StepMatchArgument {
   @override
   String toString() =>
       'StepMatchArgument{group: ${group}, parameterTypeName: ${parameterTypeName}}';
-
-  /// Creates a copy of this [StepMatchArgument] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  StepMatchArgument copyWith({
-    Group? group,
-    String? parameterTypeName,
-  }) {
-    return StepMatchArgument(
-      group: group ?? this.group,
-      parameterTypeName: parameterTypeName ?? this.parameterTypeName,
-    );
-  }
 }
 

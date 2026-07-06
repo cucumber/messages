@@ -112,30 +112,5 @@ class Scenario {
   @override
   String toString() =>
       'Scenario{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, steps: ${steps}, examples: ${examples}, id: ${id}}';
-
-  /// Creates a copy of this [Scenario] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  Scenario copyWith({
-    Location? location,
-    List<Tag>? tags,
-    String? keyword,
-    String? name,
-    String? description,
-    List<Step>? steps,
-    List<Examples>? examples,
-    String? id,
-  }) {
-    return Scenario(
-      location: location ?? this.location,
-      tags: tags ?? this.tags,
-      keyword: keyword ?? this.keyword,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      steps: steps ?? this.steps,
-      examples: examples ?? this.examples,
-      id: id ?? this.id,
-    );
-  }
 }
 

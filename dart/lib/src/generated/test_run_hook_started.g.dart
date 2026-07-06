@@ -75,24 +75,5 @@ class TestRunHookStarted {
   @override
   String toString() =>
       'TestRunHookStarted{id: ${id}, testRunStartedId: ${testRunStartedId}, hookId: ${hookId}, workerId: ${workerId}, timestamp: ${timestamp}}';
-
-  /// Creates a copy of this [TestRunHookStarted] with the given fields
-  /// replaced by the given values. Fields left unspecified keep their current
-  /// value.
-  TestRunHookStarted copyWith({
-    String? id,
-    String? testRunStartedId,
-    String? hookId,
-    String? workerId,
-    Timestamp? timestamp,
-  }) {
-    return TestRunHookStarted(
-      id: id ?? this.id,
-      testRunStartedId: testRunStartedId ?? this.testRunStartedId,
-      hookId: hookId ?? this.hookId,
-      workerId: workerId ?? this.workerId,
-      timestamp: timestamp ?? this.timestamp,
-    );
-  }
 }
 
