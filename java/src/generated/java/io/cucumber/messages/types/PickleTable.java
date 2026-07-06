@@ -15,18 +15,21 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleTable {
-    private final @Nullable Long argumentIndex;
+    private final @Nullable Integer argumentIndex;
     private final List<PickleTableRow> rows;
 
     public PickleTable(
-        @Nullable @Property("argumentIndex") Long argumentIndex,
+        @Nullable @Property("argumentIndex") Integer argumentIndex,
         @Property("rows") List<PickleTableRow> rows
     ) {
         this.argumentIndex = argumentIndex;
         this.rows = List.copyOf(requireNonNull(rows, "PickleTable.rows cannot be null"));
     }
 
-    public Optional<Long> getArgumentIndex() {
+    /**
+     * The index of this argument. The value is 0 if it was declared before the doc string, 1 if it was declared after.
+     */
+    public Optional<Integer> getArgumentIndex() {
         return Optional.ofNullable(argumentIndex);
     }
 

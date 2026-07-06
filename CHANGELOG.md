@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Fixed
+- [jsonschema]  Define minimum and maximum argument index values. ([#479](https://github.com/cucumber/messages/pull/479))
 - [cpp] When fetching them is disabled, still try to find them. ([#478](https://github.com/cucumber/messages/pull/478))
 
 ## [34.0.1] - 2026-07-05
