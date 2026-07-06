@@ -15,12 +15,12 @@ import static java.util.Objects.requireNonNull;
 // Generated code
 @SuppressWarnings({"unused", "JavaLangClash"})
 public final class PickleDocString {
-    private final @Nullable Long argumentIndex;
+    private final @Nullable Integer argumentIndex;
     private final @Nullable String mediaType;
     private final String content;
 
     public PickleDocString(
-        @Nullable @Property("argumentIndex") Long argumentIndex,
+        @Nullable @Property("argumentIndex") Integer argumentIndex,
         @Nullable @Property("mediaType") String mediaType,
         @Property("content") String content
     ) {
@@ -29,7 +29,10 @@ public final class PickleDocString {
         this.content = requireNonNull(content, "PickleDocString.content cannot be null");
     }
 
-    public Optional<Long> getArgumentIndex() {
+    /**
+     * The index of this argument. The value is 0 if it was declared before the data table, 1 if it was declared after.
+     */
+    public Optional<Integer> getArgumentIndex() {
         return Optional.ofNullable(argumentIndex);
     }
 
