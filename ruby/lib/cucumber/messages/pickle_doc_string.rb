@@ -9,7 +9,7 @@ module Cucumber
     ##
     class PickleDocString < Message
       ##
-      # The index of this argument. The value is 0 if it was declared before the data table, 1 if it was declared after.
+      # The index of this argument. The value is 1 if it was declared before the data table, 2 if it was declared after.
       ##
       attr_reader :argument_index
 

@@ -438,7 +438,7 @@ class Pickle:
 @dataclass
 class PickleDocString:
     content: str
-    argument_index: Optional[int] = None  # The index of this argument. The value is 0 if it was declared before the data table, 1 if it was declared after.
+    argument_index: Optional[int] = None  # The index of this argument. The value is 1 if it was declared before the data table, 2 if it was declared after.
     media_type: Optional[str] = None
 
 
