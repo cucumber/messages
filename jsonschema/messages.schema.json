@@ -996,7 +996,10 @@
           ],
           "properties": {
             "argumentIndex": {
-              "type": "integer"
+              "description": "The index of this argument. The value is 0 if it was declared before the data table, 1 if it was declared after.",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
             },
             "mediaType": {
               "type": "string"
@@ -1069,7 +1072,10 @@
           ],
           "properties": {
             "argumentIndex": {
-              "type": "integer"
+              "description": "The index of this argument. The value is 0 if it was declared before the doc string, 1 if it was declared after.",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
             },
             "rows": {
               "items": {

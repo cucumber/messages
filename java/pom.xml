@@ -8,7 +8,7 @@
         <version>5.6.0</version>
     </parent>
     <artifactId>messages</artifactId>
-    <version>33.0.5-SNAPSHOT</version>
+    <version>34.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Cucumber Messages</name>
     <description>JSON schema-based messages for Cucumber's inter-process communication</description>
@@ -16,7 +16,7 @@
 
     <properties>
         <osgi.bundle-symbolic-name>io.cucumber.messages</osgi.bundle-symbolic-name>
-        <project.build.outputTimestamp>1782551057</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1783267533</project.build.outputTimestamp>
     </properties>
 
     <scm>

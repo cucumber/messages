@@ -1,4 +1,4 @@
-module github.com/cucumber/messages/go/v33
+module github.com/cucumber/messages/go/v34
 
 require (
 	github.com/google/uuid v1.6.0

@@ -41,15 +41,19 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         endif()
     endif()
 
-    CPMAddPackage(
-        NAME googletest
-        GITHUB_REPOSITORY google/googletest
-        GIT_TAG 52eb8108c5bdec04579160ae17225d66034bd723 # v1.17.0
-        OPTIONS "INSTALL_GTEST OFF" "gtest_force_shared_crt ON"
-    )
+    if (CUCUMBER_MESSAGES_BUILD_TESTS)
+        CPMAddPackage(
+            NAME googletest
+            GITHUB_REPOSITORY google/googletest
+            GIT_TAG 52eb8108c5bdec04579160ae17225d66034bd723 # v1.17.0
+            OPTIONS "INSTALL_GTEST OFF" "gtest_force_shared_crt ON"
+        )
 
-    set_target_properties(gtest gtest_main gmock gmock_main PROPERTIES
-        FOLDER External/GoogleTest
-        SYSTEM ON
-    )
+        set_target_properties(gtest gtest_main gmock gmock_main PROPERTIES
+            FOLDER External/GoogleTest
+            SYSTEM ON
+        )
+    endif()
+else()
+    find_package(nlohmann_json 3.12.0 REQUIRED)
 endif()
