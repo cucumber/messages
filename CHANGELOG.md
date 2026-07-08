@@ -9,11 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - [jsonschema]  Define minimum and maximum argument index values. ([#479](https://github.com/cucumber/messages/pull/479))
 - [cpp] When fetching them is disabled, still try to find them. ([#478](https://github.com/cucumber/messages/pull/478))
-- [cpp] Changed code style to adhere to included clang-format and clang-tidy settings. ([#462](https://github.com/cucumber/messages/pull/462))
 
 ### Added
 - [cpp] Add deserialization using `from_json`. ([#462](https://github.com/cucumber/messages/pull/462))
-- [cpp] Add unit tests against testdata. ([#462](https://github.com/cucumber/messages/pull/462))
+
+### Changed
+- [cpp] CUCUMBER_MESSAGES_FETCH_DEPS always defaults to Off. ([#462](https://github.com/cucumber/messages/pull/462))
 
 ## [34.0.1] - 2026-07-05
 ### Fixed
