@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_DOCSTRING_HPP
-#define CUCUMBER_MESSAGES_DOCSTRING_HPP
+#ifndef CUCUMBER_MESSAGES_DOC_STRING_HPP
+#define CUCUMBER_MESSAGES_DOC_STRING_HPP
 
 #include "cucumber/messages/Location.hpp"
 #include "nlohmann/json_fwd.hpp"

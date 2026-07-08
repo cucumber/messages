@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_JAVAMETHOD_HPP
-#define CUCUMBER_MESSAGES_JAVAMETHOD_HPP
+#ifndef CUCUMBER_MESSAGES_JAVA_METHOD_HPP
+#define CUCUMBER_MESSAGES_JAVA_METHOD_HPP
 
 #include "nlohmann/json_fwd.hpp"
 #include <ostream>

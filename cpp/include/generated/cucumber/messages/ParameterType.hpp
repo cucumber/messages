@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_PARAMETERTYPE_HPP
-#define CUCUMBER_MESSAGES_PARAMETERTYPE_HPP
+#ifndef CUCUMBER_MESSAGES_PARAMETER_TYPE_HPP
+#define CUCUMBER_MESSAGES_PARAMETER_TYPE_HPP
 
 #include "cucumber/messages/SourceReference.hpp"
 #include "nlohmann/json_fwd.hpp"

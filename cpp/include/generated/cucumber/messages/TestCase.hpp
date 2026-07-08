@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_TESTCASE_HPP
-#define CUCUMBER_MESSAGES_TESTCASE_HPP
+#ifndef CUCUMBER_MESSAGES_TEST_CASE_HPP
+#define CUCUMBER_MESSAGES_TEST_CASE_HPP
 
 #include "cucumber/messages/TestStep.hpp"
 #include "nlohmann/json_fwd.hpp"

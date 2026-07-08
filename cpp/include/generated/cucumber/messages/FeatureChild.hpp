@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_FEATURECHILD_HPP
-#define CUCUMBER_MESSAGES_FEATURECHILD_HPP
+#ifndef CUCUMBER_MESSAGES_FEATURE_CHILD_HPP
+#define CUCUMBER_MESSAGES_FEATURE_CHILD_HPP
 
 #include "cucumber/messages/Background.hpp"
 #include "cucumber/messages/Rule.hpp"

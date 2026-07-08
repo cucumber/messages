@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_GHERKINDOCUMENT_HPP
-#define CUCUMBER_MESSAGES_GHERKINDOCUMENT_HPP
+#ifndef CUCUMBER_MESSAGES_GHERKIN_DOCUMENT_HPP
+#define CUCUMBER_MESSAGES_GHERKIN_DOCUMENT_HPP
 
 #include "cucumber/messages/Comment.hpp"
 #include "cucumber/messages/Feature.hpp"

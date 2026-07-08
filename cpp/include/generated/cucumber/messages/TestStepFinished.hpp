@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_TESTSTEPFINISHED_HPP
-#define CUCUMBER_MESSAGES_TESTSTEPFINISHED_HPP
+#ifndef CUCUMBER_MESSAGES_TEST_STEP_FINISHED_HPP
+#define CUCUMBER_MESSAGES_TEST_STEP_FINISHED_HPP
 
 #include "cucumber/messages/TestStepResult.hpp"
 #include "cucumber/messages/Timestamp.hpp"

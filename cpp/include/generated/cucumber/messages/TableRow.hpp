@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_TABLEROW_HPP
-#define CUCUMBER_MESSAGES_TABLEROW_HPP
+#ifndef CUCUMBER_MESSAGES_TABLE_ROW_HPP
+#define CUCUMBER_MESSAGES_TABLE_ROW_HPP
 
 #include "cucumber/messages/TableCell.hpp"
 #include "cucumber/messages/Location.hpp"

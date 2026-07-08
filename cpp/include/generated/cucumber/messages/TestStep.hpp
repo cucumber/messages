@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_TESTSTEP_HPP
-#define CUCUMBER_MESSAGES_TESTSTEP_HPP
+#ifndef CUCUMBER_MESSAGES_TEST_STEP_HPP
+#define CUCUMBER_MESSAGES_TEST_STEP_HPP
 
 #include "cucumber/messages/StepMatchArgumentsList.hpp"
 #include "nlohmann/json_fwd.hpp"

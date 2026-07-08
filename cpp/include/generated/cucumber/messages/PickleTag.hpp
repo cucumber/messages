@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_PICKLETAG_HPP
-#define CUCUMBER_MESSAGES_PICKLETAG_HPP
+#ifndef CUCUMBER_MESSAGES_PICKLE_TAG_HPP
+#define CUCUMBER_MESSAGES_PICKLE_TAG_HPP
 
 #include "nlohmann/json_fwd.hpp"
 #include <ostream>

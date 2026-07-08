@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_PICKLETABLE_HPP
-#define CUCUMBER_MESSAGES_PICKLETABLE_HPP
+#ifndef CUCUMBER_MESSAGES_PICKLE_TABLE_HPP
+#define CUCUMBER_MESSAGES_PICKLE_TABLE_HPP
 
 #include "cucumber/messages/PickleTableRow.hpp"
 #include "nlohmann/json_fwd.hpp"

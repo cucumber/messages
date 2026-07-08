@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_TABLECELL_HPP
-#define CUCUMBER_MESSAGES_TABLECELL_HPP
+#ifndef CUCUMBER_MESSAGES_TABLE_CELL_HPP
+#define CUCUMBER_MESSAGES_TABLE_CELL_HPP
 
 #include "cucumber/messages/Location.hpp"
 #include "nlohmann/json_fwd.hpp"

@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_DATATABLE_HPP
-#define CUCUMBER_MESSAGES_DATATABLE_HPP
+#ifndef CUCUMBER_MESSAGES_DATA_TABLE_HPP
+#define CUCUMBER_MESSAGES_DATA_TABLE_HPP
 
 #include "cucumber/messages/Location.hpp"
 #include "cucumber/messages/TableRow.hpp"

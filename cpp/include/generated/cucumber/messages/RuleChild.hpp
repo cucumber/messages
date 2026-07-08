@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_RULECHILD_HPP
-#define CUCUMBER_MESSAGES_RULECHILD_HPP
+#ifndef CUCUMBER_MESSAGES_RULE_CHILD_HPP
+#define CUCUMBER_MESSAGES_RULE_CHILD_HPP
 
 #include "cucumber/messages/Background.hpp"
 #include "cucumber/messages/Scenario.hpp"

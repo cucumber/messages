@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_PICKLESTEP_HPP
-#define CUCUMBER_MESSAGES_PICKLESTEP_HPP
+#ifndef CUCUMBER_MESSAGES_PICKLE_STEP_HPP
+#define CUCUMBER_MESSAGES_PICKLE_STEP_HPP
 
 #include "cucumber/messages/PickleStepArgument.hpp"
 #include "cucumber/messages/PickleStepType.hpp"

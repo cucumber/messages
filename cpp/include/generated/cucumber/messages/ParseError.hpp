@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_PARSEERROR_HPP
-#define CUCUMBER_MESSAGES_PARSEERROR_HPP
+#ifndef CUCUMBER_MESSAGES_PARSE_ERROR_HPP
+#define CUCUMBER_MESSAGES_PARSE_ERROR_HPP
 
 #include "cucumber/messages/SourceReference.hpp"
 #include "nlohmann/json_fwd.hpp"

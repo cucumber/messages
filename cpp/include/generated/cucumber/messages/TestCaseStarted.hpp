@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_TESTCASESTARTED_HPP
-#define CUCUMBER_MESSAGES_TESTCASESTARTED_HPP
+#ifndef CUCUMBER_MESSAGES_TEST_CASE_STARTED_HPP
+#define CUCUMBER_MESSAGES_TEST_CASE_STARTED_HPP
 
 #include "cucumber/messages/Timestamp.hpp"
 #include "nlohmann/json_fwd.hpp"

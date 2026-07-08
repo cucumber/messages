@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_STEPDEFINITION_HPP
-#define CUCUMBER_MESSAGES_STEPDEFINITION_HPP
+#ifndef CUCUMBER_MESSAGES_STEP_DEFINITION_HPP
+#define CUCUMBER_MESSAGES_STEP_DEFINITION_HPP
 
 #include "cucumber/messages/StepDefinitionPattern.hpp"
 #include "cucumber/messages/SourceReference.hpp"

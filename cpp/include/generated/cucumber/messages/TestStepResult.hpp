@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_TESTSTEPRESULT_HPP
-#define CUCUMBER_MESSAGES_TESTSTEPRESULT_HPP
+#ifndef CUCUMBER_MESSAGES_TEST_STEP_RESULT_HPP
+#define CUCUMBER_MESSAGES_TEST_STEP_RESULT_HPP
 
 #include "cucumber/messages/Duration.hpp"
 #include "cucumber/messages/Exception.hpp"

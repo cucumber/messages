@@ -1,5 +1,5 @@
-#ifndef CUCUMBER_MESSAGES_SOURCEREFERENCE_HPP
-#define CUCUMBER_MESSAGES_SOURCEREFERENCE_HPP
+#ifndef CUCUMBER_MESSAGES_SOURCE_REFERENCE_HPP
+#define CUCUMBER_MESSAGES_SOURCE_REFERENCE_HPP
 
 #include "cucumber/messages/JavaMethod.hpp"
 #include "cucumber/messages/JavaStackTraceElement.hpp"
