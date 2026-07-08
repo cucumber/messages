@@ -30,7 +30,6 @@ namespace cucumber::messages
     //
     // Each `PickleStep` of a `Pickle` is matched with a `StepDefinition` to create a `TestCase`
     //
-    // Generated code
 
     struct Pickle
     {

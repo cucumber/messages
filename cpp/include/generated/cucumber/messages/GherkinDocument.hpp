@@ -25,7 +25,6 @@ namespace cucumber::messages
     // The only consumers of `GherkinDocument` should only be formatters that produce
     // "rich" output, resembling the original Gherkin document.
     //
-    // Generated code
 
     struct GherkinDocument
     {

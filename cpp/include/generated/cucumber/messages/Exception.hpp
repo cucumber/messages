@@ -16,7 +16,6 @@ namespace cucumber::messages
     //
     // A simplified representation of an exception
     //
-    // Generated code
 
     struct Exception
     {

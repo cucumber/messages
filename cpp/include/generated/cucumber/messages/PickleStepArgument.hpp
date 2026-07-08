@@ -19,7 +19,6 @@ namespace cucumber::messages
     //
     // Optional arguments. Either a PickleDocString, PickleTable or both
     //
-    // Generated code
 
     struct PickleStepArgument
     {

@@ -17,7 +17,6 @@ namespace cucumber::messages
     //
     // Points to a line and a column in a text file
     //
-    // Generated code
 
     struct Location
     {

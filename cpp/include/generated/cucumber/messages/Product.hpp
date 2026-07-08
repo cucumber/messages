@@ -16,7 +16,6 @@ namespace cucumber::messages
     //
     // Used to describe various properties of Meta
     //
-    // Generated code
 
     struct Product
     {

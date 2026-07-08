@@ -19,7 +19,6 @@ namespace cucumber::messages
     //
     // A `TestCase` contains a sequence of `TestStep`s.
     //
-    // Generated code
 
     struct TestCase
     {

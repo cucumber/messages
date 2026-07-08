@@ -18,7 +18,6 @@ namespace cucumber::messages
     //
     // CI environment
     //
-    // Generated code
 
     struct Ci
     {

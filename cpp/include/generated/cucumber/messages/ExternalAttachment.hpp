@@ -24,7 +24,6 @@ namespace cucumber::messages
     //
     // A formatter or other consumer of messages may replace an Attachment with an ExternalAttachment if it makes sense to do so.
     //
-    // Generated code
 
     struct ExternalAttachment
     {

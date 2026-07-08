@@ -17,7 +17,6 @@ namespace cucumber::messages
     // Information about Git, provided by the Build/CI server as environment
     // variables.
     //
-    // Generated code
 
     struct Git
     {

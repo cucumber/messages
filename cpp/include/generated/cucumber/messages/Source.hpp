@@ -16,7 +16,6 @@ namespace cucumber::messages
     //
     // A source file, typically a Gherkin document or Java/Ruby/JavaScript source code
     //
-    // Generated code
 
     struct Source
     {

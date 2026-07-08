@@ -17,7 +17,6 @@ namespace cucumber::messages
     //
     // A cell in a `TableRow`
     //
-    // Generated code
 
     struct TableCell
     {

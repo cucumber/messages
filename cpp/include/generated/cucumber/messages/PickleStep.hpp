@@ -20,7 +20,6 @@ namespace cucumber::messages
     //
     // An executable step
     //
-    // Generated code
 
     struct PickleStep
     {

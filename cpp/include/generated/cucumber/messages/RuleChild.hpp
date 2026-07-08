@@ -19,7 +19,6 @@ namespace cucumber::messages
     //
     // A child node of a `Rule` node
     //
-    // Generated code
 
     struct RuleChild
     {

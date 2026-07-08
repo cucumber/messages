@@ -23,7 +23,6 @@ namespace cucumber::messages
     //
     // This message closely matches the `Argument` class in the `cucumber-expressions` library.
     //
-    // Generated code
 
     struct StepMatchArgument
     {

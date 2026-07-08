@@ -30,7 +30,6 @@ namespace cucumber::messages
     // It is not to be used for runtime errors raised/thrown during execution. This
     // is captured in `TestResult`.
     //
-    // Generated code
 
     struct Attachment
     {

@@ -17,7 +17,6 @@ namespace cucumber::messages
     // The structure is pretty close of the Timestamp one. For clarity, a second type
     // of message is used.
     //
-    // Generated code
 
     struct Duration
     {

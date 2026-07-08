@@ -21,7 +21,6 @@ namespace cucumber::messages
     // Points to a [Source](#io.cucumber.messages.Source) identified by `uri` and a
     // [Location](#io.cucumber.messages.Location) within that file.
     //
-    // Generated code
 
     struct SourceReference
     {

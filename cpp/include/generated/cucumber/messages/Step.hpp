@@ -21,7 +21,6 @@ namespace cucumber::messages
     //
     // A step
     //
-    // Generated code
 
     struct Step
     {

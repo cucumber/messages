@@ -17,7 +17,6 @@ namespace cucumber::messages
     //
     // A tag
     //
-    // Generated code
 
     struct Tag
     {

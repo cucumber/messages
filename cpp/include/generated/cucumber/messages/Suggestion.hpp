@@ -18,7 +18,6 @@ namespace cucumber::messages
     //
     // A suggested fragment of code to implement an undefined step
     //
-    // Generated code
 
     struct Suggestion
     {

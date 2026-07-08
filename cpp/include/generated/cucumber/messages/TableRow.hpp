@@ -19,7 +19,6 @@ namespace cucumber::messages
     //
     // A row in a table
     //
-    // Generated code
 
     struct TableRow
     {

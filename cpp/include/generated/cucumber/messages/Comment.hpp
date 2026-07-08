@@ -17,7 +17,6 @@ namespace cucumber::messages
     //
     // A comment in a Gherkin document
     //
-    // Generated code
 
     struct Comment
     {

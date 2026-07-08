@@ -20,7 +20,6 @@ namespace cucumber::messages
     //
     // A child node of a `Feature` node
     //
-    // Generated code
 
     struct FeatureChild
     {

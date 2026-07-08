@@ -20,7 +20,6 @@ namespace cucumber::messages
     // This message contains meta information about the environment. Consumers can use
     // this for various purposes.
     //
-    // Generated code
 
     struct Meta
     {
