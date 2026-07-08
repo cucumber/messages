@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/step_match_argument.hpp>
+#include "cucumber/messages/step_match_argument.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +21,41 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void step_match_argument::to_json(json& j) const
+    void step_match_argument::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("group"), group);
-        cucumber::messages::to_json(j, camelize("parameter_type_name"), parameter_type_name);
+        cucumber::messages::to_json(json, camelize("group"), group);
+        cucumber::messages::to_json(json, camelize("parameter_type_name"), parameter_type_name);
+    }
+
+    void step_match_argument::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("group"), group);
+        cucumber::messages::from_json(json, camelize("parameter_type_name"), parameter_type_name);
     }
 
     std::string step_match_argument::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const step_match_argument& msg)
+    std::ostream& operator<<(std::ostream& ostream, const step_match_argument& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const step_match_argument& m)
+    void to_json(nlohmann::json& json, const step_match_argument& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, step_match_argument& msg)
+    {
+        msg.from_json(json);
+    }
 }

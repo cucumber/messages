@@ -27,14 +27,32 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         GITHUB_REPOSITORY nlohmann/json
         GIT_TAG v3.12.0
         OPTIONS "JSON_BuildTests OFF" "JSON_Install ON"
-        SYSTEM
     )
+
+    if(TARGET nlohmann_json)
+        set_target_properties(nlohmann_json PROPERTIES SYSTEM ON)
+    endif()
+
     if(nlohmann_json_ADDED)
         # Make the generated config file discoverable by cucumber_messages' find_package()
         list(APPEND CMAKE_PREFIX_PATH "${nlohmann_json_BINARY_DIR}")
-        if(NOT cucumber_messages_MAIN_PROJECT)
+        if(NOT PROJECT_IS_TOP_LEVEL)
             set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}" PARENT_SCOPE)
         endif()
+    endif()
+
+    if (CUCUMBER_MESSAGES_BUILD_TESTS)
+        CPMAddPackage(
+            NAME googletest
+            GITHUB_REPOSITORY google/googletest
+            GIT_TAG 52eb8108c5bdec04579160ae17225d66034bd723 # v1.17.0
+            OPTIONS "INSTALL_GTEST OFF" "gtest_force_shared_crt ON"
+        )
+
+        set_target_properties(gtest gtest_main gmock gmock_main PROPERTIES
+            FOLDER External/GoogleTest
+            SYSTEM ON
+        )
     endif()
 else()
     find_package(nlohmann_json 3.12.0 REQUIRED)

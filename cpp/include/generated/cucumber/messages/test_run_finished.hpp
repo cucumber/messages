@@ -1,18 +1,16 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_TEST_RUN_FINISHED_HPP
+#define CUCUMBER_MESSAGES_TEST_RUN_FINISHED_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/exception.hpp"
+#include "cucumber/messages/timestamp.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/timestamp.hpp>
-#include <cucumber/messages/exception.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the TestRunFinished message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -27,14 +25,18 @@ namespace cucumber::messages
         std::optional<cucumber::messages::exception> exception;
         std::optional<std::string> test_run_started_id;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const test_run_finished& msg);
+    std::ostream& operator<<(std::ostream& ostream, const test_run_finished& msg);
 
-    void to_json(json& j, const test_run_finished& m);
-
+    void to_json(nlohmann::json& json, const test_run_finished& msg);
+    void from_json(const nlohmann::json& json, test_run_finished& msg);
 }
+
+#endif

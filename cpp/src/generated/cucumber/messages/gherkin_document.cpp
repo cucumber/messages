@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/gherkin_document.hpp>
+#include "cucumber/messages/gherkin_document.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -18,35 +22,43 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void gherkin_document::to_json(json& j) const
+    void gherkin_document::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("uri"), uri);
-        cucumber::messages::to_json(j, camelize("feature"), feature);
-        cucumber::messages::to_json(j, camelize("comments"), comments);
+        cucumber::messages::to_json(json, camelize("uri"), uri);
+        cucumber::messages::to_json(json, camelize("feature"), feature);
+        cucumber::messages::to_json(json, camelize("comments"), comments);
+    }
+
+    void gherkin_document::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("uri"), uri);
+        cucumber::messages::from_json(json, camelize("feature"), feature);
+        cucumber::messages::from_json(json, camelize("comments"), comments);
     }
 
     std::string gherkin_document::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const gherkin_document& msg)
+    std::ostream& operator<<(std::ostream& ostream, const gherkin_document& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const gherkin_document& m)
+    void to_json(nlohmann::json& json, const gherkin_document& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, gherkin_document& msg)
+    {
+        msg.from_json(json);
+    }
 }

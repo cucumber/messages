@@ -1,35 +1,26 @@
 all.hpp
-<%- @schemas.each do |key, _schema| -%>
+#ifndef CUCUMBER_MESSAGES_ALL_HPP
+#define CUCUMBER_MESSAGES_ALL_HPP
+
+<%- @schemas.sort_by { |key, _| class_name(key) }.each do |key, _schema| -%>
 <%-
     myclass = underscore(class_name(key))
 -%>
 #include <cucumber/messages/<%= myclass %>.hpp>
 <%- end -%>
+
+#endif
 <%- @schemas.each do |key, schema| -%>
 <%-
     myclass = underscore(class_name(key))
 %>
 <%= myclass -%>.hpp
-#pragma once
+#ifndef CUCUMBER_MESSAGES_<%= myclass.upcase %>_HPP
+#define CUCUMBER_MESSAGES_<%= myclass.upcase %>_HPP
 
-#include <vector>
-#include <string>
-<%-
-    optionals = 0
-    schema['properties'].each do |property_name, _property|
-        prequired = (schema['required'] || []).index(property_name)
-        optionals += prequired ? 0 : 1
-    end
-
-    if optionals
--%>
-#include <optional>
-<%- end -%>
-
-#include <nlohmann/json.hpp>
 <%-
     incs = []
-    schema['properties'].each do |property_name, property|
+    schema['properties'].sort_by { |key, _| class_name(key) }.each do |property_name, property|
         type = underscore(type_for(class_name(key), property_name, property))
         if m = /std::vector<(?<vtype>.+)>/.match(type)
             type = m['vtype']
@@ -41,22 +32,45 @@ all.hpp
 
     if incs.length.positive?
 -%>
-
     <%- incs.uniq.each do |type| -%>
-#include <cucumber/messages/<%= type %>.hpp>
+    <%- next if type == myclass -%>
+#include "cucumber/messages/<%= type %>.hpp"
     <%- end -%>
+<%- end -%>
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
+<%-
+    optionals = 0
+    schema['properties'].each do |property_name, _property|
+        prequired = (schema['required'] || []).index(property_name)
+        optionals += prequired ? 0 : 1
+    end
+
+    if optionals
+-%>
+#include <optional>
+<%- end -%>
+#include <ostream>
+#include <string>
+<%-
+    vectors = schema['properties'].any? do |property_name, property|
+        type = type_for(class_name(key), property_name, property)
+        /std::vector</.match?(type)
+    end
+
+    if vectors
+-%>
+#include <vector>
 <%- end -%>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the <%= class_name(key) %> message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
     <%- unless (schema['description'] || []).empty? -%>
     //
-    <%= format_description(schema['description'], indent_string: '') %>
+    <%= format_description(schema['description'], indent_string: '    ') %>
     <%- end -%>
     //
     // Generated code
@@ -71,9 +85,12 @@ namespace cucumber::messages
             prequired = (schema['required'] || []).index(property_name)
             if m = /std::vector<(?<vtype>.+)>/.match(type)
                 unless m['vtype'].start_with?("std::")
-                    ptype = "std::vector<cucumber::messages::" + m['vtype'] + ">"
+                    vtype_is_enum = @enums.any? { |e| underscore(e[:name]) == m['vtype'] }
+                    inner = "cucumber::messages::" + m['vtype']
+                    ptype = "std::vector<" + inner + ">"
                 end
             elsif !type.start_with?("std::") && type != "bool"
+                is_enum = @enums.any? { |e| underscore(e[:name]) == type }
                 ptype = "cucumber::messages::" + type
             end
             unless prequired
@@ -83,22 +100,30 @@ namespace cucumber::messages
         <%= ptype %> <%= pname %>;
         <%- end -%>
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const <%= myclass %>& msg);
+    std::ostream& operator<<(std::ostream& ostream, const <%= myclass %>& msg);
 
-    void to_json(json& j, const <%= myclass %>& m);
-
+    void to_json(nlohmann::json& json, const <%= myclass %>& msg);
+    void from_json(const nlohmann::json& json, <%= myclass %>& msg);
 }
-<%= myclass %>.cpp
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/<%= myclass %>.hpp>
+#endif
+<%= myclass %>.cpp
+
+#include "cucumber/messages/<%= myclass %>.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -119,38 +144,49 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void <%= myclass %>::to_json(json& j) const
+    void <%= myclass %>::to_json(nlohmann::json& json) const
     {
         <%-
         schema['properties'].each do |(property_name, _property)|
             pname = underscore(property_name)
         -%>
-        cucumber::messages::to_json(j, camelize("<%= pname %>"), <%= pname %>);
+        cucumber::messages::to_json(json, camelize("<%= pname %>"), <%= pname %>);
+        <%- end -%>
+    }
+
+    void <%= myclass %>::from_json(const nlohmann::json& json)
+    {
+        <%-
+        schema['properties'].each do |(property_name, _property)|
+            pname = underscore(property_name)
+        -%>
+        cucumber::messages::from_json(json, camelize("<%= pname %>"), <%= pname %>);
         <%- end -%>
     }
 
     std::string <%= myclass %>::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const <%= myclass %>& msg)
+    std::ostream& operator<<(std::ostream& ostream, const <%= myclass %>& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const <%= myclass %>& m)
+    void to_json(nlohmann::json& json, const <%= myclass %>& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, <%= myclass %>& msg)
+    {
+        msg.from_json(json);
+    }
 }<%- end -%>

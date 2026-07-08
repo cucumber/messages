@@ -1,17 +1,16 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_SUGGESTION_HPP
+#define CUCUMBER_MESSAGES_SUGGESTION_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/snippet.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/snippet.hpp>
+#include <ostream>
+#include <string>
+#include <vector>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Suggestion message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -26,14 +25,18 @@ namespace cucumber::messages
         std::string pickle_step_id;
         std::vector<cucumber::messages::snippet> snippets;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const suggestion& msg);
+    std::ostream& operator<<(std::ostream& ostream, const suggestion& msg);
 
-    void to_json(json& j, const suggestion& m);
-
+    void to_json(nlohmann::json& json, const suggestion& msg);
+    void from_json(const nlohmann::json& json, suggestion& msg);
 }
+
+#endif

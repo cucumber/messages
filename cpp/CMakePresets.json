@@ -1,5 +1,5 @@
 {
-    "version": 3,
+    "version": 6,
     "configurePresets": [
         {
             "name": "host",
@@ -7,7 +7,15 @@
             "generator": "Ninja",
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "On",
+                "CUCUMBER_MESSAGES_FETCH_DEPS": "On",
                 "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "test",
+            "inherits": "host",
+            "cacheVariables": {
+                "CUCUMBER_MESSAGES_BUILD_TESTS": "On"
             }
         }
     ],
@@ -15,6 +23,54 @@
         {
             "name": "host",
             "configurePreset": "host"
+        },
+        {
+            "name": "test",
+            "configurePreset": "test"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "test",
+            "configurePreset": "test",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error"
+            }
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "host",
+            "steps": [
+                {
+                    "name": "host",
+                    "type": "configure"
+                },
+                {
+                    "name": "host",
+                    "type": "build"
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "steps": [
+                {
+                    "name": "test",
+                    "type": "configure"
+                },
+                {
+                    "name": "test",
+                    "type": "build"
+                },
+                {
+                    "name": "test",
+                    "type": "test"
+                }
+            ]
         }
     ]
 }

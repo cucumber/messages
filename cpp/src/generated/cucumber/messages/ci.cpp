@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/ci.hpp>
+#include "cucumber/messages/ci.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -19,36 +23,45 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void ci::to_json(json& j) const
+    void ci::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("name"), name);
-        cucumber::messages::to_json(j, camelize("url"), url);
-        cucumber::messages::to_json(j, camelize("build_number"), build_number);
-        cucumber::messages::to_json(j, camelize("git"), git);
+        cucumber::messages::to_json(json, camelize("name"), name);
+        cucumber::messages::to_json(json, camelize("url"), url);
+        cucumber::messages::to_json(json, camelize("build_number"), build_number);
+        cucumber::messages::to_json(json, camelize("git"), git);
+    }
+
+    void ci::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("name"), name);
+        cucumber::messages::from_json(json, camelize("url"), url);
+        cucumber::messages::from_json(json, camelize("build_number"), build_number);
+        cucumber::messages::from_json(json, camelize("git"), git);
     }
 
     std::string ci::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const ci& msg)
+    std::ostream& operator<<(std::ostream& ostream, const ci& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const ci& m)
+    void to_json(nlohmann::json& json, const ci& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, ci& msg)
+    {
+        msg.from_json(json);
+    }
 }

@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/step_match_arguments_list.hpp>
+#include "cucumber/messages/step_match_arguments_list.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -16,33 +20,39 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void step_match_arguments_list::to_json(json& j) const
+    void step_match_arguments_list::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("step_match_arguments"), step_match_arguments);
+        cucumber::messages::to_json(json, camelize("step_match_arguments"), step_match_arguments);
+    }
+
+    void step_match_arguments_list::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("step_match_arguments"), step_match_arguments);
     }
 
     std::string step_match_arguments_list::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const step_match_arguments_list& msg)
+    std::ostream& operator<<(std::ostream& ostream, const step_match_arguments_list& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const step_match_arguments_list& m)
+    void to_json(nlohmann::json& json, const step_match_arguments_list& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, step_match_arguments_list& msg)
+    {
+        msg.from_json(json);
+    }
 }

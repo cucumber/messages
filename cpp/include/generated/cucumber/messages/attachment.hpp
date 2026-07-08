@@ -1,34 +1,32 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_ATTACHMENT_HPP
+#define CUCUMBER_MESSAGES_ATTACHMENT_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/attachment_content_encoding.hpp"
+#include "cucumber/messages/source.hpp"
+#include "cucumber/messages/timestamp.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/attachment_content_encoding.hpp>
-#include <cucumber/messages/source.hpp>
-#include <cucumber/messages/timestamp.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Attachment message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
     //
     // Attachments (parse errors, execution errors, screenshots, links...)
-//
-// An attachment represents any kind of data associated with a line in a
-// [Source](#io.cucumber.messages.Source) file. It can be used for:
-//
-// * Syntax errors during parse time
-// * Screenshots captured and attached during execution
-// * Logs captured and attached during execution
-//
-// It is not to be used for runtime errors raised/thrown during execution. This
-// is captured in `TestResult`.
+    //
+    // An attachment represents any kind of data associated with a line in a
+    // [Source](#io.cucumber.messages.Source) file. It can be used for:
+    //
+    // * Syntax errors during parse time
+    // * Screenshots captured and attached during execution
+    // * Logs captured and attached during execution
+    //
+    // It is not to be used for runtime errors raised/thrown during execution. This
+    // is captured in `TestResult`.
     //
     // Generated code
 
@@ -46,14 +44,18 @@ namespace cucumber::messages
         std::optional<std::string> test_run_hook_started_id;
         std::optional<cucumber::messages::timestamp> timestamp;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const attachment& msg);
+    std::ostream& operator<<(std::ostream& ostream, const attachment& msg);
 
-    void to_json(json& j, const attachment& m);
-
+    void to_json(nlohmann::json& json, const attachment& msg);
+    void from_json(const nlohmann::json& json, attachment& msg);
 }
+
+#endif

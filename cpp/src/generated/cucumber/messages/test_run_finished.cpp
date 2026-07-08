@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/test_run_finished.hpp>
+#include "cucumber/messages/test_run_finished.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -20,37 +24,47 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void test_run_finished::to_json(json& j) const
+    void test_run_finished::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("message"), message);
-        cucumber::messages::to_json(j, camelize("success"), success);
-        cucumber::messages::to_json(j, camelize("timestamp"), timestamp);
-        cucumber::messages::to_json(j, camelize("exception"), exception);
-        cucumber::messages::to_json(j, camelize("test_run_started_id"), test_run_started_id);
+        cucumber::messages::to_json(json, camelize("message"), message);
+        cucumber::messages::to_json(json, camelize("success"), success);
+        cucumber::messages::to_json(json, camelize("timestamp"), timestamp);
+        cucumber::messages::to_json(json, camelize("exception"), exception);
+        cucumber::messages::to_json(json, camelize("test_run_started_id"), test_run_started_id);
+    }
+
+    void test_run_finished::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("message"), message);
+        cucumber::messages::from_json(json, camelize("success"), success);
+        cucumber::messages::from_json(json, camelize("timestamp"), timestamp);
+        cucumber::messages::from_json(json, camelize("exception"), exception);
+        cucumber::messages::from_json(json, camelize("test_run_started_id"), test_run_started_id);
     }
 
     std::string test_run_finished::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const test_run_finished& msg)
+    std::ostream& operator<<(std::ostream& ostream, const test_run_finished& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const test_run_finished& m)
+    void to_json(nlohmann::json& json, const test_run_finished& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, test_run_finished& msg)
+    {
+        msg.from_json(json);
+    }
 }

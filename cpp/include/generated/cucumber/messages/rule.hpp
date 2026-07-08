@@ -1,19 +1,18 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_RULE_HPP
+#define CUCUMBER_MESSAGES_RULE_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/rule_child.hpp"
+#include "cucumber/messages/location.hpp"
+#include "cucumber/messages/tag.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/location.hpp>
-#include <cucumber/messages/tag.hpp>
-#include <cucumber/messages/rule_child.hpp>
+#include <ostream>
+#include <string>
+#include <vector>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Rule message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -30,14 +29,18 @@ namespace cucumber::messages
         std::vector<cucumber::messages::rule_child> children;
         std::string id;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const rule& msg);
+    std::ostream& operator<<(std::ostream& ostream, const rule& msg);
 
-    void to_json(json& j, const rule& m);
-
+    void to_json(nlohmann::json& json, const rule& msg);
+    void from_json(const nlohmann::json& json, rule& msg);
 }
+
+#endif

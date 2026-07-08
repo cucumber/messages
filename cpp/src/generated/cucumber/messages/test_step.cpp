@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/test_step.hpp>
+#include "cucumber/messages/test_step.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -20,37 +24,47 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void test_step::to_json(json& j) const
+    void test_step::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("hook_id"), hook_id);
-        cucumber::messages::to_json(j, camelize("id"), id);
-        cucumber::messages::to_json(j, camelize("pickle_step_id"), pickle_step_id);
-        cucumber::messages::to_json(j, camelize("step_definition_ids"), step_definition_ids);
-        cucumber::messages::to_json(j, camelize("step_match_arguments_lists"), step_match_arguments_lists);
+        cucumber::messages::to_json(json, camelize("hook_id"), hook_id);
+        cucumber::messages::to_json(json, camelize("id"), id);
+        cucumber::messages::to_json(json, camelize("pickle_step_id"), pickle_step_id);
+        cucumber::messages::to_json(json, camelize("step_definition_ids"), step_definition_ids);
+        cucumber::messages::to_json(json, camelize("step_match_arguments_lists"), step_match_arguments_lists);
+    }
+
+    void test_step::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("hook_id"), hook_id);
+        cucumber::messages::from_json(json, camelize("id"), id);
+        cucumber::messages::from_json(json, camelize("pickle_step_id"), pickle_step_id);
+        cucumber::messages::from_json(json, camelize("step_definition_ids"), step_definition_ids);
+        cucumber::messages::from_json(json, camelize("step_match_arguments_lists"), step_match_arguments_lists);
     }
 
     std::string test_step::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const test_step& msg)
+    std::ostream& operator<<(std::ostream& ostream, const test_step& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const test_step& m)
+    void to_json(nlohmann::json& json, const test_step& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, test_step& msg)
+    {
+        msg.from_json(json);
+    }
 }
