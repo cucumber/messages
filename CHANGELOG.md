@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Fixed
 - [jsonschema]  Define minimum and maximum argument index values. ([#479](https://github.com/cucumber/messages/pull/479))
-- [cpp] When fetching them is disabled, still try to find them. ([#478](https://github.com/cucumber/messages/pull/478))
+- [cpp] When fetching dependencies is disabled, still try to find them. ([#478](https://github.com/cucumber/messages/pull/478))
 
 ### Added
 - [cpp] Add deserialization using `from_json`. ([#462](https://github.com/cucumber/messages/pull/462))
