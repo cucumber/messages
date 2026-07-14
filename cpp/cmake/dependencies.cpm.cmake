@@ -1,5 +1,7 @@
 # renovate: datasource=github-tags packageName=nlohmann/json versioning=semver
 set(NLOHMANN_JSON_VERSION 3.12.0 CACHE STRING "Version of nlohmann_json to use")
+# renovate: datasource=github-tags packageName=google/googletest versioning=semver
+set(GOOGLE_TEST_VERSION 1.17.0 CACHE STRING "Version of googletest to use")
 
 if(CUCUMBER_MESSAGES_FETCH_DEPS)
     if(NOT COMMAND CPMAddPackage)
@@ -48,7 +50,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         CPMAddPackage(
             NAME googletest
             GITHUB_REPOSITORY google/googletest
-            GIT_TAG 52eb8108c5bdec04579160ae17225d66034bd723 # v1.17.0
+            GIT_TAG v${GOOGLE_TEST_VERSION}
             OPTIONS "INSTALL_GTEST OFF" "gtest_force_shared_crt ON"
         )
 
