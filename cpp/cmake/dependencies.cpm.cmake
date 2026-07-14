@@ -1,9 +1,9 @@
 # renovate: datasource=github-tags packageName=cpm-cmake/CPM.cmake versioning=semver
-set(CPM_DOWNLOAD_HASH_VERSION 456cb6754daaa010d57444d0c8ce6d95ecf006ab 0.43.1)
+set(CPM_DOWNLOAD_HASH_VERSION 456cb6754daaa010d57444d0c8ce6d95ecf006ab v0.43.1)
 # renovate: datasource=github-tags packageName=nlohmann/json versioning=semver
-set(NLOHMANN_JSON_HASH_VERSION 55f93686c01528224f448c19128836e7df245f72 3.12.0)
+set(NLOHMANN_JSON_HASH_VERSION 55f93686c01528224f448c19128836e7df245f72 v3.12.0)
 # renovate: datasource=github-tags packageName=google/googletest versioning=semver
-set(GOOGLE_TEST_HASH_VERSION 52eb8108c5bdec04579160ae17225d66034bd723 1.17.0)
+set(GOOGLE_TEST_HASH_VERSION 52eb8108c5bdec04579160ae17225d66034bd723 v1.17.0)
 
 list(GET CPM_DOWNLOAD_HASH_VERSION 0 CPM_DOWNLOAD_HASH)
 list(GET CPM_DOWNLOAD_HASH_VERSION 1 CPM_DOWNLOAD_VERSION)
@@ -25,7 +25,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         if(NOT EXISTS "${CPM_DOWNLOAD_LOCATION}")
             message(STATUS "Downloading CPM.cmake ${CPM_DOWNLOAD_VERSION}…")
             file(DOWNLOAD
-                "https://github.com/cpm-cmake/CPM.cmake/releases/download/v${CPM_DOWNLOAD_VERSION}/CPM.cmake"
+                "https://github.com/cpm-cmake/CPM.cmake/releases/download/${CPM_DOWNLOAD_VERSION}/CPM.cmake"
                 "${CPM_DOWNLOAD_LOCATION}"
                 TLS_VERIFY ON
             )
