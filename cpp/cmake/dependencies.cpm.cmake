@@ -1,3 +1,6 @@
+# renovate: datasource=github-tags packageName=nlohmann/json versioning=semver
+set(NLOHMANN_JSON_VERSION 3.12.0 CACHE STRING "Version of nlohmann_json to use")
+
 if(CUCUMBER_MESSAGES_FETCH_DEPS)
     if(NOT COMMAND CPMAddPackage)
         # ---------------------------------------------------------------------------
@@ -25,7 +28,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
     CPMAddPackage(
         NAME nlohmann_json
         GITHUB_REPOSITORY nlohmann/json
-        GIT_TAG v3.12.0
+        GIT_TAG v${NLOHMANN_JSON_VERSION}
         OPTIONS "JSON_BuildTests OFF" "JSON_Install ON"
     )
 
@@ -55,7 +58,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         )
     endif()
 else()
-    find_package(nlohmann_json 3.12.0 REQUIRED)
+    find_package(nlohmann_json ${NLOHMANN_JSON_VERSION} REQUIRED)
 
     if (CUCUMBER_MESSAGES_BUILD_TESTS)
         find_package(GTest REQUIRED)
