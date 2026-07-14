@@ -1,9 +1,12 @@
 # renovate: datasource=github-tags packageName=cpm-cmake/CPM.cmake versioning=semver
-set(CPM_DOWNLOAD_VERSION 456cb6754daaa010d57444d0c8ce6d95ecf006ab 0.43.1)
+set(CPM_DOWNLOAD_HASH_VERSION 456cb6754daaa010d57444d0c8ce6d95ecf006ab 0.43.1)
 # renovate: datasource=github-tags packageName=nlohmann/json versioning=semver
 set(NLOHMANN_JSON_HASH_VERSION 55f93686c01528224f448c19128836e7df245f72 3.12.0)
 # renovate: datasource=github-tags packageName=google/googletest versioning=semver
 set(GOOGLE_TEST_HASH_VERSION 52eb8108c5bdec04579160ae17225d66034bd723 1.17.0)
+
+list(GET CPM_DOWNLOAD_HASH_VERSION 0 CPM_DOWNLOAD_HASH)
+list(GET CPM_DOWNLOAD_HASH_VERSION 1 CPM_DOWNLOAD_VERSION)
 
 list(GET NLOHMANN_JSON_HASH_VERSION 0 NLOHMANN_JSON_HASH)
 list(GET NLOHMANN_JSON_HASH_VERSION 1 NLOHMANN_JSON_VERSION)
