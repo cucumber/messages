@@ -1,5 +1,5 @@
-# renovate
-set(CPM_DOWNLOAD_VERSION 0.43.1)
+# renovate: datasource=github-tags packageName=cpm-cmake/CPM.cmake versioning=semver
+set(CPM_DOWNLOAD_VERSION 456cb6754daaa010d57444d0c8ce6d95ecf006ab 0.43.1)
 # renovate: datasource=github-tags packageName=nlohmann/json versioning=semver
 set(NLOHMANN_JSON_HASH_VERSION 55f93686c01528224f448c19128836e7df245f72 3.12.0)
 # renovate: datasource=github-tags packageName=google/googletest versioning=semver
