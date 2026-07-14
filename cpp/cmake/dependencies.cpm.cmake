@@ -1,14 +1,21 @@
+# renovate
+set(CPM_DOWNLOAD_VERSION 0.43.1)
 # renovate: datasource=github-tags packageName=nlohmann/json versioning=semver
-set(NLOHMANN_JSON_VERSION 3.12.0 CACHE STRING "Version of nlohmann_json to use")
+set(NLOHMANN_JSON_HASH_VERSION 55f93686c01528224f448c19128836e7df245f72 3.12.0)
 # renovate: datasource=github-tags packageName=google/googletest versioning=semver
-set(GOOGLE_TEST_VERSION 1.17.0 CACHE STRING "Version of googletest to use")
+set(GOOGLE_TEST_HASH_VERSION 52eb8108c5bdec04579160ae17225d66034bd723 1.17.0)
+
+list(GET NLOHMANN_JSON_HASH_VERSION 0 NLOHMANN_JSON_HASH)
+list(GET NLOHMANN_JSON_HASH_VERSION 1 NLOHMANN_JSON_VERSION)
+
+list(GET GOOGLE_TEST_HASH_VERSION 0 GOOGLE_TEST_HASH)
+list(GET GOOGLE_TEST_HASH_VERSION 1 GOOGLE_TEST_VERSION)
 
 if(CUCUMBER_MESSAGES_FETCH_DEPS)
     if(NOT COMMAND CPMAddPackage)
         # ---------------------------------------------------------------------------
         # CPM – download on first configure if not already cached (standalone only)
         # ---------------------------------------------------------------------------
-        set(CPM_DOWNLOAD_VERSION 0.40.2)
         set(CPM_USE_LOCAL_PACKAGES ON)
         set(CPM_DOWNLOAD_LOCATION "${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
 
@@ -28,15 +35,12 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
     # Dependencies
     # ---------------------------------------------------------------------------
     CPMAddPackage(
+        URI "gh:nlohmann/json@${NLOHMANN_JSON_VERSION}#${NLOHMANN_JSON_HASH}"
         NAME nlohmann_json
-        GITHUB_REPOSITORY nlohmann/json
-        GIT_TAG v${NLOHMANN_JSON_VERSION}
-        OPTIONS "JSON_BuildTests OFF" "JSON_Install ON"
+        OPTIONS
+            "JSON_BuildTests Off"
+            "JSON_Install ON"
     )
-
-    if(TARGET nlohmann_json)
-        set_target_properties(nlohmann_json PROPERTIES SYSTEM ON)
-    endif()
 
     if(nlohmann_json_ADDED)
         # Make the generated config file discoverable by cucumber_messages' find_package()
@@ -44,25 +48,28 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         if(NOT PROJECT_IS_TOP_LEVEL)
             set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}" PARENT_SCOPE)
         endif()
+
+        # Propagate nlohmann_json install rules so 'cmake --install' also installs it
+        install(SCRIPT "${nlohmann_json_BINARY_DIR}/cmake_install.cmake")
     endif()
 
     if (CUCUMBER_MESSAGES_BUILD_TESTS)
         CPMAddPackage(
+            URI "gh:google/googletest@${GOOGLE_TEST_VERSION}#${GOOGLE_TEST_HASH}"
             NAME googletest
-            GITHUB_REPOSITORY google/googletest
-            GIT_TAG v${GOOGLE_TEST_VERSION}
-            OPTIONS "INSTALL_GTEST OFF" "gtest_force_shared_crt ON"
+            OPTIONS
+                "INSTALL_GTEST OFF"
+                "gtest_force_shared_crt ON"
         )
 
         set_target_properties(gtest gtest_main gmock gmock_main PROPERTIES
             FOLDER External/GoogleTest
-            SYSTEM ON
         )
     endif()
 else()
     find_package(nlohmann_json ${NLOHMANN_JSON_VERSION} REQUIRED)
 
     if (CUCUMBER_MESSAGES_BUILD_TESTS)
-        find_package(GTest REQUIRED)
+        find_package(GTest ${GOOGLE_TEST_VERSION} REQUIRED)
     endif()
 endif()
