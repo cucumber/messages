@@ -1,18 +1,23 @@
 # renovate: datasource=github-tags packageName=cpm-cmake/CPM.cmake versioning=semver
-set(CPM_DOWNLOAD_HASH_VERSION 456cb6754daaa010d57444d0c8ce6d95ecf006ab v0.43.1)
+set(CPM_DOWNLOAD_TAG_DIGEST v0.43.1 456cb6754daaa010d57444d0c8ce6d95ecf006ab)
 # renovate: datasource=github-tags packageName=nlohmann/json versioning=semver
-set(NLOHMANN_JSON_HASH_VERSION 55f93686c01528224f448c19128836e7df245f72 v3.12.0)
+set(NLOHMANN_JSON_TAG_DIGEST v3.12.0 55f93686c01528224f448c19128836e7df245f72)
 # renovate: datasource=github-tags packageName=google/googletest versioning=semver
-set(GOOGLE_TEST_HASH_VERSION 52eb8108c5bdec04579160ae17225d66034bd723 v1.17.0)
+set(GOOGLE_TEST_TAG_DIGEST v1.17.0 52eb8108c5bdec04579160ae17225d66034bd723)
 
-list(GET CPM_DOWNLOAD_HASH_VERSION 0 CPM_DOWNLOAD_HASH)
-list(GET CPM_DOWNLOAD_HASH_VERSION 1 CPM_DOWNLOAD_VERSION)
+list(GET CPM_DOWNLOAD_TAG_DIGEST 0 CPM_DOWNLOAD_TAG)
+list(GET CPM_DOWNLOAD_TAG_DIGEST 1 CPM_DOWNLOAD_DIGEST)
+string(SUBSTRING CPM_DOWNLOAD_TAG 1 -1 CPM_DOWNLOAD_VERSION)
 
-list(GET NLOHMANN_JSON_HASH_VERSION 0 NLOHMANN_JSON_HASH)
-list(GET NLOHMANN_JSON_HASH_VERSION 1 NLOHMANN_JSON_VERSION)
+list(GET NLOHMANN_JSON_TAG_DIGEST 0 NLOHMANN_JSON_TAG)
+list(GET NLOHMANN_JSON_TAG_DIGEST 1 NLOHMANN_JSON_DIGEST)
+string(SUBSTRING NLOHMANN_JSON_TAG 1 -1 NLOHMANN_JSON_VERSION)
 
-list(GET GOOGLE_TEST_HASH_VERSION 0 GOOGLE_TEST_HASH)
-list(GET GOOGLE_TEST_HASH_VERSION 1 GOOGLE_TEST_VERSION)
+
+list(GET GOOGLE_TEST_TAG_DIGEST 0 GOOGLE_TEST_TAG)
+list(GET GOOGLE_TEST_TAG_DIGEST 1 GOOGLE_TEST_DIGEST)
+string(SUBSTRING GOOGLE_TEST_TAG 1 -1 GOOGLE_TEST_VERSION)
+
 
 if(CUCUMBER_MESSAGES_FETCH_DEPS)
     if(NOT COMMAND CPMAddPackage)
@@ -25,7 +30,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         if(NOT EXISTS "${CPM_DOWNLOAD_LOCATION}")
             message(STATUS "Downloading CPM.cmake ${CPM_DOWNLOAD_VERSION}…")
             file(DOWNLOAD
-                "https://github.com/cpm-cmake/CPM.cmake/releases/download/${CPM_DOWNLOAD_VERSION}/CPM.cmake"
+                "https://github.com/cpm-cmake/CPM.cmake/releases/download/${CPM_DOWNLOAD_TAG}/CPM.cmake"
                 "${CPM_DOWNLOAD_LOCATION}"
                 TLS_VERIFY ON
             )
@@ -38,7 +43,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
     # Dependencies
     # ---------------------------------------------------------------------------
     CPMAddPackage(
-        URI "gh:nlohmann/json@${NLOHMANN_JSON_VERSION}#${NLOHMANN_JSON_HASH}"
+        URI "gh:nlohmann/json@${NLOHMANN_JSON_VERSION}#${NLOHMANN_JSON_DIGEST}"
         NAME nlohmann_json
         OPTIONS
             "JSON_BuildTests Off"
@@ -58,7 +63,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
 
     if (CUCUMBER_MESSAGES_BUILD_TESTS)
         CPMAddPackage(
-            URI "gh:google/googletest@${GOOGLE_TEST_VERSION}#${GOOGLE_TEST_HASH}"
+            URI "gh:google/googletest@${GOOGLE_TEST_VERSION}#${GOOGLE_TEST_DIGEST}"
             NAME googletest
             OPTIONS
                 "INSTALL_GTEST OFF"
