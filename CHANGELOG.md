@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- [dart] Add equals, hashCode, and toString to generated messages ([#474](https://github.com/cucumber/messages/pull/474))
+
 ## [34.0.1] - 2026-07-05
 ### Fixed
 - [Dart] Fix automated release process?
