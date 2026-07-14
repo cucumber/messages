@@ -59,4 +59,8 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
     endif()
 else()
     find_package(nlohmann_json ${NLOHMANN_JSON_VERSION} REQUIRED)
+
+    if (CUCUMBER_MESSAGES_BUILD_TESTS)
+        find_package(GTest REQUIRED)
+    endif()
 endif()
