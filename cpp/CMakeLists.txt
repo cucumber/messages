@@ -18,9 +18,6 @@ endif()
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 project(cucumber_messages VERSION ${VERSION} LANGUAGES CXX)
 
-# Required so CMake can find the custom package/config helper modules in ./cmake.
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-
 # Options
 if (POLICY CMP0077)
     # Allow CMake 3.13+ to override options when using FetchContent / add_subdirectory.
@@ -55,7 +52,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 endif()
 
 # CMake dependencies
-include(dependencies.cpm)
+include(cmake/dependencies.cpm.cmake)
 
 # Target
 set(CUCUMBER_MESSAGES_LIB_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
