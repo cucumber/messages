@@ -75,7 +75,6 @@ jobs:
         with:
           path: ${{ env.CPM_SOURCE_CACHE }}
           key: cpm-${{ hashFiles('cpp/cmake/dependencies.cpm.cmake') }}
-          restore-keys: cpm-
 
       - name: Cache ccache
         if: "!startsWith(matrix.config.os, 'windows')"

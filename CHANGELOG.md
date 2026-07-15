@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - [Ruby] Re-added a new improved `#seconds_to_duration` method using strings to correctly determine floating point amounts. ([#487](https://github.com/cucumber/messages/pull/487))
 
+### Fixed
+- [cpp] Allow building tests with system GTest when fetching dependencies is disabled. ([#483](https://github.com/cucumber/messages/pull/483))
+
 ## [34.0.2] - 2026-07-13
 ### Added
 - [cpp] Add deserialization using `from_json`. ([#462](https://github.com/cucumber/messages/pull/462))
