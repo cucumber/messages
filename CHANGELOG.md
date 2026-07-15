@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- [Ruby] Re-added a new improved `#seconds_to_duration` method using strings to correctly determine floating point amounts. ([#462](https://github.com/cucumber/messages/pull/462))
+- [Ruby] Re-added a new improved `#seconds_to_duration` method using strings to correctly determine floating point amounts. ([#487](https://github.com/cucumber/messages/pull/487))
 
 ## [34.0.2] - 2026-07-13
 ### Added
