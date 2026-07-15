@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/feature_child.hpp>
+#include "cucumber/messages/feature_child.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -18,35 +22,43 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void feature_child::to_json(json& j) const
+    void feature_child::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("rule"), rule);
-        cucumber::messages::to_json(j, camelize("background"), background);
-        cucumber::messages::to_json(j, camelize("scenario"), scenario);
+        cucumber::messages::to_json(json, camelize("rule"), rule);
+        cucumber::messages::to_json(json, camelize("background"), background);
+        cucumber::messages::to_json(json, camelize("scenario"), scenario);
+    }
+
+    void feature_child::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("rule"), rule);
+        cucumber::messages::from_json(json, camelize("background"), background);
+        cucumber::messages::from_json(json, camelize("scenario"), scenario);
     }
 
     std::string feature_child::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const feature_child& msg)
+    std::ostream& operator<<(std::ostream& ostream, const feature_child& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const feature_child& m)
+    void to_json(nlohmann::json& json, const feature_child& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, feature_child& msg)
+    {
+        msg.from_json(json);
+    }
 }

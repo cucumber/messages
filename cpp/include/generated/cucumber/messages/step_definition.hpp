@@ -1,18 +1,16 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_STEP_DEFINITION_HPP
+#define CUCUMBER_MESSAGES_STEP_DEFINITION_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/step_definition_pattern.hpp"
+#include "cucumber/messages/source_reference.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/step_definition_pattern.hpp>
-#include <cucumber/messages/source_reference.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the StepDefinition message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -25,14 +23,18 @@ namespace cucumber::messages
         cucumber::messages::step_definition_pattern pattern;
         cucumber::messages::source_reference source_reference;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const step_definition& msg);
+    std::ostream& operator<<(std::ostream& ostream, const step_definition& msg);
 
-    void to_json(json& j, const step_definition& m);
-
+    void to_json(nlohmann::json& json, const step_definition& msg);
+    void from_json(const nlohmann::json& json, step_definition& msg);
 }
+
+#endif

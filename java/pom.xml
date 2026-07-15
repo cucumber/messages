@@ -8,7 +8,7 @@
         <version>5.6.0</version>
     </parent>
     <artifactId>messages</artifactId>
-    <version>34.0.2-SNAPSHOT</version>
+    <version>34.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Cucumber Messages</name>
     <description>JSON schema-based messages for Cucumber's inter-process communication</description>
@@ -16,7 +16,7 @@
 
     <properties>
         <osgi.bundle-symbolic-name>io.cucumber.messages</osgi.bundle-symbolic-name>
-        <project.build.outputTimestamp>1783267533</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1784105484</project.build.outputTimestamp>
     </properties>
 
     <scm>
@@ -31,14 +31,14 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>6.1.1</version>
+                <version>6.1.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>tools.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
-                <version>3.2.0</version>
+                <version>3.2.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/timestamp.hpp>
+#include "cucumber/messages/timestamp.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +21,41 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void timestamp::to_json(json& j) const
+    void timestamp::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("seconds"), seconds);
-        cucumber::messages::to_json(j, camelize("nanos"), nanos);
+        cucumber::messages::to_json(json, camelize("seconds"), seconds);
+        cucumber::messages::to_json(json, camelize("nanos"), nanos);
+    }
+
+    void timestamp::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("seconds"), seconds);
+        cucumber::messages::from_json(json, camelize("nanos"), nanos);
     }
 
     std::string timestamp::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const timestamp& msg)
+    std::ostream& operator<<(std::ostream& ostream, const timestamp& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const timestamp& m)
+    void to_json(nlohmann::json& json, const timestamp& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, timestamp& msg)
+    {
+        msg.from_json(json);
+    }
 }

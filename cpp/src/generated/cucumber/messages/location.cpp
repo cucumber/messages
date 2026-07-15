@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/location.hpp>
+#include "cucumber/messages/location.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +21,41 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void location::to_json(json& j) const
+    void location::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("line"), line);
-        cucumber::messages::to_json(j, camelize("column"), column);
+        cucumber::messages::to_json(json, camelize("line"), line);
+        cucumber::messages::to_json(json, camelize("column"), column);
+    }
+
+    void location::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("line"), line);
+        cucumber::messages::from_json(json, camelize("column"), column);
     }
 
     std::string location::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const location& msg)
+    std::ostream& operator<<(std::ostream& ostream, const location& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const location& m)
+    void to_json(nlohmann::json& json, const location& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, location& msg)
+    {
+        msg.from_json(json);
+    }
 }

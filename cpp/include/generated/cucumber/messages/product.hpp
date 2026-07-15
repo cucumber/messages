@@ -1,15 +1,14 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_PRODUCT_HPP
+#define CUCUMBER_MESSAGES_PRODUCT_HPP
 
-#include <vector>
-#include <string>
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Product message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -23,14 +22,18 @@ namespace cucumber::messages
         std::string name;
         std::optional<std::string> version;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const product& msg);
+    std::ostream& operator<<(std::ostream& ostream, const product& msg);
 
-    void to_json(json& j, const product& m);
-
+    void to_json(nlohmann::json& json, const product& msg);
+    void from_json(const nlohmann::json& json, product& msg);
 }
+
+#endif

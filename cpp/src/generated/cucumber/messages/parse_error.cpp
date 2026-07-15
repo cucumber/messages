@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/parse_error.hpp>
+#include "cucumber/messages/parse_error.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +21,41 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void parse_error::to_json(json& j) const
+    void parse_error::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("source"), source);
-        cucumber::messages::to_json(j, camelize("message"), message);
+        cucumber::messages::to_json(json, camelize("source"), source);
+        cucumber::messages::to_json(json, camelize("message"), message);
+    }
+
+    void parse_error::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("source"), source);
+        cucumber::messages::from_json(json, camelize("message"), message);
     }
 
     std::string parse_error::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const parse_error& msg)
+    std::ostream& operator<<(std::ostream& ostream, const parse_error& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const parse_error& m)
+    void to_json(nlohmann::json& json, const parse_error& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, parse_error& msg)
+    {
+        msg.from_json(json);
+    }
 }

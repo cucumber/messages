@@ -1,20 +1,19 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_SCENARIO_HPP
+#define CUCUMBER_MESSAGES_SCENARIO_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/examples.hpp"
+#include "cucumber/messages/location.hpp"
+#include "cucumber/messages/step.hpp"
+#include "cucumber/messages/tag.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/location.hpp>
-#include <cucumber/messages/tag.hpp>
-#include <cucumber/messages/step.hpp>
-#include <cucumber/messages/examples.hpp>
+#include <ostream>
+#include <string>
+#include <vector>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Scenario message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -32,14 +31,18 @@ namespace cucumber::messages
         std::vector<cucumber::messages::examples> examples;
         std::string id;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const scenario& msg);
+    std::ostream& operator<<(std::ostream& ostream, const scenario& msg);
 
-    void to_json(json& j, const scenario& m);
-
+    void to_json(nlohmann::json& json, const scenario& msg);
+    void from_json(const nlohmann::json& json, scenario& msg);
 }
+
+#endif

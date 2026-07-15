@@ -18,24 +18,14 @@ endif()
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 project(cucumber_messages VERSION ${VERSION} LANGUAGES CXX)
 
-# Required so CMake can find the custom package/config helper modules in ./cmake.
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-
-# Standalone check
-if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-    set(cucumber_messages_MAIN_PROJECT ON)
-else()
-    set(cucumber_messages_MAIN_PROJECT OFF)
-endif()
-
 # Options
 if (POLICY CMP0077)
     # Allow CMake 3.13+ to override options when using FetchContent / add_subdirectory.
     cmake_policy(SET CMP0077 NEW)
 endif ()
 
-option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." ${cucumber_messages_MAIN_PROJECT})
-option(CUCUMBER_MESSAGES_FETCH_DEPS "Fetch dependencies via FetchContent." ${cucumber_messages_MAIN_PROJECT})
+option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." Off)
+option(CUCUMBER_MESSAGES_FETCH_DEPS "Fetch dependencies via FetchContent." Off)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -62,7 +52,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 endif()
 
 # CMake dependencies
-include(dependencies.cpm)
+include(cmake/dependencies.cpm.cmake)
 
 # Target
 set(CUCUMBER_MESSAGES_LIB_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -150,3 +140,10 @@ install(
     DIRECTORY "${PROJECT_SOURCE_DIR}/include/generated/"
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
 )
+
+# Optional: tests
+if(CUCUMBER_MESSAGES_BUILD_TESTS)
+    include(CTest)
+    enable_testing()
+    add_subdirectory(test)
+endif()

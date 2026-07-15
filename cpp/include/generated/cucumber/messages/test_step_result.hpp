@@ -1,19 +1,17 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_TEST_STEP_RESULT_HPP
+#define CUCUMBER_MESSAGES_TEST_STEP_RESULT_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/duration.hpp"
+#include "cucumber/messages/exception.hpp"
+#include "cucumber/messages/test_step_result_status.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/duration.hpp>
-#include <cucumber/messages/test_step_result_status.hpp>
-#include <cucumber/messages/exception.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the TestStepResult message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -27,14 +25,18 @@ namespace cucumber::messages
         cucumber::messages::test_step_result_status status;
         std::optional<cucumber::messages::exception> exception;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const test_step_result& msg);
+    std::ostream& operator<<(std::ostream& ostream, const test_step_result& msg);
 
-    void to_json(json& j, const test_step_result& m);
-
+    void to_json(nlohmann::json& json, const test_step_result& msg);
+    void from_json(const nlohmann::json& json, test_step_result& msg);
 }
+
+#endif

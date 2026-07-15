@@ -1,19 +1,18 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_EXAMPLES_HPP
+#define CUCUMBER_MESSAGES_EXAMPLES_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/location.hpp"
+#include "cucumber/messages/table_row.hpp"
+#include "cucumber/messages/tag.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/location.hpp>
-#include <cucumber/messages/tag.hpp>
-#include <cucumber/messages/table_row.hpp>
+#include <ostream>
+#include <string>
+#include <vector>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Examples message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -31,14 +30,18 @@ namespace cucumber::messages
         std::vector<cucumber::messages::table_row> table_body;
         std::string id;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const examples& msg);
+    std::ostream& operator<<(std::ostream& ostream, const examples& msg);
 
-    void to_json(json& j, const examples& m);
-
+    void to_json(nlohmann::json& json, const examples& msg);
+    void from_json(const nlohmann::json& json, examples& msg);
 }
+
+#endif

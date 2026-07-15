@@ -36,12 +36,18 @@ jobs:
           - { os: ubuntu-24.04, cxx: g++,      version: 12 }
           - { os: ubuntu-24.04, cxx: g++,      version: 13 }
           - { os: ubuntu-24.04, cxx: g++,      version: 14 }
+          - { os: ubuntu-26.04, cxx: g++,      version: 13 }
+          - { os: ubuntu-26.04, cxx: g++,      version: 14 }
+          - { os: ubuntu-26.04, cxx: g++,      version: 15 }
           - { os: ubuntu-22.04, cxx: clang++,  version: 13 }
           - { os: ubuntu-22.04, cxx: clang++,  version: 14 }
           - { os: ubuntu-22.04, cxx: clang++,  version: 15 }
           - { os: ubuntu-24.04, cxx: clang++,  version: 16 }
           - { os: ubuntu-24.04, cxx: clang++,  version: 17 }
           - { os: ubuntu-24.04, cxx: clang++,  version: 18 }
+          - { os: ubuntu-26.04, cxx: clang++,  version: 20 }
+          - { os: ubuntu-26.04, cxx: clang++,  version: 21 }
+          - { os: ubuntu-26.04, cxx: clang++,  version: 22 }
           - { os: macos-latest, cxx: clang++,  version: 17 }
           - { os: windows-latest, cxx: cl }
 
@@ -69,7 +75,6 @@ jobs:
         with:
           path: ${{ env.CPM_SOURCE_CACHE }}
           key: cpm-${{ hashFiles('cpp/cmake/dependencies.cpm.cmake') }}
-          restore-keys: cpm-
 
       - name: Cache ccache
         if: "!startsWith(matrix.config.os, 'windows')"
@@ -87,24 +92,25 @@ jobs:
         if: startsWith(matrix.config.os, 'macos')
         run: echo "CXX=$(brew --prefix llvm@${{ matrix.config.version }})/bin/clang++" >> $GITHUB_ENV
 
-      - name: Configure
+      - name: Test
         working-directory: cpp
-        run: cmake --preset host
+        run: cmake --workflow test
 
       - name: Build
         working-directory: cpp
-        run: cmake --build --preset host
+        run: cmake --workflow host
 
-      - name: Build & Install (Unix)
+      - name: Install (Unix)
         if: ${{ matrix.config.os != 'windows-latest' }}
         working-directory: cpp
         run: sudo cmake --install build/host
 
-      - name: Build & Install (Windows)
+      - name: Install (Windows)
         if: ${{ matrix.config.os == 'windows-latest' }}
         working-directory: cpp
         run: cmake --install build/host
 
+      # The following steps are to test the installation process.
       - name: Build Test Install
         working-directory: cpp/test_install
         run: |

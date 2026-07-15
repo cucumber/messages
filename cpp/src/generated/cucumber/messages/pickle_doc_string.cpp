@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/pickle_doc_string.hpp>
+#include "cucumber/messages/pickle_doc_string.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -18,35 +22,43 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void pickle_doc_string::to_json(json& j) const
+    void pickle_doc_string::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("argument_index"), argument_index);
-        cucumber::messages::to_json(j, camelize("media_type"), media_type);
-        cucumber::messages::to_json(j, camelize("content"), content);
+        cucumber::messages::to_json(json, camelize("argument_index"), argument_index);
+        cucumber::messages::to_json(json, camelize("media_type"), media_type);
+        cucumber::messages::to_json(json, camelize("content"), content);
+    }
+
+    void pickle_doc_string::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("argument_index"), argument_index);
+        cucumber::messages::from_json(json, camelize("media_type"), media_type);
+        cucumber::messages::from_json(json, camelize("content"), content);
     }
 
     std::string pickle_doc_string::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const pickle_doc_string& msg)
+    std::ostream& operator<<(std::ostream& ostream, const pickle_doc_string& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const pickle_doc_string& m)
+    void to_json(nlohmann::json& json, const pickle_doc_string& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, pickle_doc_string& msg)
+    {
+        msg.from_json(json);
+    }
 }

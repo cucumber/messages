@@ -1,37 +1,35 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_ENVELOPE_HPP
+#define CUCUMBER_MESSAGES_ENVELOPE_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/attachment.hpp"
+#include "cucumber/messages/external_attachment.hpp"
+#include "cucumber/messages/gherkin_document.hpp"
+#include "cucumber/messages/hook.hpp"
+#include "cucumber/messages/meta.hpp"
+#include "cucumber/messages/parameter_type.hpp"
+#include "cucumber/messages/parse_error.hpp"
+#include "cucumber/messages/pickle.hpp"
+#include "cucumber/messages/source.hpp"
+#include "cucumber/messages/step_definition.hpp"
+#include "cucumber/messages/suggestion.hpp"
+#include "cucumber/messages/test_case.hpp"
+#include "cucumber/messages/test_case_finished.hpp"
+#include "cucumber/messages/test_case_started.hpp"
+#include "cucumber/messages/test_run_finished.hpp"
+#include "cucumber/messages/test_run_hook_finished.hpp"
+#include "cucumber/messages/test_run_hook_started.hpp"
+#include "cucumber/messages/test_run_started.hpp"
+#include "cucumber/messages/test_step_finished.hpp"
+#include "cucumber/messages/test_step_started.hpp"
+#include "cucumber/messages/undefined_parameter_type.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/attachment.hpp>
-#include <cucumber/messages/external_attachment.hpp>
-#include <cucumber/messages/gherkin_document.hpp>
-#include <cucumber/messages/hook.hpp>
-#include <cucumber/messages/meta.hpp>
-#include <cucumber/messages/parameter_type.hpp>
-#include <cucumber/messages/parse_error.hpp>
-#include <cucumber/messages/pickle.hpp>
-#include <cucumber/messages/suggestion.hpp>
-#include <cucumber/messages/source.hpp>
-#include <cucumber/messages/step_definition.hpp>
-#include <cucumber/messages/test_case.hpp>
-#include <cucumber/messages/test_case_finished.hpp>
-#include <cucumber/messages/test_case_started.hpp>
-#include <cucumber/messages/test_run_finished.hpp>
-#include <cucumber/messages/test_run_started.hpp>
-#include <cucumber/messages/test_step_finished.hpp>
-#include <cucumber/messages/test_step_started.hpp>
-#include <cucumber/messages/test_run_hook_started.hpp>
-#include <cucumber/messages/test_run_hook_finished.hpp>
-#include <cucumber/messages/undefined_parameter_type.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Envelope message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
@@ -62,14 +60,18 @@ namespace cucumber::messages
         std::optional<cucumber::messages::test_run_hook_finished> test_run_hook_finished;
         std::optional<cucumber::messages::undefined_parameter_type> undefined_parameter_type;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const envelope& msg);
+    std::ostream& operator<<(std::ostream& ostream, const envelope& msg);
 
-    void to_json(json& j, const envelope& m);
-
+    void to_json(nlohmann::json& json, const envelope& msg);
+    void from_json(const nlohmann::json& json, envelope& msg);
 }
+
+#endif

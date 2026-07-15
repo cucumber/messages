@@ -26,6 +26,10 @@ final class PickleTable implements JsonSerializable
      * @param list<PickleTableRow> $rows
      */
     public function __construct(
+
+        /**
+         * The index of this argument. The value is 0 if it was declared before the doc string, 1 if it was declared after.
+         */
         public readonly ?int $argumentIndex = null,
         public readonly array $rows = [],
     ) {

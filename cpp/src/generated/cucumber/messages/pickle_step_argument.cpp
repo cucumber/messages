@@ -1,7 +1,11 @@
-#include <sstream>
 
-#include <cucumber/messages/utils.hpp>
-#include <cucumber/messages/pickle_step_argument.hpp>
+#include "cucumber/messages/pickle_step_argument.hpp"
+#include "cucumber/messages/utils.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <sstream>
+#include <string>
 
 // Generated code
 
@@ -17,34 +21,41 @@ namespace cucumber::messages
         return oss.str();
     }
 
-    void pickle_step_argument::to_json(json& j) const
+    void pickle_step_argument::to_json(nlohmann::json& json) const
     {
-        cucumber::messages::to_json(j, camelize("doc_string"), doc_string);
-        cucumber::messages::to_json(j, camelize("data_table"), data_table);
+        cucumber::messages::to_json(json, camelize("doc_string"), doc_string);
+        cucumber::messages::to_json(json, camelize("data_table"), data_table);
+    }
+
+    void pickle_step_argument::from_json(const nlohmann::json& json)
+    {
+        cucumber::messages::from_json(json, camelize("doc_string"), doc_string);
+        cucumber::messages::from_json(json, camelize("data_table"), data_table);
     }
 
     std::string pickle_step_argument::to_json() const
     {
-        std::ostringstream oss;
-        json j;
+        nlohmann::json json;
 
-        to_json(j);
+        to_json(json);
 
-        oss << j;
-
-        return oss.str();
+        return json.dump();
     }
 
-    std::ostream& operator<<(std::ostream& os, const pickle_step_argument& msg)
+    std::ostream& operator<<(std::ostream& ostream, const pickle_step_argument& msg)
     {
-        os << msg.to_string();
+        ostream << msg.to_string();
 
-        return os;
+        return ostream;
     }
 
-    void to_json(json& j, const pickle_step_argument& m)
+    void to_json(nlohmann::json& json, const pickle_step_argument& msg)
     {
-        m.to_json(j);
+        msg.to_json(json);
     }
 
+    void from_json(const nlohmann::json& json, pickle_step_argument& msg)
+    {
+        msg.from_json(json);
+    }
 }

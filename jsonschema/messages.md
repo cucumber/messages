@@ -1239,7 +1239,7 @@ id originating from the `Scenario` AST node, and the second from the `TableRow` 
 * Type: integer 
 * Required: no 
 
-
+The index of this argument. The value is 1 if it was declared before the data table, 2 if it was declared after.
 
 #### PickleDocString.mediaType 
 
@@ -1324,7 +1324,7 @@ Optional arguments. Either a PickleDocString, PickleTable or both
 * Type: integer 
 * Required: no 
 
-
+The index of this argument. The value is 0 if it was declared before the doc string, 1 if it was declared after.
 
 #### PickleTable.rows 
 

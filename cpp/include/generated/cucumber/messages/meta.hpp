@@ -1,24 +1,22 @@
-#pragma once
+#ifndef CUCUMBER_MESSAGES_META_HPP
+#define CUCUMBER_MESSAGES_META_HPP
 
-#include <vector>
-#include <string>
+#include "cucumber/messages/ci.hpp"
+#include "cucumber/messages/product.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <memory>
 #include <optional>
-
-#include <nlohmann/json.hpp>
-
-#include <cucumber/messages/product.hpp>
-#include <cucumber/messages/ci.hpp>
+#include <ostream>
+#include <string>
 
 namespace cucumber::messages
 {
-    using json = nlohmann::json;
-
     //
     // Represents the Meta message in Cucumber's message protocol
     // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
     //
     // This message contains meta information about the environment. Consumers can use
-// this for various purposes.
+    // this for various purposes.
     //
     // Generated code
 
@@ -31,14 +29,18 @@ namespace cucumber::messages
         cucumber::messages::product cpu;
         std::optional<cucumber::messages::ci> ci;
 
-        std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
 
-        void to_json(json& j) const;
-        std::string to_json() const;
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
     };
 
-    std::ostream& operator<<(std::ostream& os, const meta& msg);
+    std::ostream& operator<<(std::ostream& ostream, const meta& msg);
 
-    void to_json(json& j, const meta& m);
-
+    void to_json(nlohmann::json& json, const meta& msg);
+    void from_json(const nlohmann::json& json, meta& msg);
 }
+
+#endif
