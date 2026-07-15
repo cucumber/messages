@@ -17,7 +17,7 @@ namespace Io.Cucumber.Messages.Types;
 public sealed class PickleTable 
 {
     /**
-     * The index of this argument. The value is 0 if it was declared before the doc string, 1 if it was declared after.
+     * The index of this argument. The value is 1 if it was declared before the doc string, 2 if it was declared after.
      */
     public Nullable<long> ArgumentIndex { get; private set; }
     public List<PickleTableRow> Rows { get; private set; }
