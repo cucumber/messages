@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- [Ruby] Re-added a new improved `#seconds_to_duration` method using strings to correctly determine floating point amounts. ([#487](https://github.com/cucumber/messages/pull/487))
+
 ### Fixed
 - [cpp] Allow building tests with system GTest when fetching dependencies is disabled. ([#483](https://github.com/cucumber/messages/pull/483))
 

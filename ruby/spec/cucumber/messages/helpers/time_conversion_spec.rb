@@ -9,6 +9,14 @@ describe Cucumber::Messages::Helpers::TimeConversion do
     end
   end
 
+  describe '#seconds_to_duration' do
+    it 'converts a float value to a hashified number representation of time' do
+      duration = instance.seconds_to_duration(1.234_567)
+
+      expect(duration).to eq({ 'seconds' => 1, 'nanos' => 234_567_000 })
+    end
+  end
+
   describe '#time_to_timestamp' do
     it 'converts a Time to a Timestamp message to Timestamp' do
       timestamp = instance.time_to_timestamp(Time.now)
