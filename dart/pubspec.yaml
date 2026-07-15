@@ -1,6 +1,6 @@
 name: cucumber_messages
 description: JSON schema-based messages for Cucumber inter-process communication.
-version: 34.0.2
+version: 34.1.0
 homepage: https://github.com/cucumber/messages
 repository: https://github.com/cucumber/messages
 issue_tracker: https://github.com/cucumber/messages/issues
