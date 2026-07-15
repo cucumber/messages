@@ -253,5 +253,61 @@ class Envelope {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Envelope &&
+          runtimeType == other.runtimeType &&
+          attachment == other.attachment &&
+          externalAttachment == other.externalAttachment &&
+          gherkinDocument == other.gherkinDocument &&
+          hook == other.hook &&
+          meta == other.meta &&
+          parameterType == other.parameterType &&
+          parseError == other.parseError &&
+          pickle == other.pickle &&
+          suggestion == other.suggestion &&
+          source == other.source &&
+          stepDefinition == other.stepDefinition &&
+          testCase == other.testCase &&
+          testCaseFinished == other.testCaseFinished &&
+          testCaseStarted == other.testCaseStarted &&
+          testRunFinished == other.testRunFinished &&
+          testRunStarted == other.testRunStarted &&
+          testStepFinished == other.testStepFinished &&
+          testStepStarted == other.testStepStarted &&
+          testRunHookStarted == other.testRunHookStarted &&
+          testRunHookFinished == other.testRunHookFinished &&
+          undefinedParameterType == other.undefinedParameterType;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        attachment,
+        externalAttachment,
+        gherkinDocument,
+        hook,
+        meta,
+        parameterType,
+        parseError,
+        pickle,
+        suggestion,
+        source,
+        stepDefinition,
+        testCase,
+        testCaseFinished,
+        testCaseStarted,
+        testRunFinished,
+        testRunStarted,
+        testStepFinished,
+        testStepStarted,
+        testRunHookStarted,
+        testRunHookFinished,
+        undefinedParameterType,
+      ]);
+
+  @override
+  String toString() =>
+      'Envelope{attachment: ${attachment}, externalAttachment: ${externalAttachment}, gherkinDocument: ${gherkinDocument}, hook: ${hook}, meta: ${meta}, parameterType: ${parameterType}, parseError: ${parseError}, pickle: ${pickle}, suggestion: ${suggestion}, source: ${source}, stepDefinition: ${stepDefinition}, testCase: ${testCase}, testCaseFinished: ${testCaseFinished}, testCaseStarted: ${testCaseStarted}, testRunFinished: ${testRunFinished}, testRunStarted: ${testRunStarted}, testStepFinished: ${testStepFinished}, testStepStarted: ${testStepStarted}, testRunHookStarted: ${testRunHookStarted}, testRunHookFinished: ${testRunHookFinished}, undefinedParameterType: ${undefinedParameterType}}';
 }
 

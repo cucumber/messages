@@ -96,5 +96,35 @@ class Pickle {
     json['astNodeIds'] = astNodeIds;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Pickle &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          uri == other.uri &&
+          location == other.location &&
+          name == other.name &&
+          language == other.language &&
+          _listEquals(steps, other.steps) &&
+          _listEquals(tags, other.tags) &&
+          _listEquals(astNodeIds, other.astNodeIds);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        uri,
+        location,
+        name,
+        language,
+        (steps == null ? null : Object.hashAll(steps!)),
+        (tags == null ? null : Object.hashAll(tags!)),
+        (astNodeIds == null ? null : Object.hashAll(astNodeIds!)),
+      ]);
+
+  @override
+  String toString() =>
+      'Pickle{id: ${id}, uri: ${uri}, location: ${location}, name: ${name}, language: ${language}, steps: ${steps}, tags: ${tags}, astNodeIds: ${astNodeIds}}';
 }
 

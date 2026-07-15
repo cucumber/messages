@@ -69,5 +69,31 @@ class Meta {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Meta &&
+          runtimeType == other.runtimeType &&
+          protocolVersion == other.protocolVersion &&
+          implementation == other.implementation &&
+          runtime == other.runtime &&
+          os == other.os &&
+          cpu == other.cpu &&
+          ci == other.ci;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        protocolVersion,
+        implementation,
+        runtime,
+        os,
+        cpu,
+        ci,
+      ]);
+
+  @override
+  String toString() =>
+      'Meta{protocolVersion: ${protocolVersion}, implementation: ${implementation}, runtime: ${runtime}, os: ${os}, cpu: ${cpu}, ci: ${ci}}';
 }
 

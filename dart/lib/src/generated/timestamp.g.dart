@@ -37,5 +37,23 @@ class Timestamp {
     json['nanos'] = nanos;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Timestamp &&
+          runtimeType == other.runtimeType &&
+          seconds == other.seconds &&
+          nanos == other.nanos;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        seconds,
+        nanos,
+      ]);
+
+  @override
+  String toString() =>
+      'Timestamp{seconds: ${seconds}, nanos: ${nanos}}';
 }
 

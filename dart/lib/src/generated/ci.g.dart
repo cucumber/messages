@@ -54,5 +54,27 @@ class Ci {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Ci &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          url == other.url &&
+          buildNumber == other.buildNumber &&
+          git == other.git;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        url,
+        buildNumber,
+        git,
+      ]);
+
+  @override
+  String toString() =>
+      'Ci{name: ${name}, url: ${url}, buildNumber: ${buildNumber}, git: ${git}}';
 }
 

@@ -39,5 +39,25 @@ class JavaMethod {
     json['methodParameterTypes'] = methodParameterTypes;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is JavaMethod &&
+          runtimeType == other.runtimeType &&
+          className == other.className &&
+          methodName == other.methodName &&
+          _listEquals(methodParameterTypes, other.methodParameterTypes);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        className,
+        methodName,
+        (methodParameterTypes == null ? null : Object.hashAll(methodParameterTypes!)),
+      ]);
+
+  @override
+  String toString() =>
+      'JavaMethod{className: ${className}, methodName: ${methodName}, methodParameterTypes: ${methodParameterTypes}}';
 }
 

@@ -41,5 +41,25 @@ class StepDefinition {
     json['sourceReference'] = sourceReference.toJson();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StepDefinition &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          pattern == other.pattern &&
+          sourceReference == other.sourceReference;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        pattern,
+        sourceReference,
+      ]);
+
+  @override
+  String toString() =>
+      'StepDefinition{id: ${id}, pattern: ${pattern}, sourceReference: ${sourceReference}}';
 }
 

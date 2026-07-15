@@ -36,5 +36,23 @@ class Product {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Product &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          version == other.version;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        version,
+      ]);
+
+  @override
+  String toString() =>
+      'Product{name: ${name}, version: ${version}}';
 }
 

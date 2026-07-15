@@ -46,5 +46,23 @@ class PickleStepArgument {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleStepArgument &&
+          runtimeType == other.runtimeType &&
+          docString == other.docString &&
+          dataTable == other.dataTable;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        docString,
+        dataTable,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleStepArgument{docString: ${docString}, dataTable: ${dataTable}}';
 }
 

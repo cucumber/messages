@@ -33,5 +33,21 @@ class PickleTableRow {
     json['cells'] = cells.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTableRow &&
+          runtimeType == other.runtimeType &&
+          _listEquals(cells, other.cells);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        (cells == null ? null : Object.hashAll(cells!)),
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTableRow{cells: ${cells}}';
 }
 

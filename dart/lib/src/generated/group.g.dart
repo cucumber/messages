@@ -50,5 +50,25 @@ class Group {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Group &&
+          runtimeType == other.runtimeType &&
+          _listEquals(children, other.children) &&
+          start == other.start &&
+          value == other.value;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        (children == null ? null : Object.hashAll(children!)),
+        start,
+        value,
+      ]);
+
+  @override
+  String toString() =>
+      'Group{children: ${children}, start: ${start}, value: ${value}}';
 }
 

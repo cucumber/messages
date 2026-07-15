@@ -41,5 +41,25 @@ class PickleDocString {
     json['content'] = content;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleDocString &&
+          runtimeType == other.runtimeType &&
+          argumentIndex == other.argumentIndex &&
+          mediaType == other.mediaType &&
+          content == other.content;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        argumentIndex,
+        mediaType,
+        content,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleDocString{argumentIndex: ${argumentIndex}, mediaType: ${mediaType}, content: ${content}}';
 }
 

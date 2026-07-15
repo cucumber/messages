@@ -38,5 +38,23 @@ class Duration {
     json['nanos'] = nanos;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Duration &&
+          runtimeType == other.runtimeType &&
+          seconds == other.seconds &&
+          nanos == other.nanos;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        seconds,
+        nanos,
+      ]);
+
+  @override
+  String toString() =>
+      'Duration{seconds: ${seconds}, nanos: ${nanos}}';
 }
 

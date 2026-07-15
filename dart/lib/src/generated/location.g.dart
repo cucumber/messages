@@ -36,5 +36,23 @@ class Location {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Location &&
+          runtimeType == other.runtimeType &&
+          line == other.line &&
+          column == other.column;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        line,
+        column,
+      ]);
+
+  @override
+  String toString() =>
+      'Location{line: ${line}, column: ${column}}';
 }
 

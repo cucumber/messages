@@ -33,5 +33,21 @@ class StepMatchArgumentsList {
     json['stepMatchArguments'] = stepMatchArguments.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StepMatchArgumentsList &&
+          runtimeType == other.runtimeType &&
+          _listEquals(stepMatchArguments, other.stepMatchArguments);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        (stepMatchArguments == null ? null : Object.hashAll(stepMatchArguments!)),
+      ]);
+
+  @override
+  String toString() =>
+      'StepMatchArgumentsList{stepMatchArguments: ${stepMatchArguments}}';
 }
 

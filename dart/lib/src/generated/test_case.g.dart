@@ -52,5 +52,27 @@ class TestCase {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestCase &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          pickleId == other.pickleId &&
+          _listEquals(testSteps, other.testSteps) &&
+          testRunStartedId == other.testRunStartedId;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        pickleId,
+        (testSteps == null ? null : Object.hashAll(testSteps!)),
+        testRunStartedId,
+      ]);
+
+  @override
+  String toString() =>
+      'TestCase{id: ${id}, pickleId: ${pickleId}, testSteps: ${testSteps}, testRunStartedId: ${testRunStartedId}}';
 }
 

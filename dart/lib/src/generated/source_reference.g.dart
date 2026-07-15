@@ -65,5 +65,27 @@ class SourceReference {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SourceReference &&
+          runtimeType == other.runtimeType &&
+          uri == other.uri &&
+          javaMethod == other.javaMethod &&
+          javaStackTraceElement == other.javaStackTraceElement &&
+          location == other.location;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        uri,
+        javaMethod,
+        javaStackTraceElement,
+        location,
+      ]);
+
+  @override
+  String toString() =>
+      'SourceReference{uri: ${uri}, javaMethod: ${javaMethod}, javaStackTraceElement: ${javaStackTraceElement}, location: ${location}}';
 }
 

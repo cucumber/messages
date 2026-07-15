@@ -36,5 +36,23 @@ class Comment {
     json['text'] = text;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Comment &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          text == other.text;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        text,
+      ]);
+
+  @override
+  String toString() =>
+      'Comment{location: ${location}, text: ${text}}';
 }
 

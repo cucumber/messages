@@ -47,5 +47,25 @@ class TableRow {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TableRow &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(cells, other.cells) &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        (cells == null ? null : Object.hashAll(cells!)),
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'TableRow{location: ${location}, cells: ${cells}, id: ${id}}';
 }
 

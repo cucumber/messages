@@ -36,5 +36,23 @@ class TestRunStarted {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestRunStarted &&
+          runtimeType == other.runtimeType &&
+          timestamp == other.timestamp &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        timestamp,
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'TestRunStarted{timestamp: ${timestamp}, id: ${id}}';
 }
 

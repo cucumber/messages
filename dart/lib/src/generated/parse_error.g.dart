@@ -34,5 +34,23 @@ class ParseError {
     json['message'] = message;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ParseError &&
+          runtimeType == other.runtimeType &&
+          source == other.source &&
+          message == other.message;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        source,
+        message,
+      ]);
+
+  @override
+  String toString() =>
+      'ParseError{source: ${source}, message: ${message}}';
 }
 

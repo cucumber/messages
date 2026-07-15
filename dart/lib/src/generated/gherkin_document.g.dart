@@ -59,5 +59,25 @@ class GherkinDocument {
     json['comments'] = comments.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GherkinDocument &&
+          runtimeType == other.runtimeType &&
+          uri == other.uri &&
+          feature == other.feature &&
+          _listEquals(comments, other.comments);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        uri,
+        feature,
+        (comments == null ? null : Object.hashAll(comments!)),
+      ]);
+
+  @override
+  String toString() =>
+      'GherkinDocument{uri: ${uri}, feature: ${feature}, comments: ${comments}}';
 }
 

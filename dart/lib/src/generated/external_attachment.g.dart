@@ -76,5 +76,31 @@ class ExternalAttachment {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ExternalAttachment &&
+          runtimeType == other.runtimeType &&
+          url == other.url &&
+          mediaType == other.mediaType &&
+          testCaseStartedId == other.testCaseStartedId &&
+          testStepId == other.testStepId &&
+          testRunHookStartedId == other.testRunHookStartedId &&
+          timestamp == other.timestamp;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        url,
+        mediaType,
+        testCaseStartedId,
+        testStepId,
+        testRunHookStartedId,
+        timestamp,
+      ]);
+
+  @override
+  String toString() =>
+      'ExternalAttachment{url: ${url}, mediaType: ${mediaType}, testCaseStartedId: ${testCaseStartedId}, testStepId: ${testStepId}, testRunHookStartedId: ${testRunHookStartedId}, timestamp: ${timestamp}}';
 }
 

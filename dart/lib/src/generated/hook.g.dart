@@ -85,5 +85,29 @@ class Hook {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Hook &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          sourceReference == other.sourceReference &&
+          tagExpression == other.tagExpression &&
+          type == other.type;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        name,
+        sourceReference,
+        tagExpression,
+        type,
+      ]);
+
+  @override
+  String toString() =>
+      'Hook{id: ${id}, name: ${name}, sourceReference: ${sourceReference}, tagExpression: ${tagExpression}, type: ${type}}';
 }
 

@@ -40,5 +40,23 @@ class DataTable {
     json['rows'] = rows.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DataTable &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(rows, other.rows);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        (rows == null ? null : Object.hashAll(rows!)),
+      ]);
+
+  @override
+  String toString() =>
+      'DataTable{location: ${location}, rows: ${rows}}';
 }
 

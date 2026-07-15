@@ -32,5 +32,23 @@ class UndefinedParameterType {
     json['name'] = name;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UndefinedParameterType &&
+          runtimeType == other.runtimeType &&
+          expression == other.expression &&
+          name == other.name;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        expression,
+        name,
+      ]);
+
+  @override
+  String toString() =>
+      'UndefinedParameterType{expression: ${expression}, name: ${name}}';
 }
 

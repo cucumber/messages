@@ -44,5 +44,23 @@ class StepMatchArgument {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StepMatchArgument &&
+          runtimeType == other.runtimeType &&
+          group == other.group &&
+          parameterTypeName == other.parameterTypeName;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        group,
+        parameterTypeName,
+      ]);
+
+  @override
+  String toString() =>
+      'StepMatchArgument{group: ${group}, parameterTypeName: ${parameterTypeName}}';
 }
 

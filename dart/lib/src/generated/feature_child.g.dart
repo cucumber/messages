@@ -57,5 +57,25 @@ class FeatureChild {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FeatureChild &&
+          runtimeType == other.runtimeType &&
+          rule == other.rule &&
+          background == other.background &&
+          scenario == other.scenario;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        rule,
+        background,
+        scenario,
+      ]);
+
+  @override
+  String toString() =>
+      'FeatureChild{rule: ${rule}, background: ${background}, scenario: ${scenario}}';
 }
 

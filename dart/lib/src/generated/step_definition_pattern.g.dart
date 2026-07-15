@@ -52,5 +52,23 @@ class StepDefinitionPattern {
     json['type'] = type.value;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StepDefinitionPattern &&
+          runtimeType == other.runtimeType &&
+          source == other.source &&
+          type == other.type;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        source,
+        type,
+      ]);
+
+  @override
+  String toString() =>
+      'StepDefinitionPattern{source: ${source}, type: ${type}}';
 }
 

@@ -90,5 +90,29 @@ class PickleStep {
     json['text'] = text;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleStep &&
+          runtimeType == other.runtimeType &&
+          argument == other.argument &&
+          _listEquals(astNodeIds, other.astNodeIds) &&
+          id == other.id &&
+          type == other.type &&
+          text == other.text;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        argument,
+        (astNodeIds == null ? null : Object.hashAll(astNodeIds!)),
+        id,
+        type,
+        text,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleStep{argument: ${argument}, astNodeIds: ${astNodeIds}, id: ${id}, type: ${type}, text: ${text}}';
 }
 

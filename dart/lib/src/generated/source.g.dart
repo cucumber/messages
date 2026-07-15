@@ -62,5 +62,25 @@ class Source {
     json['mediaType'] = mediaType.value;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Source &&
+          runtimeType == other.runtimeType &&
+          uri == other.uri &&
+          data == other.data &&
+          mediaType == other.mediaType;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        uri,
+        data,
+        mediaType,
+      ]);
+
+  @override
+  String toString() =>
+      'Source{uri: ${uri}, data: ${data}, mediaType: ${mediaType}}';
 }
 

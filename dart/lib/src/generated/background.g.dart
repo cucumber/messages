@@ -60,5 +60,31 @@ class Background {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Background &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          _listEquals(steps, other.steps) &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        keyword,
+        name,
+        description,
+        (steps == null ? null : Object.hashAll(steps!)),
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Background{location: ${location}, keyword: ${keyword}, name: ${name}, description: ${description}, steps: ${steps}, id: ${id}}';
 }
 

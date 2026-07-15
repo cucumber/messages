@@ -34,5 +34,23 @@ class PickleTag {
     json['astNodeId'] = astNodeId;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTag &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          astNodeId == other.astNodeId;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        astNodeId,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTag{name: ${name}, astNodeId: ${astNodeId}}';
 }
 

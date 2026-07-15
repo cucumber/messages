@@ -118,3 +118,22 @@ bool _requireJsonBool(Map<String, Object?> json, String propertyName) {
   }
   return value as bool;
 }
+
+/// Compares two lists element-wise using `==` on their elements.
+///
+/// Used by generated message classes to give `List` properties value
+/// semantics without depending on `package:collection`.
+bool _listEquals(List<Object?>? a, List<Object?>? b) {
+  if (identical(a, b)) {
+    return true;
+  }
+  if (a == null || b == null || a.length != b.length) {
+    return false;
+  }
+  for (var index = 0; index < a.length; index += 1) {
+    if (a[index] != b[index]) {
+      return false;
+    }
+  }
+  return true;
+}

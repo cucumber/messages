@@ -71,5 +71,33 @@ class Rule {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Rule &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(tags, other.tags) &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          _listEquals(children, other.children) &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        (tags == null ? null : Object.hashAll(tags!)),
+        keyword,
+        name,
+        description,
+        (children == null ? null : Object.hashAll(children!)),
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Rule{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, children: ${children}, id: ${id}}';
 }
 

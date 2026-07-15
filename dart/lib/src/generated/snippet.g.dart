@@ -35,5 +35,23 @@ class Snippet {
     json['code'] = code;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Snippet &&
+          runtimeType == other.runtimeType &&
+          language == other.language &&
+          code == other.code;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        language,
+        code,
+      ]);
+
+  @override
+  String toString() =>
+      'Snippet{language: ${language}, code: ${code}}';
 }
 

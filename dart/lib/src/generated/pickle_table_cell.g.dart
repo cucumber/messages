@@ -27,5 +27,21 @@ class PickleTableCell {
     json['value'] = value;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTableCell &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        value,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTableCell{value: ${value}}';
 }
 

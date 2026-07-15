@@ -39,5 +39,25 @@ class TestCaseFinished {
     json['willBeRetried'] = willBeRetried;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestCaseFinished &&
+          runtimeType == other.runtimeType &&
+          testCaseStartedId == other.testCaseStartedId &&
+          timestamp == other.timestamp &&
+          willBeRetried == other.willBeRetried;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        testCaseStartedId,
+        timestamp,
+        willBeRetried,
+      ]);
+
+  @override
+  String toString() =>
+      'TestCaseFinished{testCaseStartedId: ${testCaseStartedId}, timestamp: ${timestamp}, willBeRetried: ${willBeRetried}}';
 }
 

@@ -37,5 +37,25 @@ class JavaStackTraceElement {
     json['methodName'] = methodName;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is JavaStackTraceElement &&
+          runtimeType == other.runtimeType &&
+          className == other.className &&
+          fileName == other.fileName &&
+          methodName == other.methodName;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        className,
+        fileName,
+        methodName,
+      ]);
+
+  @override
+  String toString() =>
+      'JavaStackTraceElement{className: ${className}, fileName: ${fileName}, methodName: ${methodName}}';
 }
 

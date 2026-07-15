@@ -60,5 +60,31 @@ class ParameterType {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ParameterType &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          _listEquals(regularExpressions, other.regularExpressions) &&
+          preferForRegularExpressionMatch == other.preferForRegularExpressionMatch &&
+          useForSnippets == other.useForSnippets &&
+          id == other.id &&
+          sourceReference == other.sourceReference;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        (regularExpressions == null ? null : Object.hashAll(regularExpressions!)),
+        preferForRegularExpressionMatch,
+        useForSnippets,
+        id,
+        sourceReference,
+      ]);
+
+  @override
+  String toString() =>
+      'ParameterType{name: ${name}, regularExpressions: ${regularExpressions}, preferForRegularExpressionMatch: ${preferForRegularExpressionMatch}, useForSnippets: ${useForSnippets}, id: ${id}, sourceReference: ${sourceReference}}';
 }
 

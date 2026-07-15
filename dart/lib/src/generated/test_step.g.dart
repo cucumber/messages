@@ -73,5 +73,29 @@ class TestStep {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestStep &&
+          runtimeType == other.runtimeType &&
+          hookId == other.hookId &&
+          id == other.id &&
+          pickleStepId == other.pickleStepId &&
+          _listEquals(stepDefinitionIds, other.stepDefinitionIds) &&
+          _listEquals(stepMatchArgumentsLists, other.stepMatchArgumentsLists);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        hookId,
+        id,
+        pickleStepId,
+        (stepDefinitionIds == null ? null : Object.hashAll(stepDefinitionIds!)),
+        (stepMatchArgumentsLists == null ? null : Object.hashAll(stepMatchArgumentsLists!)),
+      ]);
+
+  @override
+  String toString() =>
+      'TestStep{hookId: ${hookId}, id: ${id}, pickleStepId: ${pickleStepId}, stepDefinitionIds: ${stepDefinitionIds}, stepMatchArgumentsLists: ${stepMatchArgumentsLists}}';
 }
 

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - [jsonschema] Fix PickleTable.argumentIndex docs ([#488](https://github.com/cucumber/messages/pull/488))
 
+### Added
+- [dart] Add equals, hashCode, and toString to generated messages ([#474](https://github.com/cucumber/messages/pull/474))
+
 ## [34.1.0] - 2026-07-15
 ### Added
 - [Ruby] Re-added a new improved `#seconds_to_duration` method using strings to correctly determine floating point amounts. ([#487](https://github.com/cucumber/messages/pull/487))

@@ -43,5 +43,25 @@ class Exception {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Exception &&
+          runtimeType == other.runtimeType &&
+          type == other.type &&
+          message == other.message &&
+          stackTrace == other.stackTrace;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        type,
+        message,
+        stackTrace,
+      ]);
+
+  @override
+  String toString() =>
+      'Exception{type: ${type}, message: ${message}, stackTrace: ${stackTrace}}';
 }
 

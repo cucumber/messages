@@ -51,5 +51,29 @@ class TestRunHookStarted {
     json['timestamp'] = timestamp.toJson();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestRunHookStarted &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          testRunStartedId == other.testRunStartedId &&
+          hookId == other.hookId &&
+          workerId == other.workerId &&
+          timestamp == other.timestamp;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        testRunStartedId,
+        hookId,
+        workerId,
+        timestamp,
+      ]);
+
+  @override
+  String toString() =>
+      'TestRunHookStarted{id: ${id}, testRunStartedId: ${testRunStartedId}, hookId: ${hookId}, workerId: ${workerId}, timestamp: ${timestamp}}';
 }
 

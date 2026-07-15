@@ -59,5 +59,29 @@ class TestRunFinished {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestRunFinished &&
+          runtimeType == other.runtimeType &&
+          message == other.message &&
+          success == other.success &&
+          timestamp == other.timestamp &&
+          exception == other.exception &&
+          testRunStartedId == other.testRunStartedId;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        message,
+        success,
+        timestamp,
+        exception,
+        testRunStartedId,
+      ]);
+
+  @override
+  String toString() =>
+      'TestRunFinished{message: ${message}, success: ${success}, timestamp: ${timestamp}, exception: ${exception}, testRunStartedId: ${testRunStartedId}}';
 }
 

@@ -82,5 +82,35 @@ class Examples {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Examples &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(tags, other.tags) &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          tableHeader == other.tableHeader &&
+          _listEquals(tableBody, other.tableBody) &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        (tags == null ? null : Object.hashAll(tags!)),
+        keyword,
+        name,
+        description,
+        tableHeader,
+        (tableBody == null ? null : Object.hashAll(tableBody!)),
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Examples{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, tableHeader: ${tableHeader}, tableBody: ${tableBody}, id: ${id}}';
 }
 

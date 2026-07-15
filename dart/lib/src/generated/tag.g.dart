@@ -41,5 +41,25 @@ class Tag {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Tag &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          name == other.name &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        name,
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Tag{location: ${location}, name: ${name}, id: ${id}}';
 }
 

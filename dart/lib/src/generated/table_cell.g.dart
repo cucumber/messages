@@ -36,5 +36,23 @@ class TableCell {
     json['value'] = value;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TableCell &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          value == other.value;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        value,
+      ]);
+
+  @override
+  String toString() =>
+      'TableCell{location: ${location}, value: ${value}}';
 }
 

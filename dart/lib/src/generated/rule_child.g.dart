@@ -46,5 +46,23 @@ class RuleChild {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RuleChild &&
+          runtimeType == other.runtimeType &&
+          background == other.background &&
+          scenario == other.scenario;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        background,
+        scenario,
+      ]);
+
+  @override
+  String toString() =>
+      'RuleChild{background: ${background}, scenario: ${scenario}}';
 }
 
