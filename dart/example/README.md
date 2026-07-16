@@ -1,3 +1,7 @@
 # Example
 
-See [Reading](https://github.com/cucumber/messages/tree/main/dart#reading) and [Writing](https://github.com/cucumber/messages/tree/main/dart#writing).
+Run the message stream example from the `dart/` directory:
+
+```sh
+dart run example/dart_example.dart
+```
