@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - cpp/**
+      - Makefile
       - testdata/**
       - .github/**
   pull_request:
@@ -15,6 +16,7 @@ on:
       - main
     paths:
       - cpp/**
+      - Makefile
       - testdata/**
       - .github/**
   schedule:
@@ -56,8 +58,8 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
-          key: ccache-analysis-${{ github.ref }}
-          restore-keys: ccache-analysis-
+          key: ccache-${{ github.job }}-${{ github.ref }}
+          restore-keys: ccache-${{ github.job }}-
 
       - uses: github/codeql-action/init@7188fc363630916deb702c7fdcf4e481b751f97a # v4.37.1
         with:

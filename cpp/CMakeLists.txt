@@ -15,7 +15,7 @@ else()
     message(FATAL_ERROR "unable to parse version: ${VERSION}")
 endif()
 
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 project(cucumber_messages VERSION ${VERSION} LANGUAGES CXX)
 
 # Options
@@ -77,8 +77,9 @@ target_sources(
 target_include_directories(
     cucumber_messages_lib
     PUBLIC
+        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/legacy>
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/generated>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE
         ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
 )
@@ -138,7 +139,7 @@ install(
 
 install(
     DIRECTORY "${PROJECT_SOURCE_DIR}/include/generated/"
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 # Optional: tests

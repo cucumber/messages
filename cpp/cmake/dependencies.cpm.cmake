@@ -61,7 +61,7 @@ if(CUCUMBER_MESSAGES_FETCH_DEPS)
         install(SCRIPT "${nlohmann_json_BINARY_DIR}/cmake_install.cmake")
     endif()
 
-    if (CUCUMBER_MESSAGES_BUILD_TESTS)
+    if(CUCUMBER_MESSAGES_BUILD_TESTS)
         CPMAddPackage(
             URI "gh:google/googletest@${GOOGLE_TEST_VERSION}#${GOOGLE_TEST_DIGEST}"
             NAME googletest

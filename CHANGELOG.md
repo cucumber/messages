@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [34.0.2] - 2026-07-13
 ### Added
 - [cpp] Add deserialization using `from_json`. ([#462](https://github.com/cucumber/messages/pull/462))
+- [cpp] BREAKING CHANGE: updated codegen (shared_ptr's, renamed files and classes). ([#473](https://github.com/cucumber/messages/pull/473))
 
 ### Changed
 - [cpp] CUCUMBER_MESSAGES_FETCH_DEPS always defaults to Off. ([#462](https://github.com/cucumber/messages/pull/462))

@@ -1,4 +1,9 @@
-#include "cucumber/messages/envelope.hpp"
+#include "cucumber/messages/Envelope.hpp"
+
+#ifdef INCLUDE_NLOHMANN_JSON_HPP_
+#error "json.hpp" should not be included in any messages. Use "json_fwd.hpp" instead.
+#endif
+
 #include "nlohmann/json.hpp"
 #include "nlohmann/json_fwd.hpp"
 #include "gmock/gmock.h"
@@ -65,7 +70,7 @@ namespace
         {
             const auto& message = JsonMessage();
 
-            cucumber::messages::envelope envelope;
+            cucumber::messages::Envelope envelope;
             envelope.from_json(message);
 
             nlohmann::json serializedJson{};
