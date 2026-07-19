@@ -6,11 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Fixed
-- [jsonschema] Fix PickleTable.argumentIndex docs ([#488](https://github.com/cucumber/messages/pull/488))
 
+## [34.2.0] - 2026-07-19
 ### Added
 - [dart] Add equals, hashCode, and toString to generated messages ([#474](https://github.com/cucumber/messages/pull/474))
+
+### Fixed
+- [jsonschema] Fix PickleTable.argumentIndex docs ([#488](https://github.com/cucumber/messages/pull/488))
 
 ## [34.1.0] - 2026-07-15
 ### Added
@@ -737,7 +739,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v34.1.0...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v34.2.0...HEAD
+[34.2.0]: https://github.com/cucumber/messages/compare/v34.1.0...v34.2.0
 [34.1.0]: https://github.com/cucumber/messages/compare/v34.0.2...v34.1.0
 [34.0.2]: https://github.com/cucumber/messages/compare/v34.0.1...v34.0.2
 [34.0.1]: https://github.com/cucumber/messages/compare/v34.0.0...v34.0.1
