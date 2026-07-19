@@ -39,6 +39,7 @@ generated from the JSON schemas. The current implementations are:
 The release process for the below languages uses [polyglot-release](./RELEASING.md)
 
 - .NET
+- Dart
 - Java
 - Javascript
 - Perl
