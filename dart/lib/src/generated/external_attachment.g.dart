@@ -101,6 +101,6 @@ class ExternalAttachment {
 
   @override
   String toString() =>
-      'ExternalAttachment{url: ${url}, mediaType: ${mediaType}, testCaseStartedId: ${testCaseStartedId}, testStepId: ${testStepId}, testRunHookStartedId: ${testRunHookStartedId}, timestamp: ${timestamp}}';
+      'ExternalAttachment{url: $url, mediaType: $mediaType, testCaseStartedId: $testCaseStartedId, testStepId: $testStepId, testRunHookStartedId: $testRunHookStartedId, timestamp: $timestamp}';
 }
 

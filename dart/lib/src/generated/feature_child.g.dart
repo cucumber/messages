@@ -76,6 +76,6 @@ class FeatureChild {
 
   @override
   String toString() =>
-      'FeatureChild{rule: ${rule}, background: ${background}, scenario: ${scenario}}';
+      'FeatureChild{rule: $rule, background: $background, scenario: $scenario}';
 }
 

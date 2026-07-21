@@ -51,6 +51,6 @@ class PickleTag {
 
   @override
   String toString() =>
-      'PickleTag{name: ${name}, astNodeId: ${astNodeId}}';
+      'PickleTag{name: $name, astNodeId: $astNodeId}';
 }
 

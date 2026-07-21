@@ -62,6 +62,6 @@ class Exception {
 
   @override
   String toString() =>
-      'Exception{type: ${type}, message: ${message}, stackTrace: ${stackTrace}}';
+      'Exception{type: $type, message: $message, stackTrace: $stackTrace}';
 }
 

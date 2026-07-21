@@ -63,6 +63,6 @@ class RuleChild {
 
   @override
   String toString() =>
-      'RuleChild{background: ${background}, scenario: ${scenario}}';
+      'RuleChild{background: $background, scenario: $scenario}';
 }
 

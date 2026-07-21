@@ -60,6 +60,6 @@ class PickleDocString {
 
   @override
   String toString() =>
-      'PickleDocString{argumentIndex: ${argumentIndex}, mediaType: ${mediaType}, content: ${content}}';
+      'PickleDocString{argumentIndex: $argumentIndex, mediaType: $mediaType, content: $content}';
 }
 

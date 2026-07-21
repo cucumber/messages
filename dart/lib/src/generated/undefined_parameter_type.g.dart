@@ -49,6 +49,6 @@ class UndefinedParameterType {
 
   @override
   String toString() =>
-      'UndefinedParameterType{expression: ${expression}, name: ${name}}';
+      'UndefinedParameterType{expression: $expression, name: $name}';
 }
 

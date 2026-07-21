@@ -108,6 +108,6 @@ class Hook {
 
   @override
   String toString() =>
-      'Hook{id: ${id}, name: ${name}, sourceReference: ${sourceReference}, tagExpression: ${tagExpression}, type: ${type}}';
+      'Hook{id: $id, name: $name, sourceReference: $sourceReference, tagExpression: $tagExpression, type: $type}';
 }
 

@@ -54,6 +54,6 @@ class Timestamp {
 
   @override
   String toString() =>
-      'Timestamp{seconds: ${seconds}, nanos: ${nanos}}';
+      'Timestamp{seconds: $seconds, nanos: $nanos}';
 }
 

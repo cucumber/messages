@@ -60,6 +60,6 @@ class StepDefinition {
 
   @override
   String toString() =>
-      'StepDefinition{id: ${id}, pattern: ${pattern}, sourceReference: ${sourceReference}}';
+      'StepDefinition{id: $id, pattern: $pattern, sourceReference: $sourceReference}';
 }
 

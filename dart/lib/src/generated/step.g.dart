@@ -130,6 +130,6 @@ class Step {
 
   @override
   String toString() =>
-      'Step{location: ${location}, keyword: ${keyword}, keywordType: ${keywordType}, text: ${text}, docString: ${docString}, dataTable: ${dataTable}, id: ${id}}';
+      'Step{location: $location, keyword: $keyword, keywordType: $keywordType, text: $text, docString: $docString, dataTable: $dataTable, id: $id}';
 }
 

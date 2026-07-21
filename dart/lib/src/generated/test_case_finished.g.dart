@@ -58,6 +58,6 @@ class TestCaseFinished {
 
   @override
   String toString() =>
-      'TestCaseFinished{testCaseStartedId: ${testCaseStartedId}, timestamp: ${timestamp}, willBeRetried: ${willBeRetried}}';
+      'TestCaseFinished{testCaseStartedId: $testCaseStartedId, timestamp: $timestamp, willBeRetried: $willBeRetried}';
 }
 

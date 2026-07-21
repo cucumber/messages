@@ -100,17 +100,17 @@ class Scenario {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (tags == null ? null : Object.hashAll(tags!)),
+        Object.hashAll(tags),
         keyword,
         name,
         description,
-        (steps == null ? null : Object.hashAll(steps!)),
-        (examples == null ? null : Object.hashAll(examples!)),
+        Object.hashAll(steps),
+        Object.hashAll(examples),
         id,
       ]);
 
   @override
   String toString() =>
-      'Scenario{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, steps: ${steps}, examples: ${examples}, id: ${id}}';
+      'Scenario{location: $location, tags: $tags, keyword: $keyword, name: $name, description: $description, steps: $steps, examples: $examples, id: $id}';
 }
 

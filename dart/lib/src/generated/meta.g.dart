@@ -94,6 +94,6 @@ class Meta {
 
   @override
   String toString() =>
-      'Meta{protocolVersion: ${protocolVersion}, implementation: ${implementation}, runtime: ${runtime}, os: ${os}, cpu: ${cpu}, ci: ${ci}}';
+      'Meta{protocolVersion: $protocolVersion, implementation: $implementation, runtime: $runtime, os: $os, cpu: $cpu, ci: $ci}';
 }
 

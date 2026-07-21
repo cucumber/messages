@@ -81,6 +81,6 @@ class Source {
 
   @override
   String toString() =>
-      'Source{uri: ${uri}, data: ${data}, mediaType: ${mediaType}}';
+      'Source{uri: $uri, data: $data, mediaType: $mediaType}';
 }
 

@@ -73,11 +73,11 @@ class GherkinDocument {
   int get hashCode => Object.hashAll(<Object?>[
         uri,
         feature,
-        (comments == null ? null : Object.hashAll(comments!)),
+        Object.hashAll(comments),
       ]);
 
   @override
   String toString() =>
-      'GherkinDocument{uri: ${uri}, feature: ${feature}, comments: ${comments}}';
+      'GherkinDocument{uri: $uri, feature: $feature, comments: $comments}';
 }
 

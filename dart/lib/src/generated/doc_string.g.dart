@@ -67,6 +67,6 @@ class DocString {
 
   @override
   String toString() =>
-      'DocString{location: ${location}, mediaType: ${mediaType}, content: ${content}, delimiter: ${delimiter}}';
+      'DocString{location: $location, mediaType: $mediaType, content: $content, delimiter: $delimiter}';
 }
 

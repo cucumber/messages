@@ -53,6 +53,6 @@ class Product {
 
   @override
   String toString() =>
-      'Product{name: ${name}, version: ${version}}';
+      'Product{name: $name, version: $version}';
 }
 

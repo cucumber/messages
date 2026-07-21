@@ -60,6 +60,6 @@ class TestRunHookFinished {
 
   @override
   String toString() =>
-      'TestRunHookFinished{testRunHookStartedId: ${testRunHookStartedId}, result: ${result}, timestamp: ${timestamp}}';
+      'TestRunHookFinished{testRunHookStartedId: $testRunHookStartedId, result: $result, timestamp: $timestamp}';
 }
 

@@ -69,6 +69,6 @@ class Group {
 
   @override
   String toString() =>
-      'Group{children: ${children}, start: ${start}, value: ${value}}';
+      'Group{children: $children, start: $start, value: $value}';
 }
 

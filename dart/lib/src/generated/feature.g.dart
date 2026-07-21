@@ -88,16 +88,16 @@ class Feature {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (tags == null ? null : Object.hashAll(tags!)),
+        Object.hashAll(tags),
         language,
         keyword,
         name,
         description,
-        (children == null ? null : Object.hashAll(children!)),
+        Object.hashAll(children),
       ]);
 
   @override
   String toString() =>
-      'Feature{location: ${location}, tags: ${tags}, language: ${language}, keyword: ${keyword}, name: ${name}, description: ${description}, children: ${children}}';
+      'Feature{location: $location, tags: $tags, language: $language, keyword: $keyword, name: $name, description: $description, children: $children}';
 }
 

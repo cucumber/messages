@@ -79,12 +79,12 @@ class Background {
         keyword,
         name,
         description,
-        (steps == null ? null : Object.hashAll(steps!)),
+        Object.hashAll(steps),
         id,
       ]);
 
   @override
   String toString() =>
-      'Background{location: ${location}, keyword: ${keyword}, name: ${name}, description: ${description}, steps: ${steps}, id: ${id}}';
+      'Background{location: $location, keyword: $keyword, name: $name, description: $description, steps: $steps, id: $id}';
 }
 

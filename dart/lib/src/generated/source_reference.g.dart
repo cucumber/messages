@@ -86,6 +86,6 @@ class SourceReference {
 
   @override
   String toString() =>
-      'SourceReference{uri: ${uri}, javaMethod: ${javaMethod}, javaStackTraceElement: ${javaStackTraceElement}, location: ${location}}';
+      'SourceReference{uri: $uri, javaMethod: $javaMethod, javaStackTraceElement: $javaStackTraceElement, location: $location}';
 }
 

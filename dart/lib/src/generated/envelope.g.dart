@@ -308,6 +308,6 @@ class Envelope {
 
   @override
   String toString() =>
-      'Envelope{attachment: ${attachment}, externalAttachment: ${externalAttachment}, gherkinDocument: ${gherkinDocument}, hook: ${hook}, meta: ${meta}, parameterType: ${parameterType}, parseError: ${parseError}, pickle: ${pickle}, suggestion: ${suggestion}, source: ${source}, stepDefinition: ${stepDefinition}, testCase: ${testCase}, testCaseFinished: ${testCaseFinished}, testCaseStarted: ${testCaseStarted}, testRunFinished: ${testRunFinished}, testRunStarted: ${testRunStarted}, testStepFinished: ${testStepFinished}, testStepStarted: ${testStepStarted}, testRunHookStarted: ${testRunHookStarted}, testRunHookFinished: ${testRunHookFinished}, undefinedParameterType: ${undefinedParameterType}}';
+      'Envelope{attachment: $attachment, externalAttachment: $externalAttachment, gherkinDocument: $gherkinDocument, hook: $hook, meta: $meta, parameterType: $parameterType, parseError: $parseError, pickle: $pickle, suggestion: $suggestion, source: $source, stepDefinition: $stepDefinition, testCase: $testCase, testCaseFinished: $testCaseFinished, testCaseStarted: $testCaseStarted, testRunFinished: $testRunFinished, testRunStarted: $testRunStarted, testStepFinished: $testStepFinished, testStepStarted: $testStepStarted, testRunHookStarted: $testRunHookStarted, testRunHookFinished: $testRunHookFinished, undefinedParameterType: $undefinedParameterType}';
 }
 

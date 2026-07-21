@@ -43,11 +43,11 @@ class StepMatchArgumentsList {
 
   @override
   int get hashCode => Object.hashAll(<Object?>[
-        (stepMatchArguments == null ? null : Object.hashAll(stepMatchArguments!)),
+        Object.hashAll(stepMatchArguments),
       ]);
 
   @override
   String toString() =>
-      'StepMatchArgumentsList{stepMatchArguments: ${stepMatchArguments}}';
+      'StepMatchArgumentsList{stepMatchArguments: $stepMatchArguments}';
 }
 

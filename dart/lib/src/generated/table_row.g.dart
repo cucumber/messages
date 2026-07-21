@@ -60,12 +60,12 @@ class TableRow {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (cells == null ? null : Object.hashAll(cells!)),
+        Object.hashAll(cells),
         id,
       ]);
 
   @override
   String toString() =>
-      'TableRow{location: ${location}, cells: ${cells}, id: ${id}}';
+      'TableRow{location: $location, cells: $cells, id: $id}';
 }
 

@@ -53,6 +53,6 @@ class Location {
 
   @override
   String toString() =>
-      'Location{line: ${line}, column: ${column}}';
+      'Location{line: $line, column: $column}';
 }
 

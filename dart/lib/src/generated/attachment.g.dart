@@ -199,6 +199,6 @@ class Attachment {
 
   @override
   String toString() =>
-      'Attachment{body: ${body}, contentEncoding: ${contentEncoding}, fileName: ${fileName}, mediaType: ${mediaType}, source: ${source}, testCaseStartedId: ${testCaseStartedId}, testStepId: ${testStepId}, url: ${url}, testRunStartedId: ${testRunStartedId}, testRunHookStartedId: ${testRunHookStartedId}, timestamp: ${timestamp}}';
+      'Attachment{body: $body, contentEncoding: $contentEncoding, fileName: $fileName, mediaType: $mediaType, source: $source, testCaseStartedId: $testCaseStartedId, testStepId: $testStepId, url: $url, testRunStartedId: $testRunStartedId, testRunHookStartedId: $testRunHookStartedId, timestamp: $timestamp}';
 }
 

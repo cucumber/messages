@@ -42,6 +42,6 @@ class PickleTableCell {
 
   @override
   String toString() =>
-      'PickleTableCell{value: ${value}}';
+      'PickleTableCell{value: $value}';
 }
 

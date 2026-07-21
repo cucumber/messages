@@ -53,11 +53,11 @@ class JavaMethod {
   int get hashCode => Object.hashAll(<Object?>[
         className,
         methodName,
-        (methodParameterTypes == null ? null : Object.hashAll(methodParameterTypes!)),
+        Object.hashAll(methodParameterTypes),
       ]);
 
   @override
   String toString() =>
-      'JavaMethod{className: ${className}, methodName: ${methodName}, methodParameterTypes: ${methodParameterTypes}}';
+      'JavaMethod{className: $className, methodName: $methodName, methodParameterTypes: $methodParameterTypes}';
 }
 

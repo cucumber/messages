@@ -70,6 +70,6 @@ class Git {
 
   @override
   String toString() =>
-      'Git{remote: ${remote}, revision: ${revision}, branch: ${branch}, tag: ${tag}}';
+      'Git{remote: $remote, revision: $revision, branch: $branch, tag: $tag}';
 }
 

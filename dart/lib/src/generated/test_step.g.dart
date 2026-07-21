@@ -96,6 +96,6 @@ class TestStep {
 
   @override
   String toString() =>
-      'TestStep{hookId: ${hookId}, id: ${id}, pickleStepId: ${pickleStepId}, stepDefinitionIds: ${stepDefinitionIds}, stepMatchArgumentsLists: ${stepMatchArgumentsLists}}';
+      'TestStep{hookId: $hookId, id: $id, pickleStepId: $pickleStepId, stepDefinitionIds: $stepDefinitionIds, stepMatchArgumentsLists: $stepMatchArgumentsLists}';
 }
 

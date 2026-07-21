@@ -52,11 +52,11 @@ class DataTable {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (rows == null ? null : Object.hashAll(rows!)),
+        Object.hashAll(rows),
       ]);
 
   @override
   String toString() =>
-      'DataTable{location: ${location}, rows: ${rows}}';
+      'DataTable{location: $location, rows: $rows}';
 }
 

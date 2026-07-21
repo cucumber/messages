@@ -51,6 +51,6 @@ class ParseError {
 
   @override
   String toString() =>
-      'ParseError{source: ${source}, message: ${message}}';
+      'ParseError{source: $source, message: $message}';
 }
 

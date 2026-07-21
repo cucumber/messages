@@ -76,6 +76,6 @@ class TestCaseStarted {
 
   @override
   String toString() =>
-      'TestCaseStarted{attempt: ${attempt}, id: ${id}, testCaseId: ${testCaseId}, workerId: ${workerId}, timestamp: ${timestamp}}';
+      'TestCaseStarted{attempt: $attempt, id: $id, testCaseId: $testCaseId, workerId: $workerId, timestamp: $timestamp}';
 }
 

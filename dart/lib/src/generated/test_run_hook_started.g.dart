@@ -74,6 +74,6 @@ class TestRunHookStarted {
 
   @override
   String toString() =>
-      'TestRunHookStarted{id: ${id}, testRunStartedId: ${testRunStartedId}, hookId: ${hookId}, workerId: ${workerId}, timestamp: ${timestamp}}';
+      'TestRunHookStarted{id: $id, testRunStartedId: $testRunStartedId, hookId: $hookId, workerId: $workerId, timestamp: $timestamp}';
 }
 

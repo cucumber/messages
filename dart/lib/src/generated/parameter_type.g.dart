@@ -76,7 +76,7 @@ class ParameterType {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         name,
-        (regularExpressions == null ? null : Object.hashAll(regularExpressions!)),
+        Object.hashAll(regularExpressions),
         preferForRegularExpressionMatch,
         useForSnippets,
         id,
@@ -85,6 +85,6 @@ class ParameterType {
 
   @override
   String toString() =>
-      'ParameterType{name: ${name}, regularExpressions: ${regularExpressions}, preferForRegularExpressionMatch: ${preferForRegularExpressionMatch}, useForSnippets: ${useForSnippets}, id: ${id}, sourceReference: ${sourceReference}}';
+      'ParameterType{name: $name, regularExpressions: $regularExpressions, preferForRegularExpressionMatch: $preferForRegularExpressionMatch, useForSnippets: $useForSnippets, id: $id, sourceReference: $sourceReference}';
 }
 

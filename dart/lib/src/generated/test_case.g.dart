@@ -67,12 +67,12 @@ class TestCase {
   int get hashCode => Object.hashAll(<Object?>[
         id,
         pickleId,
-        (testSteps == null ? null : Object.hashAll(testSteps!)),
+        Object.hashAll(testSteps),
         testRunStartedId,
       ]);
 
   @override
   String toString() =>
-      'TestCase{id: ${id}, pickleId: ${pickleId}, testSteps: ${testSteps}, testRunStartedId: ${testRunStartedId}}';
+      'TestCase{id: $id, pickleId: $pickleId, testSteps: $testSteps, testRunStartedId: $testRunStartedId}';
 }
 

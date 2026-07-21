@@ -103,6 +103,6 @@ class TestStepResult {
 
   @override
   String toString() =>
-      'TestStepResult{duration: ${duration}, message: ${message}, status: ${status}, exception: ${exception}}';
+      'TestStepResult{duration: $duration, message: $message, status: $status, exception: $exception}';
 }
 

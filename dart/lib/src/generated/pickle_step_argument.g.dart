@@ -63,6 +63,6 @@ class PickleStepArgument {
 
   @override
   String toString() =>
-      'PickleStepArgument{docString: ${docString}, dataTable: ${dataTable}}';
+      'PickleStepArgument{docString: $docString, dataTable: $dataTable}';
 }
 

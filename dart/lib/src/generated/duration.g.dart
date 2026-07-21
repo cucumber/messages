@@ -55,6 +55,6 @@ class Duration {
 
   @override
   String toString() =>
-      'Duration{seconds: ${seconds}, nanos: ${nanos}}';
+      'Duration{seconds: $seconds, nanos: $nanos}';
 }
 

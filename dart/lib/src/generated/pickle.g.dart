@@ -118,13 +118,13 @@ class Pickle {
         location,
         name,
         language,
-        (steps == null ? null : Object.hashAll(steps!)),
-        (tags == null ? null : Object.hashAll(tags!)),
-        (astNodeIds == null ? null : Object.hashAll(astNodeIds!)),
+        Object.hashAll(steps),
+        Object.hashAll(tags),
+        Object.hashAll(astNodeIds),
       ]);
 
   @override
   String toString() =>
-      'Pickle{id: ${id}, uri: ${uri}, location: ${location}, name: ${name}, language: ${language}, steps: ${steps}, tags: ${tags}, astNodeIds: ${astNodeIds}}';
+      'Pickle{id: $id, uri: $uri, location: $location, name: $name, language: $language, steps: $steps, tags: $tags, astNodeIds: $astNodeIds}';
 }
 

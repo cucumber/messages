@@ -189,11 +189,16 @@ class <%= class_name(key) %> {
   end
   hash_parts = props.map do |pn, prop|
     pname = property_name(pn)
-    prop['items'] ? "(#{pname} == null ? null : Object.hashAll(#{pname}!))" : pname
+    required = (schema['required'] || []).index(pn)
+    if prop['items']
+      required ? "Object.hashAll(#{pname})" : "(#{pname} == null ? null : Object.hashAll(#{pname}!))"
+    else
+      pname
+    end
   end
   ts_parts = props.map do |pn, _prop|
     pname = property_name(pn)
-    "#{pname}: ${#{pname}}"
+    "#{pname}: $#{pname}"
   end
 -%>
   @override

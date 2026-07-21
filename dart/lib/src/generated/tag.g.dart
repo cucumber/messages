@@ -60,6 +60,6 @@ class Tag {
 
   @override
   String toString() =>
-      'Tag{location: ${location}, name: ${name}, id: ${id}}';
+      'Tag{location: $location, name: $name, id: $id}';
 }
 

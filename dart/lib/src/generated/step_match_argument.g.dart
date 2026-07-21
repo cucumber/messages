@@ -61,6 +61,6 @@ class StepMatchArgument {
 
   @override
   String toString() =>
-      'StepMatchArgument{group: ${group}, parameterTypeName: ${parameterTypeName}}';
+      'StepMatchArgument{group: $group, parameterTypeName: $parameterTypeName}';
 }
 

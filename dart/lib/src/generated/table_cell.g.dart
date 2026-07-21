@@ -53,6 +53,6 @@ class TableCell {
 
   @override
   String toString() =>
-      'TableCell{location: ${location}, value: ${value}}';
+      'TableCell{location: $location, value: $value}';
 }
 

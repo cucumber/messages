@@ -82,6 +82,6 @@ class TestRunFinished {
 
   @override
   String toString() =>
-      'TestRunFinished{message: ${message}, success: ${success}, timestamp: ${timestamp}, exception: ${exception}, testRunStartedId: ${testRunStartedId}}';
+      'TestRunFinished{message: $message, success: $success, timestamp: $timestamp, exception: $exception, testRunStartedId: $testRunStartedId}';
 }
 

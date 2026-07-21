@@ -52,6 +52,6 @@ class Snippet {
 
   @override
   String toString() =>
-      'Snippet{language: ${language}, code: ${code}}';
+      'Snippet{language: $language, code: $code}';
 }
 

@@ -52,11 +52,11 @@ class PickleTable {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         argumentIndex,
-        (rows == null ? null : Object.hashAll(rows!)),
+        Object.hashAll(rows),
       ]);
 
   @override
   String toString() =>
-      'PickleTable{argumentIndex: ${argumentIndex}, rows: ${rows}}';
+      'PickleTable{argumentIndex: $argumentIndex, rows: $rows}';
 }
 

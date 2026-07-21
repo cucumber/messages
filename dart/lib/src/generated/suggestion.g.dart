@@ -59,11 +59,11 @@ class Suggestion {
   int get hashCode => Object.hashAll(<Object?>[
         id,
         pickleStepId,
-        (snippets == null ? null : Object.hashAll(snippets!)),
+        Object.hashAll(snippets),
       ]);
 
   @override
   String toString() =>
-      'Suggestion{id: ${id}, pickleStepId: ${pickleStepId}, snippets: ${snippets}}';
+      'Suggestion{id: $id, pickleStepId: $pickleStepId, snippets: $snippets}';
 }
 

@@ -100,17 +100,17 @@ class Examples {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (tags == null ? null : Object.hashAll(tags!)),
+        Object.hashAll(tags),
         keyword,
         name,
         description,
         tableHeader,
-        (tableBody == null ? null : Object.hashAll(tableBody!)),
+        Object.hashAll(tableBody),
         id,
       ]);
 
   @override
   String toString() =>
-      'Examples{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, tableHeader: ${tableHeader}, tableBody: ${tableBody}, id: ${id}}';
+      'Examples{location: $location, tags: $tags, keyword: $keyword, name: $name, description: $description, tableHeader: $tableHeader, tableBody: $tableBody, id: $id}';
 }
 

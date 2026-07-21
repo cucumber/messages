@@ -43,11 +43,11 @@ class PickleTableRow {
 
   @override
   int get hashCode => Object.hashAll(<Object?>[
-        (cells == null ? null : Object.hashAll(cells!)),
+        Object.hashAll(cells),
       ]);
 
   @override
   String toString() =>
-      'PickleTableRow{cells: ${cells}}';
+      'PickleTableRow{cells: $cells}';
 }
 

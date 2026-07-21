@@ -56,6 +56,6 @@ class JavaStackTraceElement {
 
   @override
   String toString() =>
-      'JavaStackTraceElement{className: ${className}, fileName: ${fileName}, methodName: ${methodName}}';
+      'JavaStackTraceElement{className: $className, fileName: $fileName, methodName: $methodName}';
 }
 

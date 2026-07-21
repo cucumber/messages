@@ -75,6 +75,6 @@ class Ci {
 
   @override
   String toString() =>
-      'Ci{name: ${name}, url: ${url}, buildNumber: ${buildNumber}, git: ${git}}';
+      'Ci{name: $name, url: $url, buildNumber: $buildNumber, git: $git}';
 }
 

@@ -53,6 +53,6 @@ class TestRunStarted {
 
   @override
   String toString() =>
-      'TestRunStarted{timestamp: ${timestamp}, id: ${id}}';
+      'TestRunStarted{timestamp: $timestamp, id: $id}';
 }
 

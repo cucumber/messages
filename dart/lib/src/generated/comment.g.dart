@@ -53,6 +53,6 @@ class Comment {
 
   @override
   String toString() =>
-      'Comment{location: ${location}, text: ${text}}';
+      'Comment{location: $location, text: $text}';
 }
 
