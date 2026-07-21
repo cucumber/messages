@@ -5,7 +5,7 @@ schemas = $(shell find ../jsonschema/src -name "*.schema.json")
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make <target>\n\nWhere <target> is one of:\n"} /^[$$()% a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
-generate: require lib/src/generated/messages.dart .generate-messages ## Generate Dart code from JSON schemas
+generate: require lib/src/generated/messages.g.dart .generate-messages ## Generate Dart code from JSON schemas
 
 require: ## Check requirements for code generation (ruby, csplit and tail are required)
 	@ruby --version >/dev/null 2>&1 || (echo "ERROR: ruby is required."; exit 1)
@@ -15,7 +15,7 @@ require: ## Check requirements for code generation (ruby, csplit and tail are re
 clean: ## Remove automatically generated files and artifacts
 	rm -rf lib/src/generated
 
-lib/src/generated/messages.dart: $(schemas) ../codegen/codegen.rb ../codegen/templates/dart.index.dart.erb
+lib/src/generated/messages.g.dart: $(schemas) ../codegen/codegen.rb ../codegen/templates/dart.index.dart.erb
 	mkdir -p lib/src/generated
 	ruby ../codegen/codegen.rb Generator::Dart dart.index.dart.erb > $@
 

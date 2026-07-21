@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// The media type of the file. Can be used to specify custom types, such as
 /// text/x.cucumber.gherkin+plain
