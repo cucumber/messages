@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [FeatureChild message](https://github.com/cucumber/messages/blob/main/jsonschema/src/FeatureChild.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -76,6 +76,6 @@ class FeatureChild {
 
   @override
   String toString() =>
-      'FeatureChild{rule: ${rule}, background: ${background}, scenario: ${scenario}}';
+      'FeatureChild{rule: $rule, background: $background, scenario: $scenario}';
 }
 

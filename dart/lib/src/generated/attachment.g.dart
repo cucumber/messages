@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
 ///
@@ -199,6 +199,6 @@ class Attachment {
 
   @override
   String toString() =>
-      'Attachment{body: ${body}, contentEncoding: ${contentEncoding}, fileName: ${fileName}, mediaType: ${mediaType}, source: ${source}, testCaseStartedId: ${testCaseStartedId}, testStepId: ${testStepId}, url: ${url}, testRunStartedId: ${testRunStartedId}, testRunHookStartedId: ${testRunHookStartedId}, timestamp: ${timestamp}}';
+      'Attachment{body: $body, contentEncoding: $contentEncoding, fileName: $fileName, mediaType: $mediaType, source: $source, testCaseStartedId: $testCaseStartedId, testStepId: $testStepId, url: $url, testRunStartedId: $testRunStartedId, testRunHookStartedId: $testRunHookStartedId, timestamp: $timestamp}';
 }
 

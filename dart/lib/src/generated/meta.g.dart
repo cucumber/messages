@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Meta message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Meta.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -94,6 +94,6 @@ class Meta {
 
   @override
   String toString() =>
-      'Meta{protocolVersion: ${protocolVersion}, implementation: ${implementation}, runtime: ${runtime}, os: ${os}, cpu: ${cpu}, ci: ${ci}}';
+      'Meta{protocolVersion: $protocolVersion, implementation: $implementation, runtime: $runtime, os: $os, cpu: $cpu, ci: $ci}';
 }
 

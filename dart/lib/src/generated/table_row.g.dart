@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [TableRow message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TableRow.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -60,12 +60,12 @@ class TableRow {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (cells == null ? null : Object.hashAll(cells!)),
+        Object.hashAll(cells),
         id,
       ]);
 
   @override
   String toString() =>
-      'TableRow{location: ${location}, cells: ${cells}, id: ${id}}';
+      'TableRow{location: $location, cells: $cells, id: $id}';
 }
 

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [TestCaseStarted message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestCaseStarted.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestCaseStarted {
@@ -76,6 +76,6 @@ class TestCaseStarted {
 
   @override
   String toString() =>
-      'TestCaseStarted{attempt: ${attempt}, id: ${id}, testCaseId: ${testCaseId}, workerId: ${workerId}, timestamp: ${timestamp}}';
+      'TestCaseStarted{attempt: $attempt, id: $id, testCaseId: $testCaseId, workerId: $workerId, timestamp: $timestamp}';
 }
 

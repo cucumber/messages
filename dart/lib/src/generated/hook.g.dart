@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Values for the `type` property.
 enum HookType {
@@ -108,6 +108,6 @@ class Hook {
 
   @override
   String toString() =>
-      'Hook{id: ${id}, name: ${name}, sourceReference: ${sourceReference}, tagExpression: ${tagExpression}, type: ${type}}';
+      'Hook{id: $id, name: $name, sourceReference: $sourceReference, tagExpression: $tagExpression, type: $type}';
 }
 

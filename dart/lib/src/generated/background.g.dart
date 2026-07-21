@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Background message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Background.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Background {
@@ -79,12 +79,12 @@ class Background {
         keyword,
         name,
         description,
-        (steps == null ? null : Object.hashAll(steps!)),
+        Object.hashAll(steps),
         id,
       ]);
 
   @override
   String toString() =>
-      'Background{location: ${location}, keyword: ${keyword}, name: ${name}, description: ${description}, steps: ${steps}, id: ${id}}';
+      'Background{location: $location, keyword: $keyword, name: $name, description: $description, steps: $steps, id: $id}';
 }
 

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [TestCase message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestCase.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -67,12 +67,12 @@ class TestCase {
   int get hashCode => Object.hashAll(<Object?>[
         id,
         pickleId,
-        (testSteps == null ? null : Object.hashAll(testSteps!)),
+        Object.hashAll(testSteps),
         testRunStartedId,
       ]);
 
   @override
   String toString() =>
-      'TestCase{id: ${id}, pickleId: ${pickleId}, testSteps: ${testSteps}, testRunStartedId: ${testRunStartedId}}';
+      'TestCase{id: $id, pickleId: $pickleId, testSteps: $testSteps, testRunStartedId: $testRunStartedId}';
 }
 

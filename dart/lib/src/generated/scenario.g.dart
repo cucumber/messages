@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Scenario message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Scenario.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Scenario {
@@ -100,17 +100,17 @@ class Scenario {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (tags == null ? null : Object.hashAll(tags!)),
+        Object.hashAll(tags),
         keyword,
         name,
         description,
-        (steps == null ? null : Object.hashAll(steps!)),
-        (examples == null ? null : Object.hashAll(examples!)),
+        Object.hashAll(steps),
+        Object.hashAll(examples),
         id,
       ]);
 
   @override
   String toString() =>
-      'Scenario{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, steps: ${steps}, examples: ${examples}, id: ${id}}';
+      'Scenario{location: $location, tags: $tags, keyword: $keyword, name: $name, description: $description, steps: $steps, examples: $examples, id: $id}';
 }
 

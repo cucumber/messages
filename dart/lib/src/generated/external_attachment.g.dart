@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [ExternalAttachment message](https://github.com/cucumber/messages/blob/main/jsonschema/src/ExternalAttachment.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -101,6 +101,6 @@ class ExternalAttachment {
 
   @override
   String toString() =>
-      'ExternalAttachment{url: ${url}, mediaType: ${mediaType}, testCaseStartedId: ${testCaseStartedId}, testStepId: ${testStepId}, testRunHookStartedId: ${testRunHookStartedId}, timestamp: ${timestamp}}';
+      'ExternalAttachment{url: $url, mediaType: $mediaType, testCaseStartedId: $testCaseStartedId, testStepId: $testStepId, testRunHookStartedId: $testRunHookStartedId, timestamp: $timestamp}';
 }
 

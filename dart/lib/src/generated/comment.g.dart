@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Comment message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Comment.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -53,6 +53,6 @@ class Comment {
 
   @override
   String toString() =>
-      'Comment{location: ${location}, text: ${text}}';
+      'Comment{location: $location, text: $text}';
 }
 

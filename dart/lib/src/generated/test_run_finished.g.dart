@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [TestRunFinished message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestRunFinished.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestRunFinished {
@@ -82,6 +82,6 @@ class TestRunFinished {
 
   @override
   String toString() =>
-      'TestRunFinished{message: ${message}, success: ${success}, timestamp: ${timestamp}, exception: ${exception}, testRunStartedId: ${testRunStartedId}}';
+      'TestRunFinished{message: $message, success: $success, timestamp: $timestamp, exception: $exception, testRunStartedId: $testRunStartedId}';
 }
 

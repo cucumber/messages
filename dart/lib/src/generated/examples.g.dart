@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Examples message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Examples.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Examples {
@@ -100,17 +100,17 @@ class Examples {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (tags == null ? null : Object.hashAll(tags!)),
+        Object.hashAll(tags),
         keyword,
         name,
         description,
         tableHeader,
-        (tableBody == null ? null : Object.hashAll(tableBody!)),
+        Object.hashAll(tableBody),
         id,
       ]);
 
   @override
   String toString() =>
-      'Examples{location: ${location}, tags: ${tags}, keyword: ${keyword}, name: ${name}, description: ${description}, tableHeader: ${tableHeader}, tableBody: ${tableBody}, id: ${id}}';
+      'Examples{location: $location, tags: $tags, keyword: $keyword, name: $name, description: $description, tableHeader: $tableHeader, tableBody: $tableBody, id: $id}';
 }
 

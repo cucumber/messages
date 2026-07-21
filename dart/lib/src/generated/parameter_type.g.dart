@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [ParameterType message](https://github.com/cucumber/messages/blob/main/jsonschema/src/ParameterType.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class ParameterType {
@@ -76,7 +76,7 @@ class ParameterType {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         name,
-        (regularExpressions == null ? null : Object.hashAll(regularExpressions!)),
+        Object.hashAll(regularExpressions),
         preferForRegularExpressionMatch,
         useForSnippets,
         id,
@@ -85,6 +85,6 @@ class ParameterType {
 
   @override
   String toString() =>
-      'ParameterType{name: ${name}, regularExpressions: ${regularExpressions}, preferForRegularExpressionMatch: ${preferForRegularExpressionMatch}, useForSnippets: ${useForSnippets}, id: ${id}, sourceReference: ${sourceReference}}';
+      'ParameterType{name: $name, regularExpressions: $regularExpressions, preferForRegularExpressionMatch: $preferForRegularExpressionMatch, useForSnippets: $useForSnippets, id: $id, sourceReference: $sourceReference}';
 }
 

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [SourceReference message](https://github.com/cucumber/messages/blob/main/jsonschema/src/SourceReference.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -86,6 +86,6 @@ class SourceReference {
 
   @override
   String toString() =>
-      'SourceReference{uri: ${uri}, javaMethod: ${javaMethod}, javaStackTraceElement: ${javaStackTraceElement}, location: ${location}}';
+      'SourceReference{uri: $uri, javaMethod: $javaMethod, javaStackTraceElement: $javaStackTraceElement, location: $location}';
 }
 

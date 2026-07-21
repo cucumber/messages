@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:cucumber_messages/src/generated/messages.dart';
+import 'package:cucumber_messages/src/generated/messages.g.dart';
 
 /// Parses a single JSON object into an [Envelope].
 ///

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Pickle message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Pickle.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -118,13 +118,13 @@ class Pickle {
         location,
         name,
         language,
-        (steps == null ? null : Object.hashAll(steps!)),
-        (tags == null ? null : Object.hashAll(tags!)),
-        (astNodeIds == null ? null : Object.hashAll(astNodeIds!)),
+        Object.hashAll(steps),
+        Object.hashAll(tags),
+        Object.hashAll(astNodeIds),
       ]);
 
   @override
   String toString() =>
-      'Pickle{id: ${id}, uri: ${uri}, location: ${location}, name: ${name}, language: ${language}, steps: ${steps}, tags: ${tags}, astNodeIds: ${astNodeIds}}';
+      'Pickle{id: $id, uri: $uri, location: $location, name: $name, language: $language, steps: $steps, tags: $tags, astNodeIds: $astNodeIds}';
 }
 

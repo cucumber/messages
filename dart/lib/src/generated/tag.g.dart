@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Tag message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Tag.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -60,6 +60,6 @@ class Tag {
 
   @override
   String toString() =>
-      'Tag{location: ${location}, name: ${name}, id: ${id}}';
+      'Tag{location: $location, name: $name, id: $id}';
 }
 

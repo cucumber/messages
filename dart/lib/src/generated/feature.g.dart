@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Feature message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Feature.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Feature {
@@ -88,16 +88,16 @@ class Feature {
   @override
   int get hashCode => Object.hashAll(<Object?>[
         location,
-        (tags == null ? null : Object.hashAll(tags!)),
+        Object.hashAll(tags),
         language,
         keyword,
         name,
         description,
-        (children == null ? null : Object.hashAll(children!)),
+        Object.hashAll(children),
       ]);
 
   @override
   String toString() =>
-      'Feature{location: ${location}, tags: ${tags}, language: ${language}, keyword: ${keyword}, name: ${name}, description: ${description}, children: ${children}}';
+      'Feature{location: $location, tags: $tags, language: $language, keyword: $keyword, name: $name, description: $description, children: $children}';
 }
 

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
 enum StepKeywordType {
@@ -130,6 +130,6 @@ class Step {
 
   @override
   String toString() =>
-      'Step{location: ${location}, keyword: ${keyword}, keywordType: ${keywordType}, text: ${text}, docString: ${docString}, dataTable: ${dataTable}, id: ${id}}';
+      'Step{location: $location, keyword: $keyword, keywordType: $keywordType, text: $text, docString: $docString, dataTable: $dataTable, id: $id}';
 }
 

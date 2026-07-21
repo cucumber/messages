@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Group message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Group.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Group {
@@ -69,6 +69,6 @@ class Group {
 
   @override
   String toString() =>
-      'Group{children: ${children}, start: ${start}, value: ${value}}';
+      'Group{children: $children, start: $start, value: $value}';
 }
 

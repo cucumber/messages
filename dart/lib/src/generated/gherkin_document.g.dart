@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [GherkinDocument message](https://github.com/cucumber/messages/blob/main/jsonschema/src/GherkinDocument.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -73,11 +73,11 @@ class GherkinDocument {
   int get hashCode => Object.hashAll(<Object?>[
         uri,
         feature,
-        (comments == null ? null : Object.hashAll(comments!)),
+        Object.hashAll(comments),
       ]);
 
   @override
   String toString() =>
-      'GherkinDocument{uri: ${uri}, feature: ${feature}, comments: ${comments}}';
+      'GherkinDocument{uri: $uri, feature: $feature, comments: $comments}';
 }
 

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Envelope message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Envelope.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Envelope {
@@ -308,6 +308,6 @@ class Envelope {
 
   @override
   String toString() =>
-      'Envelope{attachment: ${attachment}, externalAttachment: ${externalAttachment}, gherkinDocument: ${gherkinDocument}, hook: ${hook}, meta: ${meta}, parameterType: ${parameterType}, parseError: ${parseError}, pickle: ${pickle}, suggestion: ${suggestion}, source: ${source}, stepDefinition: ${stepDefinition}, testCase: ${testCase}, testCaseFinished: ${testCaseFinished}, testCaseStarted: ${testCaseStarted}, testRunFinished: ${testRunFinished}, testRunStarted: ${testRunStarted}, testStepFinished: ${testStepFinished}, testStepStarted: ${testStepStarted}, testRunHookStarted: ${testRunHookStarted}, testRunHookFinished: ${testRunHookFinished}, undefinedParameterType: ${undefinedParameterType}}';
+      'Envelope{attachment: $attachment, externalAttachment: $externalAttachment, gherkinDocument: $gherkinDocument, hook: $hook, meta: $meta, parameterType: $parameterType, parseError: $parseError, pickle: $pickle, suggestion: $suggestion, source: $source, stepDefinition: $stepDefinition, testCase: $testCase, testCaseFinished: $testCaseFinished, testCaseStarted: $testCaseStarted, testRunFinished: $testRunFinished, testRunStarted: $testRunStarted, testStepFinished: $testStepFinished, testStepStarted: $testStepStarted, testRunHookStarted: $testRunHookStarted, testRunHookFinished: $testRunHookFinished, undefinedParameterType: $undefinedParameterType}';
 }
 

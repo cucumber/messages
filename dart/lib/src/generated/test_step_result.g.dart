@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Values for the `status` property.
 enum TestStepResultStatus {
@@ -103,6 +103,6 @@ class TestStepResult {
 
   @override
   String toString() =>
-      'TestStepResult{duration: ${duration}, message: ${message}, status: ${status}, exception: ${exception}}';
+      'TestStepResult{duration: $duration, message: $message, status: $status, exception: $exception}';
 }
 
