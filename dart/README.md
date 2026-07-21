@@ -10,7 +10,7 @@ as [NDJSON](https://github.com/cucumber/messages#encoding) in message streams.
 This package provides generated Dart types for every message, plus helpers for NDJSON
 read/write, timestamps, and durations.
 
-See the [example](https://github.com/cucumber/messages/blob/main/dart/example/dart_example.dart)
+See the [example](https://github.com/cucumber/messages/blob/main/dart/example/main.dart)
 for reading and writing message streams.
 
 For general information about Cucumber Messages and the other language implementations, see the repository root [README](../README.md).
