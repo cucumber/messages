@@ -13,4 +13,4 @@ read/write, timestamps, and durations.
 See the [example](https://github.com/cucumber/messages/blob/main/dart/example/main.dart)
 for reading and writing message streams.
 
-For general information about Cucumber Messages and the other language implementations, see the repository root [README](https://github.com/cucumber/messages/blob/main/README.md).
+For general information about Cucumber Messages and the other language implementations, see the repository root [README](../README.md).
