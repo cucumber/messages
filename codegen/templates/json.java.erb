@@ -1,0 +1,96 @@
+Json.java
+  package io.cucumber.messages.types;
+
+import io.cucumber.messages.Property;
+
+import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.Objects;
+import java.util.Optional;
+
+import static java.util.Objects.requireNonNull;
+
+// Generated code
+@SuppressWarnings({"unused", "JavaLangClash"})
+final class Json {
+
+    static Map<String, Object> toObject(String msg, Object o) {
+        if (o instanceof Map<?, ?> i){
+            return (Map<String, Object>)i;
+        }
+        throw new IllegalArgumentException(msg);
+    }
+
+    static Map<String, Object> requireMap(Object o, String msg) {
+        if (o instanceof Map<?, ?> i){
+            return (Map<String, Object>)i;
+        }
+        throw new IllegalArgumentException(msg);
+    }
+
+
+    static String requireString(Object o, String msg) {
+        if (o instanceof String i){
+            return i;
+        }
+        throw new IllegalArgumentException(msg);
+    }
+
+    static Boolean requireBoolean(Object o, String msg) {
+        if (o instanceof Boolean i){
+            return i;
+        }
+        throw new IllegalArgumentException(msg);
+    }
+
+    static Long toLong(Object o, String msg) {
+        if (o instanceof Number i){
+            return i.longValue();
+        }
+        throw new IllegalArgumentException(msg);
+    }
+
+    static Integer toInteger(Object o, String msg) {
+        if (o instanceof Number i){
+            return i.intValue();
+        }
+        throw new IllegalArgumentException(msg);
+    }
+
+    static List<Object> requireArray(Object o, String msg) {
+        if (o instanceof List<?> i){
+            return (List<Object>)i;
+        }
+        throw new IllegalArgumentException(msg);
+    }
+
+    static Object convert(String o) {
+        return o;
+    }
+
+    static Object convert(Long o) {
+        return o;
+    }
+
+    static Object convert(Integer o) {
+        return o;
+    }
+
+
+    static Object convert(Boolean o) {
+        return o;
+    }
+
+  <% @enums.each do |enum| -%>
+    static Object convert(<%= enum[:name] %> o) {
+        return o.value();
+    }
+  <% end -%>
+  <%- @schemas.each do |key, schema| -%>
+    static Object convert(<%= class_name(key) %> o) {
+        return o.toJson();
+    }
+  <% end -%>
+
+}

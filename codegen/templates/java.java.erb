@@ -6,6 +6,8 @@ import io.cucumber.messages.Property;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -95,6 +97,61 @@ public final class <%= class_name(key) %> {
     }
     <%- end -%>
   <%- end -%>
+
+  Map<String, Object> toJson() {
+        var json = new LinkedHashMap<String, Object>();
+
+    <%- schema['properties'].each do |(property_name, property)|
+        required = (schema['required'] || []).index(property_name)
+    -%>
+    <%- if required -%>
+        <%- if property['items'] -%>
+        json.put("<%= property_name %>", <%= property_name %>.stream().map(Json::convert).toList());
+        <%- else -%>
+        json.put("<%= property_name %>", Json.convert(<%= property_name %>));
+        <%- end -%>
+    <%- else -%>
+        if(<%= property_name %> != null){
+        <%- if property['items'] -%>
+          json.put("<%= property_name %>", <%= property_name %>.stream().map(Json::convert).toList());
+        <%- else -%>
+          json.put("<%= property_name %>", Json.convert(<%= property_name %>));
+        <%- end -%>
+        }
+    <%- end -%>
+    <%- end -%>
+
+        return json;
+    }
+
+    //TODO: Rework from fromJson to look like this
+//   static Rule fromJson(Object json) {
+//var map = Json.requireMap(json, "Rule must be a map");
+//        return new Rule (
+//  Json.readLocation(map.get("location"), "Rule.location"),
+//  Json.readArray(map.get("tags"), "Rule.tags", Json::readTag)
+//  );
+  }
+  static <%= class_name(key) %> fromJson(Object json) {
+        var map = Json.requireMap(json, "<%= class_name(key) %> must be a map");
+        return new <%= class_name(key) %> (
+<%- schema['properties'].each_with_index do |(property_name, property), index| -%>
+        <%- if property['enum'] -%>
+            <%= type_for(class_name(key), property_name, property) -%>.fromValue(Json.requireString(map.get("<%= property_name %>"), "<%= class_name(key) %>.<%= property_name %> must be a string"))<%= index < schema['properties'].length-1 ? ',' : '' %>
+        <%- elsif property['type'] == 'string'-%>
+            Json.requireString(map.get("<%= property_name %>"), "<%= class_name(key) %>.<%= property_name %> must be a string")<%= index < schema['properties'].length-1 ? ',' : '' %>
+        <%- elsif property['type'] == 'integer'-%>
+            Json.to<%= type_for(class_name(key), property_name, property) -%>(map.get("<%= property_name %>"), "<%= class_name(key) %>.<%= property_name %> must be an integer ")<%= index < schema['properties'].length-1 ? ',' : '' %>
+        <%- elsif property['type'] == 'boolean'-%>
+            Json.requireBoolean(map.get("<%= property_name %>"), "<%= class_name(key) %>.<%= property_name %> must be a boolean")<%= index < schema['properties'].length-1 ? ',' : '' %>
+        <%- elsif property['type'] == 'array'-%>
+            Json.requireArray(map.get("<%= property_name %>"), "<%= class_name(key) %>.<%= property_name %> must be an array").stream().map(<%= type_for(class_name(key), nil, property['items']) %>::fromJson).toList()<%= index < schema['properties'].length-1 ? ',' : '' %>
+        <%- else -%>
+            <%= type_for(class_name(key), property_name, property) -%>.fromJson(Json.toObject("<%= class_name(key) %>.<%= property_name %> must be a map", map.get("<%= property_name %>")))<%= index < schema['properties'].length-1 ? ',' : '' %>
+        <%- end -%>
+<%- end -%>
+    );
+    }
 
     @Override
     public boolean equals(Object o) {
