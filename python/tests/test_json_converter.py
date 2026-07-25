@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import sys
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -33,7 +35,7 @@ class SimpleModel:
 class NestedModel:
     name: str
     simple: SimpleModel
-    optional_simple: Optional["SimpleModel"] = None
+    optional_simple: Optional[SimpleModel] = None
 
 
 @dataclass
@@ -41,14 +43,14 @@ class CollectionsModel:
     sequence_field: Sequence[str]
     list_field: list[SimpleModel]
     dict_field: dict[str, SimpleModel]
-    optional_sequence: Optional[Sequence["str"]] = None
+    optional_sequence: Optional[Sequence[str]] = None
 
 
 @dataclass
 class DateTimeModel:
     datetime_field: datetime
     date_field: date
-    optional_datetime: Optional["datetime"] = None
+    optional_datetime: Optional[datetime] = None
 
 
 @pytest.fixture
