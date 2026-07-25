@@ -3,10 +3,12 @@
 # Generator: cucumber-messages-python
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Optional
 
 from ._message_enums import *
+
 
 @dataclass
 class Attachment:
