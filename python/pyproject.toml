@@ -88,6 +88,7 @@ extend-select = [
 [tool.ruff.lint.extend-per-file-ignores]
 # TODO: Evaluate whether to use wildcard (removing need for updates) or explicit imports
 "src/cucumber_messages/__init__.py" = ["F403"]
+"src/cucumber_messages/_messages.py" = ["F403", "F405", "UP045"]
 
 [tool.tox]
 env_list = ["lint", "3.13", "3.12", "3.11", "3.10", "3.9", "pypy311", "pypy310"]
