@@ -1,4 +1,4 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
 import io.cucumber.messages.types.Envelope;
 import io.cucumber.messages.types.Source;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static io.cucumber.messages.Jackson.OBJECT_MAPPER;
+import static io.cucumber.messages.test.Jackson.OBJECT_MAPPER;
 import static io.cucumber.messages.types.SourceMediaType.TEXT_X_CUCUMBER_GHERKIN_PLAIN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

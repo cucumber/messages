@@ -1,5 +1,6 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
+import io.cucumber.messages.Property;
 import tools.jackson.core.StreamWriteFeature;
 import tools.jackson.core.Version;
 import tools.jackson.databind.AnnotationIntrospector;

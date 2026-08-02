@@ -1,5 +1,6 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
+import io.cucumber.messages.TestStepResultStatusComparator;
 import io.cucumber.messages.types.TestStepResultStatus;
 import org.junit.jupiter.api.Test;
 

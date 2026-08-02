@@ -1,5 +1,6 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
+import io.cucumber.messages.DurationComparator;
 import io.cucumber.messages.types.Duration;
 import org.junit.jupiter.api.Test;
 

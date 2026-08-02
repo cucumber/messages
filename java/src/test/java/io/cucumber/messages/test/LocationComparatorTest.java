@@ -1,5 +1,6 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
+import io.cucumber.messages.LocationComparator;
 import io.cucumber.messages.types.Location;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
+import io.cucumber.messages.ProtocolVersion;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

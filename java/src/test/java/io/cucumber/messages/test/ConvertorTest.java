@@ -1,5 +1,6 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
+import io.cucumber.messages.Convertor;
 import io.cucumber.messages.types.Duration;
 import io.cucumber.messages.types.Exception;
 import io.cucumber.messages.types.Timestamp;

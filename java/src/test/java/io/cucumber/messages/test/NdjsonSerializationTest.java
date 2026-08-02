@@ -1,5 +1,7 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
+import io.cucumber.messages.MessageToNdjsonWriter;
+import io.cucumber.messages.NdjsonToMessageReader;
 import io.cucumber.messages.types.AttachmentContentEncoding;
 import io.cucumber.messages.types.Envelope;
 import io.cucumber.messages.types.Source;

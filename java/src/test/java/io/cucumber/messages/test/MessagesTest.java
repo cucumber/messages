@@ -1,4 +1,4 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
 import io.cucumber.messages.types.Attachment;
 import io.cucumber.messages.types.Envelope;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MessagesTest {
+class MessagesTest {
     @Test
     @SuppressWarnings("NullAway")
     void is_invalid_when_required_fields_are_missing() {

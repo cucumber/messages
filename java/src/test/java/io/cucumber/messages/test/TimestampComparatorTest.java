@@ -1,5 +1,6 @@
-package io.cucumber.messages;
+package io.cucumber.messages.test;
 
+import io.cucumber.messages.TimestampComparator;
 import io.cucumber.messages.types.Timestamp;
 import org.junit.jupiter.api.Test;
 
