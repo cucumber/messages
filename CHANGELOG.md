@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- [Java] Use version range for `org.jspecify:jspecify`
 
 ## [34.2.0] - 2026-07-19
 ### Added
