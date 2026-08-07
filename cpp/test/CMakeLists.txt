@@ -10,6 +10,7 @@ target_compile_definitions(cucumber_messages_lib.test PRIVATE
 )
 
 target_sources(cucumber_messages_lib.test PRIVATE
+    TestDurationUtil.cpp
     TestMessages.cpp
 )
 

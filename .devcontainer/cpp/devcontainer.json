@@ -25,6 +25,7 @@
 		}
 	},
 	"remoteEnv": {
-		"CPM_SOURCE_CACHE": "~/cache/.cpm"
+		"CPM_SOURCE_CACHE": "~/cache/.cpm",
+		"DEBUGINFOD_URLS": ""
 	}
 }

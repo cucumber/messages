@@ -80,7 +80,7 @@ target_sources(
 target_include_directories(
     cucumber_messages_lib
     PUBLIC
-        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/legacy>
+        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/util>
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/generated>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE
@@ -141,6 +141,7 @@ install(
 )
 
 install(
+    DIRECTORY "${PROJECT_SOURCE_DIR}/include/util/"
     DIRECTORY "${PROJECT_SOURCE_DIR}/include/generated/"
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
