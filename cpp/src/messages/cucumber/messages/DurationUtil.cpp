@@ -20,10 +20,7 @@ namespace cucumber::messages
 
         Duration ToDuration(std::chrono::nanoseconds millis)
         {
-            return {
-                .seconds = millis.count() / nanosecondsPerSecond,
-                .nanos = millis.count() % nanosecondsPerSecond,
-            };
+            return { millis.count() / nanosecondsPerSecond, millis.count() % nanosecondsPerSecond };
         }
     }
 
