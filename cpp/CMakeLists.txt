@@ -137,13 +137,16 @@ install(
     FILES
         "${PROJECT_BINARY_DIR}/cucumber_messages-config.cmake"
         "${PROJECT_BINARY_DIR}/cucumber_messages-config-version.cmake"
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages"
+    DESTINATION
+        "${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages"
 )
 
 install(
-    DIRECTORY "${PROJECT_SOURCE_DIR}/include/util/"
-    DIRECTORY "${PROJECT_SOURCE_DIR}/include/generated/"
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    DIRECTORY
+        "${PROJECT_SOURCE_DIR}/include/util/"
+        "${PROJECT_SOURCE_DIR}/include/generated/"
+    DESTINATION
+        ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 # Optional: tests
