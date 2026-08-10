@@ -3,7 +3,7 @@ set(CPM_DOWNLOAD_TAG_DIGEST v0.43.1 456cb6754daaa010d57444d0c8ce6d95ecf006ab)
 # renovate: datasource=github-tags packageName=nlohmann/json versioning=semver
 set(NLOHMANN_JSON_TAG_DIGEST v3.12.0 55f93686c01528224f448c19128836e7df245f72)
 # renovate: datasource=github-tags packageName=google/googletest versioning=semver
-set(GOOGLE_TEST_TAG_DIGEST v1.17.0 52eb8108c5bdec04579160ae17225d66034bd723)
+set(GOOGLE_TEST_TAG_DIGEST v1.18.0 063de7e9578f82b369302001269680b4b1553359)
 
 list(GET CPM_DOWNLOAD_TAG_DIGEST 0 CPM_DOWNLOAD_TAG)
 list(GET CPM_DOWNLOAD_TAG_DIGEST 1 CPM_DOWNLOAD_DIGEST)
