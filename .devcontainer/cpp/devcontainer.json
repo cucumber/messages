@@ -6,6 +6,7 @@
 	"features": {
 		"ghcr.io/devcontainer-community/devcontainer-features/collection-c-cpp:1": {}
 	},
+	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y python3-pip && python3 -m pip install --user --break-system-packages 'conan>=2,<3' && conan profile detect --force",
 	"customizations": {
 		"vscode": {
 			"settings": {
@@ -25,7 +26,6 @@
 		}
 	},
 	"remoteEnv": {
-		"CPM_SOURCE_CACHE": "~/cache/.cpm",
 		"DEBUGINFOD_URLS": ""
 	}
 }

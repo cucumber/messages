@@ -14,18 +14,22 @@ make clean generate
 
 ## Building
 
-Building can be done by using the host workflow.
+Install dependencies with Conan, then build using the host workflow.
 
-```cmake
-cmake --workflow host
+```shell
+conan profile detect --force
+conan install . --output-folder=build/host --build=missing -s build_type=Debug
+cmake --workflow --preset host
 ```
 
 ## Tests
 
-Tests are automatically generated from the `/testdata` folder. Building and running tests can be done using the `test` workflow:
+Tests are automatically generated from the `/testdata` folder. Install dependencies and run the test workflow:
 
-```cmake
-cmake --workflow test
+```shell
+conan profile detect --force
+conan install . --output-folder=build/test --build=missing -s build_type=Debug
+cmake --workflow --preset test
 ```
 
 
