@@ -101,27 +101,27 @@ jobs:
         working-directory: cpp
         run: conan install . --output-folder=build/test --build=missing -s build_type=Debug
 
-      - name: Conan install (host)
-        working-directory: cpp
-        run: conan install . --output-folder=build/host --build=missing -s build_type=Debug
-
       - name: Test
         working-directory: cpp
-        run: cmake --workflow test
+        run: cmake --workflow --preset test
+
+      - name: Conan install (host)
+        working-directory: cpp
+        run: conan install . --output-folder=build/host-conan --build=missing -s build_type=Release
 
       - name: Build
         working-directory: cpp
-        run: cmake --workflow host
+        run: cmake --workflow --preset host-conan
 
       - name: Install (Unix)
         if: ${{ matrix.config.os != 'windows-latest' }}
         working-directory: cpp
-        run: sudo cmake --install build/host
+        run: sudo cmake --install build/host-conan
 
       - name: Install (Windows)
         if: ${{ matrix.config.os == 'windows-latest' }}
         working-directory: cpp
-        run: cmake --install build/host
+        run: cmake --install build/host-conan
 
       # The following steps are to test the installation process.
       - name: Build Test Install

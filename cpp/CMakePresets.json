@@ -6,31 +6,71 @@
     },
     "configurePresets": [
         {
-            "name": "host",
+            "name": "base",
+            "hidden": true,
             "binaryDir": "${sourceDir}/build/${presetName}",
             "generator": "Ninja",
             "cacheVariables": {
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "On",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "On"
+            }
+        },
+        {
+            "name": "host-system",
+            "displayName": "Host build (system dependencies)",
+            "description": "Build and install the library using C++ dependencies already installed on the system. Does not use Conan and does not build tests. Used on machines that have the dependencies but not Conan.",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "host-conan",
+            "displayName": "Host build (Conan dependencies)",
+            "description": "Build and install the library using Conan-provided dependencies. Requires 'conan install --output-folder=build/host-conan' first. Used by CI. Does not build tests.",
+            "inherits": "base",
+            "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/build/${presetName}/conan_toolchain.cmake",
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
             "name": "test",
-            "inherits": "host",
+            "displayName": "Test build (Conan)",
+            "description": "Build with the unit tests enabled using Conan-provided dependencies. Requires 'conan install --output-folder=build/test' first. Used by CI to build and run the test suite.",
+            "inherits": "host-conan",
             "cacheVariables": {
-                "CUCUMBER_MESSAGES_BUILD_TESTS": "On"
+                "CUCUMBER_MESSAGES_BUILD_TESTS": "On",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "dev",
+            "displayName": "Local development (automatic Conan)",
+            "description": "Local development build with tests enabled. Runs 'conan install' automatically at configure time via the cmake-conan provider, so no manual Conan step is needed. Not used by CI.",
+            "inherits": "base",
+            "cacheVariables": {
+                "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "${sourceDir}/cmake/conan_provider.cmake",
+                "CUCUMBER_MESSAGES_BUILD_TESTS": "On",
+                "CMAKE_BUILD_TYPE": "Debug"
             }
         }
     ],
     "buildPresets": [
         {
-            "name": "host",
-            "configurePreset": "host"
+            "name": "host-conan",
+            "configurePreset": "host-conan"
         },
         {
             "name": "test",
             "configurePreset": "test"
+        },
+        {
+            "name": "dev",
+            "configurePreset": "dev"
+        },
+        {
+            "name": "host-system",
+            "configurePreset": "host-system"
         }
     ],
     "testPresets": [
@@ -43,18 +83,28 @@
             "execution": {
                 "noTestsAction": "error"
             }
+        },
+        {
+            "name": "dev",
+            "configurePreset": "dev",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error"
+            }
         }
     ],
     "workflowPresets": [
         {
-            "name": "host",
+            "name": "host-conan",
             "steps": [
                 {
-                    "name": "host",
+                    "name": "host-conan",
                     "type": "configure"
                 },
                 {
-                    "name": "host",
+                    "name": "host-conan",
                     "type": "build"
                 }
             ]
@@ -73,6 +123,36 @@
                 {
                     "name": "test",
                     "type": "test"
+                }
+            ]
+        },
+        {
+            "name": "dev",
+            "steps": [
+                {
+                    "name": "dev",
+                    "type": "configure"
+                },
+                {
+                    "name": "dev",
+                    "type": "build"
+                },
+                {
+                    "name": "dev",
+                    "type": "test"
+                }
+            ]
+        },
+        {
+            "name": "host-system",
+            "steps": [
+                {
+                    "name": "host-system",
+                    "type": "configure"
+                },
+                {
+                    "name": "host-system",
+                    "type": "build"
                 }
             ]
         }

@@ -18,8 +18,8 @@ Install dependencies with Conan, then build using the host workflow.
 
 ```shell
 conan profile detect --force
-conan install . --output-folder=build/host --build=missing -s build_type=Debug
-cmake --workflow --preset host
+conan install . --output-folder=build/host-conan --build=missing -s build_type=Release
+cmake --workflow --preset host-conan
 ```
 
 ## Tests
@@ -32,8 +32,30 @@ conan install . --output-folder=build/test --build=missing -s build_type=Debug
 cmake --workflow --preset test
 ```
 
+## Local development (automatic Conan)
 
-This requires various tooling to be installed on your computer, including Ruby and Node.js.
+For local development you can use the `dev` preset, which wires in the
+[cmake-conan](https://github.com/conan-io/cmake-conan) dependency provider so
+CMake runs `conan install` automatically at configure time. No separate Conan
+step is required:
+
+```shell
+conan profile detect --force
+cmake --workflow --preset dev
+```
+
+The `host-conan` and `test` presets deliberately do **not** use the provider; CI
+runs an explicit `conan install` for reproducible, profile-pinned builds.
+
+## Building without Conan
+
+If Conan is not available but the C++ dependencies are already installed on the
+system, use the `host-system` preset to build and install:
+
+```shell
+cmake --workflow --preset host-system
+cmake --install build/host-system --config Release
+```
 
 ## Codestyle, rules and recommendations
 
