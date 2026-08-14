@@ -100,7 +100,7 @@ jobs:
       - name: Test installation
         working-directory: cpp/test_install
         run: |
-          cmake -S . -B build
+          cmake -G Ninja -S . -B build
           cmake --build build
           ctest --test-dir build --output-on-failure
 
