@@ -65,6 +65,9 @@ list(APPEND CUCUMBER_MESSAGES_LIB_ALL_SOURCES ${CUCUMBER_MESSAGES_LIB_SOURCES})
 add_library(cucumber_messages_lib)
 add_library(cucumber::messages ALIAS cucumber_messages_lib)
 
+target_compile_features(cucumber_messages_lib PUBLIC cxx_std_17)
+set_target_properties(cucumber_messages_lib PROPERTIES CXX_EXTENSIONS OFF)
+
 target_sources(
     cucumber_messages_lib
     PRIVATE

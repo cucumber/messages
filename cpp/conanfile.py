@@ -62,9 +62,6 @@ class CucumberMessages(ConanFile):
         cmake_toolchain = CMakeToolchain(self)
         cmake_toolchain.user_presets_path = False
         cmake_toolchain.cache_variables["CUCUMBER_MESSAGES_BUILD_TESTS"] = self._build_tests()
-        cmake_toolchain.cache_variables["CMAKE_CXX_STANDARD"] = "17"
-        cmake_toolchain.cache_variables["CMAKE_CXX_STANDARD_REQUIRED"] = True
-        cmake_toolchain.cache_variables["CMAKE_CXX_EXTENSIONS"] = False
         cmake_toolchain.generate()
 
     def build(self):
