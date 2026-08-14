@@ -28,7 +28,6 @@ if (POLICY CMP0077)
 endif ()
 
 option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." Off)
-option(CUCUMBER_MESSAGES_FETCH_DEPS "Fetch dependencies via FetchContent." Off)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -54,8 +53,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
 endif()
 
-# CMake dependencies
-include(dependencies.cpm)
+find_package(nlohmann_json 3.11 REQUIRED)
 
 # Target
 set(CUCUMBER_MESSAGES_LIB_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -70,6 +68,9 @@ list(APPEND CUCUMBER_MESSAGES_LIB_ALL_SOURCES ${CUCUMBER_MESSAGES_LIB_SOURCES})
 
 add_library(cucumber_messages_lib)
 add_library(cucumber::messages ALIAS cucumber_messages_lib)
+
+# Propagate the C++17 requirement to consumers of the installed/exported target.
+target_compile_features(cucumber_messages_lib PUBLIC cxx_std_17)
 
 target_sources(
     cucumber_messages_lib
@@ -151,6 +152,7 @@ install(
 
 # Optional: tests
 if(CUCUMBER_MESSAGES_BUILD_TESTS)
+    find_package(GTest REQUIRED)
     include(CTest)
     enable_testing()
     add_subdirectory(test)
