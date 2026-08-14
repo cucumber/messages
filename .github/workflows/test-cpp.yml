@@ -80,13 +80,12 @@ jobs:
       - name: Install build tools
         uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
 
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@b1a0dd252f06b9e25b3c022a9a03bd7a427fb6a2 # v11.6
-
       - name: Install dependencies
         shell: pwsh
         run: |
-          vcpkg install nlohmann-json gtest
+          vcpkg install nlohmann-json gtest --triplet x64-windows
+          # Expose the vcpkg toolchain so find_package() locates the packages.
+          echo "CMAKE_TOOLCHAIN_FILE=$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake" >> $env:GITHUB_ENV
 
       - name: Build and unit test
         working-directory: cpp
