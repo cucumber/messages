@@ -56,7 +56,7 @@ jobs:
           build-mode: manual
           tools: linked
 
-      - name: Configure
+      - name: Build
         working-directory: cpp
         run: cmake --workflow --preset host-system
 
