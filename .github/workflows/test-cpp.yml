@@ -128,7 +128,7 @@ jobs:
       - name: Install
         working-directory: cpp
         run: |
-          cmake --install build/test-system
+          sudo cmake --install build/test-system
 
       - name: Test installation
         working-directory: cpp/test_install
