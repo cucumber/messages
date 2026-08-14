@@ -29,10 +29,6 @@ endif ()
 
 option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." Off)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
 # Compiler cache
 find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)
@@ -53,7 +49,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
 endif()
 
-find_package(nlohmann_json 3.12.0 REQUIRED)
+find_package(nlohmann_json 3.11 REQUIRED)
 
 # Target
 set(CUCUMBER_MESSAGES_LIB_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
