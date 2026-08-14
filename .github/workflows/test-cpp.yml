@@ -81,7 +81,7 @@ jobs:
         uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
 
       - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
+        uses: lukka/run-vcpkg@b1a0dd252f06b9e25b3c022a9a03bd7a427fb6a2 # v11.6
 
       - name: Install dependencies
         shell: pwsh
@@ -139,25 +139,24 @@ jobs:
           ctest --test-dir build --output-on-failure
 
   test-cpp-conan:
-    runs-on: ${{ matrix.config.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - os: [ubuntu-24.04, ubuntu-26.04, macos-latest, windows-latest]
+        os: [ubuntu-24.04, ubuntu-26.04, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
 
       - name: Install build tools (windows)
-        if: startsWith(matrix.config.os, 'windows')
+        if: startsWith(matrix.os, 'windows')
         uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
 
       - name: ccache
         uses: hendrikmuhs/ccache-action@d62db5f07c26379fc4b4e0916f098a92573c3b03 # v1.2.23
         with:
-          key: ${{ github.job }}-${{ matrix.config.os }}-${{ github.ref }}
+          key: ${{ github.job }}-${{ matrix.os }}-${{ github.ref }}
 
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
