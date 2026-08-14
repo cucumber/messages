@@ -47,6 +47,8 @@ jobs:
         uses: hendrikmuhs/ccache-action@d62db5f07c26379fc4b4e0916f098a92573c3b03 # v1.2.23
         with:
           key: ${{ github.job }}-${{ matrix.config.os }}-${{ matrix.config.cxx }}-${{ matrix.config.version }}-${{ github.ref }}
+          append-timestamp: false
+          save: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Install dependencies
         run: |
@@ -115,6 +117,8 @@ jobs:
         uses: hendrikmuhs/ccache-action@d62db5f07c26379fc4b4e0916f098a92573c3b03 # v1.2.23
         with:
           key: ${{ github.job }}-${{ github.ref }}
+          append-timestamp: false
+          save: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Install dependencies
         run: |
@@ -156,6 +160,8 @@ jobs:
         uses: hendrikmuhs/ccache-action@d62db5f07c26379fc4b4e0916f098a92573c3b03 # v1.2.23
         with:
           key: ${{ github.job }}-${{ matrix.os }}-${{ github.ref }}
+          append-timestamp: false
+          save: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -179,121 +185,3 @@ jobs:
         working-directory: cpp/test_install
         run: |
           conan build . --build=missing -s compiler.cppstd=17
-
-  # test-cpp:
-  #   env:
-  #     CCACHE_BASEDIR: ${{ github.workspace }}
-  #     CCACHE_DIR: ${{ github.workspace }}/.ccache
-  #     CPM_SOURCE_CACHE: ${{ github.workspace }}/.cpm
-
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       config:
-  #         - { os: ubuntu-24.04, cxx: g++, version: 12 }
-  #         # - { os: ubuntu-24.04, cxx: g++, version: 13 }
-  #         # - { os: ubuntu-24.04, cxx: clang++, version: 16 }
-  #         # - { os: ubuntu-24.04, cxx: clang++, version: 17 }
-  #         # - { os: ubuntu-26.04, cxx: g++, version: 14 }
-  #         # - { os: ubuntu-26.04, cxx: g++, version: 15 }
-  #         # - { os: ubuntu-26.04, cxx: clang++, version: 21 }
-  #         # - { os: ubuntu-26.04, cxx: clang++, version: 22 }
-  #         # - { os: macos-latest, cxx: clang++, version: 17 }
-  #         # - { os: windows-latest, cxx: cl }
-
-  #   runs-on: ${{ matrix.config.os }}
-  #   steps:
-  #     # - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-  #     #   with:
-  #     #     persist-credentials: false
-
-  #     # - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
-  #     #   if: startsWith(matrix.config.os, 'windows')
-
-  #     # - name: Install build tools (ubuntu)
-  #     #   if: startsWith(matrix.config.os, 'ubuntu')
-  #     #   run: |
-  #     #     sudo apt-get update
-  #     #     sudo apt-get install -y ccache
-
-  #     # - name: Install build tools (macos)
-  #     #   if: startsWith(matrix.config.os, 'macos')
-  #     #   run: brew install ccache llvm@${{ matrix.config.version }}
-
-  #     # - name: Cache CPM packages
-  #     #   uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-  #     #   with:
-  #     #     path: ${{ env.CPM_SOURCE_CACHE }}
-  #     #     key: cpm-${{ hashFiles('cpp/cmake/dependencies.cpm.cmake') }}
-  #     #     restore-keys: cpm-
-
-  #     # - name: Cache ccache
-  #     #   if: "!startsWith(matrix.config.os, 'windows')"
-  #     #   uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-  #     #   with:
-  #     #     path: ${{ env.CCACHE_DIR }}
-  #     #     key: ccache-${{ github.job }}-${{ matrix.config.os }}-${{ matrix.config.cxx }}-${{ matrix.config.version }}-${{ github.ref }}
-  #     #     restore-keys: ccache-${{ github.job }}-${{ matrix.config.os }}-${{ matrix.config.cxx }}-${{ matrix.config.version }}-
-
-  #     # - name: Set CXX (ubuntu)
-  #     #   if: startsWith(matrix.config.os, 'ubuntu')
-  #     #   run: echo "CXX=${{ matrix.config.cxx }}-${{ matrix.config.version }}" >> $GITHUB_ENV
-
-  #     # - name: Set CXX (macos)
-  #     #   if: startsWith(matrix.config.os, 'macos')
-  #     #   run: echo "CXX=$(brew --prefix llvm@${{ matrix.config.version }})/bin/clang++" >> $GITHUB_ENV
-
-  #     # - name: Setup Python
-  #     #   uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
-  #     #   with:
-  #     #     python-version: '3.x'
-
-  #     # - name: Install Conan
-  #     #   run: python -m pip install --upgrade "conan>=2,<3"
-
-  #     # - name: Detect Conan profile
-  #     #   working-directory: cpp
-  #     #   run: conan profile detect --force
-
-  #     # - name: Conan install (test)
-  #     #   working-directory: cpp
-  #     #   run: conan install . --output-folder=build/test --build=missing -s build_type=Debug -s compiler.cppstd=17
-
-  #     - name: Test
-  #       working-directory: cpp
-  #       run: cmake --workflow --preset test
-
-  #     # - name: Conan install (host)
-  #     #   working-directory: cpp
-  #     #   run: conan install . --output-folder=build/host-conan --build=missing -s build_type=Release -s compiler.cppstd=17
-
-  #     - name: Build
-  #       working-directory: cpp
-  #       run: cmake --workflow --preset host-conan
-
-  #     - name: Install (Unix)
-  #       if: ${{ matrix.config.os != 'windows-latest' }}
-  #       working-directory: cpp
-  #       run: sudo cmake --install build/host-conan
-
-  #     - name: Install (Windows)
-  #       if: ${{ matrix.config.os == 'windows-latest' }}
-  #       working-directory: cpp
-  #       run: cmake --install build/host-conan
-
-  #     # The following steps are to test the installation process.
-  #     - name: Build Test Install
-  #       working-directory: cpp/test_install
-  #       run: |
-  #         cmake -S . -B build
-  #         cmake --build build
-
-  #     - name: Test Install (Unix)
-  #       if: ${{ matrix.config.os != 'windows-latest' }}
-  #       working-directory: cpp/test_install
-  #       run: ./build/cucumber_messages_test_install
-
-  #     - name: Test Install (Windows)
-  #       if: ${{ matrix.config.os == 'windows-latest' }}
-  #       working-directory: cpp/test_install
-  #       run: .\build\Debug\cucumber_messages_test_install.exe
