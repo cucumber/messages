@@ -173,12 +173,12 @@ jobs:
       - name: Install (as conan package)
         working-directory: cpp
         run: |
-          conan create .
+          conan create . --build=missing -s compiler.cppstd=17
 
       - name: Test (as conan package)
         working-directory: cpp/test_install
         run: |
-          conan build .
+          conan build . --build=missing -s compiler.cppstd=17
 
   # test-cpp:
   #   env:
