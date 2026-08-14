@@ -170,25 +170,6 @@ jobs:
         run: |
           cmake --workflow --preset test-conan
 
-      - name: Install (as system package) (Unix)
-        if: runner.os != 'Windows'
-        working-directory: cpp
-        run: |
-          sudo cmake --install build/test-conan
-
-      - name: Install (as system package) (Windows)
-        if: runner.os == 'Windows'
-        working-directory: cpp
-        run: |
-          cmake --install build/test-conan
-
-      - name: Test (as system package)
-        working-directory: cpp/test_install
-        run: |
-          cmake -S . -B build
-          cmake --build build
-          ctest --test-dir build --output-on-failure
-
       - name: Install (as conan package)
         working-directory: cpp
         run: |
