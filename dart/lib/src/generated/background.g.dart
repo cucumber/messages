@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Background message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Background.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Background {
@@ -60,5 +60,31 @@ class Background {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Background &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          _listEquals(steps, other.steps) &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        keyword,
+        name,
+        description,
+        Object.hashAll(steps),
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Background{location: $location, keyword: $keyword, name: $name, description: $description, steps: $steps, id: $id}';
 }
 

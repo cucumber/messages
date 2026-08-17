@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [ParseError message](https://github.com/cucumber/messages/blob/main/jsonschema/src/ParseError.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class ParseError {
@@ -34,5 +34,23 @@ class ParseError {
     json['message'] = message;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ParseError &&
+          runtimeType == other.runtimeType &&
+          source == other.source &&
+          message == other.message;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        source,
+        message,
+      ]);
+
+  @override
+  String toString() =>
+      'ParseError{source: $source, message: $message}';
 }
 

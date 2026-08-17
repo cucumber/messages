@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Values for the `type` property.
 enum HookType {
@@ -85,5 +85,29 @@ class Hook {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Hook &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          sourceReference == other.sourceReference &&
+          tagExpression == other.tagExpression &&
+          type == other.type;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        name,
+        sourceReference,
+        tagExpression,
+        type,
+      ]);
+
+  @override
+  String toString() =>
+      'Hook{id: $id, name: $name, sourceReference: $sourceReference, tagExpression: $tagExpression, type: $type}';
 }
 

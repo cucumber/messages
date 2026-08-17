@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [RuleChild message](https://github.com/cucumber/messages/blob/main/jsonschema/src/RuleChild.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -46,5 +46,23 @@ class RuleChild {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RuleChild &&
+          runtimeType == other.runtimeType &&
+          background == other.background &&
+          scenario == other.scenario;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        background,
+        scenario,
+      ]);
+
+  @override
+  String toString() =>
+      'RuleChild{background: $background, scenario: $scenario}';
 }
 

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// The test phase signalled by the keyword: Context definition (Given), Action performance (When), Outcome assertion (Then). Other keywords signal Continuation (And and But) from a prior keyword. Please note that all translations which a dialect maps to multiple keywords (`*` is in this category for all dialects), map to 'Unknown'.
 enum StepKeywordType {
@@ -103,5 +103,33 @@ class Step {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Step &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          keyword == other.keyword &&
+          keywordType == other.keywordType &&
+          text == other.text &&
+          docString == other.docString &&
+          dataTable == other.dataTable &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        keyword,
+        keywordType,
+        text,
+        docString,
+        dataTable,
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Step{location: $location, keyword: $keyword, keywordType: $keywordType, text: $text, docString: $docString, dataTable: $dataTable, id: $id}';
 }
 

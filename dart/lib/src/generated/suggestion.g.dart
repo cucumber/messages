@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Suggestion message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Suggestion.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -45,5 +45,25 @@ class Suggestion {
     json['snippets'] = snippets.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Suggestion &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          pickleStepId == other.pickleStepId &&
+          _listEquals(snippets, other.snippets);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        pickleStepId,
+        Object.hashAll(snippets),
+      ]);
+
+  @override
+  String toString() =>
+      'Suggestion{id: $id, pickleStepId: $pickleStepId, snippets: $snippets}';
 }
 

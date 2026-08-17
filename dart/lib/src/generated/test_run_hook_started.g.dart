@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [TestRunHookStarted message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestRunHookStarted.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestRunHookStarted {
@@ -51,5 +51,29 @@ class TestRunHookStarted {
     json['timestamp'] = timestamp.toJson();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestRunHookStarted &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          testRunStartedId == other.testRunStartedId &&
+          hookId == other.hookId &&
+          workerId == other.workerId &&
+          timestamp == other.timestamp;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        testRunStartedId,
+        hookId,
+        workerId,
+        timestamp,
+      ]);
+
+  @override
+  String toString() =>
+      'TestRunHookStarted{id: $id, testRunStartedId: $testRunStartedId, hookId: $hookId, workerId: $workerId, timestamp: $timestamp}';
 }
 

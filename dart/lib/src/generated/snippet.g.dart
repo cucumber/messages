@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Snippet message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Snippet.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Snippet {
@@ -35,5 +35,23 @@ class Snippet {
     json['code'] = code;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Snippet &&
+          runtimeType == other.runtimeType &&
+          language == other.language &&
+          code == other.code;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        language,
+        code,
+      ]);
+
+  @override
+  String toString() =>
+      'Snippet{language: $language, code: $code}';
 }
 

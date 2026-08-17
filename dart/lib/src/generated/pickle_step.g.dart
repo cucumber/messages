@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// The context in which the step was specified: context (Given), action (When) or outcome (Then).
 ///
@@ -90,5 +90,29 @@ class PickleStep {
     json['text'] = text;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleStep &&
+          runtimeType == other.runtimeType &&
+          argument == other.argument &&
+          _listEquals(astNodeIds, other.astNodeIds) &&
+          id == other.id &&
+          type == other.type &&
+          text == other.text;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        argument,
+        Object.hashAll(astNodeIds),
+        id,
+        type,
+        text,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleStep{argument: $argument, astNodeIds: $astNodeIds, id: $id, type: $type, text: $text}';
 }
 

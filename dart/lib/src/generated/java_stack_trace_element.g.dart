@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [JavaStackTraceElement message](https://github.com/cucumber/messages/blob/main/jsonschema/src/JavaStackTraceElement.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class JavaStackTraceElement {
@@ -37,5 +37,25 @@ class JavaStackTraceElement {
     json['methodName'] = methodName;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is JavaStackTraceElement &&
+          runtimeType == other.runtimeType &&
+          className == other.className &&
+          fileName == other.fileName &&
+          methodName == other.methodName;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        className,
+        fileName,
+        methodName,
+      ]);
+
+  @override
+  String toString() =>
+      'JavaStackTraceElement{className: $className, fileName: $fileName, methodName: $methodName}';
 }
 

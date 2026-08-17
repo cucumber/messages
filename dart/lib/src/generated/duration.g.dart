@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Duration message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Duration.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -38,5 +38,23 @@ class Duration {
     json['nanos'] = nanos;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Duration &&
+          runtimeType == other.runtimeType &&
+          seconds == other.seconds &&
+          nanos == other.nanos;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        seconds,
+        nanos,
+      ]);
+
+  @override
+  String toString() =>
+      'Duration{seconds: $seconds, nanos: $nanos}';
 }
 

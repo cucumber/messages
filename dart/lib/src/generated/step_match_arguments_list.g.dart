@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [StepMatchArgumentsList message](https://github.com/cucumber/messages/blob/main/jsonschema/src/StepMatchArgumentsList.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class StepMatchArgumentsList {
@@ -33,5 +33,21 @@ class StepMatchArgumentsList {
     json['stepMatchArguments'] = stepMatchArguments.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StepMatchArgumentsList &&
+          runtimeType == other.runtimeType &&
+          _listEquals(stepMatchArguments, other.stepMatchArguments);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        Object.hashAll(stepMatchArguments),
+      ]);
+
+  @override
+  String toString() =>
+      'StepMatchArgumentsList{stepMatchArguments: $stepMatchArguments}';
 }
 

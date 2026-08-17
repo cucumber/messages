@@ -1,0 +1,35 @@
+name: Release Python
+
+permissions: {}
+
+on:
+  push:
+    branches: [release/*]
+
+jobs:
+  publish-pypi:
+    name: Publish PyPI Package
+    runs-on: ubuntu-latest
+    environment: Release
+    permissions:
+      id-token: write
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          enable-cache: false
+          python-version: "3.13"
+          version: "0.12.5"
+
+      - name: Build package
+        run: uv build
+
+      - name: Publish package
+        run: uv publish --trusted-publishing=always

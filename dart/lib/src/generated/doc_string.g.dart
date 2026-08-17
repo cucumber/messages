@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [DocString message](https://github.com/cucumber/messages/blob/main/jsonschema/src/DocString.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class DocString {
@@ -46,5 +46,27 @@ class DocString {
     json['delimiter'] = delimiter;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DocString &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          mediaType == other.mediaType &&
+          content == other.content &&
+          delimiter == other.delimiter;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        mediaType,
+        content,
+        delimiter,
+      ]);
+
+  @override
+  String toString() =>
+      'DocString{location: $location, mediaType: $mediaType, content: $content, delimiter: $delimiter}';
 }
 

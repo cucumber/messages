@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Feature message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Feature.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Feature {
@@ -71,5 +71,33 @@ class Feature {
     json['children'] = children.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Feature &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(tags, other.tags) &&
+          language == other.language &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          _listEquals(children, other.children);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        Object.hashAll(tags),
+        language,
+        keyword,
+        name,
+        description,
+        Object.hashAll(children),
+      ]);
+
+  @override
+  String toString() =>
+      'Feature{location: $location, tags: $tags, language: $language, keyword: $keyword, name: $name, description: $description, children: $children}';
 }
 

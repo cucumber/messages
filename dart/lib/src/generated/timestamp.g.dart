@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Timestamp message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Timestamp.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Timestamp {
@@ -37,5 +37,23 @@ class Timestamp {
     json['nanos'] = nanos;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Timestamp &&
+          runtimeType == other.runtimeType &&
+          seconds == other.seconds &&
+          nanos == other.nanos;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        seconds,
+        nanos,
+      ]);
+
+  @override
+  String toString() =>
+      'Timestamp{seconds: $seconds, nanos: $nanos}';
 }
 

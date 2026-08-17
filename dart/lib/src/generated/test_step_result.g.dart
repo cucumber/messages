@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Values for the `status` property.
 enum TestStepResultStatus {
@@ -82,5 +82,27 @@ class TestStepResult {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestStepResult &&
+          runtimeType == other.runtimeType &&
+          duration == other.duration &&
+          message == other.message &&
+          status == other.status &&
+          exception == other.exception;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        duration,
+        message,
+        status,
+        exception,
+      ]);
+
+  @override
+  String toString() =>
+      'TestStepResult{duration: $duration, message: $message, status: $status, exception: $exception}';
 }
 

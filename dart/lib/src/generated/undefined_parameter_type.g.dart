@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [UndefinedParameterType message](https://github.com/cucumber/messages/blob/main/jsonschema/src/UndefinedParameterType.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class UndefinedParameterType {
@@ -32,5 +32,23 @@ class UndefinedParameterType {
     json['name'] = name;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UndefinedParameterType &&
+          runtimeType == other.runtimeType &&
+          expression == other.expression &&
+          name == other.name;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        expression,
+        name,
+      ]);
+
+  @override
+  String toString() =>
+      'UndefinedParameterType{expression: $expression, name: $name}';
 }
 

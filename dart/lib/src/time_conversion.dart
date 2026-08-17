@@ -1,4 +1,4 @@
-import 'package:cucumber_messages/src/generated/messages.dart' as messages;
+import 'package:cucumber_messages/src/generated/messages.g.dart' as messages;
 
 const _nanosPerSecond = 1000000000;
 

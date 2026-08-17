@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Meta message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Meta.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -69,5 +69,31 @@ class Meta {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Meta &&
+          runtimeType == other.runtimeType &&
+          protocolVersion == other.protocolVersion &&
+          implementation == other.implementation &&
+          runtime == other.runtime &&
+          os == other.os &&
+          cpu == other.cpu &&
+          ci == other.ci;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        protocolVersion,
+        implementation,
+        runtime,
+        os,
+        cpu,
+        ci,
+      ]);
+
+  @override
+  String toString() =>
+      'Meta{protocolVersion: $protocolVersion, implementation: $implementation, runtime: $runtime, os: $os, cpu: $cpu, ci: $ci}';
 }
 

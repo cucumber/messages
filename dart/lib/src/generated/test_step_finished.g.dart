@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [TestStepFinished message](https://github.com/cucumber/messages/blob/main/jsonschema/src/TestStepFinished.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class TestStepFinished {
@@ -46,5 +46,27 @@ class TestStepFinished {
     json['timestamp'] = timestamp.toJson();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TestStepFinished &&
+          runtimeType == other.runtimeType &&
+          testCaseStartedId == other.testCaseStartedId &&
+          testStepId == other.testStepId &&
+          testStepResult == other.testStepResult &&
+          timestamp == other.timestamp;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        testCaseStartedId,
+        testStepId,
+        testStepResult,
+        timestamp,
+      ]);
+
+  @override
+  String toString() =>
+      'TestStepFinished{testCaseStartedId: $testCaseStartedId, testStepId: $testStepId, testStepResult: $testStepResult, timestamp: $timestamp}';
 }
 

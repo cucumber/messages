@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [GherkinDocument message](https://github.com/cucumber/messages/blob/main/jsonschema/src/GherkinDocument.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -59,5 +59,25 @@ class GherkinDocument {
     json['comments'] = comments.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GherkinDocument &&
+          runtimeType == other.runtimeType &&
+          uri == other.uri &&
+          feature == other.feature &&
+          _listEquals(comments, other.comments);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        uri,
+        feature,
+        Object.hashAll(comments),
+      ]);
+
+  @override
+  String toString() =>
+      'GherkinDocument{uri: $uri, feature: $feature, comments: $comments}';
 }
 

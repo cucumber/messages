@@ -3,3 +3,5 @@ build/
 test/acceptance/
 benchmark/
 pubspec.lock
+CONTRIBUTING.md
+test/

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Product message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Product.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -36,5 +36,23 @@ class Product {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Product &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          version == other.version;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        version,
+      ]);
+
+  @override
+  String toString() =>
+      'Product{name: $name, version: $version}';
 }
 

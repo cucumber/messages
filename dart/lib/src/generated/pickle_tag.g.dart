@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [PickleTag message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleTag.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -34,5 +34,23 @@ class PickleTag {
     json['astNodeId'] = astNodeId;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTag &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          astNodeId == other.astNodeId;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        astNodeId,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTag{name: $name, astNodeId: $astNodeId}';
 }
 

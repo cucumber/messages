@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [PickleTableRow message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleTableRow.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class PickleTableRow {
@@ -33,5 +33,21 @@ class PickleTableRow {
     json['cells'] = cells.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTableRow &&
+          runtimeType == other.runtimeType &&
+          _listEquals(cells, other.cells);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        Object.hashAll(cells),
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTableRow{cells: $cells}';
 }
 

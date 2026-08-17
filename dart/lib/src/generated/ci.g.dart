@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Ci message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Ci.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -54,5 +54,27 @@ class Ci {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Ci &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          url == other.url &&
+          buildNumber == other.buildNumber &&
+          git == other.git;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        name,
+        url,
+        buildNumber,
+        git,
+      ]);
+
+  @override
+  String toString() =>
+      'Ci{name: $name, url: $url, buildNumber: $buildNumber, git: $git}';
 }
 

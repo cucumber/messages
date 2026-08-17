@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Scenario message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Scenario.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class Scenario {
@@ -82,5 +82,35 @@ class Scenario {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Scenario &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(tags, other.tags) &&
+          keyword == other.keyword &&
+          name == other.name &&
+          description == other.description &&
+          _listEquals(steps, other.steps) &&
+          _listEquals(examples, other.examples) &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        Object.hashAll(tags),
+        keyword,
+        name,
+        description,
+        Object.hashAll(steps),
+        Object.hashAll(examples),
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Scenario{location: $location, tags: $tags, keyword: $keyword, name: $name, description: $description, steps: $steps, examples: $examples, id: $id}';
 }
 

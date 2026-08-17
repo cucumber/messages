@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Tag message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Tag.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -41,5 +41,25 @@ class Tag {
     json['id'] = id;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Tag &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          name == other.name &&
+          id == other.id;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        name,
+        id,
+      ]);
+
+  @override
+  String toString() =>
+      'Tag{location: $location, name: $name, id: $id}';
 }
 

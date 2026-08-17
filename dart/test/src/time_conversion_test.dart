@@ -1,5 +1,5 @@
 import 'package:cucumber_messages/cucumber_messages.dart' hide Duration;
-import 'package:cucumber_messages/src/generated/messages.dart' as messages;
+import 'package:cucumber_messages/src/generated/messages.g.dart' as messages;
 import 'package:test/test.dart';
 
 void main() {

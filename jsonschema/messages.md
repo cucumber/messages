@@ -1324,7 +1324,7 @@ Optional arguments. Either a PickleDocString, PickleTable or both
 * Type: integer 
 * Required: no 
 
-The index of this argument. The value is 0 if it was declared before the doc string, 1 if it was declared after.
+The index of this argument. The value is 1 if it was declared before the doc string, 2 if it was declared after.
 
 #### PickleTable.rows 
 

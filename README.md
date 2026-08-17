@@ -39,26 +39,13 @@ generated from the JSON schemas. The current implementations are:
 The release process for the below languages uses [polyglot-release](./RELEASING.md)
 
 - .NET
+- Dart
 - Java
 - Javascript
 - Perl
 - PHP
 - Python
 - Ruby
-
-### Go
-
-The Go implementation is also cut for every version but is just maintained as a GitHub tag
-
-### C++
-
-This is currently tested but not automatically released. We are seeking help for this implementation
-
-### Elixir
-
-There is also a subdirectory for Elixir which contains the legacy implementation which was largely
-driven by protobuf. This has recently been re-integrated into our CI and will be ported over to
-the JSON schema protocol in due course, for now it remains written in protobuf
 
 ## Message emitters
 
@@ -67,6 +54,7 @@ Cucumber Messages are currently sent by the following versions of Cucumber (usin
 * Cucumber-JVM `6.0.0` and later
 * Cucumber-Ruby `4.0.0` and later
 * Cucumber.js `7.0.0` and later
+* [ReqnRoll](https://github.com/reqnroll/Reqnroll) `3.0.0` and later
 
 Messages emitters for the other Cucumber languages (e.g. Perl) are not yet implemented. 
 

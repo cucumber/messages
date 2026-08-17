@@ -1,5 +1,7 @@
 # Contributing
 
+Please read [cucumber/.github/CONTRIBUTING.md](https://github.com/cucumber/.github/blob/main/CONTRIBUTING.md) first.
+
 If you want to make changes to the schema, start in the `jsonschema` directory where you can edit the JSON files.
 
 Some guidelines for making schema changes:

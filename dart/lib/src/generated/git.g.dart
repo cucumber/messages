@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [Git message](https://github.com/cucumber/messages/blob/main/jsonschema/src/Git.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 ///
@@ -49,5 +49,27 @@ class Git {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Git &&
+          runtimeType == other.runtimeType &&
+          remote == other.remote &&
+          revision == other.revision &&
+          branch == other.branch &&
+          tag == other.tag;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        remote,
+        revision,
+        branch,
+        tag,
+      ]);
+
+  @override
+  String toString() =>
+      'Git{remote: $remote, revision: $revision, branch: $branch, tag: $tag}';
 }
 

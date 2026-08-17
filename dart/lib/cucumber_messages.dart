@@ -7,7 +7,7 @@
 /// ```
 library;
 
-export 'src/generated/messages.dart';
+export 'src/generated/messages.g.dart';
 export 'src/ndjson_message_stream.dart';
 export 'src/schema_violation_exception.dart';
 export 'src/time_conversion.dart';

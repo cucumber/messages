@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [DataTable message](https://github.com/cucumber/messages/blob/main/jsonschema/src/DataTable.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class DataTable {
@@ -40,5 +40,23 @@ class DataTable {
     json['rows'] = rows.map((item) => item.toJson()).toList();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DataTable &&
+          runtimeType == other.runtimeType &&
+          location == other.location &&
+          _listEquals(rows, other.rows);
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        location,
+        Object.hashAll(rows),
+      ]);
+
+  @override
+  String toString() =>
+      'DataTable{location: $location, rows: $rows}';
 }
 

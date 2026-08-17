@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [StepDefinition message](https://github.com/cucumber/messages/blob/main/jsonschema/src/StepDefinition.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class StepDefinition {
@@ -41,5 +41,25 @@ class StepDefinition {
     json['sourceReference'] = sourceReference.toJson();
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StepDefinition &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          pattern == other.pattern &&
+          sourceReference == other.sourceReference;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        id,
+        pattern,
+        sourceReference,
+      ]);
+
+  @override
+  String toString() =>
+      'StepDefinition{id: $id, pattern: $pattern, sourceReference: $sourceReference}';
 }
 

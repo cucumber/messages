@@ -3,10 +3,12 @@
 # Generator: cucumber-messages-python
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Optional
 
 from ._message_enums import *
+
 
 @dataclass
 class Attachment:
@@ -477,7 +479,7 @@ class PickleStepArgument:
 @dataclass
 class PickleTable:
     rows: list[PickleTableRow]
-    argument_index: Optional[int] = None  # The index of this argument. The value is 0 if it was declared before the doc string, 1 if it was declared after.
+    argument_index: Optional[int] = None  # The index of this argument. The value is 1 if it was declared before the doc string, 2 if it was declared after.
 
 
 @dataclass

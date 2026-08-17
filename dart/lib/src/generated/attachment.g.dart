@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Whether to interpret `body` "as-is" (IDENTITY) or if it needs to be Base64-decoded (BASE64).
 ///
@@ -164,5 +164,41 @@ class Attachment {
     }
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Attachment &&
+          runtimeType == other.runtimeType &&
+          body == other.body &&
+          contentEncoding == other.contentEncoding &&
+          fileName == other.fileName &&
+          mediaType == other.mediaType &&
+          source == other.source &&
+          testCaseStartedId == other.testCaseStartedId &&
+          testStepId == other.testStepId &&
+          url == other.url &&
+          testRunStartedId == other.testRunStartedId &&
+          testRunHookStartedId == other.testRunHookStartedId &&
+          timestamp == other.timestamp;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        body,
+        contentEncoding,
+        fileName,
+        mediaType,
+        source,
+        testCaseStartedId,
+        testStepId,
+        url,
+        testRunStartedId,
+        testRunHookStartedId,
+        timestamp,
+      ]);
+
+  @override
+  String toString() =>
+      'Attachment{body: $body, contentEncoding: $contentEncoding, fileName: $fileName, mediaType: $mediaType, source: $source, testCaseStartedId: $testCaseStartedId, testStepId: $testStepId, url: $url, testRunStartedId: $testRunStartedId, testRunHookStartedId: $testRunHookStartedId, timestamp: $timestamp}';
 }
 

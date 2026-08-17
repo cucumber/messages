@@ -1,0 +1,50 @@
+name: test-java
+
+permissions: {}
+
+on:
+  push:
+    branches:
+      - main
+      - renovate/**
+    paths:
+      - java/**
+      - Makefile
+      - .github/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - java/**
+      - Makefile
+      - .github/**
+
+jobs:
+  test-java:
+    name: Java ${{ matrix.java }} ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os:
+          - ubuntu-latest
+        java: ['21']
+        include:
+          - os: windows-latest
+            java: '21'
+          - os: macos-latest
+            java: '21'
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java }}
+          cache: 'maven'
+
+      - run: mvn install javadoc:javadoc --batch-mode -D"style.color=always" --show-version
+        working-directory: java

@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [PickleTableCell message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleTableCell.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class PickleTableCell {
@@ -27,5 +27,21 @@ class PickleTableCell {
     json['value'] = value;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleTableCell &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        value,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleTableCell{value: $value}';
 }
 

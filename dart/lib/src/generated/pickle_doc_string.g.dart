@@ -2,7 +2,7 @@
 // Manual changes will be lost if the code is regenerated.
 // dart format off
 
-part of 'messages.dart';
+part of 'messages.g.dart';
 
 /// Generated Dart representation of the [PickleDocString message](https://github.com/cucumber/messages/blob/main/jsonschema/src/PickleDocString.schema.json) in Cucumber's [message protocol](https://github.com/cucumber/messages).
 class PickleDocString {
@@ -41,5 +41,25 @@ class PickleDocString {
     json['content'] = content;
     return json;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickleDocString &&
+          runtimeType == other.runtimeType &&
+          argumentIndex == other.argumentIndex &&
+          mediaType == other.mediaType &&
+          content == other.content;
+
+  @override
+  int get hashCode => Object.hashAll(<Object?>[
+        argumentIndex,
+        mediaType,
+        content,
+      ]);
+
+  @override
+  String toString() =>
+      'PickleDocString{argumentIndex: $argumentIndex, mediaType: $mediaType, content: $content}';
 }
 

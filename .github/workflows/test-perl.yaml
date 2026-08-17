@@ -1,0 +1,40 @@
+name: test-perl
+
+permissions: {}
+
+on:
+  push:
+    branches:
+      - main
+      - renovate/**
+    paths:
+      - perl/**
+      - Makefile
+      - .github/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - perl/**
+      - Makefile
+      - .github/**
+
+jobs:
+  test-perl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: install cpanm and multiple modules
+        uses: perl-actions/install-with-cpanm@8ec40bce95c287169e8c13551e5e49d0185ce955 # v2.2
+        with:
+          cpanfile: "perl/cpanfile"
+
+      - name: run tests
+        run: |
+          prove -l
+          AUTHOR_TESTS=1 prove -l
+        working-directory: perl

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import collections.abc
 import types
 from dataclasses import MISSING, fields, is_dataclass
@@ -214,7 +216,7 @@ class JsonDataclassConverter:
             try:
                 init_kwargs[field_name] = self._convert_value(value, field_type, field_name)
             except Exception as e:
-                raise TypeError(f"Error converting field {key}: {str(e)}") from e
+                raise TypeError(f"Error converting field {key}: {e!s}") from e
 
         missing_required = [
             name
