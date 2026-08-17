@@ -45,7 +45,7 @@
         },
         {
             "name": "test-conan",
-            "displayName": "Host build (automatic Conan)",
+            "displayName": "Test build (automatic Conan)",
             "description": "Build and install the library using Conan-provided dependencies. Used by CI. Does not build tests.",
             "inherits": "base",
             "cacheVariables": {
