@@ -82,13 +82,10 @@ class CucumberMessages(ConanFile):
 
 
     exports_sources = (
-        "CMakeLists.txt",
-        "VERSION",
-        "README.md",
         "cmake/*",
         "include/*",
         "src/*",
-        # "test/*",
-        # "./../testdata/*",
-        # "test_install/*",
+        "CMakeLists.txt",
+        "README.md",
+        "VERSION",
     )
