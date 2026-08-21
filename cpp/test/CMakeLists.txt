@@ -6,7 +6,7 @@ target_link_libraries(cucumber_messages_lib.test PRIVATE
 )
 
 target_compile_definitions(cucumber_messages_lib.test PRIVATE
-    CUCUMBER_MESSAGES_TESTDATA_FOLDER="${CMAKE_SOURCE_DIR}/../testdata/src"
+    CUCUMBER_MESSAGES_TESTDATA_FOLDER="${PROJECT_SOURCE_DIR}/../testdata/src"
 )
 
 target_sources(cucumber_messages_lib.test PRIVATE
