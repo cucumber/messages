@@ -15,7 +15,7 @@ else()
     message(FATAL_ERROR "unable to parse version: ${VERSION}")
 endif()
 
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 project(cucumber_messages VERSION ${VERSION} LANGUAGES CXX)
 
 # Options
@@ -24,8 +24,15 @@ if (POLICY CMP0077)
     cmake_policy(SET CMP0077 NEW)
 endif ()
 
+if(PROJECT_IS_TOP_LEVEL AND CMAKE_EXPORT_COMPILE_COMMANDS)
+    add_custom_target(clangd_compile_commands ALL
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+            "${CMAKE_BINARY_DIR}/compile_commands.json"
+            "${CMAKE_SOURCE_DIR}/compile_commands.json"
+        VERBATIM)
+endif()
+
 option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." Off)
-option(CUCUMBER_MESSAGES_FETCH_DEPS "Fetch dependencies via FetchContent." Off)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -51,8 +58,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
 endif()
 
-# CMake dependencies
-include(cmake/dependencies.cpm.cmake)
+find_package(nlohmann_json 3.11 REQUIRED)
 
 # Target
 set(CUCUMBER_MESSAGES_LIB_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -68,6 +74,9 @@ list(APPEND CUCUMBER_MESSAGES_LIB_ALL_SOURCES ${CUCUMBER_MESSAGES_LIB_SOURCES})
 add_library(cucumber_messages_lib)
 add_library(cucumber::messages ALIAS cucumber_messages_lib)
 
+# Propagate the C++17 requirement to consumers of the installed/exported target.
+target_compile_features(cucumber_messages_lib PUBLIC cxx_std_17)
+
 target_sources(
     cucumber_messages_lib
     PRIVATE
@@ -77,8 +86,9 @@ target_sources(
 target_include_directories(
     cucumber_messages_lib
     PUBLIC
+        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/util>
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/generated>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE
         ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
 )
@@ -133,16 +143,21 @@ install(
     FILES
         "${PROJECT_BINARY_DIR}/cucumber_messages-config.cmake"
         "${PROJECT_BINARY_DIR}/cucumber_messages-config-version.cmake"
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages"
+    DESTINATION
+        "${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages"
 )
 
 install(
-    DIRECTORY "${PROJECT_SOURCE_DIR}/include/generated/"
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
+    DIRECTORY
+        "${PROJECT_SOURCE_DIR}/include/util/"
+        "${PROJECT_SOURCE_DIR}/include/generated/"
+    DESTINATION
+        ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 # Optional: tests
 if(CUCUMBER_MESSAGES_BUILD_TESTS)
+    find_package(GTest REQUIRED)
     include(CTest)
     enable_testing()
     add_subdirectory(test)
