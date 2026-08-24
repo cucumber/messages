@@ -50,7 +50,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
 endif()
 
-find_package(nlohmann_json 3.11 REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 # Target
 set(CUCUMBER_MESSAGES_LIB_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
