@@ -1,4 +1,5 @@
 .dart_tool/
 .packages
 build/
+coverage/
 doc/api/
