@@ -37,22 +37,13 @@ void main() {
 
     test('== performs deep comparison of list properties', () {
       const a = PickleTableRow(
-        cells: [
-          PickleTableCell(value: 'x'),
-          PickleTableCell(value: 'y'),
-        ],
+        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'y')],
       );
       const b = PickleTableRow(
-        cells: [
-          PickleTableCell(value: 'x'),
-          PickleTableCell(value: 'y'),
-        ],
+        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'y')],
       );
       const c = PickleTableRow(
-        cells: [
-          PickleTableCell(value: 'x'),
-          PickleTableCell(value: 'z'),
-        ],
+        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'z')],
       );
 
       expect(a, equals(b));
@@ -63,9 +54,7 @@ void main() {
     test('== distinguishes empty from populated list properties', () {
       const empty1 = PickleTableRow(cells: []);
       const empty2 = PickleTableRow(cells: []);
-      const populated = PickleTableRow(
-        cells: [PickleTableCell(value: 'x')],
-      );
+      const populated = PickleTableRow(cells: [PickleTableCell(value: 'x')]);
 
       expect(empty1, equals(empty2));
       expect(empty1, isNot(equals(populated)));

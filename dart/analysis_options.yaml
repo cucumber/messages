@@ -17,9 +17,6 @@ analyzer:
     - lib/generated_plugin_registrant.dart
     - lib/src/generated/**
 
-formatter:
-  trailing_commas: preserve
-
 linter:
   rules:
     - always_declare_return_types
