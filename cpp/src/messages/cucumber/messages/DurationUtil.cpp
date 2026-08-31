@@ -29,4 +29,10 @@ namespace cucumber::messages
         const auto durationMillis = TimestampToNanos(lhs) - TimestampToNanos(rhs);
         return ToDuration(durationMillis);
     }
+
+    Duration operator+(const Duration& lhs, const Duration& rhs)
+    {
+        const auto durationMillis = ToNanos(std::chrono::seconds(lhs.seconds), std::chrono::nanoseconds(lhs.nanos)) + ToNanos(std::chrono::seconds(rhs.seconds), std::chrono::nanoseconds(rhs.nanos));
+        return ToDuration(durationMillis);
+    }
 }
