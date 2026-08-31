@@ -1,7 +1,7 @@
 import 'package:cucumber_messages/cucumber_messages.dart';
 
 Future<void> main() async {
-  final envelope = Envelope(
+  const envelope = Envelope(
     attachment: Attachment(
       body: 'Hello, world!',
       contentEncoding: AttachmentContentEncoding.identity,

@@ -36,22 +36,22 @@ void main() {
     });
 
     test('== performs deep comparison of list properties', () {
-      final a = PickleTableRow(
+      const a = PickleTableRow(
         cells: [
-          const PickleTableCell(value: 'x'),
-          const PickleTableCell(value: 'y'),
+          PickleTableCell(value: 'x'),
+          PickleTableCell(value: 'y'),
         ],
       );
-      final b = PickleTableRow(
+      const b = PickleTableRow(
         cells: [
-          const PickleTableCell(value: 'x'),
-          const PickleTableCell(value: 'y'),
+          PickleTableCell(value: 'x'),
+          PickleTableCell(value: 'y'),
         ],
       );
-      final c = PickleTableRow(
+      const c = PickleTableRow(
         cells: [
-          const PickleTableCell(value: 'x'),
-          const PickleTableCell(value: 'z'),
+          PickleTableCell(value: 'x'),
+          PickleTableCell(value: 'z'),
         ],
       );
 
@@ -61,10 +61,10 @@ void main() {
     });
 
     test('== distinguishes empty from populated list properties', () {
-      final empty1 = PickleTableRow(cells: []);
-      final empty2 = PickleTableRow(cells: []);
-      final populated = PickleTableRow(
-        cells: [const PickleTableCell(value: 'x')],
+      const empty1 = PickleTableRow(cells: []);
+      const empty2 = PickleTableRow(cells: []);
+      const populated = PickleTableRow(
+        cells: [PickleTableCell(value: 'x')],
       );
 
       expect(empty1, equals(empty2));
@@ -74,8 +74,8 @@ void main() {
     test('nested messages compare structurally', () {
       const a = Location(line: 1, column: 2);
       const b = Location(line: 1, column: 2);
-      final ta = TableRow(id: '1', location: a, cells: const []);
-      final tb = TableRow(id: '1', location: b, cells: const []);
+      const ta = TableRow(id: '1', location: a, cells: []);
+      const tb = TableRow(id: '1', location: b, cells: []);
 
       expect(ta, equals(tb));
       expect(ta.hashCode, equals(tb.hashCode));
