@@ -8,13 +8,15 @@ on:
       - main
     paths:
       - cpp/**
+      - Makefile
       - testdata/**
       - .github/**
   pull_request:
-    branches:
-      - main
+    # branches:
+    #   - main
     paths:
       - cpp/**
+      - Makefile
       - testdata/**
       - .github/**
   schedule:
@@ -27,11 +29,6 @@ concurrency:
 
 jobs:
   analyze:
-    env:
-      CCACHE_BASEDIR: ${{ github.workspace }}
-      CCACHE_DIR: ${{ github.workspace }}/.ccache
-      CPM_SOURCE_CACHE: ${{ github.workspace }}/.cpm
-
     name: Analyze C++
     runs-on: ubuntu-latest
     permissions:
@@ -41,23 +38,17 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install build tools
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@d62db5f07c26379fc4b4e0916f098a92573c3b03 # v1.2.23
+        with:
+          key: ${{ github.job }}-${{ github.ref }}
+          append-timestamp: false
+          save: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ccache
-
-      - name: Cache CPM packages
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ env.CPM_SOURCE_CACHE }}
-          key: cpm-${{ hashFiles('cpp/cmake/dependencies.cpm.cmake') }}
-
-      - name: Cache ccache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ env.CCACHE_DIR }}
-          key: ccache-analysis-${{ github.ref }}
-          restore-keys: ccache-analysis-
+          sudo apt-get install -y nlohmann-json3-dev libgtest-dev libgmock-dev
 
       - uses: github/codeql-action/init@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
         with:
@@ -65,9 +56,9 @@ jobs:
           build-mode: manual
           tools: linked
 
-      - name: Configure
+      - name: Build
         working-directory: cpp
-        run: cmake --workflow host
+        run: cmake --workflow --preset host-system
 
       - uses: github/codeql-action/analyze@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
         with:
