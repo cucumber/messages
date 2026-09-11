@@ -5,7 +5,6 @@
 #include "cucumber/messages/Source.hpp"
 #include "cucumber/messages/Timestamp.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -37,13 +36,13 @@ namespace cucumber::messages
         AttachmentContentEncoding contentEncoding;
         std::optional<std::string> fileName;
         std::string mediaType;
-        std::optional<std::shared_ptr<Source>> source;
+        std::optional<Source> source;
         std::optional<std::string> testCaseStartedId;
         std::optional<std::string> testStepId;
         std::optional<std::string> url;
         std::optional<std::string> testRunStartedId;
         std::optional<std::string> testRunHookStartedId;
-        std::optional<std::shared_ptr<Timestamp>> timestamp;
+        std::optional<Timestamp> timestamp;
 
         [[nodiscard]] std::string to_string() const;
 

@@ -5,7 +5,6 @@
 #include "cucumber/messages/TableRow.hpp"
 #include "cucumber/messages/Tag.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -22,13 +21,13 @@ namespace cucumber::messages
 
     struct Examples
     {
-        std::shared_ptr<Location> location;
-        std::vector<std::shared_ptr<Tag>> tags;
+        Location location;
+        std::vector<Tag> tags;
         std::string keyword;
         std::string name;
         std::string description;
-        std::optional<std::shared_ptr<TableRow>> tableHeader;
-        std::vector<std::shared_ptr<TableRow>> tableBody;
+        std::optional<TableRow> tableHeader;
+        std::vector<TableRow> tableBody;
         std::string id;
 
         [[nodiscard]] std::string to_string() const;

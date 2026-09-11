@@ -4,7 +4,6 @@
 #include "cucumber/messages/TestStepResult.hpp"
 #include "cucumber/messages/Timestamp.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 
@@ -21,8 +20,8 @@ namespace cucumber::messages
     {
         std::string testCaseStartedId;
         std::string testStepId;
-        std::shared_ptr<TestStepResult> testStepResult;
-        std::shared_ptr<Timestamp> timestamp;
+        TestStepResult testStepResult;
+        Timestamp timestamp;
 
         [[nodiscard]] std::string to_string() const;
 

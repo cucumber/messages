@@ -5,7 +5,6 @@
 #include "cucumber/messages/Location.hpp"
 #include "cucumber/messages/Tag.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 #include <vector>
@@ -21,13 +20,13 @@ namespace cucumber::messages
 
     struct Feature
     {
-        std::shared_ptr<Location> location;
-        std::vector<std::shared_ptr<Tag>> tags;
+        Location location;
+        std::vector<Tag> tags;
         std::string language;
         std::string keyword;
         std::string name;
         std::string description;
-        std::vector<std::shared_ptr<FeatureChild>> children;
+        std::vector<FeatureChild> children;
 
         [[nodiscard]] std::string to_string() const;
 

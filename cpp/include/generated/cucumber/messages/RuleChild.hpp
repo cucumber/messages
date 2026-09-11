@@ -4,7 +4,6 @@
 #include "cucumber/messages/Background.hpp"
 #include "cucumber/messages/Scenario.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -22,8 +21,8 @@ namespace cucumber::messages
 
     struct RuleChild
     {
-        std::optional<std::shared_ptr<Background>> background;
-        std::optional<std::shared_ptr<Scenario>> scenario;
+        std::optional<Background> background;
+        std::optional<Scenario> scenario;
 
         [[nodiscard]] std::string to_string() const;
 

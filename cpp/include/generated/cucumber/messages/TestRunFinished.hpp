@@ -4,7 +4,6 @@
 #include "cucumber/messages/Exception.hpp"
 #include "cucumber/messages/Timestamp.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -22,8 +21,8 @@ namespace cucumber::messages
     {
         std::optional<std::string> message;
         bool success;
-        std::shared_ptr<Timestamp> timestamp;
-        std::optional<std::shared_ptr<Exception>> exception;
+        Timestamp timestamp;
+        std::optional<Exception> exception;
         std::optional<std::string> testRunStartedId;
 
         [[nodiscard]] std::string to_string() const;

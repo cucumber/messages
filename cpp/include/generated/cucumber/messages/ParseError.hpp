@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/SourceReference.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 
@@ -18,7 +17,7 @@ namespace cucumber::messages
 
     struct ParseError
     {
-        std::shared_ptr<SourceReference> source;
+        SourceReference source;
         std::string message;
 
         [[nodiscard]] std::string to_string() const;

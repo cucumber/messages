@@ -6,7 +6,6 @@
 #include "cucumber/messages/StepKeywordType.hpp"
 #include "cucumber/messages/Location.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -24,12 +23,12 @@ namespace cucumber::messages
 
     struct Step
     {
-        std::shared_ptr<Location> location;
+        Location location;
         std::string keyword;
         std::optional<StepKeywordType> keywordType;
         std::string text;
-        std::optional<std::shared_ptr<DocString>> docString;
-        std::optional<std::shared_ptr<DataTable>> dataTable;
+        std::optional<DocString> docString;
+        std::optional<DataTable> dataTable;
         std::string id;
 
         [[nodiscard]] std::string to_string() const;

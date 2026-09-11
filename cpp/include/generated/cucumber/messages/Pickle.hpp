@@ -5,7 +5,6 @@
 #include "cucumber/messages/PickleStep.hpp"
 #include "cucumber/messages/PickleTag.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -35,11 +34,11 @@ namespace cucumber::messages
     {
         std::string id;
         std::string uri;
-        std::optional<std::shared_ptr<Location>> location;
+        std::optional<Location> location;
         std::string name;
         std::string language;
-        std::vector<std::shared_ptr<PickleStep>> steps;
-        std::vector<std::shared_ptr<PickleTag>> tags;
+        std::vector<PickleStep> steps;
+        std::vector<PickleTag> tags;
         std::vector<std::string> astNodeIds;
 
         [[nodiscard]] std::string to_string() const;

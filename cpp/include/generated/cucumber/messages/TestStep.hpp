@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/StepMatchArgumentsList.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -30,7 +29,7 @@ namespace cucumber::messages
         std::string id;
         std::optional<std::string> pickleStepId;
         std::optional<std::vector<std::string>> stepDefinitionIds;
-        std::optional<std::vector<std::shared_ptr<StepMatchArgumentsList>>> stepMatchArgumentsLists;
+        std::optional<std::vector<StepMatchArgumentsList>> stepMatchArgumentsLists;
 
         [[nodiscard]] std::string to_string() const;
 

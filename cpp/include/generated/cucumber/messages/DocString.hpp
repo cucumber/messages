@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/Location.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -19,7 +18,7 @@ namespace cucumber::messages
 
     struct DocString
     {
-        std::shared_ptr<Location> location;
+        Location location;
         std::optional<std::string> mediaType;
         std::string content;
         std::string delimiter;

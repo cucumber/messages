@@ -5,7 +5,6 @@
 #include "cucumber/messages/Exception.hpp"
 #include "cucumber/messages/TestStepResultStatus.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -21,10 +20,10 @@ namespace cucumber::messages
 
     struct TestStepResult
     {
-        std::shared_ptr<Duration> duration;
+        Duration duration;
         std::optional<std::string> message;
         TestStepResultStatus status;
-        std::optional<std::shared_ptr<Exception>> exception;
+        std::optional<Exception> exception;
 
         [[nodiscard]] std::string to_string() const;
 

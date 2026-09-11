@@ -4,7 +4,6 @@
 #include "cucumber/messages/Comment.hpp"
 #include "cucumber/messages/Feature.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -29,8 +28,8 @@ namespace cucumber::messages
     struct GherkinDocument
     {
         std::optional<std::string> uri;
-        std::optional<std::shared_ptr<Feature>> feature;
-        std::vector<std::shared_ptr<Comment>> comments;
+        std::optional<Feature> feature;
+        std::vector<Comment> comments;
 
         [[nodiscard]] std::string to_string() const;
 

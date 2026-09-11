@@ -4,7 +4,6 @@
 #include "cucumber/messages/Location.hpp"
 #include "cucumber/messages/TableRow.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 #include <vector>
@@ -20,8 +19,8 @@ namespace cucumber::messages
 
     struct DataTable
     {
-        std::shared_ptr<Location> location;
-        std::vector<std::shared_ptr<TableRow>> rows;
+        Location location;
+        std::vector<TableRow> rows;
 
         [[nodiscard]] std::string to_string() const;
 

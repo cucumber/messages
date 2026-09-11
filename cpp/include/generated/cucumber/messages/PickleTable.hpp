@@ -4,7 +4,6 @@
 #include "cucumber/messages/PickleTableRow.hpp"
 #include "nlohmann/json_fwd.hpp"
 #include <cstddef>
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -22,7 +21,7 @@ namespace cucumber::messages
     struct PickleTable
     {
         std::optional<std::size_t> argumentIndex;
-        std::vector<std::shared_ptr<PickleTableRow>> rows;
+        std::vector<PickleTableRow> rows;
 
         [[nodiscard]] std::string to_string() const;
 

@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/Git.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -24,7 +23,7 @@ namespace cucumber::messages
         std::string name;
         std::optional<std::string> url;
         std::optional<std::string> buildNumber;
-        std::optional<std::shared_ptr<Git>> git;
+        std::optional<Git> git;
 
         [[nodiscard]] std::string to_string() const;
 

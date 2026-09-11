@@ -4,7 +4,6 @@
 #include "cucumber/messages/PickleTable.hpp"
 #include "cucumber/messages/PickleDocString.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -22,8 +21,8 @@ namespace cucumber::messages
 
     struct PickleStepArgument
     {
-        std::optional<std::shared_ptr<PickleDocString>> docString;
-        std::optional<std::shared_ptr<PickleTable>> dataTable;
+        std::optional<PickleDocString> docString;
+        std::optional<PickleTable> dataTable;
 
         [[nodiscard]] std::string to_string() const;
 

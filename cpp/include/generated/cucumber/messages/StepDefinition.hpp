@@ -4,7 +4,6 @@
 #include "cucumber/messages/StepDefinitionPattern.hpp"
 #include "cucumber/messages/SourceReference.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 
@@ -20,8 +19,8 @@ namespace cucumber::messages
     struct StepDefinition
     {
         std::string id;
-        std::shared_ptr<StepDefinitionPattern> pattern;
-        std::shared_ptr<SourceReference> sourceReference;
+        StepDefinitionPattern pattern;
+        SourceReference sourceReference;
 
         [[nodiscard]] std::string to_string() const;
 

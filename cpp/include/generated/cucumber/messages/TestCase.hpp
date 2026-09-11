@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/TestStep.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -24,7 +23,7 @@ namespace cucumber::messages
     {
         std::string id;
         std::string pickleId;
-        std::vector<std::shared_ptr<TestStep>> testSteps;
+        std::vector<TestStep> testSteps;
         std::optional<std::string> testRunStartedId;
 
         [[nodiscard]] std::string to_string() const;

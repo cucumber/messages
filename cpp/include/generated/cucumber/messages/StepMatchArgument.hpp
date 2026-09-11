@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/Group.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -26,7 +25,7 @@ namespace cucumber::messages
 
     struct StepMatchArgument
     {
-        std::shared_ptr<Group> group;
+        Group group;
         std::optional<std::string> parameterTypeName;
 
         [[nodiscard]] std::string to_string() const;

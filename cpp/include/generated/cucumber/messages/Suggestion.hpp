@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/Snippet.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 #include <vector>
@@ -23,7 +22,7 @@ namespace cucumber::messages
     {
         std::string id;
         std::string pickleStepId;
-        std::vector<std::shared_ptr<Snippet>> snippets;
+        std::vector<Snippet> snippets;
 
         [[nodiscard]] std::string to_string() const;
 

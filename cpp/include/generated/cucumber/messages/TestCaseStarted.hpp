@@ -4,7 +4,6 @@
 #include "cucumber/messages/Timestamp.hpp"
 #include "nlohmann/json_fwd.hpp"
 #include <cstddef>
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -24,7 +23,7 @@ namespace cucumber::messages
         std::string id;
         std::string testCaseId;
         std::optional<std::string> workerId;
-        std::shared_ptr<Timestamp> timestamp;
+        Timestamp timestamp;
 
         [[nodiscard]] std::string to_string() const;
 

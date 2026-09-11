@@ -23,7 +23,6 @@
 #include "cucumber/messages/TestStepStarted.hpp"
 #include "cucumber/messages/UndefinedParameterType.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -39,27 +38,27 @@ namespace cucumber::messages
 
     struct Envelope
     {
-        std::optional<std::shared_ptr<Attachment>> attachment;
-        std::optional<std::shared_ptr<ExternalAttachment>> externalAttachment;
-        std::optional<std::shared_ptr<GherkinDocument>> gherkinDocument;
-        std::optional<std::shared_ptr<Hook>> hook;
-        std::optional<std::shared_ptr<Meta>> meta;
-        std::optional<std::shared_ptr<ParameterType>> parameterType;
-        std::optional<std::shared_ptr<ParseError>> parseError;
-        std::optional<std::shared_ptr<Pickle>> pickle;
-        std::optional<std::shared_ptr<Suggestion>> suggestion;
-        std::optional<std::shared_ptr<Source>> source;
-        std::optional<std::shared_ptr<StepDefinition>> stepDefinition;
-        std::optional<std::shared_ptr<TestCase>> testCase;
-        std::optional<std::shared_ptr<TestCaseFinished>> testCaseFinished;
-        std::optional<std::shared_ptr<TestCaseStarted>> testCaseStarted;
-        std::optional<std::shared_ptr<TestRunFinished>> testRunFinished;
-        std::optional<std::shared_ptr<TestRunStarted>> testRunStarted;
-        std::optional<std::shared_ptr<TestStepFinished>> testStepFinished;
-        std::optional<std::shared_ptr<TestStepStarted>> testStepStarted;
-        std::optional<std::shared_ptr<TestRunHookStarted>> testRunHookStarted;
-        std::optional<std::shared_ptr<TestRunHookFinished>> testRunHookFinished;
-        std::optional<std::shared_ptr<UndefinedParameterType>> undefinedParameterType;
+        std::optional<Attachment> attachment;
+        std::optional<ExternalAttachment> externalAttachment;
+        std::optional<GherkinDocument> gherkinDocument;
+        std::optional<Hook> hook;
+        std::optional<Meta> meta;
+        std::optional<ParameterType> parameterType;
+        std::optional<ParseError> parseError;
+        std::optional<Pickle> pickle;
+        std::optional<Suggestion> suggestion;
+        std::optional<Source> source;
+        std::optional<StepDefinition> stepDefinition;
+        std::optional<TestCase> testCase;
+        std::optional<TestCaseFinished> testCaseFinished;
+        std::optional<TestCaseStarted> testCaseStarted;
+        std::optional<TestRunFinished> testRunFinished;
+        std::optional<TestRunStarted> testRunStarted;
+        std::optional<TestStepFinished> testStepFinished;
+        std::optional<TestStepStarted> testStepStarted;
+        std::optional<TestRunHookStarted> testRunHookStarted;
+        std::optional<TestRunHookFinished> testRunHookFinished;
+        std::optional<UndefinedParameterType> undefinedParameterType;
 
         [[nodiscard]] std::string to_string() const;
 

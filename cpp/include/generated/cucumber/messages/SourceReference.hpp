@@ -5,7 +5,6 @@
 #include "cucumber/messages/JavaStackTraceElement.hpp"
 #include "cucumber/messages/Location.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -25,9 +24,9 @@ namespace cucumber::messages
     struct SourceReference
     {
         std::optional<std::string> uri;
-        std::optional<std::shared_ptr<JavaMethod>> javaMethod;
-        std::optional<std::shared_ptr<JavaStackTraceElement>> javaStackTraceElement;
-        std::optional<std::shared_ptr<Location>> location;
+        std::optional<JavaMethod> javaMethod;
+        std::optional<JavaStackTraceElement> javaStackTraceElement;
+        std::optional<Location> location;
 
         [[nodiscard]] std::string to_string() const;
 

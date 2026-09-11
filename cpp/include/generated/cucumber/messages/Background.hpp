@@ -4,7 +4,6 @@
 #include "cucumber/messages/Location.hpp"
 #include "cucumber/messages/Step.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 #include <vector>
@@ -20,11 +19,11 @@ namespace cucumber::messages
 
     struct Background
     {
-        std::shared_ptr<Location> location;
+        Location location;
         std::string keyword;
         std::string name;
         std::string description;
-        std::vector<std::shared_ptr<Step>> steps;
+        std::vector<Step> steps;
         std::string id;
 
         [[nodiscard]] std::string to_string() const;

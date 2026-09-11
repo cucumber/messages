@@ -4,7 +4,6 @@
 #include "cucumber/messages/SourceReference.hpp"
 #include "cucumber/messages/HookType.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -22,7 +21,7 @@ namespace cucumber::messages
     {
         std::string id;
         std::optional<std::string> name;
-        std::shared_ptr<SourceReference> sourceReference;
+        SourceReference sourceReference;
         std::optional<std::string> tagExpression;
         std::optional<HookType> type;
 

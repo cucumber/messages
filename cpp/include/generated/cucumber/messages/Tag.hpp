@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/Location.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 
@@ -20,7 +19,7 @@ namespace cucumber::messages
 
     struct Tag
     {
-        std::shared_ptr<Location> location;
+        Location location;
         std::string name;
         std::string id;
 

@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/Timestamp.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -19,7 +18,7 @@ namespace cucumber::messages
 
     struct TestRunStarted
     {
-        std::shared_ptr<Timestamp> timestamp;
+        Timestamp timestamp;
         std::optional<std::string> id;
 
         [[nodiscard]] std::string to_string() const;

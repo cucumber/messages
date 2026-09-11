@@ -3,7 +3,6 @@
 
 #include "cucumber/messages/StepMatchArgument.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 #include <vector>
@@ -19,7 +18,7 @@ namespace cucumber::messages
 
     struct StepMatchArgumentsList
     {
-        std::vector<std::shared_ptr<StepMatchArgument>> stepMatchArguments;
+        std::vector<StepMatchArgument> stepMatchArguments;
 
         [[nodiscard]] std::string to_string() const;
 

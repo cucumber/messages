@@ -54,23 +54,6 @@ All.hpp
 #include <cstddef>
 <%- end -%>
 <%-
-    shared_ptrs = schema['properties'].any? do |property_name, property|
-        type = type_for(class_name(key), property_name, property)
-        if m = /std::vector<(?<vtype>.+)>/.match(type)
-            inner = m['vtype']
-            !inner.start_with?("std::") && !@enums.any? { |e| e[:name] == inner }
-        elsif !type.start_with?("std::") && type != "bool"
-            !@enums.any? { |e| e[:name] == type }
-        else
-            false
-        end
-    end
-
-    if shared_ptrs
--%>
-#include <memory>
-<%- end -%>
-<%-
     optionals = 0
     schema['properties'].each do |property_name, _property|
         prequired = (schema['required'] || []).index(property_name)
@@ -116,16 +99,9 @@ namespace cucumber::messages
             pname = property_name
             prequired = (schema['required'] || []).index(property_name)
             if m = /std::vector<(?<vtype>.+)>/.match(type)
-                unless m['vtype'].start_with?("std::")
-                    inner = m['vtype']
-                    vtype_is_enum = @enums.any? { |e| e[:name] == m['vtype'] }
-                    inner = "std::shared_ptr<" + inner + ">" unless vtype_is_enum
-                    ptype = "std::vector<" + inner + ">"
-                end
+                ptype = "std::vector<" + m['vtype'] + ">"
             elsif !type.start_with?("std::") && type != "bool"
                 ptype = type
-                is_enum = @enums.any? { |e| e[:name] == type }
-                ptype = "std::shared_ptr<" + ptype + ">" unless is_enum
             end
             unless prequired
                 ptype = "std::optional<" + ptype + ">"

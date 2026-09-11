@@ -4,7 +4,6 @@
 #include "cucumber/messages/TestStepResult.hpp"
 #include "cucumber/messages/Timestamp.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <ostream>
 #include <string>
 
@@ -20,8 +19,8 @@ namespace cucumber::messages
     struct TestRunHookFinished
     {
         std::string testRunHookStartedId;
-        std::shared_ptr<TestStepResult> result;
-        std::shared_ptr<Timestamp> timestamp;
+        TestStepResult result;
+        Timestamp timestamp;
 
         [[nodiscard]] std::string to_string() const;
 

@@ -4,7 +4,6 @@
 #include "cucumber/messages/PickleStepArgument.hpp"
 #include "cucumber/messages/PickleStepType.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -23,7 +22,7 @@ namespace cucumber::messages
 
     struct PickleStep
     {
-        std::optional<std::shared_ptr<PickleStepArgument>> argument;
+        std::optional<PickleStepArgument> argument;
         std::vector<std::string> astNodeIds;
         std::string id;
         std::optional<PickleStepType> type;

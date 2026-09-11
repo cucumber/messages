@@ -4,7 +4,6 @@
 #include "cucumber/messages/Ci.hpp"
 #include "cucumber/messages/Product.hpp"
 #include "nlohmann/json_fwd.hpp"
-#include <memory>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -24,11 +23,11 @@ namespace cucumber::messages
     struct Meta
     {
         std::string protocolVersion;
-        std::shared_ptr<Product> implementation;
-        std::shared_ptr<Product> runtime;
-        std::shared_ptr<Product> os;
-        std::shared_ptr<Product> cpu;
-        std::optional<std::shared_ptr<Ci>> ci;
+        Product implementation;
+        Product runtime;
+        Product os;
+        Product cpu;
+        std::optional<Ci> ci;
 
         [[nodiscard]] std::string to_string() const;
 
