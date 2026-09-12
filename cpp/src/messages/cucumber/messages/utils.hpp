@@ -11,8 +11,6 @@
 
 namespace cucumber::messages
 {
-    std::string camelize(std::string str, bool initial_tail = true);
-
     template<typename T>
     void to_string(std::ostream& ostream, std::string_view prefix, const T& value)
     {
@@ -73,6 +71,7 @@ namespace cucumber::messages
             from_json(json, key, opt.emplace());
         }
     }
+
 }
 
 #endif

@@ -1,0 +1,42 @@
+#ifndef CUCUMBER_MESSAGES_TABLE_ROW_HPP
+#define CUCUMBER_MESSAGES_TABLE_ROW_HPP
+
+#include "cucumber/messages/TableCell.hpp"
+#include "cucumber/messages/Location.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <string>
+#include <vector>
+
+// Generated code by cpp.hpp.erb
+
+namespace cucumber::messages
+{
+    //
+    // Represents the TableRow message in Cucumber's message protocol
+    // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+    //
+    // A row in a table
+    //
+
+    struct TableRow
+    {
+        Location location;
+        std::vector<TableCell> cells;
+        std::string id;
+
+        [[nodiscard]] std::string to_string() const;
+
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
+    };
+
+    std::ostream& operator<<(std::ostream& ostream, const TableRow& msg);
+
+    void to_json(nlohmann::json& json, const TableRow& msg);
+    void from_json(const nlohmann::json& json, TableRow& msg);
+}
+
+#endif

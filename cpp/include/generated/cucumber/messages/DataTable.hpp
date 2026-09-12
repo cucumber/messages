@@ -1,0 +1,39 @@
+#ifndef CUCUMBER_MESSAGES_DATA_TABLE_HPP
+#define CUCUMBER_MESSAGES_DATA_TABLE_HPP
+
+#include "cucumber/messages/Location.hpp"
+#include "cucumber/messages/TableRow.hpp"
+#include "nlohmann/json_fwd.hpp"
+#include <ostream>
+#include <string>
+#include <vector>
+
+// Generated code by cpp.hpp.erb
+
+namespace cucumber::messages
+{
+    //
+    // Represents the DataTable message in Cucumber's message protocol
+    // @see <a href=https://github.com/cucumber/messages>Github - Cucumber - Messages</a>
+    //
+
+    struct DataTable
+    {
+        Location location;
+        std::vector<TableRow> rows;
+
+        [[nodiscard]] std::string to_string() const;
+
+        void to_json(nlohmann::json& json) const;
+        void from_json(const nlohmann::json& json);
+
+        [[nodiscard]] std::string to_json() const;
+    };
+
+    std::ostream& operator<<(std::ostream& ostream, const DataTable& msg);
+
+    void to_json(nlohmann::json& json, const DataTable& msg);
+    void from_json(const nlohmann::json& json, DataTable& msg);
+}
+
+#endif
