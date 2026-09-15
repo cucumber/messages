@@ -1,38 +1,53 @@
 {
     "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21
+    },
     "configurePresets": [
         {
-            "name": "host",
+            "name": "base",
+            "hidden": true,
             "binaryDir": "${sourceDir}/build/${presetName}",
             "generator": "Ninja",
             "cacheVariables": {
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "On",
-                "CUCUMBER_MESSAGES_FETCH_DEPS": "On",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "On"
+            }
+        },
+        {
+            "name": "host-system",
+            "displayName": "Host build (system dependencies)",
+            "description": "Build and install the library using C++ dependencies already installed on the system.",
+            "inherits": "base",
+            "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "test",
-            "inherits": "host",
+            "name": "test-system",
+            "displayName": "Test build (system dependencies)",
+            "description": "Build with unit tests enabled using system dependencies. Used by CI to build and run the test suite.",
+            "inherits": "base",
             "cacheVariables": {
-                "CUCUMBER_MESSAGES_BUILD_TESTS": "On"
+                "CUCUMBER_MESSAGES_BUILD_TESTS": "On",
+                "CMAKE_BUILD_TYPE": "Debug"
             }
         }
     ],
     "buildPresets": [
         {
-            "name": "host",
-            "configurePreset": "host"
+            "name": "host-system",
+            "configurePreset": "host-system"
         },
         {
-            "name": "test",
-            "configurePreset": "test"
+            "name": "test-system",
+            "configurePreset": "test-system"
         }
     ],
     "testPresets": [
         {
-            "name": "test",
-            "configurePreset": "test",
+            "name": "test-system",
+            "configurePreset": "test-system",
             "output": {
                 "outputOnFailure": true
             },
@@ -43,31 +58,31 @@
     ],
     "workflowPresets": [
         {
-            "name": "host",
+            "name": "host-system",
             "steps": [
                 {
-                    "name": "host",
+                    "name": "host-system",
                     "type": "configure"
                 },
                 {
-                    "name": "host",
+                    "name": "host-system",
                     "type": "build"
                 }
             ]
         },
         {
-            "name": "test",
+            "name": "test-system",
             "steps": [
                 {
-                    "name": "test",
+                    "name": "test-system",
                     "type": "configure"
                 },
                 {
-                    "name": "test",
+                    "name": "test-system",
                     "type": "build"
                 },
                 {
-                    "name": "test",
+                    "name": "test-system",
                     "type": "test"
                 }
             ]
