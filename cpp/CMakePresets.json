@@ -26,10 +26,33 @@
         {
             "name": "test-system",
             "displayName": "Test build (system dependencies)",
-            "description": "Build with unit tests enabled using system dependencies. Used by CI to build and run the test suite.",
+            "description": "Build with unit tests and sanitizers enabled using system dependencies. Used by CI to build and run the test suite.",
             "inherits": "base",
             "cacheVariables": {
                 "CUCUMBER_MESSAGES_BUILD_TESTS": "On",
+                "CUCUMBER_MESSAGES_ENABLE_SANITIZERS": "On",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "tidy",
+            "displayName": "Lint build (clang-tidy, system dependencies)",
+            "description": "Build with unit tests and clang-tidy enabled using system dependencies.",
+            "inherits": "base",
+            "cacheVariables": {
+                "CUCUMBER_MESSAGES_BUILD_TESTS": "On",
+                "CUCUMBER_MESSAGES_ENABLE_CLANG_TIDY": "On",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "coverage",
+            "displayName": "Coverage build (system dependencies)",
+            "description": "Build with unit tests and code coverage instrumentation using system dependencies.",
+            "inherits": "base",
+            "cacheVariables": {
+                "CUCUMBER_MESSAGES_BUILD_TESTS": "On",
+                "CUCUMBER_MESSAGES_ENABLE_COVERAGE": "On",
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         }
@@ -42,6 +65,21 @@
         {
             "name": "test-system",
             "configurePreset": "test-system"
+        },
+        {
+            "name": "tidy",
+            "configurePreset": "tidy"
+        },
+        {
+            "name": "coverage",
+            "configurePreset": "coverage"
+        },
+        {
+            "name": "coverage-report",
+            "configurePreset": "coverage",
+            "targets": [
+                "generate-lcov-report"
+            ]
         }
     ],
     "testPresets": [
@@ -54,6 +92,11 @@
             "execution": {
                 "noTestsAction": "error"
             }
+        },
+        {
+            "name": "coverage",
+            "configurePreset": "coverage",
+            "inherits": "test-system"
         }
     ],
     "workflowPresets": [
@@ -84,6 +127,40 @@
                 {
                     "name": "test-system",
                     "type": "test"
+                }
+            ]
+        },
+        {
+            "name": "tidy",
+            "steps": [
+                {
+                    "name": "tidy",
+                    "type": "configure"
+                },
+                {
+                    "name": "tidy",
+                    "type": "build"
+                }
+            ]
+        },
+        {
+            "name": "coverage",
+            "steps": [
+                {
+                    "name": "coverage",
+                    "type": "configure"
+                },
+                {
+                    "name": "coverage",
+                    "type": "build"
+                },
+                {
+                    "name": "coverage",
+                    "type": "test"
+                },
+                {
+                    "name": "coverage-report",
+                    "type": "build"
                 }
             ]
         }
