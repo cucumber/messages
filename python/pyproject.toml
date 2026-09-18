@@ -13,7 +13,7 @@ dev = [
 
 [project]
 authors = [
-  {name = "Cucumber Limited", email = "cukes@googlegroups.com"}
+  { name = "Cucumber Limited", email = "cukes@googlegroups.com" }
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -39,7 +39,7 @@ license-files = [
   "LICENSE"
 ]
 maintainers = [
-  {name = "Konstantin Goloveshko", email = "kostya.goloveshko@gmail.com"}
+  { name = "Konstantin Goloveshko", email = "kostya.goloveshko@gmail.com" }
 ]
 name = "cucumber-messages"
 readme = "README.md"

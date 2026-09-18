@@ -2,6 +2,12 @@ import 'package:cucumber_messages/cucumber_messages.dart';
 import 'package:test/test.dart';
 
 void main() {
+  test('schema violations render their message', () {
+    final error = SchemaViolationException('invalid schema');
+
+    expect(error.toString(), 'invalid schema');
+  });
+
   test('throws when deserializing JSON with missing required fields', () {
     const json = '''
 {

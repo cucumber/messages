@@ -34,7 +34,7 @@ final class JsonDecodingTraitTest extends TestCase
         $this->expectException(UnexpectedDecodingException::class);
 
         // 'oops' is hardcoded in BrokenJsonDecodingTraitTestImpl
-        $this->expectExceptionMessage('Unexpected decoding error: "oops"');
+        $this->expectExceptionMessageIs('Unexpected decoding error: "oops"');
 
         BrokenJsonDecodingTraitTestImpl::fromJson('[]');
     }

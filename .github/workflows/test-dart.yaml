@@ -45,12 +45,15 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1 # v1.8.0
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
         with:
           sdk: ${{ matrix.dart }}
 
       - name: Install dependencies
         run: dart pub get --enforce-lockfile
+
+      - name: Install coverage tools
+        run: dart pub global activate coverage 1.15.0
 
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
@@ -58,8 +61,8 @@ jobs:
       - name: Analyze
         run: dart analyze
 
-      - name: Test
-        run: dart test
+      - name: Test & validate coverage
+        run: dart pub global run coverage:test_with_coverage --fail-under 100
 
       - name: Verify publishable package
         run: dart pub publish --dry-run
