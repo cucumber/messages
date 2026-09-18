@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Changed
-- [cpp] BREAKING CHANGE: updated codegen (renamed files and classes). ([#473](https://github.com/cucumber/messages/pull/473))
+- [cpp] BREAKING CHANGE: updated codegen (renamed files and classes). ([#527](https://github.com/cucumber/messages/pull/527))
 
 ## [34.2.1] - 2026-08-05
 ### Fixed
