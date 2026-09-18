@@ -15,7 +15,7 @@ else()
     message(FATAL_ERROR "unable to parse version: ${VERSION}")
 endif()
 
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 project(cucumber_messages VERSION ${VERSION} LANGUAGES CXX)
 
 # Options
@@ -25,7 +25,33 @@ if (POLICY CMP0077)
 endif ()
 
 option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." Off)
-option(CUCUMBER_MESSAGES_FETCH_DEPS "Fetch dependencies via FetchContent." Off)
+option(CUCUMBER_MESSAGES_ENABLE_CLANG_TIDY "Run clang-tidy as part of the build." Off)
+option(CUCUMBER_MESSAGES_ENABLE_COVERAGE "Enable compiler flags for code coverage measurements." Off)
+option(CUCUMBER_MESSAGES_ENABLE_SANITIZERS "Enable compiler flags for the address and undefined behaviour sanitizers." Off)
+
+if(CUCUMBER_MESSAGES_ENABLE_SANITIZERS AND CUCUMBER_MESSAGES_ENABLE_COVERAGE)
+    message(FATAL_ERROR "CUCUMBER_MESSAGES_ENABLE_SANITIZERS and CUCUMBER_MESSAGES_ENABLE_COVERAGE are mutually exclusive.")
+endif()
+
+if(CUCUMBER_MESSAGES_ENABLE_CLANG_TIDY)
+    find_program(CLANG_TIDY_PROGRAM clang-tidy REQUIRED)
+endif()
+
+if(CUCUMBER_MESSAGES_ENABLE_COVERAGE)
+    find_program(GCOVR_PROGRAM gcovr REQUIRED)
+
+    add_custom_target(
+        generate-lcov-report
+        COMMAND ${GCOVR_PROGRAM} --version
+        COMMAND ${GCOVR_PROGRAM} --root ${CMAKE_CURRENT_SOURCE_DIR} --merge-lines --delete --exclude-unreachable-branches --exclude-throw-branches --exclude-noncode-lines --filter include/ --filter src/
+            --txt-summary
+            --lcov ${CMAKE_CURRENT_BINARY_DIR}/lcov.info
+            --cobertura ${CMAKE_CURRENT_BINARY_DIR}/cobertura.xml --cobertura-pretty
+            --markdown-summary ${CMAKE_CURRENT_BINARY_DIR}/coverage-summary.md
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Generating code coverage reports"
+    )
+endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -51,8 +77,32 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
 endif()
 
-# CMake dependencies
-include(cmake/dependencies.cpm.cmake)
+find_package(nlohmann_json REQUIRED)
+
+# Target options
+if(CUCUMBER_MESSAGES_ENABLE_CLANG_TIDY)
+    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_PROGRAM}")
+endif()
+
+if(CUCUMBER_MESSAGES_ENABLE_COVERAGE)
+    add_compile_options(
+        -g -O0 --coverage -fprofile-arcs -ftest-coverage -fno-inline
+        $<$<COMPILE_LANGUAGE:CXX>:-fno-elide-constructors>
+    )
+
+    if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
+        link_libraries(gcov)
+    else()
+        add_link_options(--coverage)
+    endif()
+endif()
+
+if(CUCUMBER_MESSAGES_ENABLE_SANITIZERS)
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        add_compile_options(-fsanitize=address -fsanitize=undefined)
+        add_link_options(-fsanitize=address -fsanitize=undefined)
+    endif()
+endif()
 
 # Target
 set(CUCUMBER_MESSAGES_LIB_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -68,6 +118,9 @@ list(APPEND CUCUMBER_MESSAGES_LIB_ALL_SOURCES ${CUCUMBER_MESSAGES_LIB_SOURCES})
 add_library(cucumber_messages_lib)
 add_library(cucumber::messages ALIAS cucumber_messages_lib)
 
+# Propagate the C++17 requirement to consumers of the installed/exported target.
+target_compile_features(cucumber_messages_lib PUBLIC cxx_std_17)
+
 target_sources(
     cucumber_messages_lib
     PRIVATE
@@ -77,8 +130,9 @@ target_sources(
 target_include_directories(
     cucumber_messages_lib
     PUBLIC
+        $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/util>
         $<BUILD_INTERFACE:${CUCUMBER_MESSAGES_LIB_INC_DIR}/generated>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cucumber>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE
         ${CUCUMBER_MESSAGES_LIB_SRC_DIR}/src/messages
 )
@@ -133,16 +187,21 @@ install(
     FILES
         "${PROJECT_BINARY_DIR}/cucumber_messages-config.cmake"
         "${PROJECT_BINARY_DIR}/cucumber_messages-config-version.cmake"
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages"
+    DESTINATION
+        "${CMAKE_INSTALL_LIBDIR}/cmake/cucumber_messages"
 )
 
 install(
-    DIRECTORY "${PROJECT_SOURCE_DIR}/include/generated/"
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cucumber
+    DIRECTORY
+        "${PROJECT_SOURCE_DIR}/include/util/"
+        "${PROJECT_SOURCE_DIR}/include/generated/"
+    DESTINATION
+        ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 # Optional: tests
 if(CUCUMBER_MESSAGES_BUILD_TESTS)
+    find_package(GTest REQUIRED)
     include(CTest)
     enable_testing()
     add_subdirectory(test)
