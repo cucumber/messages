@@ -12,8 +12,8 @@ on:
       - testdata/**
       - .github/**
   pull_request:
-    # branches:
-    #   - main
+    branches:
+      - main
     paths:
       - cpp/**
       - Makefile
