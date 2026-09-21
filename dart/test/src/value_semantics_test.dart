@@ -36,23 +36,14 @@ void main() {
     });
 
     test('== performs deep comparison of list properties', () {
-      final a = PickleTableRow(
-        cells: [
-          const PickleTableCell(value: 'x'),
-          const PickleTableCell(value: 'y'),
-        ],
+      const a = PickleTableRow(
+        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'y')],
       );
-      final b = PickleTableRow(
-        cells: [
-          const PickleTableCell(value: 'x'),
-          const PickleTableCell(value: 'y'),
-        ],
+      const b = PickleTableRow(
+        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'y')],
       );
-      final c = PickleTableRow(
-        cells: [
-          const PickleTableCell(value: 'x'),
-          const PickleTableCell(value: 'z'),
-        ],
+      const c = PickleTableRow(
+        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'z')],
       );
 
       expect(a, equals(b));
@@ -61,11 +52,9 @@ void main() {
     });
 
     test('== distinguishes empty from populated list properties', () {
-      final empty1 = PickleTableRow(cells: []);
-      final empty2 = PickleTableRow(cells: []);
-      final populated = PickleTableRow(
-        cells: [const PickleTableCell(value: 'x')],
-      );
+      const empty1 = PickleTableRow(cells: []);
+      const empty2 = PickleTableRow(cells: []);
+      const populated = PickleTableRow(cells: [PickleTableCell(value: 'x')]);
 
       expect(empty1, equals(empty2));
       expect(empty1, isNot(equals(populated)));
@@ -74,8 +63,8 @@ void main() {
     test('nested messages compare structurally', () {
       const a = Location(line: 1, column: 2);
       const b = Location(line: 1, column: 2);
-      final ta = TableRow(id: '1', location: a, cells: const []);
-      final tb = TableRow(id: '1', location: b, cells: const []);
+      const ta = TableRow(id: '1', location: a, cells: []);
+      const tb = TableRow(id: '1', location: b, cells: []);
 
       expect(ta, equals(tb));
       expect(ta.hashCode, equals(tb.hashCode));
