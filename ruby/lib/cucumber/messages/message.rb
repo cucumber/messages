@@ -30,7 +30,7 @@ module Cucumber
       #     # => #<Cucumber::Messages::GherkinDocument:0x00007efda11e6a90 ... @comments=[#<Cucumber::Messages::Comment:0x00007efda11e6e50 ...]>
       ##
       def self.from_json(json_string)
-        from_h(JSON.parse(json_string, { symbolize_names: true }))
+        from_h(JSON.parse(json_string, symbolize_names: true))
       end
 
       ##

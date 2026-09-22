@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - [cpp] BREAKING CHANGE: updated codegen (renamed files and classes). ([#527](https://github.com/cucumber/messages/pull/527))
 
+### Fixed
+- [ruby] Support ruby/json 3 related to `JSON.parse` argument change. ([#529](https://github.com/cucumber/messages/pull/529))
+
 ## [34.2.1] - 2026-08-05
 ### Fixed
 - [Java] Use version range for `org.jspecify:jspecify`
