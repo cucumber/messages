@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:cucumber_messages/cucumber_messages.dart';
 
 Future<void> main() async {
-  final envelope = Envelope(
+  const envelope = Envelope(
     attachment: Attachment(
       body: 'Hello, world!',
       contentEncoding: AttachmentContentEncoding.identity,
@@ -12,6 +14,6 @@ Future<void> main() async {
   final lines = encodeNdjsonEnvelopes(Stream.value(envelope));
 
   await for (final decoded in decodeNdjsonEnvelopes(lines)) {
-    print(decoded.attachment?.body);
+    stdout.writeln(decoded.attachment?.body);
   }
 }
