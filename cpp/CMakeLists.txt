@@ -1,28 +1,11 @@
-# The VERSION here is a placeholder; the real version is in the VERSION file.
-set(VERSION 28.0.0)
-
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/VERSION")
-    file(STRINGS "VERSION" LINES)
-    list(GET LINES 0 VERSION)
-endif()
-
-# Crude Semver parsing
-if("${VERSION}" MATCHES "^([^\\.]+)\\.([^\\.]+)\\.([^\\.]+)$")
-    set(VER_MAJOR ${CMAKE_MATCH_1})
-    set(VER_MINOR ${CMAKE_MATCH_2})
-    set(VER_PATCH ${CMAKE_MATCH_3})
-else()
-    message(FATAL_ERROR "unable to parse version: ${VERSION}")
-endif()
-
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
-project(cucumber_messages VERSION ${VERSION} LANGUAGES CXX)
+project(cucumber_messages VERSION 34.2.1 LANGUAGES CXX)
 
 # Options
-if (POLICY CMP0077)
+if(POLICY CMP0077)
     # Allow CMake 3.13+ to override options when using FetchContent / add_subdirectory.
     cmake_policy(SET CMP0077 NEW)
-endif ()
+endif()
 
 option(CUCUMBER_MESSAGES_BUILD_TESTS "Build the unit tests." Off)
 option(CUCUMBER_MESSAGES_ENABLE_CLANG_TIDY "Run clang-tidy as part of the build." Off)
@@ -73,7 +56,7 @@ endif()
 # Configuration
 include(GNUInstallDirs)
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS)
 endif()
 
@@ -90,7 +73,7 @@ if(CUCUMBER_MESSAGES_ENABLE_COVERAGE)
         $<$<COMPILE_LANGUAGE:CXX>:-fno-elide-constructors>
     )
 
-    if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
         link_libraries(gcov)
     else()
         add_link_options(--coverage)
@@ -146,8 +129,8 @@ target_link_libraries(
 set_target_properties(
     cucumber_messages_lib
     PROPERTIES
-        VERSION ${VERSION}
-        SOVERSION ${VER_MAJOR}
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION_MAJOR}
         EXPORT_NAME messages
         OUTPUT_NAME cucumber_messages
 )
