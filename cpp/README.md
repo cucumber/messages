@@ -3,7 +3,7 @@
 ## Requirements
 
 This library requires:
-- A C++ 17 compiler (tested with GCC 10, 12)
+- A C++ 17 compiler
 - [JSON for Modern C++](https://json.nlohmann.me/)
 
 ## Installing from Git repository
