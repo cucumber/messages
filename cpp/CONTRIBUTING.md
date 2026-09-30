@@ -14,48 +14,24 @@ make clean generate
 
 ## Building
 
-Install dependencies with Conan, then build using the host workflow.
+1. Install dependencies (nlohmann/json).
+2. `cmake --workflow --preset host-system`
 
-```shell
-conan profile detect --force
-conan install . --output-folder=build/host-conan --build=missing -s build_type=Release
-cmake --workflow --preset host-conan
-```
+## Installing
 
-## Tests
+1. Install dependencies (nlohmann/json).
+2. `cmake --workflow --preset host-system`
+3. `cmake --install build/host-system --config Release`
 
-Tests are automatically generated from the `/testdata` folder. Install dependencies and run the test workflow:
+## Tests, without coverage
 
-```shell
-conan profile detect --force
-conan install . --output-folder=build/test --build=missing -s build_type=Debug
-cmake --workflow --preset test
-```
+1. Install dependencies (nlohmann/json, google test).
+2. `cmake --workflow --preset test-system`
 
-## Local development (automatic Conan)
+## Tests, with coverage
 
-For local development you can use the `dev` preset, which wires in the
-[cmake-conan](https://github.com/conan-io/cmake-conan) dependency provider so
-CMake runs `conan install` automatically at configure time. No separate Conan
-step is required:
-
-```shell
-conan profile detect --force
-cmake --workflow --preset dev
-```
-
-The `host-conan` and `test` presets deliberately do **not** use the provider; CI
-runs an explicit `conan install` for reproducible, profile-pinned builds.
-
-## Building without Conan
-
-If Conan is not available but the C++ dependencies are already installed on the
-system, use the `host-system` preset to build and install:
-
-```shell
-cmake --workflow --preset host-system
-cmake --install build/host-system --config Release
-```
+1. Install dependencies (nlohmann/json, google test).
+2. `cmake --workflow --preset coverage`
 
 ## Codestyle, rules and recommendations
 
