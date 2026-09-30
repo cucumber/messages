@@ -1,8 +1,6 @@
 # Contributing
 
-If you want to make changes to the C++ codegen then it's preferred to use the supplied devcontainer. If you wish to not use a devcontainer you'll have to have recent (C++17 compatible) compiler, cmake and preferably Ninja.
-
-To generate files you will need to install Ruby in the container or in your development environment.
+If you want to make changes to the C++ codegen you'll have to have recent (C++17 compatible) compiler, cmake and preferably Ninja (using supplied CMakePresets.json expects Ninja to be available).
 
 If you need some advice, drop into the `#committers-cpp` channel on the [Cucumber Discord](https://cucumber.io/docs/community/get-in-touch#discord) and ask.
 
