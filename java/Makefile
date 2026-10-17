@@ -17,6 +17,7 @@ clean: ## Remove automatically generated files and related artifacts
 
 .generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/java.java.erb ../codegen/templates/java.enum.java.erb
 	ruby ../codegen/codegen.rb Generator::Java java.java.erb > Generated.java.tmp
+	ruby ../codegen/codegen.rb Generator::Java json.java.erb >> Generated.java.tmp
 	ruby ../codegen/codegen.rb Generator::Java java.enum.java.erb >> Generated.java.tmp
 	csplit --quiet --prefix=Generated --suffix-format=%02d.java.tmp --elide-empty-files Generated.java.tmp /^[A-Za-z.]*[.]java/ {*}
 	rm Generated.java.tmp
