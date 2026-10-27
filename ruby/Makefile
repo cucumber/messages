@@ -13,7 +13,7 @@ require: ## Check requirements for the code generation (ruby, csplit and tail ar
 	@tail --version >/dev/null 2>&1 || (echo "ERROR: tail is required."; exit 1)
 
 clean: ## Remove automatically generated files and related artifacts
-	find ./lib/cucumber/messages/*.rb ! -name 'message.rb' -type f -exec rm -f {} +
+	find ./lib/cucumber/messages/*.rb ! -name 'message.rb' ! -name 'version.rb' -type f -exec rm -f {} +
 
 .generate-messages: $(schemas) ../codegen/codegen.rb ../codegen/templates/ruby.rb.erb ../codegen/templates/ruby.enum.rb.erb
 	ruby ../codegen/codegen.rb Generator::Ruby ruby.rb.erb > Generated.rb.tmp
