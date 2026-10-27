@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- [Ruby] Define the gem version in `Cucumber::Messages::VERSION`.
+
 ### Changed
 - [cpp] BREAKING CHANGE: updated codegen (renamed files and classes). ([#527](https://github.com/cucumber/messages/pull/527))
 
