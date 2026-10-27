@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-version = File.read(File.expand_path('VERSION', __dir__)).strip
+require_relative 'lib/cucumber/messages/version'
 
 Gem::Specification.new do |s|
   s.name        = 'cucumber-messages'
-  s.version     = version
+  s.version     = Cucumber::Messages::VERSION
   s.authors     = ['Aslak Hellesøy', 'Luke Hill']
   s.description = "JSON schema-based messages for Cucumber's inter-process communication"
   s.summary     = "cucumber-messages-#{s.version}"
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop-rake', '~> 0.6.0'
   s.add_development_dependency 'rubocop-rspec', '~> 3.10.2'
 
-  s.files            = Dir['README.md', 'LICENSE', 'VERSION', 'lib/**/*']
+  s.files            = Dir['README.md', 'LICENSE', 'lib/**/*']
   s.rdoc_options     = ['--charset=UTF-8']
   s.require_path     = 'lib'
 end
