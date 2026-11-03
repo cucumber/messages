@@ -6,12 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-
-### Added
-- [Ruby] Define the gem version in `Cucumber::Messages::VERSION`.
-
 ### Changed
 - [cpp] BREAKING CHANGE: updated codegen (renamed files and classes). ([#527](https://github.com/cucumber/messages/pull/527))
+- [Ruby] Define the gem version in `Cucumber::Messages::VERSION`.
 
 ### Fixed
 - [Ruby] Support ruby/json 3 related to `JSON.parse` argument change. ([#529](https://github.com/cucumber/messages/pull/529))
