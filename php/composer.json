@@ -14,7 +14,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "vimeo/psalm": "^6",
+        "vimeo/psalm": "^7",
         "phpunit/phpunit": "^13",
         "psalm/plugin-phpunit": "^0",
         "friendsofphp/php-cs-fixer": "^3",
