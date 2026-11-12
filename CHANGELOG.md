@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [35.0.0] - 2026-11-12
 ### Changed
 - [cpp] BREAKING CHANGE: updated codegen (renamed files and classes). ([#527](https://github.com/cucumber/messages/pull/527))
 - [Ruby] Define the gem version in `Cucumber::Messages::VERSION`.
@@ -749,7 +751,8 @@ aggregated status.
 ### Added
 - Protobuf messages for Go, Java, JavaScript, TypeScript and Ruby
 
-[Unreleased]: https://github.com/cucumber/messages/compare/v34.2.1...HEAD
+[Unreleased]: https://github.com/cucumber/messages/compare/v35.0.0...HEAD
+[35.0.0]: https://github.com/cucumber/messages/compare/v34.2.1...v35.0.0
 [34.2.1]: https://github.com/cucumber/messages/compare/v34.2.0...v34.2.1
 [34.2.0]: https://github.com/cucumber/messages/compare/v34.1.0...v34.2.0
 [34.1.0]: https://github.com/cucumber/messages/compare/v34.0.2...v34.1.0

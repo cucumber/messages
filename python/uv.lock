@@ -1,5 +1,5 @@
 version = 1
-revision = 5
+revision = 6
 requires-python = ">=3.9"
 resolution-markers = [
     "python_full_version >= '3.11'",
@@ -131,7 +131,7 @@ wheels = [
 
 [[package]]
 name = "cucumber-messages"
-version = "34.2.1"
+version = "35.0.0"
 source = { editable = "." }
 
 [package.dev-dependencies]
