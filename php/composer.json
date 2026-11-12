@@ -16,7 +16,7 @@
     "require-dev": {
         "vimeo/psalm": "^7",
         "phpunit/phpunit": "^13",
-        "psalm/plugin-phpunit": "^0",
+        "psalm/plugin-phpunit": "^1",
         "friendsofphp/php-cs-fixer": "^3",
         "ramsey/uuid": "^4"
     },
