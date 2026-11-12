@@ -8,7 +8,7 @@ trait IdGeneratorTestTrait
 
     public function testItDoesNotGenerateEmptyIds(): void
     {
-        self::assertNotEquals('', $this->idGenerator->newId());
+        self::assertNotSame('', $this->idGenerator->newId());
     }
 
     public function testItDoesNotRepeatIds(): void
@@ -16,6 +16,6 @@ trait IdGeneratorTestTrait
         $id1 = $this->idGenerator->newId();
         $id2 = $this->idGenerator->newId();
 
-        self::assertNotEquals($id1, $id2);
+        self::assertNotSame($id1, $id2);
     }
 }
