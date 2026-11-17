@@ -15,8 +15,9 @@ environment:
 
 topics:
   - cucumber
+  - gherkin
+  - bdd
   - testing
-  - json
   - ndjson
 
 dev_dependencies:
