@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- [dart] Increase minimum Dart SDK support to 3.8.0 ([#557](https://github.com/cucumber/messages/pull/557))
 
 ## [35.0.0] - 2026-11-12
 ### Changed

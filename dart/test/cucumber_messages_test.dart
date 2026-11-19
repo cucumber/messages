@@ -10,12 +10,12 @@ void main() {
     final envelope = parseEnvelopeJson(
       '{"attachment":{"body":"x","contentEncoding":"IDENTITY","mediaType":"text/plain"}}',
     );
-    final ndjsonLines =
-        await encodeNdjsonEnvelopes(Stream.value(envelope)).toList();
-    final parsed =
-        await decodeNdjsonEnvelopes(
-          Stream.value(envelopeToJsonString(envelope)),
-        ).toList();
+    final ndjsonLines = await encodeNdjsonEnvelopes(
+      Stream.value(envelope),
+    ).toList();
+    final parsed = await decodeNdjsonEnvelopes(
+      Stream.value(envelopeToJsonString(envelope)),
+    ).toList();
 
     expect(timestampToDateTime(timestamp).isUtc, isTrue);
     expect(durationMessageToDuration(duration), const Duration(seconds: 1));
