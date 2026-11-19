@@ -37,13 +37,22 @@ void main() {
 
     test('== performs deep comparison of list properties', () {
       const a = PickleTableRow(
-        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'y')],
+        cells: [
+          PickleTableCell(value: 'x'),
+          PickleTableCell(value: 'y'),
+        ],
       );
       const b = PickleTableRow(
-        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'y')],
+        cells: [
+          PickleTableCell(value: 'x'),
+          PickleTableCell(value: 'y'),
+        ],
       );
       const c = PickleTableRow(
-        cells: [PickleTableCell(value: 'x'), PickleTableCell(value: 'z')],
+        cells: [
+          PickleTableCell(value: 'x'),
+          PickleTableCell(value: 'z'),
+        ],
       );
 
       expect(a, equals(b));
