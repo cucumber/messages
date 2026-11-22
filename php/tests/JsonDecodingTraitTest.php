@@ -1,4 +1,5 @@
 <?php
+namespace Cucumber\Messages;
 
 use Cucumber\Messages\DecodingException\MalformedJsonException;
 use Cucumber\Messages\JsonEncodingTrait;
@@ -40,7 +41,7 @@ final class JsonDecodingTraitTest extends TestCase
     }
 }
 
-final class JsonDecodingTraitTestImpl implements JsonSerializable
+final class JsonDecodingTraitTestImpl implements \JsonSerializable
 {
     use JsonEncodingTrait;
 
@@ -50,12 +51,12 @@ final class JsonDecodingTraitTestImpl implements JsonSerializable
     }
 }
 
-final class BrokenJsonDecodingTraitTestImpl implements JsonSerializable
+final class BrokenJsonDecodingTraitTestImpl implements \JsonSerializable
 {
     use JsonEncodingTrait;
 
     public static function fromArray(array $arr): self
     {
-        throw new RuntimeException('oops');
+        throw new \RuntimeException('oops');
     }
 }

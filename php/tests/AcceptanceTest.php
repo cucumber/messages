@@ -1,5 +1,5 @@
 <?php
-
+namespace Cucumber\Messages;
 
 use Cucumber\Messages\Envelope;
 use Cucumber\Messages\Streams\NdJson\NdJsonStreamReader;
@@ -25,11 +25,11 @@ final class AcceptanceTest extends TestCase
     {
         $sourceHandle = fopen($filename, 'r');
         if ($sourceHandle === false) {
-            throw new RuntimeException("Could not open $filename");
+            throw new \RuntimeException("Could not open $filename");
         }
         $destHandle = fopen('php://memory', 'w');
         if ($destHandle === false) {
-            throw new RuntimeException("Could not open php://memory");
+            throw new \RuntimeException("Could not open php://memory");
         }
 
         $reader = NdJsonStreamReader::fromFileHandle($sourceHandle);
@@ -56,9 +56,9 @@ final class AcceptanceTest extends TestCase
     }
 
     /**
-     * @return Generator<string, array{0: string}>
+     * @return \Generator<string, array{0: string}>
      */
-    public static function provideJsonLines(): Generator
+    public static function provideJsonLines(): \Generator
     {
         foreach (AcceptanceTest::getSampleFiles() as $filename) {
             $file = file($filename);
@@ -69,7 +69,7 @@ final class AcceptanceTest extends TestCase
                 // key is provided for better error messages
                 $realpath = realpath($filename);
                 if ($realpath === false) {
-                    throw new RuntimeException("Could get realpath for $filename");
+                    throw new \RuntimeException("Could get realpath for $filename");
                 }
                 $key = $realpath . ':' . $lineNumber;
                 yield $key => [$line];
@@ -78,9 +78,9 @@ final class AcceptanceTest extends TestCase
     }
 
     /**
-     * @return Generator<string, array{0: string}>
+     * @return \Generator<string, array{0: string}>
      */
-    public static function provideNdJsonFilenames(): Generator
+    public static function provideNdJsonFilenames(): \Generator
     {
         foreach (AcceptanceTest::getSampleFiles() as $filename) {
             yield $filename => [$filename];
