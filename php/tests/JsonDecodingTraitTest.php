@@ -1,4 +1,5 @@
 <?php
+
 namespace Cucumber\Messages;
 
 use Cucumber\Messages\DecodingException\MalformedJsonException;
