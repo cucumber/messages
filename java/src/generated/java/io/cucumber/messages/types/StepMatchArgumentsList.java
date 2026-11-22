@@ -38,7 +38,7 @@ public final class StepMatchArgumentsList {
 
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Objects.hashCode(
             stepMatchArguments
         );
     }

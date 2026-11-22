@@ -38,7 +38,7 @@ public final class PickleTableRow {
 
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Objects.hashCode(
             cells
         );
     }
