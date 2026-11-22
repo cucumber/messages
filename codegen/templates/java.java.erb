@@ -113,7 +113,7 @@ public final class <%= class_name(key) %> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(
+        <% if schema['properties'].length == 1 -%>return Objects.hashCode(<%- else -%>return Objects.hash(<%- end %>
         <%- schema['properties'].each_with_index do |(property_name, _property), index| -%>
             <%= property_name %><%= index < schema['properties'].length - 1 ? ',' : ''%>
         <%- end -%>
